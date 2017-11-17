@@ -1,0 +1,361 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Máy vi tính làm việc</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/indel.css" rel="stylesheet">
+    <link href="../css/index_add_img.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css">
+    <link rel="stylesheet" href="../css/computer.css" />
+    <link rel="stylesheet" href="../css/base.css">
+</head>
+
+<body ng-app="computerApp" ng-controller="computerController">
+    <div class="all">
+        <div class="header_top">
+            <div class="content" style="overflow: visible;">
+                <div class="header_left left userLogin">
+                    <a href="./center.html">Xin chào, <span id="userMsisdn"></span><i class="userLogin-arrow"></i></a>
+                    <a href="./center.html" id="quit"></a>
+                    <div class="userLogin-info">
+                        <div class="userLogin-info__top col-xs-24">
+                            <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                            <div class="userLogin-info__top-order">
+                                <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                            </div>
+                        </div>
+                        <div class="userLogin-info__bottom col-xs-24">
+                            <a href="" class="userLogin-info__bottom-button" id="userLogin-info__bottom-button" onclick="userQuit()"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_left left noLogin">
+                    <a href="./login.html" id="login"></a>
+                    <a href="./register.html" id="signup"></a>
+                </div>
+                <div class="header_right right">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content header_c">
+            <div class="search_left left">
+                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
+            </div>
+            <div class="search_right right">
+                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
+                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content navh">
+            <div class="category left">
+                <a href="#" class="category_a">Máy vi tính làm việc</a>
+            </div>
+            <div class="nav left">
+                <a href="../index.html" class="">Trang chủ</a>
+            </div>
+            <div class="iwant right">
+                <a href="./bill.html" target="_self" class="">Tôi muốn thanh toán nợ &gt;</a>
+            </div>
+        </div>
+    </div>
+    <div id="center" ng-controller="brandProductCtrl">
+        <div class="all banner_c">
+            <div class="content">
+                <div class="index_banner" ng-controller="computerCtrl">
+                    <div class="swiper-container" id="index_banner" ng-init="cptBanner">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" ng-repeat="item in cptBanner" ng-click="product(item.typeId,item.brandId)">
+                                <div class="swiper-slide-img" style="background-image: url({{item.imageUrl}});"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="dt-swiper-prev swiper-button-prev iconfont"></div>
+                        <div class="dt-swiper-next swiper-button-next iconfont"></div>
+                    </div>
+                </div>
+                <div class="category_1 left">
+                    <div class="hot_brand">
+                        <p>Thương hiệu nổi tiếng</p>
+                        <p ng-repeat="item in nav">
+                            <a><span ng-bind="item.name" ng-click="gotoMore2(item.id)"></span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--板块-->
+        <!--板块一-->
+        <div ng-controller="hotProductCtrl">
+            <section class="banner1" ng-if="newComputer._sub_top">
+                <div class="banner1__title">
+                    <div class="banner1__title-left" style="padding-top: 30px; width: 100%; color: #F31D2F;">Đề cử</div>
+                    <!-- <div class="banner1__title-right" ng-click="gotoMore2(classfy._sub_top[0].classfyId)">Xem nhiều hơn &gt; </div> -->
+                </div>
+                <div class="banner1__main">
+                    <div class="banner1__main-top">
+                        <div ng-repeat="top_item in newComputer._sub_top" ng-class="{ 'banner1__main-top-1': top_item.position === 1, 'banner1__main-top-2': top_item.position === 2, }" style="background-image: url({{top_item.imageUrl}});" ng-click="product(top_item.typeId,top_item.brandId)"></div>
+                    </div>
+                    <div class="banner1__main-bottom">
+                        <li class="banner1__m-b-item" ng-repeat="bottom_item in newComputer._sub_bottom" ng-click="product(bottom_item.typeId,bottom_item.brandId)">
+                            <div class="banner1__m-b-i-img" style="background-image: url({{ bottom_item.imageUrl }});"></div>
+                            <div class="banner1__m-b-i-title" ng-bind="bottom_item.name"></div>
+                            <div class="banner1__m-b-i-price">Giá bán: <span class="banner1__m-b-i-p-money" ng-bind="bottom_item.maxprice | priceFormat">3000</span> VND</div>
+                            <div class="banner1__m-b-i-fenqi">
+                                <span class="banner1__m-b-i-f-money" ng-bind="bottom_item.maxprice/12 | priceFormat">500</span><span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="" ng-controller="iphoneProductCtrl">
+            <section class="banner1" ng-if="AdAppleComputer._sub_top">
+                <div class="banner1__title">
+                    <div class="banner1__title-left">Khu Apple</div>
+                    <div class="banner1__title-right" ng-click="gotoMore2(AdAppleComputer._sub_top[0].classfyId)">Xem nhiều hơn &gt; </div>
+                </div>
+                <div class="banner1__main">
+                    <div class="banner1__main-top">
+                        <div ng-repeat="top_item in AdAppleComputer._sub_top" ng-class="{ 'banner1__main-top-3': top_item.position === 1, 'banner1__main-top-2': top_item.position === 2, }" style="background-image: url({{top_item.imageUrl}});" ng-click="product(top_item.typeId,top_item.brandId)"></div>
+                    </div>
+                    <div class="banner1__main-bottom">
+                        <li class="banner1__m-b-item" ng-repeat="bottom_item in AdAppleComputer._sub_bottom" ng-click="product(bottom_item.typeId,bottom_item.brandId)">
+                            <div class="banner1__m-b-i-img" style="background-image: url({{ bottom_item.imageUrl }});"></div>
+                            <div class="banner1__m-b-i-title" ng-bind="bottom_item.name"></div>
+                            <div class="banner1__m-b-i-price">Giá bán: <span class="banner1__m-b-i-p-money" ng-bind="bottom_item.maxprice | priceFormat">3000</span> VND</div>
+                            <div class="banner1__m-b-i-fenqi">
+                                <span class="banner1__m-b-i-f-money" ng-bind="bottom_item.maxprice/12 | priceFormat">500</span><span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="" ng-controller="gameProductCtrl">
+            <section class="banner1" ng-if="AdGameComputer._sub_top">
+                <div class="banner1__title">
+                    <div class="banner1__title-left">Khu trò chơi</div>
+                    <div class="banner1__title-right" ng-click="gotoMore2(AdGameComputer._sub_top[0].classfyId)">Xem nhiều hơn &gt; </div>
+                </div>
+                <div class="banner1__main">
+                    <div class="banner1__main-top">
+                        <div ng-repeat="top_item in AdGameComputer._sub_top" ng-class="{ 'banner1__main-top-3': top_item.position === 1, 'banner1__main-top-2': top_item.position === 2, }" style="background-image: url({{top_item.imageUrl}});" ng-click="product(top_item.typeId,top_item.brandId)"></div>
+                    </div>
+                    <div class="banner1__main-bottom">
+                        <li class="banner1__m-b-item" ng-repeat="bottom_item in AdGameComputer._sub_bottom" ng-click="product(bottom_item.typeId,bottom_item.brandId)">
+                            <div class="banner1__m-b-i-img" style="background-image: url({{ bottom_item.imageUrl }});"></div>
+                            <div class="banner1__m-b-i-title" ng-bind="bottom_item.name"></div>
+                            <div class="banner1__m-b-i-price">Giá bán: <span class="banner1__m-b-i-p-money" ng-bind="bottom_item.maxprice | priceFormat">3000</span> VND</div>
+                            <div class="banner1__m-b-i-fenqi">
+                                <span class="banner1__m-b-i-f-money" ng-bind="bottom_item.maxprice/12 | priceFormat">500</span><span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="" ng-controller="ipadProductCtrl">
+            <section class="banner1" ng-if="adTabletComputer._sub_top">
+                <div class="banner1__title">
+                    <div class="banner1__title-left">Khu máy tính bảng, máy để bàn</div>
+                    <div class="banner1__title-right" ng-click="gotoMore2(adTabletComputer._sub_top[0].classfyId)">Xem nhiều hơn &gt; </div>
+                </div>
+                <div class="banner1__main">
+                    <div class="banner1__main-top">
+                        <div ng-repeat="top_item in adTabletComputer._sub_top" ng-class="{ 'banner1__main-top-3': top_item.position === 1, 'banner1__main-top-2': top_item.position === 2, }" style="background-image: url({{top_item.imageUrl}});" ng-click="product(top_item.typeId,top_item.brandId)"></div>
+                    </div>
+                    <div class="banner1__main-bottom">
+                        <li class="banner1__m-b-item" ng-repeat="bottom_item in adTabletComputer._sub_bottom" ng-click="product(bottom_item.typeId,bottom_item.brandId)">
+                            <div class="banner1__m-b-i-img" style="background-image: url({{ bottom_item.imageUrl }});"></div>
+                            <div class="banner1__m-b-i-title" ng-bind="bottom_item.name"></div>
+                            <div class="banner1__m-b-i-price">Giá bán: <span class="banner1__m-b-i-p-money" ng-bind="bottom_item.maxprice | priceFormat">3000</span> VND</div>
+                            <div class="banner1__m-b-i-fenqi">
+                                <span class="banner1__m-b-i-f-money" ng-bind="bottom_item.maxprice/12 | priceFormat">500</span><span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <article id="two">
+            <div class="content">
+                <h4>Khu hàng hiệu</h4>
+                <!--<span><a href="more.html">Xem nhiều hơn > </a></span>-->
+                <!--<ul class="ul">-->
+                <!--<li>神州</li>
+				<li>华硕</li>
+				<li>联想</li>
+				<li>雷神</li>-->
+                <!--<li ng-repeat="item in nav" ng-click="addItem(item.classfyId)"><smail ng-bind="item.name"></smail></li>
+				
+			</ul>-->
+                <div class="imgs" style="clear:both">
+                    <a ng-repeat="item in nav"><img src="{{item.imageUrl}}" alt="" ng-click="gotoMore2(item.id)" /></a>
+                </div>
+            </div>
+        </article>
+    </div>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/swiper.min.js"></script>
+    <script src="../js/yii.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../js/img_silder.js"></script>
+    <script src="../js/xSlider.js"></script>
+    <script src="../js/popup.js"></script>
+    <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    window.setTimeout(function() {
+        if (localStorage.getItem("funId")) {
+            F._userViewDetailInfo({}, function(ret) {
+                if (ret.data.headimage) {
+                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+                }
+            });
+        }
+    }, 700);
+
+    function gotoFind() {
+        var findcontent = $("#findIpt").val();
+        if (findcontent != "") {
+            window.location.href = "search.html?findcontent=" + findcontent;
+        }
+    }
+
+    function entersearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13)
+
+        {
+            gotoFind();
+        }
+    }
+    </script>
+    <script src="../js/index_two.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

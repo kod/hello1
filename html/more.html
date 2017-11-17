@@ -1,0 +1,466 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Xem nhiều hơn</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/more.css" />
+    <link href="../css/index_add_img.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+    .dropup {
+        transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        /* IE 9 */
+        -moz-transform: rotate(180deg);
+        /* Firefox */
+        -webkit-transform: rotate(180deg);
+        /* Safari 和 Chrome */
+        -o-transform: rotate(180deg);
+    }
+
+    article .changePage button {
+        width: inherit;
+        height: inherit;
+        padding: 3px 8px;
+    }
+
+    article .changePage input {
+        width: 50px
+    }
+
+    .one .right .right-top input[type=submit] {
+        border: 1px solid #aaa;
+        cursor: pointer;
+        background: #fff;
+        width: 55px;
+        height: 25px;
+    }
+
+    .one .right .right-top input[type=submit]:hover {
+        background-color: #0075f6;
+        color: #fff
+    }
+
+    .one .right .ul a h5 {
+        font-size: 14px;
+        line-height: 19px;
+    }
+    /*tcy -start-*/
+
+    .category1-row1-item_active {
+        background-color: #0076F7;
+        color: #fff !important;
+    }
+
+    .category1-row2-item_active {
+        background-color: #0076F7;
+        color: #fff !important;
+    }
+
+    .category2-row1-item_active {
+        background-color: #0076F7;
+        color: #fff !important;
+    }
+
+    .category2-row2-item_active {
+        background-color: #0076F7;
+        color: #fff !important;
+    }
+
+    .category3-row1-item_active {
+        background-color: #0076F7;
+        color: #fff !important;
+    }
+
+    .category3-row2-item_active {
+        background-color: #0076F7;
+        color: #fff !important;
+    }
+
+    .ul:after {
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+    }
+
+    .one .left li .left .img {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 100%;
+        width: 100%;
+    }
+    /*tcy -end-*/
+    </style>
+</head>
+
+<body id="app" ng-app='moreApp' ng-controller="moreCtrl">
+    <div class="all">
+        <div class="header_top">
+            <div class="content" style="overflow: visible;">
+                <div class="header_left left userLogin">
+                    <a href="./center.html">Xin chào, <span id="userMsisdn"></span><i class="userLogin-arrow"></i></a>
+                    <a href="./center.html" id="quit"></a>
+                    <div class="userLogin-info">
+                        <div class="userLogin-info__top col-xs-24">
+                            <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                            <div class="userLogin-info__top-order">
+                                <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                            </div>
+                        </div>
+                        <div class="userLogin-info__bottom col-xs-24">
+                            <a href="" class="userLogin-info__bottom-button" id="userLogin-info__bottom-button" onclick="userQuit()"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_left left noLogin">
+                    <a href="./login.html" id="login"></a>
+                    <a href="./register.html" id="signup"></a>
+                </div>
+                <div class="header_right right">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content header_c">
+            <div class="search_left left">
+                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
+            </div>
+            <div class="search_right right">
+                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
+                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content navh">
+            <div class="category left">
+                <a href="#" class="category_a">Phân loại sản phẩm</a>
+            </div>
+            <div class="nav left">
+                <a href="../index.html" class="">Trang chủ</a>
+            </div>
+            <div class="iwant right">
+                <a href="bill.html" target="_self" class="">Tôi muốn thanh toán nợ &gt;</a>
+            </div>
+        </div>
+    </div>
+    <div class="all banner_c">
+        <div class="content">
+            <div class="category_1 left">
+                <div class="hot_brand" ng-class="{act:brandAct==1}">
+                    <p style="padding-right: 16px;" ng-click="changeProductType(1)"><i></i> Truyền thông di động</p>
+                    <div class="category_act">
+                        <div class="category_open">
+                            <div class="cateory-top">
+                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="cellphoneBanner.html">Truyền thông di động </a>&nbsp;&nbsp; &nbsp;&nbsp;
+                            </div>
+                            <div class="cateory-center">
+                                <div class="list">
+                                    <div class="left list-le">Truyền thông di động: </div>
+                                    <div class="left list-ri listover">
+                                        <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category1-row1-item category1-row1-item_active">Tất cả</a>
+                                        <a ng-repeat="item in ppq" class="category1-row1-item"><span ng-bind="item.name" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })"></span></a>
+                                    </div>
+                                </div>
+                                <div class="list">
+                                    <div class="left list-le">Nhãn hiệu : </div>
+                                    <div class="left list-ri listin" style="vertical-align: middle;">
+                                        <a ng-click="getAllProductInfo({ classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category1-row2-item category1-row2-item_active">Tất cả</a>
+                                        <a ng-repeat="item in shoujimore" ng-class="{act1:item.id==navId}" class="category1-row2-item"><span ng-bind="item.name" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hot_brand" ng-class="{act:brandAct==2}">
+                    <p style="padding-right:24px;" ng-click="changeProductType(2)"><i></i> Máy vi tính làm việc</p>
+                    <div class="category_act">
+                        <div class="category_open">
+                            <div class="cateory-top">
+                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="computerPage.html">Máy vi tính làm việc </a>&nbsp;&nbsp; &nbsp;&nbsp;
+                            </div>
+                            <div class="cateory-center">
+                                <div class="list">
+                                    <div class="left list-le">Máy vi tính làm việc: </div>
+                                    <div class="left list-ri listover">
+                                        <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category2-row1-item category2-row1-item_active">Tất cả</a>
+                                        <a ng-repeat="item in nav" class="category2-row1-item"><span  ng-bind="item.name" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })"></span></a>
+                                    </div>
+                                </div>
+                                <div class="list">
+                                    <div class="left list-le">Nhãn hiệu : </div>
+                                    <div class="left list-ri listin">
+                                        <a ng-click="getAllProductInfo({ classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category2-row2-item category2-row2-item_active">Tất cả</a>
+                                        <a ng-repeat="item in diannaomore" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })" class="category2-row2-item"><span ng-bind="item.name"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hot_brand" ng-class="{act:brandAct==3}">
+                    <p ng-click="changeProductType(5)"><i></i> Kỹ thuật số thông minh</p>
+                    <div class="category_act">
+                        <div class="category_open">
+                            <div class="cateory-top">
+                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="shumapeijian.html">Kỹ thuật số thông minh </a>&nbsp;&nbsp; &nbsp;&nbsp;
+                            </div>
+                            <div class="cateory-center">
+                                <div class="list">
+                                    <div class="left list-le">Kỹ thuật số thông minh: </div>
+                                    <div class="left list-ri listover">
+                                        <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category3-row1-item category3-row1-item_active">Tất cả</a>
+                                        <a ng-repeat="item in choose" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })" class="category3-row1-item"><span  ng-bind="item.name"></span></a>
+                                        <!--<a href="#" >精品推荐</a>-->
+                                    </div>
+                                </div>
+                                <div class="list">
+                                    <div class="left list-le">Nhãn hiệu : </div>
+                                    <div class="left list-ri listin">
+                                        <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category3-row2-item category3-row2-item_active">Tất cả</a>
+                                        <a ng-repeat="item in shumamore" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })" class="category3-row2-item"><span ng-bind="item.name"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--版本-->
+    <article>
+        <div class="content">
+            <div class="one">
+                <div class="left">
+                    <p>Xem gần đây</p>
+                    <ul id="lastScan">
+                        <li ng-repeat="item in showuserScanObj">
+                            <a ng-click="product(item.typeId,item.brandId)" target="_self">
+                                <div class="left">
+                                    <div class="img" style="background-image: url({{item.imgUrl}});"></div>
+                                    <!-- <img src="{{item.imgUrl}}" alt="" /> -->
+                                </div>
+                                <div class="right" ng-bind="item.name">
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <div class="right-top">
+                        <span class="left" ng-click="changeOrder('default')"><!-- Xác nhận thứ tự --></span>
+                        <!-- <span class="right">Có một <b ng-bind="rows"></b> phẩm   &nbsp;&nbsp;&nbsp; </span> -->
+                        <span class="right" style="cursor: default;"><b ng-bind="rows"></b> Sản Phẩm Được Tìm Thấy</span>
+                    </div>
+                    <div class="ul">
+                        <!--<h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>-->
+                        <a ng-repeat="item in nowProduct |filter | orderBy :Porder + Norder +orderType" ng-click="product(item.typeId,item.brandId)" target="_self">
+                        <img src="{{item.iconUrl}}" alt="" />
+                        <!-- <img src="{{item.image}}" alt="" /> -->
+                        <h4 ng-bind="item.name"></h4>
+                    <!--    <div>{{item.id}}</div>-->
+                        <p>Giá bán: <span ng-bind="item.price | priceFormat"></span> VND <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lượng hàng: <span ng-bind="item.numbers"></span> VND--></p>
+                        <!--<h5>Thanh toán lần đầu:<span ng-bind="item.price*0.2"></span> VND &nbsp;&nbsp;</h5> -->
+                        <!-- <h5>Trả góp hàng tháng: <br /><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x12</h5> -->
+                        <h5><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x 12 Tháng</h5>
+                    </a>
+                    </div>
+                    <h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>
+                </div>
+            </div>
+            <div class="changePage">
+                <div style="margin-bottom: 30px;">
+                    <button id="lastPagebtn" ng-click="lastPage()">Trang trước</button>
+                    <span style="padding-top: 3px;">Trang hiện tại: <span ng-init="nowPage=1" ng-bind="nowPage"></span>&nbsp;&nbsp;</span>
+                    <span style="padding-top: 3px;">Trang : <span ng-bind="totalPage"></span> tiên</span>
+                    <button id="nextPagebtn" ng-click="nextPage()">Trang sau</button>
+                    <!--<input type="number" name="" id="importPage" value="" minlength="1" maxlength="{{totalPage}}" onkeydown="keysearch()"/>
+                <button ng-click="confirm()">Xác nhận</button>-->
+                </div>
+            </div>
+        </div>
+    </article>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/yii.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../js/img_silder.js"></script>
+    <script src="../js/xSlider.js"></script>
+    <script src="../js/popup.js"></script>
+    <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
+    <!-- tcy -start- -->
+    <script src="../js/md5.js"></script>
+    <script src="../js/common.js"></script>
+    <!-- tcy -end- -->
+    <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="../js/localStorage.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    window.setTimeout(function() {
+        if (localStorage.getItem("funId")) {
+            F._userViewDetailInfo({}, function(ret) {
+                if (ret.data.headimage) {
+                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+                }
+            });
+        }
+    }, 700);
+
+    $(".hot_brand").click(function() {
+        $('.hot_brand').removeClass('act');
+        $(this).addClass('act')
+    })
+
+    function gotoFind() {
+        var findcontent = $("#findIpt").val();
+        if (findcontent != "") {
+            window.location.href = "search.html?findcontent=" + findcontent;
+        }
+    }
+
+    function entersearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13)
+
+        {
+            gotoFind();
+        }
+    }
+
+    function keysearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13)
+
+        {
+            angular.element(document.getElementById('app')).scope().confirm()
+        }
+    }
+    </script>
+    <script src="../js/commodityJS/more.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

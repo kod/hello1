@@ -1,0 +1,39 @@
+		.navh .nav a:nth-child(1) {border-bottom: 5px solid #0075f6;height: 37px;}
+		.one-left li.eig.act a{background: url(../img/x1.png) no-repeat 21px center;}
+		/*#one{overflow: hidden;}*/
+		.one-right h2{font-size:21px;}
+		.one-right h5{color:#999;margin-top:50px;font-size:13px;line-height:45px}
+		.one-right .address li{padding:32px 25px;border:2px solid #eee;width:305px;float:left;height:202px;margin-right:23px;margin-bottom:23px;position:relative;cursor: pointer;}
+		.address li .add-top{height:36px;border-bottom: 1px solid #eee;color:#5F5F5F;font-size:18px;font-weight: bold;}
+		.address li .add-top .right{font-size:16px;line-height:31px}
+		.address li p{font-size:14px;color:#999;margin-top:12px;line-height:20px;font-weight: bold;}
+		.address li:last-child{padding:0}
+		.address li img{width:100%;height:100%;cursor: pointer;}
+		.address li.act{border:1px solid #83C154;background: #FFF5D5;}
+		.address li.act .moren{display: none;}
+		.address .default{position:absolute;right:0;bottom:0;display: inline-block;padding:1px 5px;background: #83C154;color:#fff;display:none}
+		.address li.act .default{display:block}
+		.modal-content{border-radius: 0;}
+		.modal-header{background: #F2F2F2;}
+		.modal-header .left,.modal-body p{font-size:18px;color:#333;font-weight: bold;}
+		.modal-header .right{font-size:17px;font-weight: bold;cursor: pointer;color:#999}
+		.modal-body{text-align:center;padding:30px 0;position:relative;padding-bottom:120px}
+		
+		#myModal .modal-dialog {margin: 250px auto;}
+		#myModal .modal-body span{width:150px;text-align: right;font-size:15px;color:#999;display: inline-block;}
+		#myModal .modal-body input{margin-left:8px;height:40px;width:270px;border:1px solid #ddd;color:#999;padding-left:10px;font-size: 15px;margin-bottom:24px}
+		#myModal .modal-body select{font-size: 14px;width: 100px; padding: 0 10px;outline: none;color: #999;margin-right:1px;height: 33px;border:1px solid #ddd;margin-left:10px;}
+		#myModal .area{overflow: hidden;width: 441px;margin: 0 auto;margin-top:24px}
+		#myModal textarea{width:270px;height:150px;margin-left: 14px;outline: none;resize: none;border:1px solid #ddd;color:#999;    overflow-x: hidden;padding:15px}
+		.modal-body .rc{width:270;height:40px;line-height:40px;text-align: center;color:#fff;background: #0076F7;display: block;position: absolute;bottom:50px;left:40%}
+		#errormsg {position: absolute;bottom: 93px;left: 81px;color: #ff6600;font-size: 12px;padding-left: 131px;display: none;}
+		#errormsg small{color: #ff6600;}
+		input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {-webkit-appearance: none;}
+    	input[type="number"]{-moz-appearance: textfield;}
+    	.foot_title{position:absolute;bottom:5px;right:50px;color:#4F9DF3;font-size:13px;display:none}
+    	.act .foot_title{right:105px;}
+    	.li:hover .foot_title{display: block;}
+    	.foot_title span{margin-left:15px}
+    	.address li .addaddress{width:100%;position:absolute;top:0;left:0;height:auto;text-align: center;margin-top:20px}
+		.address li .addaddress img{width:35px;height:54px;}
+		.address li .addaddress span{color:#0076F7;font-size:13px;font-weight: 600;letter-spacing: 1px;display: block;margin-top:5px}

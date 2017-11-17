@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="False">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <link rel="stylesheet" href="../css/base.css">
+    <title>Thanh toán thất bại</title>
+    <script src="../js/require2.3.5.min.js"></script>
+    <style>
+    body {
+        background-color: #fff;
+        opacity: 0;
+    }
+
+    .body__main {
+        text-align: center;
+    }
+
+    .body__main-img {
+        margin-top: 120px;
+        height: 100px;
+    }
+
+    .body__main-title {
+        font-size: 18px;
+        margin-top: 30px;
+    }
+
+    .body__main-desc {
+        font-size: 15px;
+        margin-top: 15px;
+        color: #777;
+    }
+
+    .body__main-gohome {
+        margin-top: 35px;
+        margin-bottom: 30px;
+        font-size: 12px;
+        color: #0076F7;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="content" id="vue-el">
+        <header class="header">
+            <div class="header__nav">
+                <div class="header__nav-main">
+                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./help.html'">Trung tâm hỗ trợ</span>
+                </div>
+            </div>
+            <div class="header__title">
+                <div class="header__title-main">
+                    <img src="../img/LOGO2.jpg" alt="" class="header__t-m-img" @click="gohome">
+                </div>
+            </div>
+        </header>
+        <section class="body">
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                <img src="../img/24782487.png" alt="" class="body__main-img">
+                <div class="body__main-title">Thanh toán thất bại</div>
+                <!-- <div class="body__main-desc">Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!</div> -->
+                <span class="body__main-gohome" @click="gohome">Quay về trang chủ</span>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+    require([
+        '../js/jquery1.11.2',
+        '../js/vue.min',
+        '../js/common',
+    ], function($, Vue) {
+        window.F = {};
+
+        F.vue = {
+            body__main_height: document.documentElement.clientHeight - 133 - 210,
+        };
+
+        var load = function() {
+            new_vue();
+        };
+
+        var pre_data = function(data) {
+
+        }
+
+        F.loadData = function(params, callback) {
+            if (callback === undefined) callback = params;
+
+            var all_data = {};
+            var request_length = 0; //请求个数
+
+            // 请求是否全部返回
+            function all_loaded() {
+                if (Object.keys(all_data).length === request_length) {
+                    pre_data(all_data);
+                    // Q.hideProgress();
+                    callback(all_data);
+                }
+            }
+            // if (params.loadData_isLoading !== false) Q.showProgress();
+
+            all_loaded();
+        };
+
+        function new_vue() {
+            F.vue = new Vue({
+                el: $('#vue-el')[0],
+                data: F.vue,
+                methods: {
+                    gohome: gohome,
+                },
+                computed: {
+
+                },
+                created: function() {
+                    $('body').css('opacity', '1');
+                },
+            });
+        }
+
+        function gohome() {
+            window.location.href = '../index.html';
+        }
+
+        F.loadData(function() {
+            load();
+        });
+    });
+    </script>
+</body>
+
+</html>

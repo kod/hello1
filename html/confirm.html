@@ -1,0 +1,277 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Lấy lại mật khẩu</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/index_add_img.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css">
+    <link rel="stylesheet" href="../css/confirm.css" />
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+    /*tcy -start-*/
+
+    .text {
+        margin-bottom: 70px;
+    }
+    /*tcy -end-*/
+    </style>
+</head>
+
+<body>
+    <div id="back">
+        <a href="../index.html"><img src="../img/LOGO2.jpg" alt="" class="logo"/></a>
+        <!--<img src="img/30.png" alt="" class="img-text"/>-->
+        <p class="img-text">Lấy lại mật khẩu</p>
+        <p class='xiug'>Thay đổi mật khẩu</p>
+        <div class="text">
+            <div class="left txt">Cài mật khẩu mới</div>
+            <div class="left val">
+                <input type="password" placeholder="Vui lòng nhập 8-20 chữ số hoặc chữ cái" id="pass1" />
+            </div>
+            <div class="left txt">Xác nhận mật khẩu mới</div>
+            <div class="left val">
+                <input type="password" placeholder="vui lòng nhập lại mật khẩu mới" id="pass2" />
+            </div>
+            <p id="errormsg" class='errormsg'></p>
+            <a class="submit" data-toggle="modal" data-target="#myModal">Xác nhận</a>
+        </div>
+    </div>
+    <div id="modelId">
+    </div>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/swiper.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/yii.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/img_silder.js"></script>
+    <script src="../js/xSlider.js"></script>
+    <script src="../js/popup.js"></script>
+    <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="../js/common.js"></script>
+    <script>
+    $('#pass1').blur(function() {
+        var pwd = $(this).val();
+        if (F._pwdExpr.test(pwd)) {
+            $('#errormsg').hide();
+            $(this).removeClass('pass');
+        } else {
+            $('#errormsg').show();
+            $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
+            $(this).addClass('pass');
+        }
+    })
+    $('#pass2').blur(function() {
+        var pwd1 = $('#pass1').val();
+        var pwd = $(this).val();
+        if (pwd == pwd1) {
+            $('#errormsg').hide();
+            $(this).removeClass('pass');
+        } else {
+            $('#errormsg').show();
+            $('#errormsg').html('Khác với mật khẩu đăng nhập...');
+            $(this).addClass('pass');
+        }
+
+
+    })
+    var url = location.search;
+    if (url.indexOf("xiug") != -1) {
+        $('.img-text').hide();
+        $('.xiug').show();
+    } else {
+        $('.img-text').show();
+        $('.xiug').hide();
+    }
+
+    $("body").keydown(function(e) {
+        var curKey = e.which;
+        if (curKey == "13") { //keyCode=13是回车键
+            $('.submit').click();
+        }
+    });
+    </script>
+    <script type="text/javascript">
+    var loading = new F._loading();
+
+    //截取Url里面的参数   
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            //alert(str);  
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]); //获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>, （unescape只针对数字, 中文乱码)  
+            }
+        }
+        return theRequest;
+    }
+
+    $('.submit').click(function() {
+        //通过url取数  
+        var request = new Object();
+        request = GetRequest();
+        var yzm = request['yzmId'];
+
+        var msisdn = request['msisdn'];
+
+
+        var password1 = $("#pass1").val();
+        var password2 = $("#pass2").val();
+
+
+
+        if (password1 && F._pwdExpr.test(password1)) {
+            $('#errormsg').hide();
+
+            if (msisdn != "" && password1 != "" && password2 != "" && password1 == password2) {
+
+            	loading.show();
+                F._userAction_changePassword({
+                    msisdn: msisdn,
+                    password: password2,
+                    otp: yzm,
+                }, function(ret) {
+                	loading.hide();
+
+
+                    if (!ret) return false;
+
+                    if (ret.status !== 10000) return false;
+
+                    if (confirm("Đăng ký thành công！Đăng nhập ngay？")) {
+                        window.location.href = "./login.html?from=confirm";
+                    }
+
+                });
+
+            } else {
+
+            }
+        } else {
+            $('#errormsg').show();
+            $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
+
+        }
+    })
+    </script>
+</body>
+
+</html>

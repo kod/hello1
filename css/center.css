@@ -1,0 +1,45 @@
+		.one-right{padding-top:0}
+		/*#one{height:inherit;overflow: hidden;}*/
+		.navh .nav a:nth-child(1) {border-bottom: 5px solid #0075f6;height: 37px;}
+		.one-left li.one.act a{background: url(../img/w1.jpg) no-repeat 20px center;}
+		.center{width:90%;overflow:hidden}
+		.center dl{overflow:hidden}
+		.center dd{float:left;width:50%;border-right:1px dotted #ddd;padding-top:35px;height:174px;}
+		.center dd p{font-size:15px;color:#999}
+		.center dd:last-child{border-right:none;padding-left:30px}
+		.center dd p span{font-size:20px;color:#666;display: inline-block;margin-right:5px}
+		.center .imgs{/*overflow: hidden;*/margin-top:25px;height:100px}
+		.center .imgs .img-list{float:left;position: relative;margin-right:48px}
+		.center .imgs .img-list img{margin-top:4px;cursor: pointer;}
+		.center .imgs .img-list:first-child img{margin-top:0}
+		.img-bgs{position: absolute;padding:2px 7px;border:1px solid #ddd;bottom:-37px;left:-30px;width:200px;text-align: center;color:#999;display: none;width:300px}
+		.one-right a:hover{text-decoration: underline;}
+		.img_top{position: absolute;top:-8px;left:34px;display: none;}
+		.center .imgs .img-list:first-child.act .img-bgs{bottom:-37px;left:2px}
+		.center .imgs .img-list:first-child.act .img_top{top:-5px;left:2px}
+		.center .imgs .img-list.act .img-bgs,.center .imgs .img-list.act .img_top{display: block;}
+		.center dd:last-child h4{color:#999;font-weight: bold;font-size: 15px;text-align: center;}
+		.center dd:last-child h4 span{color:#454545;font-size:16px}
+		.center dd:last-child h4 i{display: inline-block;color:#F7004C;font-size:27px;font-style: normal;}
+		.center dd:last-child h2{width:100%;height:40px;background: #F2F2F2;text-align: center;line-height:40px;color:#999;font-size:14px;margin-top:30px;letter-spacing: 1px;}
+		.no_list{width:88%;text-align:center;margin-top:100px;}
+		.no_list p{font-size:17px;margin:12px 0;letter-spacing: 1px;}
+		.no_list a{font-size:17px;font-weight: bold;}
+		.modal-content{border-radius: 0;}
+		.modal-header{background: #F2F2F2;}
+		.modal-header .left,.modal-body p{font-size:18px;color:#333;font-weight: bold;}
+		.modal-header .right{font-size:17px;font-weight: bold;cursor: pointer;color:#999}
+		.modal-body{text-align:center;padding:30px 0;position:relative;padding-bottom:120px}
+		
+		#myhead .modal-dialog {margin: 250px auto;width:690px}
+		#myhead .modal_one{text-align: center;margin-top:14%}
+		#myhead .modal_one i{display: block;width:32%;font-style: normal;height:37px;line-height:37px;background: #0075f6;color:#fff;margin:0 auto;margin-bottom: 15px;cursor: pointer;}
+		#myhead .modal_one span{color:#aaa}
+		#myhead .modal_two{padding:15px}
+		#myhead .modal_two .sure{display: block;width:160px;font-style: normal;height:37px;line-height:37px;background: #F2F2F2;color:#999;margin:0 auto;margin-top:50px;margin-right:8px;border: none;}
+		#myhead .modal_two input{cursor: pointer;}
+		#myhead .modal_three img{margin:30px 0}
+		#myhead .modal_three p{letter-spacing: 1px;color:#666;font-size:17px}
+		#myhead .modal_three .success{display: block;width:170px;font-style: normal;height:37px;line-height:37px;background: #0075f6;color:#fff;margin:0 auto;margin-top: 15px;cursor: pointer;}
+		.img-bgs:hover{cursor: pointer;}
+		.img-bgs a:hover{text-decoration: none;}

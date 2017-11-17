@@ -1,0 +1,554 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='./img/icon.png' type='image/x-ico' />
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/index_add_img.css">
+    <link rel="stylesheet" href="./css/index_img.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <style>
+    .navh .nav a:nth-child(1) {
+        border-bottom: 5px solid #0075f6;
+        height: 37px;
+    }
+
+    .swiper-button-next,
+    .swiper-container-rtl .swiper-button-prev {
+        right: 70px;
+        background: url(img/fe.png) no-repeat;
+        pointer-events: inherit;
+    }
+
+    .swiper-button-prev,
+    .swiper-container-rtl .swiper-button-next {
+        left: 70px;
+        background: url(img/le.png) no-repeat;
+        pointer-events: inherit;
+    }
+
+    #center .swiper-button-next,
+    #center .swiper-button-prev {
+        position: absolute;
+        width: 50px;
+        height: 100px;
+        top: 40%;
+        line-height: 100px;
+        text-align: center;
+        color: #fff;
+        font-size: 28px;
+        text-decoration: none;
+        font-family: '黑体';
+        background: rgba(0, 0, 0, 0.1);
+        right: 0;
+        display: none;
+        z-index: 10000;
+        pointer-events: inherit;
+    }
+
+    #new_banner .swiper-button-prev,
+    #phone_banner .swiper-button-prev,
+    #ipad_banner .swiper-button-prev,
+    #smart_banner .swiper-button-prev {
+        left: 0
+    }
+
+    #new_banner:hover .swiper-button-next,
+    #new_banner:hover .swiper-button-prev,
+    #phone_banner:hover .swiper-button-next,
+    #phone_banner:hover .swiper-button-prev,
+    #ipad_banner:hover .swiper-button-next,
+    #ipad_banner:hover .swiper-button-prev,
+    #smart_banner:hover .swiper-button-next,
+    #smart_banner:hover .swiper-button-prev {
+        display: block;
+    }
+    /* tcy -start-*/
+
+    .swiper-slide-img {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .swiper-button-prev {
+        line-height: 55px;
+        height: 55px;
+        width: 35px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, .3);
+        background-size: 50%;
+        background-position: center;
+        border-radius: 3px;
+    }
+
+    .swiper-button-next {
+        line-height: 55px;
+        height: 55px;
+        width: 35px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, .3);
+        background-size: 50%;
+        background-position: center;
+        border-radius: 3px;
+    }
+
+    #center {
+        margin-bottom: 80px;
+    }
+    /* tcy -end-*/
+    </style>
+</head>
+
+<body ng-app="indexApp" ng-controller="indexCtrl">
+    <div class="all">
+        <div class="header_top">
+            <div class="content" style="overflow: visible;">
+                <div class="header_left left noLogin">
+                    <a href="./html/login.html" id="login"></a>
+                    <a href="./html/register.html" id="signup"></a>
+                </div>
+                <div class="header_left left userLogin">
+                    <a href="./html/center.html">Xin chào, <span id="userMsisdn"></span><i class="userLogin-arrow"></i></a>
+                    <a href="./html/center.html" id="quit"></a>
+                    <div class="userLogin-info">
+                        <div class="userLogin-info__top col-xs-24">
+                            <div class="userLogin-info__top-face" style="background-image: url(./img/37.png);"></div>
+                            <div class="userLogin-info__top-order">
+                                <p style="margin-bottom: 10px;"><a href="./html/order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                <p><a href="./html/bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                            </div>
+                        </div>
+                        <div class="userLogin-info__bottom col-xs-24">
+                            <a href="" class="userLogin-info__bottom-button" id="userLogin-info__bottom-button" onclick="userQuit()"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_right right">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content header_c">
+            <div class="search_left left">
+                <a href="./index.html" class="logo"><img src="img/LOGO2.jpg" alt=""></a>
+            </div>
+            <div class="search_right right">
+                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
+                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content navh">
+            <div class="category left">
+                <a href="#" class="category_a">Phân loại sản phẩm</a>
+            </div>
+            <div class="nav left">
+                <a href="./index.html" class="">Trang chủ</a>
+            </div>
+            <div class="iwant right">
+                <a href="./html/bill.html" target="_self" class="">Tôi muốn thanh toán nợ &gt;</a>
+            </div>
+        </div>
+    </div>
+    <div class="all banner_c">
+        <div class="content">
+            <div class="index_banner">
+                <div class="swiper-container" id="index_banner">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-img" style="background-image: url(img/bannner_mobile_F5.jpg);"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-img" style="background-image: url(img/bannner_mobile_vivo-V7+_2.jpg);"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-img" style="background-image: url(img/bannner_mobile_mi_note5A.jpg);"></div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="dt-swiper-prev swiper-button-prev iconfont"></div>
+                    <div class="dt-swiper-next swiper-button-next iconfont"></div>
+                </div>
+            </div>
+            <div class="category_1 left">
+                <a href="./html/cellphoneBanner.html">
+                    <div class="category_1_1"><span>Truyền thông di động</span></div>
+                </a>
+                <a href="./html/computerPage.html">
+                    <div class="category_1_2" ng-click="gotoComputer()"><span>Máy vi tính làm việc</span></div>
+                </a>
+                <a href="./html/shumapeijian.html">
+                    <div class="category_1_3"><span>Kỹ thuật số thông minh</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="center">
+        <div class="all margin_top53">
+            <div class="header">
+                <div class="content">
+                    <div class="header_name left">Hàng mới ra</div>
+                    <div class="header_category right">
+                    </div>
+                </div>
+            </div>
+            <div class="content category_content">
+                <div class="category left" ng-controller="newleftCtrl">
+                    <div class="category_ad" ng-repeat="item in leftUrl"><a ng-click="gotoMore(item.classfyId,1)"><img src="{{item.imageUrl}}" alt=""></a></div>
+                </div>
+                <div class="category_mid left" style="width:720px">
+                    <div class="category_ad">
+                        <div class="swiper-container" id="new_banner" ng-controller="newcenterCtrl" style="height:249px">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" ng-repeat="item in center" ng-click="product(item.typeId,item.brandId)">
+                                    <a><img alt="" src="{{item.imageUrl}}" style="width:100%;height:100%"/></a>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="dt-swiper-prev swiper-button-prev iconfont">
+                                <</div>
+                                    <div class="dt-swiper-next swiper-button-next iconfont">></div>
+                            </div>
+                        </div>
+                        <div class="sub_category481 one" ng-controller="newbottomCtrl">
+                            <div class="sub_category_1 left" ng-repeat="item in bottom" ng-click="product(item.typeId,item.brandId)">
+                                <div class="sub_category_img">
+                                    <a><img src="{{item.imageUrl}}" alt=""></a>
+                                </div>
+                                <div class="sub_category_title">
+                                    <a ng-bind="item.name"></a>
+                                </div>
+                                <div class="sub_category_price">
+                                    Giá bán: <span ng-bind="item.minprice | priceFormat"> </span> VND
+                                </div>
+                                <div class="sub_category_buy_now">
+                                    <a>Mua ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category_right left" style="margin-left:0">
+                        <div class="category left" ng-controller="phonebrandCtrl">
+                            <div class="sub_band_2">
+                                <div class="left" ng-repeat="item in phonebrand"><a ng-click="gotoMore(item.id,1)"><img src="{{item.imageUrl}}" alt=""></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="all margin_top53">
+                <div class="header">
+                    <div class="content">
+                        <div class="header_name left">Truyền thông di động</div>
+                    </div>
+                </div>
+                <div class="content category_content">
+                    <div class="category left" ng-controller="phoneleftCtrl">
+                        <div class="category_ad" ng-repeat="item in phoneleftUrl">
+                            <a ng-click="gotoMore(item.classfyId,1)"><img width="240" height="499" src="{{item.imageUrl}}" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="category left">
+                        <div class="category_banner_ad">
+                            <div class="swiper-container" id="phone_banner" ng-controller="phonecenterCtrl" style="height:249px;width:720px">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" ng-repeat="item in phonecenterUrl" ng-click="product(item.typeId,item.brandId)">
+                                        <a><img alt="" src="{{item.imageUrl}}" style="width:100%;height:100%"/></a>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                                <div class="dt-swiper-prev swiper-button-prev iconfont">
+                                    <</div>
+                                        <div class="dt-swiper-next swiper-button-next iconfont">></div>
+                                </div>
+                            </div>
+                            <div class="sub_category" ng-controller="phonebottomCtrl">
+                                <div class="sub_category_1 left" ng-repeat="item in phonebottom" ng-click="product(item.typeId,item.brandId)">
+                                    <div class="sub_category_img">
+                                        <a><img src="{{item.imageUrl}}" alt=""></a>
+                                    </div>
+                                    <div class="sub_category_title">
+                                        <a ng-bind="item.name"></a>
+                                    </div>
+                                    <div class="sub_category_price">
+                                        Giá bán: <span ng-bind="item.minprice | priceFormat"></span> VND
+                                    </div>
+                                    <div class="sub_category_buy_now">
+                                        <a>Mua ngay</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category left" ng-controller="phonebrandCtrl">
+                            <div class="sub_band_2">
+                                <div class="left" ng-repeat="item in phonebrand"><a ng-click="gotoMore(item.id,1)"><img src="{{item.imageUrl}}" alt=""></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="all margin_top53">
+                    <div class="header">
+                        <div class="content">
+                            <div class="header_name left">Máy tính bảng</div>
+                        </div>
+                    </div>
+                    <div class="content category_content">
+                        <div class="category left" ng-controller="ipadleftCtrl">
+                            <div class="category_ad" ng-repeat="item in ipadleftUrl">
+                                <a ng-click="gotoMore(item.classfyId,2)"><img width="240" height="499" src="{{item.imageUrl}}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="category left">
+                            <div class="category_banner_ad">
+                                <div class="swiper-container" id="ipad_banner" ng-controller="ipadcenterCtrl" style="height:249px;width:720px">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" ng-repeat="item in ipadcenterUrl" ng-click="product(item.typeId,item.brandId)">
+                                            <a><img alt="" src="{{item.imageUrl}}" style="width:100%;height:100%"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                    <div class="dt-swiper-prev swiper-button-prev iconfont">
+                                        <</div>
+                                            <div class="dt-swiper-next swiper-button-next iconfont">></div>
+                                    </div>
+                                </div>
+                                <div class="sub_category two" ng-controller="ipadbottomCtrl">
+                                    <div class="sub_category_1 left" ng-repeat="item in ipadbottom" ng-click="product(item.typeId,item.brandId)">
+                                        <div class="sub_category_img">
+                                            <a><img src="{{item.imageUrl}}" alt=""></a>
+                                        </div>
+                                        <div class="sub_category_title">
+                                            <a ng-bind="item.name"></a>
+                                        </div>
+                                        <div class="sub_category_price">
+                                            Giá bán: <span ng-bind="item.minprice | priceFormat"></span> VND
+                                        </div>
+                                        <div class="sub_category_buy_now">
+                                            <a>Mua ngay</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="category left" ng-controller="ipadbrandCtrl">
+                                <div class="sub_band_2">
+                                    <div class="left" ng-repeat="item in ipadbrand"><a ng-click="gotoMore(item.id,2)"><img src="{{item.imageUrl}}" alt=""></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all margin_top53">
+                        <div class="header">
+                            <div class="content">
+                                <div class="header_name left">Kỹ thuật số thông minh</div>
+                                <div class="header_category right">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content category_content">
+                            <div class="category left" ng-controller="smartleftCtrl">
+                                <div class="category_ad" ng-repeat="item in smartleftUrl">
+                                    <a ng-click="gotoMore(item.classfyId, 3)"><img width="240" height="499" src="{{item.imageUrl}}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="category left">
+                                <div class="category_banner_ad">
+                                    <div class="swiper-container" id="smart_banner" ng-controller="smartcenterCtrl" style="height:249px;width:720px">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide" ng-repeat="item in smartcenterUrl" ng-click="product(item.typeId,item.brandId)">
+                                                <a><img alt="" src="{{item.imageUrl}}" style="width:100%;height:100%"/></a>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                        <div class="dt-swiper-prev swiper-button-prev iconfont">
+                                            <</div>
+                                                <div class="dt-swiper-next swiper-button-next iconfont">></div>
+                                        </div>
+                                    </div>
+                                    <div class="sub_category three" ng-controller="smartbottomCtrl">
+                                        <div class="sub_category_1 left" ng-repeat="item in smartbottom" ng-click="product(item.typeId,item.brandId)">
+                                            <div class="sub_category_img">
+                                                <a><img src="{{item.imageUrl}}" alt=""></a>
+                                            </div>
+                                            <div class="sub_category_title">
+                                                <a ng-bind="item.name"></a>
+                                            </div>
+                                            <div class="sub_category_price">
+                                                Giá bán: <span ng-bind="item.minprice | priceFormat"></span> VND
+                                            </div>
+                                            <div class="sub_category_buy_now">
+                                                <a>Mua ngay</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category left" ng-controller="smartbrandCtrl">
+                                    <div class="sub_band_2">
+                                        <div class="left" ng-repeat="item in smartbrand"><a ng-click="gotoMore(item.id,3)"><img src="{{item.imageUrl}}" alt=""></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer__top col-xs-24">
+            <div class="footer__top-main">
+                <div class="footer__t-m-item col-xs-24">
+                    <div class="footer__t-m-i-left col-xs-5">
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                    </div>
+                    <div class="footer__t-m-i-right col-xs-19">
+                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                    </div>
+                </div>
+                <div class="footer__t-m-item">
+                    <div class="footer__t-m-i-left col-xs-5">
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                    </div>
+                    <div class="footer__t-m-i-right col-xs-19">
+                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                    </div>
+                </div>
+                <div class="footer__t-m-item">
+                    <div class="footer__t-m-i-left col-xs-5">
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                    </div>
+                    <div class="footer__t-m-i-right col-xs-19">
+                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                    </div>
+                </div>
+                <div class="footer__t-m-item">
+                    <div class="footer__t-m-i-left col-xs-5">
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                    </div>
+                    <div class="footer__t-m-i-right col-xs-19">
+                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                    </div>
+                </div>
+                <div class="footer__t-m-item">
+                    <div class="footer__t-m-i-left col-xs-5">
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                    </div>
+                    <div class="footer__t-m-i-right col-xs-19">
+                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom2 col-xs-24">
+            <div class="footer__bottom2-main">
+                <div class="footer__b2-m-row1">
+                    <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                    <ul class="footer__b2-m-r1-main col-xs-24">
+                        <a href="./html/about.html" class="footer__b2-m-r1-m-item col-xs-24">VỀ CHÚNG TÔI</a>
+                        <a href="./html/join.html" class="footer__b2-m-r1-m-item col-xs-24">加入我们</a>
+                        <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row2">
+                    <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                    <ul class="footer__b2-m-r2-main col-xs-24">
+                        <a href="./html/buy.html" target="_self" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                        <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                        <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                        <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row3">
+                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                    <ul class="footer__b2-m-r3-main col-xs-24">
+                        <li class="footer__b2-m-r3-m-item col-xs-24">
+                            <img src="./img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row4">
+                    <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                    <ul class="footer__b2-m-r4-main col-xs-24">
+                        <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                            <div class="footer__b2-m-r4-m-i1-main">
+                                <img src="./img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                            </div>
+                        </li>
+                        <li class="footer__b2-m-r4-m-item col-xs-24">
+                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(./img/29476021983473.png)"></a>
+                            <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(./img/2309409384203.png)"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row5">
+                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                    <ul class="footer__b2-m-r5-main col-xs-24">
+                        <li class="footer__b2-m-r5-m-item col-xs-24">
+                            <img src="./img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                        </li>
+                        <li class="footer__b2-m-r5-m-item col-xs-24">
+                            <img src="./img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/common.js"></script>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/yii.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/img_silder.js"></script>
+    <script src="js/xSlider.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common/common.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    window.setTimeout(function() {
+        if (localStorage.getItem("funId")) {
+            F._userViewDetailInfo({}, function(ret) {
+                if (ret.data.headimage) {
+                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+                    console.log($('.userLogin-info__top-face').eq(0));
+                }
+                console.dir(ret);
+            });
+        }
+    }, 1400);
+
+    function entersearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13)
+
+        {
+            gotoFind();
+        }
+    }
+    </script>
+</body>
+
+</html>

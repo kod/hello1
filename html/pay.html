@@ -1,0 +1,857 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Trung tâm thanh toán</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/index_add_img.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css">
+    <link href="../css/pay.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+    #three {
+        margin-bottom: 50px;
+    }
+    /*tcy -start-*/
+
+    img,
+    span,
+    i,
+    s {
+        display: inline-block;
+        /*vertical-align: middle;*/
+    }
+
+    .modal-body {
+        position: relative;
+    }
+
+    .phone-flag {
+        position: absolute;
+        top: 90px;
+        right: 100px;
+        line-height: 45px;
+    }
+
+    .phone-flag-img {
+        width: 30px !important;
+        height: 20px !important;
+        vertical-align: middle !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: cover !important;
+        background-image: url(../img/VN.png) !important;
+    }
+
+    .phone-flag-code {
+        color: #333 !important;
+        width: auto !important;
+    }
+
+    .fenqiNumBtn button.actives {
+        background: #eee !important;
+        border: 1px solid #eee !important;
+        color: #333 !important;
+    }
+    /*tcy -end-*/
+    </style>
+</head>
+
+<body ng-app="payApp" ng-controller="payCtrl">
+    <div ng-controller="addressCtrl">
+        <div class="all">
+            <div class="header_top">
+            <div class="content" style="overflow: visible;">
+                <div class="header_left left userLogin">
+                    <a href="./center.html">Xin chào, <span id="userMsisdn"></span><i class="userLogin-arrow"></i></a>
+                    <a href="./center.html" id="quit"></a>
+                    <div class="userLogin-info">
+                        <div class="userLogin-info__top col-xs-24">
+                            <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                            <div class="userLogin-info__top-order">
+                                <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                            </div>
+                        </div>
+                        <div class="userLogin-info__bottom col-xs-24">
+                            <a href="" class="userLogin-info__bottom-button" id="userLogin-info__bottom-button" onclick="userQuit()"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_left left noLogin">
+                    <a href="./login.html" id="login"></a>
+                    <a href="./register.html" id="signup"></a>
+                </div>
+                    <div class="header_right right">
+                        <a href="../index.html" class="header_right_a" style="color:#0076F7">BUYOO Trang chủ</a>|
+                        <a href="help.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="all banner">
+            <div class="content header_c">
+                <div class="search_left left">
+                    <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt="" /></a>
+                </div>
+                <div class="left pay"><a href="">Trung tâm thanh toán</a></div>
+            </div>
+        </div>
+        <!--板块-->
+        <!-- <article id="one" ng-controller="addCtrl">
+            <div class="content">
+                <div class="one">
+                    <div class="top_title">
+                        <i></i> <span>Xác nhận địa chỉ nhận hàng</span>
+                    </div>
+                    <div class="address">
+                        <ul style="overflow: hidden;" class="address">
+                            <li class="li address-li" ng-class="{act:item.isdefault=='Y'}" ng-repeat="item in addrlistData">
+                                <span class="left leftname address-username" ng-bind="item.username"></span>
+                                <span class="right rightname address-msisdn" ng-bind="item.msisdn"></span>
+                                <hr style="clear: both;" />
+                                <span class="pp address-address" ng-bind="item.address"></span>
+                                <div class="default">Địa chỉ mặc định</div>
+                                <div class="foot_title">
+                                    <span class="moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
+                                    <span class="xg" data-toggle="modal" data-target="#myModal" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)">Sửa</span>
+                                    <span class="sc" ng-click="remove(item.id)">Xoá</span>
+                                </div>
+                                <div class="address_bg" ng-click="mm($event)"></div>
+                            </li>
+                            <li class="addAddrli" ng-click="addppp()" data-toggle="modal" data-target="#myModal">
+                                <img src="../img/addaddr.jpg" alt="" />
+                                <div class="addaddress">
+                                    <img src="../img/addaddr_03.png" alt="" />
+                                    <span>Thêm địa chỉ nhận hàng</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </article> -->
+        <div class="" style="height: 30px; width: 100%;"></div>
+        <section class="site" id="one" ng-controller="addCtrl">
+            <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
+            <div class="site__main col-xs-24">
+                <li class="site__main-item" 
+                    ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }" 
+                    ng-click="set_active(index)" 
+                    ng-repeat="(index, item) in addrlistData">
+
+                    <div class="site__m-i-row1 col-xs-24">
+                        <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username">Xác nhận địa chỉ nhận</div>
+                        <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn">01685968888</div>
+                    </div>
+                    <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address">Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể </div>
+                    <div class="site__m-i-row3 col-xs-24">
+                        <div class="site__m-i-r3-def">
+                            <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
+                            <span class="site__m-i-r3-f-status">mặc định</span>
+                        </div>
+                        <div class="site__m-i-r3-edit" data-toggle="modal" data-target="#myModal" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)">
+                            <span class="site__m-i-r3-e-text">Sửa</span>
+                        </div>
+                        <div class="site__m-i-r3-del">
+                            <span class="site__m-i-r3-d-text" ng-click="remove(item.id)">Xoá</span>
+                        </div>
+                    </div>
+                    <div class="site__m-i-row4">√</div>
+                </li>
+                <div class="site__main-add" ng-click="addppp()" data-toggle="modal" data-target="#myModal">
+                    <div class="site__m-a-row1"></div>
+                    <div class="site__m-a-row2">Thêm địa chỉ nhận hàng</div>
+                </div>
+            </div>
+        </section>
+        <article id="two">
+            <div class="content">
+                <div class="two">
+                    <div class="top_title">
+                        <i></i> <span>Xác nhận thông tin đặt hàng</span>
+                    </div>
+                    <div class="information">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Buyoo
+                                        <div class="bg"></div>
+                                    </th>
+                                    <th>Số lượng
+                                        <div class="bg"></div>
+                                    </th>
+                                    <th>Giá sản phẩm
+                                        <div class="bg"></div>
+                                    </th>
+                                    <th>Tổng số phụ
+                                        <div class="bg"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="{{imgUrl}}" alt="" style="width: 85px;" />
+                                        <span ng-bind="'【Hàng】'+info" style="margin-top: 30px; width: 590px;"></span>
+                                    </td>
+                                    <td id="buyNum" ng-bind="num"></td>
+                                    <td id="price" ng-bind="price"></td>
+                                    <td ng-bind="price*num"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--<div class="list">
+                            <div class="left li-left">账单还款日 : </div>
+                            <div class="left li-right">
+                                <select name="">
+                                    <option value="4">每月四次</option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="list">
+                            <div class="left li-left">Chọn tỉ lệ thanh toán lần đầu : </div>
+                            <div class="left li-right">
+                                <select ng-model="paymentNum" ng-change="paymentNumChange(paymentNum)">
+                                    <!--<option value="" ng-if="false"></option>-->
+                                    <option value="1.0">Trả toàn bộ</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.3">30%</option>
+                                    <option value="0.4">40%</option>
+                                    <option value="0.5">50%</option>
+                                </select>
+                                <span style="line-height: 25px;">Thanh toán lần đầu <i ng-bind="price*num*paymentNum | priceFormat"></i> VND</span>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="left li-left">Chọn số kỳ thanh toán : </div>
+                            <div class="left li-right fenqiNumBtn">
+                                <!--<button id="fenqiNum1" ng-click="fenqi(1)">1 tháng</button>-->
+                                <button id="fenqiNum3" ng-click="fenqi(3)">3 tháng</button>
+                                <button id="fenqiNum6" ng-click="fenqi(6)">6 tháng</button>
+                                <button id="fenqiNum9" ng-click="fenqi(9)">9 tháng</button>
+                                <button id="fenqiNum12" ng-click="fenqi(12)">12 tháng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article id="three">
+            <div class="content">
+                <div class="three">
+                    <div class="top_title">
+                        <i></i> <span>Phương thức thanh toán</span>
+                    </div>
+                </div>
+                <div class="way">
+                    <ul>
+                        <li class="payway-li act">
+                            <i></i>
+                            <p>Ngân hàng</p>
+                        </li>
+                        <li class="payway-li">
+                            <i></i>
+                            <p>Số dư</p>
+                        </li>
+                    </ul>
+                    <div class="fc" style="vertical-align: right;">
+                        <p ng-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;"><i ng-bind="resPrice | priceFormat"></i> <span class="" style="padding-top: 3px;">VND</span></p>
+                        <p ng-show="paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
+                            Trả góp hàng tháng: <i ng-bind="resPrice | priceFormat" style="margin-left: 5px;"></i> <span class="" style="color: #F7004C; padding-top: 2px;">VND X <span ng-bind="fenqiNum"></span></span> <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" ng-click="information()" data-toggle="modal" data-target="#myhead" class="moneryIcon" />
+                        </p>
+                        <div class="" style="text-align: right;">
+                            <a href="" class="aa no_checkbox" onclick="submit()">Mua ngay</a>
+                        </div>
+                        <div class="p" style="text-align: right;">
+                            <input type="checkbox" id="selectAll" /><span>Đồng ý</span>
+                            <a href="help.html" target="_self">Hợp đồng liên quan đến khoản vay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- 弹出模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="left"> địa chỉ nhận hàng</div>
+                        <div class="right" data-dismiss="modal" ng-blur="phoneNum=''"><span class="alert__b-m-t-close"></span></div>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="phone-flag">
+                            <span class="phone-flag-img"></span>
+                            <span class="phone-flag-code">+84</span>
+                        </div> -->
+                        <span>Người nhận hàng</span>
+                        <input type="name" name="" id="names" value="" placeholder="Vui lòng nhập tên người nhận hàng" />
+                        <br />
+                        <span>Số điện thoại</span>
+                        <input type="tel" ng-model="phoneNum" name="" id="phone" value="" placeholder="Vui lòng nhập số điện thoại" />
+                        <br />
+                        <!--<span style="width: 74px;">收货地址</span> <select id="province" runat="server" onchange="selectprovince(this);" style=" width:120px;" name="city"></select>     <select id="city" runat="server" name="city_s" style="width:120px;" ></select>-->
+                        <div class="area">
+                            <div class="left">
+                                <span>Địa chỉ cụ thể</span>
+                            </div>
+                            <div class="left areatext">
+                                <textarea id="textarea" name="" rows="" cols="" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng"></textarea>
+                            </div>
+                        </div>
+                        <h4 id="errormsg" class="errormsg"></h4>
+                        <a class="rc rcone" ng-click="submit()" style="display: none;">Xác nhận thông tin chính xác và lưu</a>
+                        <a class="rc rctwo" ng-click="submits()">Xác nhận thông tin chính xác và lưu</a>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal -->
+        </div>
+        <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div style="display: table;width:690px;height:100%;margin:0 auto;">
+                <div class="modal-dialog" style="display: table-cell;text-align: center;vertical-align: middle;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="left">Thông tin về số tiền trả góp</div>
+                            <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                        </div>
+                        <div class="modal-body">
+                            <table border="1" class="tables">
+                                <thead>
+                                    <tr>
+                                        <th>Hóa đơn</th>
+                                        <th>Số tiền phải trả hàng tháng</th>
+                                        <th>Phí dịch vụ hàng tháng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
+            </div>
+        </div>
+    </div>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/swiper.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/yii.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../js/img_silder.js"></script>
+    <script src="../js/xSlider.js"></script>
+    <script src="../js/popup.js"></script>
+    <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/commodityJS/pay.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+    <!-- tcy -start- -->
+    <script src="../js/md5.js"></script>
+    <!-- tcy -end- -->
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    window.setTimeout(function() {
+        if (localStorage.getItem("funId")) {
+            F._userViewDetailInfo({}, function(ret) {
+                if (ret.data.headimage) {
+                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+                }
+            });
+        }
+    }, 700);
+
+    
+    var loading = new F._loading();
+    F.orderNo = ''; // 存放已创建好的订单号
+    F.tradeNo = ''; // 存放已创建好的交易号
+
+    /*tcy -start-*/
+    // F.is_submit = false; // 是否创建成功过订单
+
+    var funId = localStorage.getItem("funId");
+    if (funId == "" || funId == null) {
+        window.location.href = "./login.html";
+    }
+
+    // 提交补全信息
+    function userAddDetailInfo(data) {
+        loading.show();
+        F._userAddDetailInfo(data, function(ret) {
+            loading.hide();
+            if (!ret) return false;
+
+            switch (ret.code) {
+                case 10000:
+
+                    var payway = '';
+                    payway_get(function(result) {
+                        payway = result;
+                    });
+
+                    loading.show();
+                    F._payOrder({
+                        timeoutExpress: 1800, // 半个小时
+                        totalAmount: F.total, // 总金额
+                        orderNo: F.orderNo,
+                        tradeNo: F.tradeNo,
+                        advance: F.price * F.num * F.paymentNum,
+                        payRate: F.paymentNum,
+                        repaymentMonth: F.fenqiNum,
+                        prepay: F.price * F.num * F.paymentNum,
+                        payway: payway,
+                    }, payOrder_callback);
+
+                    break;
+
+                default:
+                    F._confirm('Gợi ý', 'Gửi thông tin thất bại', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {}
+                    }]);
+                    break;
+            }
+        });
+    }
+
+    // 去补全信息
+    function getSchoolInfo_addInfo(userInfo) {
+        loading.show();
+        F._getSchoolInfo({}, function(ret) {
+            loading.hide();
+            var baseinfo = new F._baseinfo(ret.details, userInfo);
+            baseinfo.show();
+            $("#submit_baseinfo").on('click', function() {
+                baseinfo.submit(function(result) {
+                    baseinfo.hide();
+                    userAddDetailInfo(result);
+                });
+            });
+        });
+    }
+
+    // 提交订单
+    function submit() {
+        if (!localStorage.getItem("funId")) {
+            F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'error', [{
+                name: 'Xác nhận',
+                func: function() {
+                    window.location.href = 'login.html';
+                }
+            }]);
+            return false;
+        }
+
+        var addr_length = 0;
+        addressInfo_get(function(ret) {
+
+            F.username = ret.username;
+            F.msisdn = ret.msisdn;
+            F.address = ret.address;
+            addr_length = ret.length;
+        });
+
+        if (addr_length === 0) {
+            alert('Vui lòng Thêm địa chỉ nhận hàng');
+            return false;
+        }
+
+        F.paymentNum = parseFloat(F.paymentNum);
+        F.price = parseFloat(F.price);
+        F.num = parseInt(F.num);
+        F.total = F.price * F.num;
+
+        if (F.paymentNum === 1) { // 全款
+
+            loading.show();
+            F._fullOrderCreate({
+                totalamount: F.total,
+                orgamount: F.total,
+                advance: F.total,
+                payrate: '1',
+                repaymentmonth: '0',
+                subject: F.info,
+                goodsdetail: F.goodsDetail,
+                timeoutexpress: '86400',
+                msisdn: F.msisdn,
+                address: F.address,
+                username: F.username,
+            }, fullOrderCreate_callback);
+
+        } else {
+
+            loading.show();
+            F._createOrder({
+                totalAmount: F.total,
+                orgAmount: F.total,
+                advance: F.price * F.num * F.paymentNum,
+                payRate: F.paymentNum,
+                repaymentMonth: F.fenqiNum,
+                subject: F.info,
+                goodsDetail: F.goodsDetail,
+                msisdn: F.msisdn,
+                address: F.address,
+                username: F.username,
+            }, createOrder_callback);
+
+        }
+    }
+
+    function createOrder_callback(ret) {
+        loading.hide();
+        if (!ret) return false;
+
+        if (ret.code !== 10000) return false;
+
+        F.orderNo = ret.orderNo;
+        F.tradeNo = ret.tradeNo;
+
+        loading.show();
+        F._userViewDetailInfo({}, function(ret) {
+            loading.hide();
+            if (!ret) return false;
+
+            if (ret.status) { // 资料齐全
+
+                var payway = '';
+                payway_get(function(result) {
+                    payway = result;
+                });
+
+                loading.show();
+                F._payOrder({
+                    timeoutExpress: 1800, // 半个小时
+                    totalAmount: F.total, // 总金额
+                    orderNo: F.orderNo,
+                    tradeNo: F.tradeNo,
+                    advance: F.price * F.num * F.paymentNum,
+                    payRate: F.paymentNum,
+                    repaymentMonth: F.fenqiNum,
+                    prepay: F.price * F.num * F.paymentNum,
+                    payway: payway,
+                }, payOrder_callback);
+
+            } else { // 资料不全
+
+                F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                    name: 'Để sau',
+                    func: function() {}
+                }, {
+                    name: 'Cải thiện ngay lập tức',
+                    func: function() {
+                        getSchoolInfo_addInfo(ret.data);
+                    }
+                }]);
+
+            }
+        });
+    }
+
+    function payOrder_callback(ret) {
+        loading.hide();
+        if (!ret) return false;
+
+        if (ret.code !== 10000) return false;
+
+        window.location.href = './successPay.html';
+    }
+
+    function fullOrderCreate_callback(ret) {
+        loading.hide();
+        if (!ret) return false;
+
+        if (ret.code !== 10000) return false;
+
+        F.orderNo = ret.orderNo;
+        F.tradeNo = ret.tradeNo;
+
+        var payway = '';
+        payway_get(function(result) {
+            payway = result;
+        });
+
+        loading.show();
+        F._orderFullPay({
+            orderNo: F.orderNo,
+            tradeNo: F.tradeNo,
+            total: F.total,
+            payway: payway,
+        }, orderFullPay_callback);
+    }
+
+    function orderFullPay_callback(ret) {
+
+        loading.hide();
+        if (!ret) return false;
+
+        if (ret.code !== 10000) return false;
+        window.location.href = './successPay.html';
+    }
+
+    // 获取地址, 姓名, 电话
+    function addressInfo_get(callback) {
+        $('.site__main-item').each(function() {
+            var self = $(this);
+            if (self.hasClass('site__main-item_active')) {
+                var username = self.find('.js_username').eq(0).html();
+                var msisdn = self.find('.js_msisdn').eq(0).html();
+                var address = self.find('.js_address').eq(0).html();
+                callback({
+                    username: username,
+                    msisdn: msisdn,
+                    address: address,
+                    length: $('.site__main-item').length,
+                });
+            }
+        });
+    }
+
+    // 获取支付方式
+    function payway_get(callback) {
+        var index = 0;
+        $('.payway-li').each(function() {
+            var self = $(this);
+            var id = index === 0 ? '2' : '1';
+            if (self.hasClass('act')) {
+                callback(id);
+            }
+            index += 1;
+        });
+    }
+    /*tcy -start-*/
+
+
+    var swiper = new Swiper('#index_banner', {
+        pagination: '.swiper-pagination',
+        loop: true,
+        grabCursor: true,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 4000,
+        prevButton: '.swiper-button-prev',
+        nextButton: '.swiper-button-next',
+    });
+    $('.hot_brand').hover(function() {
+        $(this).css('background', '#fff');
+        $(this).find('.category_act').css('display', 'block');
+        $(this).find('a').css('color', '#666');
+        $(this).find('p').css('color', '#666');
+    }, function() {
+        $(this).css('background', 'rgba(0,0,0,0.2)');
+        $(this).find('.category_act').css('display', 'none');
+        $(this).find('a').css('color', '#eee');
+        $(this).find('p').css('color', '#fff');
+    })
+
+    $('.li-right button').click(function() {
+        $('.li-right button').removeClass('b_active');
+        $(this).addClass('b_active');
+    })
+    $('.way li').click(function() {
+        $('.way li').removeClass('act');
+        $(this).addClass('act');
+    })
+    //          $('body').delegate('.li span.moren','click',function(){
+    //              $('.li').removeClass('act');
+    //              $(this).parents('.li').addClass('act');
+    //          })
+
+    $('#selectAll').attr("checked", false);
+    $('#selectAll').click(function() {
+        if ($(this).is(':checked')) {
+            $('.fc .aa').removeClass('no_checkbox');
+
+        } else {
+            $('.fc .aa').addClass('no_checkbox');
+
+        }
+
+    })
+
+    $('#phone').blur(function() {
+        var phone = $("#phone").val();
+        if (!F._phoneExpr.test(phone)) {
+            $('#errormsg').show();
+            $('#errormsg small').html('định dạng số điện thoại sai');
+            return;
+        }
+
+        $('#errormsg').hide();
+
+    })
+    $('#names').blur(function() {
+
+        var name = $("#names").val();
+        if (name.length <= 1) {
+            $('#errormsg').show();
+            $('#errormsg small').html('Định dạng tên không đúng');
+            return;
+        }
+
+        $('#errormsg').hide();
+    })
+    $('#textarea').blur(function() {
+
+        var addr = $('#textarea').val();
+        if (addr.length < 1) {
+            $('#errormsg').show();
+            $('#errormsg small').html('Định dạng địa chỉ sai');
+            return;
+        }
+        $('#errormsg').hide();
+
+    })
+    $('.addAddrli img').click(function() {
+        $('#names,#phone,#textarea').val('');
+
+    })
+    </script>
+    <script type="text/javascript">
+    //截取Url里面的参数   
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串  
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            //alert(str);  
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]); //获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>, （unescape只针对数字, 中文乱码)  
+            }
+        }
+        return theRequest;
+    }
+    $(function() {
+        //通过url取数  
+        var request = new Object();
+        request = GetRequest();
+        var price = request['price'];
+        var buyNum = request['buyNum'];
+        var fenqiNum = request['fenqiNum'];
+        var total = parseFloat(price) * parseInt(buyNum);
+
+        $("#buyNum").html(buyNum);
+        $("#price").html(price);
+        $("#total").html(total);
+    });
+    </script>
+</body>
+
+</html>

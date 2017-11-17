@@ -1,0 +1,25 @@
+		.navh .nav a:nth-child(1){border-bottom:0px solid #0075f6;height: 37px;}
+		.swiper-button-next, .swiper-container-rtl .swiper-button-prev{right:70px;background: url(../img/fe.png) no-repeat;pointer-events: inherit;}
+		.swiper-button-prev, .swiper-container-rtl .swiper-button-next{left:70px;background: url(../img/le.png) no-repeat;pointer-events: inherit;}
+
+		.sliderad1,.sliderad2,.sliderad3{width:596px;padding:0;height:100%;margin:0;font-size:0!important}
+		.sliderad1 .slider-img,.sliderad2 .slider-img,.sliderad3 .slider-img,.sliderad6 .slider-img{height:347px; !important}
+		
+		#one3 .img .slider-btn,#two .img .slider-btn{width:50px;height:100px;top:50%;border:none !important}
+		.sliderad1 .slider-img .slider-img-ul li,.sliderad2 .slider-img .slider-img-ul li{width:596px;height:347px}
+		.sliderad6{width:893px;padding:0;height:100%;margin:0;font-size:0!important}
+		#one3 .sliderad1 .slider-img .slider-img-ul li img,#one3 .sliderad2 .slider-img .slider-img-ul li img{margin-bottom:0}
+		#one2 h4{margin-bottom:15px}
+		.mouseHover{background: #fff;color: #666; display: block;width: 100%;height: 100%;}
+		.hot_brand{padding: 0;}
+		.hot_brand p{padding-left:10px;cursor: pointer;}
+		.hot_brand a:hover{cursor: pointer;}
+		.mouseHoverCategory_act{display: block;z-index: 500;}
+		#one3 .img a:nth-child(2){border-bottom: 1px solid #f5f5f5;}
+		#center .swiper-button-next,#center .swiper-button-prev{position: absolute;width: 50px;height: 100px;top: 40%;line-height: 100px;text-align: center;color: #fff;font-size: 28px;text-decoration: none;font-family: '黑体';background: rgba(0,0,0,0.1);right:0;display:none;z-index: 10000;pointer-events: inherit;}
+		#dzjy_banner .swiper-button-prev,#zncd_banner .swiper-button-prev,#dwyx_banner .swiper-button-prev,#gdws_banner .swiper-button-prev,#ssyy_banner .swiper-button-prev{left:0}
+		#dzjy_banner:hover .swiper-button-next,#dzjy_banner:hover .swiper-button-prev,#zncd_banner:hover .swiper-button-next,#zncd_banner:hover .swiper-button-prev,#dwyx_banner:hover .swiper-button-next,#dwyx_banner:hover .swiper-button-prev,#gdws_banner:hover .swiper-button-next,#gdws_banner:hover .swiper-button-prev,#ssyy_banner:hover .swiper-button-next,#ssyy_banner:hover .swiper-button-prev{display: block;}
+		#one2 .img p span, #one3 .img p span{margin-left:0}
+		#one3 .img a:nth-child(2){float:right}
+		.shuam_one,.shuam_two,.shuam_three,.shuam_four,.shuam_five{display: none;}
+		.nav li.rigt2,.nav li.rigt3,.nav li.rigt4,.nav li.rigt5,.nav li.rigt6{display: none;}

@@ -1,0 +1,374 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Lấy lại mật khẩu</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/index_add_img.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+    body {
+        background: #fff;
+    }
+
+    .pay_footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%
+    }
+
+    #back {
+        width: 600px;
+        margin: 0 auto;
+        margin-top: 11%
+    }
+
+    #back .logo {
+        display: block;
+        margin: 0 auto;
+        width: 400px;
+        height: auto;
+    }
+
+    #back .img-text {
+        display: block;
+        margin: 34px auto;
+        width: 100px;
+    }
+
+    .text {}
+
+    .text .txt {
+        width: 150px;
+        text-align: right;
+        padding-right: 10px;
+        color: #787878;
+        line-height: 35px
+    }
+
+    .text .val {}
+
+    .text input {
+        width: 305px;
+        height: 35px;
+        background: transparent;
+        font-size: 13px;
+        border: 1px solid #ddd;
+        padding-left: 10px;
+        margin-bottom: 25px;
+        margin-right: 3px
+    }
+
+    .text .val img {
+        width: 102px;
+        height: 35px;
+        margin: 0 5px
+    }
+
+    .text .val span {
+        line-height: 35px;
+        color: #0076F7;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .text .submit {
+        display: block;
+        margin-left: 150px;
+        width: 262px;
+        height: 40px;
+        color: #fff;
+        background: #0076F7;
+        margin-top: 30px;
+        display: inline-block;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    .text button {
+        border: none;
+        outline: none;
+        display: block;
+        margin: 18px 0;
+        padding: 0 5px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        background: #0076F7;
+        color: #fff;
+        clear: both;
+        margin-left: 150px;
+        cursor: pointer;
+    }
+    /*.text p:active{background: #ddd;}*/
+
+    .xiug {
+        text-align: center;
+        font-size: 23px;
+        letter-spacing: 3px;
+        font-weight: 600;
+        color: #0076F7;
+        margin: 29px 0;
+        padding-left: 57px;
+    }
+
+    @media screen and (max-width: 1700px) {
+        #back {
+            height: 600px
+        }
+        #back .logo {
+            width: 300px;
+        }
+        .pay_footer {
+            position: static;
+        }
+    }
+    /*tcy*/
+
+    .forget__title-text {
+        text-align: center;
+        color: #147af3;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 25px 0;
+    }
+
+    .text .val {
+        position: relative;
+    }
+
+    .phone-flag {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        line-height: 35px;
+    }
+
+    .phone-flag-img {
+        width: 30px;
+        height: 20px;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-image: url(../img/VN.png);
+    }
+
+    .phone-flag-code {
+        color: #333 !important;
+    }
+    /*tcy*/
+    </style>
+</head>
+
+<body ng-app="duanxinOptAPP" ng-controller="duanxinOptCtrl">
+    <div id="back">
+        <a href="../index.html"><img src="../img/LOGO2.jpg" alt="" class="logo"/></a>
+        <!-- <img src="../img/30.png" alt="" class="img-text"/> -->
+        <div class="forget__title-text">Lấy lại mật khẩu</div>
+        <p class='xiug'>Thay đổi mật khẩu</p>
+        <div class="text">
+            <div class="left txt">Số điện thoại</div>
+            <div class="left val">
+                <input type="tel" placeholder="Vui lòng nhập số điện thoại của bạn" id="phoneNum" />
+                <div class="phone-flag">
+                    <span class="phone-flag-img"></span>
+                    <span class="phone-flag-code">+84</span>
+                </div>
+            </div>
+            <div class="left txt">Mã xác nhận</div>
+            <div class="left val">
+                <input type="number" placeholder="Vui lòng nhập mã xác nhận" id="yzmId" />
+            </div>
+            <button class="timeBtn" ng-click="duanxinOpt()"><span id="nowSecond"></span><span class="sText" id="sText"> Gửi mã</span></button>
+            <!--<div class="left txt">Số chứng minh thư</div>
+        <div class="left val">
+            <input type="text" placeholder="Vui lòng nhập số chứng minh thư của bạn" id="sfzId"/>
+            
+        </div>-->
+            <span id="tip" style="color: red;font-size: 12px;overflow-y: hidden;text-overflow:ellipsis;text-overflow:ellipsis;clear: both; display: block;padding-left: 149px;"></span>
+            <button ng-click="nextStep()" class="submit">Bước tiếp theo</button>
+        </div>
+    </div>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/swiper.min.js"></script>
+    <script src="../js/yii.js"></script>
+    <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/base.js"></script>
+    <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/img_silder.js"></script>
+    <script src="../js/xSlider.js"></script>
+    <script src="../js/popup.js"></script>
+    <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="../js/common.js"></script>
+    <script>
+    var swiper = new Swiper('#index_banner', {
+        pagination: '.swiper-pagination',
+        loop: true,
+        grabCursor: true,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 4000,
+        prevButton: '.swiper-button-prev',
+        nextButton: '.swiper-button-next',
+    });
+
+    $('.hot_brand').hover(function() {
+        $(this).css('background', '#fff');
+        $(this).find('.category_act').css('display', 'block');
+        $(this).find('a').css('color', '#666');
+        $(this).find('p').css('color', '#666');
+    }, function() {
+        $(this).css('background', 'rgba(0,0,0,0.2)');
+        $(this).find('.category_act').css('display', 'none');
+        $(this).find('a').css('color', '#eee');
+        $(this).find('p').css('color', '#fff');
+    })
+    var url = location.search; //获取url中"?"符后的字串  
+    if (url.indexOf("?") != -1) {
+        $('.img-text').hide();
+        $('.xiug').show();
+    } else {
+        $('.img-text').show();
+        $('.xiug').hide();
+    }
+    $("#yzmId").bind("input propertychange", function() {
+        var yzmId = $(this).val();
+        if (yzmId.length > 4 && yzmId.length < 8) {
+            $('#tip').hide();
+            $('.submit').attr('disabled', false).css('background', '#0075f6')
+        } else {
+            $('#tip').show();
+            $('#tip').html('Số chữ cái của mật khẩu sai...');
+            $('.submit').attr('disabled', true).css('background', '#ddd')
+        }
+    })
+
+    $("body").keydown(function(e) {
+        var curKey = e.which;
+        if (curKey == "13") {
+            $('.submit').click();
+        }
+    });
+    </script>
+    <script src="../js/resetPass.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

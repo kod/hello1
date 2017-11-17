@@ -1,0 +1,478 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Trung tâm cá nhân</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/oneself.css" />
+    <link href="../css/index_add_img.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css">
+    <link rel="stylesheet" href="../css/upload.css" />
+    <link rel="stylesheet" href="../css/center.css" />
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+        footer {
+            float: left;
+        }
+    </style>
+</head>
+
+<body ng-app="centerMainApp" ng-controller="centerMainCtrl">
+    <div class="all">
+        <div class="header_top">
+            <div class="content" style="overflow: visible;">
+                <div class="header_left left userLogin">
+                    <a href="./center.html">Xin chào, <span id="userMsisdn"></span><i class="userLogin-arrow"></i></a>
+                    <a href="./center.html" id="quit"></a>
+                    <div class="userLogin-info">
+                        <div class="userLogin-info__top col-xs-24">
+                            <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                            <div class="userLogin-info__top-order">
+                                <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                            </div>
+                        </div>
+                        <div class="userLogin-info__bottom col-xs-24">
+                            <a href="" class="userLogin-info__bottom-button" id="userLogin-info__bottom-button" onclick="userQuit()"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_left left noLogin">
+                    <a href="./login.html" id="login"></a>
+                    <a href="./register.html" id="signup"></a>
+                </div>
+                <div class="header_right right">
+                    <a href="../index.html" class="header_right_a" style="color:#0076F7">BUYOO Trang chủ</a>|
+                    <a href="./help.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content header_c">
+            <div class="search_left left">
+                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
+            </div>
+            <div class="search_right right">
+                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
+                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
+            </div>
+        </div>
+    </div>
+    <div class="all all_nav">
+        <div class="content navh" style="overflow: inherit;">
+            <div class="category left" style="width:182px;height:37px;background: transparent;">
+                <!--<a href="#" class="category_a"></a>-->
+                <!-- <img src="../img/h.jpg" alt="" style="margin-left: -12px;width: 205px;margin-top: -11px;" /> -->
+            </div>
+            <div class="nav left">
+                <a href="../index.html" class="">Trang chủ</a>
+            </div>
+            <div class="iwant right">
+                <a href="./bill.html" class="">Tôi muốn thanh toán nợ  &gt;</a>
+            </div>
+        </div>
+    </div>
+    <!--板块-->
+        <article style="position: relative; z-index: 100; min-height: 500px;">
+        <div class="con">
+            <div id="one">
+                <div class="left one-left">
+                    <div class="img">
+                        <img src="../img/36.png" alt="" class="img-bg" />
+                        <div class="phone">
+                            <img src="../img/37.png" onerror="nofind(this)" alt="" class="img-phone" data-toggle="modal" data-target="#myhead" />
+                            <script type="text/javascript">
+                            function nofind(img) {
+                                img.src = "../img/37.png";
+                                img.onerror = null;
+                            }
+                            </script>
+                            <p>Chào buổi sáng！</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="one act">
+                            <a href="center.html">Trung tâm cá nhân</a>
+                        </li>
+                        <li class="two">
+                            <a href="oneself.html">Trung tâm an ninh</a>
+                        </li>
+                        <li class="three">
+                            <a href="order.html">Đơn hàng của tôi</a>
+                        </li>
+                        <li class="four">
+                            <a href="bill.html">Hóa đơn của tôi</a>
+                        </li>
+                        <li class="five">
+                            <a href="collection.html">Bộ sưu tập của tôi</a>
+                        </li>
+                        <li class="seven">
+                            <a href="complaint.html">Góp ý của tôi</a>
+                        </li>
+                        <li class="eig">
+                            <a href="address.html">địa chỉ nhận hàng</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right one-right">
+                    <div class="center">
+                        <dl>
+                            <dd style="height: 200px;">
+                                <p><span ng-bind="funId"></span></p>
+                                <div class="imgs">
+                                    <div class="img-list">
+                                        <img src="../img/center (1).jpg" alt="" />
+                                        <div class="img-bgs">
+                                            <div class="img_top" style="top:-4px">
+                                                <img src="../img/48.jpg" alt="" />
+                                            </div>
+                                            Mật khẩu của bạn đã được cài đặt
+                                        </div>
+                                    </div>
+                                    <div class="img-list personal">
+                                        <a href="personal.html"><img src="../img/center (3).jpg" alt="" /></a>
+                                        <div class="img-bgs" style="bottom: -74px;">
+                                            <div class="img_top">
+                                                <img src="../img/48.jpg" alt="" />
+                                            </div>
+                                            <span>Thông tin cá nhân của bạn chưa được cài đặt</span> <a href="personal.html">Quản lý</a>
+                                        </div>
+                                    </div>
+                                    <div class="img-list">
+                                        <a href="oneself.html"><img src="../img/center (4).jpg" alt="" /></a>
+                                        <div class="img-bgs">
+                                            <div class="img_top">
+                                                <img src="../img/48.jpg" alt="" />
+                                            </div>
+                                            Mật khẩu của bạn đã được cài đặt <a href="oneself.html">Quản lý</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </dd>
+                            <!--<dd>
+							<h4>您账户预计可获得信用总额: <span>￥</span> <i>5000+</i></h4>
+						</dd>-->
+                        </dl>
+                        <div class="no_list">
+                            <img src="../img/49.jpg" alt="" />
+                            <p>Vui lòng chuyển đến【<a href="bill.html">Hóa đơn của tôi</a>】Kiểm tra hóa đơn</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <!-- 弹出模态框（更换头像） -->
+    <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="left">Cài đặt ảnh đại diện</div>
+                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal_one">
+                        <i class="uphead">Tải ảnh đại diện</i>
+                        <span>Hỗ trợ định dạng jpg, png or bmp, kích cỡ không quá 2M</span>
+                    </div>
+                    <div class="modal_two" style="display: none">
+                        <div class="imageBox">
+                            <div class="thumbBox"></div>
+                            <div class="spinner" style="display: none">Loading...</div>
+                        </div>
+                        <div class="action">
+                            <div class="new-contentarea tc">
+                                <a href="javascript:void(0)" class="upload-img">
+                                    <label for="upload-file">Tải ảnh lên</label>
+                                </a>
+                                <input type="file" class="" name="upload-file" id="upload-file" />
+                                <input id="upload" style="display: none;" />
+                            </div>
+                            <input type="button" id="btnCrop" class="Btnsty_peyton" value="Xem trước">
+                            <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
+                            <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
+                        </div>
+                        <div class="cropped"></div>
+                        <div class="right">
+                            <!--<i class="sure" disabled="true">Xác nhận</i>-->
+                            <button type="text" class="sure" disabled="true" ng-click="uploadFiles()">Xác nhận</button>
+                        </div>
+                    </div>
+                    <div class="modal_three" style="display: none">
+                        <img src="../img/32.png" alt="" />
+                        <p>Tải ảnh đại diện thành công</p>
+                        <i class="success" data-dismiss="modal">Xác nhận</i>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <!-- <script type="text/javascript" src="../js/search.js"></script> -->
+    <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/userCenterJS/center.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common/check_login.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common/getUserInfo.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/cropbox.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+    window.setTimeout(function() {
+        if (localStorage.getItem("funId")) {
+            F._userViewDetailInfo({}, function(ret) {
+                if (ret.data.headimage) {
+                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+                }
+            });
+        }
+    }, 700);
+
+    $(window).load(function() {
+        var options = {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'img/avatar.jpg'
+        }
+        var cropper = $('.imageBox').cropbox(options);
+        $('#upload-file').on('change', function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            //			this.files = [];
+        })
+        $('#btnCrop').on('click', function() {
+            var img = cropper.getDataURL();
+            $('.cropped').html('');
+
+            $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
+            setTimeout(function() {
+                var img = $('.cropped').html()
+                if (img == '' || img == 0) {
+
+                } else {
+                    $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
+                    var imgSrc = $('#upimg').attr('src');
+                    upload(imgSrc);
+                }
+            }, 500)
+        })
+        $('#btnZoomIn').on('click', function() {
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function() {
+            cropper.zoomOut();
+        })
+    });
+
+    function upload(imgSrcs) {
+        var imgSrc = imgSrcs;
+        var blob = dataURLtoBlob(imgSrc);
+
+        function dataURLtoBlob(dataurl) {
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {
+                type: mime
+            });
+        }
+        $('.sure').click(function() {
+            var funid = localStorage.getItem("funId");
+            var formData = new FormData();
+            formData.append("funid", funid);
+            formData.append("files", blob, 'jpg');
+            F._uploadFilesUser(formData, function(ret) {
+
+            });
+        })
+    }
+
+    $('.uphead').click(function() {
+        $('.modal_one').hide();
+        $('.modal_two').show();
+    })
+
+
+
+    $('.sure').click(function() {
+
+        $('.modal_two').hide();
+        $('.modal_three').show();
+        var img = $('.upimg').attr('src');
+        $('.img-phone').attr('src', img);
+        $('.modal-header').find('.left').html('Cài đặt')
+
+    })
+    $('.success').click(function() {
+        setTimeout(function() {
+            $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
+            $('.modal_one').show();
+            $('.modal_two').hide();
+            $('.modal_three').hide();
+
+        }, 1500)
+        $('#upimg').attr('src', '');
+        $('#upload-file').val('');
+        //window.location.href="";
+    });
+
+
+    $('.center .img-list').hover(function() {
+        $('.center .img-list').find('.img-bgs').hide();
+        $('.center .img-list .img-bgs').find('.img_top').hide();
+        $(this).find('.img-bgs').show();
+        $(this).find('.img-bgs .img_top').show();
+    })
+    $('.imgs').mouseleave(function() {
+        $('.center .img-list').find('.img-bgs').hide();
+        $('.center .img-list .img-bgs').find('.img_top').hide();
+    })
+
+    function gotoFind() {
+        var findcontent = $("#findIpt").val();
+        if (findcontent != "") {
+            window.location.href = "./search.html?findcontent=" + findcontent;
+        }
+    }
+
+    function entersearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13)
+
+        {
+            gotoFind();
+        }
+    }
+    </script>
+</body>
+
+</html>

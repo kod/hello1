@@ -1,0 +1,883 @@
+<html lang="False">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Trung tâm cá nhân</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/oneself.css" />
+    <link href="../css/index_add_img.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css">
+    <link rel="stylesheet" href="../css/upload.css" />
+    <link rel="stylesheet" href="../css/personal.css" />
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+    .navh .nav a:nth-child(1) {
+        border-bottom: 5px solid #0075f6;
+        height: 37px;
+    }
+
+    .one-left li.two.act a {
+        background: url(../img/x2.jpg) no-repeat 30px center;
+    }
+
+    /*tcy*/
+    .footer {
+        float: left;
+    }
+    .perone input,
+    #degree {
+        color: #333;
+    }
+    /*tcy*/
+    </style>
+</head>
+
+<body ng-app="selfApp" ng-controller="selfCtrl">
+    <div class="all">
+        <div class="header_top">
+            <div class="content" style="overflow: visible;">
+                <div class="header_left left userLogin">
+                    <a href="./center.html">Xin chào, <span id="userMsisdn"></span><i class="userLogin-arrow"></i></a>
+                    <a href="./center.html" id="quit"></a>
+                    <div class="userLogin-info">
+                        <div class="userLogin-info__top col-xs-24">
+                            <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                            <div class="userLogin-info__top-order">
+                                <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                            </div>
+                        </div>
+                        <div class="userLogin-info__bottom col-xs-24">
+                            <a href="" class="userLogin-info__bottom-button" id="userLogin-info__bottom-button" onclick="userQuit()"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_left left noLogin">
+                    <a href="./login.html" id="login"></a>
+                    <a href="./register.html" id="signup"></a>
+                </div>
+                <div class="header_right right">
+                    <a href="../index.html" class="header_right_a" style="color:#0076F7">BUYOO Trang chủ</a>|
+                    <a href="./help.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all">
+        <div class="content header_c">
+            <div class="search_left left">
+                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
+            </div>
+            <div class="search_right right">
+                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
+                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
+            </div>
+        </div>
+    </div>
+    <div class="all all_nav">
+        <div class="content navh" style="overflow: inherit;">
+            <div class="category left" style="width:182px;height:37px;background: transparent;">
+                <!--<a href="#" class="category_a"></a>-->
+                <!-- <img src="../img/h.jpg" alt="" style="margin-left: -12px;width: 205px;margin-top: -11px;" /> -->
+            </div>
+            <div class="nav left">
+                <a href="../index.html" class="">Trang chủ</a>
+            </div>
+            <div class="iwant right">
+                <a href="bill.html" class="">Tôi muốn thanh toán nợ  &gt;</a>
+            </div>
+        </div>
+    </div>
+    <!--板块-->
+    <article style="position: relative; z-index: 100; min-height: 500px;">
+
+        <div class="con">
+            <div id="one" style="height:auto">
+                <div class="left one-left">
+                    <div class="img">
+                        <img src="../img/36.png" alt="" class="img-bg" />
+                        <div class="phone">
+                            <img src="../img/37.png" onerror="nofind(this)" alt="" class="img-phone" data-toggle="modal" data-target="#myhead" />
+                            <script type="text/javascript">
+                            function nofind(img) {
+                                img.src = "../img/37.png";
+                                img.onerror = null;
+                            }
+                            </script>
+                            <p>Chào buổi sáng！</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="one act">
+                            <a href="center.html">Trung tâm cá nhân</a>
+                        </li>
+                        <li class="two">
+                            <a href="oneself.html">Trung tâm an ninh</a>
+                        </li>
+                        <li class="three">
+                            <a href="order.html">Đơn hàng của tôi</a>
+                        </li>
+                        <li class="four">
+                            <a href="bill.html">Hóa đơn của tôi</a>
+                        </li>
+                        <li class="five">
+                            <a href="collection.html">Bộ sưu tập của tôi</a>
+                        </li>
+                        <li class="seven">
+                            <a href="complaint.html">Góp ý của tôi</a>
+                        </li>
+                        <li class="eig">
+                            <a href="address.html">địa chỉ nhận hàng</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right one-right">
+                    <h2>Thông tin cá nhân</h2>
+                    <div class="personal">
+                        <div class="perone">
+                            <span>Họ tên</span>
+                            <input type="text" id="g_name" />
+                            <br />
+                            <span>Giới tính</span>
+                            <select name="" id="g_sex">
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                            <br />
+                            <span>Chứng minh thư</span>
+                            <input type="text" id="g_identification" />
+                            <br />
+                            <div style="overflow: hidden;">
+                                <span class="addleft">Địa chỉ</span>
+                                <textarea class="addright" name="" rows="" cols="" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng"></textarea>
+                                <br />
+                            </div>
+                            <span>Địa chỉ thư điện tử</span>
+                            <input type="email" id="g_email" />
+                            <br />
+                        </div>
+                        <div class="perone">
+                            <div style="position: relative;">
+                                <span>Người liên lạc 1</span>
+                                <input type="text" id="g_cname1" disabled="disabled" /> <i class="in1" data-toggle="modal" data-target="#addperon">Thay đổi   > </i>
+                                <br />
+                                <button class="addperon addperons" data-toggle="modal" data-target="#addperon">Nhấp để thêm người liên lạc</button>
+                            </div>
+                            <div style="position: relative;">
+                                <span>Người liên lạc 2</span>
+                                <input type="text" id="g_cname2" disabled="disabled" /> <i class="in2" data-toggle="modal" data-target="#addperon1">Thay đổi   > </i>
+                                <br />
+                                <button class="addperon addperon1" data-toggle="modal" data-target="#addperon1">Nhấp để thêm người liên lạc</button>
+                            </div>
+                            <div style="position: relative;">
+                                <span>Người liên lạc 3</span>
+                                <input type="text" id="g_cname3" disabled="disabled" /> <i class="in3" data-toggle="modal" data-target="#addperon2">Thay đổi   > </i>
+                                <br />
+                                <button class="addperon addperon2" data-toggle="modal" data-target="#addperon2">Nhấp để thêm người liên lạc</button>
+                            </div>
+                        </div>
+                        <div class="perone">
+                            <span>Tốt nghiệp trường</span>
+                            <!-- <input type="text" id="g_byyx" /> -->
+                            <select name="" id="g_byyx" style="width: 250px;">
+                                <option ng-repeat="item in schoolList" ng-value="item.name" ng-bind="item.name">school name</option>
+                            </select>
+                            <br />
+                            <span>Địa chỉ trường</span>
+                            <input type="text" id="g_xxdz" />
+                            <br />
+                            <span>Khoa</span>
+                            <input type="text" id="g_yx" />
+                            <br />
+                            <span>Chuyên ngành</span>
+                            <input type="text" id="g_zy" />
+                            <br />
+                            <span>Học vị</span>
+                            <!--<input type="text"  id="degree"/>-->
+                            <select name="" id="degree">
+                                <option value="Tiểu học">Tiểu học</option>
+                                <option value="Trung học cơ sở">Trung học cơ sở</option>
+                                <option value="Trung học phổ thông">Trung học phổ thông</option>
+                                <option value="Cao đẳng">Cao đẳng</option>
+                                <option value="Chính quy">Chính quy</option>
+                                <option value="Cử nhân">Cử nhân</option>
+                                <option value="Thạc sĩ">Thạc sĩ</option>
+                                <option value="Tiến sĩ">Tiến sĩ</option>
+                                <option value="Sau tiến sĩ">Sau tiến sĩ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                            <br />
+                            <span>Khoảng thời gian học</span>
+                            <select name="" id="sctime-ac">
+                                <option value=""></option>
+                                <option value="1970">1970</option>
+                                <option value="1971">1971</option>
+                                <option value="1972">1972</option>
+                                <option value="1973">1973</option>
+                                <option value="1974">1974</option>
+                                <option value="1975">1975</option>
+                                <option value="1976">1976</option>
+                                <option value="1977">1977</option>
+                                <option value="1978">1978</option>
+                                <option value="1979">1979</option>
+                                <option value="1980">1980</option>
+                                <option value="1981">1981</option>
+                                <option value="1982">1982</option>
+                                <option value="1983">1983</option>
+                                <option value="1984">1984</option>
+                                <option value="1985">1985</option>
+                                <option value="1986">1986</option>
+                                <option value="1987">1987</option>
+                                <option value="1988">1988</option>
+                                <option value="1989">1989</option>
+                                <option value="1990">1990</option>
+                                <option value="1991">1991</option>
+                                <option value="1992">1992</option>
+                                <option value="1993">1993</option>
+                                <option value="1994">1994</option>
+                                <option value="1995">1995</option>
+                                <option value="1996">1996</option>
+                                <option value="1997">1997</option>
+                                <option value="1998">1998</option>
+                                <option value="1999">1999</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                            </select>
+                            <select name="" id="sctime-ac-m">
+                                <option value=""></option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <input type="text" class="times timesup" style="display:none" />
+                            <small>Đến</small>
+                            <input type="text" class="times timescl" style="display:none" />
+                            <select name="" id="sctime-ov">
+                                <option value=""></option>
+                                <option value="1971">1971</option>
+                                <option value="1972">1972</option>
+                                <option value="1973">1973</option>
+                                <option value="1974">1974</option>
+                                <option value="1975">1975</option>
+                                <option value="1976">1976</option>
+                                <option value="1977">1977</option>
+                                <option value="1978">1978</option>
+                                <option value="1979">1979</option>
+                                <option value="1980">1980</option>
+                                <option value="1981">1981</option>
+                                <option value="1982">1982</option>
+                                <option value="1983">1983</option>
+                                <option value="1984">1984</option>
+                                <option value="1985">1985</option>
+                                <option value="1986">1986</option>
+                                <option value="1987">1987</option>
+                                <option value="1988">1988</option>
+                                <option value="1989">1989</option>
+                                <option value="1990">1990</option>
+                                <option value="1991">1991</option>
+                                <option value="1992">1992</option>
+                                <option value="1993">1993</option>
+                                <option value="1994">1994</option>
+                                <option value="1995">1995</option>
+                                <option value="1996">1996</option>
+                                <option value="1997">1997</option>
+                                <option value="1998">1998</option>
+                                <option value="1999">1999</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                            </select>
+                            <select name="" id="sctime-ov-m">
+                                <option value=""></option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <b id="tis" style="color:red;display: none;">sai</b>
+                        </div>
+                        <button id="submit">Xác nhận tồn tại</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <!-- 弹出模态框（更换头像） -->
+    <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="left">Cài đặt ảnh đại diện</div>
+                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal_one">
+                        <i class="uphead">Tải ảnh đại diện</i>
+                        <span>Hỗ trợ định dạng jpg, png or bmp, kích cỡ không quá 2M</span>
+                    </div>
+                    <div class="modal_two" style="display: none">
+                        <div class="imageBox">
+                            <div class="thumbBox"></div>
+                            <div class="spinner" style="display: none">Loading...</div>
+                        </div>
+                        <div class="action">
+                            <div class="new-contentarea tc">
+                                <a href="javascript:void(0)" class="upload-img">
+                                    <label for="upload-file">Tải ảnh lên</label>
+                                </a>
+                                <input type="file" class="" name="upload-file" id="upload-file" />
+                            </div>
+                            <input type="button" id="btnCrop" class="Btnsty_peyton" value="Xem trước">
+                            <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
+                            <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
+                        </div>
+                        <div class="cropped"></div>
+                        <div class="right">
+                            <!--<i class="sure" disabled="true">Xác nhận</i>-->
+                            <button type="text" class="sure" disabled="true" ng-click="uploadFiles()">Xác nhận</button>
+                        </div>
+                    </div>
+                    <div class="modal_three" style="display: none">
+                        <img src="../img/32.png" alt="" />
+                        <p>Tải ảnh đại diện thành công</p>
+                        <i class="success" data-dismiss="modal">Xác nhận</i>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+    <!--联系人一-->
+    <div class="modal fade" id="addperon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="left">Người liên lạc 1</div>
+                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                </div>
+                <div class="modal-body">
+                    <span>Họ tên</span>
+                    <input type="text" id="per1_name" placeholder="Vui lòng nhập tên người liên lạc" />
+                    <br />
+                    <span>Số điện thoại không</span>
+                    <input type="tel" id="per1_phone" placeholder="Vui lòng nhập số điện thoại" />
+                    <br />
+                    <span>Quan hệ</span>
+                    <!-- <input type="text" id="per1_gx" /> -->
+                    <select name="" id="per1_gx" style="width: 200px;">
+                        <option value="Bố">Bố</option>
+                        <option value="Chú bác">Chú bác</option>
+                        <option value="Anh em">Anh em</option>
+                        <option value="Ông nội">Ông nội</option>
+                        <option value="Bà nội">Bà nội</option>
+                        <option value="Cô">Cô</option>
+                        <option value="Mẹ">Mẹ</option>
+                        <option value="Cậu">Cậu</option>
+                        <option value="Chị em">Chị em</option>
+                        <option value="Ông ngoại">Ông ngoại</option>
+                        <option value="Bà ngoại">Bà ngoại</option>
+                        <option value="Dì">Dì</option>
+                        <option value="Vợ/chồng">Vợ/chồng</option>
+                        <option value="Bạn trai/bạn gái">Bạn trai/bạn gái</option>
+                        <option value="Bạn cùng phòng">Bạn cùng phòng</option>
+                        <option value="Bạn thân">Bạn thân</option>
+                        <option value="Thầy cô giáo/ sếp">Thầy cô giáo/ sếp</option>
+                        <option value="Bạn học/ đồng nghiệp">Bạn học/ đồng nghiệp</option>
+                    </select>
+                    <br />
+                    <span>Số chứng minh thư</span>
+                    <input type="text" id="per1_id" placeholder="">
+                    <button class="sub_b sub_b1" data-dismiss="modal">Xác nhận không có lỗi, lưu lại</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+    <!--联系人二-->
+    <div class="modal fade" id="addperon1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="left">Người liên lạc 2</div>
+                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                </div>
+                <div class="modal-body">
+                    <span>Họ tên</span>
+                    <input type="text" id="per2_name" placeholder="Vui lòng nhập tên người liên lạc" />
+                    <br />
+                    <span>Số điện thoại không</span>
+                    <input type="tel" id="per2_phone" placeholder="Vui lòng nhập số điện thoại" />
+                    <br />
+                    <span>Quan hệ</span>
+                    <!-- <input type="text" id="per2_gx" /> -->
+                    <select name="" id="per2_gx" style="width: 200px;">
+                        <option value="Bố">Bố</option>
+                        <option value="Chú bác">Chú bác</option>
+                        <option value="Anh em">Anh em</option>
+                        <option value="Ông nội">Ông nội</option>
+                        <option value="Bà nội">Bà nội</option>
+                        <option value="Cô">Cô</option>
+                        <option value="Mẹ">Mẹ</option>
+                        <option value="Cậu">Cậu</option>
+                        <option value="Chị em">Chị em</option>
+                        <option value="Ông ngoại">Ông ngoại</option>
+                        <option value="Bà ngoại">Bà ngoại</option>
+                        <option value="Dì">Dì</option>
+                        <option value="Vợ/chồng">Vợ/chồng</option>
+                        <option value="Bạn trai/bạn gái">Bạn trai/bạn gái</option>
+                        <option value="Bạn cùng phòng">Bạn cùng phòng</option>
+                        <option value="Bạn thân">Bạn thân</option>
+                        <option value="Thầy cô giáo/ sếp">Thầy cô giáo/ sếp</option>
+                        <option value="Bạn học/ đồng nghiệp">Bạn học/ đồng nghiệp</option>
+                    </select>
+                    <br />
+                    <span>Số chứng minh thư</span>
+                    <input type="text" id="per2_id" placeholder="">
+                    <button class="sub_b sub_b2" data-dismiss="modal">Xác nhận không có lỗi, lưu lại</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+    <!--联系人三-->
+    <div class="modal fade" id="addperon2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="left">Người liên lạc 3</div>
+                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                </div>
+                <div class="modal-body">
+                    <span>Họ tên</span>
+                    <input type="text" id="per3_name" placeholder="Vui lòng nhập tên người liên lạc" />
+                    <br />
+                    <span>Số điện thoại không</span>
+                    <input type="tel" id="per3_phone" placeholder="Vui lòng nhập số điện thoại" />
+                    <br />
+                    <span>Quan hệ</span>
+                    <!-- <input type="text" id="per3_gx" /> -->
+                    <select name="" id="per3_gx" style="width: 200px;">
+                        <option value="Bố">Bố</option>
+                        <option value="Chú bác">Chú bác</option>
+                        <option value="Anh em">Anh em</option>
+                        <option value="Ông nội">Ông nội</option>
+                        <option value="Bà nội">Bà nội</option>
+                        <option value="Cô">Cô</option>
+                        <option value="Mẹ">Mẹ</option>
+                        <option value="Cậu">Cậu</option>
+                        <option value="Chị em">Chị em</option>
+                        <option value="Ông ngoại">Ông ngoại</option>
+                        <option value="Bà ngoại">Bà ngoại</option>
+                        <option value="Dì">Dì</option>
+                        <option value="Vợ/chồng">Vợ/chồng</option>
+                        <option value="Bạn trai/bạn gái">Bạn trai/bạn gái</option>
+                        <option value="Bạn cùng phòng">Bạn cùng phòng</option>
+                        <option value="Bạn thân">Bạn thân</option>
+                        <option value="Thầy cô giáo/ sếp">Thầy cô giáo/ sếp</option>
+                        <option value="Bạn học/ đồng nghiệp">Bạn học/ đồng nghiệp</option>
+                    </select>
+                    <br />
+                    <span>Số chứng minh thư</span>
+                    <input type="text" id="per3_id" placeholder="">
+                    <button class="sub_b sub_b3" data-dismiss="modal">Xác nhận không có lỗi, lưu lại</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+        <footer class="footer">
+            <div class="footer__top col-xs-24">
+                <div class="footer__top-main">
+                    <div class="footer__t-m-item col-xs-24">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
+                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
+                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
+                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
+                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
+                        </div>
+                    </div>
+                    <div class="footer__t-m-item">
+                        <div class="footer__t-m-i-left col-xs-5">
+                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
+                        </div>
+                        <div class="footer__t-m-i-right col-xs-19">
+                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
+                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">信息</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                            <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
+                            <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row4">
+                        <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
+                        <ul class="footer__b2-m-r4-main col-xs-24">
+                            <li class="footer__b2-m-r4-m-item1 col-xs-24">
+                                <div class="footer__b2-m-r4-m-i1-main">
+                                    <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
+                                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
+                                </div>
+                            </li>
+                            <li class="footer__b2-m-r4-m-item col-xs-24">
+                                <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
+                                <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script type="text/javascript">
+    var hh = $('.one-right').height();
+    $('.one-left').height(hh + 60);
+    </script>
+    <script type="text/javascript" src="../js/cropbox.js"></script>
+    <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script>
+    <!-- tcy -start- -->
+    <script src="../js/md5.js"></script>
+    <script src="../js/common.js"></script>
+    <!-- tcy -end- -->
+    <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common/check_login.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common/getUserInfo.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    window.setTimeout(function() {
+        if (localStorage.getItem("funId")) {
+            F._userViewDetailInfo({}, function(ret) {
+                if (ret.data.headimage) {
+                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+                }
+            });
+        }
+    }, 700);
+    $(window).load(function() {
+        var options = {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: '../img/avatar.jpg'
+        }
+        var cropper = $('.imageBox').cropbox(options);
+        $('#upload-file').on('change', function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            //this.files = [];
+        })
+        $('#btnCrop').on('click', function() {
+            var img = cropper.getDataURL();
+            $('.cropped').html('');
+
+            $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
+            setTimeout(function() {
+                var img = $('.cropped').html()
+                if (img == '' || img == 0) {
+
+                } else {
+                    $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
+                    var imgSrc = $('#upimg').attr('src');
+                    upload(imgSrc);
+                }
+            }, 500)
+        })
+        $('#btnZoomIn').on('click', function() {
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function() {
+            cropper.zoomOut();
+        })
+    });
+
+
+    function upload(imgSrcs) {
+        var imgSrc = imgSrcs;
+        var blob = dataURLtoBlob(imgSrc);
+
+        function dataURLtoBlob(dataurl) {
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {
+                type: mime
+            });
+        }
+
+        $('.sure').click(function() {
+            var funid = localStorage.getItem("funId");
+            var formData = new FormData();
+            formData.append("funid", funid);
+            formData.append("files", blob, 'jpg');
+
+            F._uploadFilesUser(formData, function(ret) {
+
+            });
+        })
+    }
+    $('.uphead').click(function() {
+        $('.modal_one').hide();
+        $('.modal_two').show();
+    })
+
+
+
+    $('.sure').click(function() {
+
+        $('.modal_two').hide();
+        $('.modal_three').show();
+        var img = $('.upimg').attr('src');
+        $('.img-phone').attr('src', img);
+        $('.modal-header').find('.left').html('Cài đặt')
+
+    })
+    $('.success').click(function() {
+        setTimeout(function() {
+            $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
+            $('.modal_one').show();
+            $('.modal_two').hide();
+            $('.modal_three').hide();
+
+        }, 1500)
+        $('#upimg').attr('src', '');
+        $('#upload-file').val('');
+        //window.location.href='';
+    });
+
+    function gotoFind() {
+        var findcontent = $("#findIpt").val();
+        if (findcontent != "") {
+            window.location.href = "./search.html?findcontent=" + findcontent;
+        }
+    }
+
+    function entersearch() {
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13)
+
+        {
+            gotoFind();
+        }
+    }
+    $('.sub_b1').click(function() {
+        var name = $('#per1_name').val();
+        if (name == 0 && name == '') {
+            $('#g_cname1').val(name);
+            $('.addperons').show();
+            $('.in1').hide();
+        } else {
+            $('.addperons').hide();
+            $('.in1').show();
+            $('#g_cname1').val(name);
+        }
+    })
+    $('.sub_b2').click(function() {
+        var name = $('#per2_name').val();
+        if (name == 0 && name == '') {
+            $('.addperon1').show();
+            $('.in2').hide();
+        } else {
+            $('.addperon1').hide();
+            $('.in2').show();
+            $('#g_cname2').val(name);
+        }
+    })
+
+    $('.sub_b3').click(function() {
+        var name = $('#per3_name').val();
+        if (name == 0 && name == '') {
+            $('.addperon2').show();
+            $('.in3').hide();
+        } else {
+            $('.addperon2').hide();
+            $('.in3').show();
+            $('#g_cname3').val(name);
+        }
+    })
+
+
+    $('#sctime-ac').change(function() {
+        var thiss = $(this).val();
+        var num = $('#sctime-ov').val();
+        if (thiss > num) {
+            $('#tis').show();
+            $('#submit').attr('disabled', true)
+        } else {
+
+            $('#tis').hide();
+            $('#submit').attr('disabled', false)
+        }
+    })
+    $('#sctime-ov').change(function() {
+        var thiss = $(this).val();
+        var num = $('#sctime-ac').val();
+        if (thiss < num) {
+            $('#tis').show();
+            $('#submit').attr('disabled', true)
+        } else {
+            $('#tis').hide();
+            $('#submit').attr('disabled', false)
+        }
+
+
+    })
+    $('#sctime-ac-m').change(function() {
+        var thiss = $(this).val();
+        var numovs = $('#sctime-ov-m').val();
+        if (thiss > numovs) {
+            $('#tis').show();
+            $('#submit').attr('disabled', true)
+        } else {
+            $('#tis').hide();
+            $('#submit').attr('disabled', false)
+        }
+    })
+    $('#sctime-ov-m').change(function() {
+        var thiss = $(this).val();
+        var numovs = $('#sctime-ac-m').val();
+        if (thiss < numovs) {
+            $('#tis').show();
+            $('#submit').attr('disabled', true)
+        } else {
+            $('#tis').hide();
+            $('#submit').attr('disabled', false)
+        }
+    })
+    </script>
+    <script src="../js/userCenterJS/personal.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
