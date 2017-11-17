@@ -21,7 +21,7 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
     var _get = function(page, size, callback) {
         if (!F._isLogin()) return false;
 
-        var url = "http://47.52.21.255:8180/fun/usercenter/userGetCollection?status=0&page=" + page + "&size=" + size;
+        var url = F._userGetCollection_uc + "?status=0&page=" + page + "&size=" + size;
         var ajax = new ajaxClass($http, url, "POST");
         var appId = localStorage.getItem("funId");
         var method = 'fun.uc.getcollection';
@@ -133,7 +133,7 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
                         if (!F._isLogin()) return false;
                         if (confirm("OK để xóa？")) {
                             for (var r = 0; r < listgood.length; r++) {
-                                var url = "http://47.52.21.255:8180/fun/usercenter/userCancelCollection";
+                                var url = F._userCancelCollection_uc;
                                 var ajax = new ajaxClass($http, url, "POST");
                                 var appId = localStorage.getItem("funId");
                                 var method = 'fun.uc.cancelcollection';
@@ -259,7 +259,7 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
                             $scope.clearsc = function() {
                                 if (confirm("OK để xóa?")) {
                                     for (var r = 0; r < overlist.length; r++) {
-                                        var url = "http://47.52.21.255:8180/fun/usercenter/userCancelCollection";
+                                        var url = F._userCancelCollection_uc;
                                         var ajax = new ajaxClass($http, url, "POST");
                                         var appId = localStorage.getItem("funId");
                                         var method = 'fun.uc.cancelcollection';
@@ -388,7 +388,7 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
 
 
     $scope.getUserInfoDetails = function() {
-        var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
+        var url = F._userViewDetailInfo_uc;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appId = localStorage.getItem("funId");

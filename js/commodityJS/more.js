@@ -83,7 +83,7 @@ app.controller("moreCtrl", function($scope, $http) {
         loading.show();
         $.ajax({
             type: "GET",
-            url: F._url_join('http://47.52.21.255:8185/fun/commodity/getAllProductInfo', data),
+            url: F._url_join(F._getAllProductInfo_cd, data),
             // data: data,
             success: function(data) {
                 loading.hide();
@@ -324,7 +324,7 @@ app.controller("moreCtrl", function($scope, $http) {
 
 
             /*获取商品信息接口*/
-            var url = "http://47.52.21.255:8185/fun/commodity/getAllProductInfo";
+            var url = F._getAllProductInfo_cd;
             var ajax = new ajaxClass($http, url, "GET");
             ajax.params = {
                     appId: appId,
@@ -487,7 +487,7 @@ app.controller("moreCtrl", function($scope, $http) {
 
     //	shuamaAjax();
     function shoujimore() {
-        var url = "http://47.52.21.255:8185/fun/commodity/getScreenInfo";
+        var url = F._getScreenInfo_cd;
         var ajax = new ajaxClass($http, url, "GET");
         ajax.params = {
             appid: '110',
@@ -525,7 +525,7 @@ app.controller("moreCtrl", function($scope, $http) {
     shoujimore();
 
     function diannaomore() {
-        var url = "http://47.52.21.255:8185/fun/commodity/getScreenInfo";
+        var url = F._getScreenInfo_cd;
         var ajax = new ajaxClass($http, url, "GET");
         ajax.params = {
             appid: '110',
@@ -562,7 +562,7 @@ app.controller("moreCtrl", function($scope, $http) {
     diannaomore();
 
     function shumamore() {
-        var url = "http://47.52.21.255:8185/fun/commodity/getScreenInfo";
+        var url = F._getScreenInfo_cd;
         var ajax = new ajaxClass($http, url, "GET");
         ajax.params = {
             appid: '110',
@@ -599,7 +599,7 @@ app.controller("moreCtrl", function($scope, $http) {
     /*分期*/
     function fenqiAjax(totalamounts, payrate, repaymentmonths) {
 
-        var url = "http://47.52.21.255:8184/fun/installment/returnMoney";
+        var url = F._returnMoney_im;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appid = localStorage.getItem("funId") || '';

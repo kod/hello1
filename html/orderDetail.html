@@ -276,17 +276,18 @@
     .body__main-fristpay {
         text-align: right;
         margin-bottom: 20px;
+        line-height: 30px;
     }
 
     .body__m-f-text {
-        font-size: #999;
-        padding-right: 80px;
+        color: #999;
+        padding-right: 10px;
     }
 
     .body__m-f-price {
         font-size: 24px;
         color: #F7004C;
-        vertical-align: middle;
+        margin-top: -3px;
     }
 
     textarea {
@@ -347,11 +348,11 @@
                     <div class="body__m-p-main">
                         <div class="body__m-p-m-info" @click="openProduct()">
                             <div class="body__m-p-m-i-img" :style="{ 'background-image': 'url(' + first_image + ')' }"></div>
-                            <div class="body__m-p-m-i-text">{{ goodsDetail.name }}</div>
+                            <div class="body__m-p-m-i-text" v-html="goodsDetail.name"></div>
                         </div>
                         <span class="body__m-p-m-num">1</span>
-                        <span class="body__m-p-m-price">{{ priceFormat(goodsDetail.price) }}</span>
-                        <span class="body__m-p-m-subtotal">{{ priceFormat(goodsDetail.price) }}</span>
+                        <span class="body__m-p-m-price" v-html="priceFormat(goodsDetail.price)"></span>
+                        <span class="body__m-p-m-subtotal" v-html="priceFormat(goodsDetail.price)"></span>
                     </div>
                 </div>
                 <!-- <div class="bar-title">
@@ -360,7 +361,7 @@
                     </div>
                 </div> -->
                 <div class="body__m-i-top">
-                    <div class="body__m-i-t-name">số kỳ thanh toán:&nbsp;&nbsp;&nbsp;&nbsp;{{ repaymentMonth === 0 ? 'Trả toàn bộ' : repaymentMonth }}</div>
+                    <div class="body__m-i-t-name" v-html="'số kỳ thanh toán:&nbsp;&nbsp;&nbsp;&nbsp;' + (repaymentMonth === 0 ? 'Trả toàn bộ' : repaymentMonth)"></div>
                 </div>
                 <div class="" style="display: none" v-show="tradeStatus === 'WAIT_BUYER_PAY'">
                     <div class="bar-title">
@@ -385,11 +386,11 @@
                     </div>
                 </div>
                 <div class="body__main-fristpay" style="display: none" v-show="tradeStatus === 'WAIT_BUYER_PAY'">
-                    <span class="body__m-f-text">Tổng tiền: <span class="body__m-f-price">{{ priceFormat(advance) }}</span> VND</span>
+                    <div class="body__m-f-text">Tổng tiền: <span class="body__m-f-price" v-html="priceFormat(advance)"></span> VND</div>
                 </div>
                 <div class="body__main-operate">
-                    <span class="body__m-o-left" @click="operate_left()">{{ operate_left_text[tradeStatus] }}</span>
-                    <span class="body__m-o-right" @click="operate_rihgt()">{{ operate_right_text[tradeStatus] }}</span>
+                    <span class="body__m-o-left" @click="operate_left()" v-html="operate_left_text[tradeStatus]"></span>
+                    <span class="body__m-o-right" @click="operate_rihgt()" v-html="operate_right_text[tradeStatus]"></span>
                 </div>
             </div>
         </section>
@@ -509,10 +510,7 @@
     ], function($, Vue, md5) {
         var loading = new F._loading();
 
-        F.is_submit = false; // 是否创建成功过订单
-
         F.query = F._hrefUtils.parse().query;
-
 
         F.vue = {
             body__main_height: document.documentElement.clientHeight - 133 - 210,
@@ -635,25 +633,18 @@
 
         // 支付订单
         function order_pay(params, callback) {
-            if (F.is_submit) {
-                alert('Vui lòng không thanh toán lặp lại');
-                return false;
-            }
 
-            loading.show();
-            F._userViewDetailInfo({}, function(ret) {
-                loading.hide();
-                if (!ret) return false;
+            if (F.vue.repaymentMonth === 0) { //全额
 
-                if (ret.status) { // 资料齐全
-
-                    if (F.vue.repaymentMonth === 0) { //全额
+                if (params.payway === '1') {
+                    F._payPwd_open(function(paypassword) {
                         loading.show();
                         F._orderFullPay({
                             orderNo: params.orderNo,
                             tradeNo: params.tradeNo,
                             total: params.total,
                             payway: params.payway,
+                            paypassword: paypassword,
                         }, function(ret) {
                             loading.hide();
                             if (!ret) return false;
@@ -662,41 +653,93 @@
                             window.location.href = './successPay.html';
                         });
 
-                    } else {
-                        loading.show();
-                        F._payOrder({
-                            timeoutExpress: 1800, // 半个小时
-                            totalAmount: params.total, // 总金额
-                            orderNo: params.orderNo,
-                            tradeNo: params.tradeNo,
-                            advance: params.price * params.num * params.paymentNum,
-                            payRate: params.paymentNum,
-                            repaymentMonth: params.fenqiNum,
-                            prepay: params.price * params.num * params.paymentNum,
-                            payway: params.payway,
-                        }, function(ret) {
-                            loading.hide();
-                            if (!ret) return false;
+                    });
+                } else {
+                    F._orderFullPay({
+                        orderNo: params.orderNo,
+                        tradeNo: params.tradeNo,
+                        total: params.total,
+                        payway: params.payway,
+                        paypassword: '',
+                    }, function(ret) {
+                        loading.hide();
+                        if (!ret) return false;
 
-                            if (ret.code !== 10000) return false;
-
-                            window.location.href = './successPay.html';
-                        });
-                    }
-
-                } else { // 资料不全
-                    F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                        name: 'Để sau',
-                        func: function() {}
-                    }, {
-                        name: 'Cải thiện ngay lập tức',
-                        func: function() {
-                            getSchoolInfo_addInfo(ret.data);
-                        }
-                    }]);
-
+                        if (ret.code !== 10000) return false;
+                        window.location.href = './successPay.html';
+                    });
                 }
-            });
+
+            } else {
+                loading.show();
+                F._userViewDetailInfo({}, function(ret) {
+                    loading.hide();
+                    if (!ret) return false;
+
+                    console.dir(ret);
+                    if (ret.status) { // 资料齐全
+
+                        if (params.payway === '1') {
+                            F._payPwd_open(function(paypassword) {
+
+                                loading.show();
+                                F._payOrder({
+                                    timeoutExpress: 1800, // 半个小时
+                                    totalAmount: params.total, // 总金额
+                                    orderNo: params.orderNo,
+                                    tradeNo: params.tradeNo,
+                                    advance: params.price * params.num * params.paymentNum,
+                                    payRate: params.paymentNum,
+                                    repaymentMonth: params.fenqiNum,
+                                    prepay: params.price * params.num * params.paymentNum,
+                                    payway: params.payway,
+                                    paypassword: paypassword,
+                                }, function(ret) {
+                                    loading.hide();
+                                    if (!ret) return false;
+
+                                    if (ret.code !== 10000) return false;
+
+                                    window.location.href = './successPay.html';
+                                });
+                            });
+                        } else {
+                            F._payOrder({
+                                timeoutExpress: 1800, // 半个小时
+                                totalAmount: params.total, // 总金额
+                                orderNo: params.orderNo,
+                                tradeNo: params.tradeNo,
+                                advance: params.price * params.num * params.paymentNum,
+                                payRate: params.paymentNum,
+                                repaymentMonth: params.fenqiNum,
+                                prepay: params.price * params.num * params.paymentNum,
+                                payway: params.payway,
+                                paypassword: '',
+                            }, function(ret) {
+                                loading.hide();
+                                if (!ret) return false;
+
+                                if (ret.code !== 10000) return false;
+
+                                window.location.href = './successPay.html';
+                            });
+                        }
+
+
+                    } else { // 资料不全
+                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                            name: 'Để sau',
+                            func: function() {}
+                        }, {
+                            name: 'Cải thiện ngay lập tức',
+                            func: function() {
+                                getSchoolInfo_addInfo(ret.data);
+                            }
+                        }]);
+
+                    }
+                });
+            }
         }
 
         function userAddDetailInfo(data) {

@@ -73,7 +73,7 @@ app.filter('priceFormat', function() { //可以注入依赖
 
 //banner数据请求接口	  
 app.controller('digitalCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/digital/initTopDigital";
+    var url = F._initTopDigital_di;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -191,7 +191,7 @@ app.controller('digitalCtrl', function($scope, $http) {
 })
 //精选推荐请求接口	 
 app.controller('tuijianCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/digital/initNewDigital";
+    var url = F._initNewDigital_di;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -234,7 +234,7 @@ app.controller('tuijianCtrl', function($scope, $http) {
 })
 //时尚影音请求接口
 app.controller('productCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/digital/initAdDigital";
+    var url = F._initAdDigital_di;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {

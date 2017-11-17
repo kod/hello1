@@ -86,7 +86,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
     function orderDetailsAjax(status, page, rows) {
     	if (!F._isLogin()) return false;
 
-        var url = "http://47.52.21.255:8183/fun/trade/queryOrderList";
+        var url = F._queryOrderList_td;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appid = localStorage.getItem("funId");
@@ -477,7 +477,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         ajax.requestData();
     }
     $scope.getUserInfoDetails = function() {
-        var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
+        var url = F._userViewDetailInfo_uc;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appId = localStorage.getItem("funId");

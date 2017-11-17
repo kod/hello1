@@ -1,2 +1,1 @@
-# WebStore
-WebStore1
+# README

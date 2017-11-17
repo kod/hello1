@@ -174,14 +174,14 @@
                 <input id="re_pwd" type="password" placeholder="Nhập lại Mật khẩu đăng nhập" />
                 <!-- <img src="../img/q.png" style="margin-top: 10px;" alt="" class="opp" /> -->
             </p>
-            <!-- <p class="r_from">
+            <p class="r_from">
                 <span>Mật mã giao dịch</span>
                 <input id="pwd2" type="password" placeholder="Vui lòng nhập 6 chữ số" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" />
             </p>
             <p class="r_from">
                 <span>Nhập lại Mật mã</span>
                 <input id="re_pwd2" type="password" placeholder="Nhập lại Mật mã giao dịch" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" />
-            </p> -->
+            </p>
             <p class="r_from mar_top12">
                 <span></span>
                 <button id="submit" class="f_ss">Đăng ký ngay</button>
@@ -365,18 +365,18 @@ $('#pwd').change(function() {
 
     }
 })
-// $('#pwd2').blur(function() {
-//     var pwd = $("#pwd2").val();
-//     if (pwd && F._payPwdeExpr.test(pwd)) {
-//         $('#errormsg').hide();
+$('#pwd2').blur(function() {
+    var pwd = $("#pwd2").val();
+    if (pwd && F._payPwdeExpr.test(pwd)) {
+        $('#errormsg').hide();
 
-//     } else {
-//         $('#errormsg').show();
-//         $('#errormsg').html('Mật khẩu giao dịch chỉ có thể là một số, và 6 chữ số');
+    } else {
+        $('#errormsg').show();
+        $('#errormsg').html('Mật khẩu giao dịch chỉ có thể là một số, và 6 chữ số');
 
-//     }
+    }
 
-// })
+})
 $('#telCode').change(function() {
     var telCode = $(this).val();
     if (F._codeExpr.test(telCode)) {
@@ -445,9 +445,9 @@ app.controller("zhuceCtrl", function($scope, $http, $filter) {
         var tel = $('#tel').val();
         var telCode = $('#telCode').val();
         var pwd = $('#pwd').val();
-        // var pwd2 = $('#pwd2').val();
+        var pwd2 = $('#pwd2').val();
         var re_pwd = $('#re_pwd').val();
-        // var re_pwd2 = $('#re_pwd2').val();
+        var re_pwd2 = $('#re_pwd2').val();
         var xy = $('input[name="xy"]').prop("checked");
         if (tel == '') {
             getMsg('Số điện thoại không được để trống', 1);
@@ -466,32 +466,30 @@ app.controller("zhuceCtrl", function($scope, $http, $filter) {
             $("#pwd")[0].focus();
             $("#pwd").addClass('error');
 
-            // } else if (!F._payPwdeExpr.test(pwd2)) {
-            // getMsg('Vui lòng nhập 6 chữ số', 1);
-            // $("#pwd2")[0].focus();
-            // return false;
+            } else if (!F._payPwdeExpr.test(pwd2)) {
+            getMsg('Vui lòng nhập 6 chữ số', 1);
+            $("#pwd2")[0].focus();
+            return false;
         } else {
 
             if (pwd !== re_pwd) {
                 getMsg('Hai lần nhập mật khẩu đăng nhập không giống nhau', 1);
                 return false;
             }
-            // if (pwd2 !== re_pwd2) {
-            //     getMsg('Hai lần nhập mật mã giao dịch không giống nhau', 1);
-            //     return false;
-            // }
+            if (pwd2 !== re_pwd2) {
+                getMsg('Hai lần nhập mật mã giao dịch không giống nhau', 1);
+                return false;
+            }
 
             var msisdn = $('#tel').val();
             var password = $('#pwd').val();
-            // var payPassword = $('#pwd2').val();
+            var payPassword = $('#pwd2').val();
             var otp = $('#telCode').val();
-            if (true) {
-                // if (payPassword && F._payPwdeExpr.test(payPassword)) {
+            if (payPassword && F._payPwdeExpr.test(payPassword)) {
                 $('#errormsg').hide();
                 $('#submit').attr('disabled', false)
-                if (msisdn != 0 && password != 0 && otp != 0) {
-                    // if (msisdn != 0 && password != 0 && payPassword != 0 && otp != 0) {
-                    // $('body').css('position', 'fixed').css('width', '100%')
+                // if (msisdn != 0 && password != 0 && otp != 0) {
+                if (msisdn != 0 && password != 0 && payPassword != 0 && otp != 0) {
 
                     $("#telCode").removeClass('error');
 
@@ -501,8 +499,7 @@ app.controller("zhuceCtrl", function($scope, $http, $filter) {
                         msisdn: msisdn,
                         username: '',
                         password: password,
-                        payPassword: '',
-                        // payPassword: payPassword,
+                        payPassword: payPassword,
                         otp: otp,
                         check: '1',
                         appid: '',

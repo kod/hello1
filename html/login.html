@@ -505,6 +505,7 @@
         </footer>
     </div>
     <script>
+    if (localStorage.getItem("funId")) window.location.href = '../index.html';
 
     require([
         '../js/jquery1.11.2',
@@ -512,6 +513,7 @@
         '../js/md5',
         '../js/common',
     ], function($, Vue, md5) {
+
         F.vue = {
             body__main_height: document.documentElement.clientHeight - 131 - 125,
             areaCode: '+84',

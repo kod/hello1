@@ -18,7 +18,7 @@
 		
 		
 		//ajax
-		var url = "http://47.52.21.255:8185/fun/commodity/getProductDetailInfo";
+		var url = F._getProductDetailInfo_cd;
     	var ajax = new ajaxClass($http,url,"GET");
 // 		ajax.params = {
 //						appid:'110',
@@ -176,7 +176,7 @@
 	/*获取评论接口*/
 	app.controller("commentCtrl",function($scope,$http){
 		
-		var url = "http://47.52.21.255:8185/fun/commodity/getEvaluationInfo";
+		var url = F._getEvaluationInfo_cd;
     	var ajax = new ajaxClass($http,url,"GET");
 		
 		

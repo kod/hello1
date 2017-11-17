@@ -198,9 +198,8 @@ nav a{color:#999}
 		
 		#shoucang img{width:50px;height:50px;margin-top:550px}
 		#page button{width: auto;height: 28px;outline: none;border: 1px solid rgb(221, 221, 221);font-size: 14px;padding: 0px 14px;color: rgb(255, 255, 255);background: rgb(0, 117, 246);}
-		.imgview-mask{position: fixed;height: 100%;width: 100%;z-index: 999998;left: 0;top: 0;background: #000;opacity: .75;filter: alpha(opacity=75);display: none;  
-}  
-		.show-img{position: fixed;left: 67%;top: 50%;margin: -50px 0 0 -100px;background: #fff;z-index: 999999;margin-left: -450px;margin-top: -333px;display: none;width:400px;height:auto; }  
+		.imgview-mask{position: fixed;height: 100%;width: 100%;z-index: 999998;left: 0;top: 0;background: #000;opacity: .75;filter: alpha(opacity=75);display: none;  }  
+		.show-img{position: fixed;left: 37%;top: 25%;background: #fff;z-index: 999999;display: none;width:400px;height:auto; }  
 		/*.show-img img{width: 900px;height: 666px; } */ 
 		.show-img a{position: absolute; width: 40px;height:40px;right:-40px;top:-40px;background:url(../img/xx.png) 10px 10px no-repeat;  }  
 		#ttt{float:left;margin-left: 10px;}

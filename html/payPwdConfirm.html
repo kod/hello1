@@ -7,7 +7,7 @@
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
-    <title>Lấy lại mật khẩu</title>
+    <title>Thay đổi mật mã giao dịch</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/swiper.min.css">
     <link href="../css/style.css" rel="stylesheet">
@@ -29,16 +29,16 @@
     <div id="back">
         <a href="../index.html"><img src="../img/LOGO2.jpg" alt="" class="logo"/></a>
         <!--<img src="img/30.png" alt="" class="img-text"/>-->
-        <p class="img-text">Lấy lại mật khẩu</p>
-        <p class='xiug'>Thay đổi mật khẩu</p>
+        <p class="img-text">Thay đổi mật mã giao dịch</p>
+        <p class='xiug'>Thay đổi mật mã giao dịch</p>
         <div class="text">
-            <div class="left txt">Cài mật khẩu mới</div>
+            <div class="left txt">Mật mã giao dịch</div>
             <div class="left val">
-                <input type="password" placeholder="Vui lòng nhập 8-20 chữ số hoặc chữ cái" id="pass1" />
+                <input type="password" placeholder="Vui lòng nhập 6 chữ số" id="pass1" />
             </div>
-            <div class="left txt">Xác nhận mật khẩu mới</div>
+            <div class="left txt">Nhập lại Mật mã giao dịch</div>
             <div class="left val">
-                <input type="password" placeholder="vui lòng nhập lại mật khẩu mới" id="pass2" />
+                <input type="password" placeholder="Nhập lại Mật mã giao dịch" id="pass2" />
             </div>
             <p id="errormsg" class='errormsg'></p>
             <a class="submit" data-toggle="modal" data-target="#myModal">Xác nhận</a>
@@ -162,17 +162,16 @@
     <script src="../js/img_silder.js"></script>
     <script src="../js/xSlider.js"></script>
     <script src="../js/popup.js"></script>
-    <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->
     <script src="../js/common.js"></script>
     <script>
     $('#pass1').blur(function() {
         var pwd = $(this).val();
-        if (F._pwdExpr.test(pwd)) {
+        if (F._payPwdeExpr.test(pwd)) {
             $('#errormsg').hide();
             $(this).removeClass('pass');
         } else {
             $('#errormsg').show();
-            $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
+            $('#errormsg').html('Vui lòng nhập 6 chữ số');
             $(this).addClass('pass');
         }
     })
@@ -184,7 +183,7 @@
             $(this).removeClass('pass');
         } else {
             $('#errormsg').show();
-            $('#errormsg').html('Khác với mật khẩu đăng nhập...');
+            $('#errormsg').html('Hai lần nhập mật mã giao dịch không giống nhau');
             $(this).addClass('pass');
         }
 
@@ -237,29 +236,35 @@
         var password2 = $("#pass2").val();
 
 
-
-        if (password1 && F._pwdExpr.test(password1)) {
+        if (password1 && F._payPwdeExpr.test(password1)) {
             $('#errormsg').hide();
 
             if (msisdn != "" && password1 != "" && password2 != "" && password1 == password2) {
 
             	loading.show();
-                F._userAction_changePassword({
+                F._userAction_modifyPayPassword({
                     msisdn: msisdn,
-                    password: password2,
+                    paypassword: password2,
                     otp: yzm,
                 }, function(ret) {
                 	loading.hide();
 
-
                     if (!ret) return false;
 
                     if (ret.status !== 10000) return false;
-                    localStorage.clear();
 
-                    if (confirm("Đăng nhập ngay！")) {
-                        window.location.href = "./login.html?from=confirm";
-                    }
+                    F._confirm('Gợi ý', 'Thành công', 'success', [{
+                        name: 'Xác nhận',
+                        func: function() {
+                            window.location.href = "./oneself.html";
+                        }
+                    }]);
+
+                    // localStorage.clear();
+
+                    // if (confirm("Đăng nhập ngay！")) {
+                    //     window.location.href = "./login.html?from=confirm";
+                    // }
 
                 });
 
@@ -268,7 +273,7 @@
             }
         } else {
             $('#errormsg').show();
-            $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
+            $('#errormsg').html('Vui lòng nhập 6 chữ số');
 
         }
     })

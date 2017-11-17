@@ -6,7 +6,7 @@ app.filter('priceFormat', function() { //可以注入依赖
 //新品首发数据请求接口	  
 app.controller('newProductCtrl', function($scope, $http) {
 
-    var url = "http://47.52.21.255:8185/fun/cellphone/initNewCellphone";
+    var url = F._initNewCellphone_cp;
     var ajax = new ajaxClass($http, url, "GET");
     var data = {
         appid: '110',
@@ -46,7 +46,7 @@ app.controller('newProductCtrl', function($scope, $http) {
 
 //手机基础数据请求接口	  
 app.controller('allPhoneCtrl', function($scope, $http, $compile) {
-    var url = "http://47.52.21.255:8185/fun/cellphone/initAdCellphone";
+    var url = F._initAdCellphone_cp;
     var ajax = new ajaxClass($http, url, "GET");
     ajax.params = {
         appid: '110',
@@ -124,7 +124,7 @@ app.controller('allPhoneCtrl', function($scope, $http, $compile) {
 
 //品牌墙数据请求接口	  
 app.controller('ppqPhoneCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/cellphone/initAdCellphone";
+    var url = F._initAdCellphone_cp;
     var ajax = new ajaxClass($http, url, "GET");
     ajax.params = {
             appid: '110',
@@ -171,7 +171,7 @@ function gotoDetails(typeId, brandId) {
     }
 }
 app.controller("cellCtrl", function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/cellphone/initTopCellphone";
+    var url = F._initTopCellphone_cp;
     var ajax = new ajaxClass($http, url, "GET");
     var data = {
         appid: '110',

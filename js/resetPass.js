@@ -83,18 +83,37 @@ app.controller("duanxinOptCtrl", function($scope, $http, $filter) {
     }
     //下一步
     $('.submit').click(function() {
-        var msisdn = $.getUrlParam("phoneNum");
+        F.query = F._hrefUtils.parse().query;
+        console.log(F.query);
+
+        // var msisdn = F.query.phoneNum;
+        var msisdn = $("#phoneNum").val();
         var yzmId = $("#yzmId").val();
         if (yzmId == 0) {
             $("#tip").show().text("Vui lòng nhập mã xác nhận！")
         } else {
             if (yzmId != null && yzmId != "" && msisdn != "") {
-                var url = location.search; //获取url中"?"符后的字串  
-                if (url.indexOf("?") != -1) {
-                    window.location.href = "confirm.html?yzmId=" + yzmId + "&msisdn=" + msisdn + "&xiug";
-                } else {
-                    window.location.href = "confirm.html?yzmId=" + yzmId + "&msisdn=" + msisdn;
+                F.parse = F._hrefUtils.parse();
+                switch (F.parse.query.from) {
+                    case 'oneself':
+                        window.location.href = "confirm.html?yzmId=" + yzmId + "&msisdn=" + msisdn + "&xiug";
+                        break;
+                
+                    case 'payPwd':
+                        window.location.href = "payPwdConfirm.html?yzmId=" + yzmId + "&msisdn=" + msisdn + "&xiug";
+                        break;
+                
+                    default:
+                        // TODO
+                        break;
                 }
+
+                // var url = location.search; //获取url中"?"符后的字串  
+                // if (url.indexOf("?") != -1) {
+                //     window.location.href = "confirm.html?yzmId=" + yzmId + "&msisdn=" + msisdn + "&xiug";
+                // } else {
+                //     window.location.href = "confirm.html?yzmId=" + yzmId + "&msisdn=" + msisdn;
+                // }
 
             } else {
                 $("#tip").show().text(" Số điện thoại không được để trống！")

@@ -47,7 +47,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
         loading.show();
         $.ajax({
             type: "POST",
-            url: 'http://47.52.21.255:8180/fun/usercenter/getSchoolInfo',
+            url: F._getSchoolInfo_uc,
             data: data,
             success: function(data) {
 

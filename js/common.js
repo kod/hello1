@@ -9,19 +9,47 @@ F._queryOrder_td = F._IP + ":8183/fun/trade/queryOrder"; // 订单查询
 F._inquiryBill_td = F._IP + ":8184/fun/trade/inquiryBill"; // 查询账单信息
 F._createNormalOrder_td = F._IP + ":8183/fun/trade/createNormalOrder"; // 创建还款订单
 F._payNormalOrder_td = F._IP + ":8183/fun/trade/payNormalOrder"; // 支付还款订单
+F._queryOrderList_td = F._IP + ":8183/fun/trade/queryOrderList"; // 
 F._userAddDetailInfo_uc = F._IP + ":8180/fun/usercenter/userAddDetailInfo"; // 修改用户信息
 F._userViewDetailInfo_uc = F._IP + ":8180/fun/usercenter/userViewDetailInfo"; // 获取用户详细信息
 F._getSchoolInfo_uc = F._IP + ":8180/fun/usercenter/getSchoolInfo"; // 获取学校列表
 F._userAction_otp_uc = F._IP + ":8180/fun/userCenter/userAction/otp"; // 发送短信
 F._userAction_login_uc = F._IP + ":8180/fun/userCenter/userAction/login"; // 用户登入
 F._userAction_changePassword_uc = F._IP + ":8180/fun/userCenter/userAction/changePassword"; // 重置密码
+F._userAction_modifyPayPassword_uc = F._IP + ":8180/fun/userCenter/userAction/modifyPayPassword"; // 修改交易密码
+F._userAction_checkPayPasword_uc = F._IP + ":8180/fun/userCenter/userAction/checkPayPasword"; // 修改交易密码
+F._userAction_userAddAddr_uc = F._IP + ":8180/fun/usercenter/userAddAddr"; // 
+F._userAction_usercenter_uc = F._IP + ":8180/fun/usercenter/userModifyAddr"; // 
+F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 
+F._userAction_userDelAddrs_uc = F._IP + ":8180/fun/usercenter/userDelAddrs"; // 
 F._userAction_register_uc = F._IP + ":8180/fun/userCenter/userAction/register"; // 注册
 F._initTopComputer_cp = F._IP + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
+F._initAdAppleComputer_di = F._IP + ":8185/fun/computer/initAdAppleComputer"; // 
+F._initAdGameComputer_di = F._IP + ":8185/fun/computer/initAdGameComputer"; // 
+F._initAdTabletComputer_di = F._IP + ":8185/fun/computer/initAdTabletComputer"; // 
+F._initAdClassfyComputer_di = F._IP + ":8185/fun/computer/initAdClassfyComputer"; // 
+F._initNewComputer_di = F._IP + ":8185/fun/computer/initNewComputer"; // 
 F._uploadFiles_uf = F._IP + ":8180/fun/userfile/uploadFiles"; // 上传用户头像
 F._collectFiles_uf = F._IP + ":8180/fun/userfile/collectFiles"; // 用户评论上传图片
 F._addEvaluation_cd = F._IP + ":8185/fun/commodity/addEvaluation"; // 添加评论
 F._findProducts_cd = F._IP + ":8185/fun/commodity/findProducts"; // 商品搜索
+F._getProductDetailInfo_cd = F._IP + ":8185/fun/commodity/getProductDetailInfo"; // 获取产品详情
+F._getEvaluationInfo_cd = F._IP + ":8185/fun/commodity/getEvaluationInfo"; // 获取评论
+F._getNewestInfo_cd = F._IP + ":8185/fun/commodity/getNewestInfo"; // 
+F._getAdverstInfo_cd = F._IP + ":8185/fun/commodity/getAdverstInfo"; // 
+F._getClassfyInfo_cd = F._IP + ":8185/fun/commodity/getClassfyInfo"; // 
+F._getAllProductInfo_cd = F._IP + ":8185/fun/commodity/getAllProductInfo"; // 
+F._getScreenInfo_cd = F._IP + ":8185/fun/commodity/getScreenInfo"; // 
 F._userGetCollection_uc = F._IP + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
+F._userCancelCollection_uc = F._IP + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
+F._userAddCollection_uc = F._IP + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
+F._returnMoney_im = F._IP + ":8184/fun/installment/returnMoney"; // 
+F._initTopDigital_di = F._IP + ":8185/fun/digital/initTopDigital"; // 
+F._initNewDigital_di = F._IP + ":8185/fun/digital/initNewDigital"; // 
+F._initAdDigital_di = F._IP + ":8185/fun/digital/initAdDigital"; // 
+F._initNewCellphone_cp = F._IP + ":8185/fun/cellphone/initNewCellphone"; // 
+F._initAdCellphone_cp = F._IP + ":8185/fun/cellphone/initAdCellphone"; // 
+F._initTopCellphone_cp = F._IP + ":8185/fun/cellphone/initTopCellphone"; // 
 
 F._phoneExpr = /^[0-9]{8,11}$/; //手机号
 F._pwdExpr = /^.{8,20}$/; // 密码
@@ -120,7 +148,7 @@ F._userGetCollection = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -194,7 +222,7 @@ F._findProducts = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -333,7 +361,7 @@ F._userAction_register = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -424,7 +452,7 @@ F._addEvaluation = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -523,12 +551,173 @@ F._userAction_changePassword = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
 }
 
+// 修改交易密码
+F._userAction_modifyPayPassword = function(params, callback) {
+    var Key = "userKey";
+
+    var provider = params.provider || "0";
+    var msisdn = params.msisdn;
+    var paypassword = params.paypassword;
+    var otp = params.otp;
+
+    var md5EncryptStrig = "";
+    md5EncryptStrig += "provider=" + provider;
+    md5EncryptStrig += "&msisdn=" + msisdn;
+    md5EncryptStrig += "&paypassword=" + paypassword;
+    md5EncryptStrig += "&otp=" + otp;
+    md5EncryptStrig += Key;
+    var encrypt = md5(md5EncryptStrig);
+
+    var data = {
+        provider: provider,
+        msisdn: msisdn,
+        paypassword: paypassword,
+        otp: otp,
+        encryption: encrypt,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAction_modifyPayPassword_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+            switch (ret.status) {
+                case 10000:
+
+                    break;
+
+                case 40000:
+                    F._confirm('Gợi ý', 'Mã xác nhận SMS không đúng', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                case 60050:
+                    F._confirm('Gợi ý', 'Người dùng không tồn tại', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                case 50008:
+                    F._confirm('Gợi ý', 'Số thẻ tồn tại', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                case 50010:
+                    F._confirm('Gợi ý', 'Mã thẻ đã quá hạn sử dụng', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                case 50020:
+                    F._confirm('Gợi ý', 'Yêu cầu thất bại', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                default:
+                    F._confirm('Gợi ý', 'error', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
+}
+
+// 判断交易密码
+F._userAction_checkPayPasword = function(params, callback) {
+    var Key = "userKey";
+
+    var provider = params.provider || "0";
+    var msisdn = params.msisdn;
+    var paypassword = params.paypassword;
+
+    var md5EncryptStrig = "";
+    md5EncryptStrig += "provider=" + provider;
+    md5EncryptStrig += "&msisdn=" + msisdn;
+    md5EncryptStrig += "&paypassword=" + paypassword;
+    md5EncryptStrig += Key;
+    var encrypt = md5(md5EncryptStrig);
+
+    var data = {
+        provider: provider,
+        msisdn: msisdn,
+        paypassword: paypassword,
+        encryption: encrypt,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAction_checkPayPasword_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            // switch (ret.status) {
+            //     case 10000:
+
+            //         break;
+
+            //     case 40000:
+            //         F._confirm('Gợi ý', 'error', 'error', [{
+            //             name: 'Xác nhận',
+            //             func: function() {
+
+            //             }
+            //         }]);
+            //         break;
+
+            //     default:
+            //         F._confirm('Gợi ý', 'error', 'error', [{
+            //             name: 'Xác nhận',
+            //             func: function() {
+
+            //             }
+            //         }]);
+            //         break;
+            // }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
+}
+
+// 支付（还款）订单
 F._payNormalOrder = function(params, callback) {
     if (!F._isLogin()) return false;
 
@@ -612,13 +801,20 @@ F._payNormalOrder = function(params, callback) {
 
                         break;
 
+                    case 60051: // 交易密码错误
+                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
+                            name: 'Xác nhận',
+                            func: function() {}
+                        }]);
+                        break;
+
                     default:
                         window.location.href = './errorPay.html';
                         break;
                 }
             },
             error: function(ret) {
-                alert('request error');
+                console.error('request error');
                 callback(false);
             }
         });
@@ -626,6 +822,7 @@ F._payNormalOrder = function(params, callback) {
     }
 }
 
+// 创建（还款）订单
 F._createNormalOrder = function(params, callback) {
     if (!F._isLogin()) return false;
 
@@ -721,7 +918,7 @@ F._createNormalOrder = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         }
     });
@@ -794,7 +991,7 @@ F._inquiryBill = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -858,7 +1055,7 @@ F._queryOrder = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -891,7 +1088,7 @@ F._collectFiles = function(data, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         }
     });
@@ -1265,7 +1462,7 @@ F._fullOrderCreate = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -1286,6 +1483,7 @@ F._orderFullPay = function(params, callback) {
     var tradeno = params.tradeNo;
     var advance = params.total;
     var payway = params.payway;
+    var paypassword = params.paypassword || '';
 
     var md5SigntypeStrig = '';
     md5SigntypeStrig += "appid=" + appid;
@@ -1299,7 +1497,9 @@ F._orderFullPay = function(params, callback) {
     md5EncryptStrig += "&tradeno=" + tradeno;
     md5EncryptStrig += "&advance=" + advance;
     md5EncryptStrig += "&payway=" + payway;
+    md5EncryptStrig += "&paypassword=" + paypassword;
     md5EncryptStrig += Key;
+    console.log(md5EncryptStrig);
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
@@ -1314,6 +1514,7 @@ F._orderFullPay = function(params, callback) {
         "tradeno": tradeno,
         "advance": advance,
         "payway": payway,
+        "paypassword": paypassword,
     };
 
     if (payway == '2') {
@@ -1388,6 +1589,13 @@ F._orderFullPay = function(params, callback) {
 
                         break;
 
+                    case 60051: // 交易密码错误
+                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
+                            name: 'Xác nhận',
+                            func: function() {}
+                        }]);
+                        break;
+
                     default:
                         F._confirm('Gợi ý', 'Thanh toán thất bại', 'tips', [{
                             name: 'Xác nhận',
@@ -1398,7 +1606,7 @@ F._orderFullPay = function(params, callback) {
 
             },
             error: function(ret) {
-                alert('request error');
+                console.error('request error');
                 callback(false);
             }
         });
@@ -1530,7 +1738,7 @@ F._createOrder = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
@@ -1557,13 +1765,14 @@ F._payOrder = function(params, callback) {
     var repaymentMonth = params.repaymentMonth;
     var prepay = params.prepay;
     var payway = params.payway;
+    var paypassword = params.paypassword || '';
 
 
     var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
     var signType = md5(md5SigntypeStrig);
 
     var md5EncryptStrig = "orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&totalAmount=" + totalAmount + "&advance=" + advance + "&payRate=" + payRate +
-        "&repaymentMonth=" + repaymentMonth + "&prepay=" + prepay + "&payway=" + payway + Key;
+        "&repaymentMonth=" + repaymentMonth + "&prepay=" + prepay + "&payway=" + payway + "&paypassword=" + paypassword + Key;
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
@@ -1582,6 +1791,7 @@ F._payOrder = function(params, callback) {
         "repaymentMonth": repaymentMonth,
         "prepay": prepay,
         "payway": payway,
+        "paypassword": paypassword,
     };
 
     var loading = new F._loading();
@@ -1659,6 +1869,13 @@ F._payOrder = function(params, callback) {
                         }]);
                         break;
 
+                    case 60051: // 交易密码错误
+                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
+                            name: 'Xác nhận',
+                            func: function() {}
+                        }]);
+                        break;
+
                     default:
                         F._confirm('Gợi ý', 'Thanh toán thất bại', 'error', [{
                             name: 'Xác nhận',
@@ -1668,7 +1885,7 @@ F._payOrder = function(params, callback) {
                 }
             },
             error: function(ret) {
-                alert('request error');
+                console.error('request error');
                 callback(false);
             }
         });
@@ -1811,7 +2028,7 @@ F._userAddDetailInfo = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         }
     });
@@ -1932,7 +2149,7 @@ F._userViewDetailInfo = function(params, callback) {
             }
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         }
     });
@@ -1984,13 +2201,22 @@ F._getSchoolInfo = function(params, callback) {
 
         },
         error: function(ret) {
-            alert('request error');
+            console.error('request error');
             callback(false);
         },
     });
 }
 
 // 22222222222222
+
+/*主页退出*/
+function userQuit() {
+    if (confirm("Xác nhận thoát")) {
+        localStorage.clear();
+        window.location.href = "";
+    }
+}
+
 
 F._verify_wait = function(params) {
     function extend(def_params, params) {
@@ -2301,6 +2527,65 @@ F._loading = function() {
     }
 }
 
+// 交易密码
+F._payPwd_open = function(callback) {
+    var html = '\
+    <div class="pay-pwd_wrap" id="pay-pwd_wrap">\
+        <div class="pay-pwd">\
+            <div class="pay-pwd__top col-xs-24">\
+                <div class="pay-pwd__top-left col-xs-12">验证交易密码</div>\
+                <div class="pay-pwd__top-right col-xs-12">\
+                    <span class="pay-pwd__t-r-close"></span>\
+                </div>\
+            </div>\
+            <div class="pay-pwd__bottom col-xs-24">\
+                <div class="pay-pwd__bottom-row1 col-xs-24">\
+                    <div class="pay-pwd__b-r1-left">\
+                        <span class="">交易密码</span>\
+                    </div>\
+                    <div class="pay-pwd__b-r1-right">\
+                        <input type="text" class="pay-pwd__b-r1-r-input" placeholder="请输入交易密码">\
+                    </div>\
+                </div>\
+                <div class="pay-pwd__bottom-row2 col-xs-24">\
+                    <span class="pay-pwd__b-r2-text" onclick="payPwd_forget()">忘记交易密码</span>\
+                </div>\
+                <div class="pay-pwd__bottom-row4 col-xs-24">\
+                    <span class="pay-pwd__b-r4-text">交易密码错误</span>\
+                </div>\
+                <div class="pay-pwd__bottom-row3 col-xs-24">\
+                    <span class="pay-pwd__b-r3-button">确定</span>\
+                </div>\
+            </div>\
+        </div>\
+    </div>';
+    $('body').append(html);
+
+    $(".pay-pwd__t-r-close").one('click', function() {
+        var self = $(this);
+        $('#pay-pwd_wrap').remove();
+    });
+
+    // 忘记密码
+    $(".pay-pwd__b-r2-text").on('click', function() {
+        window.open('./back_id.html?phoneNum='+ F.msisdn +'&from=payPwd');
+    });
+
+    // 提交
+    $(".pay-pwd__b-r3-button").on('click', function() {
+        var self = $(this);
+        var input_val = $('.pay-pwd__b-r1-r-input').val();
+        console.log(input_val.length);
+        if (input_val.length !== 6) {
+            $('.pay-pwd__b-r4-text').show();
+            return false;
+        } else {
+            $('.pay-pwd__b-r4-text').hide();
+        }
+        callback(input_val);
+    });
+}
+
 F._baseinfo = function(data, userInfo) {
     var username = userInfo.username || '';
     var sex = userInfo.sex === '1' ? 'Nam' : 'Nữ';
@@ -2340,13 +2625,20 @@ F._baseinfo = function(data, userInfo) {
         connectuseridentification3: userInfo.connectuseridentification3 || '',
     };
 
+    var school_id_name_json = {};
+
     function init(data) {
         var i;
         var collegename_html = '';
+
         for (i = 0; i < data.length; i++) {
-            collegename_html += '<li class="actionsheet__list-item js_collegename" data-collegename="' + data[i].name + '">' + data[i].name + '</li>';
+            collegename_html += '<li class="actionsheet__list-item js_collegename" data-collegename="' + data[i].id + '">' + data[i].name + '</li>';
+            school_id_name_json[data[i].id] = data[i].name;
+            if (!collegename) collegename = data[i].id;
         }
+        collegename = school_id_name_json[collegename];
         collegename__list = collegename_html;
+        console.log(school_id_name_json);
     }
 
     init(data);
@@ -2616,8 +2908,9 @@ F._baseinfo = function(data, userInfo) {
     // 选择学校
     function collegename_select(val) {
         if (val) {
-            $('#MO__collegename').html(val);
+            $('#MO__collegename').html(school_id_name_json[val]);
             collegename = val;
+            console.log(collegename);
         }
 
         var actionsheet_handle = $('.actionsheet-collegename');
@@ -2818,7 +3111,7 @@ F._baseinfo = function(data, userInfo) {
         identification = $('#MO__identification').val();
         address = $('#MO__address').val();
         email = $('#MO__email').val();
-        collegename = collegename;
+        collegename = collegename + '';
         collegeaddr = $('#MO__collegeaddr').val();
         department = $('#MO__department').val();
         specialty = $('#MO__specialty').val();
@@ -2838,6 +3131,9 @@ F._baseinfo = function(data, userInfo) {
         // connectuserrelation3 = connectuserrelation3;
         // connectuseridentification3 = connectuseridentification3;
         headimage = '';
+
+        console.log(collegename);
+        console.log(collegename.length);
 
 
         if (!username.length) {

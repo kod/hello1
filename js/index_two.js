@@ -75,7 +75,7 @@ app.filter('priceFormat', function() { //可以注入依赖
 
 //banner数据请求接口	  
 app.controller('computerCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/computer/initTopComputer";
+    var url = F._initTopComputer_cp;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -112,7 +112,7 @@ app.controller('computerCtrl', function($scope, $http) {
 })
 //爆款推荐数据请求接口	  
 app.controller('hotProductCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/computer/initNewComputer";
+    var url = F._initNewComputer_di;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -220,7 +220,7 @@ app.controller('hotProductCtrl', function($scope, $http) {
 })
 //苹果专区数据请求接口	  
 app.controller('iphoneProductCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/computer/initAdAppleComputer";
+    var url = F._initAdAppleComputer_di;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -329,7 +329,7 @@ app.controller('iphoneProductCtrl', function($scope, $http) {
 })
 //游戏本专区数据请求接口	  
 app.controller('gameProductCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/computer/initAdGameComputer";
+    var url = F._initAdGameComputer_di;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -435,7 +435,7 @@ app.controller('gameProductCtrl', function($scope, $http) {
 })
 //平板电脑专区数据请求接口	  
 app.controller('ipadProductCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/computer/initAdTabletComputer";
+    var url = F._initAdTabletComputer_di;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -547,7 +547,7 @@ app.controller('brandProductCtrl', function($scope, $http) {
         var digNav = ret.classfyinfo;
         $scope.nav = digNav; //导航		
 
-        var url = "http://47.52.21.255:8185/fun/computer/initAdClassfyComputer";
+        var url = F._initAdClassfyComputer_di;
         var ajax = new ajaxClass($http, url, "GET");
 
         var data = {

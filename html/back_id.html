@@ -118,7 +118,7 @@
         font-weight: 600;
         color: #0076F7;
         margin: 29px 0;
-        padding-left: 57px;
+        /*padding-left: 57px;*/
     }
 
     @media screen and (max-width: 1700px) {
@@ -173,9 +173,8 @@
 <body ng-app="duanxinOptAPP" ng-controller="duanxinOptCtrl">
     <div id="back">
         <a href="../index.html"><img src="../img/LOGO2.jpg" alt="" class="logo"/></a>
-        <!-- <img src="../img/30.png" alt="" class="img-text"/> -->
-        <div class="forget__title-text">Lấy lại mật khẩu</div>
-        <p class='xiug'>Thay đổi mật khẩu</p>
+        <div class="forget__title-text" id="forget__title-text" style="display: none;">Lấy lại mật khẩu</div>
+        <p class="xiug" id="xiug">Thay đổi mật khẩu</p>
         <div class="text">
             <div class="left txt">Số điện thoại</div>
             <div class="left val">
@@ -341,14 +340,29 @@
         $(this).find('a').css('color', '#eee');
         $(this).find('p').css('color', '#fff');
     })
-    var url = location.search; //获取url中"?"符后的字串  
-    if (url.indexOf("?") != -1) {
-        $('.img-text').hide();
-        $('.xiug').show();
-    } else {
-        $('.img-text').show();
-        $('.xiug').hide();
+    F.parse = F._hrefUtils.parse();
+    switch (F.parse.query.from) {
+        case 'oneself':
+            $('#xiug').html('Thay đổi mật khẩu');
+            break;
+    
+        case 'payPwd':
+            $('#xiug').html('Thay đổi mật mã giao dịch');
+            break;
+    
+        default:
+            // TODO
+            break;
     }
+    
+    // var url = location.search; //获取url中"?"符后的字串  
+    // if (url.indexOf("?") != -1) {
+    //     $('#forget__title-text').hide();
+    //     $('.xiug').show();
+    // } else {
+    //     $('#forget__title-text').show();
+    //     $('.xiug').hide();
+    // }
     $("#yzmId").bind("input propertychange", function() {
         var yzmId = $(this).val();
         if (yzmId.length > 4 && yzmId.length < 8) {

@@ -91,7 +91,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     }, true);
     //	获取分期金额信息接口
     function fenqiAjax(totalamounts, payrate, repaymentmonths) {
-        var url = "http://47.52.21.255:8184/fun/installment/returnMoney";
+        var url = F._returnMoney_im;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appid = localStorage.getItem("funId") || '';
@@ -112,9 +112,6 @@ app.controller("payCtrl", function($scope, $http, $filter) {
         var md5EncryptStrig = "totalamounts=" + totalamounts + "&repaymentmonths=" + repaymentmonths + "&payrate=" + payrate + Key;
         var encrypt = hex_md5(md5EncryptStrig);
 
-
-
-
         ajax.data = $.param({
             appid: appid,
             method: method,
@@ -132,9 +129,6 @@ app.controller("payCtrl", function($scope, $http, $filter) {
         };
 
         ajax.successCallback = function(res) {
-
-
-
 
             if (res.data.code == 10000) {
                 if (payrate == '1.0') {
@@ -168,7 +162,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
 
 //地址address请求
 app.controller('addCtrl', function($scope, $http, $filter) {
-    var url = "http://47.52.21.255:8180/fun/usercenter/userViewAddr";
+    var url = F._userAction_userViewAddr_uc;
     var ajax = new ajaxClass($http, url, "POST");
     var appId = localStorage.getItem("funId");
     var method = 'fun.uc.userviewaddr';
@@ -284,7 +278,7 @@ app.controller('addressCtrl', function($scope, $http, $filter) {
                 F._submits_ing = true;
                 $('#errormsg').hide();
                 $('#errormsg').html('');
-                var url = "http://47.52.21.255:8180/fun/usercenter/userAddAddr";
+                var url = F._userAction_userAddAddr_uc;
                 var ajax = new ajaxClass($http, url, "POST");
                 var appId = localStorage.getItem("funId");
                 var method = 'fun.uc.useraddaddr';
@@ -351,7 +345,7 @@ app.controller('addressCtrl', function($scope, $http, $filter) {
         event.stopPropagation();
         if (confirm("Xác nhận cài đặt địa chỉ nhận hàng mặc định？")) {
 
-            var url = "http://47.52.21.255:8180/fun/usercenter/userModifyAddr";
+            var url = F._userAction_usercenter_uc;
             var ajax = new ajaxClass($http, url, "POST");
             var appId = localStorage.getItem("funId");
             var method = 'fun.uc.usermodifyaddr';
@@ -432,7 +426,7 @@ app.controller('addressCtrl', function($scope, $http, $filter) {
                 var name = $('#names').val();
                 var phone = $('#phone').val();
                 var addr = $('#textarea').val();
-                var url = "http://47.52.21.255:8180/fun/usercenter/userModifyAddr";
+                var url = F._userAction_usercenter_uc;
                 var ajax = new ajaxClass($http, url, "POST");
                 var appId = localStorage.getItem("funId");
                 var method = 'fun.uc.usermodifyaddr';
@@ -496,7 +490,7 @@ app.controller('addressCtrl', function($scope, $http, $filter) {
     $scope.remove = function($id) {
         event.stopPropagation();
         if (confirm("Xác nhận xóa địa chỉ?")) {
-            var url = "http://47.52.21.255:8180/fun/usercenter/userDelAddrs";
+            var url = F._userAction_userDelAddrs_uc;
             var ajax = new ajaxClass($http, url, "POST");
             var appid = localStorage.getItem("funId");
             var method = 'fun.uc.userDelAddrs';

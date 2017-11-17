@@ -76,7 +76,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
     $scope.a = "18";
     //ajax
-    var url = "http://47.52.21.255:8185/fun/commodity/getProductDetailInfo";
+    var url = F._getProductDetailInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
@@ -656,7 +656,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             if (funId == null || funId == "") {
                                 window.location.href = "login.html"
                             } else {
-                                var url = "http://47.52.21.255:8180/fun/usercenter/userAddCollection";
+                                var url = F._userAddCollection_uc;
                                 var ajax = new ajaxClass($http, url, "POST");
                                 var appId = "110";
                                 var method = 'fun.uc.addcollection';
@@ -720,7 +720,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             }
                         } else {
 
-                            var url = "http://47.52.21.255:8180/fun/usercenter/userCancelCollection";
+                            var url = F._userCancelCollection_uc;
                             var ajax = new ajaxClass($http, url, "POST");
                             var appId = "110";
                             var method = 'fun.uc.cancelcollection';
@@ -811,7 +811,7 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
 
 
 
-    var url = "http://47.52.21.255:8185/fun/commodity/getEvaluationInfo";
+    var url = F._getEvaluationInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -918,7 +918,7 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
 
 
 
-    var url = "http://47.52.21.255:8185/fun/commodity/getEvaluationInfo";
+    var url = F._getEvaluationInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -1054,7 +1054,7 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
 
 
 
-        var url = "http://47.52.21.255:8185/fun/commodity/getEvaluationInfo";
+        var url = F._getEvaluationInfo_cd;
         var ajax = new ajaxClass($http, url, "GET");
 
         ajax.params = {
@@ -1264,7 +1264,7 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
     //  获取分期金额信息接口
     function fenqiAjax(totalamounts, payrate, repaymentmonths) {
 
-        var url = "http://47.52.21.255:8184/fun/installment/returnMoney";
+        var url = F._returnMoney_im;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appid = localStorage.getItem("funId") || '';

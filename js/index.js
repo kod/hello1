@@ -112,7 +112,7 @@ app.controller("indexCtrl", function($scope, $http, $filter) {
 })
 app.controller('newleftCtrl', function($scope, $http, $filter) {
 
-    var url = "http://47.52.21.255:8185/fun/commodity/getNewestInfo";
+    var url = F._getNewestInfo_cd;
     var ajax = new ajaxClass($http, url, "POST");
 
     ajax.data = $.param({
@@ -161,7 +161,7 @@ app.controller('newleftCtrl', function($scope, $http, $filter) {
 })
 //新品首发中间数据请求接口	
 app.controller('newcenterCtrl', function($scope, $http, $filter) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getNewestInfo";
+    var url = F._getNewestInfo_cd;
     var ajax = new ajaxClass($http, url, "POST");
 
     ajax.data = $.param({
@@ -211,7 +211,7 @@ app.controller('newcenterCtrl', function($scope, $http, $filter) {
 })
 //新品首发下边数据请求接口
 app.controller('newbottomCtrl', function($scope, $http, $filter) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getNewestInfo";
+    var url = F._getNewestInfo_cd;
     var ajax = new ajaxClass($http, url, "POST");
 
     ajax.data = $.param({
@@ -256,7 +256,7 @@ app.controller('newbottomCtrl', function($scope, $http, $filter) {
 })
 //手机通讯左边数据请求接口
 app.controller('phoneleftCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -299,7 +299,7 @@ app.controller('phoneleftCtrl', function($scope, $http) {
 })
 //手机通讯中间数据请求接口
 app.controller('phonecenterCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -347,7 +347,7 @@ app.controller('phonecenterCtrl', function($scope, $http) {
 })
 //手机通讯下边数据请求接口
 app.controller('phonebottomCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -390,7 +390,7 @@ app.controller('phonebottomCtrl', function($scope, $http) {
 })
 //电脑平板左边数据请求接口
 app.controller('ipadleftCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -430,7 +430,7 @@ app.controller('ipadleftCtrl', function($scope, $http) {
 })
 //电脑平板中间数据请求接口
 app.controller('ipadcenterCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -478,7 +478,7 @@ app.controller('ipadcenterCtrl', function($scope, $http) {
 })
 //电脑平板下边数据请求接口
 app.controller('ipadbottomCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -521,7 +521,7 @@ app.controller('ipadbottomCtrl', function($scope, $http) {
 })
 //智能数码左边数据请求接口
 app.controller('smartleftCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -561,7 +561,7 @@ app.controller('smartleftCtrl', function($scope, $http) {
 })
 //智能数码中间数据请求接口
 app.controller('smartcenterCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -609,7 +609,7 @@ app.controller('smartcenterCtrl', function($scope, $http) {
 })
 //智能数码下边数据请求接口
 app.controller('smartbottomCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getAdverstInfo";
+    var url = F._getAdverstInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -652,7 +652,7 @@ app.controller('smartbottomCtrl', function($scope, $http) {
 })
 //手机通讯品牌数据请求接口
 app.controller('phonebrandCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getClassfyInfo";
+    var url = F._getClassfyInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -694,7 +694,7 @@ app.controller('phonebrandCtrl', function($scope, $http) {
 })
 //电脑平板品牌数据请求接口
 app.controller('ipadbrandCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getClassfyInfo";
+    var url = F._getClassfyInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
@@ -735,7 +735,7 @@ app.controller('ipadbrandCtrl', function($scope, $http) {
 })
 //智能数码品牌数据请求接口
 app.controller('smartbrandCtrl', function($scope, $http) {
-    var url = "http://47.52.21.255:8185/fun/commodity/getClassfyInfo";
+    var url = F._getClassfyInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
     ajax.params = {
