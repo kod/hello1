@@ -204,6 +204,9 @@ app.controller('addCtrl', function($scope, $http, $filter) {
 
             for (var i = 0; i < res.data.details.length; i++) {
                 if (res.data.details[i].isdefault === 'Y') {
+                    F.address = res.data.details[i].address;
+                    F.msisdn = res.data.details[i].msisdn;
+                    F.username = res.data.details[i].username;
                     $scope.addrlistData_index = i;
                 }
             }
@@ -406,7 +409,11 @@ app.controller('addressCtrl', function($scope, $http, $filter) {
         return false;
     }
 
-    $scope.set_active = function(index) {
+    $scope.set_active = function(index, msisdn, address, username) {
+        F.address = address;
+        F.msisdn = msisdn;
+        F.username = username;
+
         $('.site__main-item').removeClass('site__main-item_active');
         $('.site__main-item').eq(index).addClass('site__main-item_active');
     }

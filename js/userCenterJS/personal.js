@@ -62,11 +62,6 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
                     default:
                         alert('request error');
-                        // F._confirm('Gợi ý', 'Không thể nhận thông tin đặt hàng', 'tips', [{
-                        //     name: 'Xác nhận',
-                        //     func: function() {
-                        //     }
-                        // }]);
                         break;
                 }
             },
@@ -116,8 +111,8 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
 
     $scope.getUserInfoDetails = function() {
-        var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
-        //		var url = "http://47.52.21.255:8183/fun/trade/queryOrderList";
+        var url = F._userViewDetailInfo_uc;
+        //		var url = F._queryOrderList_td;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appId = localStorage.getItem("funId");
@@ -165,6 +160,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
 
                 $scope.headimage = res.data.headimage;
+                F.headimage = $scope.headimage;
                 $('.img-phone').attr('src', $scope.headimage);
 
                 $('#g_name').val(res.data.username);
@@ -176,9 +172,11 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                 }
                 if (res.data.identification.length === 0) {
                     $('#g_identification').val('');
+                    $('#g_identification').css('background-color', '#fff');
                 } else {
                     $('#g_identification').val(res.data.identification)
                     $('#g_identification').attr('disabled', true)
+                    $('#g_identification').css('background-color', '#eee');
                 }
                 $('textarea').val(res.data.address);
                 $('#g_email').val(res.data.email);
@@ -331,7 +329,6 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
             	var timesup = '';
             	var timescl = '';
             }
-
             userAddDetailInfo({
             	username: g_name,
             	sex: sex,
@@ -357,7 +354,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
             	connectusermsisdn3: per3_phone,
             	connectuserrelation3: per3_gx,
             	connectuseridentification3: per3_id,
-            	headimage: '',
+            	headimage: F.headimage,
             });
         }
     })

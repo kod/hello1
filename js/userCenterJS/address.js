@@ -1,6 +1,6 @@
     var app = angular.module('indexApp', []);
     app.controller('addCtrl', function($scope, $http, $filter) {
-        var url = "http://47.52.21.255:8180/fun/usercenter/userViewAddr";
+        var url = F._userAction_userViewAddr_uc;
         var ajax = new ajaxClass($http, url, "POST");
         var appId = localStorage.getItem("funId");
         var method = 'fun.uc.userviewaddr';
@@ -87,7 +87,7 @@
                 } else {
                     $('#errormsg').hide();
                     $('#errormsg small').html('');
-                    var url = "http://47.52.21.255:8180/fun/usercenter/userAddAddr";
+                    var url = F._userAction_userAddAddr_uc;
                     var ajax = new ajaxClass($http, url, "POST");
                     var appId = localStorage.getItem("funId");
                     var method = 'fun.uc.useraddaddr';
@@ -150,7 +150,7 @@
         }
 
         $scope.getUserInfoDetails = function() {
-            var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
+            var url = F._userViewDetailInfo_uc;
             var ajax = new ajaxClass($http, url, "POST");
 
             var appId = localStorage.getItem("funId");
@@ -217,7 +217,7 @@
 
             if (confirm("Xác nhận cài đặt địa chỉ nhận hàng mặc định？")) {
 
-                var url = "http://47.52.21.255:8180/fun/usercenter/userModifyAddr";
+                var url = F._userAction_usercenter_uc;
                 var ajax = new ajaxClass($http, url, "POST");
                 var appId = localStorage.getItem("funId");
                 var method = 'fun.uc.usermodifyaddr';
@@ -297,7 +297,7 @@
                     var name = $('#names').val();
                     var phone = $('#phone').val();
                     var addr = $('#textarea').val();
-                    var url = "http://47.52.21.255:8180/fun/usercenter/userModifyAddr";
+                    var url = F._userAction_usercenter_uc;
                     var ajax = new ajaxClass($http, url, "POST");
                     var appId = localStorage.getItem("funId");
                     var method = 'fun.uc.usermodifyaddr';
@@ -365,7 +365,7 @@
         	if (!F._isLogin()) return false;
 
             if (confirm("Xác nhận xóa địa chỉ?")) {
-                var url = "http://47.52.21.255:8180/fun/usercenter/userDelAddrs";
+                var url = F._userAction_userDelAddrs_uc;
                 var ajax = new ajaxClass($http, url, "POST");
                 var appid = localStorage.getItem("funId");
                 var method = 'fun.uc.userDelAddrs';

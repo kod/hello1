@@ -1,15 +1,4 @@
-// 	//正则截取url参数
-// 	(function($) {
-//			$.getUrlParam = function(name) {
-//				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-//				var r = window.location.search.substr(1).match(reg);
-//				if(r != null) return unescape(r[2]);
-//				return null;
-//			}
-//		})(jQuery);
-//		var brandId = $.getUrlParam("brandId");
-//		var typeId = $.getUrlParam("brandId");
-		var nowTypeId = "1";
+
 
 	var app = angular.module('detailsApp', []);
   
@@ -20,18 +9,6 @@
 		//ajax
 		var url = F._getProductDetailInfo_cd;
     	var ajax = new ajaxClass($http,url,"GET");
-// 		ajax.params = {
-//						appid:'110',
-//						method:'fun.cellphone.newest',
-//						charset:'utf-8',
-//						signtype:"5bd0f94e43fb03bbd30dc6be5107d844",
-//						encrypt:'4da4224a06337b9564da736a1adfa7c9',
-//						timestamp:'2017-09-06 11:30:50',
-//						version:'1.0',
-//						typeid:'1',
-//						pagesize:'5',
-//						currentpage:'1'
-//					},
 		var data = {
 			appid:'2016102146225135',
 			method:'fun.brand.query',

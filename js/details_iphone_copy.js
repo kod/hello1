@@ -9,12 +9,29 @@ $(".clickLi").on("click", function() {
 
 /*Angular*/
 
-var nowTypeId = "5";
-
 var app = angular.module('detailsApp', []);
 app.filter('priceFormat', function() { //可以注入依赖
     return F._priceFormat;
 });
+
+var getImgUrls = function($scope) {
+    var url = $scope.nowProductClass[0].imageUrls;
+    var resUrl = url.split("|");
+    $scope.imgUrls = [];
+    for (var i = 0; i < resUrl.length; i++) { //resUrl.length
+        $scope.imgUrls.push(resUrl[i]);
+        if (i == 5) {
+            break;
+        }
+    }
+    if (resUrl.length > 4) {
+        $('.swiper-pagination').addClass('otherswiper');
+    } else {
+        $('.swiper-pagination').removeClass('otherswiper');
+    }
+
+}
+
 
 //截取Url里面的参数   
 function GetRequest() {
@@ -108,9 +125,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
             $scope.nowUrl = item.image;
 
             $scope.nowOneInfo = item.value;
-
-            $(".swiper-slide").css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1')
-            $(".swiper-slide:nth-child(1) img").attr('src', item.image).parent().addClass('swiper-slide-active').css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1');
         }
         /*tcy*/
 
@@ -195,24 +209,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         }
 
                         initPrice($scope.nowProductDetail);
-                        $scope.getImgUrls = function() {
-                            var url = $scope.nowProductClass[0].imageUrls;
-                            var resUrl = url.split("|");
-                            $scope.imgUrls = [];
-                            for (var i = 0; i < resUrl.length; i++) { //resUrl.length
-                                $scope.imgUrls.push(resUrl[i]);
-                                if (i == 5) {
-                                    break;
-                                }
-                            }
-                            if (resUrl.length > 4) {
-                                $('.swiper-pagination').addClass('otherswiper');
-                            } else {
-                                $('.swiper-pagination').removeClass('otherswiper');
-                            }
-
-                        }
-                        $scope.getImgUrls();
+                        getImgUrls($scope);
                         $scope.classify = function(obj) {
 
                             return true;
@@ -267,7 +264,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                                 $scope.propertiesDetails.push($scope.propertiesDetail[t]);
                             } else if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[1]) {
                                 $scope.propertiesDetailss.push($scope.propertiesDetail[t]);
-
+                                console.log($scope.propertiesDetailss);
                             }
 
                         }
@@ -305,8 +302,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         $scope.nowProductDetail = propertiesIdsArray;
 
-
-
                         $scope.nowProductClass = [];
                         for (var i = 0; i < $scope.productDetail.length; i++) {
                             if ($scope.productDetail[i].typeId == typeId) {
@@ -317,24 +312,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         initPrice(propertiesIds);
                         //轮播图ImageUrl
-                        $scope.getImgUrls = function() {
-                            var url = $scope.nowProductClass[0].imageUrls;
-                            var resUrl = url.split("|");
-                            $scope.imgUrls = [];
-                            for (var i = 0; i < resUrl.length; i++) { //resUrl.length
-                                $scope.imgUrls.push(resUrl[i]);
-                                if (i == 5) {
-                                    break;
-                                }
-                            }
-                            if (resUrl.length > 4) {
-                                $('.swiper-pagination').addClass('otherswiper');
-                            } else {
-                                $('.swiper-pagination').removeClass('otherswiper');
-                            }
-
-                        }
-                        $scope.getImgUrls();
+                        getImgUrls($scope);
 
                         $scope.sizeChanges = function(item) {
                             $scope.nowProductDetail[1] = item.id;
@@ -358,9 +336,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             $scope.nowUrl = item.image;
 
                             $scope.nowOneInfo = item.value;
-
-                            $(".swiper-slide").css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1')
-                            $(".swiper-slide:nth-child(1) img").attr('src', item.image).parent().addClass('swiper-slide-active').css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1');
 
                         }
                         //内存按钮点击事件
@@ -448,25 +423,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         initPrice(initProduct_propertiesIds);
                         //轮播图ImageUrl
-                        $scope.getImgUrls = function() {
-                            var url = $scope.nowProductClass[0].imageUrls;
-                            var resUrl = url.split("|");
-                            $scope.imgUrls = [];
-                            for (var i = 0; i < resUrl.length; i++) { //resUrl.length
-                                $scope.imgUrls.push(resUrl[i]);
-                                if (i == 5) {
-                                    break;
-                                }
-                            }
-
-                            if (resUrl.length > 4) {
-                                $('.swiper-pagination').addClass('otherswiper');
-                            } else {
-                                $('.swiper-pagination').removeClass('otherswiper');
-                            }
-
-                        }
-                        $scope.getImgUrls();
+                        getImgUrls($scope);
                         //颜色按钮点击事件
 
                         $scope.colorChange = function(item) {
@@ -474,14 +431,10 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         }
 
                         function color(obj) {
-
-                            //              $scope.nowProductDetail[0] = item.id;
                             $scope.nowProductDetail[0] = obj.id;
                             getPrice($scope.nowProductDetail);
                             $scope.nowUrl = obj.image;
                             $scope.nowOneInfo = obj.value;
-                            $(".swiper-slide").css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1')
-                            $(".swiper-slide:nth-child(1) img").attr('src', obj.image).parent().addClass('swiper-slide-active').css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1');
                         }
 
                         //内存按钮点击事件

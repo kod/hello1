@@ -257,7 +257,7 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
                             }
 
                             $scope.clearsc = function() {
-                                if (confirm("OK để xóa?")) {
+                                if (confirm("Xác nhận xóa?")) {
                                     for (var r = 0; r < overlist.length; r++) {
                                         var url = F._userCancelCollection_uc;
                                         var ajax = new ajaxClass($http, url, "POST");

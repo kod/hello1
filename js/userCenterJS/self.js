@@ -35,7 +35,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 	
 	$scope.getUserBasicInfo = function(){
 
-		var url = "http://47.52.21.255:8180/fun/userCenter/userAction/getUserInfoById";
+		var url = F._userAction_getUserInfoById_uc;
 		var ajax = new ajaxClass($http, url, "POST");
 		
 		var provider = "0";
@@ -89,7 +89,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 	
 	$scope.getUserInfoDetails = function() {
 
-		var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
+		var url = F._userViewDetailInfo_uc;
 		var ajax = new ajaxClass($http, url, "POST");
 
 		var appId = localStorage.getItem("funId");
@@ -155,8 +155,8 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 	}
 	$scope.getUserInfoDetails();
 	$scope.getUserInfoDetails=function(){
-		var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
-//		var url = "http://47.52.21.255:8183/fun/trade/queryOrderList";
+		var url = F._userViewDetailInfo_uc;
+//		var url = F._queryOrderList_td;
 		var ajax = new ajaxClass($http, url, "POST");
 
 		var appId = localStorage.getItem("funId");

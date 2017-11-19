@@ -9,45 +9,68 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <link rel="stylesheet" href="../css/base.css">
-    <title>Đánh giá thành công</title>
+    <title>Tài khoản và Bảo mật</title>
+    <script src="../js/md5.js"></script>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
-    body {
-        background-color: #fff;
-        opacity: 0;
+    * {
+        text-align: justify;
     }
 
     .body__main {
-        text-align: center;
+        margin-bottom: 50px;
+        font-size: 16px;
+        padding-top: 50px;
     }
 
-    .body__main-img {
-        margin-top: 120px;
-        height: 100px;
+    .body__main:after {
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+    }
+
+    .body__main-banner {
+        padding-top: 30px;
+        margin-bottom: 50px;
+    }
+
+    .body__m-b-img {
+        width: 1200px;
     }
 
     .body__main-title {
-        font-size: 18px;
-        margin-top: 30px;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 40px;
     }
 
-    .body__main-desc {
-        font-size: 15px;
-        margin-top: 15px;
-        color: #777;
+    h3.body__main-item {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        color: #1479f1;
     }
 
-    .body__main-gohome {
-        margin-top: 35px;
-        margin-bottom: 30px;
+    .body__main-item {
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+
+    .body__main-tips {
+        margin-top: -10px;
+        margin-bottom: 25px;
+    }
+
+    .body__m-t-title {
+        color: #999;
+        margin-bottom: 10px;
+    }
+
+    .body__m-t-item {
+        color: #666;
+        line-height: 1.6;
         font-size: 12px;
-        color: #0076F7;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-bottom: 5px;
-        cursor: pointer;
     }
-
     </style>
 </head>
 
@@ -57,22 +80,52 @@
             <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./help.html'" >Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./help.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
             <div class="header__title">
                 <div class="header__title-main">
-                    <img src="../img/LOGO2.jpg" alt="" class="header__t-m-img" @click="gohome">
+                    <img src="../img/LOGO2.jpg" class="header__t-m-img" @click="gohome">
+                    <span class="header__t-m-text">Tài khoản và Bảo mật</span>
                 </div>
             </div>
         </header>
         <section class="body">
-            <div class="body__main" 
-                :style="{ 'min-height': body__main_height + 'px' }" >
-                <img src="../img/32.png" alt="" class="body__main-img">
-                <div class="body__main-title">Đánh giá Thành công</div>
-                <div class="body__main-desc">Cảm ơn đánh giá của bạn, chúc bạn mua sắm vui vẻ!</div>
-                <span class="body__main-gohome" @click="gohome">Quay về trang chủ</span>
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                <!-- <div class="body__main-banner col-xs-24">
+                    <img src="../img/about.jpg" alt="" class="body__m-b-img">
+                </div> -->
+                <h1 class="body__main-title col-xs-24">Tài khoản và Bảo mật</h1>
+
+                <!-- <h3 class="body__main-item col-xs-24">1. Phương thức thanh toán</h3> -->
+                <div class="body__main-item col-xs-24">Cho dù đó là ứng dụng App hay trang web của chúng tôi, bạn có thể thay đổi hoặc truy xuất mật khẩu đăng nhập từ mã xác minh điện thoại di động của bạn tại trung tâm cá nhân của bạn</div>
+
+                <!-- <h3 class="body__main-item col-xs-24">2. Thẩm tra tài liệu</h3>
+                <div class="body__main-item col-xs-24">Khi bạn đăng ký và gửi thông tin cá nhân của bạn, nhân viên dịch vụ khách hàng và người quản lí trường học của chúng tôi sẽ liên hệ ngay với bạn để xác minh dữ liệu, nếu bạn vượt qua, sẽ ký một thỏa thuận khách hàng. Xin lưu ý rằng tất cả các thông tin đăng ký Buyoo có quyền giải thích cuối cùng về chứng từ này.</div>
+
+                <h3 class="body__main-item col-xs-24">3. Giao hàng</h3>
+                <div class="body__main-item col-xs-24">Sau khi bạn được duyệt hồ sơ và hoàn tất thủ tục thanh toán lần đầu, người phụ trách trường học của chúng tôi sẽ liên lạc với bạn và giao hàng tận tay bạn.</div>
+
+                <h3 class="body__main-item col-xs-24">4. Thanh toán lần đầu và hoàn trả thanh toán.</h3>
+                <div class="body__main-item col-xs-24">Nếu muốn mua hàng trả góp, sau khi bạn gửi đơn đặt hàng và được thẩm duyệt, bạn có thể thanh toán tại "Đơn hàng của tôi", hàng tháng bạn đăng nhập tài khoản của buyoo trước ngày đến hạn thanh toán, kích chuột vào "Thanh toán ngay" để thanh toán.</div>
+                <div class="body__main-tips col-xs-24">
+                    <div class="body__m-t-title col-xs-24">Nhắc nhở:</div>
+                    <div class="body__m-t-item col-xs-24">1. Khi lập lịch thanh toán nên chọn số kì thanh toán, bạn có thể xem chi tiết về khoản phí và số tiền phải trả mỗi kỳ.</div>
+                    <div class="body__m-t-item col-xs-24">2. Lịch thanh toán trả góp cần phải được thẩm duyệt, sau khi thẩm duyệt có kết quả sẽ liên hệ với bạn.</div>
+                    <div class="body__m-t-item col-xs-24">3. Trước ngày đến hạn của ngày trả nợ hàng tháng, hãy thanh toán kịp thời trên website hoặc trên app.</div>
+                </div>
+                
+                <h3 class="body__main-item col-xs-24">5. Tài khoản và Bảo mật</h3>
+                <div class="body__main-item col-xs-24">Cho dù đó là ứng dụng App hay trang web của chúng tôi, bạn có thể thay đổi hoặc truy xuất mật khẩu đăng nhập từ mã xác minh điện thoại di động của bạn tại trung tâm cá nhân của bạn</div>
+                
+                <h3 class="body__main-item col-xs-24">6. Cách sửa đổi và truy xuất mật khẩu đăng nhập</h3>
+                <div class="body__main-item col-xs-24">Cho dù đó là ứng dụng App hay trang web của chúng tôi, bạn có thể thay đổi hoặc truy xuất mật khẩu đăng nhập từ mã xác minh điện thoại di động của bạn tại trung tâm cá nhân của bạn</div>
+                
+                <h3 class="body__main-item col-xs-24">7. Làm thế nào để hoàn trả khoản thanh toán lần đầu của bạn khi đơn hàng bị hủy</h3>
+                <div class="body__main-item col-xs-24">Nếu đơn hàng của bạn không được phê duyệt, hệ thống sẽ hủy đơn hàng của bạn, khoản tiền thanh toán lần đầu của bạn sẽ tự động hoàn lại vào số dư tài khoản của bạn và sẽ thông báo bằng tin nhắn, nếu muốn đăng ký rút tiền, vui lòng nhấp vào chức năng "rút tiền mặt", chúng tôi sẽ hoàn phí trong vòng 7-14 ngày làm việc vào tài khoản bạn yêu cầu</div>
+
+                <h3 class="body__main-item col-xs-24">8. Làm thế nào để đổi trả hàng</h3>
+                <div class="body__main-item col-xs-24">Tất cả các vấn đề về chất lượng sản phẩm mà bạn gặp phải là mối quan tâm lớn nhất của chúng tôi, vui lòng liên hệ với dịch vụ khách hàng, chúng tôi sẽ nhanh chóng liên hệ với bạn để phối hợp giải quyết.</div> -->
             </div>
         </section>
         <footer class="footer">
@@ -187,71 +240,68 @@
                 </div>
             </div>
         </footer>
-    </div>
-    <script>
-    require([
-        '../js/jquery1.11.2',
-        '../js/vue.min',
-        '../js/common',
-    ], function($, Vue) {
-        window.F = {};
+        </div>
+        <script>
+        require([
+            '../js/jquery1.11.2',
+            '../js/vue.min',
+            '../js/md5',
+            '../js/common',
+        ], function($, Vue, md5) {
 
-        F.vue = {
-            body__main_height: document.documentElement.clientHeight - 133 - 210,
-        };
+            F.vue = {
+                body__main_height: document.documentElement.clientHeight - 133 - 210,
+            };
 
-        var load = function() {
-            new_vue();
-        };
+            var load = function() {
+                new_vue();
+            };
 
-        var pre_data = function(data) {
+            var pre_data = function(data) {
 
-        }
-
-        F.loadData = function(params, callback) {
-            if (callback === undefined) callback = params;
-
-            var all_data = {};
-            var request_length = 0; //请求个数
-
-            // 请求是否全部返回
-            function all_loaded() {
-                if (Object.keys(all_data).length === request_length) {
-                    pre_data(all_data);
-                    // Q.hideProgress();
-                    callback(all_data);
-                }
             }
-            // if (params.loadData_isLoading !== false) Q.showProgress();
 
-            all_loaded();
-        };
+            F.loadData = function(params, callback) {
+                if (callback === undefined) callback = params;
 
-        function new_vue() {
-            F.vue = new Vue({
-                el: $('#vue-el')[0],
-                data: F.vue,
-                methods: {
-                    gohome: gohome,
-                },
-                computed: {
+                var all_data = {};
+                var request_length = 0; //请求个数
 
-                },
-                created: function() {
-                    $('body').css('opacity', '1');
-                },
+                // 请求是否全部返回
+                function all_loaded() {
+                    if (Object.keys(all_data).length === request_length) {
+                        pre_data(all_data);
+                        // Q.hideProgress();
+                        callback(all_data);
+                    }
+                }
+                // if (params.loadData_isLoading !== false) Q.showProgress();
+
+                all_loaded();
+            };
+
+            function new_vue() {
+                F.vue = new Vue({
+                    el: $('#vue-el')[0],
+                    data: F.vue,
+                    methods: {
+                        gohome: gohome,
+                    },
+                    computed: {
+
+                    },
+                });
+            }
+
+            function gohome() {
+                window.location.href = '../index.html';
+            }
+
+            F.loadData(function() {
+                load();
             });
-        }
-
-        function gohome() {
-            window.location.href = '../index.html';
-        }
-
-        F.loadData(function() {
-            load();
         });
-    });
-    </script>
+        </script>
 </body>
 
 </html>

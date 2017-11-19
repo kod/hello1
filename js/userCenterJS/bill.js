@@ -25,7 +25,7 @@ app.controller("billCtrl", function($scope, $http, $filter) {
     $scope.funId = funId;
     $scope.msisdn = msisdn;
     $scope.getUserInfoDetails = function() {
-        var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
+        var url = F._userViewDetailInfo_uc;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appId = localStorage.getItem("funId");
@@ -81,7 +81,7 @@ app.controller("billCtrl", function($scope, $http, $filter) {
     }
     $scope.getUserInfoDetails();
     //	$scope.getBillInfo = function(){
-    //		var url = "http://47.52.21.255:8184/fun/trade/queryBillList";
+    //		var url = F._queryBillList_td;
     //		var ajax = new ajaxClass($http, url, "POST");
     //		
     //		var appid = "201610214622513";
@@ -152,8 +152,8 @@ app.controller("billCtrl", function($scope, $http, $filter) {
     //	$scope.getBillInfo();
 
     //	$scope.getUserInfoDetails=function(){
-    //		var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
-    ////		var url = "http://47.52.21.255:8183/fun/trade/queryOrderList";
+    //		var url = F._userViewDetailInfo_uc;
+    ////		var url = F._queryOrderList_td;
     //		var ajax = new ajaxClass($http, url, "POST");
     //
     //		var appId = localStorage.getItem("funId");
@@ -333,7 +333,7 @@ app.controller("billCtrl", function($scope, $http, $filter) {
         F.period = period;
         /*tcy -end-*/
 
-        var url = "http://47.52.21.255:8184/fun/trade/queryBillList";
+        var url = F._queryBillList_td;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appid = "201610214622513";

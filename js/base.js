@@ -18,7 +18,7 @@ $(function() {
                     $('#messge').html(data.msg);
                     $('#messge').fadeToggle();
                     $('#messge').fadeToggle(1000);
-                    $('#sc').text('Bộ sưu tập');
+                    $('#sc').text('Đã sưu tập');
                 }
             },
             dataType: 'json'

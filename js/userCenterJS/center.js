@@ -34,7 +34,7 @@ app.controller('centerMainCtrl', function($scope, $http, $filter) {
 //	}
 //	$scope.msisdnFormat();
 	$scope.getUserInfoDetails=function(){
-		var url = "http://47.52.21.255:8180/fun/usercenter/userViewDetailInfo";
+		var url = F._userViewDetailInfo_uc;
 		var ajax = new ajaxClass($http, url, "POST");
 
 		var appId = localStorage.getItem("funId");

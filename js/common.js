@@ -1,12 +1,14 @@
 if (!window.F) window.F = {};
 
 F._IP = "http://47.52.21.255";
+// F._IP = "http://47.52.106.165";
 F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
 F._createOrder_td = F._IP + ":8183/fun/trade/createOrder"; // 创建（分期）订单
 F._queryOrder_td = F._IP + ":8183/fun/trade/queryOrder"; // 订单查询
 F._inquiryBill_td = F._IP + ":8184/fun/trade/inquiryBill"; // 查询账单信息
+F._queryBillList_td = F._IP + ":8184/fun/trade/queryBillList"; // 
 F._createNormalOrder_td = F._IP + ":8183/fun/trade/createNormalOrder"; // 创建还款订单
 F._payNormalOrder_td = F._IP + ":8183/fun/trade/payNormalOrder"; // 支付还款订单
 F._queryOrderList_td = F._IP + ":8183/fun/trade/queryOrderList"; // 
@@ -23,6 +25,7 @@ F._userAction_usercenter_uc = F._IP + ":8180/fun/usercenter/userModifyAddr"; //
 F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 
 F._userAction_userDelAddrs_uc = F._IP + ":8180/fun/usercenter/userDelAddrs"; // 
 F._userAction_register_uc = F._IP + ":8180/fun/userCenter/userAction/register"; // 注册
+F._userAction_getUserInfoById_uc = F._IP + ":8180/fun/userCenter/userAction/getUserInfoById"; // 
 F._initTopComputer_cp = F._IP + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
 F._initAdAppleComputer_di = F._IP + ":8185/fun/computer/initAdAppleComputer"; // 
 F._initAdGameComputer_di = F._IP + ":8185/fun/computer/initAdGameComputer"; // 
@@ -138,6 +141,7 @@ F._userGetCollection = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'error', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -212,6 +216,7 @@ F._findProducts = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'error', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -351,6 +356,7 @@ F._userAction_register = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'error', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -442,6 +448,7 @@ F._addEvaluation = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'Nhận xét không thành công', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -541,6 +548,7 @@ F._userAction_changePassword = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'error', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -640,6 +648,7 @@ F._userAction_modifyPayPassword = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'error', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -685,242 +694,11 @@ F._userAction_checkPayPasword = function(params, callback) {
         success: function(ret) {
             ret = JSON.parse(ret);
             callback(ret);
-
-            // switch (ret.status) {
-            //     case 10000:
-
-            //         break;
-
-            //     case 40000:
-            //         F._confirm('Gợi ý', 'error', 'error', [{
-            //             name: 'Xác nhận',
-            //             func: function() {
-
-            //             }
-            //         }]);
-            //         break;
-
-            //     default:
-            //         F._confirm('Gợi ý', 'error', 'error', [{
-            //             name: 'Xác nhận',
-            //             func: function() {
-
-            //             }
-            //         }]);
-            //         break;
-            // }
         },
         error: function(ret) {
             console.error('request error');
             callback(false);
         },
-    });
-}
-
-// 支付（还款）订单
-F._payNormalOrder = function(params, callback) {
-    if (!F._isLogin()) return false;
-
-    var Key = 'tradeKey';
-
-    var appId = localStorage.getItem("funId");
-    var method = "fun.trade.paynormal";
-    var charset = 'utf-8';
-    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
-    var orderNo = params.orderNo;
-    var tradeNo = params.tradeNo;
-    var repaymentMonth = params.repaymentMonth;
-    var totalAmount = params.amount;
-    var payway = params.payWay;
-
-    var md5SigntypeStrig = '';
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signType = md5(md5SigntypeStrig);
-
-    var md5EncryptStrig = '';
-    md5EncryptStrig += "orderNo=" + orderNo;
-    md5EncryptStrig += "&tradeNo=" + tradeNo;
-    md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
-    md5EncryptStrig += "&totalAmount=" + totalAmount;
-    md5EncryptStrig += "&payway=" + payway;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
-
-    var data = {
-        "appId": appId,
-        "method": method,
-        "charset": charset,
-        "signType": signType,
-        "encrypt": encrypt,
-        "timestamp": timestamp,
-        "version": version,
-        "orderNo": orderNo,
-        "tradeNo": tradeNo,
-        "repaymentMonth": repaymentMonth,
-        "totalAmount": totalAmount,
-        "payway": payway,
-    };
-    if (payway == '2') {
-        var loading = new F._loading();
-        loading.hide();
-        F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
-            name: 'Thanh toán',
-            func: function() {
-                window.open(F._url_join(F._payNormalOrder_td, data));
-
-                F._confirm('Gợi ý', '', 'tips', [{
-                    name: 'Thanh toán thất bại',
-                    func: function() {
-                        window.location.href = '../index.html';
-                    }
-                }, {
-                    name: 'Thanh toán thành công',
-                    func: function() {
-                        window.location.href = './bill.html';
-                    }
-                }]);
-            }
-        }]);
-
-    } else {
-
-        $.ajax({
-            type: "POST",
-            url: F._payNormalOrder_td,
-            data: data,
-            success: function(ret) {
-                ret = JSON.parse(ret);
-                callback(ret);
-
-                switch (ret.code) {
-                    case 10000:
-
-                        break;
-
-                    case 60051: // 交易密码错误
-                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
-                        break;
-
-                    default:
-                        window.location.href = './errorPay.html';
-                        break;
-                }
-            },
-            error: function(ret) {
-                console.error('request error');
-                callback(false);
-            }
-        });
-
-    }
-}
-
-// 创建（还款）订单
-F._createNormalOrder = function(params, callback) {
-    if (!F._isLogin()) return false;
-
-    if (!F._isLogin()) return false;
-
-    var Key = 'tradeKey';
-
-    var appId = localStorage.getItem("funId");
-    var method = "fun.trade.createnormal";
-    var charset = 'utf-8';
-    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
-    var notifyUrlBg = "";
-    var orderNo = (function() {
-        var mydate = new Date();
-        return appId + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
-    }());
-    var funid = localStorage.getItem("funId");
-    var totalAmount = params.totalAmount; // 总金额
-    var currency = params.currency;
-    var subject = params.subject;
-    var repaymentMonth = params.repaymentMonth;
-    var goodsDetail = params.goodsDetail;
-    var timeoutExpress = params.timeoutExpress;
-    var orderNo1 = params.orderNo1;
-    var tradeNo1 = params.tradeNo1;
-
-    var md5SigntypeStrig = '';
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-
-    var signType = md5(md5SigntypeStrig);
-
-    var md5EncryptStrig = '';
-    md5EncryptStrig += "orderNo=" + orderNo;
-    md5EncryptStrig += "&funid=" + funid;
-    md5EncryptStrig += "&totalAmount=" + totalAmount;
-    md5EncryptStrig += "&currency=" + currency;
-    md5EncryptStrig += "&subject=" + subject;
-    md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
-    md5EncryptStrig += "&goodsDetail=" + goodsDetail;
-    md5EncryptStrig += "&timeoutExpress=" + timeoutExpress;
-    md5EncryptStrig += "&orderNo1=" + orderNo1;
-    md5EncryptStrig += "&tradeNo1=" + tradeNo1;
-    md5EncryptStrig += Key;
-
-    var encrypt = md5(md5EncryptStrig);
-
-    var data = {
-        "appId": appId,
-        "method": method,
-        "charset": charset,
-        "signType": signType,
-        "encrypt": encrypt,
-        "timestamp": timestamp,
-        "version": version,
-        "notifyUrlBg": notifyUrlBg,
-        "orderNo": orderNo,
-        "funid": funid,
-        "totalAmount": totalAmount,
-        "currency": currency,
-        "subject": subject,
-        "repaymentMonth": repaymentMonth,
-        "goodsDetail": goodsDetail,
-        "timeoutExpress": timeoutExpress,
-        "orderNo1": orderNo1,
-        "tradeNo1": tradeNo1,
-    }
-
-    $.ajax({
-        type: "POST",
-        url: F._createNormalOrder_td,
-        data: data,
-        success: function(ret) {
-            ret = JSON.parse(ret);
-            callback(ret);
-
-            switch (ret.code) {
-                case 10000:
-
-                    break;
-
-                default:
-                    F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
-                        }
-                    }]);
-                    break;
-            }
-        },
-        error: function(ret) {
-            console.error('request error');
-            callback(false);
-        }
     });
 }
 
@@ -981,6 +759,7 @@ F._inquiryBill = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'Lấy thông tin hóa đơn thất bại', 'tips', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -1045,7 +824,8 @@ F._queryOrder = function(params, callback) {
                     break;
 
                 default:
-                    F._confirm('Gợi ý', 'Không thể nhận thông tin đặt hàng', 'tips', [{
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'Lấy thông tin đơn hàng thất bại', 'tips', [{
                         name: 'Xác nhận',
                         func: function() {
 
@@ -1078,6 +858,7 @@ F._collectFiles = function(data, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'Tải lên thất bại', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -1111,6 +892,7 @@ F._uploadFilesUser = function(data, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'Tải lên thất bại', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -1250,6 +1032,7 @@ F._userAction_login = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'Tên đăng nhập hoặc mật khẩu không hợp lệ', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -1327,6 +1110,7 @@ F._userAction_otp = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'Không thể gửi', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -1454,7 +1238,8 @@ F._fullOrderCreate = function(params, callback) {
                     break;
 
                 default:
-                    F._confirm('Gợi ý', 'Lệnh không thành công', 'tips', [{
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
                         name: 'Xác nhận',
                         func: function() {}
                     }]);
@@ -1499,7 +1284,6 @@ F._orderFullPay = function(params, callback) {
     md5EncryptStrig += "&payway=" + payway;
     md5EncryptStrig += "&paypassword=" + paypassword;
     md5EncryptStrig += Key;
-    console.log(md5EncryptStrig);
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
@@ -1517,6 +1301,7 @@ F._orderFullPay = function(params, callback) {
         "paypassword": paypassword,
     };
 
+    var loading = new F._loading();
     if (payway == '2') {
         loading.hide();
         var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
@@ -1557,7 +1342,7 @@ F._orderFullPay = function(params, callback) {
                             name: 'Để sau',
                             func: function() {}
                         }, {
-                            name: 'Cải thiện ngay lập tức',
+                            name: 'Hoàn thiện ngay',
                             func: function() {
                                 // getSchoolInfo_addInfo();
                             }
@@ -1597,6 +1382,7 @@ F._orderFullPay = function(params, callback) {
                         break;
 
                     default:
+                        $('#loading').remove();
                         F._confirm('Gợi ý', 'Thanh toán thất bại', 'tips', [{
                             name: 'Xác nhận',
                             func: function() {}
@@ -1697,7 +1483,7 @@ F._createOrder = function(params, callback) {
 
                 case 40000:
                     // 加密错误
-                    F._confirm('Gợi ý', 'Lệnh không thành công', 'tips', [{
+                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
                         name: 'Xác nhận',
                         func: function() {}
                     }]);
@@ -1705,7 +1491,7 @@ F._createOrder = function(params, callback) {
 
                 case 50020:
                     // http调用错误
-                    F._confirm('Gợi ý', 'Lệnh không thành công', 'tips', [{
+                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
                         name: 'Xác nhận',
                         func: function() {}
                     }]);
@@ -1723,14 +1509,15 @@ F._createOrder = function(params, callback) {
 
                 case 50000:
                     // 系统运行错误 (表示创建错误)
-                    F._confirm('Gợi ý', 'Lệnh không thành công', 'tips', [{
+                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
                         name: 'Xác nhận',
                         func: function() {}
                     }]);
                     break;
 
                 default:
-                    F._confirm('Gợi ý', 'Lệnh không thành công', 'tips', [{
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
                         name: 'Xác nhận',
                         func: function() {}
                     }]);
@@ -1834,7 +1621,7 @@ F._payOrder = function(params, callback) {
                             name: 'Để sau',
                             func: function() {}
                         }, {
-                            name: 'Cải thiện ngay lập tức',
+                            name: 'Hoàn thiện ngay',
                             func: function() {
                                 // getSchoolInfo_addInfo();
                             }
@@ -1877,6 +1664,7 @@ F._payOrder = function(params, callback) {
                         break;
 
                     default:
+                        $('#loading').remove();
                         F._confirm('Gợi ý', 'Thanh toán thất bại', 'error', [{
                             name: 'Xác nhận',
                             func: function() {}
@@ -1889,6 +1677,218 @@ F._payOrder = function(params, callback) {
                 callback(false);
             }
         });
+    }
+}
+
+// 创建（还款）订单
+F._createNormalOrder = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    if (!F._isLogin()) return false;
+
+    var Key = 'tradeKey';
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.trade.createnormal";
+    var charset = 'utf-8';
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "1.0";
+    var notifyUrlBg = "";
+    var orderNo = (function() {
+        var mydate = new Date();
+        return appId + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
+    }());
+    var funid = localStorage.getItem("funId");
+    var totalAmount = params.totalAmount; // 总金额
+    var currency = params.currency;
+    var subject = params.subject;
+    var repaymentMonth = params.repaymentMonth;
+    var goodsDetail = params.goodsDetail;
+    var timeoutExpress = params.timeoutExpress;
+    var orderNo1 = params.orderNo1;
+    var tradeNo1 = params.tradeNo1;
+
+    var md5SigntypeStrig = '';
+    md5SigntypeStrig += "appId=" + appId;
+    md5SigntypeStrig += "&method=" + method;
+    md5SigntypeStrig += "&charset=" + charset;
+    md5SigntypeStrig += Key;
+
+    var signType = md5(md5SigntypeStrig);
+
+    var md5EncryptStrig = '';
+    md5EncryptStrig += "orderNo=" + orderNo;
+    md5EncryptStrig += "&funid=" + funid;
+    md5EncryptStrig += "&totalAmount=" + totalAmount;
+    md5EncryptStrig += "&currency=" + currency;
+    md5EncryptStrig += "&subject=" + subject;
+    md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
+    md5EncryptStrig += "&goodsDetail=" + goodsDetail;
+    md5EncryptStrig += "&timeoutExpress=" + timeoutExpress;
+    md5EncryptStrig += "&orderNo1=" + orderNo1;
+    md5EncryptStrig += "&tradeNo1=" + tradeNo1;
+    md5EncryptStrig += Key;
+
+    var encrypt = md5(md5EncryptStrig);
+
+    var data = {
+        "appId": appId,
+        "method": method,
+        "charset": charset,
+        "signType": signType,
+        "encrypt": encrypt,
+        "timestamp": timestamp,
+        "version": version,
+        "notifyUrlBg": notifyUrlBg,
+        "orderNo": orderNo,
+        "funid": funid,
+        "totalAmount": totalAmount,
+        "currency": currency,
+        "subject": subject,
+        "repaymentMonth": repaymentMonth,
+        "goodsDetail": goodsDetail,
+        "timeoutExpress": timeoutExpress,
+        "orderNo1": orderNo1,
+        "tradeNo1": tradeNo1,
+    }
+
+    $.ajax({
+        type: "POST",
+        url: F._createNormalOrder_td,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thất bại', 'tips', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        }
+    });
+}
+
+// 支付（还款）订单
+F._payNormalOrder = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = 'tradeKey';
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.trade.paynormal";
+    var charset = 'utf-8';
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "1.0";
+    var orderNo = params.orderNo;
+    var tradeNo = params.tradeNo;
+    var repaymentMonth = params.repaymentMonth;
+    var totalAmount = params.amount;
+    var payway = params.payWay;
+    var paypassword = params.paypassword || '';
+
+    var md5SigntypeStrig = '';
+    md5SigntypeStrig += "appId=" + appId;
+    md5SigntypeStrig += "&method=" + method;
+    md5SigntypeStrig += "&charset=" + charset;
+    md5SigntypeStrig += Key;
+    var signType = md5(md5SigntypeStrig);
+
+    var md5EncryptStrig = '';
+    md5EncryptStrig += "orderNo=" + orderNo;
+    md5EncryptStrig += "&tradeNo=" + tradeNo;
+    md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
+    md5EncryptStrig += "&totalAmount=" + totalAmount;
+    md5EncryptStrig += "&payway=" + payway;
+    md5EncryptStrig += "&paypassword=" + paypassword;
+    md5EncryptStrig += Key;
+    var encrypt = md5(md5EncryptStrig);
+
+    var data = {
+        "appId": appId,
+        "method": method,
+        "charset": charset,
+        "signType": signType,
+        "encrypt": encrypt,
+        "timestamp": timestamp,
+        "version": version,
+        "orderNo": orderNo,
+        "tradeNo": tradeNo,
+        "repaymentMonth": repaymentMonth,
+        "totalAmount": totalAmount,
+        "payway": payway,
+        "paypassword": paypassword,
+    };
+    if (payway == '2') {
+        var loading = new F._loading();
+        loading.hide();
+        F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+            name: 'Thanh toán',
+            func: function() {
+                window.open(F._url_join(F._payNormalOrder_td, data));
+
+                F._confirm('Gợi ý', '', 'tips', [{
+                    name: 'Thanh toán thất bại',
+                    func: function() {
+                        window.location.href = '../index.html';
+                    }
+                }, {
+                    name: 'Thanh toán thành công',
+                    func: function() {
+                        window.location.href = './bill.html';
+                    }
+                }]);
+            }
+        }]);
+
+    } else {
+
+        $.ajax({
+            type: "POST",
+            url: F._payNormalOrder_td,
+            data: data,
+            success: function(ret) {
+                ret = JSON.parse(ret);
+                callback(ret);
+
+                switch (ret.code) {
+                    case 10000:
+
+                        break;
+
+                    case 60051: // 交易密码错误
+                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
+                            name: 'Xác nhận',
+                            func: function() {}
+                        }]);
+                        break;
+
+                    default:
+                        $('#loading').remove();
+                        window.location.href = './errorPay.html';
+                        break;
+                }
+            },
+            error: function(ret) {
+                console.error('request error');
+                callback(false);
+            }
+        });
+
     }
 }
 
@@ -1997,7 +1997,7 @@ F._userAddDetailInfo = function(params, callback) {
         collegeaddr: collegeaddr,
         collegename: collegename,
         degree: degree,
-        headimage: '',
+        headimage: headimage,
         sex: sex,
         department: department,
         specialty: specialty,
@@ -2018,6 +2018,7 @@ F._userAddDetailInfo = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     F._confirm('Gợi ý', 'error', 'error', [{
                         name: 'Xác nhận',
                         func: function() {
@@ -2141,6 +2142,7 @@ F._userViewDetailInfo = function(params, callback) {
                     break;
 
                 default:
+                    $('#loading').remove();
                     callback({
                         status: false,
                         data: {},
@@ -2533,37 +2535,56 @@ F._payPwd_open = function(callback) {
     <div class="pay-pwd_wrap" id="pay-pwd_wrap">\
         <div class="pay-pwd">\
             <div class="pay-pwd__top col-xs-24">\
-                <div class="pay-pwd__top-left col-xs-12">验证交易密码</div>\
+                <div class="pay-pwd__top-left col-xs-12">Xác minh mật khẩu giao dịch</div>\
                 <div class="pay-pwd__top-right col-xs-12">\
                     <span class="pay-pwd__t-r-close"></span>\
                 </div>\
             </div>\
             <div class="pay-pwd__bottom col-xs-24">\
+                <div class="pay-pwd__bottom-row5 col-xs-24">Mật mã giao dịch</div>\
                 <div class="pay-pwd__bottom-row1 col-xs-24">\
-                    <div class="pay-pwd__b-r1-left">\
-                        <span class="">交易密码</span>\
-                    </div>\
+                    <!-- <div class="pay-pwd__b-r1-left">\
+                        <span class="">Mật mã giao dịch</span>\
+                    </div> -->\
                     <div class="pay-pwd__b-r1-right">\
-                        <input type="text" class="pay-pwd__b-r1-r-input" placeholder="请输入交易密码">\
+                        <input type="password" class="pay-pwd__b-r1-r-input" maxlength="6" placeholder="Vui lòng nhập mật khẩu giao dịch">\
                     </div>\
                 </div>\
                 <div class="pay-pwd__bottom-row2 col-xs-24">\
-                    <span class="pay-pwd__b-r2-text" onclick="payPwd_forget()">忘记交易密码</span>\
+                    <span class="pay-pwd__b-r2-text" onclick="payPwd_forget()">Quên mật khẩu giao dịch</span>\
                 </div>\
                 <div class="pay-pwd__bottom-row4 col-xs-24">\
-                    <span class="pay-pwd__b-r4-text">交易密码错误</span>\
+                    <span class="pay-pwd__b-r4-text">Mật mã giao dịch sai</span>\
                 </div>\
                 <div class="pay-pwd__bottom-row3 col-xs-24">\
-                    <span class="pay-pwd__b-r3-button">确定</span>\
+                    <span class="pay-pwd__b-r3-button">Xác nhận</span>\
                 </div>\
             </div>\
         </div>\
     </div>';
     $('body').append(html);
 
+    function submit() {
+        var input_val = $('.pay-pwd__b-r1-r-input').val();
+        if (input_val.length !== 6) {
+            $('.pay-pwd__b-r4-text').show();
+            return false;
+        } else {
+            $('.pay-pwd__b-r4-text').hide();
+        }
+        callback(input_val);
+    }
+
     $(".pay-pwd__t-r-close").one('click', function() {
         var self = $(this);
         $('#pay-pwd_wrap').remove();
+    });
+
+    $("body").keydown(function(e) {
+        var curKey = e.which;
+        if (curKey == "13") { //keyCode=13是回车键
+            submit();
+        }
     });
 
     // 忘记密码
@@ -2573,16 +2594,7 @@ F._payPwd_open = function(callback) {
 
     // 提交
     $(".pay-pwd__b-r3-button").on('click', function() {
-        var self = $(this);
-        var input_val = $('.pay-pwd__b-r1-r-input').val();
-        console.log(input_val.length);
-        if (input_val.length !== 6) {
-            $('.pay-pwd__b-r4-text').show();
-            return false;
-        } else {
-            $('.pay-pwd__b-r4-text').hide();
-        }
-        callback(input_val);
+        submit();
     });
 }
 

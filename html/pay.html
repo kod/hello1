@@ -21,6 +21,14 @@
     }
     /*tcy -start-*/
 
+    .modal-body th{
+        line-height: 2;
+    }
+
+    .modal-body td{
+        line-height: 1.8;
+    }
+
     img,
     span,
     i,
@@ -142,7 +150,7 @@
         <section class="site" id="one" ng-controller="addCtrl">
             <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
             <div class="site__main col-xs-24">
-                <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }" ng-click="set_active(index)" ng-repeat="(index, item) in addrlistData">
+                <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }" ng-click="set_active(index, item.msisdn, item.address, item.username)" ng-repeat="(index, item) in addrlistData">
                     <div class="site__m-i-row1 col-xs-24">
                         <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username">Xác nhận địa chỉ nhận</div>
                         <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn">01685968888</div>
@@ -394,18 +402,18 @@
                 <div class="footer__b2-m-row1">
                     <div class="footer__b2-m-r1-title col-xs-24">信息</div>
                     <ul class="footer__b2-m-r1-main col-xs-24">
-                        <a href="./about.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                        <a href="./join.html" target="_self" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li>
+                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                        <!-- <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li> -->
                     </ul>
                 </div>
                 <div class="footer__b2-m-row2">
                     <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
                     <ul class="footer__b2-m-r2-main col-xs-24">
-                        <a href="./buy.html" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                        <li class="footer__b2-m-r2-m-item col-xs-24">账单还款</li>
-                        <li class="footer__b2-m-r2-m-item col-xs-24">账户与安全</li>
-                        <li class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</li>
+                        <a href="./buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">账单还款</a>
+                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">账户与安全</a>
+                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</a>
                     </ul>
                 </div>
                 <div class="footer__b2-m-row3">
@@ -441,6 +449,12 @@
                             <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
                         </li>
                     </ul>
+                </div>
+                <div class="footer__b2-m-row6 col-xs-24">
+                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2010 - 2017 Buyoo. All Rights Reserved</div>
+                    <div class="footer__b2-m-r6-right col-xs-12">
+                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r6-r-img" style="background-image: url(../img/780689798.png);"></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -593,16 +607,21 @@
             return false;
         }
 
-        var addr_length = 0;
-        addressInfo_get(function(ret) {
+        // var addr_length = 0;
+        // addressInfo_get(function(ret) {
 
-            F.username = ret.username;
-            F.msisdn = ret.msisdn;
-            F.address = ret.address;
-            addr_length = ret.length;
-        });
+        //     F.username = ret.username;
+        //     F.msisdn = ret.msisdn;
+        //     F.address = ret.address;
+        //     addr_length = ret.length;
+        // });
 
-        if (addr_length === 0) {
+        // if (addr_length === 0) {
+        //     alert('Vui lòng Thêm địa chỉ nhận hàng');
+        //     return false;
+        // }
+
+        if (!F.username || !F.msisdn || !F.address) {
             alert('Vui lòng Thêm địa chỉ nhận hàng');
             return false;
         }
@@ -726,7 +745,7 @@
                     name: 'Để sau',
                     func: function() {}
                 }, {
-                    name: 'Cải thiện ngay lập tức',
+                    name: 'Hoàn thiện ngay',
                     func: function() {
                         getSchoolInfo_addInfo(ret.data);
                     }
