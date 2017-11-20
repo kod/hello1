@@ -82,11 +82,9 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
                         $scope.collList = collData.slice(40, 48);
                     }
                     $scope.length = collData.length;
-                    //alert();
 
                     $scope.p_current = page;
                     $scope.p_all_page = Math.ceil($scope.length / $scope.p_pernum);
-                    //	                alert($scope.p_all_page);
                     reloadPno();
                     callback();
 

@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <link rel="stylesheet" href="../css/base.css">
-    <title>Thanh toán thành công</title>
+    <title>Thanh toán thất bại</title>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
     body {
@@ -47,7 +47,6 @@
         padding-bottom: 5px;
         cursor: pointer;
     }
-
     </style>
 </head>
 
@@ -57,7 +56,7 @@
             <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./help.html'" >Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./help.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
             <div class="header__title">
@@ -67,12 +66,10 @@
             </div>
         </header>
         <section class="body">
-            <div class="body__main" 
-                :style="{ 'min-height': body__main_height + 'px' }" >
-                <img src="../img/32.png" alt="" class="body__main-img">
-                <div class="body__main-title">Mua thành công</div>
-                <div class="body__main-desc">Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!</div>
-                <span class="body__main-gohome" @click="window.location.href='./order.html'">KIỂM TRA ĐƠN HÀNG</span>
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                <img src="../img/24782487.png" alt="" class="body__main-img">
+                <div class="body__main-title" v-html="msg"></div>
+                <span class="body__main-gohome" @click="gohome">Trang chủ</span>
             </div>
         </section>
         <footer class="footer">
@@ -191,8 +188,16 @@
         '../js/common',
     ], function($, Vue) {
 
+        var error_json = {
+            40005: 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước',
+            40060: 'Trường của bạn không hỗ trợ chương trình trả góp, bạn vui lòng thanh toán toàn bộ',
+            50006: 'Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang',
+        };
+
+        F.query = F._hrefUtils.parse().query || {};
         F.vue = {
             body__main_height: document.documentElement.clientHeight - 133 - 210,
+            msg: error_json[F.query.msg] || 'error',
         };
 
         var load = function() {

@@ -73,7 +73,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
     }
 
     function userAddDetailInfo(data) {
-
+        console.dir(data);
         var loading = new F._loading();
         loading.show();
         F._userAddDetailInfo(data, function(ret) {
@@ -82,11 +82,11 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
             switch (ret.code) {
                 case 10000:
-                	window.location.reload();
+                    window.location.reload();
                     break;
 
                 default:
-                    
+
                     break;
             }
         });
@@ -112,14 +112,14 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
     $scope.getUserInfoDetails = function() {
         var url = F._userViewDetailInfo_uc;
-        //		var url = F._queryOrderList_td;
+        //      var url = F._queryOrderList_td;
         var ajax = new ajaxClass($http, url, "POST");
 
         var appId = localStorage.getItem("funId");
         var method = 'fun.uc.userviewdetail';
         var charset = 'utf-8';
         var funid = localStorage.getItem("funId");
-        //		var msisdn = localStorage.getItem("msisdn");
+        //      var msisdn = localStorage.getItem("msisdn");
         var msisdn = localStorage.getItem("msisdn");
         var Key = 'userKey';
 
@@ -156,7 +156,6 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
             if (resCode == 10000) {
 
                 $scope.centerUserInfo = res.data;
-
 
 
                 $scope.headimage = res.data.headimage;
@@ -223,14 +222,14 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                 $('#g_zy').val(res.data.specialty);
                 $('#degree').val(res.data.degree);
                 var timesup = res.data.admissiontime;
-                //				var ii=timesup.replace(/(\d{4})-(\d{2})-(\d{2})/g,'$1');
+                //              var ii=timesup.replace(/(\d{4})-(\d{2})-(\d{2})/g,'$1');
                 if (timesup) {
                     var ii = timesup.slice(0, 4);
                     $('#sctime-ac').val(ii);
                     var tt = timesup.slice(5, 7);
                     $('#sctime-ac-m').val(tt);
-                    //				$('.timesup').val(res.data.admissiontime);
-                    //				$('.timescl').val(res.data.graduationtime);
+                    //              $('.timesup').val(res.data.admissiontime);
+                    //              $('.timescl').val(res.data.graduationtime);
                     var timescl = res.data.graduationtime;
                     if (timescl == 0 && timescl == '' && timescl == undefined) {
                         $('#sctime-ov-m').val('');
@@ -251,111 +250,117 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
         };
         ajax.requestData();
     }
+
+
     loadData_getSchoolInfo(function(ret) {
 
         $scope.schoolList = ret.details;
         $scope.getUserInfoDetails();
-    })
+    });
+
+
+
     $('#submit').click(function() {
         var num = $('#sctime-ac').val();
         var thiss = $('#sctime-ov').val();
         var sctime_ac_m = $('#sctime-ac-m').val();
         var sctime_ov_m = $('#sctime-ov-m').val();
 
-        if (false) {
-            // if(thiss<=num){
+        $('#tis').hide();
+        $('#submit').attr('disabled', false)
+
+        if (num && sctime_ac_m.length === 0) {
             $('#tis').show();
-            $('#submit').attr('disabled', true)
-        } else {
-            $('#tis').hide();
-            $('#submit').attr('disabled', false)
-
-            if (num) {
-                if (thiss.length === 0 || sctime_ac_m.length === 0 || sctime_ov_m.length === 0) {
-                    $('#tis').show();
-                    return false;
-                }
-                if (thiss <= num) {
-                    $('#tis').show();
-                    return false;
-                }
-            }
-
-            var g_name = $('#g_name').val();
-            var sexs = $('#g_sex').val();
-            if (sexs == 1) {
-                var sex = 1;
-            } else {
-                var sex = 2;
-            }
-            var g_identification = $('#g_identification').val();
-            var textarea = $('textarea').val();
-            var g_email = $('#g_email').val();
-            var g_cname1 = $('#g_cname1').val();
-            var g_cname2 = $('#g_cname2').val();
-            var g_cname3 = $('#g_cname3').val();
-            var per1_name = $('#per1_name').val();
-            var per1_phone = $('#per1_phone').val();
-            var per1_gx = $('#per1_gx').val();
-            var per1_id = $('#per1_id').val();
-            var per2_name = $('#per2_name').val();
-            var per2_phone = $('#per2_phone').val();
-            var per2_gx = $('#per2_gx').val();
-            var per2_id = $('#per2_id').val();
-            var per3_name = $('#per3_name').val();
-            var per3_phone = $('#per3_phone').val();
-            var per3_gx = $('#per3_gx').val();
-            var per3_id = $('#per3_id').val();
-            var g_byyx = $('#g_byyx').val();
-            var g_xxdz = $('#g_xxdz').val();
-            var g_yx = $('#g_yx').val();
-            var g_zy = $('#g_zy').val();
-            var degree = $('#degree').val();
-
-        	var ii = $('#sctime-ac').val();
-            if (ii) {
-            	var tt = $('#sctime-ac-m').val();
-            	var ii_tt = ii + '-' + tt;
-            	var timesup = ii_tt + "-06 11:30:50";
-            	var oo = $('#sctime-ov').val();
-            	var vv = $('#sctime-ov-m').val();
-            	if (oo == 0 && oo == '' && vv == 0 && vv == '') {
-            	    var timescl = '';
-            	} else {
-            	    var oo_vv = oo + '-' + vv;
-            	    var timescl = oo_vv + "-06 11:30:50";
-            	}
-            } else {
-            	var timesup = '';
-            	var timescl = '';
-            }
-            userAddDetailInfo({
-            	username: g_name,
-            	sex: sex,
-            	identification: g_identification,
-            	address: textarea,
-            	email: g_email,
-            	collegename: g_byyx || '',
-            	collegeaddr: g_xxdz,
-            	department: g_yx,
-            	specialty: g_zy,
-            	degree: degree || '',
-            	admissiontime: timesup,
-            	graduationtime: timescl,
-            	connectusername1: g_cname1,
-            	connectusermsisdn1: per1_phone,
-            	connectuserrelation1: per1_gx,
-            	connectuseridentification1: per1_id,
-            	connectusername2: g_cname2,
-            	connectusermsisdn2: per2_phone,
-            	connectuserrelation2: per2_gx,
-            	connectuseridentification2: per2_id,
-            	connectusername3: g_cname3,
-            	connectusermsisdn3: per3_phone,
-            	connectuserrelation3: per3_gx,
-            	connectuseridentification3: per3_id,
-            	headimage: F.headimage,
-            });
+            return false;
         }
+
+        if (thiss && sctime_ov_m.length === 0) {
+            $('#tis').show();
+            return false;
+        }
+
+        if (thiss && !num) {
+            $('#tis').show();
+            return false;
+        }
+
+        if (num && thiss && (+num >= +thiss)) {
+            $('#tis').show();
+            return false;
+        }
+
+        var g_name = $('#g_name').val();
+        var sexs = $('#g_sex').val();
+        if (sexs == 1) {
+            var sex = 1;
+        } else {
+            var sex = 2;
+        }
+        var g_identification = $('#g_identification').val();
+        var textarea = $('textarea').val();
+        var g_email = $('#g_email').val();
+        var g_cname1 = $('#g_cname1').val();
+        var g_cname2 = $('#g_cname2').val();
+        var g_cname3 = $('#g_cname3').val();
+        var per1_name = $('#per1_name').val();
+        var per1_phone = $('#per1_phone').val();
+        var per1_gx = $('#per1_gx').val() || '';
+        var per1_id = $('#per1_id').val();
+        var per2_name = $('#per2_name').val();
+        var per2_phone = $('#per2_phone').val();
+        var per2_gx = $('#per2_gx').val() || '';
+        var per2_id = $('#per2_id').val();
+        var per3_name = $('#per3_name').val();
+        var per3_phone = $('#per3_phone').val();
+        var per3_gx = $('#per3_gx').val() || '';
+        var per3_id = $('#per3_id').val();
+        var g_byyx = $('#g_byyx').val();
+        var g_xxdz = $('#g_xxdz').val();
+        var g_yx = $('#g_yx').val();
+        var g_zy = $('#g_zy').val();
+        var degree = $('#degree').val();
+
+        var ii = $('#sctime-ac').val();
+        if (ii) {
+            var tt = $('#sctime-ac-m').val();
+            var timesup = ii + "-" + tt + '-11 11:11:11';
+            var oo = $('#sctime-ov').val();
+            var vv = $('#sctime-ov-m').val();
+            if (oo) {
+                var timescl = oo + "-"+ vv + '-11 11:11:11';
+            } else {
+                var timescl = '';
+            }
+        } else {
+            var timesup = '';
+            var timescl = '';
+        }
+        userAddDetailInfo({
+            username: g_name,
+            sex: sex,
+            identification: g_identification,
+            address: textarea,
+            email: g_email,
+            collegename: g_byyx || '',
+            collegeaddr: g_xxdz,
+            department: g_yx,
+            specialty: g_zy,
+            degree: degree || '',
+            admissiontime: timesup,
+            graduationtime: timescl,
+            connectusername1: g_cname1,
+            connectusermsisdn1: per1_phone,
+            connectuserrelation1: per1_gx,
+            connectuseridentification1: per1_id,
+            connectusername2: g_cname2,
+            connectusermsisdn2: per2_phone,
+            connectuserrelation2: per2_gx,
+            connectuseridentification2: per2_id,
+            connectusername3: g_cname3,
+            connectusermsisdn3: per3_phone,
+            connectuserrelation3: per3_gx,
+            connectuseridentification3: per3_id,
+            headimage: F.headimage,
+        });
     })
 })

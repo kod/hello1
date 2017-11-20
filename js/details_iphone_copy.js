@@ -39,7 +39,6 @@ function GetRequest() {
     var theRequest = new Object();
     if (url.indexOf("?") != -1) {
         var str = url.substr(1);
-        //alert(str);  
         strs = str.split("&");
         for (var i = 0; i < strs.length; i++) {
             theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
@@ -244,13 +243,11 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         var propertiesIds = $scope.productDetail[0].propertiesIds;
 
-                        //alert(propertiesIds);
                         var propertiesIdsArray = propertiesIds.split('-');
 
                         for (var i = 0; i < propertiesIdsArray.length; i++) {
                             for (var j = 0; j < $scope.propertiesDetail.length; j++) {
                                 if (propertiesIdsArray[i] == $scope.propertiesDetail[j].id) {
-                                    //alert($scope.propertiesDetail[j].name);
                                     $scope.propertiesDetailName.push($scope.propertiesDetail[j].name);
                                 }
                             }
@@ -258,9 +255,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         $scope.propertiesDetails = [];
                         $scope.propertiesDetailss = [];
                         for (var t = 0; t < $scope.propertiesDetail.length; t++) {
-                            //alert($scope.propertiesDetail[t].name);
                             if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[0]) {
-                                //alert($scope.propertiesDetailName[0])
                                 $scope.propertiesDetails.push($scope.propertiesDetail[t]);
                             } else if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[1]) {
                                 $scope.propertiesDetailss.push($scope.propertiesDetail[t]);
@@ -726,8 +721,13 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                 }
 
             } else {
-                alert("Đã hết hàng")
-                window.location.href = document.referrer;
+                F._confirm('Gợi ý', 'Đã hết hàng', 'error', [{
+                    name: 'Xác nhận',
+                    func: function() {
+                        window.location.href = document.referrer;
+                    }
+                }]);
+
             }
         } else {
             //返回码错误
@@ -810,7 +810,6 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
 })
 app.filter('reverse', function() { //可以注入依赖
     return function(text) {
-        //alert(text.length);
         var newTelVal = '';
         if (text.length <= 2) {
             for (var i = 0; i < text.length; i++) {
@@ -1303,7 +1302,7 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
                 window.location.href = "login.html";
             }
         } else {
-            //alert("请选择商品类型!");
+            //("请选择商品类型!");
         }
     }
 })

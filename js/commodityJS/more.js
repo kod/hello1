@@ -2,6 +2,8 @@ var app = angular.module("moreApp", []);
 app.filter('priceFormat', function() { //可以注入依赖
     return F._priceFormat;
 });
+F.query = F._hrefUtils.parse().query;
+F.currentPage = F.query.page || 1;
 
 app.controller("moreCtrl", function($scope, $http) {
 
@@ -12,7 +14,6 @@ app.controller("moreCtrl", function($scope, $http) {
     F.sub_classfy_id = '0';
     F.third_classfy_id = '0';
     F.pagesize = '8';
-    F.currentPage = 1;
 
     function getAllProductInfo(params, callback) {
 
@@ -31,6 +32,10 @@ app.controller("moreCtrl", function($scope, $http) {
         params.third_classfy_id = params.third_classfy_id ? params.third_classfy_id : F.third_classfy_id;
         params.pagesize = params.pagesize ? params.pagesize : F.pagesize;
         params.currentPage = params.currentPage ? params.currentPage : F.currentPage;
+
+
+        F._setUrl(params.currentPage);
+
 
         var Key = 'commodityKey';
 
@@ -101,6 +106,7 @@ app.controller("moreCtrl", function($scope, $http) {
                         var priceStrings = FqPriceArray($scope.nowProduct);
                         fenqiAjax(priceStrings, 0.5, 12);
 
+                        $scope.nowPage = currentPage;
                         $scope.totalPage = res.totalPage;
                         if ($scope.totalPage == 1) {
                             $("#nextPagebtn").attr("disabled", true);
@@ -154,7 +160,7 @@ app.controller("moreCtrl", function($scope, $http) {
             classfy_id: '0',
             sub_classfy_id: '0',
             third_classfy_id: '0',
-        })
+        });
     }
     $scope.changeProductType = changeProductType;
 
@@ -243,8 +249,9 @@ app.controller("moreCtrl", function($scope, $http) {
         var currentPage = "1";
         var Key = "commodityKey";
 
+        console.log(F.currentPage);
         getAllProductInfo({
-            currentPage: currentPage,
+            currentPage: F.currentPage,
         }); //页面加载获取数据
         /*下一页*/
         $scope.nextPage = function() {
@@ -255,6 +262,7 @@ app.controller("moreCtrl", function($scope, $http) {
 
             /*tcy -start-*/
 
+            F.currentPage = +F.currentPage;
 
             F.currentPage += 1;
             $scope.nowPage = F.currentPage;
@@ -276,6 +284,8 @@ app.controller("moreCtrl", function($scope, $http) {
 
             /*tcy -start-*/
 
+
+            F.currentPage = +F.currentPage;
 
             F.currentPage -= 1;
             $scope.nowPage = F.currentPage;
@@ -311,6 +321,7 @@ app.controller("moreCtrl", function($scope, $http) {
 
         /*ajax请求接口*/
         function reqAajx(currentPage) {
+            console.log('111111areqAajxreqAajxreqAajxreqAajxreqAajxreqAajxreqAajxreqAajxreqAajxsodifjsdiofjs');
             var currentPage = currentPage;
 
             var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
@@ -730,8 +741,8 @@ function gotoDetails(typeId, brandId) {
 
 
     if (brandId != null && brandId != "" && typeId != null && typeId != "") {
-        // window.location.href = "details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-        window.open("details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
+        window.location.href = "details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
+        // window.open("details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
 
     } else {
         // window.location.href = "";

@@ -1024,7 +1024,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .footer__b2-m-row3 {
     float: left;
-    width: 270px;
+    width: 550px;
 }
 
 .footer__b2-m-r3-title {
@@ -1041,7 +1041,9 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .footer__b2-m-r3-m-i-img {
-    height: 40px;
+    width: 80%;
+    margin-bottom: 25px;
+    /*height: 40px;*/
 }
 
 
@@ -1109,12 +1111,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .footer__b2-m-row6 {
-    border-top: 1px solid #444;
-    margin-top: 10px;
+    border-top: 1px solid #293d54;
     padding-top: 20px;
     padding-bottom: 20px;
     font-size: 15px;
     color: #969696;
+    margin-bottom: 15px;
 }
 
 .footer__b2-m-r6-right {
@@ -1126,6 +1128,69 @@ input[type="number"]::-webkit-inner-spin-button {
     display: inline-block;
     cursor: pointer;
     height: 50px;
+    width: 129px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.footer__b2-m-row7 {
+    border-top: 1px solid #293d54;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15px;
+    color: #969696;
+
+}
+
+.footer__b2-m-r7-l-row1 {
+    float: left;
+    width: 33%;
+    margin-bottom: 0;
+    padding-top: 15px;
+}
+
+.footer__b2-m-r7-l-r1-icon {
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.footer__b2-m-r7-l-r1-email {
+    display: inline-block;
+    color: #eee;
+    font-weight: 300;
+    margin-left: 5px;
+}
+
+.footer__b2-m-r7-l-row2 {
+    float: left;
+    width: 67%;
+    line-height: 40px;
+    padding-left: 4%;
+    border-left: 1px solid #293d54;
+}
+
+.footer__b2-m-r7-l-r2-app {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;    
+}
+
+.footer__b2-m-r7-right {
+    text-align: right;
+    padding-right: 45px;
+}
+
+.footer__b2-m-r7-r-img {
+    display: inline-block;
+    cursor: pointer;
+    height: 40px;
     width: 129px;
     background-repeat: no-repeat;
     background-position: center;

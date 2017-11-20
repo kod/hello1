@@ -1,7 +1,7 @@
 if (!window.F) window.F = {};
 
-F._IP = "http://47.52.21.255";
-// F._IP = "http://47.52.106.165";
+// F._IP = "http://47.52.21.255";
+F._IP = "http://47.52.106.165";
 F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
@@ -1009,7 +1009,7 @@ F._userAction_login = function(params, callback) {
                     var hrefUtils_parse = F._hrefUtils.parse();
                     F.query = hrefUtils_parse.query;
 
-                    if (hrefUtils_parse.path.slice(-10,-1) !== 'login.htm') return false;
+                    if (hrefUtils_parse.path.slice(-10, -1) !== 'login.htm') return false;
 
                     if (F.query) {
                         switch (F.query.from) {
@@ -1304,24 +1304,47 @@ F._orderFullPay = function(params, callback) {
     var loading = new F._loading();
     if (payway == '2') {
         loading.hide();
-        var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
-            name: 'Thanh toán',
-            func: function() {
-                window.open(F._url_joint(F._FullPaymentOrder_td, data));
-                full_confirm.close();
-                F._confirm('Gợi ý', '', 'tips', [{
-                    name: 'Thanh toán thất bại',
-                    func: function() {
-                        window.location.href = '../index.html';
-                    }
-                }, {
-                    name: 'Thanh toán thành công',
-                    func: function() {
-                        window.location.href = './order.html';
-                    }
-                }]);
-            },
-        }]);
+        if (params._noConfirm) {
+            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+                name: 'Thanh toán',
+                func: function() {
+                    window.open(F._url_joint(F._FullPaymentOrder_td, data));
+                    full_confirm.close();
+                    F._confirm('Gợi ý', '', 'tips', [{
+                        name: 'Thanh toán thất bại',
+                        func: function() {
+                            window.location.href = '../index.html';
+                        }
+                    }, {
+                        name: 'Thanh toán thành công',
+                        func: function() {
+                            window.location.href = './order.html';
+                        }
+                    }]);
+                },
+            }]);
+
+        } else {
+            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+                name: 'Thanh toán',
+                func: function() {
+                    window.open(F._url_joint(F._FullPaymentOrder_td, data));
+                    full_confirm.close();
+                    F._confirm('Gợi ý', '', 'tips', [{
+                        name: 'Thanh toán thất bại',
+                        func: function() {
+                            window.location.href = '../index.html';
+                        }
+                    }, {
+                        name: 'Thanh toán thành công',
+                        func: function() {
+                            window.location.href = './order.html';
+                        }
+                    }]);
+                },
+            }]);
+        }
+
     } else {
 
         $.ajax({
@@ -1584,24 +1607,47 @@ F._payOrder = function(params, callback) {
     var loading = new F._loading();
     if (payway == '2') {
         loading.hide();
-        F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
-            name: 'Thanh toán',
-            func: function() {
-                window.open(F._url_joint(F._payOrder_td, data));
+        console.log(params._noConfirm);
+        if (params._noConfirm) {
+            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+                name: 'Thanh toán',
+                func: function() {
+                    window.open(F._url_joint(F._payOrder_td, data));
+                    full_confirm.close();
+                    F._confirm('Gợi ý', '', 'tips', [{
+                        name: 'Thanh toán thất bại',
+                        func: function() {
+                            window.location.href = '../index.html';
+                        }
+                    }, {
+                        name: 'Thanh toán thành công',
+                        func: function() {
+                            window.location.href = './order.html';
+                        }
+                    }]);
+                }
+            }]);
+        } else {
+            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+                name: 'Thanh toán',
+                func: function() {
+                    window.open(F._url_joint(F._payOrder_td, data));
+                    full_confirm.close();
+                    F._confirm('Gợi ý', '', 'tips', [{
+                        name: 'Thanh toán thất bại',
+                        func: function() {
+                            window.location.href = '../index.html';
+                        }
+                    }, {
+                        name: 'Thanh toán thành công',
+                        func: function() {
+                            window.location.href = './order.html';
+                        }
+                    }]);
+                }
+            }]);
 
-                F._confirm('Gợi ý', '', 'tips', [{
-                    name: 'Thanh toán thất bại',
-                    func: function() {
-                        window.location.href = '../index.html';
-                    }
-                }, {
-                    name: 'Thanh toán thành công',
-                    func: function() {
-                        window.location.href = './order.html';
-                    }
-                }]);
-            }
-        }]);
+        }
     } else {
         $.ajax({
             type: "POST",
@@ -1836,24 +1882,45 @@ F._payNormalOrder = function(params, callback) {
     if (payway == '2') {
         var loading = new F._loading();
         loading.hide();
-        F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
-            name: 'Thanh toán',
-            func: function() {
-                window.open(F._url_join(F._payNormalOrder_td, data));
-
-                F._confirm('Gợi ý', '', 'tips', [{
-                    name: 'Thanh toán thất bại',
-                    func: function() {
-                        window.location.href = '../index.html';
-                    }
-                }, {
-                    name: 'Thanh toán thành công',
-                    func: function() {
-                        window.location.href = './bill.html';
-                    }
-                }]);
-            }
-        }]);
+        if (params._noConfirm) {
+            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+                name: 'Thanh toán',
+                func: function() {
+                    window.open(F._url_join(F._payNormalOrder_td, data));
+                    full_confirm.close();
+                    F._confirm('Gợi ý', '', 'tips', [{
+                        name: 'Thanh toán thất bại',
+                        func: function() {
+                            window.location.href = '../index.html';
+                        }
+                    }, {
+                        name: 'Thanh toán thành công',
+                        func: function() {
+                            window.location.href = './bill.html';
+                        }
+                    }]);
+                }
+            }]);
+        } else {
+            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+                name: 'Thanh toán',
+                func: function() {
+                    window.open(F._url_join(F._payNormalOrder_td, data));
+                    full_confirm.close();
+                    F._confirm('Gợi ý', '', 'tips', [{
+                        name: 'Thanh toán thất bại',
+                        func: function() {
+                            window.location.href = '../index.html';
+                        }
+                    }, {
+                        name: 'Thanh toán thành công',
+                        func: function() {
+                            window.location.href = './bill.html';
+                        }
+                    }]);
+                }
+            }]);
+        }
 
     } else {
 
@@ -1967,6 +2034,7 @@ F._userAddDetailInfo = function(params, callback) {
     md5EncryptStrig += "&graduationtime=" + graduationtime;
     md5EncryptStrig += Key;
 
+    console.log(md5EncryptStrig);
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
@@ -2210,6 +2278,25 @@ F._getSchoolInfo = function(params, callback) {
 }
 
 // 22222222222222
+
+F._setUrl = function (page) {
+    function joint(data) {
+        var str = '';
+        for (i in data) {
+            str += '&' + i + '=' + data[i];
+        }
+        return str.slice(1);
+    }
+
+    var parse = F._hrefUtils.parse();
+    parse.query.page = page;
+    var url = '/'+ parse.path + '?' + joint(parse.query)
+
+    history.pushState({
+        url: url,
+        title: document.title
+    }, document.title, url);
+}
 
 /*主页退出*/
 function userQuit() {
@@ -2535,7 +2622,7 @@ F._payPwd_open = function(callback) {
     <div class="pay-pwd_wrap" id="pay-pwd_wrap">\
         <div class="pay-pwd">\
             <div class="pay-pwd__top col-xs-24">\
-                <div class="pay-pwd__top-left col-xs-12">Xác minh mật khẩu giao dịch</div>\
+                <div class="pay-pwd__top-left col-xs-12">Vui lòng nhập mã giao dịch</div>\
                 <div class="pay-pwd__top-right col-xs-12">\
                     <span class="pay-pwd__t-r-close"></span>\
                 </div>\
@@ -2547,11 +2634,11 @@ F._payPwd_open = function(callback) {
                         <span class="">Mật mã giao dịch</span>\
                     </div> -->\
                     <div class="pay-pwd__b-r1-right">\
-                        <input type="password" class="pay-pwd__b-r1-r-input" maxlength="6" placeholder="Vui lòng nhập mật khẩu giao dịch">\
+                        <input type="password" class="pay-pwd__b-r1-r-input" maxlength="6" placeholder="Vui lòng nhập mã giao dịch">\
                     </div>\
                 </div>\
                 <div class="pay-pwd__bottom-row2 col-xs-24">\
-                    <span class="pay-pwd__b-r2-text" onclick="payPwd_forget()">Quên mật khẩu giao dịch</span>\
+                    <span class="pay-pwd__b-r2-text" onclick="payPwd_forget()">Quên mã giao dịch</span>\
                 </div>\
                 <div class="pay-pwd__bottom-row4 col-xs-24">\
                     <span class="pay-pwd__b-r4-text">Mật mã giao dịch sai</span>\
@@ -2589,7 +2676,7 @@ F._payPwd_open = function(callback) {
 
     // 忘记密码
     $(".pay-pwd__b-r2-text").on('click', function() {
-        window.open('./back_id.html?phoneNum='+ F.msisdn +'&from=payPwd');
+        window.open('./back_id.html?phoneNum=' + F.msisdn + '&from=payPwd');
     });
 
     // 提交
@@ -2648,7 +2735,7 @@ F._baseinfo = function(data, userInfo) {
             school_id_name_json[data[i].id] = data[i].name;
             if (!collegename) collegename = data[i].id;
         }
-        collegename = school_id_name_json[collegename];
+        // collegename = school_id_name_json[collegename];
         collegename__list = collegename_html;
         console.log(school_id_name_json);
     }
@@ -2769,7 +2856,7 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Tốt nghiệp trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-collegename">\
-                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' + collegename + '</span>\
+                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' + school_id_name_json[collegename] + '</span>\
                                 <span class="actionsheet__right js_collegename" data-collegename="">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
@@ -3142,10 +3229,7 @@ F._baseinfo = function(data, userInfo) {
         // connectusermsisdn3 = connectusermsisdn3;
         // connectuserrelation3 = connectuserrelation3;
         // connectuseridentification3 = connectuseridentification3;
-        headimage = '';
-
-        console.log(collegename);
-        console.log(collegename.length);
+        headimage = headimage;
 
 
         if (!username.length) {
@@ -3223,18 +3307,22 @@ F._baseinfo = function(data, userInfo) {
             return false;
         }
 
-        if (!graduationtime.length) {
-            alert('Vui lòng nhập Thời gian tốt nghiệp');
-            return false;
-        }
+        // if (!graduationtime.length) {
+        //     alert('Vui lòng nhập Thời gian tốt nghiệp');
+        //     return false;
+        // }
 
-        if (parseInt(admissiontime.slice(0, 4)) >= parseInt(graduationtime.slice(0, 4))) {
-            alert('Khoảng thời gian học sai');
-            return false;
-        }
+        if (graduationtime) {
 
-        admissiontime = admissiontime + '-11 11:11:11';
-        graduationtime = graduationtime + '-11 11:11:11';
+            if (parseInt(admissiontime.slice(0, 4)) >= parseInt(graduationtime.slice(0, 4))) {
+                alert('Khoảng thời gian học sai');
+                return false;
+            }
+            admissiontime = admissiontime + '-11 11:11:11';
+            graduationtime = graduationtime + '-11 11:11:11';
+        } else {
+            admissiontime = admissiontime + '-11 11:11:11';
+        }
 
         callback({
             username: username,
@@ -3261,7 +3349,7 @@ F._baseinfo = function(data, userInfo) {
             connectusermsisdn3: connect_json.connectusermsisdn3,
             connectuserrelation3: connect_json.connectuserrelation3,
             connectuseridentification3: connect_json.connectuseridentification3,
-            headimage: '',
+            headimage: headimage,
         });
     };
 

@@ -105,8 +105,13 @@ app.controller("indexCtrl", function($scope, $http, $filter) {
         if (classifyId != "") {
             window.location.href = "./html/more.html?brandId=" + "" + "&classifyId=" + classifyId + "&brandAct=" + brandAct;
         } else {
-            alert("Sản phẩm không tồn tại！");
-            window.location.href = "";
+            F._confirm('Gợi ý', 'Sản phẩm không tồn tại！', 'tips', [{
+                name: 'Xác nhận',
+                func: function() {
+                    window.location.href = "";
+                }
+            }]);
+
         }
     }
 })

@@ -146,13 +146,13 @@
                             <input type="text" id="g_name" />
                             <br />
                             <span>Giới tính</span>
-                            <select name="" id="g_sex" style="width: 250px;">
+                            <select name="" id="g_sex" style="width: 250px; color: #333;">
                                 <option value="1">Nam</option>
                                 <option value="2">Nữ</option>
                             </select>
                             <br />
                             <span>Chứng minh thư</span>
-                            <input type="text" id="g_identification" />
+                            <input type="text" id="g_identification">
                             <br />
                             <div style="overflow: hidden;">
                                 <span class="addleft">Địa chỉ</span>
@@ -186,7 +186,7 @@
                         <div class="perone">
                             <span>Tốt nghiệp trường</span>
                             <!-- <input type="text" id="g_byyx" /> -->
-                            <select name="" id="g_byyx" style="width: 250px;">
+                            <select name="" id="g_byyx" style="width: 250px; color: #333;">
                                 <option ng-repeat="item in schoolList" ng-value="item.id" ng-bind="item.name">school name</option>
                             </select>
                             <br />
@@ -215,7 +215,7 @@
                             </select>
                             <br />
                             <span>Khoảng thời gian học</span>
-                            <select name="" id="sctime-ac">
+                            <select name="" id="sctime-ac" style="color: #333;">
                                 <option value=""></option>
                                 <option value="1970">1970</option>
                                 <option value="1971">1971</option>
@@ -266,7 +266,7 @@
                                 <option value="2016">2016</option>
                                 <option value="2017">2017</option>
                             </select>
-                            <select name="" id="sctime-ac-m">
+                            <select name="" id="sctime-ac-m" style="color: #333;">
                                 <option value=""></option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -284,7 +284,7 @@
                             <input type="text" class="times timesup" style="display:none" />
                             <small>Đến</small>
                             <input type="text" class="times timescl" style="display:none" />
-                            <select name="" id="sctime-ov">
+                            <select name="" id="sctime-ov" style="color: #333;">
                                 <option value=""></option>
                                 <option value="1971">1971</option>
                                 <option value="1972">1972</option>
@@ -333,11 +333,11 @@
                                 <option value="2015">2015</option>
                                 <option value="2016">2016</option>
                                 <option value="2017">2017</option>
-                                <option value="2017">2018</option>
-                                <option value="2017">2019</option>
-                                <option value="2017">2020</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
                             </select>
-                            <select name="" id="sctime-ov-m">
+                            <select name="" id="sctime-ov-m" style="color: #333;">
                                 <option value=""></option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -425,23 +425,7 @@
                     <!-- <input type="text" id="per1_gx" /> -->
                     <select name="" id="per1_gx" style="width: 200px;">
                         <option value="Bố">Bố</option>
-                        <option value="Chú bác">Chú bác</option>
-                        <option value="Anh em">Anh em</option>
-                        <option value="Ông nội">Ông nội</option>
-                        <option value="Bà nội">Bà nội</option>
-                        <option value="Cô">Cô</option>
                         <option value="Mẹ">Mẹ</option>
-                        <option value="Cậu">Cậu</option>
-                        <option value="Chị em">Chị em</option>
-                        <option value="Ông ngoại">Ông ngoại</option>
-                        <option value="Bà ngoại">Bà ngoại</option>
-                        <option value="Dì">Dì</option>
-                        <option value="Vợ/chồng">Vợ/chồng</option>
-                        <option value="Bạn trai/bạn gái">Bạn trai/bạn gái</option>
-                        <option value="Bạn cùng phòng">Bạn cùng phòng</option>
-                        <option value="Bạn thân">Bạn thân</option>
-                        <option value="Thầy cô giáo/ sếp">Thầy cô giáo/ sếp</option>
-                        <option value="Bạn học/ đồng nghiệp">Bạn học/ đồng nghiệp</option>
                     </select>
                     <br />
                     <span>Số chứng minh thư</span>
@@ -597,67 +581,63 @@
                 </div>
             </div>
         </div>
-        <div class="footer__bottom2 col-xs-24">
-            <div class="footer__bottom2-main">
-                <div class="footer__b2-m-row1">
-                    <div class="footer__b2-m-r1-title col-xs-24">信息</div>
-                    <ul class="footer__b2-m-r1-main col-xs-24">
-                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <!-- <li class="footer__b2-m-r1-m-item col-xs-24">隐私政策</li> -->
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row2">
-                    <div class="footer__b2-m-r2-title col-xs-24">帮助</div>
-                    <ul class="footer__b2-m-r2-main col-xs-24">
-                        <a href="./buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">账单还款</a>
-                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">账户与安全</a>
-                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">商户退款与保修</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row3">
-                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                    <ul class="footer__b2-m-r3-main col-xs-24">
-                        <li class="footer__b2-m-r3-m-item col-xs-24">
-                            <img src="../img/pay1034.jpg" alt="" class="footer__b2-m-r3-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row4">
-                    <div class="footer__b2-m-r4-title col-xs-24">KẾT NỐI VỚI CHÚNG TÔI</div>
-                    <ul class="footer__b2-m-r4-main col-xs-24">
-                        <li class="footer__b2-m-r4-m-item1 col-xs-24">
-                            <div class="footer__b2-m-r4-m-i1-main">
-                                <img src="../img/273y4294.png" alt="" class="footer__b2-m-r4-m-i-icon">
-                                <a href="mailto:service@buyoo.asia" class="footer__b2-m-r4-m-i-email">service@buyoo.asia</a>
-                            </div>
-                        </li>
-                        <li class="footer__b2-m-r4-m-item col-xs-24">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r4-m-i-app" style="background-image: url(../img/2309409384203.png)"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row5">
-                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                    <ul class="footer__b2-m-r5-main col-xs-24">
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row6 col-xs-24">
-                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2010 - 2017 Buyoo. All Rights Reserved</div>
-                    <div class="footer__b2-m-r6-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r6-r-img" style="background-image: url(../img/780689798.png);"></a>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="./buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
+                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
+                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row7 col-xs-24">
+                    <div class="footer__b2-m-r7-left col-xs-12">
+                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
+                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
+                        </label>
+                        <div class="footer__b2-m-r7-l-row2">
+                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
+                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                        </div>
+                    </div>
+                    <div class="footer__b2-m-r7-right col-xs-12">
+                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
+                    </div>
+                    </div>
+                    <div class="footer__b2-m-row6 col-xs-24">
+                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2010 - 2017 Buyoo. All Rights Reserved</div>
+                        <div class="footer__b2-m-r6-right col-xs-12"></div>
                     </div>
                 </div>
             </div>
-        </div>
     </footer>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
@@ -841,7 +821,8 @@
     $('#sctime-ac').change(function() {
         var thiss = $(this).val();
         var num = $('#sctime-ov').val();
-        if (thiss > num) {
+        
+        if (num && thiss > num) {
             $('#tis').show();
             $('#submit').attr('disabled', true)
         } else {
@@ -853,14 +834,15 @@
     $('#sctime-ov').change(function() {
         var thiss = $(this).val();
         var num = $('#sctime-ac').val();
-        if (thiss < num) {
+        if (!thiss) $('#sctime-ov-m').val('');
+
+        if (thiss && thiss <= num) {
             $('#tis').show();
             $('#submit').attr('disabled', true)
         } else {
             $('#tis').hide();
             $('#submit').attr('disabled', false)
         }
-
 
     })
     $('#sctime-ac-m').change(function() {
@@ -874,17 +856,16 @@
             $('#submit').attr('disabled', false)
         }
     })
-    $('#sctime-ov-m').change(function() {
-        var thiss = $(this).val();
-        var numovs = $('#sctime-ac-m').val();
-        if (thiss < numovs) {
-            $('#tis').show();
-            $('#submit').attr('disabled', true)
-        } else {
-            $('#tis').hide();
-            $('#submit').attr('disabled', false)
-        }
-    })
+    // $('#sctime-ov-m').change(function() {
+    //     var thiss = $(this).val();
+    //     if (!thiss && $('#sctime-ov').val().length) {
+    //         $('#tis').show();
+    //         $('#submit').attr('disabled', true)
+    //     } else {
+    //         $('#tis').hide();
+    //         $('#submit').attr('disabled', false)
+    //     }
+    // })
     </script>
     <script src="../js/userCenterJS/personal.js" type="text/javascript" charset="utf-8"></script>
 </body>

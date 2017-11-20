@@ -204,7 +204,6 @@ $(function() {
                 $('#json_submit a').attr('id', 'nono');
             }
             $('#json_submit a').attr('style', 'background:#666666');
-            //alert(" 未定义 或者 未初始化");
         } else {
             $('#json_submit a').attr('style', '');
             var subid2 = $('#json_submit a').attr('id');
@@ -228,7 +227,6 @@ $(function() {
             //图片导航 imgnav
             $('#imgnav').html(newGoods['navImg']);
         }
-        //alert(goodList['1-4-10']['brandId']);
     }
 
 
@@ -276,48 +274,6 @@ $(function() {
             css_link: '/assets/css/index_img.css'
         });
     });
-    // //60s
-    // $("#djs").click(function(event) {
-    //     /* Act on the event */
-    //     var status = $(this).attr('data');
-    //     var tel = $('#tel').val();
-    //     if (tel == 'Số điện thoại') {
-    //         tel = '';
-    //     }
-    //     if (tel == '') {
-    //         getMsg('Số điện thoại không được để trống', 1);
-    //         $("#tel")[0].focus();
-    //         $("#tel").addClass('on');
-    //     } else {
-    //         if (status == 'off') {
-    //             Countdown(60);
-    //             $.ajax({
-    //                 type: 'POST',
-    //                 url: '/index.php?r=common/get-phone-code/',
-    //                 data: {
-    //                     tel: tel
-    //                 },
-    //                 success: function(data) {
-    //                     /*if(data.status == 200){
-    //                     	alert('获取验证码成功');
-    //                     }else{
-
-    //                     }*/
-    //                 },
-    //                 dataType: 'json'
-    //             });
-    //         }
-
-    //         $(this).attr('data', 'on');
-    //         $(this).addClass('bg1');
-
-    //         //ajax
-
-
-    //     }
-
-
-    // });
     //设置input边框样式
     $(".r_from input,#login_content input").focus(function() {
         /* Act on the event */
