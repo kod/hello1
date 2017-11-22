@@ -152,7 +152,7 @@
     .phone-flag {
         position: absolute;
         top: 0;
-        right: 10px;
+        left: 10px;
         line-height: 35px;
     }
 
@@ -180,7 +180,7 @@
         <div class="text">
             <div class="left txt">Số điện thoại</div>
             <div class="left val">
-                <input type="tel" placeholder="Vui lòng nhập số điện thoại của bạn" id="phoneNum" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
+                <input type="tel" placeholder="Vui lòng nhập số điện thoại của bạn" id="phoneNum" style="padding-left: 70px;" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
                 <div class="phone-flag">
                     <span class="phone-flag-img"></span>
                     <span class="phone-flag-code">+84</span>
@@ -188,7 +188,7 @@
             </div>
             <div class="left txt">Mã xác nhận</div>
             <div class="left val">
-                <input type="number" placeholder="Vui lòng nhập mã xác nhận" id="yzmId" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
+                <input type="text" placeholder="Vui lòng nhập mã xác nhận" id="yzmId" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
             </div>
             <button class="timeBtn" ng-click="duanxinOpt()"><span id="nowSecond"></span><span class="sText" id="sText"> Gửi mã</span></button>
             <span id="tip" style="color: red;font-size: 12px;overflow-y: hidden;text-overflow:ellipsis;text-overflow:ellipsis;clear: both; display: block;padding-left: 149px;"></span>
@@ -289,7 +289,7 @@
                     </label>
                     <div class="footer__b2-m-r7-l-row2">
                         <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                        <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                        <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                     </div>
                 </div>
                 <div class="footer__b2-m-r7-right col-xs-12">

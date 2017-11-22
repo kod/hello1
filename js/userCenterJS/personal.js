@@ -73,7 +73,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
     }
 
     function userAddDetailInfo(data) {
-        console.dir(data);
+
         var loading = new F._loading();
         loading.show();
         F._userAddDetailInfo(data, function(ret) {
@@ -211,7 +211,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                 $('#per2_name').val(res.data.connectusername2);
                 $('#per2_phone').val(res.data.connectusermsisdn2);
                 $('#per2_gx').val(res.data.connectuserrelation2);
-                $('#per2_id').val(res.data.connectuseridentification2);
+                $('#per2_id').val(res.data.connectuseridentification2) ;
                 $('#per3_name').val(res.data.connectusername3);
                 $('#per3_phone').val(res.data.connectusermsisdn3);
                 $('#per3_gx').val(res.data.connectuserrelation3);
@@ -309,11 +309,11 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
         var per2_name = $('#per2_name').val();
         var per2_phone = $('#per2_phone').val();
         var per2_gx = $('#per2_gx').val() || '';
-        var per2_id = $('#per2_id').val();
+        var per2_id = $('#per2_id').val() || '';
         var per3_name = $('#per3_name').val();
         var per3_phone = $('#per3_phone').val();
         var per3_gx = $('#per3_gx').val() || '';
-        var per3_id = $('#per3_id').val();
+        var per3_id = $('#per3_id').val() || '';
         var g_byyx = $('#g_byyx').val();
         var g_xxdz = $('#g_xxdz').val();
         var g_yx = $('#g_yx').val();

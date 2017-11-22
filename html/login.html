@@ -109,7 +109,7 @@
         width: 95px;
         line-height: 28px;
         text-align: center;
-        border-left: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
         margin-top: 10px;
     }
 
@@ -332,7 +332,7 @@
             <!-- <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./help.html'" >Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'" >Trung tâm hỗ trợ</span>
                 </div>
             </div> -->
             <div class="header__title">
@@ -351,17 +351,17 @@
                             <div class="body__m-r1-m-r-main">
                                 <div class="body__m-r1-m-r-m-row1">Đăng nhập nhanh</div>
                                 <div class="body__m-r1-m-r-m-row2">
-                                    <div class="body__m-r1-m-r-m-r2-left">
-                                        <input type="tel" class="body__m-r1-m-r-m-r2-l-input" placeholder="Điền số điện thoại di động" v-model="MO__phone" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
-                                    </div>
-                                    <div class="body__m-r1-m-r-m-r2-right" style="display: none;" v-show="true" @click="SH__showFlagList = !SH__showFlagList">
+                                    <div class="body__m-r1-m-r-m-r2-right" style="display: none;" v-show="true" @click="SH__showFlagList = false">
                                         <span class="body__m-r1-m-r-m-r2-r-img" :style="{ 'background-image': 'url(' + areaFlag + ')' }"></span>
                                         <span class="body__m-r1-m-r-m-r2-r-text" v-html="areaCode"></span>
+                                    </div>
+                                    <div class="body__m-r1-m-r-m-r2-left">
+                                        <input type="tel" class="body__m-r1-m-r-m-r2-l-input" placeholder="Điền số điện thoại di động" v-model="MO__phone" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
                                     </div>
                                 </div>
                                 <div class="body__m-r1-m-r-m-row3" style="display: none;" v-show="mode === 1">
                                     <div class="body__m-r1-m-r-m-r3-left">
-                                        <input type="number" class="body__m-r1-m-r-m-r3-l-input" placeholder="nhập mã xác nhận" v-model="MO__code" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
+                                        <input type="text" class="body__m-r1-m-r-m-r3-l-input" placeholder="nhập mã xác nhận" v-model="MO__code" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
                                     </div>
                                     <div class="body__m-r1-m-r-m-r3-right">
                                         <div class="body__m-r1-m-r-m-r3-r-main" id="verify_text" @click="send_code" :class="{ 'body__m-r1-m-r-m-r3-r-main_active': is_phone }" v-html="verify_text"></div>
@@ -442,7 +442,7 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">

@@ -71,7 +71,7 @@
     }
 
     .modal-dialog {
-        margin: 250px auto;
+        margin: 7% auto;
     }
 
     .fade.in {
@@ -161,7 +161,7 @@
             </p>
             <p class="r_from" ng-controller="zhuceOptCtrl">
                 <span>Mã xác nhận</span>
-                <input id="telCode" class="dx" type="number" value="" placeholder="Mã xác nhận" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
+                <input id="telCode" class="dx" type="text" value="" placeholder="Mã xác nhận" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
                 <button id="djs" data='off' class="djs" ng-click="duanxinOpt()" disabled="disabled">Gửi mã</button>
             </p>
             <p class="r_from">
@@ -178,6 +178,7 @@
                 <span>Mật mã giao dịch</span>
                 <input id="pwd2" type="password" placeholder="Vui lòng nhập 6 chữ số" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" />
             </p>
+            <p style="padding-left: 170px;padding-right: 120px; font-size: 12px; color: #999;margin-top: -20px;margin-bottom: 25px;">* Quan trọng! Để đảm bảo an toàn cho số tiền của bạn trong tài khoản, hãy cài đặt và ghi nhớ mật khẩu giao dịch</p>
             <p class="r_from">
                 <span>Nhập lại Mật mã</span>
                 <input id="re_pwd2" type="password" placeholder="Nhập lại Mật mã giao dịch" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" />
@@ -306,7 +307,7 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">
@@ -341,6 +342,11 @@
 // window.setTimeout(function() {
 //     $('#myModal').show().addClass('in');
 // }, 700);
+
+F.query = F._hrefUtils.parse().query || {};
+// console.log(query);
+$('#tel').val(F.query.msisdn || '');
+$('#telCode').val(F.query.otp || '');
 
 $("#tel").bind("input propertychange", function() {
     var phone = $("#tel").val();

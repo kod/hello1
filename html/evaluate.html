@@ -259,36 +259,29 @@
     .body__m-r5-o-text {
         font-size: 14px;
     }
+
+    .footer {
+        float: left;
+    }
+
+    .footer:after {
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+
+    }
     </style>
 </head>
 
 <body>
-    <!-- <div class="loading" id="loading">
-        <img src="../img/dd.gif" class="loading__img">
-    </div> -->
     <div class="mask" id="mask"></div>
-    <!-- <div class="confirm" id="confirm">
-        <div class="confirm__main">
-            <div class="alert__b-m-title col-xs-24">
-                <span class="alert__b-m-t-text alert__b-m-t-text_confirm">Gợi ý</span>
-                <span class="alert__b-m-t-close" onclick="F._confirm_hide()"></span>
-            </div>
-            <div class="confirm__b-m-body col-xs-24">
-                <span class="confirm__b-m-b-img" style="background-image: url(../img/29247.png);"></span>
-                <div class="confirm__b-m-b-text"></div>
-                <div class="confirm__b-m-b-operate">
-                    <span class="confirm__b-m-b-o-left"></span>
-                    <span class="confirm__b-m-b-o-right"></span>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="content" id="vue-el">
-        <header class="header">
+        <header class="header col-xs-24">
             <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./help.html'">Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
             <div class="header__title">
@@ -298,7 +291,7 @@
                 </div>
             </div>
         </header>
-        <section class="body">
+        <section class="body col-xs-24">
             <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
                 <div class="body__main-row1">
                     <div class="body__m-r1-img" :style="{ 'background-image': 'url(' + imgUrl + ')' }"></div>
@@ -464,7 +457,7 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">

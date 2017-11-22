@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
-    <link rel='icon' href='./img/icon.png' type='image/x-ico' />
+    <link rel='icon' href='/img/icon.png' type='image/x-ico' />
     <link rel="stylesheet" href="/css/base.css">
     <title>404</title>
     <script src="/js/require2.3.5.min.js"></script>
@@ -34,7 +34,7 @@
             <!-- <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='/help.html'" >Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='/buyIntro.html'" >Trung tâm hỗ trợ</span>
                 </div>
             </div> -->
             <div class="header__title">
@@ -50,7 +50,7 @@
             </div>
         </section>
         <footer class="footer">
-            <!-- <div class="footer__top col-xs-24">
+            <div class="footer__top col-xs-24">
                 <div class="footer__top-main">
                     <div class="footer__t-m-item col-xs-24">
                         <div class="footer__t-m-i-left col-xs-5">
@@ -98,35 +98,62 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <div class="footer__bottom col-xs-24">
-                <div class="footer__bottom-main col-xs-24">
-                    <div class="footer__b-m-icon">
-                        <img src="/img/logooo.jpg" alt="" class="footer__b-m-i-img">
+            </div>
+            <div class="footer__bottom2 col-xs-24">
+                <div class="footer__bottom2-main">
+                    <div class="footer__b2-m-row1">
+                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
+                        <ul class="footer__b2-m-r1-main col-xs-24">
+                            <a href="/html/about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                            <a href="/html/join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                        </ul>
                     </div>
-                    <div class="footer__b-m-main">
-                        <div class="footer__b-m-m-row1">
-                            <span class="footer__b-m-m-r1-item">Về chúng tôi</span>
-                            <span class="footer__b-m-m-r1-i-line">|</span>
-                            <span class="footer__b-m-m-r1-item">卖家入驻</span>
-                            <span class="footer__b-m-m-r1-i-line">|</span>
-                            <span class="footer__b-m-m-r1-item">我要举报</span>
-                            <span class="footer__b-m-m-r1-i-line">|</span>
-                            <span class="footer__b-m-m-r1-item">加入我们</span>
-                            <span class="footer__b-m-m-r1-i-line">|</span>
-                            <span class="footer__b-m-m-r1-item">上门自提</span>
+                    <div class="footer__b2-m-row2">
+                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
+                        <ul class="footer__b2-m-r2-main col-xs-24">
+                            <a href="/html/buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <a href="/html/billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
+                            <a href="/html/safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
+                            <a href="/html/refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row3">
+                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                        <ul class="footer__b2-m-r3-main col-xs-24">
+                            <li class="footer__b2-m-r3-m-item col-xs-24">
+                                <img src="/img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row5">
+                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                        <ul class="footer__b2-m-r5-main col-xs-24">
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="/img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                            <li class="footer__b2-m-r5-m-item col-xs-24">
+                                <img src="/img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer__b2-m-row7 col-xs-24">
+                    <div class="footer__b2-m-r7-left col-xs-12">
+                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
+                            <img src="/img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
+                        </label>
+                        <div class="footer__b2-m-r7-l-row2">
+                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(/img/29476021983473.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(/img/2309409384203.png)"></a> -->
                         </div>
-                        <!-- <div class="footer__b-m-m-row2">
-                            粤ICP备14041530号-1 ICP粤B2-20140262 食品流通许可证JY14403050095815 粤网文[2017]1979-251号
-                        </div> -->
-                        <!-- <div class="footer__b-m-m-row2">
-                                    Copyright © 2013-2017 Fenqile All Rights Reserved 深圳市乐工场网络有限公司 版权所有
-                                </div> -->
                     </div>
-                    <!-- <div class="footer__b-m-tel">
-                                <span class="footer__b-m-t-text">Đường dây nóng: </span>
-                                <span class="footer__b-m-t-tel">400-005-9151</span>
-                            </div> -->
+                    <div class="footer__b2-m-r7-right col-xs-12">
+                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(/img/780689798.png);"></a>
+                    </div>
+                    </div>
+                    <div class="footer__b2-m-row6 col-xs-24">
+                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2010 - 2017 Buyoo. All Rights Reserved</div>
+                        <div class="footer__b2-m-r6-right col-xs-12"></div>
+                    </div>
                 </div>
             </div>
         </footer>

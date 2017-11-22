@@ -34,7 +34,7 @@ app.controller("moreCtrl", function($scope, $http) {
         params.currentPage = params.currentPage ? params.currentPage : F.currentPage;
 
 
-        F._setUrl(params.currentPage);
+        if (!params._noPage) F._setUrl('page', params.currentPage);
 
 
         var Key = 'commodityKey';
@@ -249,9 +249,9 @@ app.controller("moreCtrl", function($scope, $http) {
         var currentPage = "1";
         var Key = "commodityKey";
 
-        console.log(F.currentPage);
         getAllProductInfo({
             currentPage: F.currentPage,
+            _noPage: true,
         }); //页面加载获取数据
         /*下一页*/
         $scope.nextPage = function() {
@@ -321,7 +321,6 @@ app.controller("moreCtrl", function($scope, $http) {
 
         /*ajax请求接口*/
         function reqAajx(currentPage) {
-            console.log('111111areqAajxreqAajxreqAajxreqAajxreqAajxreqAajxreqAajxreqAajxreqAajxsodifjsdiofjs');
             var currentPage = currentPage;
 
             var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;

@@ -190,7 +190,7 @@ nav a{color:#999}
 		.modal-header .left,.modal-body p{font-size:18px;color:#333;font-weight: bold;}
 		.modal-header .right{font-size:17px;font-weight: bold;cursor: pointer;color:#999}
 		.modal-body{text-align:center;position:relative;}
-		#myhead .modal-dialog {margin: 250px auto;width:690px;margin-top:350px}
+		#myhead .modal-dialog {margin: 7% auto;width:690px;margin-top:350px}
 		table{width:100%}
 		table tr th{text-align: center; line-height: 2;}
 		table tr td{text-align: center; line-height: 1.8;}

@@ -39,7 +39,8 @@
         width: 400px;
         text-align: right;
         font-size: 16px;
-        color: #4a9df4;
+        color: #333;
+        /*color: #4a9df4;*/
     }
 
     .body__m-t-order {
@@ -339,7 +340,7 @@
             <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủZ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./help.html'">Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
             <div class="header__title">
@@ -373,8 +374,8 @@
                             <div class="body__m-p-m-i-text" v-html="goodsDetail.name"></div>
                         </div>
                         <span class="body__m-p-m-num">1</span>
-                        <span class="body__m-p-m-price" v-html="goodsDetail.price"></span>
-                        <span class="body__m-p-m-subtotal" v-html="goodsDetail.price"></span>
+                        <span class="body__m-p-m-price" v-html="priceFormat(goodsDetail.price)"></span>
+                        <span class="body__m-p-m-subtotal" v-html="priceFormat(goodsDetail.price)"></span>
                     </div>
                 </div>
                 <div class="bar-title">
@@ -519,7 +520,7 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">
@@ -597,7 +598,6 @@
             F.vue.payRate = trade_inquiryBill.payRate;
             F.vue.repaymentMonth = trade_inquiryBill.repaymentMonth;
 
-            console.log(trade_inquiryBill.detail[F.vue.nowPeriods - 1].status);
             // 本期是否已还
             F.vue.isPay = trade_inquiryBill.detail[F.vue.nowPeriods - 1].status === '10002' ? true : false;
 
@@ -687,7 +687,7 @@
                     totalAmount: F.vue.totalAmount,
                     currency: "VND",
                     subject: F.vue.goodsDetail.name,
-                    repaymentMonth: F.vue.repaymentMonth,
+                    repaymentMonth: F.vue.nowPeriods + '',
                     goodsDetail: JSON.stringify(F.vue.goodsDetail),
                     timeoutExpress: '3600',
                     orderNo1: F.query.orderNo,

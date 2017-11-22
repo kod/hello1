@@ -22,7 +22,7 @@
 		.modal-body ul li{float:left;}
 		.modal-body ul li a{padding:8px 37px;background: #0076F7;color:#fff;display: block;}
 		.modal-body ul li:last-child a{background: #DFDFDF;color:#666;margin-left:20px}
-		.modal-dialog {margin: 250px auto;}
+		.modal-dialog {margin: 7% auto;}
 		#errormsg{clear:both;color:#FF0000;font-size:13px;padding-left:182px}
 		.xiug{text-align: center;font-size: 23px;letter-spacing: 3px;font-weight: 600;color: #0076F7;margin: 29px 0;padding-left: 57px;}
 		#back .img-text{text-align: center;font-size: 23px;letter-spacing: 3px;font-weight: 600;color: #0076F7;margin: 29px 0;padding-left: 57px;width:auto}

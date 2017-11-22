@@ -29,8 +29,8 @@
     }
 
     .site__main-item {
-        margin-right: 30px;
-        margin-bottom: 30px;
+        margin-right: 20px;
+        margin-bottom: 20px;
     }
 
     .site__m-i-r3-e-text {
@@ -73,7 +73,7 @@
                 </div>
                 <div class="header_right right">
                     <a href="../index.html" class="header_right_a" style="color:#0076F7">BUYOO Trang chủ</a>|
-                    <a href="./help.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
+                    <a href="./buyIntro.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
                 </div>
             </div>
         </div>
@@ -216,7 +216,7 @@
                     <input type="name" name="" id="names" value="" placeholder="Vui lòng nhập tên người nhận hàng" />
                     <br />
                     <span>Số điện thoại</span>
-                    <input type="text" ng-model="phoneNum" name="" id="phone" value="" placeholder="Vui lòng nhập số điện thoại" maxlength="20" />
+                    <input type="text" ng-model="phoneNum" name="" id="phone" value="" placeholder="Vui lòng nhập số điện thoại" maxlength="20" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
                     <br />
                     <!--<span style="width: 74px;">收货地址</span> <select id="province" runat="server" onchange="selectprovince(this);" style=" width:120px;" name="city"></select>     <select id="city" runat="server" name="city_s" style="width:120px;" ></select>-->
                     <div class="area">
@@ -376,7 +376,7 @@
                     </label>
                     <div class="footer__b2-m-r7-l-row2">
                         <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                        <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                        <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                     </div>
                 </div>
                 <div class="footer__b2-m-r7-right col-xs-12">

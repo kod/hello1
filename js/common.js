@@ -1028,7 +1028,28 @@ F._userAction_login = function(params, callback) {
                     } else {
                         window.history.go(-1);
                     }
+                    break;
 
+                case 60050:
+                    if (data.otp) { // 验证码登录
+                        window.location.href = './register.html?msisdn=' + data.msisdn + '&otp=' + data.otp ;
+                    } else {
+                        F._confirm('Gợi ý', 'Tên đăng nhập hoặc mật khẩu không hợp lệ', 'error', [{
+                            name: 'Xác nhận',
+                            func: function() {
+
+                            }
+                        }]);
+                    }
+                    break;
+
+                case 70002:
+                    F._confirm('Gợi ý', 'Mã xác nhận SMS không đúng', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
                     break;
 
                 default:
@@ -1305,7 +1326,7 @@ F._orderFullPay = function(params, callback) {
     if (payway == '2') {
         loading.hide();
         if (params._noConfirm) {
-            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+            var full_confirm = F._confirm('Gợi ý', 'Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán', 'success', [{
                 name: 'Thanh toán',
                 func: function() {
                     window.open(F._url_joint(F._FullPaymentOrder_td, data));
@@ -1607,9 +1628,8 @@ F._payOrder = function(params, callback) {
     var loading = new F._loading();
     if (payway == '2') {
         loading.hide();
-        console.log(params._noConfirm);
         if (params._noConfirm) {
-            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+            var full_confirm = F._confirm('Gợi ý', 'Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán', 'success', [{
                 name: 'Thanh toán',
                 func: function() {
                     window.open(F._url_joint(F._payOrder_td, data));
@@ -1883,7 +1903,7 @@ F._payNormalOrder = function(params, callback) {
         var loading = new F._loading();
         loading.hide();
         if (params._noConfirm) {
-            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
+            var full_confirm = F._confirm('Gợi ý', 'Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán', 'success', [{
                 name: 'Thanh toán',
                 func: function() {
                     window.open(F._url_join(F._payNormalOrder_td, data));
@@ -2034,7 +2054,6 @@ F._userAddDetailInfo = function(params, callback) {
     md5EncryptStrig += "&graduationtime=" + graduationtime;
     md5EncryptStrig += Key;
 
-    console.log(md5EncryptStrig);
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
@@ -2279,7 +2298,7 @@ F._getSchoolInfo = function(params, callback) {
 
 // 22222222222222
 
-F._setUrl = function (page) {
+F._setUrl = function(key, value) {
     function joint(data) {
         var str = '';
         for (i in data) {
@@ -2289,8 +2308,9 @@ F._setUrl = function (page) {
     }
 
     var parse = F._hrefUtils.parse();
-    parse.query.page = page;
-    var url = '/'+ parse.path + '?' + joint(parse.query)
+    parse.query = parse.query || {};
+    parse.query[key] = value;
+    var url = '/' + parse.path + '?' + joint(parse.query)
 
     history.pushState({
         url: url,
@@ -2737,7 +2757,6 @@ F._baseinfo = function(data, userInfo) {
         }
         // collegename = school_id_name_json[collegename];
         collegename__list = collegename_html;
-        console.log(school_id_name_json);
     }
 
     init(data);
@@ -2775,7 +2794,7 @@ F._baseinfo = function(data, userInfo) {
                     <div class="alert__b-m-b-row3 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Số chứng minh thư <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="number" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" id="MO__identification" value="' + identification + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" id="MO__identification" value="' + identification + '" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row4 col-xs-24">\
@@ -2951,6 +2970,7 @@ F._baseinfo = function(data, userInfo) {
                             </div> -->\
                         </div>\
                     </div>\
+                    <div class="alert__b-m-b-row10 col-xs-24">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div>\
                 </div>\
                 <div class="alert__b-m-footer col-xs-24">\
                     <span class="alert__b-m-f-button" id="submit_baseinfo">Xác nhận tồn tại</span>\
@@ -3009,7 +3029,6 @@ F._baseinfo = function(data, userInfo) {
         if (val) {
             $('#MO__collegename').html(school_id_name_json[val]);
             collegename = val;
-            console.log(collegename);
         }
 
         var actionsheet_handle = $('.actionsheet-collegename');
@@ -3049,7 +3068,7 @@ F._baseinfo = function(data, userInfo) {
             }
 
             if ((!identification.length) && (contact_order === '1')) {
-                alert('Vui lòng nhập Số chứng minh thư');
+                alert('Bắt buộc phải cài đặt số chứng minh thư của người liên hệ đầu tiên');
                 return false;
             }
 
@@ -3127,10 +3146,10 @@ F._baseinfo = function(data, userInfo) {
                             </div>\
                         </div>\
                     </div>\
-                    <div class="alert__c-b-row4 col-xs-24">\
+                    <div class="alert__c-b-row4 col-xs-24" style="display:' + input_identification_display + ';">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Số chứng minh thư <span class="alert__b-m-b-r1-l-requery" style="display:' + input_identification_display + ';">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-11">\
-                            <input type="number" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" style="width: 100%;" value="' + input_identification + '" id="input_identification">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" style="width: 100%;" value="' + input_identification + '" id="input_identification" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
                         </div>\
                     </div>\
                     <div class="alert__c-b-row5">\
@@ -3159,7 +3178,7 @@ F._baseinfo = function(data, userInfo) {
             var input_username = $('#input_username').val();
             var input_msisdn = $('#input_msisdn').val();
             var input_relation = $('#input_relation').html();
-            var input_identification = $('#input_identification').val();
+            var input_identification = $('#input_identification').val() || '';
             submit_alert__contact(input_username, input_msisdn, input_relation, input_identification);
         });
     }

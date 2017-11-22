@@ -84,7 +84,7 @@ app.controller("duanxinOptCtrl", function($scope, $http, $filter) {
     //下一步
     $('.submit').click(function() {
         F.query = F._hrefUtils.parse().query;
-        console.log(F.query);
+
 
         // var msisdn = F.query.phoneNum;
         var msisdn = $("#phoneNum").val();

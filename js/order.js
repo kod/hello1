@@ -17,18 +17,32 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
     /*请求账单数据*/
 
+    var query = F._hrefUtils.parse().query || {};
+
     //初始化账单请求参数
     $scope.reqPara = {
-        status: '',
-        page: '1',
+        status: query.status || '',
+        page: query.page || '1',
         rows: '5'
     }
+
+    var status_json = {
+        '': 0,
+        2: 1,
+        5: 2,
+        6: 3,
+    };
+
+
+    $('.nav-item').removeClass('act');
+    $('.nav-item').eq(status_json[$scope.reqPara.status]).addClass('act');
 
     //上一页
     $scope.lastPage = function() {
         if ($scope.reqPara.page > 1) {
             $scope.reqPara.page--;
         }
+        F._setUrl('page', $scope.reqPara.page);
     }
 
     //下一页
@@ -36,6 +50,8 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         if ($scope.reqPara.page < $scope.totalPage) {
             $scope.reqPara.page++;
         }
+        F._setUrl('page', $scope.reqPara.page);
+
     }
 
     $scope.confirm = function() {
@@ -45,19 +61,35 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
     //切换订单类型
     $scope.reqType = function(type) {
+        // if (type != null) {
+        //     $scope.reqPara = {
+        //         status: type,
+        //         page: '1',
+        //         rows: '5'
+        //     }
+        // } else {
+        //     $scope.reqPara = {
+        //         status: "",
+        //         page: '1',
+        //         rows: '5'
+        //     }
+        // }
+
+        var status = '';
+        var page = '1';
+        var rows = '5';
+
         if (type != null) {
-            $scope.reqPara = {
-                status: type,
-                page: '1',
-                rows: '5'
-            }
-        } else {
-            $scope.reqPara = {
-                status: "",
-                page: '1',
-                rows: '5'
-            }
+            status = type;
         }
+
+        $scope.reqPara = {
+            status: status,
+            page: page,
+            rows: rows
+        }
+
+        F._setUrl('page', '1');
 
         $('#gotoPage').val("1");
     }
@@ -84,7 +116,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
     }, true);
 
     function orderDetailsAjax(status, page, rows) {
-    	if (!F._isLogin()) return false;
+        if (!F._isLogin()) return false;
 
         var url = F._queryOrderList_td;
         var ajax = new ajaxClass($http, url, "POST");
@@ -130,8 +162,6 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
         ajax.successCallback = function(res) {
 
-
-
             var resCode = res.status;
             if (resCode == 200) {
 
@@ -144,7 +174,6 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
                 $scope.count = res.data.count;
 
-
                 $scope.totalPage = parseInt($scope.count / $scope.reqPara.rows);
 
                 /*tcy -start-*/
@@ -152,7 +181,6 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                     $scope.totalPage += 1;
                 }
                 /*tcy -end-*/
-
 
                 if ($scope.orderList) {
                     $scope.newOrderList = [];
@@ -166,11 +194,11 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
                             var price = goodsDetailObj.price;
                             var creatData = goodsDetailObj.createTime;
-                            var imageUrls = goodsDetailObj.imageUrls; //得到imageUrls
-                            var imageUrlArray = imageUrls.split("|"); //截取imageUrls
-                            var imageUrl = imageUrlArray[0];
+                            // var imageUrls = goodsDetailObj.imageUrls; //得到imageUrls
+                            // var imageUrlArray = imageUrls.split("|"); //截取imageUrls
+                            // var imageUrl = imageUrlArray[0];
 
-
+                            var imageUrl = goodsDetailObj.iconUrl;
 
                             $scope.newOrderList[j]['imgUrl'] = imageUrl;
                             $scope.newOrderList[j]['price'] = price;
@@ -213,7 +241,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                                     $scope.myHtml = "<span>Đang xử lí</span>";
                                     $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
                                     $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    //	$scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
+                                    //  $scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
                                     $scope.orderList[i].operate = [{
                                         "name": "Thông tin cụ thể về đơn hàng"
                                     }];
@@ -342,7 +370,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                                         "name": "Thông tin cụ thể về đơn hàng"
                                     }];
                                 } else if ($scope.orderList[i].tradeStatus == 5) {
-                                    //	$scope.orderList[i]['tradeStatusMsg']='Chờ giao hàng';
+                                    //  $scope.orderList[i]['tradeStatusMsg']='Chờ giao hàng';
                                     $scope.myHtml = "<span>Chờ giao hàng</span>";
                                     $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
                                     $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
@@ -476,6 +504,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         };
         ajax.requestData();
     }
+
     $scope.getUserInfoDetails = function() {
         var url = F._userViewDetailInfo_uc;
         var ajax = new ajaxClass($http, url, "POST");
@@ -537,6 +566,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         };
         ajax.requestData();
     }
+
     $scope.getUserInfoDetails();
 
 

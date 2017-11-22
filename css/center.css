@@ -31,7 +31,7 @@
 		.modal-header .right{font-size:17px;font-weight: bold;cursor: pointer;color:#999}
 		.modal-body{text-align:center;padding:30px 0;position:relative;padding-bottom:120px}
 		
-		#myhead .modal-dialog {margin: 250px auto;width:690px}
+		#myhead .modal-dialog {margin: 7% auto;width:690px}
 		#myhead .modal_one{text-align: center;margin-top:14%}
 		#myhead .modal_one i{display: block;width:32%;font-style: normal;height:37px;line-height:37px;background: #0075f6;color:#fff;margin:0 auto;margin-bottom: 15px;cursor: pointer;}
 		#myhead .modal_one span{color:#aaa}

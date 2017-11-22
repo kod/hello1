@@ -248,13 +248,27 @@ app.controller("billCtrl", function($scope, $http, $filter) {
 
 
 
+    var query = F._hrefUtils.parse().query || {};
 
     //初始化账单请求数据
     $scope.reqPara = {
-        period: '1',
-        page: '1',
+        period: query.status || '1',
+        page: query.page || '1',
         rows: '5'
     }
+
+    var status_json = {
+        1: 0,
+        2: 1,
+        3: 2,
+        4: 3,
+        5: 4,
+    };
+
+
+    $('.nav-item').removeClass('act');
+    $('.nav-item').eq(status_json[$scope.reqPara.period]).addClass('act');
+
 
     //切换账单类型    period参数
     $scope.reqType = function(type) {
@@ -263,8 +277,9 @@ app.controller("billCtrl", function($scope, $http, $filter) {
             page: '1',
             rows: '5'
         }
-        $('#gotoPage').val("1");
+        F._setUrl('page', '1');
 
+        $('#gotoPage').val("1");
     }
 
     //上一页
@@ -274,6 +289,7 @@ app.controller("billCtrl", function($scope, $http, $filter) {
             $('#nextPagebtn').css({
                 'background': '#0075F6'
             }).attr('disabled', false)
+            F._setUrl('page', $scope.reqPara.page);
         }
     }
 
@@ -284,6 +300,7 @@ app.controller("billCtrl", function($scope, $http, $filter) {
             $('#lastPagebtn').css({
                 'background': '#0075F6'
             }).attr('disabled', false)
+            F._setUrl('page', $scope.reqPara.page);
         }
     }
     $scope.confirm = function() {

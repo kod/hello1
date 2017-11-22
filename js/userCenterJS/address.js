@@ -68,9 +68,18 @@
         $scope.set_active = function(index) {
             // $('.site__main-item').removeClass('site__main-item_active');
             // $('.site__main-item').eq(index).addClass('site__main-item_active');
+
+            // $('#names').val('');
+            // $('#phone').val('');
+            // $('#textarea').val('');
         }
 
         $scope.addppp = function() {
+            $('#names').val('');
+            $('#phone').val('');
+            $('#textarea').val('');
+
+
             $('.rcone').hide();
             $('.rctwo').show();
             $scope.submits = function() {
@@ -139,6 +148,27 @@
                             // history.go(0);
                             window.location.reload();
                         }
+
+                        switch (res.data.code) {
+                            case 40020:
+                                F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
+                                    name: 'Xác nhận',
+                                    func: function() {
+
+                                    }
+                                }]);
+                                break;
+                        
+                            default:
+                                F._confirm('Gợi ý', 'error', 'error', [{
+                                    name: 'Xác nhận',
+                                    func: function() {
+
+                                    }
+                                }]);
+                                break;
+                        }
+                        
 
                     };
                     ajax.failureCallback = function(res) {

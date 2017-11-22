@@ -310,7 +310,7 @@
             <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./help.html'">Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
             <div class="header__title">
@@ -488,7 +488,7 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">
@@ -557,7 +557,8 @@
             F.vue.goodsDetail = trade_queryOrder.goodsDetail;
             F.vue.tradeStatus = trade_queryOrder.tradeStatus;
             F.vue.payRate = trade_queryOrder.payRate;
-            F.vue.first_image = trade_queryOrder.goodsDetail.imageUrls.split('|')[0];
+            F.vue.first_image = trade_queryOrder.goodsDetail.iconUrl;
+            // F.vue.first_image = trade_queryOrder.goodsDetail.imageUrls.split('|')[0];
             F.vue.advance = trade_queryOrder.goodsDetail.price * 1 * trade_queryOrder.payRate;
 
         }
@@ -680,7 +681,7 @@
                     loading.hide();
                     if (!ret) return false;
 
-                    console.dir(ret);
+
                     if (ret.status) { // 资料齐全
 
                         if (params.payway === '1') {

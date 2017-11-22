@@ -499,7 +499,7 @@
                     </label>
                     <div class="footer__b2-m-r7-l-row2">
                         <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(./img/29476021983473.png)"></a>
-                        <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(./img/2309409384203.png)"></a>
+                        <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(./img/2309409384203.png)"></a> -->
                     </div>
                 </div>
                 <div class="footer__b2-m-r7-right col-xs-12">
@@ -535,9 +535,7 @@
             F._userViewDetailInfo({}, function(ret) {
                 if (ret.data.headimage) {
                     $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
-                    console.log($('.userLogin-info__top-face').eq(0));
                 }
-                console.dir(ret);
             });
         }
     }, 1400);

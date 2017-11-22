@@ -151,12 +151,10 @@
             </div>
             <div class="changePage">
                 <div style="margin-bottom: 30px;">
-                    <button id="lastPagebtn" ng-click="lastPage()">Trang trước</button>
+                    <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
                     <span style="padding-top: 3px;">Trang hiện tại: <span ng-init="nowPage=1" ng-bind="nowPage" class="pop"></span>&nbsp;&nbsp;</span>
                     <span style="padding-top: 3px;">Trang : <span ng-bind="totalPage"></span> tiên</span>
-                    <button id="nextPagebtn" ng-click="nextPage()">Trang sau</button>
-                    <!--<input type="number" name="" id="importPage" value="" minlength="1" maxlength="{{totalPage}}" onkeydown="keysearch()"/>
-                <button ng-click="confirm()">Xác nhận</button>-->
+                    <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                 </div>
             </div>
         </div>
@@ -255,7 +253,7 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">
@@ -297,9 +295,8 @@
         }
     }, 700);
 
-    F.query = F._hrefUtils.parse().query;
+    F.query = F._hrefUtils.parse().query || {};
 
-    console.log(F._hrefUtils.parse());
     var currentpage = F.query.page || 1;
 
     var swiper = new Swiper('#index_banner', {
@@ -412,7 +409,7 @@
         $scope.nextPage = function() {
             currentpage++;
 
-            F._setUrl(currentpage);
+            F._setUrl('page', currentpage);
             $scope.nowPage = currentpage;
             sousuoReq(currentpage);
             $('#lastPagebtn').css({
@@ -422,7 +419,7 @@
         /*上一页*/
         $scope.lastPage = function() {
             currentpage--;
-            F._setUrl(currentpage);
+            F._setUrl('page', currentpage);
             $scope.nowPage = currentpage;
             sousuoReq(currentpage);
             $('#nextPagebtn').css({

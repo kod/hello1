@@ -66,7 +66,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     $scope.paymentNumChange = function(num) {
         if (num == 1.0) {
             $('.moneryIcon,.installment').hide();
-            console.log('12312312');
+
             $(".fenqiNumBtn button").attr("disabled", true).addClass('actives')
             $scope.resPrice = $scope.price;
             $scope.paymentNum = num;
@@ -332,6 +332,26 @@ app.controller('addressCtrl', function($scope, $http, $filter) {
 
                     if (res.data.code == 10000) {
                         history.go(0);
+                    }
+
+                    switch (res.data.code) {
+                        case 40020:
+                            F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
+                                name: 'Xác nhận',
+                                func: function() {
+
+                                }
+                            }]);
+                            break;
+                    
+                        default:
+                            F._confirm('Gợi ý', 'error', 'error', [{
+                                name: 'Xác nhận',
+                                func: function() {
+
+                                }
+                            }]);
+                            break;
                     }
 
                 };

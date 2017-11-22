@@ -259,7 +259,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                                 $scope.propertiesDetails.push($scope.propertiesDetail[t]);
                             } else if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[1]) {
                                 $scope.propertiesDetailss.push($scope.propertiesDetail[t]);
-                                console.log($scope.propertiesDetailss);
+
                             }
 
                         }
@@ -597,7 +597,8 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         var funId = localStorage.getItem("funId");
                         var sc_status = localStorage.getItem('funId=' + funId + 'brandId=' + brandId);
-                        $('#shoucang').show();
+                        var loading = new F._loading();
+                        loading.show();
                         if (sc_status == null || sc_status == 0) {
 
                             var msisdn_s = localStorage.getItem('msisdn');
@@ -655,7 +656,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                                 };
 
                                 ajax.successCallback = function(res) {
-                                    $('#shoucang').hide();
+                                    loading.hide();
 
 
                                     if (res.data.code = 10000) {
@@ -704,8 +705,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             };
 
                             ajax.successCallback = function(res) {
-                                $('#shoucang').hide();
-
+                                loading.hide();
 
                                 if (res.data.code = 10000) {
                                     localStorage.setItem('funId=' + funId + 'brandId=' + brandId, 0);
@@ -721,13 +721,15 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                 }
 
             } else {
-                F._confirm('Gợi ý', 'Đã hết hàng', 'error', [{
-                    name: 'Xác nhận',
-                    func: function() {
-                        window.location.href = document.referrer;
-                    }
-                }]);
-
+                alert('Sản phẩm không tồn tại hoặc đã hết hàng');
+                window.location.href = document.referrer;
+                return false;
+                // F._confirm('Gợi ý', 'Đã hết hàng', 'error', [{
+                //     name: 'Xác nhận',
+                //     func: function() {
+                //         window.location.href = document.referrer;
+                //     }
+                // }]);
             }
         } else {
             //返回码错误
@@ -1288,6 +1290,18 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
         var price = $scope.price;
         var paymentNum = $scope.paymentNum;
         var buyNum = 1;
+
+
+        if (!(+$scope.numbers > 0)) {
+            F._confirm('Gợi ý', 'Đã hết hàng', 'error', [{
+                name: 'Xác nhận',
+                func: function() {
+
+                }
+            }]);
+
+            return false;
+        }
 
         var imgUrl = $scope.nowUrl;
         var productInfo = $scope.brandDetail.name + " " + $scope.nowOneInfo + " " + $scope.nowTwoInfo + " " + $scope.nowThreeInfo;

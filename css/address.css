@@ -19,14 +19,14 @@
 		.modal-header .right{font-size:17px;font-weight: bold;cursor: pointer;color:#999}
 		.modal-body{text-align:center;padding:30px 0;position:relative;padding-bottom:120px}
 		
-		#myModal .modal-dialog {margin: 250px auto;}
-		#myModal .modal-body span{width:150px;text-align: right;font-size:15px;color:#999;display: inline-block;}
-		#myModal .modal-body input{margin-left:8px;height:40px;width:270px;border:1px solid #ddd;color:#999;padding-left:10px;font-size: 15px;margin-bottom:24px}
+		#myModal .modal-dialog {margin: 7% auto;}
+		#myModal .modal-body span{width:150px;text-align: right;font-size:15px;color:#999;display: inline-block;padding-top: 8px;}
+		#myModal .modal-body input{margin-left:8px;height:40px;width:270px;border:1px solid #ddd;color:#333;padding-left:10px;font-size: 15px;margin-bottom:24px}
 		#myModal .modal-body select{font-size: 14px;width: 100px; padding: 0 10px;outline: none;color: #999;margin-right:1px;height: 33px;border:1px solid #ddd;margin-left:10px;}
 		#myModal .area{overflow: hidden;width: 441px;margin: 0 auto;margin-top:24px}
-		#myModal textarea{width:270px;height:150px;margin-left: 14px;outline: none;resize: none;border:1px solid #ddd;color:#999;    overflow-x: hidden;padding:15px}
+		#myModal textarea{width:270px;height:150px;margin-left: 14px;outline: none;resize: none;border:1px solid #ddd;color:#333;    overflow-x: hidden;padding:15px}
 		.modal-body .rc{width:270;height:40px;line-height:40px;text-align: center;color:#fff;background: #0076F7;display: block;position: absolute;bottom:50px;left:40%}
-		#errormsg {position: absolute;bottom: 93px;left: 81px;color: #ff6600;font-size: 12px;padding-left: 131px;display: none;}
+		#errormsg {position: absolute;bottom: 93px;left: 81px;color: #ff6600;font-size: 12px;padding-left: 159px;display: none; margin-bottom: 5px;}
 		#errormsg small{color: #ff6600;}
 		input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {-webkit-appearance: none;}
     	input[type="number"]{-moz-appearance: textfield;}

@@ -50,7 +50,7 @@
                 </div>
                 <div class="header_right right">
                     <a href="../index.html" class="header_right_a" style="color:#0076F7">BUYOO Trang chủ</a>|
-                    <a href="./help.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
+                    <a href="./buyIntro.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
                 </div>
             </div>
         </div>
@@ -127,17 +127,18 @@
                     <div class="bill">
                         <table cellspacing="" cellpadding="0" id="J_tab_fam">
                             <dl>
-                                <dd class="act" ng-click="reqType(1)">Hoá đơn kì này</dd>
-                                <dd ng-click="reqType(2)">Hoá đơn kỳ sau</dd>
-                                <dd ng-click="reqType(3)">Hoá đơn chưa xuất</dd>
-                                <dd ng-click="reqType(4)">Hoá đơn đã than toán</dd>
-                                <dd ng-click="reqType(5)">Hóa đơn hết hạn</dd>
+                                <dd class="nav-item act" data-index="1" ng-click="reqType(1)">Hoá đơn kì này</dd>
+                                <dd class="nav-item" data-index="2" ng-click="reqType(2)">Hoá đơn kỳ sau</dd>
+                                <dd class="nav-item" data-index="3" ng-click="reqType(3)">Hoá đơn chưa xuất</dd>
+                                <dd class="nav-item" data-index="4" ng-click="reqType(4)">Hoá đơn đã than toán</dd>
+                                <dd class="nav-item" data-index="5" ng-click="reqType(5)">Hóa đơn hết hạn</dd>
                             </dl>
                             <thead>
                                 <tr>
                                     <th>Mã đơn hàng</th>
                                     <th>Số kỳ</th>
-                                    <th>Tổng tiền</th>
+                                    <th>Trả góp hàng tháng</th>
+                                    <th>Số tiền phải trả hàng tháng</th>
                                     <th>Phí dịch vụ hàng tháng</th>
                                     <th>Thời gian hết hạn</th>
                                     <th>Thao tác</th>
@@ -147,13 +148,14 @@
                                 <tr ng-repeat="item in billList">
                                     <td ng-bind="item.orderId"></td>
                                     <td ng-bind="item.periods"></td>
-                                    <td ng-bind="(item.interest | priceFormat) +' VND'"></td>
+                                    <td ng-bind="((item.interest+item.principal) | priceFormat) +' VND'"></td>
                                     <td ng-bind="(item.principal | priceFormat) +' VND'"></td>
+                                    <td ng-bind="(item.interest | priceFormat) +' VND'"></td>
                                     <td ng-bind="item.expireDate"></td>
                                     <td ng-click="openbillDetail(item.orderId,item.transactionId,item.status,item.periods)">
-                                        <p><a href="" style="color: #444;">Tình trạng cụ thể đơn hàng</a></p>
+                                        <p><a href="" style="color: #444;">Tình trạng cụ thể</a></p>
                                         <div class="ppp {{tdname}}">
-                                            <p ng-if="reqPara.period=='1'||reqPara.period=='5'"><a>{{period_json[item.status]}}</a></p>
+                                            <p ng-if="reqPara.period=='1'||reqPara.period=='5'"><a ng-bind="period_json[item.status]"></a></p>
                                         </div>
                                     </td>
                                 </tr>
@@ -170,17 +172,15 @@
                     </div>
                     <div class="changePage">
                         <div style="margin-bottom: 30px;">
-                            <button id="lastPagebtn" ng-click="lastPage()">Trang trước</button>
+                            <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
                             <span style="padding-top: 3px;">Trang hiện tại: <span ng-bind="reqPara.page"></span>&nbsp;&nbsp;</span>
                             <span style="padding-top: 3px;">Trang : <span ng-bind="totalPage"></span> tiên</span>
-                            <button id="nextPagebtn" ng-click="nextPage()">Trang sau</button>
-                            <!--<input type="number" name="" ng-model="iptpage" id="gotoPage" value="" minlength="1"/>
-								<button ng-click="confirm()">Xác nhận</button>-->
+                            <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                         </div>
                     </div>
                     <div class="no_list">
                         <img src="../img/bill.jpg" alt="" />
-                        <p>Bạn chưa có hóa đơn nào cả, mau đặt hàng ngay thôi!！</p>
+                        <p>Bạn chưa có hóa đơn nào cả, mau đặt hàng ngay thôi</p>
                         <a href="../index.html">Đến trang chủ >></a>
                     </div>
                 </div>
@@ -327,7 +327,7 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a>
+                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">
@@ -373,14 +373,23 @@
             $('.no_list').hide();
         }
     })
-    $('.one-right dl').find('dd').each(function(index) {
-        $(this).click(function() {
-            if ($(this).is('.act') == false) {
-                $('.one-right dl dd').removeClass('act').eq(index).addClass('act');
-                //					$('.table_list .dl_list').stop().hide().eq(index).stop().show();
-            }
-        })
-    })
+
+    $(".nav-item").on('click', function() {
+        var self = $(this);
+        $('.nav-item').removeClass('act');
+        self.addClass('act');
+
+        F._setUrl('status', self.data('index'));
+    });
+
+    // $('.one-right dl').find('dd').each(function(index) {
+    //     $(this).click(function() {
+    //         if ($(this).is('.act') == false) {
+    //             $('.one-right dl dd').removeClass('act').eq(index).addClass('act');
+    //             //					$('.table_list .dl_list').stop().hide().eq(index).stop().show();
+    //         }
+    //     })
+    // })
     $(window).load(function() {
         var options = {
             thumbBox: '.thumbBox',

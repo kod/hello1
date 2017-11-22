@@ -304,7 +304,7 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
                                             var collData = res.data.details;
                                             if (status == 200) {
                                                 localStorage.setItem('funId=' + funId + 'brandId=' + brand_id, 0);
-                                                // window.location.href = "";
+                                                location.reload();
                                             } else {}
 
                                         };
