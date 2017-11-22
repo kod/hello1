@@ -542,7 +542,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         };
         ajax.successCallback = function(res) {
 
-
+            
             var resCode = res.data.code;
 
             if (resCode == 10000) {

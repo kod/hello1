@@ -1,7 +1,7 @@
 if (!window.F) window.F = {};
 
-// F._IP = "http://47.52.21.255";
-F._IP = "http://47.52.106.165";
+F._IP = "http://47.52.21.255";
+// F._IP = "http://47.52.106.165";
 F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
@@ -20,10 +20,10 @@ F._userAction_login_uc = F._IP + ":8180/fun/userCenter/userAction/login"; // 用
 F._userAction_changePassword_uc = F._IP + ":8180/fun/userCenter/userAction/changePassword"; // 重置密码
 F._userAction_modifyPayPassword_uc = F._IP + ":8180/fun/userCenter/userAction/modifyPayPassword"; // 修改交易密码
 F._userAction_checkPayPasword_uc = F._IP + ":8180/fun/userCenter/userAction/checkPayPasword"; // 修改交易密码
-F._userAction_userAddAddr_uc = F._IP + ":8180/fun/usercenter/userAddAddr"; // 
-F._userAction_usercenter_uc = F._IP + ":8180/fun/usercenter/userModifyAddr"; // 
-F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 
-F._userAction_userDelAddrs_uc = F._IP + ":8180/fun/usercenter/userDelAddrs"; // 
+F._userAction_userAddAddr_uc = F._IP + ":8180/fun/usercenter/userAddAddr"; // 地址-添加
+F._userAction_userModifyAddr_uc = F._IP + ":8180/fun/usercenter/userModifyAddr"; // 地址-修改
+F._userAction_userDelAddrs_uc = F._IP + ":8180/fun/usercenter/userDelAddrs"; // 地址-删除
+F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 地址-列表
 F._userAction_register_uc = F._IP + ":8180/fun/userCenter/userAction/register"; // 注册
 F._userAction_getUserInfoById_uc = F._IP + ":8180/fun/userCenter/userAction/getUserInfoById"; // 
 F._initTopComputer_cp = F._IP + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
@@ -63,6 +63,7 @@ F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
 
 F._signType_MD5 = function(appId, method, charset, Key, lowerCase) {
     var md5SigntypeStrig = "";
+    // 默认大写
     if (lowerCase) {
         md5SigntypeStrig += "appid=" + appId;
     } else {
@@ -84,6 +85,340 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+}
+
+// 收货地址列表
+F._userAction_userViewAddr = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = 'userKey';
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.uc.userviewaddr";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = '1.0';
+
+    var funid = localStorage.getItem("funId");
+    var msisdn = localStorage.getItem("msisdn");
+
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
+
+    var encrypt = F._encrypt_MD5([{
+        key: "funid",
+        value: funid
+    }, {
+        key: "msisdn",
+        value: msisdn
+    }], Key);
+
+    var data = {
+        appId: appId,
+        method: method,
+        charset: charset,
+        signType: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        msisdn: msisdn,
+        funid: funid,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAction_userViewAddr_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'error', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
+}
+
+// 删除收货地址
+F._userAction_userDelAddrs = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = 'userKey';
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.uc.userDelAddrs";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = '1.0';
+
+    var adds = params.adds;
+    var funid = localStorage.getItem("funId");
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5([{
+        key: "funid",
+        value: funid
+    }, {
+        key: "adds",
+        value: adds
+    }], Key);
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        adds: adds,
+        funid: funid,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAction_userDelAddrs_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                case 40020:
+                    F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'error', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
+}
+
+// 编辑收货地址
+F._userAction_userModifyAddr = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = 'userKey';
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.uc.usermodifyaddr";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = '1.0';
+
+    var addrid = params.addrid;
+    var funid = localStorage.getItem("funId");
+    var msisdn = params.msisdn;
+    var address = params.address;
+    var isdefault = params.isdefault;
+    var username = params.username;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
+
+    var encrypt = F._encrypt_MD5([{
+        key: "addrid",
+        value: addrid
+    }, {
+        key: "funid",
+        value: funid
+    }, {
+        key: "msisdn",
+        value: msisdn
+    }, {
+        key: "address",
+        value: address
+    }, {
+        key: "isdefault",
+        value: isdefault
+    }, {
+        key: "username",
+        value: username
+    }], Key);
+
+    var data = {
+        appId: appId,
+        method: method,
+        charset: charset,
+        signType: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        addrid: addrid,
+        funid: funid,
+        msisdn: msisdn,
+        address: address,
+        isdefault: isdefault,
+        username: username,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAction_userModifyAddr_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                case 40020:
+                    F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'error', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
+}
+
+// 添加收货地址
+F._userAction_userAddAddr = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = 'userKey';
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.uc.useraddaddr";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = '1.0';
+
+    var funid = localStorage.getItem("funId");
+    var msisdn = params.msisdn;
+    var address = params.address;
+    var isdefault = params.isdefault;
+    var username = params.username;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
+
+    var encrypt = F._encrypt_MD5([{
+        key: "funid",
+        value: funid
+    }, {
+        key: "msisdn",
+        value: msisdn
+    }, {
+        key: "address",
+        value: address
+    }, {
+        key: "isdefault",
+        value: isdefault
+    }, {
+        key: "username",
+        value: username
+    }], Key);
+
+    var data = {
+        appId: appId,
+        method: method,
+        charset: charset,
+        signType: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        msisdn: msisdn,
+        address: address,
+        isdefault: isdefault,
+        username: username,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAction_userAddAddr_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                case 40020:
+                    F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'error', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
 }
 
 // 获取收藏接口

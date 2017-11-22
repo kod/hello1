@@ -352,8 +352,8 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <p style="color: #aaa; font-weight: 300;padding-left: 150px;margin-top: -20px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</p>
                             <b id="tis" style="color:red;display: none;">sai</b>
+                            <p style="color: #aaa; font-weight: 300;padding-left: 150px;margin-top: -20px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</p>
                         </div>
                         <button id="submit">Xác nhận tồn tại</button>
                     </div>
@@ -851,15 +851,25 @@
 
     })
     $('#sctime-ac-m').change(function() {
-        var thiss = $(this).val();
-        var numovs = $('#sctime-ov-m').val();
-        if (thiss > numovs) {
-            $('#tis').show();
-            $('#submit').attr('disabled', true)
-        } else {
-            $('#tis').hide();
-            $('#submit').attr('disabled', false)
-        }
+        // var thiss = $(this).val();
+        // var numovs = $('#sctime-ac').val();
+        // if (thiss && !numovs) {
+        //     $('#tis').hide();
+        //     $('#submit').attr('disabled', false)
+        // } else {
+        //     $('#tis').show();
+        //     $('#submit').attr('disabled', true)
+        // }
+
+        // var thiss = $(this).val();
+        // var numovs = $('#sctime-ac').val();
+        // if (thiss > numovs) {
+        //     $('#tis').show();
+        //     $('#submit').attr('disabled', true)
+        // } else {
+        //     $('#tis').hide();
+        //     $('#submit').attr('disabled', false)
+        // }
     })
     // $('#sctime-ov-m').change(function() {
     //     var thiss = $(this).val();

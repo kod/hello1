@@ -2018,6 +2018,9 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #5F5F5F;
     font-size: 18px;
     font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .site__m-i-r1-tel {

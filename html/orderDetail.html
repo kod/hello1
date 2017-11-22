@@ -34,15 +34,20 @@
     }
 
     .body__m-i-top {
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
 
     .body__m-i-t-name {
-        margin-right: 30px;
+        margin-right: 25px;
     }
 
     .body__main-phone {
         margin-bottom: 70px;
+    }
+
+    .body__m-i-t-title {
+        color: #888;
+        margin-right: 10px;
     }
 
     .body__m-p-title {
@@ -333,10 +338,17 @@
                 </div>
                 <div class="body__main-info">
                     <div class="body__m-i-top">
-                        <span class="body__m-i-t-name" v-html="'Người nhận hàng: ' + username"></span>
-                        <span class="body__m-i-t-phone" v-hmlt="'Điện thoại: ' + msisdn"></span>
+                        <!-- <span class="body__m-i-t-name" v-html="'Người nhận hàng: ' + username"></span> -->
+                        <span class="body__m-i-t-title">Điện thoại:</span><span class="body__m-i-t-phone" v-html="msisdn"></span>
                     </div>
-                    <div class="body__m-i-bottom" v-html="address"></div>
+                    <div class="body__m-i-top">
+                        <span class="body__m-i-t-title">Người nhận hàng:</span><span class="body__m-i-t-name" v-html="username"></span>
+                        <!-- <span class="body__m-i-t-phone" v-html="'Điện thoại: ' + msisdn"></span> -->
+                    </div>
+                    <div class="body__m-i-bottom">
+                        <span class="body__m-i-t-title">Địa chỉ nhận hàng: </span>
+                        <span class="body__m-i-t-address" v-html="address"></span>
+                    </div>
                 </div>
                 <div class="body__main-phone">
                     <div class="body__m-p-title">

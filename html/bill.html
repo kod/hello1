@@ -138,8 +138,8 @@
                                     <th>Mã đơn hàng</th>
                                     <th>Số kỳ</th>
                                     <th>Trả góp hàng tháng</th>
-                                    <th>Số tiền phải trả hàng tháng</th>
-                                    <th>Phí dịch vụ hàng tháng</th>
+                                    <!-- <th>Số tiền phải trả hàng tháng</th> -->
+                                    <!-- <th>Phí dịch vụ hàng tháng</th> -->
                                     <th>Thời gian hết hạn</th>
                                     <th>Thao tác</th>
                                 </tr>
@@ -149,8 +149,8 @@
                                     <td ng-bind="item.orderId"></td>
                                     <td ng-bind="item.periods"></td>
                                     <td ng-bind="((item.interest+item.principal) | priceFormat) +' VND'"></td>
-                                    <td ng-bind="(item.principal | priceFormat) +' VND'"></td>
-                                    <td ng-bind="(item.interest | priceFormat) +' VND'"></td>
+                                    <!-- <td ng-bind="(item.principal | priceFormat) +' VND'"></td> -->
+                                    <!-- <td ng-bind="(item.interest | priceFormat) +' VND'"></td> -->
                                     <td ng-bind="item.expireDate"></td>
                                     <td ng-click="openbillDetail(item.orderId,item.transactionId,item.status,item.periods)">
                                         <p><a href="" style="color: #444;">Tình trạng cụ thể</a></p>

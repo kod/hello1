@@ -16,7 +16,7 @@
 		.one-left .img .phone .img-phone{width:90px;height:90px;border-radius: 50%;cursor: pointer;}
 		.one-left .img .phone p{line-height:46px;color:#fff;font-size: 13px;}
 		
-		.one-left li{width:100%;height:45px;background: #313131;line-height:45px;text-align: center;border-bottom:1px solid #3a3a3a;border-top: 1px solid #282828;}
+		.one-left li{width:100%;height:45px;background: #313131;line-height:45px;text-align: center;border-bottom:1px solid #282828;border-top: 1px solid #3a3a3a;}
 		.one-left li a{color:#9E9E9E;display: inline-block;width:100%;height:100%;padding-left:20px;font-size:12px}
 		.one-left li.one a{background: url(../img/x1.jpg) no-repeat 20px center;}
 		.one-left li.two a{background: url(../img/w2.jpg) no-repeat 20px center;}

@@ -529,38 +529,65 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                     }
 
                     function twoPropertiesIds() {
-                        if ($scope.propertiesDetail[0].image == "") {
-                            for (var i = 0; i < $scope.propertiesDetail.length; i++) {
-                                if (initPropertiesIdsArray[1] == $scope.propertiesDetail[i].id) {
-                                    $scope.nowUrl = $scope.propertiesDetail[i].image;
-                                    $scope.nowOneInfo = $scope.propertiesDetail[i].value;
-                                }
-                                if (initPropertiesIdsArray[0] == $scope.propertiesDetail[i].id) {
-                                    $scope.nowTwoInfo = $scope.propertiesDetail[i].value;
+
+                        function is_properties(id) {
+                            id = id + '';
+                            var i;
+                            var result = false;
+
+                            for (i = 0; i < initPropertiesIdsArray.length; i++) {
+                                if ((initPropertiesIdsArray[i] + '') === id) {
+                                    result = true;
+                                    break;
                                 }
                             }
-                        } else {
-                            for (var i = 0; i < $scope.propertiesDetail.length; i++) {
-                                if (initPropertiesIdsArray[0] == $scope.propertiesDetail[i].id) {
+                            return result;
+                        }
+
+                        var i;
+                        for (i = 0; i < $scope.propertiesDetail.length; i++) {
+                            if (is_properties($scope.propertiesDetail[i].id)) {
+                                if ($scope.propertiesDetail[i].image) { // 颜色
                                     $scope.nowUrl = $scope.propertiesDetail[i].image;
                                     $scope.nowOneInfo = $scope.propertiesDetail[i].value;
-                                }
-                                if (initPropertiesIdsArray[1] == $scope.propertiesDetail[i].id) {
+                                } else { // 非颜色
                                     $scope.nowTwoInfo = $scope.propertiesDetail[i].value;
                                 }
                             }
                         }
-                        if ($scope.propertiesDetailName[1] == $scope.propertiesDetail[0].name) {
-                            for (var i = 0; i < $scope.propertiesDetail.length; i++) {
-                                if (initPropertiesIdsArray[1] == $scope.propertiesDetail[i].id) {
-                                    $scope.nowUrl = $scope.propertiesDetail[i].image;
-                                    $scope.nowOneInfo = $scope.propertiesDetail[i].value;
-                                }
-                                if (initPropertiesIdsArray[0] == $scope.propertiesDetail[i].id) {
-                                    $scope.nowTwoInfo = $scope.propertiesDetail[i].value;
-                                }
-                            }
-                        }
+
+                        // if ($scope.propertiesDetail[0].image == "") { // 非颜色
+                        //     for (var i = 0; i < $scope.propertiesDetail.length; i++) {
+                        //         if (initPropertiesIdsArray[1] == $scope.propertiesDetail[i].id) {
+                        //             $scope.nowUrl = $scope.propertiesDetail[i].image;
+                        //             $scope.nowOneInfo = $scope.propertiesDetail[i].value;
+                        //         }
+                        //         if (initPropertiesIdsArray[0] == $scope.propertiesDetail[i].id) {
+                        //             $scope.nowTwoInfo = $scope.propertiesDetail[i].value;
+                        //         }
+                        //     }
+                        // } else { // 颜色
+                        //     for (var i = 0; i < $scope.propertiesDetail.length; i++) {
+                        //         if (initPropertiesIdsArray[0] == $scope.propertiesDetail[i].id) {
+                        //             $scope.nowUrl = $scope.propertiesDetail[i].image;
+                        //             $scope.nowOneInfo = $scope.propertiesDetail[i].value;
+                        //         }
+                        //         if (initPropertiesIdsArray[1] == $scope.propertiesDetail[i].id) {
+                        //             $scope.nowTwoInfo = $scope.propertiesDetail[i].value;
+                        //         }
+                        //     }
+                        // }
+                        // if ($scope.propertiesDetailName[1] == $scope.propertiesDetail[0].name) {
+                        //     for (var i = 0; i < $scope.propertiesDetail.length; i++) {
+                        //         if (initPropertiesIdsArray[1] == $scope.propertiesDetail[i].id) {
+                        //             $scope.nowUrl = $scope.propertiesDetail[i].image;
+                        //             $scope.nowOneInfo = $scope.propertiesDetail[i].value;
+                        //         }
+                        //         if (initPropertiesIdsArray[0] == $scope.propertiesDetail[i].id) {
+                        //             $scope.nowTwoInfo = $scope.propertiesDetail[i].value;
+                        //         }
+                        //     }
+                        // }
                         $scope.nowThreeInfo = "";
                     }
 
