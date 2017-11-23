@@ -1,7 +1,7 @@
 if (!window.F) window.F = {};
 
-F._IP = "http://47.52.21.255";
-// F._IP = "http://47.52.106.165";
+// F._IP = "http://47.52.21.255";
+F._IP = "http://47.52.106.165";
 F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
@@ -85,6 +85,77 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+}
+
+// 显示分期金额信息
+F._returnMoney = function(params, callback) {
+    var Key = 'settleKey';
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.trade.returnMoney";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = '1.0';
+
+    var totalamounts = params.totalamounts;
+    var repaymentmonths = params.repaymentmonths;
+    var payrate = params.payrate;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5([{
+        key: "totalamounts",
+        value: totalamounts
+    }, {
+        key: "repaymentmonths",
+        value: repaymentmonths
+    }, {
+        key: "payrate",
+        value: payrate
+    }], Key);
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        totalamounts: totalamounts,
+        repaymentmonths: repaymentmonths,
+        payrate: payrate,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._returnMoney_im,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'error', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
 }
 
 // 收货地址列表

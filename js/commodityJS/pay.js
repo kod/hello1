@@ -89,6 +89,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     $scope.$watch('fenqiNum', function(newValue, oldValue) {
         fenqiAjax($scope.price, $scope.paymentNum, newValue);
     }, true);
+
     //	获取分期金额信息接口
     function fenqiAjax(totalamounts, payrate, repaymentmonths) {
         var url = F._returnMoney_im;
@@ -162,6 +163,26 @@ app.controller("payCtrl", function($scope, $http, $filter) {
 
 //地址address请求
 app.controller('addCtrl', function($scope, $http, $filter) {
+    var loading = new F._loading();
+    loading.show();
+    F._userAction_userViewAddr({}, function(ret) {
+        loading.hide();
+        if (!ret) return false;
+        if (ret.code !== 10000) return false;
+
+        $scope.addrlistData = [];
+        $scope.addrlistData = ret.details;
+        $scope.addrlistLength = ret.details.length;
+
+        $scope.$watch("addrlistLength", function(n) {
+            if (n > 4) {
+                $(".addAddrli").css('display', 'none');
+            }
+        })
+
+    });
+
+
     var url = F._userAction_userViewAddr_uc;
     var ajax = new ajaxClass($http, url, "POST");
     var appId = localStorage.getItem("funId");
