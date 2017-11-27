@@ -34,7 +34,11 @@ app.controller("moreCtrl", function($scope, $http) {
         params.currentPage = params.currentPage ? params.currentPage : F.currentPage;
 
 
-        if (!params._noPage) F._setUrl('page', params.currentPage);
+        if (!params._noPage) {
+            F._setUrl('page', params.currentPage);
+            F._setUrl('classifyId', params.classfy_id);
+            F._setUrl('brandAct', params.parent_id);
+        }
 
 
         var Key = 'commodityKey';
@@ -136,7 +140,7 @@ app.controller("moreCtrl", function($scope, $http) {
 
                             $scope.noProductTip = "";
                         } else {
-                            $scope.noProductTip = "Tạm thời chưa có sản phẩm nào!"
+                            $scope.noProductTip = "Tạm thời chưa có sản phẩm nào!";
                         }
 
                         break;
@@ -397,7 +401,8 @@ app.controller("moreCtrl", function($scope, $http) {
                             for (var i = 0; i < $scope.nowProduct.length; i++) {
                                 var imgUrls = $scope.nowProduct[i].imageUrls;
                                 var imgUrlsArray = imgUrls.split("|");
-                                $scope.nowProduct[i].image = imgUrlsArray[0];
+                                $scope.nowProduct[i].image = $scope.nowProduct[i].iconUrl;
+                                // $scope.nowProduct[i].image = imgUrlsArray[0];
                             }
 
 
@@ -695,10 +700,11 @@ app.controller("moreCtrl", function($scope, $http) {
     }
 
     $scope.brandAct = request['brandAct'];;
-    $scope.product = function(typeId, brandId) {
-
-        gotoDetails(typeId, brandId);
-    }
+    $scope.product = gotoDetails;
+    
+    // $scope.product = function(typeId, brandId) {
+    //     gotoDetails(typeId, brandId);
+    // }
 
 
 
@@ -716,7 +722,8 @@ app.controller("moreCtrl", function($scope, $http) {
                 var imgUrlObj = JSON.parse(imgUrlsStr);
                 var imgUrls = imgUrlObj.imageUrls;
                 var imgUrlsArray = imgUrls.split("|");
-                $scope.userScanObj[i].imgUrl = imgUrlsArray[0];
+                $scope.userScanObj[i].imgUrl = imgUrlObj.iconUrl;
+                // $scope.userScanObj[i].imgUrl = imgUrlsArray[0];
             }
 
             $scope.showuserScanObj = $scope.userScanObj.splice(0, 6);
@@ -733,17 +740,16 @@ app.controller("moreCtrl", function($scope, $http) {
 
 
 
+// //点击商品页面跳转详情
+// function gotoDetails(typeId, brandId) {
 
 
-//点击商品页面跳转详情
-function gotoDetails(typeId, brandId) {
+//     if (brandId != null && brandId != "" && typeId != null && typeId != "") {
+//         window.location.href = "details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
+//         // window.open("details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
 
+//     } else {
+//         // window.location.href = "";
+//     }
+// }
 
-    if (brandId != null && brandId != "" && typeId != null && typeId != "") {
-        window.location.href = "details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-        // window.open("details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
-
-    } else {
-        // window.location.href = "";
-    }
-}

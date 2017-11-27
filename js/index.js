@@ -782,11 +782,11 @@ app.controller('smartbrandCtrl', function($scope, $http) {
 
 
 
-function gotoDetails(typeId, brandId) {
-    if (typeId != "" && brandId != "") {
-        // window.open("./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
-        window.location.href = "./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-    } else {
-        window.location.href = "";
-    }
-}
+// function gotoDetails(typeId, brandId) {
+//     if (typeId != "" && brandId != "") {
+//         // window.open("./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
+//         window.location.href = "./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
+//     } else {
+//         window.location.href = "";
+//     }
+// }

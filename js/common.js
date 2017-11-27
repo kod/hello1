@@ -26,14 +26,21 @@ F._userAction_userDelAddrs_uc = F._IP + ":8180/fun/usercenter/userDelAddrs"; // 
 F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 地址-列表
 F._userAction_register_uc = F._IP + ":8180/fun/userCenter/userAction/register"; // 注册
 F._userAction_getUserInfoById_uc = F._IP + ":8180/fun/userCenter/userAction/getUserInfoById"; // 
+F._userCancelCollection_uc = F._IP + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
+F._userAddCollection_uc = F._IP + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
+F._userGetCollection_uc = F._IP + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
 F._initTopComputer_cp = F._IP + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
+F._initNewCellphone_cp = F._IP + ":8185/fun/cellphone/initNewCellphone"; // 
+F._initAdCellphone_cp = F._IP + ":8185/fun/cellphone/initAdCellphone"; // 
+F._initTopCellphone_cp = F._IP + ":8185/fun/cellphone/initTopCellphone"; // 
 F._initAdAppleComputer_di = F._IP + ":8185/fun/computer/initAdAppleComputer"; // 
 F._initAdGameComputer_di = F._IP + ":8185/fun/computer/initAdGameComputer"; // 
 F._initAdTabletComputer_di = F._IP + ":8185/fun/computer/initAdTabletComputer"; // 
 F._initAdClassfyComputer_di = F._IP + ":8185/fun/computer/initAdClassfyComputer"; // 
 F._initNewComputer_di = F._IP + ":8185/fun/computer/initNewComputer"; // 
-F._uploadFiles_uf = F._IP + ":8180/fun/userfile/uploadFiles"; // 上传用户头像
-F._collectFiles_uf = F._IP + ":8180/fun/userfile/collectFiles"; // 用户评论上传图片
+F._initTopDigital_di = F._IP + ":8185/fun/digital/initTopDigital"; // 
+F._initNewDigital_di = F._IP + ":8185/fun/digital/initNewDigital"; // 
+F._initAdDigital_di = F._IP + ":8185/fun/digital/initAdDigital"; // 
 F._addEvaluation_cd = F._IP + ":8185/fun/commodity/addEvaluation"; // 添加评论
 F._findProducts_cd = F._IP + ":8185/fun/commodity/findProducts"; // 商品搜索
 F._getProductDetailInfo_cd = F._IP + ":8185/fun/commodity/getProductDetailInfo"; // 获取产品详情
@@ -43,16 +50,10 @@ F._getAdverstInfo_cd = F._IP + ":8185/fun/commodity/getAdverstInfo"; //
 F._getClassfyInfo_cd = F._IP + ":8185/fun/commodity/getClassfyInfo"; // 
 F._getAllProductInfo_cd = F._IP + ":8185/fun/commodity/getAllProductInfo"; // 
 F._getScreenInfo_cd = F._IP + ":8185/fun/commodity/getScreenInfo"; // 
-F._userGetCollection_uc = F._IP + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
-F._userCancelCollection_uc = F._IP + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
-F._userAddCollection_uc = F._IP + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
+F._getPromotionInfo_cd = F._IP + ":8185/fun/commodity/getPromotionInfo"; // 促销商品列表
+F._uploadFiles_uf = F._IP + ":8180/fun/userfile/uploadFiles"; // 上传用户头像
+F._collectFiles_uf = F._IP + ":8180/fun/userfile/collectFiles"; // 用户评论上传图片
 F._returnMoney_im = F._IP + ":8184/fun/installment/returnMoney"; // 
-F._initTopDigital_di = F._IP + ":8185/fun/digital/initTopDigital"; // 
-F._initNewDigital_di = F._IP + ":8185/fun/digital/initNewDigital"; // 
-F._initAdDigital_di = F._IP + ":8185/fun/digital/initAdDigital"; // 
-F._initNewCellphone_cp = F._IP + ":8185/fun/cellphone/initNewCellphone"; // 
-F._initAdCellphone_cp = F._IP + ":8185/fun/cellphone/initAdCellphone"; // 
-F._initTopCellphone_cp = F._IP + ":8185/fun/cellphone/initTopCellphone"; // 
 
 F._phoneExpr = /^[0-9]{8,11}$/; //手机号
 F._pwdExpr = /^.{8,20}$/; // 密码
@@ -85,6 +86,87 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+}
+
+// 促销商品
+F._getPromotionInfo = function(params, callback) {
+    var Key = 'commodityKey';
+
+    var appId = '';
+    var method = "fun.promotion.query";
+    var charset = "utf-8";
+    var timestamp = (+new Date() + '').slice(3);
+    var version = '2.0';
+
+    var typeid = params.typeid;
+    var classfyid = params.classfyid;
+    var position = params.position;
+    var pagesize = params.pagesize;
+    var currentpage = params.currentpage;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5([{
+        key: "typeid",
+        value: typeid
+    }, {
+        key: "classfyid",
+        value: classfyid
+    }, {
+        key: "position",
+        value: position
+    }, {
+        key: "pagesize",
+        value: pagesize
+    }, {
+        key: "currentpage",
+        value: currentpage
+    }], Key);
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        typeid: typeid,
+        classfyid: classfyid,
+        position: position,
+        pagesize: pagesize,
+        currentpage: currentpage,
+    };
+
+    $.ajax({
+        type: "GET",
+        url: F._getPromotionInfo_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'error', 'error', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
 }
 
 // 显示分期金额信息
@@ -1438,7 +1520,7 @@ F._userAction_login = function(params, callback) {
 
                 case 60050:
                     if (data.otp) { // 验证码登录
-                        window.location.href = './register.html?msisdn=' + data.msisdn + '&otp=' + data.otp ;
+                        window.location.href = './register.html?msisdn=' + data.msisdn + '&otp=' + data.otp;
                     } else {
                         F._confirm('Gợi ý', 'Tên đăng nhập hoặc mật khẩu không hợp lệ', 'error', [{
                             name: 'Xác nhận',
@@ -2722,6 +2804,29 @@ F._setUrl = function(key, value) {
         url: url,
         title: document.title
     }, document.title, url);
+}
+
+
+// 打开商品详情
+function gotoDetails(typeId, brandId, id, discount, orgPrice) {
+    // console.log(typeId);
+    // console.log(brandId);
+    // console.log(id);
+    // console.log(discount);
+    // console.log(orgPrice);
+    // return false;
+    discount = (100 - parseInt(discount)) || '';
+    orgPrice = orgPrice || '';
+    id = id || '';
+    var parse = F._hrefUtils.parse() || {};
+    var file_name = parse.path.slice(-10, -1);
+
+    if (typeId != "" && brandId != "") {
+        // window.open("./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
+        window.location.href = (file_name === 'index.htm' ? '' : '.') + "./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId + "&id=" + id;
+    } else {
+        window.location.href = "";
+    }
 }
 
 /*主页退出*/

@@ -250,7 +250,7 @@
                     <p>Xem gần đây</p>
                     <ul id="lastScan">
                         <li ng-repeat="item in showuserScanObj">
-                            <a ng-click="product(item.typeId,item.brandId)" target="_self">
+                            <a ng-click="product(item.typeId, item.brandId, item.id, item.discount, item.orgPrice)" target="_self">
                                 <div class="left">
                                     <div class="img" style="background-image: url({{item.imgUrl}});"></div>
                                     <!-- <img src="{{item.imgUrl}}" alt="" /> -->
@@ -269,7 +269,7 @@
                     </div>
                     <div class="ul">
                         <!--<h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>-->
-                        <a ng-repeat="item in nowProduct |filter | orderBy :Porder + Norder +orderType" ng-click="product(item.typeId,item.brandId)" target="_self">
+                        <a ng-repeat="item in nowProduct |filter | orderBy :Porder + Norder +orderType" ng-click="product(item.typeId, item.brandId, item.id, item.discount, item.orgPrice)" target="_self">
                         <img src="{{item.iconUrl}}" alt="" />
                         <!-- <img src="{{item.image}}" alt="" /> -->
                         <h4 ng-bind="item.name"></h4>
@@ -278,6 +278,11 @@
                         <!--<h5>Thanh toán lần đầu:<span ng-bind="item.price*0.2"></span> VND &nbsp;&nbsp;</h5> -->
                         <!-- <h5>Trả góp hàng tháng: <br /><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x12</h5> -->
                         <h5><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x 12 Tháng</h5>
+                        <span ng-show="item.promotion" class="item-badge" style="background-image: url(../img/badge1.png);">
+                            <span class="item-badge__reduce">GIẢM</span>
+                            <span class="item-badge__mian" ng-bind="100 - item.discount"></span>
+                            <span class="item-badge__percent">%</span>
+                        </span>                  
                     </a>
                     </div>
                     <h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>
@@ -355,7 +360,7 @@
                     <div class="footer__b2-m-row2">
                         <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
                         <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                            <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
                             <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
                             <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
                             <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
@@ -401,6 +406,7 @@
                 </div>
             </div>
         </footer>
+    <script src="../js/common.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/swiper.min.js"></script>
     <script src="../js/yii.js"></script>
@@ -414,7 +420,6 @@
     <script src="../js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
     <!-- tcy -start- -->
     <script src="../js/md5.js"></script>
-    <script src="../js/common.js"></script>
     <!-- tcy -end- -->
     <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
     <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->

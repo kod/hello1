@@ -27,6 +27,55 @@
         height: 100%;
         width: 100%;
     }
+
+    .vnd-unit {
+        font-size: 14px;
+        color: #666;
+        line-height: 1;
+        margin-top: 19px;
+        font-weight: 500;
+    }
+
+    .oldprice {
+        color: #666;
+        padding-top: 3px;
+        margin-left: 10px;
+        line-height: 1;
+        margin-bottom: 10px;
+        display: none;
+    }
+
+    .oldprice__price {
+        text-decoration: line-through;
+    }
+
+    .oldprice__price span {
+        text-decoration: line-through;
+    }
+
+    .discount {
+        color: #666;
+        /*padding-top: 3px;*/
+        margin-left: 10px;
+        line-height: 1;
+        display: none;
+    }
+
+    .discount__text {
+
+    }
+
+    .discount__num {
+        /*color: #F7004C;*/
+    }
+
+    .money_active .oldprice {
+        display: block;
+    }
+
+    .money_active .discount {
+        display: block;
+    }
     /* tcy -end-*/
     </style>
 </head>
@@ -115,15 +164,28 @@
             <div class="right">
                 <h2><span>Kinh doanh độc lập</span>&nbsp;&nbsp;<i ng-bind="brandDetail.name" style="padding-top: 2px; font-weight: 700;"></i></h2>
                 <p class="p"><span></span><a href=""></a></p>
-                <div class="money">
-                    <p style="line-height: 45px;">Giá &nbsp;&nbsp;&nbsp;hiện&nbsp;&nbsp;&nbsp;tại: <i class="x"><span id="price" ng-init="price=0" ng-bind="price | priceFormat"></span> <small class="vnd">VND</small> <!--<s>￥5888<b></b></s>--></i></p>
+                <div class="money" id="tcy__money">
+                    <p style="line-height: 45px;">
+                        <!-- Giá &nbsp;&nbsp;&nbsp;hiện&nbsp;&nbsp;&nbsp;tại: -->
+                        <span id="price" ng-init="price=0" ng-bind="price | priceFormat"></span>
+                        <i class="vnd vnd-unit" ng-bind="'VND'"></i>
+                        <span class="price_text" id="price_text"></span>
+                    </p>
+                    <div class="oldprice">
+                        <span class="oldprice__text">Giá trước đây:</span>
+                        <span class="oldprice__price"><span id="oldprice__price-num"></span>&nbsp;VND</span>
+                    </div>
+                    <div class="discount">
+                        <span class="discount__text">Tiết kiệm:</span>
+                        <span class="discount__num"><span id="discount__num-num"></span>%</span>
+                    </div>
                     <div class="comments">
                         <a href="#comment"><span ng-controller="commentCtrls" ng-bind="totalNumber"></span> &nbsp;bình luận</a>
                     </div>
                 </div>
                 <div class="center">
                     <!--三个属性-->
-                    <div id="shouji" style="display: none;">
+                    <!-- <div id="shouji" style="display: none;">
                         <div class="ys" style="line-height: 40px;">
                             <div class="left cen-left" style="padding-top: 9px;">
                                 <span ng-bind="propertiesDetailName[0]+' :'"></span>
@@ -155,7 +217,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!--两个属性-->
                     <div id="two" style="display: none;">
                         <div class="ys pob-in">
@@ -444,44 +506,44 @@
                 </div>
             </div>
         </div>
-            <div class="footer__bottom2 col-xs-24">
-                <div class="footer__bottom2-main">
-                    <div class="footer__b2-m-row1">
-                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                        <ul class="footer__b2-m-r1-main col-xs-24">
-                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row2">
-                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                        <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row3">
-                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                        <ul class="footer__b2-m-r3-main col-xs-24">
-                            <li class="footer__b2-m-r3-m-item col-xs-24">
-                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row5">
-                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                        <ul class="footer__b2-m-r5-main col-xs-24">
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row7 col-xs-24">
+        <div class="footer__bottom2 col-xs-24">
+            <div class="footer__bottom2-main">
+                <div class="footer__b2-m-row1">
+                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
+                    <ul class="footer__b2-m-r1-main col-xs-24">
+                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row2">
+                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
+                    <ul class="footer__b2-m-r2-main col-xs-24">
+                        <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
+                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
+                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row3">
+                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                    <ul class="footer__b2-m-r3-main col-xs-24">
+                        <li class="footer__b2-m-r3-m-item col-xs-24">
+                            <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row5">
+                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                    <ul class="footer__b2-m-r5-main col-xs-24">
+                        <li class="footer__b2-m-r5-m-item col-xs-24">
+                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                        </li>
+                        <li class="footer__b2-m-r5-m-item col-xs-24">
+                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row7 col-xs-24">
                     <div class="footer__b2-m-r7-left col-xs-12">
                         <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
                             <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
@@ -494,13 +556,13 @@
                     <div class="footer__b2-m-r7-right col-xs-12">
                         <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
                     </div>
-                    </div>
-                    <div class="footer__b2-m-row6 col-xs-24">
-                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                        <div class="footer__b2-m-r6-right col-xs-12"></div>
-                    </div>
+                </div>
+                <div class="footer__b2-m-row6 col-xs-24">
+                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
+                    <div class="footer__b2-m-r6-right col-xs-12"></div>
                 </div>
             </div>
+        </div>
     </footer>
     <!-- 弹出模态框 -->
     <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -563,6 +625,22 @@ window.setTimeout(function() {
         });
     }
 }, 700);
+
+F.query = F._hrefUtils.parse().query || {};
+
+// F.discount = F.query.discount || '';
+// F.orgPrice = F.query.orgPrice || '';
+F.id = F.query.id || '';
+
+// console.log(F.id);
+// console.log(F.discount);
+// console.log(F.orgPrice);
+
+// if (F.discount && F.orgPrice) {
+//     $('#tcy__money').addClass('money_active');
+//     $('#discount__num-num').html(F.discount);
+//     $('#oldprice__price-num').html(F._priceFormat(F.orgPrice));
+// }
 
 var swiper = new Swiper('#index_banner', {
     paginationClickable: true,

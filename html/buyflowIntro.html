@@ -9,43 +9,30 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <link rel="stylesheet" href="../css/base.css">
-    <title>Thanh toán thành công</title>
+    <title>Mua sắm trả góp</title>
+    <script src="../js/md5.js"></script>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
-    body {
-        background-color: #fff;
-        opacity: 0;
+    * {
+        text-align: justify;
     }
 
     .body__main {
+        margin-bottom: 50px;
+        font-size: 16px;
+        padding-top: 50px;
         text-align: center;
     }
 
+    .body__main:after {
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+    }
+
     .body__main-img {
-        margin-top: 120px;
-        height: 100px;
-    }
-
-    .body__main-title {
-        font-size: 18px;
-        margin-top: 30px;
-    }
-
-    .body__main-desc {
-        font-size: 15px;
-        margin-top: 15px;
-        color: #777;
-    }
-
-    .body__main-gohome {
-        margin-top: 35px;
-        margin-bottom: 30px;
-        font-size: 12px;
-        color: #0076F7;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-bottom: 5px;
-        cursor: pointer;
+        width: 600px;
     }
 
     </style>
@@ -57,22 +44,19 @@
             <div class="header__nav">
                 <div class="header__nav-main">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'" >Trung tâm hỗ trợ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
             <div class="header__title">
                 <div class="header__title-main">
-                    <img src="../img/LOGO2.jpg" alt="" class="header__t-m-img" @click="gohome">
+                    <img src="../img/LOGO2.jpg" class="header__t-m-img" @click="gohome">
+                    <span class="header__t-m-text">Mua sắm trả góp</span>
                 </div>
             </div>
         </header>
         <section class="body">
-            <div class="body__main" 
-                :style="{ 'min-height': body__main_height + 'px' }" >
-                <img src="../img/32.png" alt="" class="body__main-img">
-                <div class="body__main-title">Mua thành công</div>
-                <div class="body__main-desc">Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!</div>
-                <span class="body__main-gohome" @click="window.location.href='./order.html'">KIỂM TRA ĐƠN HÀNG</span>
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                <img src="../img/buy-flow.jpg" alt="pic" class="body__main-img">
             </div>
         </section>
         <footer class="footer">
@@ -183,70 +167,68 @@
                 </div>
             </div>
         </footer>
-    </div>
-    <script>
-    require([
-        '../js/jquery1.11.2',
-        '../js/vue.min',
-        '../js/common',
-    ], function($, Vue) {
+        </div>
+        <script>
+        require([
+            '../js/jquery1.11.2',
+            '../js/vue.min',
+            '../js/md5',
+            '../js/common',
+        ], function($, Vue, md5) {
 
-        F.vue = {
-            body__main_height: document.documentElement.clientHeight - 133 - 210,
-        };
+            F.vue = {
+                body__main_height: document.documentElement.clientHeight - 133 - 210,
+            };
 
-        var load = function() {
-            new_vue();
-        };
+            var load = function() {
+                new_vue();
+            };
 
-        var pre_data = function(data) {
+            var pre_data = function(data) {
 
-        }
-
-        F.loadData = function(params, callback) {
-            if (callback === undefined) callback = params;
-
-            var all_data = {};
-            var request_length = 0; //请求个数
-
-            // 请求是否全部返回
-            function all_loaded() {
-                if (Object.keys(all_data).length === request_length) {
-                    pre_data(all_data);
-                    // Q.hideProgress();
-                    callback(all_data);
-                }
             }
-            // if (params.loadData_isLoading !== false) Q.showProgress();
 
-            all_loaded();
-        };
+            F.loadData = function(params, callback) {
+                if (callback === undefined) callback = params;
 
-        function new_vue() {
-            F.vue = new Vue({
-                el: $('#vue-el')[0],
-                data: F.vue,
-                methods: {
-                    gohome: gohome,
-                },
-                computed: {
+                var all_data = {};
+                var request_length = 0; //请求个数
 
-                },
-                created: function() {
-                    $('body').css('opacity', '1');
-                },
+                // 请求是否全部返回
+                function all_loaded() {
+                    if (Object.keys(all_data).length === request_length) {
+                        pre_data(all_data);
+                        // Q.hideProgress();
+                        callback(all_data);
+                    }
+                }
+                // if (params.loadData_isLoading !== false) Q.showProgress();
+
+                all_loaded();
+            };
+
+            function new_vue() {
+                F.vue = new Vue({
+                    el: $('#vue-el')[0],
+                    data: F.vue,
+                    methods: {
+                        gohome: gohome,
+                    },
+                    computed: {
+
+                    },
+                });
+            }
+
+            function gohome() {
+                window.location.href = '../index.html';
+            }
+
+            F.loadData(function() {
+                load();
             });
-        }
-
-        function gohome() {
-            window.location.href = '../index.html';
-        }
-
-        F.loadData(function() {
-            load();
         });
-    });
-    </script>
+        </script>
 </body>
 
 </html>

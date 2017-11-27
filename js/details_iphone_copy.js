@@ -14,8 +14,8 @@ app.filter('priceFormat', function() { //可以注入依赖
     return F._priceFormat;
 });
 
-var getImgUrls = function($scope) {
-    var url = $scope.nowProductClass[0].imageUrls;
+var getImgUrls = function($scope, data) {
+    var url = data.imageUrls;
     var resUrl = url.split("|");
     $scope.imgUrls = [];
     for (var i = 0; i < resUrl.length; i++) { //resUrl.length
@@ -29,7 +29,23 @@ var getImgUrls = function($scope) {
     } else {
         $('.swiper-pagination').removeClass('otherswiper');
     }
+}
 
+/**
+ * 根据是否促销改变响应参数
+ * @Author   taichiyi
+ * @DateTime 2017-11-25
+ * @param    {Object}   item 单个product_detail
+ * @return   {none}        无
+ */
+function promotion_set(item) {
+    if (item.promotion) { // 有促销
+        $('#tcy__money').addClass('money_active');
+        $('#discount__num-num').html(100 - item.discount);
+        $('#oldprice__price-num').html(F._priceFormat(item.orgPrice));
+    } else { // 无促销
+        $('#tcy__money').removeClass('money_active');
+    }
 }
 
 
@@ -110,16 +126,20 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
     ajax.successCallback = function(res) {
         /*tcy*/
         var colorChange = function(item, image) {
+            console.log(item);
             if (!image) return false;
-            $('.swiper-slide-img').eq(0).css('background-image','url('+ image +')')
+            // $('.swiper-slide-img').eq(0).css('background-image', 'url(' + image + ')')
             swiper.slideTo(0);
 
+            console.log('id'+item.id);
+            console.dir('nowProductDetail' + $scope.nowProductDetail);
             if ($scope.propertiesDetail[0].image == "") {
                 $scope.nowProductDetail[1] = item.id;
             } else {
                 $scope.nowProductDetail[0] = item.id;
-            }  
+            }
 
+            console.dir($scope.nowProductDetail);
             getPrice($scope.nowProductDetail);
             $scope.nowUrl = item.image;
 
@@ -179,12 +199,36 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
             $scope.propertiesDetail = propertiesDetail;
 
+            function find_properties(id, data) {
+                id = +id;
+                var i;
+                var result = data[0];
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].id === id) {
+                        result = data[i];
+                        // result = data[i].propertiesIds;
+                        break;
+                    }
+                }
+                console.log(result);
+                return result;
+            }
+
             if ($scope.productDetail.length > 0) {
                 //产品属性判断 1显示电脑  2其他产品
                 if ($scope.productDetail.length > 0) {
-                    var productDetailPropertiesIds = $scope.productDetail[0].propertiesIds;
-                    var propertiesIdsNum = productDetailPropertiesIds.split("-");
 
+                    var product_detail = find_properties(F.id, $scope.productDetail);
+                    console.dir(product_detail);
+
+                    promotion_set(product_detail);
+
+
+                    var propertiesIds = product_detail.propertiesIds;
+
+                    // var propertiesIds = $scope.productDetail[0].propertiesIds;
+                    var propertiesIdsNum = propertiesIds.split("-");
+                    console.log(propertiesIdsNum);
                 } else {
                     var propertiesIdsNum = [1];
                 }
@@ -193,10 +237,11 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                     case 1:
 
                         $("#diannao").css("display", "block");
-                        $("#shouji").css("display", "none");
+                        // $("#shouji").css("display", "none");
                         $("#two").css("display", "none");
 
-                        $scope.nowProductDetail = propertiesIdsNum[0];
+                        // $scope.nowProductDetail = propertiesIdsNum[0];
+                        $scope.nowProductDetail = propertiesIdsNum;
                         $scope.nowProductClass = [];
                         $scope.f = propertiesIdsNum[0];
                         for (var i = 0; i < $scope.productDetail.length; i++) {
@@ -208,9 +253,8 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         }
 
                         initPrice($scope.nowProductDetail);
-                        getImgUrls($scope);
+                        getImgUrls($scope, product_detail);
                         $scope.classify = function(obj) {
-
                             return true;
                         }
 
@@ -230,18 +274,17 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             $(".swiper-slide:nth-child(1) img").attr('src', item.image).parent().addClass('swiper-slide-active').css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1');
                         }
 
-
                         break;
 
                     case 2:
 
                         $("#diannao").css("display", "none");
-                        $("#shouji").css("display", "none");
+                        // $("#shouji").css("display", "none");
                         $("#two").css("display", "block");
 
                         $scope.propertiesDetailName = [];
 
-                        var propertiesIds = $scope.productDetail[0].propertiesIds;
+                        // var propertiesIds = $scope.productDetail[0].propertiesIds;
 
                         var propertiesIdsArray = propertiesIds.split('-');
 
@@ -282,7 +325,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             $('.ppobb').hide();
                             $scope.f = propertiesIdsArray[0];
                             $scope.s = propertiesIdsArray[1];
-                            //$scope.propertiesDetail = propertiesDetail;
                         }
                         if ($scope.propertiesDetailName[1] == $scope.propertiesDetail[0].name) {
                             $('.ppob').show()
@@ -306,8 +348,10 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
 
                         initPrice(propertiesIds);
+
+
                         //轮播图ImageUrl
-                        getImgUrls($scope);
+                        getImgUrls($scope, product_detail);
 
                         $scope.sizeChanges = function(item) {
                             $scope.nowProductDetail[1] = item.id;
@@ -320,10 +364,12 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         $scope.colorChanges = function(item, image) {
                             if (!image) return false;
-                            $('.swiper-slide-img').eq(0).css('background-image','url('+ image +')')
+                            // $('.swiper-slide-img').eq(0).css('background-image', 'url(' + image + ')')
                             swiper.slideTo(0);
 
                             $scope.nowProductDetail[0] = item.id;
+                            console.dir($scope.nowProductDetail);
+
                             getPrice($scope.nowProductDetail);
 
                             $scope.nowTwoInfo = item.value;
@@ -347,112 +393,8 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             $scope.nowThreeInfo = "";
                         }
 
-
                         break;
 
-                    case 3:
-
-                        $("#shouji").css("display", "block");
-                        $("#diannao").css("display", "none");
-                        $("#two").css("display", "none");
-
-
-                        $scope.propertiesDetailName = [];
-
-                        var propertiesIds = $scope.productDetail[0].propertiesIds;
-
-
-                        var propertiesIdsArray = propertiesIds.split('-');
-
-                        $scope.f = propertiesIdsArray[0];
-                        $scope.s = propertiesIdsArray[1];
-                        $scope.t = propertiesIdsArray[2];
-
-
-                        for (var i = 0; i < propertiesIdsArray.length; i++) {
-                            for (var j = 0; j < $scope.propertiesDetail.length; j++) {
-                                if (propertiesIdsArray[i] == $scope.propertiesDetail[j].id) {
-                                    $scope.propertiesDetailName.push($scope.propertiesDetail[j].name);
-                                }
-                            }
-                        }
-                        $scope.propertiesDetails = [];
-                        $scope.propertiesDetailss = [];
-                        $scope.propertiesDetailsss = [];
-                        for (var t = 0; t < $scope.propertiesDetail.length; t++) {
-
-                            if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[0]) {
-                                $scope.propertiesDetails.push($scope.propertiesDetail[t]);
-                            } else if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[1]) {
-                                $scope.propertiesDetailss.push($scope.propertiesDetail[t]);
-                            } else if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[2]) {
-                                $scope.propertiesDetailsss.push($scope.propertiesDetail[t]);
-
-                            }
-                        }
-
-
-
-                        var initProduct_propertiesIds = $scope.productDetail[0].propertiesIds;
-
-
-
-                        $scope.nowProductDetail = [];
-                        $scope.nowProductDetail = initProduct_propertiesIds.split("-");
-
-
-                        //遍历相同类型的产品 type_id
-                        $scope.nowProductClass = [];
-                        for (var i = 0; i < $scope.productDetail.length; i++) {
-                            if ($scope.productDetail[i].typeId == typeId) {
-                                $scope.nowProductClass.push($scope.productDetail[i]);
-                            }
-                        }
-
-
-
-                        var initProduct_propertiesIds = $scope.productDetail[0].propertiesIds;
-
-
-                        //                  initPrice(initProduct_propertiesIds);
-
-                        initPrice(initProduct_propertiesIds);
-                        //轮播图ImageUrl
-                        getImgUrls($scope);
-                        //颜色按钮点击事件
-
-                        $scope.colorChange = function(item) {
-                            color(item);
-                        }
-
-                        function color(obj) {
-                            $scope.nowProductDetail[0] = obj.id;
-                            getPrice($scope.nowProductDetail);
-                            $scope.nowUrl = obj.image;
-                            $scope.nowOneInfo = obj.value;
-                        }
-
-                        //内存按钮点击事件
-                        $scope.sizeChange = function(item) {
-                            $scope.nowProductDetail[1] = item.id;
-
-                            getPrice($scope.nowProductDetail);
-                            $scope.nowTwoInfo = item.desc;
-                        }
-                        //运营商点击事件
-                        $scope.telcoChange = function(item) {
-                            $scope.nowProductDetail[2] = item.id;
-
-
-                            getPrice($scope.nowProductDetail);
-                            $scope.nowThreeInfo = item.value;
-
-                        }
-
-                        break;
-
-                    case 4:
-                        break;
                     default:
                         // TODO
                         break;
@@ -472,18 +414,28 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                     //输出价格
 
+                    console.log(nowPropertiesIds);
+                    console.dir($scope.nowProductClass);
                     for (var i = 0; i < $scope.nowProductClass.length; i++) {
 
                         if (nowPropertiesIds == $scope.nowProductClass[i].propertiesIds) {
+
+                            promotion_set($scope.nowProductClass[i]);
+                            getImgUrls($scope, $scope.nowProductClass[i]);
+
                             window.__goodsDetail = $scope.nowProductClass[i];
+
                             $('.vnd').show();
                             $scope.price = $scope.nowProductClass[i].price;
                             $scope.numbers = $scope.nowProductClass[i].numbers;
 
+                            $('#price_text').html('');
+
                             break;
                         } else {
                             $scope.price = "Đã hết hàng";
-                            $scope.numbers = "0";
+                            $scope.numbers = 0;
+                            $('#price_text').html('Đã hết hàng');
                             $('.vnd').hide();
                         }
                     }
@@ -491,7 +443,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                 }
 
                 function initPrice(item) {
-
 
                     if (isNaN(item)) {
                         var str = item;
@@ -750,13 +701,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
             } else {
                 alert('Sản phẩm không tồn tại hoặc đã hết hàng');
                 window.location.href = document.referrer;
-                return false;
-                // F._confirm('Gợi ý', 'Đã hết hàng', 'error', [{
-                //     name: 'Xác nhận',
-                //     func: function() {
-                //         window.location.href = document.referrer;
-                //     }
-                // }]);
             }
         } else {
             //返回码错误
@@ -764,8 +708,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
     };
     ajax.failureCallback = function(res) {};
     ajax.requestData();
-
-
 
 }); //controllr
 
@@ -786,12 +728,8 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
     var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
     var signType = hex_md5(md5SigntypeStrig);
 
-
     var md5EncryptStrig = "brand_id=" + brand_id + "&msisdn=" + msisdn + "&pagesize=" + pagesize + "&currentPage=" + currentPage + Key;
     var encrypt = hex_md5(md5EncryptStrig);
-
-
-
 
     var url = F._getEvaluationInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
@@ -809,11 +747,8 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
         pagesize: pagesize,
         currentPage: currentPage
     };
-    //      ajax.params  = getMd5Code(data,"commodityKey");//格式化ajax请求数据   commodityKey->表示系统类型
 
     ajax.successCallback = function(res) {
-
-
 
         var resCode = res.data.code;
         var detail = res.data.detail;
@@ -821,12 +756,7 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
         if (resCode == 10000) {
             $(".top-fen").css("display", "block");
 
-
             $scope.totalNumber = res.data.totalNumber;
-
-            //$scope.userComment = detail;
-
-
 
         } else {
             $("#page").css("display", "none");
@@ -836,7 +766,8 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
     ajax.requestData();
 
 
-})
+});
+
 app.filter('reverse', function() { //可以注入依赖
     return function(text) {
         var newTelVal = '';
@@ -871,7 +802,6 @@ app.filter('reverse', function() { //可以注入依赖
             text = newTelVal;
             return text.split("").join("");
         }
-        //  return text.split("").reverse().join("*");
     }
 });
 
@@ -896,9 +826,6 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
     var md5EncryptStrig = "brand_id=" + brand_id + "&msisdn=" + msisdn + "&pagesize=" + pagesize + "&currentPage=" + currentPage + Key;
     var encrypt = hex_md5(md5EncryptStrig);
 
-
-
-
     var url = F._getEvaluationInfo_cd;
     var ajax = new ajaxClass($http, url, "GET");
 
@@ -915,11 +842,8 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
         pagesize: pagesize,
         currentPage: currentPage
     };
-    //      ajax.params  = getMd5Code(data,"commodityKey");//格式化ajax请求数据   commodityKey->表示系统类型
 
     ajax.successCallback = function(res) {
-
-
 
         var resCode = res.data.code;
         var detail = res.data.detail;
@@ -928,9 +852,6 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
             $(".top-fen").css("display", "block");
             $scope.userComment = detail;
             if ($scope.userComment.length > 0) {
-
-
-
 
                 $scope.average = res.data.average;
                 if (res.data.average == 0) {
@@ -958,8 +879,6 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
 
                 }
 
-                //$scope.totalNumber = res.data.totalNumber;
-                //$scope.totalPage = res.data.totalPage;                
             } else {
                 $("#page").css("display", "none");
                 $scope.totalNumber = 0;
@@ -972,10 +891,6 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
     }
     ajax.failureCallback = function(res) {};
     ajax.requestData();
-
-
-
-
 
 })
 
@@ -1028,12 +943,8 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
         var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
         var signType = hex_md5(md5SigntypeStrig);
 
-
         var md5EncryptStrig = "brand_id=" + brand_id + "&msisdn=" + msisdn + "&pagesize=" + pagesize + "&currentPage=" + currentPage + Key;
         var encrypt = hex_md5(md5EncryptStrig);
-
-
-
 
         var url = F._getEvaluationInfo_cd;
         var ajax = new ajaxClass($http, url, "GET");
@@ -1051,11 +962,8 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
             pagesize: pagesize,
             currentPage: currentPage
         };
-        //      ajax.params  = getMd5Code(data,"commodityKey");//格式化ajax请求数据   commodityKey->表示系统类型
 
         ajax.successCallback = function(res) {
-
-
 
             var resCode = res.data.code;
             var detail = res.data.detail;
@@ -1078,10 +986,6 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
                             $scope.userComment[i].userImg.push(imgObj);
                         }
                     }
-
-
-
-
 
                     $scope.average = res.data.average;
 
@@ -1265,9 +1169,6 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
         var md5EncryptStrig = "totalamounts=" + totalamounts + "&repaymentmonths=" + repaymentmonths + "&payrate=" + payrate + Key;
         var encrypt = md5(md5EncryptStrig);
 
-
-
-
         ajax.data = $.param({
             appid: appid,
             method: method,
@@ -1293,7 +1194,6 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
                 } else {
                     $scope.resPrice = res.data.details[detailsArrayString][0].interest + res.data.details[detailsArrayString][0].principal;
                 }
-
 
                 //  分期金额
                 $('table tbody').html('');
