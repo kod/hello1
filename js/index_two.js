@@ -79,7 +79,7 @@ app.controller('computerCtrl', function($scope, $http) {
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
-        appid: '110',
+        appid: '0',
         method: 'fun.computer.topad',
         charset: 'utf-8',
         signtype: '',
@@ -551,7 +551,7 @@ app.controller('brandProductCtrl', function($scope, $http) {
         var ajax = new ajaxClass($http, url, "GET");
 
         var data = {
-            appid: '110',
+            appid: '0',
             method: 'fun.computer.classfy.ad',
             charset: 'utf-8',
             signtype: '',

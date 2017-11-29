@@ -701,7 +701,6 @@ app.controller("moreCtrl", function($scope, $http) {
 
     $scope.brandAct = request['brandAct'];;
     $scope.product = gotoDetails;
-    
     // $scope.product = function(typeId, brandId) {
     //     gotoDetails(typeId, brandId);
     // }

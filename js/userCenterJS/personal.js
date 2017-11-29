@@ -241,6 +241,27 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                         $('#sctime-ov-m').val(vv);
                     }
                 }
+
+                // 处理生日
+                function set_birthday(val) {
+                    var nD = new Date(val);
+                    var year = nD.getFullYear();
+                    var month = nD.getMonth() + 1;
+                    var date = nD.getDate();
+
+                    (month < 10) && (month = '0' + month);
+                    (date < 10) && (date = '0' + date);
+
+                    console.log(year);
+                    console.log(month);
+                    console.log(date);
+
+                    $('#birthday-year').val(year);
+                    $('#birthday-month').val(month);
+                    $('#birthday-day').val(date);
+                }
+                if (res.data.birthday) set_birthday(res.data.birthday);
+
             } else {
 
             }
@@ -335,7 +356,26 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
             var timesup = '';
             var timescl = '';
         }
+
+        function get_birthday() {
+            var result = '';
+            // 处理生日
+            var birthdayDay = $('#birthday-day').val();
+            var birthdayMonth = $('#birthday-month').val();
+            var birthdayYear = $('#birthday-year').val();
+
+            if (birthdayDay && birthdayMonth && birthdayYear) {
+                result = birthdayYear + '-' + birthdayMonth + '-' + birthdayDay;
+            }
+            return result;
+        }
+
+        var birthday = get_birthday();
+        // console.log(birthday);
+        // return false;
+
         userAddDetailInfo({
+            birthday: birthday,
             username: g_name,
             sex: sex,
             identification: g_identification,

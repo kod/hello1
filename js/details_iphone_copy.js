@@ -154,6 +154,12 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
         if (resCode == 10000) {
 
+            if (productDetail.length === 0) {
+                alert('Sản phẩm không tồn tại hoặc đã hết hàng');
+                window.history.back();
+                return false;
+            }
+
             //创建用户浏览记录session
             var funId = localStorage.getItem("funId");
             var sc_status = localStorage.getItem('funId=' + funId + 'brandId=' + brandId);
@@ -195,7 +201,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                     $scope.productDetail[i].fpropertiesIds = propertiesIds_array;
                 }
             }
-
 
             $scope.propertiesDetail = propertiesDetail;
 

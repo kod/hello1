@@ -174,7 +174,7 @@ app.controller("cellCtrl", function($scope, $http) {
     var url = F._initTopCellphone_cp;
     var ajax = new ajaxClass($http, url, "GET");
     var data = {
-        appid: '110',
+        appid: '0',
         method: 'fun.cellphone.topad',
         charset: 'utf-8',
         signtype: '',

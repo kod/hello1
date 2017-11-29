@@ -212,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hot_brand" ng-class="{act:brandAct==3}">
+                <div class="hot_brand" ng-class="{act:brandAct==5}">
                     <p ng-click="changeProductType(5)"><i></i> Kỹ thuật số thông minh</p>
                     <div class="category_act">
                         <div class="category_open">
@@ -270,20 +270,20 @@
                     <div class="ul">
                         <!--<h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>-->
                         <a ng-repeat="item in nowProduct |filter | orderBy :Porder + Norder +orderType" ng-click="product(item.typeId, item.brandId, item.id, item.discount, item.orgPrice)" target="_self">
-                        <img src="{{item.iconUrl}}" alt="" />
-                        <!-- <img src="{{item.image}}" alt="" /> -->
-                        <h4 ng-bind="item.name"></h4>
-                    <!--    <div>{{item.id}}</div>-->
-                        <p>Giá bán: <span ng-bind="item.price | priceFormat"></span> VND <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lượng hàng: <span ng-bind="item.numbers"></span> VND--></p>
-                        <!--<h5>Thanh toán lần đầu:<span ng-bind="item.price*0.2"></span> VND &nbsp;&nbsp;</h5> -->
-                        <!-- <h5>Trả góp hàng tháng: <br /><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x12</h5> -->
-                        <h5><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x 12 Tháng</h5>
-                        <span ng-show="item.promotion" class="item-badge" style="background-image: url(../img/badge1.png);">
-                            <span class="item-badge__reduce">GIẢM</span>
-                            <span class="item-badge__mian" ng-bind="100 - item.discount"></span>
-                            <span class="item-badge__percent">%</span>
-                        </span>                  
-                    </a>
+                            <img src="{{item.iconUrl}}" alt="" />
+                            <!-- <img src="{{item.image}}" alt="" /> -->
+                            <h4 ng-bind="item.name"></h4>
+                            <!--    <div>{{item.id}}</div>-->
+                            <p>Giá bán: <span ng-bind="item.price | priceFormat"></span> VND <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lượng hàng: <span ng-bind="item.numbers"></span> VND--></p>
+                            <!--<h5>Thanh toán lần đầu:<span ng-bind="item.price*0.2"></span> VND &nbsp;&nbsp;</h5> -->
+                            <!-- <h5>Trả góp hàng tháng: <br /><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x12</h5> -->
+                            <h5><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x 12 Tháng</h5>
+                            <span ng-show="item.promotion" class="item-badge" style="background-image: url(../img/badge1.png);">
+                                <span class="item-badge__reduce">GIẢM</span>
+                                <span class="item-badge__mian" ng-bind="100 - item.discount"></span>
+                                <span class="item-badge__percent">%</span>
+                            </span>                  
+                        </a>
                     </div>
                     <h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>
                 </div>

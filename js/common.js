@@ -62,6 +62,9 @@ F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
 
 // 1111111111111111
 
+F._winWidth = document.documentElement.clientWidth; //window的宽度
+F._winHeight = document.documentElement.clientHeight; //window的高度
+
 F._signType_MD5 = function(appId, method, charset, Key, lowerCase) {
     var md5SigntypeStrig = "";
     // 默认大写
@@ -1399,7 +1402,7 @@ F._uploadFilesUser = function(data, callback) {
 // 获取电脑banner广告
 F._initTopComputer = function(params, callback) {
     var Key = 'commodityKey';
-    var appid = localStorage.getItem("funId");
+    var appid = '0';
     var method = "fun.computer.topad";
     var charset = 'utf-8';
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -2505,44 +2508,134 @@ F._userAddDetailInfo = function(params, callback) {
     var connectuserrelation3 = params.connectuserrelation3;
     var connectuseridentification3 = params.connectuseridentification3;
     var headimage = params.headimage;
+    var birthday = params.birthday;
 
-    var md5SigntypeStrig = '';
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
-    md5EncryptStrig += "username=" + username;
-    md5EncryptStrig += "&funid=" + funid;
-    md5EncryptStrig += "&identification=" + identification;
-    md5EncryptStrig += "&address=" + address;
-    md5EncryptStrig += "&email=" + email;
-    md5EncryptStrig += "&connectusername1=" + connectusername1;
-    md5EncryptStrig += "&connectusermsisdn1=" + connectusermsisdn1;
-    md5EncryptStrig += "&connectuserrelation1=" + connectuserrelation1;
-    md5EncryptStrig += "&connectuseridentification1=" + connectuseridentification1;
-    md5EncryptStrig += "&connectusername2=" + connectusername2;
-    md5EncryptStrig += "&connectusermsisdn2=" + connectusermsisdn2;
-    md5EncryptStrig += "&connectuserrelation2=" + connectuserrelation2;
-    md5EncryptStrig += "&connectuseridentification2=" + connectuseridentification2;
-    md5EncryptStrig += "&connectusername3=" + connectusername3;
-    md5EncryptStrig += "&connectusermsisdn3=" + connectusermsisdn3;
-    md5EncryptStrig += "&connectuserrelation3=" + connectuserrelation3;
-    md5EncryptStrig += "&connectuseridentification3=" + connectuseridentification3;
-    md5EncryptStrig += "&collegeaddr=" + collegeaddr;
-    md5EncryptStrig += "&collegename=" + collegename;
-    md5EncryptStrig += "&degree=" + degree;
-    md5EncryptStrig += "&headimage=" + headimage;
-    md5EncryptStrig += "&sex=" + sex;
-    md5EncryptStrig += "&department=" + department;
-    md5EncryptStrig += "&specialty=" + specialty;
-    md5EncryptStrig += "&admissiontime=" + admissiontime;
-    md5EncryptStrig += "&graduationtime=" + graduationtime;
-    md5EncryptStrig += Key;
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5([{
+        key: "username",
+        value: username
+    }, {
+        key: "funid",
+        value: funid
+    }, {
+        key: "birthday",
+        value: birthday
+    }, {
+        key: "identification",
+        value: identification
+    }, {
+        key: "address",
+        value: address
+    }, {
+        key: "email",
+        value: email
+    }, {
+        key: "connectusername1",
+        value: connectusername1
+    }, {
+        key: "connectusermsisdn1",
+        value: connectusermsisdn1
+    }, {
+        key: "connectuserrelation1",
+        value: connectuserrelation1
+    }, {
+        key: "connectuseridentification1",
+        value: connectuseridentification1
+    }, {
+        key: "connectusername2",
+        value: connectusername2
+    }, {
+        key: "connectusermsisdn2",
+        value: connectusermsisdn2
+    }, {
+        key: "connectuserrelation2",
+        value: connectuserrelation2
+    }, {
+        key: "connectuseridentification2",
+        value: connectuseridentification2
+    }, {
+        key: "connectusername3",
+        value: connectusername3
+    }, {
+        key: "connectusermsisdn3",
+        value: connectusermsisdn3
+    }, {
+        key: "connectuserrelation3",
+        value: connectuserrelation3
+    }, {
+        key: "connectuseridentification3",
+        value: connectuseridentification3
+    }, {
+        key: "collegeaddr",
+        value: collegeaddr
+    }, {
+        key: "collegename",
+        value: collegename
+    }, {
+        key: "degree",
+        value: degree
+    }, {
+        key: "headimage",
+        value: headimage
+    }, {
+        key: "sex",
+        value: sex
+    }, {
+        key: "department",
+        value: department
+    }, {
+        key: "specialty",
+        value: specialty
+    }, {
+        key: "admissiontime",
+        value: admissiontime
+    }, {
+        key: "graduationtime",
+        value: graduationtime
+    }], Key);
+
+
+
+    // var md5SigntypeStrig = '';
+    // md5SigntypeStrig += "appId=" + appId;
+    // md5SigntypeStrig += "&method=" + method;
+    // md5SigntypeStrig += "&charset=" + charset;
+    // md5SigntypeStrig += Key;
+    // var signType = md5(md5SigntypeStrig);
+
+    // var md5EncryptStrig = '';
+    // md5EncryptStrig += "username=" + username;
+    // md5EncryptStrig += "&funid=" + funid;
+    // md5EncryptStrig += "&birthday=" + birthday;
+    // md5EncryptStrig += "&identification=" + identification;
+    // md5EncryptStrig += "&address=" + address;
+    // md5EncryptStrig += "&email=" + email;
+    // md5EncryptStrig += "&connectusername1=" + connectusername1;
+    // md5EncryptStrig += "&connectusermsisdn1=" + connectusermsisdn1;
+    // md5EncryptStrig += "&connectuserrelation1=" + connectuserrelation1;
+    // md5EncryptStrig += "&connectuseridentification1=" + connectuseridentification1;
+    // md5EncryptStrig += "&connectusername2=" + connectusername2;
+    // md5EncryptStrig += "&connectusermsisdn2=" + connectusermsisdn2;
+    // md5EncryptStrig += "&connectuserrelation2=" + connectuserrelation2;
+    // md5EncryptStrig += "&connectuseridentification2=" + connectuseridentification2;
+    // md5EncryptStrig += "&connectusername3=" + connectusername3;
+    // md5EncryptStrig += "&connectusermsisdn3=" + connectusermsisdn3;
+    // md5EncryptStrig += "&connectuserrelation3=" + connectuserrelation3;
+    // md5EncryptStrig += "&connectuseridentification3=" + connectuseridentification3;
+    // md5EncryptStrig += "&collegeaddr=" + collegeaddr;
+    // md5EncryptStrig += "&collegename=" + collegename;
+    // md5EncryptStrig += "&degree=" + degree;
+    // md5EncryptStrig += "&headimage=" + headimage;
+    // md5EncryptStrig += "&sex=" + sex;
+    // md5EncryptStrig += "&department=" + department;
+    // md5EncryptStrig += "&specialty=" + specialty;
+    // md5EncryptStrig += "&admissiontime=" + admissiontime;
+    // md5EncryptStrig += "&graduationtime=" + graduationtime;
+    // md5EncryptStrig += Key;
+
+    // var encrypt = md5(md5EncryptStrig);
 
     var data = {
         appId: appId,
@@ -2554,6 +2647,7 @@ F._userAddDetailInfo = function(params, callback) {
         version: version,
         username: username,
         funid: funid,
+        birthday: birthday,
         identification: identification,
         address: address,
         email: email,
@@ -2696,6 +2790,10 @@ F._userViewDetailInfo = function(params, callback) {
                         is_fullInfo = false;
                     }
 
+                    if (ret.birthday.length === 0) {
+                        is_fullInfo = false;
+                    }
+
                     if (is_fullInfo === false) {
                         callback({
                             status: false,
@@ -2818,12 +2916,24 @@ function gotoDetails(typeId, brandId, id, discount, orgPrice) {
     discount = (100 - parseInt(discount)) || '';
     orgPrice = orgPrice || '';
     id = id || '';
-    var parse = F._hrefUtils.parse() || {};
-    var file_name = parse.path.slice(-10, -1);
+
+    function is_index() {
+        var parse = F._hrefUtils.parse() || {};
+        var file_name = parse.path.slice(-10, -1);
+        var result = '.';
+        if (parse.path.slice(-5, -1) === '.htm') {
+            if (parse.path.slice(-10, -1) === 'index.htm') {
+                result = '';
+            }
+        } else {
+            result = '';
+        }
+        return result;
+    }
 
     if (typeId != "" && brandId != "") {
         // window.open("./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
-        window.location.href = (file_name === 'index.htm' ? '' : '.') + "./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId + "&id=" + id;
+        window.location.href = is_index() + "./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId + "&id=" + id;
     } else {
         window.location.href = "";
     }
@@ -3217,6 +3327,25 @@ F._payPwd_open = function(callback) {
 }
 
 F._baseinfo = function(data, userInfo) {
+    function get_birthday(val) {
+        console.log(val);
+        var result = '';
+
+        var nD = new Date(val);
+        var year = nD.getFullYear();
+        var month = nD.getMonth() + 1;
+        var date = nD.getDate();
+
+        (month < 10) && (month = '0' + month);
+        (date < 10) && (date = '0' + date);
+
+        result = year + '-' + month + '-' + date;
+
+        return result;
+    }
+
+    console.log(get_birthday(userInfo.birthday));
+
     var username = userInfo.username || '';
     var sex = userInfo.sex === '1' ? 'Nam' : 'Nữ';
     var identification = userInfo.identification || '';
@@ -3227,6 +3356,7 @@ F._baseinfo = function(data, userInfo) {
     var department = userInfo.department || '';
     var specialty = userInfo.specialty || '';
     var degree = userInfo.degree || '';
+    var birthday = get_birthday(userInfo.birthday);
     var admissiontime = userInfo.admissiontime ? userInfo.admissiontime.slice(0, 7) : '';
     var graduationtime = userInfo.graduationtime ? userInfo.graduationtime.slice(0, 7) : '';
 
@@ -3272,9 +3402,12 @@ F._baseinfo = function(data, userInfo) {
 
     init(data);
 
+    var alert__baseinfo_main_height = document.documentElement.clientHeight * 0.924;
+    console.log(alert__baseinfo_main_height);
+
     var baseinfo_html = '\
     <div class="alert__baseinfo" style="display: block;" id="alert__baseinfo">\
-        <div class="alert__baseinfo-main">\
+        <div class="alert__baseinfo-main" style="height: '+ alert__baseinfo_main_height +'px">\
             <div class="alert__b-m-title col-xs-24">\
                 <span class="alert__b-m-t-text">Điền thông tin cá nhân</span>\
                 <span class="alert__b-m-t-close" id="baseinfo_hide"></span>\
@@ -3435,50 +3568,24 @@ F._baseinfo = function(data, userInfo) {
                             </div>\
                         </div>\
                     </div>\
+                    <div class="alert__b-m-b-row11 col-xs-24">\
+                        <div class="alert__b-m-b-r1-left col-xs-8">Ngày Sinh <span class="alert__b-m-b-r1-l-requery">*</span></div>\
+                        <div class="alert__b-m-b-r2-right col-xs-16">\
+                            <div class="actionsheet alert__b-m-b-r11-birthday">\
+                                <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' + birthday + '"></span>\
+                            </div>\
+                        </div>\
+                    </div>\
                     <div class="alert__b-m-b-row9 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoảng thời gian học <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet alert__b-m-b-r9-startyear">\
                                 <span class="actionsheet__left"><input type="month" id="MO__admissiontime" value="' + admissiontime + '"></span>\
-                                <!-- <span class="actionsheet__right">\
-                                    <span class="actionsheet__right-arrow"></span>\
-                                </span> -->\
-                                <div class="actionsheet__list">\
-                                    <li class="actionsheet__list-item">2000</li>\
-                                    <li class="actionsheet__list-item">2001</li>\
-                                </div>\
                             </div>\
-                            <!-- <div class="actionsheet alert__b-m-b-r9-startmonth">\
-                                <span class="actionsheet__left">9</span>\
-                                <span class="actionsheet__right">\
-                                    <span class="actionsheet__right-arrow"></span>\
-                                </span>\
-                                <div class="actionsheet__list">\
-                                    <li class="actionsheet__list-item">1</li>\
-                                    <li class="actionsheet__list-item">2</li>\
-                                </div>\
-                            </div> -->\
                             <span class="alert__b-m-b-r9-line">-</span>\
                             <div class="actionsheet alert__b-m-b-r9-endyear">\
                                 <span class="actionsheet__left"><input type="month" id="MO__graduationtime" value="' + graduationtime + '"></span>\
-                                <!-- <span class="actionsheet__right">\
-                                    <span class="actionsheet__right-arrow"></span>\
-                                </span> -->\
-                                <div class="actionsheet__list">\
-                                    <li class="actionsheet__list-item">2000</li>\
-                                    <li class="actionsheet__list-item">2001</li>\
-                                </div>\
                             </div>\
-                            <!-- <div class="actionsheet alert__b-m-b-r9-endmonth">\
-                                <span class="actionsheet__left">7</span>\
-                                <span class="actionsheet__right">\
-                                    <span class="actionsheet__right-arrow"></span>\
-                                </span>\
-                                <div class="actionsheet__list">\
-                                    <li class="actionsheet__list-item">1</li>\
-                                    <li class="actionsheet__list-item">2</li>\
-                                </div>\
-                            </div> -->\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row10 col-xs-24">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div>\
@@ -3747,6 +3854,7 @@ F._baseinfo = function(data, userInfo) {
         degree = degree;
         admissiontime = $('#MO__admissiontime').val();
         graduationtime = $('#MO__graduationtime').val();
+        birthday = $('#MO__birthday').val();
         // connectusername1 = connectusername1;
         // connectusermsisdn1 = connectusermsisdn1;
         // connectuserrelation1 = connectuserrelation1;
@@ -3837,6 +3945,11 @@ F._baseinfo = function(data, userInfo) {
             return false;
         }
 
+        if (!birthday.length) {
+            alert('Vui lòng nhập Ngày Sinh');
+            return false;
+        }
+
         // if (!graduationtime.length) {
         //     alert('Vui lòng nhập Thời gian tốt nghiệp');
         //     return false;
@@ -3880,6 +3993,7 @@ F._baseinfo = function(data, userInfo) {
             connectuserrelation3: connect_json.connectuserrelation3,
             connectuseridentification3: connect_json.connectuseridentification3,
             headimage: headimage,
+            birthday: birthday,
         });
     };
 

@@ -77,7 +77,7 @@ app.controller('digitalCtrl', function($scope, $http) {
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
-        appid: '110',
+        appid: '0',
         method: 'fun.digital.topad',
         charset: 'utf-8',
         signtype: '',
