@@ -745,15 +745,111 @@ input[type="number"]::-webkit-inner-spin-button {
 .header__nav-main {
     width: 1200px;
     margin: 0 auto;
-    text-align: right;
     font-size: 0;
     line-height: 1;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
+}
+
+.header__nav-main:after {
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+.header__n-m-left {
+    float: left;
+    width: 50%;
+    color: #0e7ae7;
+}
+
+.header__n-m-l-login {
+    display: inline-block;
+    color: #0e7ae7;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    margin-right: 10px;
+}
+
+.header__n-m-l-login:hover {
+    color: #0e5ac7;
+}
+
+.header__n-m-l-reg {
+    display: inline-block;
+    color: #0e7ae7;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    margin-right: 10px;
+}
+
+.header__n-m-l-reg:hover {
+    color: #0e5ac7;
+}
+
+.header__n-m-left_login {
+    display: none;
+}
+
+.header__n-m-left_nologin {
+    display: block;
+}
+
+.header__nav-main_login .header__n-m-left_login {
+    display: block;
+}
+
+.header__nav-main_login .header__n-m-left_nologin {
+    display: none;
+}
+
+.header__n-m-l-item1 {
+    float: left;
+    width: 65px;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    margin-right: 10px;
+}
+
+.header__n-m-l-item2 {
+    position: relative;
+    float: left;
+    min-width: 60px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-right: 10px;
+}
+
+.header__n-m-l-i2-arrow {
+    margin-top: 5px;
+    margin-left: 2px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #0e7ae7 transparent transparent transparent;
+}
+
+.header__n-m-l-item3 {
+    float: left;
+    width: 125px;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    cursor: pointer;
+    color: #0e7ae7;
+}
+
+.header__n-m-l-item3:hover {
+    color: #0e5ac7;
+}
+
+.header__n-m-right {
+    float: left;
+    width: 50%;
+    text-align: right;
 }
 
 .header__n-m-home {
-    font-size: 12px;
+    font-size: 13px;
     margin-top: 11px;
     margin-bottom: 11px;
     color: #0076F7;
@@ -761,7 +857,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .header__n-m-help {
-    font-size: 12px;
+    font-size: 13px;
     padding-left: 14px;
     margin-top: 11px;
     margin-bottom: 11px;
@@ -2428,15 +2524,19 @@ textarea::-webkit-input-placeholder {
     display: block;
 }
 
+.header__n-m-l-item2:hover .userLogin-info {
+    display: block;
+}
+
 .userLogin-info {
     position: absolute;
-    top: 33px;
-    left: 0px;
+    top: 36px;
+    left: -75px;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     background-color: #fff;
-    min-width: 268px;
+    min-width: 300px;
     z-index: 11111;
     padding: 15px;
     display: none;

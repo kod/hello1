@@ -413,12 +413,40 @@
             </div>
         </div>
         <header class="header">
-            <div class="header__nav">
-                <div class="header__nav-main">
+        <div class="header__nav">
+            <div class="header__nav-main">
+                <div class="header__n-m-left header__n-m-left_login">
+                    <div class="header__n-m-l-item1">Xin chào, </div>
+                    <div class="header__n-m-l-item2">
+                        <div class="">
+                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
+                            <span class="header__n-m-l-i2-arrow"></span>                                
+                        </div>
+                        <div class="userLogin-info">
+                            <div class="userLogin-info__top col-xs-24">
+                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                                <div class="userLogin-info__top-order">
+                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                                </div>
+                            </div>
+                            <div class="userLogin-info__bottom col-xs-24">
+                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
+                </div>
+                <div class="header__n-m-left header__n-m-left_nologin">
+                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
+                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
+                </div>
+                <div class="header__n-m-right">
                     <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
                     <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
+        </div>
             <div class="header__title">
                 <div class="header__title-main">
                     <img src="../img/LOGO2.jpg" class="header__t-m-img" @click="gohome">
@@ -623,6 +651,7 @@
         '../js/md5',
         '../js/common',
     ], function($, Vue, md5) {
+
         var loading = new F._loading();
 
         F.query = F._hrefUtils.parse().query;
@@ -851,7 +880,6 @@
                                 window.location.href = './successPay.html';
                             });
                         }
-
 
                     } else { // 资料不全
                         F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{

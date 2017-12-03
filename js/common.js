@@ -12,6 +12,7 @@ F._queryBillList_td = F._IP + ":8184/fun/trade/queryBillList"; //
 F._createNormalOrder_td = F._IP + ":8183/fun/trade/createNormalOrder"; // 创建还款订单
 F._payNormalOrder_td = F._IP + ":8183/fun/trade/payNormalOrder"; // 支付还款订单
 F._queryOrderList_td = F._IP + ":8183/fun/trade/queryOrderList"; // 
+F._orderCancel_td = F._IP + ":8183/fun/trade/orderCancel"; // 取消订单
 F._userAddDetailInfo_uc = F._IP + ":8180/fun/usercenter/userAddDetailInfo"; // 修改用户信息
 F._userViewDetailInfo_uc = F._IP + ":8180/fun/usercenter/userViewDetailInfo"; // 获取用户详细信息
 F._getSchoolInfo_uc = F._IP + ":8180/fun/usercenter/getSchoolInfo"; // 获取学校列表
@@ -89,6 +90,81 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+}
+
+F._orderCancel = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = 'tradeKey';
+    var appId = localStorage.getItem("funId");
+    var method = "fun.trade.orderCancel";
+    var charset = 'utf-8';
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = '2.0';
+
+    var funid = localStorage.getItem("funId");
+    var orderNo = params.orderNo;
+    var tradeNo = params.tradeNo;
+    var status = params.status;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5([{
+        key: "funid",
+        value: funid
+    }, {
+        key: "orderno",
+        value: orderNo
+    }, {
+        key: "tradeno",
+        value: tradeNo
+    }, {
+        key: "status",
+        value: status
+    }], Key);
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        orderno: orderNo,
+        tradeno: tradeNo,
+        status: status,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._orderCancel_td,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+            switch (ret.code) {
+                case 10000:
+
+                    break;
+
+                default:
+                    $('#loading').remove();
+                    F._confirm('Gợi ý', 'Lấy thông tin đơn hàng thất bại', 'tips', [{
+                        name: 'Xác nhận',
+                        func: function() {
+
+                        }
+                    }]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error('request error');
+            callback(false);
+        },
+    });
 }
 
 // 促销商品
@@ -1497,28 +1573,34 @@ F._userAction_login = function(params, callback) {
                 case 10000:
                     createLoginSssion(ret.result, ret.msisdn);
 
-                    var hrefUtils_parse = F._hrefUtils.parse();
-                    F.query = hrefUtils_parse.query;
+                    F._userViewDetailInfo({}, function(ret) {
+                        console.log(ret);
+                        if (ret.data.username) localStorage.setItem("username", ret.data.username);
+                        
+                        var hrefUtils_parse = F._hrefUtils.parse();
+                        F.query = hrefUtils_parse.query;
 
-                    if (hrefUtils_parse.path.slice(-10, -1) !== 'login.htm') return false;
+                        if (hrefUtils_parse.path.slice(-10, -1) !== 'login.htm') return false;
 
-                    if (F.query) {
-                        switch (F.query.from) {
-                            case 'register':
-                                window.location.href = "../index.html";
-                                break;
+                        if (F.query) {
+                            switch (F.query.from) {
+                                case 'register':
+                                    window.location.href = "../index.html";
+                                    break;
 
-                            case 'confirm':
-                                window.location.href = "../index.html";
-                                break;
+                                case 'confirm':
+                                    window.location.href = "../index.html";
+                                    break;
 
-                            default:
-                                window.history.go(-1);
-                                break;
+                                default:
+                                    window.history.go(-1);
+                                    break;
+                            }
+                        } else {
+                            window.history.go(-1);
                         }
-                    } else {
-                        window.history.go(-1);
-                    }
+                    });
+
                     break;
 
                 case 60050:
@@ -2883,6 +2965,41 @@ F._getSchoolInfo = function(params, callback) {
 }
 
 // 22222222222222
+
+window.setTimeout(function() {
+    var username = null;
+    if (localStorage.getItem("funId")) {
+        username = localStorage.getItem("username");
+        if (!username) username = localStorage.getItem("msisdn");
+        $("#userMsisdn").html(center_char_encrypt(username));
+        // $("#userMsisdn").html(center_char_encrypt(localStorage.getItem("msisdn")));
+
+        F._userViewDetailInfo({}, function(ret) {
+            if (ret.data.headimage) {
+                $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+            }
+        });
+
+        $('.header__nav-main').addClass('header__nav-main_login');
+    }
+}, 700);
+
+
+// 加密中间字符
+function center_char_encrypt(str) {
+    var i;
+    var result = '';
+    if (str.length > 0) {
+        for (i = 0; i < str.length; i++) {
+            if (i < 3 || i >= str.length - 3) {
+                result += str[i];
+            } else {
+                result += '*';
+            }
+        }
+    }
+    return result;
+}
 
 F._setUrl = function(key, value) {
     function joint(data) {

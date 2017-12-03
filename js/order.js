@@ -21,17 +21,22 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
     //初始化账单请求参数
     $scope.reqPara = {
-        status: query.status || '',
+        status: query.status || '99999',
         page: query.page || '1',
         rows: '5'
     }
 
     var status_json = {
-        '': 0,
-        2: 1,
-        5: 2,
-        6: 3,
+        99999: 0,
+        10001: 1,
+        30000: 2,
+        30001: 3,
     };
+    // : 0,
+    // 2: 1,
+    // 5: 2,
+    // 6: 3,
+
 
 
     $('.nav-item').removeClass('act');
@@ -75,7 +80,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         //     }
         // }
 
-        var status = '';
+        var status = 'status';
         var page = '1';
         var rows = '5';
 
@@ -162,6 +167,121 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
         ajax.successCallback = function(res) {
 
+            function edit_for_status($scope, tradeStatus) {
+                switch (tradeStatus) {
+                    case '10000':
+                        //$scope.orderList[i]['tradeStatusMsg']='Đang chờ thanh toán';
+                        $scope.myHtml = "<span>Đang chờ thanh toán</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+
+
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }, {
+                            "name": "Hủy",
+                            "type": 'cancel',
+                        }];
+                        break;
+
+                    case '10001':
+                        $scope.myHtml = "<span>Đang xử lí</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        //  $scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }];
+                        break;
+
+                    case '20000':
+                        //$scope.orderList[i]['tradeStatusMsg']='Đóng';
+                        $scope.myHtml = "<span>Đóng</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }];
+                        break;
+
+                    case '20001':
+                        //$scope.orderList[i]['tradeStatusMsg']='Hoàn thành';
+                        $scope.myHtml = "<span>Hoàn thành</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }];
+                        break;
+
+                    case '20002':
+                        //$scope.orderList[i]['tradeStatusMsg']='Từ chối giao dịch';
+                        $scope.myHtml = "<span>Từ chối giao dịch</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }];
+                        break;
+
+                    case '30000':
+                        $scope.myHtml = "<span>Chờ giao hàng</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        //$scope.orderList[i]['tradeStatusMsg']='Chờ giao hàng';
+                        $scope.waitList = [];
+                        $scope.waitList.push($scope.orderList[i]);
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin sản phẩm"
+                        }];
+                        $('#shouhuoTip').css("display", 'none');
+                        $('#shouhuoTbody').css("display", 'block');
+                        break;
+
+                    case '30001':
+                        $scope.myHtml = "<span>Đang chờ đánh giá</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }, {
+                            "name": "Đánh giá"
+                        }];
+                        break;
+
+                    case '30002':
+                        //$scope.orderList[i]['tradeStatusMsg']='Giao dịch hoàn thành';
+                        $scope.myHtml = "<span>Giao dịch hoàn thành</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }];
+                        break;
+
+                    case '40000':
+                    case '40001':
+                    case '40002':
+                    case '40003':
+                    case '40004':
+                    case '40005':
+                        $scope.myHtml = "<span>Giao dịch đã bị hủy</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        $scope.orderList[i].operate = [{
+                            "name": "Thông tin cụ thể về đơn hàng"
+                        }];
+                        break;
+
+                    default:
+                        $scope.myHtml = "<span>Lỗi chưa xác định</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
+                        $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
+                        //$scope.orderList[i]['tradeStatusMsg']='Lỗi chưa xác định';
+                        break;
+                }
+            }
+
             var resCode = res.status;
             if (resCode == 200) {
 
@@ -210,7 +330,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
 
 
-                    if (status == 0 || status == null || status == '') {
+                    if (status == 0 || status == null || status == '99999') {
                         if ($scope.orderList.length == 0) {
                             $('.no_list').show();
                         } else {
@@ -219,86 +339,11 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                             for (var i = 0; i < $scope.orderList.length; i++) {
                                 $scope.orderStatus = [];
                                 //$('.dpj').hide();
-                                if ($scope.orderList[i].tradeStatus == 0) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đang chờ thanh toán';
-                                    $scope.myHtml = "<span>Đang chờ thanh toán</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
 
-
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 1) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đóng';
-                                    $scope.myHtml = "<span>Đóng</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 2) {
-                                    $scope.myHtml = "<span>Đang xử lí</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    //  $scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 3) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Hoàn thành';
-                                    $scope.myHtml = "<span>Hoàn thành</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 6) {
-                                    $scope.myHtml = "<span>Đang chờ đánh giá</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }, {
-                                        "name": "Đánh giá"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 7) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Giao dịch hoàn thành';
-                                    $scope.myHtml = "<span>Giao dịch hoàn thành</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 4) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Từ chối giao dịch';
-                                    $scope.myHtml = "<span>Từ chối giao dịch</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 5) {
-                                    $scope.myHtml = "<span>Chờ giao hàng</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    //$scope.orderList[i]['tradeStatusMsg']='Chờ giao hàng';
-                                    $scope.waitList = [];
-                                    $scope.waitList.push($scope.orderList[i]);
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin sản phẩm"
-                                    }];
-                                    $('#shouhuoTip').css("display", 'none');
-                                    $('#shouhuoTbody').css("display", 'block');
-                                } else {
-                                    $scope.myHtml = "<span>Lỗi chưa xác định</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    //$scope.orderList[i]['tradeStatusMsg']='Lỗi chưa xác định';
-                                }
+                                edit_for_status($scope, $scope.orderList[i].tradeStatus);
                             }
                         }
-                    } else if (status == 2) {
+                    } else if (status == '10001') {
                         if ($scope.orderList.length == 0) {
                             $('.no_list').show();
 
@@ -307,86 +352,9 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                             $('.changePage').show();
                             for (var i = 0; i < $scope.orderList.length; i++) {
                                 $scope.orderStatus = [];
-                                if ($scope.orderList[i].tradeStatus == 0) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đang chờ thanh toán';
-                                    $scope.myHtml = "<span>Đang chờ thanh toán</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
 
+                                edit_for_status($scope, $scope.orderList[i].tradeStatus);
 
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 1) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đóng';
-                                    $scope.myHtml = "<span>Đóng</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 2) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
-                                    $scope.myHtml = "<span>Đang xử lí</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 3) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Hoàn thành';
-                                    $scope.myHtml = "<span>Hoàn thành</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 7) {
-                                    $scope.myHtml = "<span>Giao dịch hoàn thành</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    //$scope.orderList[i]['tradeStatusMsg']='Giao dịch hoàn thành';
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }, {
-                                        "name": "Dịch vụ sau khi mua"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 6) {
-                                    //$scope.orderList[i]['tradeStatusMsg']="Đang chờ đánh giá";
-                                    $scope.myHtml = "<span>Đang chờ đánh giá</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }, {
-                                        "name": "Đánh giá"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 4) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Từ chối giao dịch';
-                                    $scope.myHtml = "<span>Từ chối giao dịch</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 5) {
-                                    //  $scope.orderList[i]['tradeStatusMsg']='Chờ giao hàng';
-                                    $scope.myHtml = "<span>Chờ giao hàng</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.waitList = [];
-                                    $scope.waitList.push($scope.orderList[i]);
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                    $('#shouhuoTip').css("display", 'none');
-                                    $('#shouhuoTbody').css("display", 'block');
-                                } else {
-                                    $scope.myHtml = "<span>Lỗi chưa xác định</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    //$scope.orderList[i]['tradeStatusMsg']='Lỗi chưa xác định';
-                                }
                             }
                         }
                     } else {
@@ -398,99 +366,16 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                             for (var i = 0; i < $scope.orderList.length; i++) {
                                 $('.no_list').hide();
                                 $scope.orderStatus = [];
-                                if ($scope.orderList[i].tradeStatus == 0) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đang chờ thanh toán';
-                                    $scope.myHtml = "<span>Đang chờ thanh toán</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
 
+                                edit_for_status($scope, $scope.orderList[i].tradeStatus);
 
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin sản phẩm"
-                                    }, {
-                                        "name": "Thanh toán"
-                                    }, {
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 1) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đóng';
-                                    $scope.myHtml = "<span>Đóng</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 2) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
-                                    $scope.myHtml = "<span>Đang xử lí</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin sản phẩm"
-                                    }, {
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 3) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Hoàn thành';
-                                    $scope.myHtml = "<span>Hoàn thành</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 7) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Giao dịch hoàn thành';
-                                    $scope.myHtml = "<span>Giao dịch hoàn thành</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }, {
-                                        "name": "Dịch vụ sau khi mua"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 6) {
-                                    //$scope.orderList[i]['tradeStatusMsg']="Đang chờ đánh giá";
-                                    $scope.myHtml = "<span>Đang chờ đánh giá</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }, {
-                                        "name": "Đánh giá"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 4) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Từ chối giao dịch';
-                                    $scope.myHtml = "<span>Từ chối giao dịch</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                } else if ($scope.orderList[i].tradeStatus == 5) {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Chờ giao hàng';
-                                    $scope.myHtml = "<span>Chờ giao hàng</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                    $scope.waitList = [];
-                                    $scope.waitList.push($scope.orderList[i]);
-                                    $scope.orderList[i].operate = [{
-                                        "name": "Thông tin cụ thể về đơn hàng"
-                                    }];
-                                    $('#shouhuoTip').css("display", 'none');
-                                    $('#shouhuoTbody').css("display", 'block');
-                                } else {
-                                    //$scope.orderList[i]['tradeStatusMsg']='Lỗi chưa xác định';
-                                    $scope.myHtml = "<span>Lỗi chưa xác định</span>";
-                                    $scope.trustHtml = $sce.trustAsHtml($scope.myHtml)
-                                    $scope.orderList[i]['tradeStatusMsg'] = $scope.trustHtml;
-                                }
                             }
                         }
                     }
 
 
                 } else {
-                    $scope.orderList = "没有订单！";
+                    $scope.orderList = "No orders！";
                 }
 
 
@@ -542,7 +427,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         };
         ajax.successCallback = function(res) {
 
-            
+
             var resCode = res.data.code;
 
             if (resCode == 10000) {
@@ -574,15 +459,43 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         gotoDetails(typeId, brandId);
     }
 
+    function order_cancel(orderNo, tradeNo) {
+        F._orderCancel({
+            orderNo: orderNo,
+            tradeNo: tradeNo,
+            status: '40001',
+        }, function(ret) {
+            
+        });
+    }
+
     /* tcy 查看订单详情 -start- */
-    $scope.openDetail = function(orderNo, tradeNo, typeId, brandId, tradeStatus, imgUrl, subject) {
-        tradeStatus = tradeStatus + '';
-        if (tradeStatus === '6') { // 评论
-            window.location.href = "./evaluate.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId + "&imgUrl=" + imgUrl + "&subject=" + subject + "&username=" + F.username;
-            // window.open("./evaluate.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId + "&imgUrl=" + imgUrl + "&subject=" + subject + "&username=" + F.username);
-        } else {
-            window.location.href = "./orderDetail.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId;
-            // window.open("./orderDetail.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo+ "&typeId=" + typeId+ "&brandId=" + brandId);
+    $scope.openDetail = function(orderNo, tradeNo, typeId, brandId, tradeStatus, imgUrl, subject, key, type) {
+        if (key === 1) { // 按钮
+            switch (type) {
+                case 'cancel':
+                    order_cancel(orderNo, tradeNo);
+                    break;
+            
+                case '':
+                    // TODO
+                    break;
+            
+                default:
+                    // TODO
+                    break;
+            }
+            
+        } else { // 详情
+            tradeStatus = tradeStatus + '';
+            if (tradeStatus === '6') { // 评论
+                window.location.href = "./evaluate.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId + "&imgUrl=" + imgUrl + "&subject=" + subject + "&username=" + F.username;
+                // window.open("./evaluate.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId + "&imgUrl=" + imgUrl + "&subject=" + subject + "&username=" + F.username);
+            } else {
+                window.location.href = "./orderDetail.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId;
+                // window.open("./orderDetail.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo+ "&typeId=" + typeId+ "&brandId=" + brandId);
+            }
+
         }
     }
 

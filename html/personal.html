@@ -38,31 +38,37 @@
 
 <body ng-app="selfApp" ng-controller="selfCtrl">
     <div class="all">
-        <div class="header_top">
-            <div class="content" style="overflow: visible;">
-                <div class="header_left left userLogin">
-                    <a href="./center.html">Xin chào, <span id="userMsisdn"></span><i class="userLogin-arrow"></i></a>
-                    <a href="./center.html" id="quit"></a>
-                    <div class="userLogin-info">
-                        <div class="userLogin-info__top col-xs-24">
-                            <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                            <div class="userLogin-info__top-order">
-                                <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+        <div class="header__nav">
+            <div class="header__nav-main">
+                <div class="header__n-m-left header__n-m-left_login">
+                    <div class="header__n-m-l-item1">Xin chào, </div>
+                    <div class="header__n-m-l-item2">
+                        <div class="">
+                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
+                            <span class="header__n-m-l-i2-arrow"></span>                                
+                        </div>
+                        <div class="userLogin-info">
+                            <div class="userLogin-info__top col-xs-24">
+                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                                <div class="userLogin-info__top-order">
+                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
+                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                                </div>
+                            </div>
+                            <div class="userLogin-info__bottom col-xs-24">
+                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
                             </div>
                         </div>
-                        <div class="userLogin-info__bottom col-xs-24">
-                            <a href="" class="userLogin-info__bottom-button" id="userLogin-info__bottom-button" onclick="userQuit()"></a>
-                        </div>
                     </div>
+                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
                 </div>
-                <div class="header_left left noLogin">
-                    <a href="./login.html" id="login"></a>
-                    <a href="./register.html" id="signup"></a>
+                <div class="header__n-m-left header__n-m-left_nologin">
+                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
+                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
                 </div>
-                <div class="header_right right">
-                    <a href="../index.html" class="header_right_a" style="color:#0076F7">BUYOO Trang chủ</a>|
-                    <a href="./buyIntro.html" class="header_right_a" target="_self">Trung tâm hỗ trợ</a>
+                <div class="header__n-m-right">
+                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
+                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
                 </div>
             </div>
         </div>
@@ -543,7 +549,7 @@
     <script src="../js/md5.js"></script>
     <script src="../js/common.js"></script>
     <!-- tcy -end- -->
-    <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script> -->
     <script src="../js/common/check_login.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common/getUserInfo.js" type="text/javascript" charset="utf-8"></script>
     <script>
