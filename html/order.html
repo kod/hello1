@@ -18,14 +18,13 @@
     <link rel="stylesheet" href="../css/order.css" />
     <link rel="stylesheet" href="../css/base.css">
     <style>
-    footer {
-        float: left;
-    }
+        footer {
+            float: left;
+        }
     </style>
 </head>
 
 <body ng-app="orderApp" ng-controller="orderCtrl">
-    <div class="order-cancel"></div>
     <div class="all">
         <div class="header__nav">
             <div class="header__nav-main">
@@ -34,14 +33,18 @@
                     <div class="header__n-m-l-item2">
                         <div class="">
                             <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
+                            <span class="header__n-m-l-i2-arrow"></span>
                         </div>
                         <div class="userLogin-info">
                             <div class="userLogin-info__top col-xs-24">
                                 <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
                                 <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+                                    <p style="margin-bottom: 10px;">
+                                        <a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a>
+                                    </p>
+                                    <p>
+                                        <a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a>
+                                    </p>
                                 </div>
                             </div>
                             <div class="userLogin-info__bottom col-xs-24">
@@ -49,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
+                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>
                 </div>
                 <div class="header__n-m-left header__n-m-left_nologin">
                     <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
@@ -65,7 +68,9 @@
     <div class="all">
         <div class="content header_c">
             <div class="search_left left">
-                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
+                <a href="../index.html" class="logo">
+                    <img src="../img/LOGO2.jpg" alt="">
+                </a>
             </div>
             <div class="search_right right">
                 <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
@@ -83,7 +88,7 @@
                 <a href="../index.html" class="">Trang chủ</a>
             </div>
             <div class="iwant right">
-                <a href="bill.html" class="">Tôi muốn thanh toán nợ  &gt;</a>
+                <a href="bill.html" class="">Tôi muốn thanh toán nợ &gt;</a>
             </div>
         </div>
     </div>
@@ -97,10 +102,10 @@
                         <div class="phone">
                             <img src="../img/37.png" onerror="nofind(this)" alt="" class="img-phone" data-toggle="modal" data-target="#myhead" />
                             <script type="text/javascript">
-                            function nofind(img) {
-                                img.src = "../img/37.png";
-                                img.onerror = null;
-                            }
+                                function nofind(img) {
+                                    img.src = "../img/37.png";
+                                    img.onerror = null;
+                                }
                             </script>
                             <p>Chào buổi sáng！</p>
                         </div>
@@ -155,13 +160,18 @@
                                             <div class="media" ng-click="product(item.goodsDetail.typeId,item.goodsDetail.brandId)">
                                                 <div class="media-left media-middle">
                                                     <a href="" target="_self">
-                                              <img class="media-object" src="{{item.imgUrl}}" alt="">
-                                            </a>
+                                                        <img class="media-object" src="{{item.imgUrl}}" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading" ng-bind="item.subject"></h4>
-                                                    <div style="margin-bottom: 5px;"><span ng-bind="timeStrForm(item.createTime, 2, 1)" style="margin-right: 5px;"></span></div>
-                                                    <div class="" style="line-height: 20px;"><span style="margin-right: 5px;">Mã đơn hàng:</span><span ng-bind="item.tradeNo"></span></div>
+                                                    <div style="margin-bottom: 5px;">
+                                                        <span ng-bind="timeStrForm(item.createTime, 2, 1)" style="margin-right: 5px;"></span>
+                                                    </div>
+                                                    <div class="" style="line-height: 20px;">
+                                                        <span style="margin-right: 5px;">Mã đơn hàng:</span>
+                                                        <span ng-bind="item.tradeNo"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -178,8 +188,10 @@
                             <div class="changePage">
                                 <div style="margin-bottom: 30px;">
                                     <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
-                                    <span style="padding-top: 3px;">Trang hiện tại: <span ng-bind="reqPara.page"></span>&nbsp;&nbsp;</span>
-                                    <span style="padding-top: 3px;">Trang : <span ng-bind="totalPage"></span> tiên</span>
+                                    <span style="padding-top: 3px;">Trang hiện tại:
+                                        <span ng-bind="reqPara.page"></span>&nbsp;&nbsp;</span>
+                                    <span style="padding-top: 3px;">Trang :
+                                        <span ng-bind="totalPage"></span> tiên</span>
                                     <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                                 </div>
                             </div>
@@ -193,8 +205,6 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
     </article>
     <!-- 弹出模态框（更换头像） -->
     <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -202,7 +212,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Cài đặt ảnh đại diện</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="modal_one">
@@ -332,7 +344,8 @@
                 <div class="footer__b2-m-row7 col-xs-24">
                     <div class="footer__b2-m-r7-left col-xs-12">
                         <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
+                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon">
+                            <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
@@ -363,157 +376,144 @@
     <script src="../js/common.js"></script>
     <!--<script src="../js/common/check_login.js" type="text/javascript" charset="utf-8"></script>-->
     <script>
-    // window.setTimeout(function() {
-    //     if (localStorage.getItem("funId")) {
-    //         F._userViewDetailInfo({}, function(ret) {
-    //             if (ret.data.headimage) {
-    //                 $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
-    //             }
-    //         });
-    //     }
-    // }, 700);
 
-    $(".nav-item").on('click', function() {
-        var self = $(this);
-        $('.nav-item').removeClass('act');
-        self.addClass('act');
+        $(".nav-item").on('click', function () {
+            var self = $(this);
+            $('.nav-item').removeClass('act');
+            self.addClass('act');
 
-        F._setUrl('status', self.data('index'));
-    });
-    // $('.one-right dl').find('dd').each(function(index) {
-    //     $(this).click(function() {
-    //         if ($(this).is('.act') == false) {
-    //             $('.one-right dl dd').removeClass('act').eq(index).addClass('act');
-    //         }
-    //     })
-    // })
-    var table = $('.table_list');
-    var num = $('.dl_list').size();
-    for (var i = 0; i < num; i++) {
-        var s = $('.dl_list')[i].querySelector('table');
-        var no = $('.dl_list')[i].querySelector('.no_list');
-        var e = s.querySelector('tbody')
-        if (e == null) {
-            no.style.display = "block"
-        } else {
-            no.style.display = "none"
-        }
-
-    }
-    $(window).load(function() {
-        var options = {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: '../img/avatar.jpg'
-        }
-        var cropper = $('.imageBox').cropbox(options);
-        $('#upload-file').on('change', function() {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                options.imgSrc = e.target.result;
-                cropper = $('.imageBox').cropbox(options);
-            }
-            reader.readAsDataURL(this.files[0]);
-            //this.files = [];
-        })
-        $('#btnCrop').on('click', function() {
-            var img = cropper.getDataURL();
-            $('.cropped').html('');
-
-            $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
-            setTimeout(function() {
-                var img = $('.cropped').html()
-                if (img == '' || img == 0) {
-
-                } else {
-                    $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
-                    var imgSrc = $('#upimg').attr('src');
-                    upload(imgSrc);
-                }
-            }, 500)
-        })
-        $('#btnZoomIn').on('click', function() {
-            cropper.zoomIn();
-        })
-        $('#btnZoomOut').on('click', function() {
-            cropper.zoomOut();
-        })
-    });
-
-    function upload(imgSrcs) {
-        var imgSrc = imgSrcs;
-        var blob = dataURLtoBlob(imgSrc);
-
-        function dataURLtoBlob(dataurl) {
-            var arr = dataurl.split(','),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
-            }
-            return new Blob([u8arr], {
-                type: mime
-            });
-        }
-        $('.sure').click(function() {
-            var funid = localStorage.getItem("funId");
-            var formData = new FormData();
-            formData.append("funid", funid);
-            formData.append("files", blob, 'jpg');
-            F._uploadFilesUser(formData, function(ret) {
-
-            });
+            F._setUrl('status', self.data('index'));
         });
-    }
+        // $('.one-right dl').find('dd').each(function(index) {
+        //     $(this).click(function() {
+        //         if ($(this).is('.act') == false) {
+        //             $('.one-right dl dd').removeClass('act').eq(index).addClass('act');
+        //         }
+        //     })
+        // })
+        var table = $('.table_list');
+        var num = $('.dl_list').size();
+        for (var i = 0; i < num; i++) {
+            var s = $('.dl_list')[i].querySelector('table');
+            var no = $('.dl_list')[i].querySelector('.no_list');
+            var e = s.querySelector('tbody')
+            if (e == null) {
+                no.style.display = "block"
+            } else {
+                no.style.display = "none"
+            }
 
-    function operate1() {
-        
-    }
+        }
+        $(window).load(function () {
+            var options = {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: '../img/avatar.jpg'
+            }
+            var cropper = $('.imageBox').cropbox(options);
+            $('#upload-file').on('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    options.imgSrc = e.target.result;
+                    cropper = $('.imageBox').cropbox(options);
+                }
+                reader.readAsDataURL(this.files[0]);
+                //this.files = [];
+            })
+            $('#btnCrop').on('click', function () {
+                var img = cropper.getDataURL();
+                $('.cropped').html('');
 
-    $('.uphead').click(function() {
-        $('.modal_one').hide();
-        $('.modal_two').show();
-    })
+                $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
+                setTimeout(function () {
+                    var img = $('.cropped').html()
+                    if (img == '' || img == 0) {
+
+                    } else {
+                        $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
+                        var imgSrc = $('#upimg').attr('src');
+                        upload(imgSrc);
+                    }
+                }, 500)
+            })
+            $('#btnZoomIn').on('click', function () {
+                cropper.zoomIn();
+            })
+            $('#btnZoomOut').on('click', function () {
+                cropper.zoomOut();
+            })
+        });
+
+        function upload(imgSrcs) {
+            var imgSrc = imgSrcs;
+            var blob = dataURLtoBlob(imgSrc);
+
+            function dataURLtoBlob(dataurl) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {
+                    type: mime
+                });
+            }
+            $('.sure').click(function () {
+                var funid = localStorage.getItem("funId");
+                var formData = new FormData();
+                formData.append("funid", funid);
+                formData.append("files", blob, 'jpg');
+                F._uploadFilesUser(formData, function (ret) {
+
+                });
+            });
+        }
+
+        $('.uphead').click(function () {
+            $('.modal_one').hide();
+            $('.modal_two').show();
+        })
 
 
 
-    $('.sure').click(function() {
+        $('.sure').click(function () {
 
-        $('.modal_two').hide();
-        $('.modal_three').show();
-        var img = $('.upimg').attr('src');
-        $('.img-phone').attr('src', img);
-        $('.modal-header').find('.left').html('Cài đặt')
-
-    })
-    $('.success').click(function() {
-        setTimeout(function() {
-            $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
-            $('.modal_one').show();
             $('.modal_two').hide();
-            $('.modal_three').hide();
+            $('.modal_three').show();
+            var img = $('.upimg').attr('src');
+            $('.img-phone').attr('src', img);
+            $('.modal-header').find('.left').html('Cài đặt')
 
-        }, 1500)
-        $('#upimg').attr('src', '');
-        $('#upload-file').val('');
-        //window.location.href="";
-    });
+        })
+        $('.success').click(function () {
+            setTimeout(function () {
+                $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
+                $('.modal_one').show();
+                $('.modal_two').hide();
+                $('.modal_three').hide();
 
-    function gotoFind() {
-        var findcontent = $("#findIpt").val();
-        if (findcontent != "") {
-            window.location.href = "./search.html?findcontent=" + findcontent;
+            }, 1500)
+            $('#upimg').attr('src', '');
+            $('#upload-file').val('');
+            //window.location.href="";
+        });
+
+        function gotoFind() {
+            var findcontent = $("#findIpt").val();
+            if (findcontent != "") {
+                window.location.href = "./search.html?findcontent=" + findcontent;
+            }
         }
-    }
 
-    function entersearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13) {
-            gotoFind();
+        function entersearch() {
+            var event = window.event || arguments.callee.caller.arguments[0];
+            if (event.keyCode == 13) {
+                gotoFind();
+            }
         }
-    }
     </script>
     <script src="../js/order.js" type="text/javascript" charset="utf-8"></script>
 </body>

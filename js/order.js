@@ -3,11 +3,11 @@ if (!window.F) window.F = {};
 /* tcy -end-*/
 
 var app = angular.module('orderApp', []);
-app.filter('priceFormat', function() { //可以注入依赖
+app.filter('priceFormat', function () { //可以注入依赖
     return F._priceFormat;
 });
 
-app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
+app.controller('orderCtrl', function ($scope, $http, $filter, $sce) {
 
     $scope.msisdn = localStorage.getItem("msisdnFormat");
 
@@ -43,7 +43,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
     $('.nav-item').eq(status_json[$scope.reqPara.status]).addClass('act');
 
     //上一页
-    $scope.lastPage = function() {
+    $scope.lastPage = function () {
         if ($scope.reqPara.page > 1) {
             $scope.reqPara.page--;
         }
@@ -51,7 +51,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
     }
 
     //下一页
-    $scope.nextPage = function() {
+    $scope.nextPage = function () {
         if ($scope.reqPara.page < $scope.totalPage) {
             $scope.reqPara.page++;
         }
@@ -59,13 +59,13 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
     }
 
-    $scope.confirm = function() {
+    $scope.confirm = function () {
         var page = $("#gotoPage").val();
         $scope.reqPara.page = page;
     }
 
     //切换订单类型
-    $scope.reqType = function(type) {
+    $scope.reqType = function (type) {
         // if (type != null) {
         //     $scope.reqPara = {
         //         status: type,
@@ -98,7 +98,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
         $('#gotoPage').val("1");
     }
-    $scope.$watch('iptpage', function(n, o) {
+    $scope.$watch('iptpage', function (n, o) {
         if (n < 1) {
             $scope.iptpage = 1;
         } else if (n > $scope.totalPage) {
@@ -106,7 +106,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         }
 
     })
-    $scope.$watch('reqPara', function(n, o) {
+    $scope.$watch('reqPara', function (n, o) {
         if (n.page > 0) {
             if (n.page <= $scope.totalPage && n.rows <= $scope.count) {
 
@@ -165,7 +165,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
             'Content-Type': 'application/x-www-form-urlencoded'
         };
 
-        ajax.successCallback = function(res) {
+        ajax.successCallback = function (res) {
 
             function edit_for_status($scope, tradeStatus) {
                 switch (tradeStatus) {
@@ -178,6 +178,9 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
                         $scope.orderList[i].operate = [{
                             "name": "Thông tin cụ thể về đơn hàng"
+                        }, {
+                            "name": "Thanh toán",
+                            "type": 'pay',
                         }, {
                             "name": "Hủy",
                             "type": 'cancel',
@@ -245,7 +248,8 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                         $scope.orderList[i].operate = [{
                             "name": "Thông tin cụ thể về đơn hàng"
                         }, {
-                            "name": "Đánh giá"
+                            "name": "Đánh giá",
+                            "type": "review"
                         }];
                         break;
 
@@ -305,7 +309,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                 if ($scope.orderList) {
                     $scope.newOrderList = [];
                     for (var j = 0; j < $scope.orderList.length; j++) {
-                        if (typeof($scope.orderList[j].goodsDetail) != 'undefined') {
+                        if (typeof ($scope.orderList[j].goodsDetail) != 'undefined') {
 
                             $scope.newOrderList[j] = $scope.orderList[j];
                             var goodsDetailObj = $scope.orderList[j].goodsDetail; //数组对象goodsDetail的JSON解析成对象
@@ -384,13 +388,13 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
                 $(".changePage").css("display", 'none');
             }
         };
-        ajax.failureCallback = function(res) {
+        ajax.failureCallback = function (res) {
             $(".changePage").css("display", 'none');
         };
         ajax.requestData();
     }
 
-    $scope.getUserInfoDetails = function() {
+    $scope.getUserInfoDetails = function () {
         var url = F._userViewDetailInfo_uc;
         var ajax = new ajaxClass($http, url, "POST");
 
@@ -425,7 +429,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
         ajax.headers = {
             'Content-Type': 'application/x-www-form-urlencoded'
         };
-        ajax.successCallback = function(res) {
+        ajax.successCallback = function (res) {
 
 
             var resCode = res.data.code;
@@ -446,7 +450,7 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
 
             }
         };
-        ajax.failureCallback = function(res) {
+        ajax.failureCallback = function (res) {
 
         };
         ajax.requestData();
@@ -455,37 +459,64 @@ app.controller('orderCtrl', function($scope, $http, $filter, $sce) {
     $scope.getUserInfoDetails();
 
 
-    $scope.product = function(typeId, brandId) {
+    $scope.product = function (typeId, brandId) {
         gotoDetails(typeId, brandId);
     }
 
     function order_cancel(orderNo, tradeNo) {
-        F._orderCancel({
-            orderNo: orderNo,
-            tradeNo: tradeNo,
-            status: '40001',
-        }, function(ret) {
-            
+
+        var loading = new F._loading();
+        F._order_cancel(function (code) {
+            console.log(code);
+            if (!code) return false;
+
+            loading.show();
+            F._orderCancel({
+                orderNo: orderNo,
+                tradeNo: tradeNo,
+                status: code,
+            }, function (ret) {
+                loading.hide();
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                window.location.reload();
+            });
         });
+
     }
 
     /* tcy 查看订单详情 -start- */
-    $scope.openDetail = function(orderNo, tradeNo, typeId, brandId, tradeStatus, imgUrl, subject, key, type) {
-        if (key === 1) { // 按钮
+    $scope.openDetail = function (orderNo, tradeNo, typeId, brandId, tradeStatus, imgUrl, subject, key, type) {
+        console.log(key);
+        console.log(type);
+        console.log(tradeStatus);
+        if (key > 0) { // 按钮
             switch (type) {
                 case 'cancel':
                     order_cancel(orderNo, tradeNo);
                     break;
-            
-                case '':
-                    // TODO
+
+                case 'pay':
+                    tradeStatus = tradeStatus + '';
+                    if (tradeStatus === '6') { // 评论
+                        window.location.href = "./evaluate.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId + "&imgUrl=" + imgUrl + "&subject=" + subject + "&username=" + F.username;
+                        // window.open("./evaluate.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId + "&imgUrl=" + imgUrl + "&subject=" + subject + "&username=" + F.username);
+                    } else {
+                        window.location.href = "./orderDetail.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId;
+                        // window.open("./orderDetail.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo+ "&typeId=" + typeId+ "&brandId=" + brandId);
+                    }
                     break;
-            
+
+                case 'review':
+                    window.location.href = "./evaluate.html?orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&typeId=" + typeId + "&brandId=" + brandId + "&imgUrl=" + imgUrl + "&subject=" + subject + "&username=" + F.username;
+                    break;
+                    
                 default:
                     // TODO
                     break;
             }
-            
+
         } else { // 详情
             tradeStatus = tradeStatus + '';
             if (tradeStatus === '6') { // 评论

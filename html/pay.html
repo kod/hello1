@@ -16,106 +16,116 @@
     <link href="../css/pay.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
     <style>
-    #three {
-        margin-bottom: 50px;
-    }
-    /*tcy -start-*/
+        #three {
+            margin-bottom: 50px;
+        }
 
-    .modal-body th{
-        line-height: 2;
-    }
+        /*tcy -start-*/
 
-    .modal-body td{
-        line-height: 1.8;
-    }
+        .modal-body th {
+            line-height: 2;
+        }
 
-    img,
-    span,
-    i,
-    s {
-        display: inline-block;
-        /*vertical-align: middle;*/
-    }
+        .modal-body td {
+            line-height: 1.8;
+        }
 
-    .modal-body {
-        position: relative;
-    }
+        img,
+        span,
+        i,
+        s {
+            display: inline-block;
+            /*vertical-align: middle;*/
+        }
 
-    .phone-flag {
-        position: absolute;
-        top: 90px;
-        right: 100px;
-        line-height: 45px;
-    }
+        .modal-body {
+            position: relative;
+        }
 
-    .phone-flag-img {
-        width: 30px !important;
-        height: 20px !important;
-        vertical-align: middle !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-size: cover !important;
-        background-image: url(../img/VN.png) !important;
-    }
+        .phone-flag {
+            position: absolute;
+            top: 90px;
+            right: 100px;
+            line-height: 45px;
+        }
 
-    .phone-flag-code {
-        color: #333 !important;
-        width: auto !important;
-    }
+        .phone-flag-img {
+            width: 30px !important;
+            height: 20px !important;
+            vertical-align: middle !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-size: cover !important;
+            background-image: url(../img/VN.png) !important;
+        }
 
-    .fenqiNumBtn button.actives {
-        background: #eee !important;
-        border: 1px solid #eee !important;
-        color: #333 !important;
-    }
-    /*tcy -end-*/
+        .phone-flag-code {
+            color: #333 !important;
+            width: auto !important;
+        }
+
+        .fenqiNumBtn button.actives {
+            background: #eee !important;
+            border: 1px solid #eee !important;
+            color: #333 !important;
+        }
+
+        /*tcy -end-*/
     </style>
 </head>
 
 <body ng-app="payApp" ng-controller="payCtrl">
     <div ng-controller="addressCtrl">
         <div class="all">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+            <div class="header__nav">
+                <div class="header__nav-main">
+                    <div class="header__n-m-left header__n-m-left_login">
+                        <div class="header__n-m-l-item1">Xin chào, </div>
+                        <div class="header__n-m-l-item2">
+                            <div class="">
+                                <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
+                                <span class="header__n-m-l-i2-arrow"></span>
+                            </div>
+                            <div class="userLogin-info">
+                                <div class="userLogin-info__top col-xs-24">
+                                    <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                                    <div class="userLogin-info__top-order">
+                                        <p style="margin-bottom: 10px;">
+                                            <a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a>
+                                        </p>
+                                        <p>
+                                            <a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="userLogin-info__bottom col-xs-24">
+                                    <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
                                 </div>
                             </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
                         </div>
+                        <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>
                     </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
+                    <div class="header__n-m-left header__n-m-left_nologin">
+                        <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
+                        <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
+                    </div>
+                    <div class="header__n-m-right">
+                        <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
+                        <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class="all banner">
             <div class="content header_c">
                 <div class="search_left left">
-                    <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt="" /></a>
+                    <a href="../index.html" class="logo">
+                        <img src="../img/LOGO2.jpg" alt="" />
+                    </a>
                 </div>
-                <div class="left pay"><a href="">Trung tâm thanh toán</a></div>
+                <div class="left pay">
+                    <a href="">Trung tâm thanh toán</a>
+                </div>
             </div>
         </div>
         <!--板块-->
@@ -156,12 +166,14 @@
         <section class="site" id="one" ng-controller="addCtrl">
             <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
             <div class="site__main col-xs-24">
-                <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }" ng-click="set_active(index, item.msisdn, item.address, item.username)" ng-repeat="(index, item) in addrlistData">
+                <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }"
+                    ng-click="set_active(index, item.msisdn, item.address, item.username)" ng-repeat="(index, item) in addrlistData">
                     <div class="site__m-i-row1 col-xs-24">
                         <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username">Xác nhận địa chỉ nhận</div>
                         <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn">01685968888</div>
                     </div>
-                    <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address">Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể </div>
+                    <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address">Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ
+                        thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể </div>
                     <div class="site__m-i-row3 col-xs-24">
                         <div class="site__m-i-r3-def">
                             <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
@@ -186,7 +198,8 @@
             <div class="content">
                 <div class="two">
                     <div class="top_title">
-                        <i></i> <span>Xác nhận thông tin đặt hàng</span>
+                        <i></i>
+                        <span>Xác nhận thông tin đặt hàng</span>
                     </div>
                     <div class="information">
                         <table>
@@ -237,7 +250,8 @@
                                     <option value="0.4">40%</option>
                                     <option value="0.5">50%</option>
                                 </select>
-                                <span style="line-height: 25px;">Thanh toán lần đầu <i ng-bind="price*num*paymentNum | priceFormat"></i> VND</span>
+                                <span style="line-height: 25px;">Thanh toán lần đầu
+                                    <i ng-bind="price*num*paymentNum | priceFormat"></i> VND</span>
                             </div>
                         </div>
                         <div class="list">
@@ -258,7 +272,8 @@
             <div class="content">
                 <div class="three">
                     <div class="top_title">
-                        <i></i> <span>Phương thức thanh toán</span>
+                        <i></i>
+                        <span>Phương thức thanh toán</span>
                     </div>
                 </div>
                 <div class="way">
@@ -273,15 +288,25 @@
                         </li>
                     </ul>
                     <div class="fc" style="vertical-align: right;">
-                        <p ng-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;"><i ng-bind="resPrice | priceFormat"></i> <span class="" style="padding-top: 3px;">VND</span></p>
+                        <p ng-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;">
+                            <i ng-bind="resPrice | priceFormat"></i>
+                            <span class="" style="padding-top: 3px;">VND</span>
+                        </p>
                         <p ng-show="paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
-                            Trả góp hàng tháng: <i ng-bind="resPrice | priceFormat" style="margin-left: 5px;"></i> <span class="" style="color: #F7004C; padding-top: 2px;">VND X <span ng-bind="fenqiNum"></span></span> <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" ng-click="information()" data-toggle="modal" data-target="#myhead" class="moneryIcon" />
+                            Trả góp hàng tháng:
+                            <i ng-bind="resPrice | priceFormat" style="margin-left: 5px;"></i>
+                            <span class="" style="color: #F7004C; padding-top: 2px;">VND X
+                                <span ng-bind="fenqiNum"></span>
+                            </span>
+                            <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;"
+                                ng-click="information()" data-toggle="modal" data-target="#myhead" class="moneryIcon" />
                         </p>
                         <div class="" style="text-align: right;">
                             <a href="" class="aa no_checkbox" onclick="submit()">Mua ngay</a>
                         </div>
                         <div class="p" style="text-align: right;">
-                            <input type="checkbox" id="selectAll" /><span>Đồng ý</span>
+                            <input type="checkbox" id="selectAll" />
+                            <span>Đồng ý</span>
                             <a href="buyIntro.html" target="_self">Hợp đồng liên quan đến khoản vay</a>
                         </div>
                     </div>
@@ -294,7 +319,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="left"> địa chỉ nhận hàng</div>
-                        <div class="right" data-dismiss="modal" ng-blur="phoneNum=''"><span class="alert__b-m-t-close"></span></div>
+                        <div class="right" data-dismiss="modal" ng-blur="phoneNum=''">
+                            <span class="alert__b-m-t-close"></span>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <!-- <div class="phone-flag">
@@ -331,7 +358,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="left">Thông tin về số tiền trả góp</div>
-                            <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                            <div class="right" data-dismiss="modal">
+                                <span class="alert__b-m-t-close"></span>
+                            </div>
                         </div>
                         <div class="modal-body">
                             <table border="1" class="tables">
@@ -403,47 +432,48 @@
                 </div>
             </div>
         </div>
-            <div class="footer__bottom2 col-xs-24">
-                <div class="footer__bottom2-main">
-                    <div class="footer__b2-m-row1">
-                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                        <ul class="footer__b2-m-r1-main col-xs-24">
-                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row2">
-                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                        <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row3">
-                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                        <ul class="footer__b2-m-r3-main col-xs-24">
-                            <li class="footer__b2-m-r3-m-item col-xs-24">
-                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row5">
-                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                        <ul class="footer__b2-m-r5-main col-xs-24">
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row7 col-xs-24">
+        <div class="footer__bottom2 col-xs-24">
+            <div class="footer__bottom2-main">
+                <div class="footer__b2-m-row1">
+                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
+                    <ul class="footer__b2-m-r1-main col-xs-24">
+                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
+                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row2">
+                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
+                    <ul class="footer__b2-m-r2-main col-xs-24">
+                        <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
+                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
+                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
+                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row3">
+                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
+                    <ul class="footer__b2-m-r3-main col-xs-24">
+                        <li class="footer__b2-m-r3-m-item col-xs-24">
+                            <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row5">
+                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
+                    <ul class="footer__b2-m-r5-main col-xs-24">
+                        <li class="footer__b2-m-r5-m-item col-xs-24">
+                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
+                        </li>
+                        <li class="footer__b2-m-r5-m-item col-xs-24">
+                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__b2-m-row7 col-xs-24">
                     <div class="footer__b2-m-r7-left col-xs-12">
                         <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
+                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon">
+                            <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
@@ -453,13 +483,13 @@
                     <div class="footer__b2-m-r7-right col-xs-12">
                         <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
                     </div>
-                    </div>
-                    <div class="footer__b2-m-row6 col-xs-24">
-                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                        <div class="footer__b2-m-r6-right col-xs-12"></div>
-                    </div>
+                </div>
+                <div class="footer__b2-m-row6 col-xs-24">
+                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
+                    <div class="footer__b2-m-r6-right col-xs-12"></div>
                 </div>
             </div>
+        </div>
     </footer>
     <script src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/swiper.min.js"></script>
@@ -480,61 +510,210 @@
     <script src="../js/vue.min.js"></script>
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script>
-    window.setTimeout(function() {
-        if (localStorage.getItem("funId")) {
-            F._userViewDetailInfo({}, function(ret) {
-                if (ret.data.headimage) {
-                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
-                }
-            });
+        window.setTimeout(function () {
+            if (localStorage.getItem("funId")) {
+                F._userViewDetailInfo({}, function (ret) {
+                    if (ret.data.headimage) {
+                        $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
+                    }
+                });
+            }
+        }, 700);
+
+
+        var loading = new F._loading();
+        F.orderNo = ''; // 存放已创建好的订单号
+        F.tradeNo = ''; // 存放已创建好的交易号
+        F.createOrder_info = {
+            isCreate: false, // 是否已创建订单
+            isFull: false, // 是否为全款订单
+        };
+
+        /*tcy -start-*/
+        // F.is_submit = false; // 是否创建成功过订单
+
+        var funId = localStorage.getItem("funId");
+        if (funId == "" || funId == null) {
+            window.location.href = "./login.html";
         }
-    }, 700);
 
+        // 提交补全信息
+        function userAddDetailInfo(data) {
+            loading.show();
+            F._userAddDetailInfo(data, function (ret) {
+                loading.hide();
+                if (!ret) return false;
 
-    var loading = new F._loading();
-    F.orderNo = ''; // 存放已创建好的订单号
-    F.tradeNo = ''; // 存放已创建好的交易号
-    F.createOrder_info = {
-        isCreate: false, // 是否已创建订单
-        isFull: false, // 是否为全款订单
-    }; 
+                switch (ret.code) {
+                    case 10000:
 
-    /*tcy -start-*/
-    // F.is_submit = false; // 是否创建成功过订单
+                        var payway = '';
+                        payway_get(function (result) {
+                            payway = result + '';
+                        });
 
-    var funId = localStorage.getItem("funId");
-    if (funId == "" || funId == null) {
-        window.location.href = "./login.html";
-    }
-
-    // 提交补全信息
-    function userAddDetailInfo(data) {
-        loading.show();
-        F._userAddDetailInfo(data, function(ret) {
-            loading.hide();
-            if (!ret) return false;
-
-            switch (ret.code) {
-                case 10000:
-
-                    var payway = '';
-                    payway_get(function(result) {
-                        payway = result + '';
-                    });
-
-
-                    if (payway === '1') {
-                        F._payPwd_open(function(paypassword) {
+                        if (payway === '1') {
+                            F._payPwd_open(function (paypassword) {
+                                loading.show();
+                                F._payOrder({
+                                    timeoutExpress: 1800, // 半个小时
+                                    totalAmount: F.total, // 总金额
+                                    orderNo: F.orderNo,
+                                    tradeNo: F.tradeNo,
+                                    advance: parseInt(F.price * F.num * F.paymentNum),
+                                    payRate: F.paymentNum,
+                                    repaymentMonth: F.fenqiNum,
+                                    prepay: parseInt(F.price * F.num * F.paymentNum),
+                                    payway: payway,
+                                    paypassword: paypassword,
+                                }, payOrder_callback);
+                            });
+                        } else {
                             loading.show();
                             F._payOrder({
                                 timeoutExpress: 1800, // 半个小时
                                 totalAmount: F.total, // 总金额
                                 orderNo: F.orderNo,
                                 tradeNo: F.tradeNo,
-                                advance: F.price * F.num * F.paymentNum,
+                                advance: parseInt(F.price * F.num * F.paymentNum),
                                 payRate: F.paymentNum,
                                 repaymentMonth: F.fenqiNum,
-                                prepay: F.price * F.num * F.paymentNum,
+                                prepay: parseInt(F.price * F.num * F.paymentNum),
+                                payway: payway,
+                                paypassword: '',
+                            }, payOrder_callback);
+                        }
+
+                        break;
+
+                    default:
+                        F._confirm('Gợi ý', 'Gửi thông tin thất bại', 'error', [{
+                            name: 'Xác nhận',
+                            func: function () { }
+                        }]);
+                        break;
+                }
+            });
+        }
+
+        // 去补全信息
+        function getSchoolInfo_addInfo(userInfo) {
+            loading.show();
+            F._getSchoolInfo({}, function (ret) {
+                loading.hide();
+                var baseinfo = new F._baseinfo(ret.details, userInfo);
+                baseinfo.show();
+                $("#submit_baseinfo").on('click', function () {
+                    baseinfo.submit(function (result) {
+                        baseinfo.hide();
+                        userAddDetailInfo(result);
+                    });
+                });
+            });
+        }
+
+        // 提交订单
+        function submit() {
+            if (!localStorage.getItem("funId")) {
+                F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
+                    name: 'Xác nhận',
+                    func: function () {
+                        window.location.href = 'login.html';
+                    }
+                }]);
+                return false;
+            }
+
+            if (!F.username || !F.msisdn || !F.address) {
+                F._confirm('Gợi ý', 'Vui lòng Thêm địa chỉ nhận hàng', 'tips', [{
+                    name: 'Xác nhận',
+                    func: function () {
+
+                    }
+                }]);
+
+                return false;
+            }
+
+            F.paymentNum = parseFloat(F.paymentNum);
+            F.price = parseFloat(F.price);
+            F.num = parseInt(F.num);
+            F.total = F.price * F.num;
+
+            if (F.paymentNum === 1) { // 全款
+
+                loading.show();
+                F._fullOrderCreate({
+                    totalamount: F.total,
+                    orgamount: F.total,
+                    advance: F.total,
+                    payrate: '1',
+                    repaymentmonth: '0',
+                    subject: F.info,
+                    goodsdetail: F.goodsDetail,
+                    timeoutexpress: '86400',
+                    msisdn: F.msisdn,
+                    address: F.address,
+                    username: F.username,
+                }, fullOrderCreate_callback);
+
+            } else {
+
+                loading.show();
+                F._createOrder({
+                    totalAmount: F.total,
+                    orgAmount: F.total,
+                    advance: parseInt(F.price * F.num * F.paymentNum),
+                    payRate: F.paymentNum,
+                    repaymentMonth: F.fenqiNum,
+                    subject: F.info,
+                    goodsDetail: F.goodsDetail,
+                    msisdn: F.msisdn,
+                    address: F.address,
+                    username: F.username,
+                }, createOrder_callback);
+
+            }
+        }
+
+        function createOrder_callback(ret) {
+            loading.hide();
+            if (!ret) return false;
+
+            if (ret.code !== 10000) return false;
+
+            F.orderNo = ret.orderNo;
+            F.tradeNo = ret.tradeNo;
+
+            F.createOrder_info.isCreate = true;
+            F.createOrder_info.isFull = false;
+
+
+            loading.show();
+            F._userViewDetailInfo({}, function (ret) {
+                loading.hide();
+                if (!ret) return false;
+
+                if (ret.status) { // 资料齐全
+
+                    var payway = '';
+                    payway_get(function (result) {
+                        payway = result + '';
+                    });
+
+
+                    if (payway === '1') {
+                        F._payPwd_open(function (paypassword) {
+                            loading.show();
+                            F._payOrder({
+                                timeoutExpress: 1800, // 半个小时
+                                totalAmount: F.total, // 总金额
+                                orderNo: F.orderNo,
+                                tradeNo: F.tradeNo,
+                                advance: parseInt(F.price * F.num * F.paymentNum),
+                                payRate: F.paymentNum,
+                                repaymentMonth: F.fenqiNum,
+                                prepay: parseInt(F.price * F.num * F.paymentNum),
                                 payway: payway,
                                 paypassword: paypassword,
                             }, payOrder_callback);
@@ -546,400 +725,236 @@
                             totalAmount: F.total, // 总金额
                             orderNo: F.orderNo,
                             tradeNo: F.tradeNo,
-                            advance: F.price * F.num * F.paymentNum,
+                            advance: parseInt(F.price * F.num * F.paymentNum),
                             payRate: F.paymentNum,
                             repaymentMonth: F.fenqiNum,
-                            prepay: F.price * F.num * F.paymentNum,
+                            prepay: parseInt(F.price * F.num * F.paymentNum),
                             payway: payway,
                             paypassword: '',
                         }, payOrder_callback);
                     }
 
 
+                } else { // 资料不全
 
-                    // F._payOrder({
-                    //     timeoutExpress: 1800, // 半个小时
-                    //     totalAmount: F.total, // 总金额
-                    //     orderNo: F.orderNo,
-                    //     tradeNo: F.tradeNo,
-                    //     advance: F.price * F.num * F.paymentNum,
-                    //     payRate: F.paymentNum,
-                    //     repaymentMonth: F.fenqiNum,
-                    //     prepay: F.price * F.num * F.paymentNum,
-                    //     payway: payway,
-                    // }, payOrder_callback);
-
-                    break;
-
-                default:
-                    F._confirm('Gợi ý', 'Gửi thông tin thất bại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {}
+                    F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                        name: 'Để sau',
+                        func: function () { }
+                    }, {
+                        name: 'Hoàn thiện ngay',
+                        func: function () {
+                            getSchoolInfo_addInfo(ret.data);
+                        }
                     }]);
-                    break;
-            }
-        });
-    }
 
-    // 去补全信息
-    function getSchoolInfo_addInfo(userInfo) {
-        loading.show();
-        F._getSchoolInfo({}, function(ret) {
-            loading.hide();
-            var baseinfo = new F._baseinfo(ret.details, userInfo);
-            baseinfo.show();
-            $("#submit_baseinfo").on('click', function() {
-                baseinfo.submit(function(result) {
-                    baseinfo.hide();
-                    userAddDetailInfo(result);
-                });
+                }
             });
-        });
-    }
-
-    // 提交订单
-    function submit() {
-        if (!localStorage.getItem("funId")) {
-            F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
-                name: 'Xác nhận',
-                func: function() {
-                    window.location.href = 'login.html';
-                }
-            }]);
-            return false;
         }
 
-        if (!F.username || !F.msisdn || !F.address) {
-            F._confirm('Gợi ý', 'Vui lòng Thêm địa chỉ nhận hàng', 'tips', [{
-                name: 'Xác nhận',
-                func: function() {
-
-                }
-            }]);
-
-            return false;
-        }
-
-        F.paymentNum = parseFloat(F.paymentNum);
-        F.price = parseFloat(F.price);
-        F.num = parseInt(F.num);
-        F.total = F.price * F.num;
-
-        if (F.paymentNum === 1) { // 全款
-
-            loading.show();
-            F._fullOrderCreate({
-                totalamount: F.total,
-                orgamount: F.total,
-                advance: F.total,
-                payrate: '1',
-                repaymentmonth: '0',
-                subject: F.info,
-                goodsdetail: F.goodsDetail,
-                timeoutexpress: '86400',
-                msisdn: F.msisdn,
-                address: F.address,
-                username: F.username,
-            }, fullOrderCreate_callback);
-
-        } else {
-
-            loading.show();
-            F._createOrder({
-                totalAmount: F.total,
-                orgAmount: F.total,
-                advance: F.price * F.num * F.paymentNum,
-                payRate: F.paymentNum,
-                repaymentMonth: F.fenqiNum,
-                subject: F.info,
-                goodsDetail: F.goodsDetail,
-                msisdn: F.msisdn,
-                address: F.address,
-                username: F.username,
-            }, createOrder_callback);
-
-        }
-    }
-
-    function createOrder_callback(ret) {
-        loading.hide();
-        if (!ret) return false;
-
-        if (ret.code !== 10000) return false;
-
-        F.orderNo = ret.orderNo;
-        F.tradeNo = ret.tradeNo;
-
-        F.createOrder_info.isCreate = true;
-        F.createOrder_info.isFull = false;
-
-
-        loading.show();
-        F._userViewDetailInfo({}, function(ret) {
+        function payOrder_callback(ret) {
             loading.hide();
             if (!ret) return false;
 
-            if (ret.status) { // 资料齐全
+            if (ret.code !== 10000) return false;
 
-                var payway = '';
-                payway_get(function(result) {
-                    payway = result + '';
-                });
+            window.location.href = './successPay.html';
+        }
 
+        function fullOrderCreate_callback(ret) {
+            loading.hide();
+            if (!ret) return false;
 
-                if (payway === '1') {
-                    F._payPwd_open(function(paypassword) {
-                        loading.show();
-                        F._payOrder({
-                            timeoutExpress: 1800, // 半个小时
-                            totalAmount: F.total, // 总金额
-                            orderNo: F.orderNo,
-                            tradeNo: F.tradeNo,
-                            advance: F.price * F.num * F.paymentNum,
-                            payRate: F.paymentNum,
-                            repaymentMonth: F.fenqiNum,
-                            prepay: F.price * F.num * F.paymentNum,
-                            payway: payway,
-                            paypassword: paypassword,
-                        }, payOrder_callback);
-                    });
-                } else {
+            if (ret.code !== 10000) return false;
+
+            F.orderNo = ret.orderNo;
+            F.tradeNo = ret.tradeNo;
+
+            F.createOrder_info.isCreate = true;
+            F.createOrder_info.isFull = true;
+
+            var payway = '';
+            payway_get(function (result) {
+                payway = result + '';
+            });
+
+            if (payway === '1') {
+
+                F._payPwd_open(function (paypassword) {
                     loading.show();
-                    F._payOrder({
-                        timeoutExpress: 1800, // 半个小时
-                        totalAmount: F.total, // 总金额
+                    F._orderFullPay({
                         orderNo: F.orderNo,
                         tradeNo: F.tradeNo,
-                        advance: F.price * F.num * F.paymentNum,
-                        payRate: F.paymentNum,
-                        repaymentMonth: F.fenqiNum,
-                        prepay: F.price * F.num * F.paymentNum,
+                        total: F.total,
                         payway: payway,
-                        paypassword: '',
-                    }, payOrder_callback);
-                }
+                        paypassword: paypassword,
+                    }, orderFullPay_callback);
+                });
 
-
-            } else { // 资料不全
-
-                F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                    name: 'Để sau',
-                    func: function() {}
-                }, {
-                    name: 'Hoàn thiện ngay',
-                    func: function() {
-                        getSchoolInfo_addInfo(ret.data);
-                    }
-                }]);
-
-            }
-        });
-    }
-
-    function payOrder_callback(ret) {
-        loading.hide();
-        if (!ret) return false;
-
-        if (ret.code !== 10000) return false;
-
-        window.location.href = './successPay.html';
-    }
-
-    function fullOrderCreate_callback(ret) {
-        loading.hide();
-        if (!ret) return false;
-
-        if (ret.code !== 10000) return false;
-
-        F.orderNo = ret.orderNo;
-        F.tradeNo = ret.tradeNo;
-
-        F.createOrder_info.isCreate = true;
-        F.createOrder_info.isFull = true;
-
-        var payway = '';
-        payway_get(function(result) {
-            payway = result + '';
-        });
-
-        if (payway === '1') {
-
-            F._payPwd_open(function(paypassword) {
+            } else {
                 loading.show();
                 F._orderFullPay({
                     orderNo: F.orderNo,
                     tradeNo: F.tradeNo,
                     total: F.total,
                     payway: payway,
-                    paypassword: paypassword,
                 }, orderFullPay_callback);
+            }
+        }
+
+        function orderFullPay_callback(ret) {
+
+            loading.hide();
+            if (!ret) return false;
+
+            if (ret.code !== 10000) return false;
+            window.location.href = './successPay.html';
+        }
+
+        // 获取地址, 姓名, 电话
+        function addressInfo_get(callback) {
+            $('.site__main-item').each(function () {
+                var self = $(this);
+                if (self.hasClass('site__main-item_active')) {
+                    var username = self.find('.js_username').eq(0).html();
+                    var msisdn = self.find('.js_msisdn').eq(0).html();
+                    var address = self.find('.js_address').eq(0).html();
+                    callback({
+                        username: username,
+                        msisdn: msisdn,
+                        address: address,
+                        length: $('.site__main-item').length,
+                    });
+                }
             });
-
-        } else {
-            loading.show();
-            F._orderFullPay({
-                orderNo: F.orderNo,
-                tradeNo: F.tradeNo,
-                total: F.total,
-                payway: payway,
-            }, orderFullPay_callback);
         }
-    }
 
-    function orderFullPay_callback(ret) {
+        // 获取支付方式
+        function payway_get(callback) {
+            var index = 0;
+            $('.payway-li').each(function () {
+                var self = $(this);
+                var id = index === 0 ? '2' : '1';
+                if (self.hasClass('act')) {
+                    callback(id);
+                }
+                index += 1;
+            });
+        }
+        /*tcy -start-*/
 
-        loading.hide();
-        if (!ret) return false;
 
-        if (ret.code !== 10000) return false;
-        window.location.href = './successPay.html';
-    }
-
-    // 获取地址, 姓名, 电话
-    function addressInfo_get(callback) {
-        $('.site__main-item').each(function() {
-            var self = $(this);
-            if (self.hasClass('site__main-item_active')) {
-                var username = self.find('.js_username').eq(0).html();
-                var msisdn = self.find('.js_msisdn').eq(0).html();
-                var address = self.find('.js_address').eq(0).html();
-                callback({
-                    username: username,
-                    msisdn: msisdn,
-                    address: address,
-                    length: $('.site__main-item').length,
-                });
-            }
+        var swiper = new Swiper('#index_banner', {
+            pagination: '.swiper-pagination',
+            loop: true,
+            grabCursor: true,
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplay: 4000,
+            prevButton: '.swiper-button-prev',
+            nextButton: '.swiper-button-next',
         });
-    }
+        $('.hot_brand').hover(function () {
+            $(this).css('background', '#fff');
+            $(this).find('.category_act').css('display', 'block');
+            $(this).find('a').css('color', '#666');
+            $(this).find('p').css('color', '#666');
+        }, function () {
+            $(this).css('background', 'rgba(0,0,0,0.2)');
+            $(this).find('.category_act').css('display', 'none');
+            $(this).find('a').css('color', '#eee');
+            $(this).find('p').css('color', '#fff');
+        })
 
-    // 获取支付方式
-    function payway_get(callback) {
-        var index = 0;
-        $('.payway-li').each(function() {
-            var self = $(this);
-            var id = index === 0 ? '2' : '1';
-            if (self.hasClass('act')) {
-                callback(id);
+        $('.li-right button').click(function () {
+            $('.li-right button').removeClass('b_active');
+            $(this).addClass('b_active');
+        })
+        $('.way li').click(function () {
+            $('.way li').removeClass('act');
+            $(this).addClass('act');
+        })
+        //          $('body').delegate('.li span.moren','click',function(){
+        //              $('.li').removeClass('act');
+        //              $(this).parents('.li').addClass('act');
+        //          })
+
+        $('#selectAll').attr("checked", false);
+        $('#selectAll').click(function () {
+            if ($(this).is(':checked')) {
+                $('.fc .aa').removeClass('no_checkbox');
+
+            } else {
+                $('.fc .aa').addClass('no_checkbox');
+
             }
-            index += 1;
-        });
-    }
-    /*tcy -start-*/
 
+        })
 
-    var swiper = new Swiper('#index_banner', {
-        pagination: '.swiper-pagination',
-        loop: true,
-        grabCursor: true,
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        autoplay: 4000,
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
-    });
-    $('.hot_brand').hover(function() {
-        $(this).css('background', '#fff');
-        $(this).find('.category_act').css('display', 'block');
-        $(this).find('a').css('color', '#666');
-        $(this).find('p').css('color', '#666');
-    }, function() {
-        $(this).css('background', 'rgba(0,0,0,0.2)');
-        $(this).find('.category_act').css('display', 'none');
-        $(this).find('a').css('color', '#eee');
-        $(this).find('p').css('color', '#fff');
-    })
+        $('#phone').blur(function () {
+            var phone = $("#phone").val();
+            if (!F._phoneExpr.test(phone)) {
+                $('#errormsg').show();
+                $('#errormsg small').html('định dạng số điện thoại sai');
+                return;
+            }
 
-    $('.li-right button').click(function() {
-        $('.li-right button').removeClass('b_active');
-        $(this).addClass('b_active');
-    })
-    $('.way li').click(function() {
-        $('.way li').removeClass('act');
-        $(this).addClass('act');
-    })
-    //          $('body').delegate('.li span.moren','click',function(){
-    //              $('.li').removeClass('act');
-    //              $(this).parents('.li').addClass('act');
-    //          })
+            $('#errormsg').hide();
 
-    $('#selectAll').attr("checked", false);
-    $('#selectAll').click(function() {
-        if ($(this).is(':checked')) {
-            $('.fc .aa').removeClass('no_checkbox');
+        })
+        $('#names').blur(function () {
 
-        } else {
-            $('.fc .aa').addClass('no_checkbox');
+            var name = $("#names").val();
+            if (name.length <= 1) {
+                $('#errormsg').show();
+                $('#errormsg small').html('Định dạng tên không đúng');
+                return;
+            }
 
-        }
+            $('#errormsg').hide();
+        })
+        $('#textarea').blur(function () {
 
-    })
+            var addr = $('#textarea').val();
+            if (addr.length < 1) {
+                $('#errormsg').show();
+                $('#errormsg small').html('Định dạng địa chỉ sai');
+                return;
+            }
+            $('#errormsg').hide();
 
-    $('#phone').blur(function() {
-        var phone = $("#phone").val();
-        if (!F._phoneExpr.test(phone)) {
-            $('#errormsg').show();
-            $('#errormsg small').html('định dạng số điện thoại sai');
-            return;
-        }
+        })
+        $('.addAddrli img').click(function () {
+            $('#names,#phone,#textarea').val('');
 
-        $('#errormsg').hide();
-
-    })
-    $('#names').blur(function() {
-
-        var name = $("#names").val();
-        if (name.length <= 1) {
-            $('#errormsg').show();
-            $('#errormsg small').html('Định dạng tên không đúng');
-            return;
-        }
-
-        $('#errormsg').hide();
-    })
-    $('#textarea').blur(function() {
-
-        var addr = $('#textarea').val();
-        if (addr.length < 1) {
-            $('#errormsg').show();
-            $('#errormsg small').html('Định dạng địa chỉ sai');
-            return;
-        }
-        $('#errormsg').hide();
-
-    })
-    $('.addAddrli img').click(function() {
-        $('#names,#phone,#textarea').val('');
-
-    })
+        })
     </script>
     <script type="text/javascript">
-    //截取Url里面的参数   
-    function GetRequest() {
-        var url = location.search; //获取url中"?"符后的字串  
-        var theRequest = new Object();
-        if (url.indexOf("?") != -1) {
-            var str = url.substr(1);
-            strs = str.split("&");
-            for (var i = 0; i < strs.length; i++) {
-                theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]); //获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>, （unescape只针对数字, 中文乱码)  
+        //截取Url里面的参数   
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串  
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]); //获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>, （unescape只针对数字, 中文乱码)  
+                }
             }
+            return theRequest;
         }
-        return theRequest;
-    }
-    $(function() {
-        //通过url取数  
-        var request = new Object();
-        request = GetRequest();
-        var price = request['price'];
-        var buyNum = request['buyNum'];
-        var fenqiNum = request['fenqiNum'];
-        var total = parseFloat(price) * parseInt(buyNum);
+        $(function () {
+            //通过url取数  
+            var request = new Object();
+            request = GetRequest();
+            var price = request['price'];
+            var buyNum = request['buyNum'];
+            var fenqiNum = request['fenqiNum'];
+            var total = parseFloat(price) * parseInt(buyNum);
 
-        $("#buyNum").html(buyNum);
-        $("#price").html(price);
-        $("#total").html(total);
-    });
+            $("#buyNum").html(buyNum);
+            $("#price").html(price);
+            $("#total").html(total);
+        });
     </script>
 </body>
 

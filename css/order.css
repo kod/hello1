@@ -7,10 +7,10 @@
 		table{margin-top:60px;width:100%;color:#999;font-size:15px}
 		table th{text-align:center;height:40px;font-weight: 600;}
 		table thead {border-bottom: 1px solid #ddd; color: #969696;}
-		table th:nth-child(1){width:54%}
+		table th:nth-child(1){width:50%}
 		table th:nth-child(2){width:17%}
 		table th:nth-child(3){width:17%}
-		table th:nth-child(4){width:12%}
+		table th:nth-child(4){width:16%}
 		table tbody tr{border-bottom:1px solid #ddd;font-size:14px;}
 		table tr td:nth-child(2){color: #555;}
 		table tr td:nth-child(3){color: #555;}
@@ -18,9 +18,12 @@
 		table tr td img{width:50px;height:50px}
 		table tr td:first-child{text-align: left;}
 		table .operate0 {margin-bottom: 3px;}
-		table .operate1 {display: inline-block !important; color: #333;border: 1px solid #dadada;padding: 3px 10px;border-radius: 2px;}
+		table .operate1 {display: inline-block !important; color: #333;border: 1px solid #dadada;padding: 3px 10px;border-radius: 2px;margin-bottom: 3px;margin-right: 3px;}
 		table .operate1:hover {background-color: #eee;}
 		table .operate1:active {background-color: #dfdfdf;}
+		table .operate2 {display: inline-block !important; color: #333;border: 1px solid #dadada;padding: 3px 10px;border-radius: 2px;}
+		table .operate2:hover {background-color: #eee;}
+		table .operate2:active {background-color: #dfdfdf;}
 		.media-heading{line-height:21px;color: #333;}
 		.no_list{width: 70%;margin-left: 9%;text-align: center;margin-top: 115px;display:none}
 		.no_list p{font-size:18px;margin:12px 0}

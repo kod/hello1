@@ -2985,6 +2985,76 @@ window.setTimeout(function() {
 }, 700);
 
 
+F._order_cancel = function (callback) {
+    var html_str = '\
+        <div class="order-cancel" id="order-cancel">\
+            <div class="order-cancel__main">\
+                <div class="order-cancel__main-title col-xs-24">\
+                    <div class="order-cancel__m-t-left">Lựa chọn lý do hủy đơn hàng</div>\
+                    <div class="order-cancel__m-t-right">\
+                        <span class="order-cancel__m-t-r-close"></span>\
+                    </div>\
+                </div>\
+                <div class="order-cancel__m-t-bottom col-xs-24">\
+                    <div class="order-cancel__m-t-b-row1 col-xs-24">\
+                        <div class="order-cancel__m-t-b-r1-left">\
+                            <img src="../img/tishi.png" alt="icon" class="order-cancel__m-t-b-r1-l-icon">\
+                        </div>\
+                        <div class="order-cancel__m-t-b-r1-right">\
+                            <div class="order-cancel__m-t-b-r1-r-row1">Sau khi đơn hàng được hủy sẽ không thể khôi phục lại</div>\
+                            <div class="order-cancel__m-t-b-r1-r-row2">nếu đơn hàng này sử dụng phiếu ưu đãi... cũng sẽ không được trả lại</div>\
+                        </div>\
+                    </div>\
+                    <div class="order-cancel__m-t-b-row2 col-xs-24">\
+                        <div class="order-cancel__m-t-b-r2-item" data-code="40001">Thao tác sai ( lựa chọn mặt hàng, viết địa chỉ... sai)</div>\
+                        <div class="order-cancel__m-t-b-r2-item" data-code="40002">Đặt trùng đơn hàng / đơn hàng sai</div>\
+                        <div class="order-cancel__m-t-b-r2-item" data-code="40003">Giá ở các kênh khác càng thấp hơn</div>\
+                        <div class="order-cancel__m-t-b-r2-item" data-code="40004">Lựa chọn số lần trả góp sai</div>\
+                        <div class="order-cancel__m-t-b-r2-item" data-code="40005">Không muốn mua nữa</div>\
+                    </div>\
+                    <div class="order-cancel__m-t-b-row3 col-xs-24">\
+                        <div class="order-cancel__m-t-b-r3-main col-xs-24">\
+                            <div class="order-cancel__m-t-b-r3-m-left">\
+                                <span class="order-cancel__m-t-b-r3-m-l-text">Hủy</span>\
+                            </div>\
+                            <div class="order-cancel__m-t-b-r3-m-right">\
+                                <span class="order-cancel__m-t-b-r3-m-r-text">Xác nhận</span>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>';
+
+    $('body').append(html_str);
+
+    $('.order-cancel__m-t-b-r2-item').on('click', function () {
+        var self = $(this);
+        $('.order-cancel__m-t-b-r2-item').removeClass('order-cancel__m-t-b-r2-item_active');
+        self.addClass('order-cancel__m-t-b-r2-item_active');
+    });
+
+    $('.order-cancel__m-t-b-r3-m-l-text').on('click', function () {
+        $('#order-cancel').remove();
+    });
+
+    $('.order-cancel__m-t-r-close').on('click', function () {
+        $('#order-cancel').remove();
+    });
+
+    $('.order-cancel__m-t-b-r3-m-r-text').on('click', function () {
+        var result = '';
+        $('.order-cancel__m-t-b-r2-item').each(function () {
+            var self = $(this);
+            if (self.hasClass('order-cancel__m-t-b-r2-item_active')) {
+                result = self.data('code');
+            }
+        });
+        callback(result);
+    });
+}
+
+
 // 加密中间字符
 function center_char_encrypt(str) {
     var i;

@@ -13,378 +13,378 @@
     <script src="../js/md5.js"></script>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
-    .body__main-time {
-        line-height: 45px;
-        color: #888;
-        border-bottom: 1px solid #d9d9d9;
-        padding-bottom: 10px;
-        margin-top: 10px;
-        margin-bottom: 40px;
-    }
+        .body__main-time {
+            line-height: 45px;
+            color: #888;
+            border-bottom: 1px solid #d9d9d9;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
 
-    .body__m-t-order {
-        margin-left: 15px;
-        padding-left: 18px;
-        border-left: 1px solid #d9d9d9;
-    }
+        .body__m-t-order {
+            margin-left: 15px;
+            padding-left: 18px;
+            border-left: 1px solid #d9d9d9;
+        }
 
-    .body__main-info {
-        margin-bottom: 60px;
-        padding-left: 35px;
-    }
+        .body__main-info {
+            margin-bottom: 60px;
+            padding-left: 35px;
+        }
 
-    .body__m-i-top {
-        margin-bottom: 25px;
-    }
+        .body__m-i-top {
+            margin-bottom: 25px;
+        }
 
-    .body__m-i-t-name {
-        margin-right: 25px;
-    }
+        .body__m-i-t-name {
+            margin-right: 25px;
+        }
 
-    .body__main-phone {
-        margin-bottom: 70px;
-    }
+        .body__main-phone {
+            margin-bottom: 70px;
+        }
 
-    .body__m-i-t-title {
-        color: #888;
-        margin-right: 10px;
-    }
+        .body__m-i-t-title {
+            color: #888;
+            margin-right: 10px;
+        }
 
-    .body__m-p-title {
-        text-align: center;
-        font-size: 0;
-        line-height: 32px;
-        color: #888;
-        margin-bottom: 10px;
-    }
+        .body__m-p-title {
+            text-align: center;
+            font-size: 0;
+            line-height: 32px;
+            color: #888;
+            margin-bottom: 10px;
+        }
 
-    .body__m-p-t-info {
-        width: 590px;
-        font-size: 14px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-t-info {
+            width: 590px;
+            font-size: 14px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-t-num {
-        width: 125px;
-        font-size: 14px;
-        margin-left: 25px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-t-num {
+            width: 125px;
+            font-size: 14px;
+            margin-left: 25px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-t-price {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-t-price {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-t-subtotal {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-t-subtotal {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-main {
-        font-size: 0;
-    }
+        .body__m-p-main {
+            font-size: 0;
+        }
 
-    .body__m-p-m-info {
-        display: inline-block;
-        width: 590px;
-        font-size: 14px;
-        cursor: pointer;
-    }
+        .body__m-p-m-info {
+            display: inline-block;
+            width: 590px;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
-    .body__m-p-m-info:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .body__m-p-m-info:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .body__m-p-m-num {
-        width: 125px;
-        font-size: 14px;
-        text-align: center;
-        margin-left: 25px;
-        margin-top: 35px;
-    }
+        .body__m-p-m-num {
+            width: 125px;
+            font-size: 14px;
+            text-align: center;
+            margin-left: 25px;
+            margin-top: 35px;
+        }
 
-    .body__m-p-m-price {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        text-align: center;
-        margin-top: 35px;
-    }
+        .body__m-p-m-price {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 35px;
+        }
 
-    .body__m-p-m-subtotal {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        text-align: center;
-        margin-top: 35px;
-    }
+        .body__m-p-m-subtotal {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 35px;
+        }
 
-    .body__m-p-m-info {
-        font-size: 0px;
-    }
+        .body__m-p-m-info {
+            font-size: 0px;
+        }
 
-    .body__m-p-m-i-img {
-        float: left;
-        width: 100px;
-        height: 100px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        border-radius: 3px;
-    }
+        .body__m-p-m-i-img {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-radius: 3px;
+        }
 
-    .body__m-p-m-i-text {
-        float: left;
-        width: 470px;
-        font-size: 14px;
-        margin-top: 30px;
-        line-height: 1.5;
+        .body__m-p-m-i-text {
+            float: left;
+            width: 470px;
+            font-size: 14px;
+            margin-top: 30px;
+            line-height: 1.5;
 
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        word-wrap: break-word;
-        white-space: normal !important;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    }
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal !important;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
 
-    .body__main-pay {
-        padding-left: 35px;
-        margin-bottom: 80px;
-    }
+        .body__main-pay {
+            padding-left: 35px;
+            margin-bottom: 80px;
+        }
 
-    .body__m-p-text {
-        color: #888;
-        margin-bottom: 15px;
-    }
+        .body__m-p-text {
+            color: #888;
+            margin-bottom: 15px;
+        }
 
-    .body__main-bottom:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .body__main-bottom:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .body__m-b-item {
-        float: left;
-        height: 40px;
-        line-height: 40px;
-        width: 230px;
-        border: 1px solid #dfdfdf;
-        font-size: 0;
-        margin-right: 30px;
-        cursor: pointer;
-    }
+        .body__m-b-item {
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            width: 230px;
+            border: 1px solid #dfdfdf;
+            font-size: 0;
+            margin-right: 30px;
+            cursor: pointer;
+        }
 
-    .body__m-b-i-icon1 {
-        height: 38px;
-        width: 38px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-image: url(../img/bank01.png);
-        margin-right: 55px;
-    }
+        .body__m-b-i-icon1 {
+            height: 38px;
+            width: 38px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/bank01.png);
+            margin-right: 55px;
+        }
 
-    .body__m-b-i-icon2 {
-        height: 38px;
-        width: 38px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-image: url(../img/bank02.png);
-        margin-right: 55px;
-        display: none;
-    }
+        .body__m-b-i-icon2 {
+            height: 38px;
+            width: 38px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/bank02.png);
+            margin-right: 55px;
+            display: none;
+        }
 
-    .body__m-b-i-text {
-        font-size: 18px;
-        color: #666;
-    }
+        .body__m-b-i-text {
+            font-size: 18px;
+            color: #666;
+        }
 
-    .body__m-b-item_acitve {
-        border-color: #83C44E;
-        background-color: #F4F9E4;
-    }
+        .body__m-b-item_acitve {
+            border-color: #83C44E;
+            background-color: #F4F9E4;
+        }
 
-    .body__m-b-item_acitve .body__m-b-i-icon1 {
-        display: none;
-    }
+        .body__m-b-item_acitve .body__m-b-i-icon1 {
+            display: none;
+        }
 
-    .body__m-b-item_acitve .body__m-b-i-icon2 {
-        display: inline-block;
-    }
+        .body__m-b-item_acitve .body__m-b-i-icon2 {
+            display: inline-block;
+        }
 
-    .body__main-button {
-        padding-left: 130px;
-        margin-bottom: 50px;
-    }
+        .body__main-button {
+            padding-left: 130px;
+            margin-bottom: 50px;
+        }
 
-    .body__main-left {
-        height: 45px;
-        line-height: 45px;
-        width: 280px;
-        text-align: center;
-        background-color: #147af3;
-        color: #fff;
-        border-radius: 3px;
-        cursor: pointer;
-    }
+        .body__main-left {
+            height: 45px;
+            line-height: 45px;
+            width: 280px;
+            text-align: center;
+            background-color: #147af3;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
 
-    .body__main-left:hover {
-        background-color: #045ac3;
-    }
+        .body__main-left:hover {
+            background-color: #045ac3;
+        }
 
-    .body__main-operate {
-        margin-bottom: 50px;
-        text-align: right;
-        margin-left: 15px;
-    }
+        .body__main-operate {
+            margin-bottom: 50px;
+            text-align: right;
+            margin-left: 15px;
+        }
 
-    .body__m-o-left {
-        line-height: 45px;
-        width: 200px;
-        background-color: #ddd;
-        color: #666;
-        text-align: center;
-        cursor: pointer;
-    }
+        .body__m-o-left {
+            line-height: 45px;
+            width: 200px;
+            background-color: #ddd;
+            color: #666;
+            text-align: center;
+            cursor: pointer;
+        }
 
-    .body__m-o-left:hover {
-        background-color: #ccc;
-    }
+        .body__m-o-left:hover {
+            background-color: #ccc;
+        }
 
-    .body__m-o-right {
-        line-height: 45px;
-        width: 200px;
-        background-color: #147af3;
-        color: #fff;
-        border-radius: 3px;
-        text-align: center;
-        margin-left: 15px;
-        cursor: pointer;
-    }
+        .body__m-o-right {
+            line-height: 45px;
+            width: 200px;
+            background-color: #147af3;
+            color: #fff;
+            border-radius: 3px;
+            text-align: center;
+            margin-left: 15px;
+            cursor: pointer;
+        }
 
-    .body__m-o-right:hover {
-        background-color: #045ad3;
-    }
+        .body__m-o-right:hover {
+            background-color: #045ad3;
+        }
 
-    .body__main-fristpay {
-        text-align: right;
-        margin-bottom: 20px;
-        line-height: 30px;
-    }
+        .body__main-fristpay {
+            text-align: right;
+            margin-bottom: 20px;
+            line-height: 30px;
+        }
 
-    .body__m-f-text {
-        color: #999;
-        padding-right: 10px;
-    }
+        .body__m-f-text {
+            color: #999;
+            padding-right: 10px;
+        }
 
-    .body__m-f-price {
-        font-size: 24px;
-        color: #F7004C;
-        margin-top: -3px;
-    }
+        .body__m-f-price {
+            font-size: 24px;
+            color: #F7004C;
+            margin-top: -3px;
+        }
 
-    textarea {
-        width: 270px;
-        height: 150px;
-        margin-left: 14px;
-        outline: none;
-        resize: none;
-        border: 1px solid #ddd;
-        color: #999;
-        overflow-x: hidden;
-        padding: 15px;
-    }
+        textarea {
+            width: 270px;
+            height: 150px;
+            margin-left: 14px;
+            outline: none;
+            resize: none;
+            border: 1px solid #ddd;
+            color: #999;
+            overflow-x: hidden;
+            padding: 15px;
+        }
 
-    .return-money {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, .3);
-        z-index: 1234;
-        padding-top: 10%;
-    }
+        .return-money {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, .3);
+            z-index: 1234;
+            padding-top: 10%;
+        }
 
-    .return-money__main {
-        width: 690px;
-        margin: 0 auto;
-    }
+        .return-money__main {
+            width: 690px;
+            margin: 0 auto;
+        }
 
-    .return-money__main:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .return-money__main:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .return-money__main-title {
-        background-color: #f2f2f2;
-        padding: 15px;
-    }
+        .return-money__main-title {
+            background-color: #f2f2f2;
+            padding: 15px;
+        }
 
-    .return-money__m-t-left {
-        font-size: 18px;
-        color: #333;
-        font-weight: bold;
-    }
+        .return-money__m-t-left {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
 
-    .return-money__m-t-right {
-        text-align: right;
-    }
+        .return-money__m-t-right {
+            text-align: right;
+        }
 
-    .return-money__m-t-r-close {
-        height: 25px;
-        width: 25px;
-        cursor: pointer;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        background-image: url(../img/close.png);
-    }
+        .return-money__m-t-r-close {
+            height: 25px;
+            width: 25px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-image: url(../img/close.png);
+        }
 
-    .return-money__main-contetn {
-        background-color: #fff;
-        text-align: center;
-        padding: 30px 0;
-        font-size: 13px;
-        color: #555;
-    }
+        .return-money__main-contetn {
+            background-color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 13px;
+            color: #555;
+        }
 
-    .return-money__m-c-title {
-        margin-bottom: 10px;
-    }
+        .return-money__m-c-title {
+            margin-bottom: 10px;
+        }
 
-    .return-money__m-c-item {
-        padding: 3px 0;
-    }
+        .return-money__m-c-item {
+            padding: 3px 0;
+        }
 
-    .return-money__m-c-i-row1 {
-        float: left;
-        width: 20%;
-    }
+        .return-money__m-c-i-row1 {
+            float: left;
+            width: 20%;
+        }
 
-    .return-money__m-c-i-row2 {
-        float: left;
-        width: 40%;
-    }
+        .return-money__m-c-i-row2 {
+            float: left;
+            width: 40%;
+        }
 
-    .return-money__m-c-i-row3 {
-        float: left;
-        width: 40%;
-    }
+        .return-money__m-c-i-row3 {
+            float: left;
+            width: 40%;
+        }
     </style>
 </head>
 
@@ -404,7 +404,7 @@
                         <div class="return-money__m-c-i-row2">Số tiền phải trả hàng tháng</div>
                         <div class="return-money__m-c-i-row3">Phí dịch vụ hàng tháng</div>
                     </div>
-                    <div class="return-money__m-c-item col-xs-24" v-for="(val, key) in returnMoney" >
+                    <div class="return-money__m-c-item col-xs-24" v-for="(val, key) in returnMoney">
                         <div class="return-money__m-c-i-row1">{{ key + 1 }} Số kỳ</div>
                         <div class="return-money__m-c-i-row2">{{ priceFormat(val.principal) }} VND</div>
                         <div class="return-money__m-c-i-row3">{{ priceFormat(val.interest) }} VND</div>
@@ -413,40 +413,44 @@
             </div>
         </div>
         <header class="header">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
+            <div class="header__nav">
+                <div class="header__nav-main">
+                    <div class="header__n-m-left header__n-m-left_login">
+                        <div class="header__n-m-l-item1">Xin chào, </div>
+                        <div class="header__n-m-l-item2">
+                            <div class="">
+                                <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
+                                <span class="header__n-m-l-i2-arrow"></span>
+                            </div>
+                            <div class="userLogin-info">
+                                <div class="userLogin-info__top col-xs-24">
+                                    <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
+                                    <div class="userLogin-info__top-order">
+                                        <p style="margin-bottom: 10px;">
+                                            <a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a>
+                                        </p>
+                                        <p>
+                                            <a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="userLogin-info__bottom col-xs-24">
+                                    <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
                                 </div>
                             </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
                         </div>
+                        <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>
                     </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
+                    <div class="header__n-m-left header__n-m-left_nologin">
+                        <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
+                        <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
+                    </div>
+                    <div class="header__n-m-right">
+                        <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
+                        <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
+                    </div>
                 </div>
             </div>
-        </div>
             <div class="header__title">
                 <div class="header__title-main">
                     <img src="../img/LOGO2.jpg" class="header__t-m-img" @click="gohome">
@@ -468,10 +472,12 @@
                 <div class="body__main-info">
                     <div class="body__m-i-top">
                         <!-- <span class="body__m-i-t-name" v-html="'Người nhận hàng: ' + username"></span> -->
-                        <span class="body__m-i-t-title">Điện thoại:</span><span class="body__m-i-t-phone" v-html="msisdn"></span>
+                        <span class="body__m-i-t-title">Điện thoại:</span>
+                        <span class="body__m-i-t-phone" v-html="msisdn"></span>
                     </div>
                     <div class="body__m-i-top">
-                        <span class="body__m-i-t-title">Người nhận hàng:</span><span class="body__m-i-t-name" v-html="username"></span>
+                        <span class="body__m-i-t-title">Người nhận hàng:</span>
+                        <span class="body__m-i-t-name" v-html="username"></span>
                         <!-- <span class="body__m-i-t-phone" v-html="'Điện thoại: ' + msisdn"></span> -->
                     </div>
                     <div class="body__m-i-bottom">
@@ -504,7 +510,7 @@
                 <div class="body__m-i-top">
                     <div class="body__m-i-t-name" v-html="'số kỳ thanh toán:&nbsp;&nbsp;&nbsp;&nbsp;' + (repaymentMonth === 0 ? 'Trả toàn bộ' : repaymentMonth)"></div>
                 </div>
-                <div class="" style="display: none" v-show="tradeStatus === 'WAIT_BUYER_PAY'">
+                <div class="" style="display: none" v-show="tradeStatus === '10000'">
                     <div class="bar-title">
                         <div class="bar-title__main">
                             <span class="bar-title__main-text">Phương thức thanh toán</span>
@@ -526,8 +532,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="body__main-fristpay" style="display: none" v-show="tradeStatus === 'WAIT_BUYER_PAY'">
-                    <div class="body__m-f-text">Tổng tiền: <span class="body__m-f-price" v-html="priceFormat(advance)"></span> VND <img src="../img/titi.png" @click="information" style="width:15px;height:15px;margin-top:7px;margin-left: 5px;cursor:pointer;"></div>
+                <div class="body__main-fristpay" style="display: none" v-show="tradeStatus === '10000'">
+                    <div class="body__m-f-text">Tổng tiền:
+                        <span class="body__m-f-price" v-html="priceFormat(advance)"></span> VND
+                        <img src="../img/titi.png" @click="information" style="width:15px;height:15px;margin-top:7px;margin-left: 5px;cursor:pointer;">
+                    </div>
                 </div>
                 <div class="body__main-operate">
                     <span class="body__m-o-left" @click="operate_left()" v-html="operate_left_text[tradeStatus]"></span>
@@ -625,7 +634,8 @@
                     <div class="footer__b2-m-row7 col-xs-24">
                         <div class="footer__b2-m-r7-left col-xs-12">
                             <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                                <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
+                                <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon">
+                                <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
                             </label>
                             <div class="footer__b2-m-r7-l-row2">
                                 <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
@@ -645,198 +655,250 @@
         </footer>
     </div>
     <script>
-    require([
-        '../js/jquery1.11.2',
-        '../js/vue.min',
-        '../js/md5',
-        '../js/common',
-    ], function($, Vue, md5) {
+        require([
+            '../js/jquery1.11.2',
+            '../js/vue.min',
+            '../js/md5',
+            '../js/common',
+        ], function ($, Vue, md5) {
 
-        var loading = new F._loading();
+            var loading = new F._loading();
 
-        F.query = F._hrefUtils.parse().query;
+            F.query = F._hrefUtils.parse().query;
 
-        F.vue = {
-            body__main_height: document.documentElement.clientHeight - 133 - 210,
-            balance_pay: false, // 是否用余额支付
-            operate_right_text: {
-                'WAIT_BUYER_PAY': 'Thanh toán',
-                'TRADE_CLOSED': '',
-                'TRADE_SUCCESS': '',
-                'TRADE_FINISHED': '',
-                'TRADE_REJECT': '',
-                'TRADE_PAY_FAIL': '',
-                'WAIT_SHIPMENTS': '',
-                'SUCCESS_SHIPPED_NOT': 'Đánh giá',
-                'SUCCESS_SHIPPED_YES': '',
-            },
-            operate_left_text: {
-                'WAIT_BUYER_PAY': '',
-                'TRADE_CLOSED': '',
-                'TRADE_SUCCESS': '',
-                'TRADE_FINISHED': '',
-                'TRADE_REJECT': '',
-                'TRADE_PAY_FAIL': '',
-                'WAIT_SHIPMENTS': '',
-                'SUCCESS_SHIPPED_NOT': '',
-                'SUCCESS_SHIPPED_YES': '',
-            },
-            SH__returnMoney: false,
-            returnMoney: [],
-        };
+            F.vue = {
+                body__main_height: document.documentElement.clientHeight - 133 - 210,
+                balance_pay: false, // 是否用余额支付
+                operate_right_text: {
+                    '10000': 'Thanh toán',
+                    'TRADE_CLOSED': '',
+                    'TRADE_SUCCESS': '',
+                    'TRADE_FINISHED': '',
+                    'TRADE_REJECT': '',
+                    'TRADE_PAY_FAIL': '',
+                    'WAIT_SHIPMENTS': '',
+                    'SUCCESS_SHIPPED_NOT': 'Đánh giá',
+                    'SUCCESS_SHIPPED_YES': '',
+                },
+                operate_left_text: {
+                    '10000': 'Hủy',
+                    'TRADE_CLOSED': '',
+                    'TRADE_SUCCESS': '',
+                    'TRADE_FINISHED': '',
+                    'TRADE_REJECT': '',
+                    'TRADE_PAY_FAIL': '',
+                    'WAIT_SHIPMENTS': '',
+                    'SUCCESS_SHIPPED_NOT': '',
+                    'SUCCESS_SHIPPED_YES': '',
+                },
+                SH__returnMoney: false,
+                returnMoney: [],
+            };
 
-        var load = function() {
-            new_vue();
-        };
+            var load = function () {
+                new_vue();
+            };
 
-        var pre_data = function(data) {
+            var pre_data = function (data) {
 
-            var trade_queryOrder = data._trade_queryOrder;
-            F.vue.orgAmount = trade_queryOrder.orgAmount;
-            F.vue.payRate = trade_queryOrder.payRate;
-            F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
+                var trade_queryOrder = data._trade_queryOrder;
+                F.vue.orgAmount = trade_queryOrder.orgAmount;
+                F.vue.payRate = trade_queryOrder.payRate;
+                F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
 
-            F.vue.address = trade_queryOrder.address;
-            F.vue.orderNo = trade_queryOrder.orderNo;
-            F.vue.createTime = trade_queryOrder.createTime;
-            F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
-            F.vue.msisdn = trade_queryOrder.msisdn;
-            F.vue.username = trade_queryOrder.username;
-            F.vue.goodsDetail = trade_queryOrder.goodsDetail;
-            F.vue.tradeStatus = trade_queryOrder.tradeStatus;
-            F.vue.payRate = trade_queryOrder.payRate;
-            F.vue.first_image = trade_queryOrder.goodsDetail.iconUrl;
-            // F.vue.first_image = trade_queryOrder.goodsDetail.imageUrls.split('|')[0];
-            F.vue.advance = trade_queryOrder.goodsDetail.price * 1 * trade_queryOrder.payRate;
+                F.vue.address = trade_queryOrder.address;
+                F.vue.orderNo = trade_queryOrder.orderNo;
+                F.vue.createTime = trade_queryOrder.createTime;
+                F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
+                F.vue.msisdn = trade_queryOrder.msisdn;
+                F.vue.username = trade_queryOrder.username;
+                F.vue.goodsDetail = trade_queryOrder.goodsDetail;
+                F.vue.tradeStatus = trade_queryOrder.tradeStatus;
+                F.vue.payRate = trade_queryOrder.payRate;
+                F.vue.first_image = trade_queryOrder.goodsDetail.iconUrl;
+                // F.vue.first_image = trade_queryOrder.goodsDetail.imageUrls.split('|')[0];
+                F.vue.advance = trade_queryOrder.goodsDetail.price * 1 * trade_queryOrder.payRate;
 
-        }
-
-        F.loadData = function(params, callback) {
-            if (callback === undefined) callback = params;
-
-            var all_data = {};
-            var request_length = 1; //请求个数
-
-            // 请求是否全部返回
-            function all_loaded() {
-                if (Object.keys(all_data).length === request_length) {
-                    pre_data(all_data);
-                    loading.hide();
-                    callback(all_data);
-                }
             }
-            loading.show();
 
-            loadData_trade_queryOrder(function(ret) {
-                all_data._trade_queryOrder = ret;
-                all_loaded();
-            });
+            F.loadData = function (params, callback) {
+                if (callback === undefined) callback = params;
 
-        };
+                var all_data = {};
+                var request_length = 1; //请求个数
 
-        function new_vue() {
-            F.vue = new Vue({
-                el: $('#vue-el')[0],
-                data: F.vue,
-                methods: {
-                    gohome: gohome,
-                    operate_rihgt: operate_rihgt,
-                    operate_left: operate_left,
-                    openProduct: openProduct,
-                    information: information,
-                    priceFormat: F._priceFormat,
-                },
-                computed: {
+                // 请求是否全部返回
+                function all_loaded() {
+                    if (Object.keys(all_data).length === request_length) {
+                        pre_data(all_data);
+                        loading.hide();
+                        callback(all_data);
+                    }
+                }
+                loading.show();
 
-                },
-            });
-        }
+                loadData_trade_queryOrder(function (ret) {
+                    all_data._trade_queryOrder = ret;
+                    all_loaded();
+                });
 
-        function loadData_trade_queryOrder(callback) {
-            F._queryOrder({
-                orderNo: F.query.orderNo,
-                tradeNo: F.query.tradeNo,
-            }, function(ret) {
-                if (!ret) return false;
-                if (ret.code !== 10000) return false;
-                callback(ret);
-            });
-        }
+            };
 
-        function operate_rihgt() {
+            function new_vue() {
+                F.vue = new Vue({
+                    el: $('#vue-el')[0],
+                    data: F.vue,
+                    methods: {
+                        gohome: gohome,
+                        operate_rihgt: operate_rihgt,
+                        operate_left: operate_left,
+                        openProduct: openProduct,
+                        information: information,
+                        priceFormat: F._priceFormat,
+                    },
+                    computed: {
 
-            if (F.vue.tradeStatus === 'WAIT_BUYER_PAY') {
-                order_pay({
-                    tradeNo: F.query.tradeNo,
-                    orderNo: F.query.orderNo,
-                    total: F.vue.goodsDetail.price,
-                    price: F.vue.goodsDetail.price,
-                    fenqiNum: F.vue.repaymentMonth,
-                    paymentNum: F.vue.payRate,
-                    payway: F.vue.balance_pay ? '1' : '2',
-                    num: 1,
+                    },
                 });
             }
-        }
 
-        function operate_left() {
+            function loadData_trade_queryOrder(callback) {
+                F._queryOrder({
+                    orderNo: F.query.orderNo,
+                    tradeNo: F.query.tradeNo,
+                }, function (ret) {
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                    callback(ret);
+                });
+            }
 
-        }
+            function operate_rihgt() {
 
-        // 支付订单
-        function order_pay(params, callback) {
+                if (F.vue.tradeStatus === '10000') {
+                    order_pay({
+                        tradeNo: F.query.tradeNo,
+                        orderNo: F.query.orderNo,
+                        total: F.vue.goodsDetail.price,
+                        price: F.vue.goodsDetail.price,
+                        fenqiNum: F.vue.repaymentMonth,
+                        paymentNum: F.vue.payRate,
+                        payway: F.vue.balance_pay ? '1' : '2',
+                        num: 1,
+                    });
+                }
+            }
 
-            if (F.vue.repaymentMonth === 0) { //全额
+            function operate_left() {
+                if (F.vue.tradeStatus === '10000') {
+                    F._confirm('Gợi ý', 'Xác nhận？', 'tips', [{
+                        name: 'Hủy',
+                        func: function () {
 
-                if (params.payway === '1') {
-                    F._payPwd_open(function(paypassword) {
-                        loading.show();
+                        }
+                    }, {
+                        name: 'Xác nhận',
+                        func: function () {
+                            var loading = new F._loading();
+                            F._order_cancel(function (code) {
+                                console.log(code);
+                                if (!code) return false;
+
+                                loading.show();
+                                F._orderCancel({
+                                    orderNo: F.query.orderNo,
+                                    tradeNo: F.query.tradeNo,
+                                    status: code,
+                                }, function (ret) {
+                                    loading.hide();
+                                    if (!ret) return false;
+                                    if (ret.code !== 10000) return false;
+
+                                    window.location.reload();
+                                });
+                            });
+                        }
+                    }]);
+
+                }
+            }
+
+            // 支付订单
+            function order_pay(params, callback) {
+
+                if (F.vue.repaymentMonth === 0) { //全额
+
+                    if (params.payway === '1') {
+                        F._payPwd_open(function (paypassword) {
+                            loading.show();
+                            F._orderFullPay({
+                                orderNo: params.orderNo,
+                                tradeNo: params.tradeNo,
+                                total: params.total,
+                                payway: params.payway,
+                                paypassword: paypassword,
+                                _noConfirm: true,
+                            }, function (ret) {
+                                loading.hide();
+                                if (!ret) return false;
+
+                                if (ret.code !== 10000) return false;
+                                window.location.href = './successPay.html';
+                            });
+
+                        });
+                    } else {
                         F._orderFullPay({
                             orderNo: params.orderNo,
                             tradeNo: params.tradeNo,
                             total: params.total,
                             payway: params.payway,
-                            paypassword: paypassword,
+                            paypassword: '',
                             _noConfirm: true,
-                        }, function(ret) {
+                        }, function (ret) {
                             loading.hide();
                             if (!ret) return false;
 
                             if (ret.code !== 10000) return false;
                             window.location.href = './successPay.html';
                         });
+                    }
 
-                    });
                 } else {
-                    F._orderFullPay({
-                        orderNo: params.orderNo,
-                        tradeNo: params.tradeNo,
-                        total: params.total,
-                        payway: params.payway,
-                        paypassword: '',
-                        _noConfirm: true,
-                    }, function(ret) {
+                    loading.show();
+                    F._userViewDetailInfo({}, function (ret) {
                         loading.hide();
                         if (!ret) return false;
 
-                        if (ret.code !== 10000) return false;
-                        window.location.href = './successPay.html';
-                    });
-                }
 
-            } else {
-                loading.show();
-                F._userViewDetailInfo({}, function(ret) {
-                    loading.hide();
-                    if (!ret) return false;
+                        if (ret.status) { // 资料齐全
 
+                            if (params.payway === '1') {
+                                F._payPwd_open(function (paypassword) {
 
-                    if (ret.status) { // 资料齐全
+                                    loading.show();
+                                    F._payOrder({
+                                        timeoutExpress: 1800, // 半个小时
+                                        totalAmount: params.total, // 总金额
+                                        orderNo: params.orderNo,
+                                        tradeNo: params.tradeNo,
+                                        advance: params.price * params.num * params.paymentNum,
+                                        payRate: params.paymentNum,
+                                        repaymentMonth: params.fenqiNum,
+                                        prepay: params.price * params.num * params.paymentNum,
+                                        payway: params.payway,
+                                        paypassword: paypassword,
+                                        _noConfirm: true,
+                                    }, function (ret) {
+                                        loading.hide();
+                                        if (!ret) return false;
 
-                        if (params.payway === '1') {
-                            F._payPwd_open(function(paypassword) {
+                                        if (ret.code !== 10000) return false;
 
-                                loading.show();
+                                        window.location.href = './successPay.html';
+                                    });
+                                });
+                            } else {
                                 F._payOrder({
                                     timeoutExpress: 1800, // 半个小时
                                     totalAmount: params.total, // 总金额
@@ -847,9 +909,9 @@
                                     repaymentMonth: params.fenqiNum,
                                     prepay: params.price * params.num * params.paymentNum,
                                     payway: params.payway,
-                                    paypassword: paypassword,
+                                    paypassword: '',
                                     _noConfirm: true,
-                                }, function(ret) {
+                                }, function (ret) {
                                     loading.hide();
                                     if (!ret) return false;
 
@@ -857,127 +919,105 @@
 
                                     window.location.href = './successPay.html';
                                 });
-                            });
-                        } else {
-                            F._payOrder({
-                                timeoutExpress: 1800, // 半个小时
-                                totalAmount: params.total, // 总金额
-                                orderNo: params.orderNo,
-                                tradeNo: params.tradeNo,
-                                advance: params.price * params.num * params.paymentNum,
-                                payRate: params.paymentNum,
-                                repaymentMonth: params.fenqiNum,
-                                prepay: params.price * params.num * params.paymentNum,
-                                payway: params.payway,
-                                paypassword: '',
-                                _noConfirm: true,
-                            }, function(ret) {
-                                loading.hide();
-                                if (!ret) return false;
-
-                                if (ret.code !== 10000) return false;
-
-                                window.location.href = './successPay.html';
-                            });
-                        }
-
-                    } else { // 资料不全
-                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                            name: 'Để sau',
-                            func: function() {}
-                        }, {
-                            name: 'Hoàn thiện ngay',
-                            func: function() {
-                                getSchoolInfo_addInfo(ret.data);
                             }
-                        }]);
 
+                        } else { // 资料不全
+                            F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                                name: 'Để sau',
+                                func: function () { }
+                            }, {
+                                name: 'Hoàn thiện ngay',
+                                func: function () {
+                                    getSchoolInfo_addInfo(ret.data);
+                                }
+                            }]);
+
+                        }
+                    });
+                }
+            }
+
+            function userAddDetailInfo(data) {
+                var loading = new F._loading();
+                loading.show();
+                F._userAddDetailInfo(data, function (ret) {
+                    loading.hide();
+                    if (!ret) return false;
+
+                    switch (ret.code) {
+                        case 10000:
+                            order_pay({
+                                tradeNo: F.query.tradeNo,
+                                orderNo: F.query.orderNo,
+                                total: F.vue.goodsDetail.price,
+                                price: F.vue.goodsDetail.price,
+                                fenqiNum: F.vue.repaymentMonth,
+                                paymentNum: F.vue.payRate,
+                                payway: F.vue.balance_pay ? '1' : '2',
+                                num: 1,
+                            });
+
+                            break;
+
+                        default:
+                            F._confirm('Gợi ý', 'Gửi thông tin thất bại', 'error', [{
+                                name: 'Xác nhận',
+                                func: function () { }
+                            }]);
+                            break;
                     }
                 });
             }
-        }
 
-        function userAddDetailInfo(data) {
-            var loading = new F._loading();
-            loading.show();
-            F._userAddDetailInfo(data, function(ret) {
-                loading.hide();
-                if (!ret) return false;
+            function getSchoolInfo_addInfo(userInfo) {
 
-                switch (ret.code) {
-                    case 10000:
-                        order_pay({
-                            tradeNo: F.query.tradeNo,
-                            orderNo: F.query.orderNo,
-                            total: F.vue.goodsDetail.price,
-                            price: F.vue.goodsDetail.price,
-                            fenqiNum: F.vue.repaymentMonth,
-                            paymentNum: F.vue.payRate,
-                            payway: F.vue.balance_pay ? '1' : '2',
-                            num: 1,
+                var loading = new F._loading();
+                loading.show();
+                F._getSchoolInfo({}, function (ret) {
+                    loading.hide();
+                    var baseinfo = new F._baseinfo(ret.details, userInfo);
+                    baseinfo.show();
+                    $("#submit_baseinfo").on('click', function () {
+                        baseinfo.submit(function (result) {
+                            baseinfo.hide();
+                            userAddDetailInfo(result);
                         });
-
-                        break;
-
-                    default:
-                        F._confirm('Gợi ý', 'Gửi thông tin thất bại', 'error', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
-                        break;
-                }
-            });
-        }
-
-        function getSchoolInfo_addInfo(userInfo) {
-
-            var loading = new F._loading();
-            loading.show();
-            F._getSchoolInfo({}, function(ret) {
-                loading.hide();
-                var baseinfo = new F._baseinfo(ret.details, userInfo);
-                baseinfo.show();
-                $("#submit_baseinfo").on('click', function() {
-                    baseinfo.submit(function(result) {
-                        baseinfo.hide();
-                        userAddDetailInfo(result);
                     });
                 });
+            }
+
+            function information() {
+                loading.show();
+                F._returnMoney({
+                    totalamounts: F.vue.orgAmount,
+                    repaymentmonths: F.vue.repaymentMonth,
+                    payrate: F.vue.payRate,
+                }, function (ret) {
+                    loading.hide();
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                    console.dir(ret);
+                    F.vue.returnMoney = ret.details[F.vue.orgAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
+                    F.vue.SH__returnMoney = true;
+                    console.dir(F.vue.information);
+                });
+
+            }
+
+            function gohome() {
+                window.location.href = '../index.html';
+            }
+
+            function openProduct() {
+                var typeId = F.query.typeId;
+                var brandId = F.query.brandId;
+                window.location.href = "./details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
+            }
+
+            F.loadData(function () {
+                load();
             });
-        }
-
-        function information() {
-            loading.show();
-            F._returnMoney({
-                totalamounts: F.vue.orgAmount,
-                repaymentmonths: F.vue.repaymentMonth,
-                payrate: F.vue.payRate,
-            }, function(ret) {
-                loading.hide();
-                if (!ret) return false;
-                if (ret.code !== 10000) return false;
-                console.dir(ret);
-                F.vue.returnMoney = ret.details[F.vue.orgAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
-                F.vue.SH__returnMoney = true;
-                console.dir(F.vue.information);
-            });
-
-        }
-
-        function gohome() {
-            window.location.href = '../index.html';
-        }
-
-        function openProduct() {
-            var typeId = F.query.typeId;
-            var brandId = F.query.brandId;
-            window.location.href = "./details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-        }
-
-        F.loadData(function() {
-            load();
         });
-    });
     </script>
 </body>
 
