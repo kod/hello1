@@ -1,17 +1,19 @@
 if (!window.F) window.F = {};
 
-F._IP = "http://47.52.21.255";
-// F._IP = "http://47.52.106.165";
+// F._IP = "http://47.52.21.255";
+F._IP = "http://47.52.106.165";
 F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
 F._createOrder_td = F._IP + ":8183/fun/trade/createOrder"; // 创建（分期）订单
+F._batchCreateOrder_td = F._IP + ":8183/fun/trade/batchCreateOrder"; // 批量订单-创建
+F._batchPayment_td = F._IP + ":8183/fun/trade/batchPayment"; // 批量订单-支付
 F._queryOrder_td = F._IP + ":8183/fun/trade/queryOrder"; // 订单查询
 F._inquiryBill_td = F._IP + ":8184/fun/trade/inquiryBill"; // 查询账单信息
-F._queryBillList_td = F._IP + ":8184/fun/trade/queryBillList"; // 
+F._queryBillList_td = F._IP + ":8184/fun/trade/queryBillList"; //
 F._createNormalOrder_td = F._IP + ":8183/fun/trade/createNormalOrder"; // 创建还款订单
 F._payNormalOrder_td = F._IP + ":8183/fun/trade/payNormalOrder"; // 支付还款订单
-F._queryOrderList_td = F._IP + ":8183/fun/trade/queryOrderList"; // 
+F._queryOrderList_td = F._IP + ":8183/fun/trade/queryOrderList"; //
 F._orderCancel_td = F._IP + ":8183/fun/trade/orderCancel"; // 取消订单
 F._userAddDetailInfo_uc = F._IP + ":8180/fun/usercenter/userAddDetailInfo"; // 修改用户信息
 F._userViewDetailInfo_uc = F._IP + ":8180/fun/usercenter/userViewDetailInfo"; // 获取用户详细信息
@@ -26,35 +28,39 @@ F._userAction_userModifyAddr_uc = F._IP + ":8180/fun/usercenter/userModifyAddr";
 F._userAction_userDelAddrs_uc = F._IP + ":8180/fun/usercenter/userDelAddrs"; // 地址-删除
 F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 地址-列表
 F._userAction_register_uc = F._IP + ":8180/fun/userCenter/userAction/register"; // 注册
-F._userAction_getUserInfoById_uc = F._IP + ":8180/fun/userCenter/userAction/getUserInfoById"; // 
+F._userAction_getUserInfoById_uc = F._IP + ":8180/fun/userCenter/userAction/getUserInfoById"; //
 F._userCancelCollection_uc = F._IP + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
 F._userAddCollection_uc = F._IP + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
 F._userGetCollection_uc = F._IP + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
 F._initTopComputer_cp = F._IP + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
-F._initNewCellphone_cp = F._IP + ":8185/fun/cellphone/initNewCellphone"; // 
-F._initAdCellphone_cp = F._IP + ":8185/fun/cellphone/initAdCellphone"; // 
-F._initTopCellphone_cp = F._IP + ":8185/fun/cellphone/initTopCellphone"; // 
-F._initAdAppleComputer_di = F._IP + ":8185/fun/computer/initAdAppleComputer"; // 
-F._initAdGameComputer_di = F._IP + ":8185/fun/computer/initAdGameComputer"; // 
-F._initAdTabletComputer_di = F._IP + ":8185/fun/computer/initAdTabletComputer"; // 
-F._initAdClassfyComputer_di = F._IP + ":8185/fun/computer/initAdClassfyComputer"; // 
-F._initNewComputer_di = F._IP + ":8185/fun/computer/initNewComputer"; // 
-F._initTopDigital_di = F._IP + ":8185/fun/digital/initTopDigital"; // 
-F._initNewDigital_di = F._IP + ":8185/fun/digital/initNewDigital"; // 
-F._initAdDigital_di = F._IP + ":8185/fun/digital/initAdDigital"; // 
+F._initNewCellphone_cp = F._IP + ":8185/fun/cellphone/initNewCellphone"; //
+F._initAdCellphone_cp = F._IP + ":8185/fun/cellphone/initAdCellphone"; //
+F._initTopCellphone_cp = F._IP + ":8185/fun/cellphone/initTopCellphone"; //
+F._initAdAppleComputer_di = F._IP + ":8185/fun/computer/initAdAppleComputer"; //
+F._initAdGameComputer_di = F._IP + ":8185/fun/computer/initAdGameComputer"; //
+F._initAdTabletComputer_di = F._IP + ":8185/fun/computer/initAdTabletComputer"; //
+F._initAdClassfyComputer_di = F._IP + ":8185/fun/computer/initAdClassfyComputer"; //
+F._initNewComputer_di = F._IP + ":8185/fun/computer/initNewComputer"; //
+F._initTopDigital_di = F._IP + ":8185/fun/digital/initTopDigital"; //
+F._initNewDigital_di = F._IP + ":8185/fun/digital/initNewDigital"; //
+F._initAdDigital_di = F._IP + ":8185/fun/digital/initAdDigital"; //
 F._addEvaluation_cd = F._IP + ":8185/fun/commodity/addEvaluation"; // 添加评论
 F._findProducts_cd = F._IP + ":8185/fun/commodity/findProducts"; // 商品搜索
 F._getProductDetailInfo_cd = F._IP + ":8185/fun/commodity/getProductDetailInfo"; // 获取产品详情
 F._getEvaluationInfo_cd = F._IP + ":8185/fun/commodity/getEvaluationInfo"; // 获取评论
-F._getNewestInfo_cd = F._IP + ":8185/fun/commodity/getNewestInfo"; // 
-F._getAdverstInfo_cd = F._IP + ":8185/fun/commodity/getAdverstInfo"; // 
-F._getClassfyInfo_cd = F._IP + ":8185/fun/commodity/getClassfyInfo"; // 
-F._getAllProductInfo_cd = F._IP + ":8185/fun/commodity/getAllProductInfo"; // 
-F._getScreenInfo_cd = F._IP + ":8185/fun/commodity/getScreenInfo"; // 
+F._getNewestInfo_cd = F._IP + ":8185/fun/commodity/getNewestInfo"; //
+F._getAdverstInfo_cd = F._IP + ":8185/fun/commodity/getAdverstInfo"; //
+F._getClassfyInfo_cd = F._IP + ":8185/fun/commodity/getClassfyInfo"; //
+F._getAllProductInfo_cd = F._IP + ":8185/fun/commodity/getAllProductInfo"; //
+F._getScreenInfo_cd = F._IP + ":8185/fun/commodity/getScreenInfo"; //
 F._getPromotionInfo_cd = F._IP + ":8185/fun/commodity/getPromotionInfo"; // 促销商品列表
+F._cart_gate_cd = F._IP + ":8185/fun/commodity/cart/gate"; // 购物车-添加
+F._cart_remove_cd = F._IP + ":8185/fun/commodity/cart/remove"; // 购物车-删除
+F._cart_changeNum_cd = F._IP + ":8185/fun/commodity/cart/changeNum"; // 购物车-更新商品数量
+F._cart_getInfo_cd = F._IP + ":8185/fun/commodity/cart/getInfo"; // 购物车列表
 F._uploadFiles_uf = F._IP + ":8180/fun/userfile/uploadFiles"; // 上传用户头像
 F._collectFiles_uf = F._IP + ":8180/fun/userfile/collectFiles"; // 用户评论上传图片
-F._returnMoney_im = F._IP + ":8184/fun/installment/returnMoney"; // 
+F._returnMoney_im = F._IP + ":8184/fun/installment/returnMoney"; //
 
 F._phoneExpr = /^[0-9]{8,11}$/; //手机号
 F._pwdExpr = /^.{8,20}$/; // 密码
@@ -78,29 +84,642 @@ F._signType_MD5 = function(appId, method, charset, Key, lowerCase) {
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     return md5(md5SigntypeStrig);
-}
+};
 
 F._encrypt_MD5 = function(params, Key) {
     var i;
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     for (i = 0; i < params.length; i++) {
         md5EncryptStrig += "&" + params[i].key + "=" + params[i].value;
-
     }
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
-}
+};
+
+// 批量订单-支付
+F._batchPayment = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "tradeKey";
+
+    var appId = '0';
+    var method = "fun.trade.batchPayment";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+    var funid = localStorage.getItem("funId");
+    var orderdetails = params.orderdetails;
+    var payway = params.payway;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+    
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderdetails",
+                value: orderdetails
+            },
+            {
+                key: "payway",
+                value: payway
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        orderdetails: orderdetails,
+        payway: payway,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._batchPayment_td,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                case 60001:
+                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+
+                    break;
+
+                case 60005:
+                    // 订单已创建
+                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
+                        {
+                            name: "Thanh toán",
+                            func: function() {
+                                window.location.href = "./order.html";
+                            }
+                        }
+                    ]);
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 批量订单-创建
+F._batchCreateOrder = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "tradeKey";
+
+    var appId = '0';
+    var method = "fun.trade.batchCreateOrder";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+    var funid = localStorage.getItem("funId");
+    var orderdetails = params.orderdetails;
+    var msisdn = params.msisdn;
+    var address = params.address;
+    var username = params.username;
+    var remark = params.remark;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+    
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderdetails",
+                value: orderdetails
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "address",
+                value: address
+            },
+            {
+                key: "username",
+                value: username
+            },
+            {
+                key: "remark",
+                value: remark
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        orderdetails: orderdetails,
+        msisdn: msisdn,
+        address: address,
+        username: username,
+        remark: remark
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._batchCreateOrder_td,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                case 60001:
+                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+
+                    break;
+
+                case 60005:
+                    // 订单已创建
+                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
+                        {
+                            name: "Thanh toán",
+                            func: function() {
+                                window.location.href = "./order.html";
+                            }
+                        }
+                    ]);
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 收藏-添加
+F._userAddCollection = function(params, callback) {
+    if (!F._isLogin()) return false;
+    var Key = "userKey";
+
+    var appId = "0";
+    var method = "fun.uc.addcollection";
+    var charset = "utf-8";
+    var timestamp = (+new Date() + "").slice(3);
+    var version = "1.0";
+
+    var funid = localStorage.getItem("funId");
+    var msisdn = localStorage.getItem("msisdn");
+    var type_id = params.type_id;
+    var brand_id = params.brand_id;
+    var brand_name = params.brand_name;
+    var brand_desc = params.brand_desc;
+    var brand_image = params.brand_image;
+    var brand_price = params.brand_price;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "type_id",
+                value: type_id
+            },
+            {
+                key: "brand_id",
+                value: brand_id
+            },
+            {
+                key: "brand_name",
+                value: brand_name
+            },
+            {
+                key: "brand_desc",
+                value: brand_desc
+            },
+            {
+                key: "brand_image",
+                value: brand_image
+            },
+            {
+                key: "brand_price",
+                value: brand_price
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appId: appId,
+        method: method,
+        charset: charset,
+        signType: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        msisdn: msisdn,
+        type_id: type_id,
+        brand_id: brand_id,
+        brand_name: brand_name,
+        brand_desc: brand_desc,
+        brand_image: brand_image,
+        brand_price: brand_price,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAddCollection_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 购物车-列表
+F._cart_getInfo = function(params, callback) {
+    if (!F._isLogin()) return false;
+    var Key = "commodityKey";
+
+    var appId = "0";
+    var method = "fun.cart.query";
+    var charset = "utf-8";
+    var timestamp = (+new Date() + "").slice(3);
+    var version = "2.0";
+
+    var funid = localStorage.getItem("funId");
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._cart_getInfo_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 购物车-更新商品数量
+F._cart_changeNum = function(params, callback) {
+    if (!F._isLogin()) return false;
+    var Key = "commodityKey";
+
+    var appId = "0";
+    var method = "fun.cart.change";
+    var charset = "utf-8";
+    var timestamp = (+new Date() + "").slice(3);
+    var version = "2.0";
+
+    var cartitemid = params.cartitemid;
+    var quetity = params.quetity;
+    var funid = localStorage.getItem("funId");
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "cartitemid",
+                value: cartitemid
+            },
+            {
+                key: "quetity",
+                value: quetity
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        cartitemid: cartitemid,
+        quetity: quetity
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._cart_changeNum_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 购物车-删除
+F._cart_remove = function(params, callback) {
+    if (!F._isLogin()) return false;
+    var Key = "commodityKey";
+
+    var appId = "0";
+    var method = "fun.cart.remove";
+    var charset = "utf-8";
+    var timestamp = (+new Date() + "").slice(3);
+    var version = "2.0";
+
+    var cartitemids = params.cartitemids;
+    var funid = localStorage.getItem("funId");
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "cartitemids",
+                value: cartitemids
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        cartitemids: cartitemids
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._cart_remove_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 购物车-添加
+F._cart_gate = function(params, callback) {
+    if (!F._isLogin()) return false;
+    var Key = "commodityKey";
+
+    var appId = "0";
+    var method = "fun.cart.gate";
+    var charset = "utf-8";
+    var timestamp = (+new Date() + "").slice(3);
+    var version = "2.0";
+
+    var cartitems = params.cartitems;
+    var funid = localStorage.getItem("funId");
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "cartitems",
+                value: cartitems
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        cartitems: cartitems
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._cart_gate_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
 
 F._orderCancel = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.orderCancel";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '2.0';
+    var version = "2.0";
 
     var funid = localStorage.getItem("funId");
     var orderNo = params.orderNo;
@@ -109,19 +728,27 @@ F._orderCancel = function(params, callback) {
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "funid",
-        value: funid
-    }, {
-        key: "orderno",
-        value: orderNo
-    }, {
-        key: "tradeno",
-        value: tradeNo
-    }, {
-        key: "status",
-        value: status
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderno",
+                value: orderNo
+            },
+            {
+                key: "tradeno",
+                value: tradeNo
+            },
+            {
+                key: "status",
+                value: status
+            }
+        ],
+        Key
+    );
 
     var data = {
         appid: appId,
@@ -134,7 +761,7 @@ F._orderCancel = function(params, callback) {
         funid: funid,
         orderno: orderNo,
         tradeno: tradeNo,
-        status: status,
+        status: status
     };
 
     $.ajax({
@@ -146,36 +773,35 @@ F._orderCancel = function(params, callback) {
             callback(ret);
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Lấy thông tin đơn hàng thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Lấy thông tin đơn hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 促销商品
 F._getPromotionInfo = function(params, callback) {
-    var Key = 'commodityKey';
+    var Key = "commodityKey";
 
-    var appId = '';
+    var appId = "";
     var method = "fun.promotion.query";
     var charset = "utf-8";
-    var timestamp = (+new Date() + '').slice(3);
-    var version = '2.0';
+    var timestamp = (+new Date() + "").slice(3);
+    var version = "2.0";
 
     var typeid = params.typeid;
     var classfyid = params.classfyid;
@@ -185,22 +811,31 @@ F._getPromotionInfo = function(params, callback) {
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "typeid",
-        value: typeid
-    }, {
-        key: "classfyid",
-        value: classfyid
-    }, {
-        key: "position",
-        value: position
-    }, {
-        key: "pagesize",
-        value: pagesize
-    }, {
-        key: "currentpage",
-        value: currentpage
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "typeid",
+                value: typeid
+            },
+            {
+                key: "classfyid",
+                value: classfyid
+            },
+            {
+                key: "position",
+                value: position
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            }
+        ],
+        Key
+    );
 
     var data = {
         appid: appId,
@@ -214,7 +849,7 @@ F._getPromotionInfo = function(params, callback) {
         classfyid: classfyid,
         position: position,
         pagesize: pagesize,
-        currentpage: currentpage,
+        currentpage: currentpage
     };
 
     $.ajax({
@@ -227,36 +862,35 @@ F._getPromotionInfo = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 显示分期金额信息
 F._returnMoney = function(params, callback) {
-    var Key = 'settleKey';
+    var Key = "settleKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.returnMoney";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var totalamounts = params.totalamounts;
     var repaymentmonths = params.repaymentmonths;
@@ -264,16 +898,23 @@ F._returnMoney = function(params, callback) {
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "totalamounts",
-        value: totalamounts
-    }, {
-        key: "repaymentmonths",
-        value: repaymentmonths
-    }, {
-        key: "payrate",
-        value: payrate
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "totalamounts",
+                value: totalamounts
+            },
+            {
+                key: "repaymentmonths",
+                value: repaymentmonths
+            },
+            {
+                key: "payrate",
+                value: payrate
+            }
+        ],
+        Key
+    );
 
     var data = {
         appid: appId,
@@ -285,7 +926,7 @@ F._returnMoney = function(params, callback) {
         version: version,
         totalamounts: totalamounts,
         repaymentmonths: repaymentmonths,
-        payrate: payrate,
+        payrate: payrate
     };
 
     $.ajax({
@@ -298,51 +939,56 @@ F._returnMoney = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 收货地址列表
 F._userAction_userViewAddr = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'userKey';
+    var Key = "userKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.uc.userviewaddr";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var funid = localStorage.getItem("funId");
     var msisdn = localStorage.getItem("msisdn");
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "funid",
-        value: funid
-    }, {
-        key: "msisdn",
-        value: msisdn
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -353,7 +999,7 @@ F._userAction_userViewAddr = function(params, callback) {
         timestamp: timestamp,
         version: version,
         msisdn: msisdn,
-        funid: funid,
+        funid: funid
     };
 
     $.ajax({
@@ -366,51 +1012,56 @@ F._userAction_userViewAddr = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 删除收货地址
 F._userAction_userDelAddrs = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'userKey';
+    var Key = "userKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.uc.userDelAddrs";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var adds = params.adds;
     var funid = localStorage.getItem("funId");
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "funid",
-        value: funid
-    }, {
-        key: "adds",
-        value: adds
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "adds",
+                value: adds
+            }
+        ],
+        Key
+    );
 
     var data = {
         appid: appId,
@@ -421,7 +1072,7 @@ F._userAction_userDelAddrs = function(params, callback) {
         timestamp: timestamp,
         version: version,
         adds: adds,
-        funid: funid,
+        funid: funid
     };
 
     $.ajax({
@@ -434,47 +1085,46 @@ F._userAction_userDelAddrs = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 case 40020:
-                    F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Có thể thêm tối đã 5 địa chỉ nhận hàng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 编辑收货地址
 F._userAction_userModifyAddr = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'userKey';
+    var Key = "userKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.uc.usermodifyaddr";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var addrid = params.addrid;
     var funid = localStorage.getItem("funId");
@@ -485,25 +1135,35 @@ F._userAction_userModifyAddr = function(params, callback) {
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "addrid",
-        value: addrid
-    }, {
-        key: "funid",
-        value: funid
-    }, {
-        key: "msisdn",
-        value: msisdn
-    }, {
-        key: "address",
-        value: address
-    }, {
-        key: "isdefault",
-        value: isdefault
-    }, {
-        key: "username",
-        value: username
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "addrid",
+                value: addrid
+            },
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "address",
+                value: address
+            },
+            {
+                key: "isdefault",
+                value: isdefault
+            },
+            {
+                key: "username",
+                value: username
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -518,7 +1178,7 @@ F._userAction_userModifyAddr = function(params, callback) {
         msisdn: msisdn,
         address: address,
         isdefault: isdefault,
-        username: username,
+        username: username
     };
 
     $.ajax({
@@ -531,47 +1191,46 @@ F._userAction_userModifyAddr = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 case 40020:
-                    F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Có thể thêm tối đã 5 địa chỉ nhận hàng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 添加收货地址
 F._userAction_userAddAddr = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'userKey';
+    var Key = "userKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.uc.useraddaddr";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var funid = localStorage.getItem("funId");
     var msisdn = params.msisdn;
@@ -581,22 +1240,31 @@ F._userAction_userAddAddr = function(params, callback) {
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "funid",
-        value: funid
-    }, {
-        key: "msisdn",
-        value: msisdn
-    }, {
-        key: "address",
-        value: address
-    }, {
-        key: "isdefault",
-        value: isdefault
-    }, {
-        key: "username",
-        value: username
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "address",
+                value: address
+            },
+            {
+                key: "isdefault",
+                value: isdefault
+            },
+            {
+                key: "username",
+                value: username
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -610,7 +1278,7 @@ F._userAction_userAddAddr = function(params, callback) {
         msisdn: msisdn,
         address: address,
         isdefault: isdefault,
-        username: username,
+        username: username
     };
 
     $.ajax({
@@ -623,60 +1291,58 @@ F._userAction_userAddAddr = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 case 40020:
-                    F._confirm('Gợi ý', 'Có thể thêm tối đã 5 địa chỉ nhận hàng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Có thể thêm tối đã 5 địa chỉ nhận hàng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 获取收藏接口
 F._userGetCollection = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'userKey';
+    var Key = "userKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.uc.getcollection";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var funid = localStorage.getItem("funId");
     var msisdn = params.msisdn;
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appId=" + appId;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signType = md5(md5SigntypeStrig);
 
-
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "funid=" + funid;
     md5EncryptStrig += "&msisdn=" + msisdn;
     md5EncryptStrig += Key;
@@ -691,7 +1357,7 @@ F._userGetCollection = function(params, callback) {
         timestamp: timestamp,
         version: version,
         funid: funid,
-        msisdn: msisdn,
+        msisdn: msisdn
     };
 
     $.ajax({
@@ -704,50 +1370,48 @@ F._userGetCollection = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 商品搜索
 F._findProducts = function(params, callback) {
-    var Key = 'commodityKey';
+    var Key = "commodityKey";
 
-    var appid = localStorage.getItem("funId") || '';
+    var appid = localStorage.getItem("funId") || "";
     var method = "fun.find.finding";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
-    var funid = localStorage.getItem("funId") || '';
+    var version = "1.0";
+    var funid = localStorage.getItem("funId") || "";
     var findcontent = params.findcontent;
     var pagesize = params.pagesize;
     var currentpage = params.currentpage;
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appid=" + appid;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signType = md5(md5SigntypeStrig);
 
-
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "funid=" + funid;
     md5EncryptStrig += "&findcontent=" + findcontent;
     md5EncryptStrig += "&pagesize=" + pagesize;
@@ -779,32 +1443,31 @@ F._findProducts = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 注册
 F._userAction_register = function(params, callback) {
-    var Key = 'userKey';
+    var Key = "userKey";
 
-    var provider = params.provider || '0';
+    var provider = params.provider || "0";
     var msisdn = params.msisdn;
     var username = params.username;
     var password = params.password;
@@ -813,7 +1476,7 @@ F._userAction_register = function(params, callback) {
     var check = params.check;
     var appid = params.appid;
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "provider=" + provider;
     md5EncryptStrig += "&msisdn=" + msisdn;
     md5EncryptStrig += "&username=" + username;
@@ -834,7 +1497,7 @@ F._userAction_register = function(params, callback) {
         otp: otp,
         check: check,
         appid: appid,
-        encryption: encrypt,
+        encryption: encrypt
     };
 
     $.ajax({
@@ -847,110 +1510,109 @@ F._userAction_register = function(params, callback) {
 
             switch (ret.status) {
                 case 10000:
-
                     break;
 
                 case 70002:
-                    F._confirm('Gợi ý', 'Mã xác nhận SMS không đúng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã xác nhận SMS không đúng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 60052:
-                    F._confirm('Gợi ý', 'Chứng minh thư đã được đăng ký', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Chứng minh thư đã được đăng ký", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 60050:
-                    F._confirm('Gợi ý', 'Người dùng không tồn tại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Người dùng không tồn tại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50008:
-                    F._confirm('Gợi ý', 'Mã thẻ tồn tại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã thẻ tồn tại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50010:
-                    F._confirm('Gợi ý', 'Mã thẻ đã quá hạn sử dụng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã thẻ đã quá hạn sử dụng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50009:
-                    F._confirm('Gợi ý', 'Mã thẻ tồn tại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã thẻ tồn tại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50015:
-                    F._confirm('Gợi ý', 'Mã thẻ đã bị thu hồi', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã thẻ đã bị thu hồi", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50020:
-                    F._confirm('Gợi ý', 'Yêu cầu thất bại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Yêu cầu thất bại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 添加评论
 F._addEvaluation = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'commodityKey';
+    var Key = "commodityKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.evaluation.add";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var funid = localStorage.getItem("funId");
     var msisdn = params.msisdn;
@@ -962,14 +1624,14 @@ F._addEvaluation = function(params, callback) {
     var content = params.content;
     var score = params.score;
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appId=" + appId;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "funid=" + funid;
     md5EncryptStrig += "&msisdn=" + msisdn;
     md5EncryptStrig += "&username=" + username;
@@ -998,7 +1660,7 @@ F._addEvaluation = function(params, callback) {
         brand_id: brand_id,
         image_urls: image_urls,
         content: content,
-        score: score,
+        score: score
     };
 
     $.ajax({
@@ -1011,26 +1673,25 @@ F._addEvaluation = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Nhận xét không thành công', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Nhận xét không thành công", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 重置密码
 F._userAction_changePassword = function(params, callback) {
@@ -1054,7 +1715,7 @@ F._userAction_changePassword = function(params, callback) {
         msisdn: msisdn,
         password: password,
         otp: otp,
-        encryption: encrypt,
+        encryption: encrypt
     };
 
     $.ajax({
@@ -1066,71 +1727,70 @@ F._userAction_changePassword = function(params, callback) {
             callback(ret);
             switch (ret.status) {
                 case 10000:
-
                     break;
 
                 case 40000:
-                    F._confirm('Gợi ý', 'Mã xác nhận SMS không đúng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã xác nhận SMS không đúng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 60050:
-                    F._confirm('Gợi ý', 'Người dùng không tồn tại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Người dùng không tồn tại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50008:
-                    F._confirm('Gợi ý', 'Số thẻ tồn tại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Số thẻ tồn tại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50010:
-                    F._confirm('Gợi ý', 'Mã thẻ đã quá hạn sử dụng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã thẻ đã quá hạn sử dụng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50020:
-                    F._confirm('Gợi ý', 'Yêu cầu thất bại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Yêu cầu thất bại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 修改交易密码
 F._userAction_modifyPayPassword = function(params, callback) {
@@ -1154,7 +1814,7 @@ F._userAction_modifyPayPassword = function(params, callback) {
         msisdn: msisdn,
         paypassword: paypassword,
         otp: otp,
-        encryption: encrypt,
+        encryption: encrypt
     };
 
     $.ajax({
@@ -1166,71 +1826,70 @@ F._userAction_modifyPayPassword = function(params, callback) {
             callback(ret);
             switch (ret.status) {
                 case 10000:
-
                     break;
 
                 case 40000:
-                    F._confirm('Gợi ý', 'Mã xác nhận SMS không đúng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã xác nhận SMS không đúng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 60050:
-                    F._confirm('Gợi ý', 'Người dùng không tồn tại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Người dùng không tồn tại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50008:
-                    F._confirm('Gợi ý', 'Số thẻ tồn tại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Số thẻ tồn tại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50010:
-                    F._confirm('Gợi ý', 'Mã thẻ đã quá hạn sử dụng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã thẻ đã quá hạn sử dụng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50020:
-                    F._confirm('Gợi ý', 'Yêu cầu thất bại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Yêu cầu thất bại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 判断交易密码
 F._userAction_checkPayPasword = function(params, callback) {
@@ -1251,7 +1910,7 @@ F._userAction_checkPayPasword = function(params, callback) {
         provider: provider,
         msisdn: msisdn,
         paypassword: paypassword,
-        encryption: encrypt,
+        encryption: encrypt
     };
 
     $.ajax({
@@ -1263,36 +1922,36 @@ F._userAction_checkPayPasword = function(params, callback) {
             callback(ret);
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 查询账单信息
 F._inquiryBill = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'settleKey';
+    var Key = "settleKey";
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.inquiryBill";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
-    var notifyUrlBg = '';
-    var useraccount = '';
+    var version = "1.0";
+    var notifyUrlBg = "";
+    var useraccount = "";
 
     var orderNo = params.orderNo;
     var tradeNo = params.tradeNo;
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appId=" + appId;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "orderNo=" + orderNo;
     md5EncryptStrig += "&tradeNo=" + tradeNo;
     md5EncryptStrig += "&useraccount=" + useraccount;
@@ -1310,7 +1969,7 @@ F._inquiryBill = function(params, callback) {
         notifyUrlBg: notifyUrlBg,
         orderNo: orderNo,
         tradeNo: tradeNo,
-        useraccount: useraccount,
+        useraccount: useraccount
     };
 
     $.ajax({
@@ -1322,49 +1981,54 @@ F._inquiryBill = function(params, callback) {
             callback(ret);
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Lấy thông tin hóa đơn thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Lấy thông tin hóa đơn thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 F._queryOrder = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.query";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var orderNo = params.orderNo;
     var tradeNo = params.tradeNo;
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "orderNo",
-        value: orderNo
-    }, {
-        key: "tradeNo",
-        value: tradeNo
-    }], Key);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderNo",
+                value: orderNo
+            },
+            {
+                key: "tradeNo",
+                value: tradeNo
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -1375,7 +2039,7 @@ F._queryOrder = function(params, callback) {
         timestamp: timestamp,
         version: version,
         orderNo: orderNo,
-        tradeNo: tradeNo,
+        tradeNo: tradeNo
     };
 
     $.ajax({
@@ -1387,26 +2051,25 @@ F._queryOrder = function(params, callback) {
             callback(ret);
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Lấy thông tin đơn hàng thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Lấy thông tin đơn hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 用户评论上传图片
 F._collectFiles = function(data, callback) {
@@ -1418,29 +2081,28 @@ F._collectFiles = function(data, callback) {
         data: data,
         success: function(ret) {
             ret = JSON.parse(ret);
-            callback(ret)
+            callback(ret);
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Tải lên thất bại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Tải lên thất bại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
         }
     });
-}
+};
 
 // 上传用户头像
 F._uploadFilesUser = function(data, callback) {
@@ -1452,20 +2114,20 @@ F._uploadFilesUser = function(data, callback) {
         data: data,
         success: function(ret) {
             ret = JSON.parse(ret);
-            callback(ret)
+            callback(ret);
             switch (ret.code) {
                 case 10000:
                     // TODO
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Tải lên thất bại', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Tải lên thất bại", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
@@ -1473,29 +2135,29 @@ F._uploadFilesUser = function(data, callback) {
             callback(false);
         }
     });
-}
+};
 
 // 获取电脑banner广告
 F._initTopComputer = function(params, callback) {
-    var Key = 'commodityKey';
-    var appid = '0';
+    var Key = "commodityKey";
+    var appid = "0";
     var method = "fun.computer.topad";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
-    var typeid = params.typeid || '2';
-    var pagesize = params.pagesize || '5';
-    var currentpage = params.currentpage || '1';
+    var typeid = params.typeid || "2";
+    var pagesize = params.pagesize || "5";
+    var currentpage = params.currentpage || "1";
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appid=" + appid;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signtype = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "typeid=" + typeid;
     md5EncryptStrig += "&pagesize=" + pagesize;
     md5EncryptStrig += "&currentpage=" + currentpage;
@@ -1512,7 +2174,7 @@ F._initTopComputer = function(params, callback) {
         version: version,
         typeid: typeid,
         pagesize: pagesize,
-        currentpage: currentpage,
+        currentpage: currentpage
     };
 
     $.ajax({
@@ -1522,30 +2184,29 @@ F._initTopComputer = function(params, callback) {
         success: function(ret) {
             ret = JSON.parse(ret);
             callback(ret);
-
         },
         error: function(ret) {
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 用户登入
 F._userAction_login = function(params, callback) {
-    var Key = 'userKey';
+    var Key = "userKey";
 
-    var provider = '0';
+    var provider = "0";
     var msisdn = params.msisdn;
-    var password = params.password || '';
-    var otp = params.otp || '';
-    var appid = params.appid || '';
+    var password = params.password || "";
+    var otp = params.otp || "";
+    var appid = params.appid || "";
 
-    var md5EncryptStrig = '';
-    md5EncryptStrig += 'provider=' + provider;
-    md5EncryptStrig += '&msisdn=' + msisdn;
-    md5EncryptStrig += '&password=' + password;
-    md5EncryptStrig += '&otp=' + otp;
-    md5EncryptStrig += '&appid=' + appid;
+    var md5EncryptStrig = "";
+    md5EncryptStrig += "provider=" + provider;
+    md5EncryptStrig += "&msisdn=" + msisdn;
+    md5EncryptStrig += "&password=" + password;
+    md5EncryptStrig += "&otp=" + otp;
+    md5EncryptStrig += "&appid=" + appid;
     md5EncryptStrig += Key;
     var encrypt = md5(md5EncryptStrig);
 
@@ -1555,7 +2216,7 @@ F._userAction_login = function(params, callback) {
         password: password,
         otp: otp,
         appid: appid,
-        encryption: encrypt,
+        encryption: encrypt
     };
 
     var loading = new F._loading();
@@ -1574,21 +2235,20 @@ F._userAction_login = function(params, callback) {
                     createLoginSssion(ret.result, ret.msisdn);
 
                     F._userViewDetailInfo({}, function(ret) {
-                        console.log(ret);
                         if (ret.data.username) localStorage.setItem("username", ret.data.username);
-                        
+
                         var hrefUtils_parse = F._hrefUtils.parse();
                         F.query = hrefUtils_parse.query;
 
-                        if (hrefUtils_parse.path.slice(-10, -1) !== 'login.htm') return false;
+                        if (hrefUtils_parse.path.slice(-10, -1) !== "login.htm") return false;
 
                         if (F.query) {
                             switch (F.query.from) {
-                                case 'register':
+                                case "register":
                                     window.location.href = "../index.html";
                                     break;
 
-                                case 'confirm':
+                                case "confirm":
                                     window.location.href = "../index.html";
                                     break;
 
@@ -1604,35 +2264,36 @@ F._userAction_login = function(params, callback) {
                     break;
 
                 case 60050:
-                    if (data.otp) { // 验证码登录
-                        window.location.href = './register.html?msisdn=' + data.msisdn + '&otp=' + data.otp;
+                    if (data.otp) {
+                        // 验证码登录
+                        window.location.href = "./register.html?msisdn=" + data.msisdn + "&otp=" + data.otp;
                     } else {
-                        F._confirm('Gợi ý', 'Tên đăng nhập hoặc mật khẩu không hợp lệ', 'error', [{
-                            name: 'Xác nhận',
-                            func: function() {
-
+                        F._confirm("Gợi ý", "Tên đăng nhập hoặc mật khẩu không hợp lệ", "error", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
                             }
-                        }]);
+                        ]);
                     }
                     break;
 
                 case 70002:
-                    F._confirm('Gợi ý', 'Mã xác nhận SMS không đúng', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Mã xác nhận SMS không đúng", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Tên đăng nhập hoặc mật khẩu không hợp lệ', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Tên đăng nhập hoặc mật khẩu không hợp lệ", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
@@ -1640,20 +2301,20 @@ F._userAction_login = function(params, callback) {
             callback(false);
         }
     });
-}
+};
 
 // 发送短信
 F._userAction_otp = function(params, callback) {
-    var Key = 'userKey';
+    var Key = "userKey";
 
-    var provider = '0';
+    var provider = "0";
     var msisdn = params.msisdn;
-    var type = params.type || '1';
+    var type = params.type || "1";
 
-    var md5EncryptStrig = '';
-    md5EncryptStrig += 'provider=' + provider;
-    md5EncryptStrig += '&msisdn=' + msisdn;
-    md5EncryptStrig += '&type=' + type;
+    var md5EncryptStrig = "";
+    md5EncryptStrig += "provider=" + provider;
+    md5EncryptStrig += "&msisdn=" + msisdn;
+    md5EncryptStrig += "&type=" + type;
     md5EncryptStrig += Key;
     var encrypt = md5(md5EncryptStrig);
 
@@ -1661,7 +2322,7 @@ F._userAction_otp = function(params, callback) {
         provider: provider,
         msisdn: msisdn,
         type: type,
-        encryption: encrypt,
+        encryption: encrypt
     };
 
     $.ajax({
@@ -1670,47 +2331,47 @@ F._userAction_otp = function(params, callback) {
         data: data,
         success: function(ret) {
             ret = JSON.parse(ret);
-            callback(ret)
+            callback(ret);
             switch (ret.status) {
                 case 10000:
                     // TODO
                     break;
 
                 case 70001:
-                    F._confirm('Gợi ý', 'Không thể gửi', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Không thể gửi", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 70002:
-                    F._confirm('Gợi ý', 'Không thể gửi', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Không thể gửi", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 70003:
-                    F._confirm('Gợi ý', 'Không thể gửi', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    F._confirm("Gợi ý", "Không thể gửi", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Không thể gửi', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Không thể gửi", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
@@ -1718,47 +2379,47 @@ F._userAction_otp = function(params, callback) {
             callback(false);
         }
     });
-}
+};
 
 // 创建（全额）订单
 F._fullOrderCreate = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
 
     var appid = localStorage.getItem("funId");
     var method = "fun.trade.full.createOrder";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
     var orderno = (function() {
         var mydate = new Date();
         return appid + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
-    }());
+    })();
     var funid = localStorage.getItem("funId");
     var totalamount = params.totalamount;
     var orgamount = params.orgamount;
     var advance = params.advance;
     var payrate = params.payrate;
     var repaymentmonth = params.repaymentmonth;
-    var currency = 'VND';
+    var currency = "VND";
     var subject = params.subject;
     var goodsdetail = params.goodsdetail;
     var timeoutexpress = params.timeoutexpress;
     var msisdn = params.msisdn;
     var address = params.address;
     var username = params.username;
-    var remark = params.remark || '';
+    var remark = params.remark || "";
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appid=" + appid;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signtype = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "orderno=" + orderno;
     md5EncryptStrig += "&funid=" + funid;
     md5EncryptStrig += "&totalamount=" + totalamount;
@@ -1799,7 +2460,7 @@ F._fullOrderCreate = function(params, callback) {
         msisdn: msisdn,
         address: address,
         username: username,
-        remark: remark,
+        remark: remark
     };
     $.ajax({
         type: "POST",
@@ -1810,61 +2471,66 @@ F._fullOrderCreate = function(params, callback) {
             callback(ret);
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 case 60001:
-                    F._confirm('Gợi ý', 'Đã hết hàng', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {}
-                    }]);
+                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
 
                     break;
 
                 case 60005:
                     // 订单已创建
-                    F._confirm('Gợi ý', 'Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán', 'tips', [{
-                        name: 'Thanh toán',
-                        func: function() {
-                            window.location.href = './order.html';
+                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
+                        {
+                            name: "Thanh toán",
+                            func: function() {
+                                window.location.href = "./order.html";
+                            }
                         }
-                    }]);
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {}
-                    }]);
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 支付（全额）订单
 F._orderFullPay = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
 
     var appid = localStorage.getItem("funId");
     var method = "fun.trade.full.pay";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
     var version = "1.0";
     var orderno = params.orderNo;
     var tradeno = params.tradeNo;
     var advance = params.total;
     var payway = params.payway;
-    var paypassword = params.paypassword || '';
+    var paypassword = params.paypassword || "";
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appid=" + appid;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
@@ -1881,66 +2547,73 @@ F._orderFullPay = function(params, callback) {
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
-        "appid": appid,
-        "method": method,
-        "charset": charset,
-        "signtype": signtype,
-        "encrypt": encrypt,
-        "timestamp": timestamp,
-        "version": version,
-        "orderno": orderno,
-        "tradeno": tradeno,
-        "advance": advance,
-        "payway": payway,
-        "paypassword": paypassword,
+        appid: appid,
+        method: method,
+        charset: charset,
+        signtype: signtype,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        orderno: orderno,
+        tradeno: tradeno,
+        advance: advance,
+        payway: payway,
+        paypassword: paypassword
     };
 
     var loading = new F._loading();
-    if (payway == '2') {
+    if (payway == "2") {
         loading.hide();
         if (params._noConfirm) {
-            var full_confirm = F._confirm('Gợi ý', 'Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán', 'success', [{
-                name: 'Thanh toán',
-                func: function() {
-                    window.open(F._url_joint(F._FullPaymentOrder_td, data));
-                    full_confirm.close();
-                    F._confirm('Gợi ý', '', 'tips', [{
-                        name: 'Thanh toán thất bại',
-                        func: function() {
-                            window.location.href = '../index.html';
-                        }
-                    }, {
-                        name: 'Thanh toán thành công',
-                        func: function() {
-                            window.location.href = './order.html';
-                        }
-                    }]);
-                },
-            }]);
-
+            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._FullPaymentOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
         } else {
-            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
-                name: 'Thanh toán',
-                func: function() {
-                    window.open(F._url_joint(F._FullPaymentOrder_td, data));
-                    full_confirm.close();
-                    F._confirm('Gợi ý', '', 'tips', [{
-                        name: 'Thanh toán thất bại',
-                        func: function() {
-                            window.location.href = '../index.html';
-                        }
-                    }, {
-                        name: 'Thanh toán thành công',
-                        func: function() {
-                            window.location.href = './order.html';
-                        }
-                    }]);
-                },
-            }]);
+            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._FullPaymentOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
         }
-
     } else {
-
         $.ajax({
             type: "POST",
             url: F._FullPaymentOrder_td,
@@ -1955,85 +2628,97 @@ F._orderFullPay = function(params, callback) {
                         break;
 
                     case 40005: // 信息未完善
-                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                            name: 'Để sau',
-                            func: function() {}
-                        }, {
-                            name: 'Hoàn thiện ngay',
-                            func: function() {
-                                // getSchoolInfo_addInfo();
+                        F._confirm("Gợi ý", "Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước", "tips", [
+                            {
+                                name: "Để sau",
+                                func: function() {}
+                            },
+                            {
+                                name: "Hoàn thiện ngay",
+                                func: function() {
+                                    // getSchoolInfo_addInfo();
+                                }
                             }
-                        }]);
+                        ]);
 
                         break;
 
                     case 50010: // 订单过期
-                        F._confirm('Gợi ý', 'Đơn hàng đã quá hạn', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Đơn hàng đã quá hạn", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
 
                         break;
 
                     case 40008: // Số dư không đủ
-                        F._confirm('Gợi ý', 'Số dư không đủ', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Số dư không đủ", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
 
                         break;
 
                     case 50006: // 用户被加入黑名单
-                        F._confirm('Gợi ý', 'Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
 
                         break;
 
                     case 60051: // 交易密码错误
-                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
 
                     default:
-                        $('#loading').remove();
-                        F._confirm('Gợi ý', 'Thanh toán thất bại', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        $("#loading").remove();
+                        F._confirm("Gợi ý", "Thanh toán thất bại", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
                 }
-
             },
             error: function(ret) {
-                console.error('request error');
+                console.error("request error");
                 callback(false);
             }
         });
     }
-}
+};
 
 // 创建（分期）订单
 F._createOrder = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.create";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
-    var notifyUrlBg = 'notifyUrlBg';
-    var timeoutExpress = '86400';
-    var currency = 'VND';
-    var remark = 'nothing';
+    var version = "1.0";
+    var notifyUrlBg = "notifyUrlBg";
+    var timeoutExpress = "86400";
+    var currency = "VND";
+    var remark = "nothing";
     var orderNo = (function() {
         var mydate = new Date();
         return appId + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
-    }());
+    })();
     var funid = localStorage.getItem("funId");
     var totalAmount = params.totalAmount;
     var orgAmount = params.orgAmount;
@@ -2049,7 +2734,7 @@ F._createOrder = function(params, callback) {
     var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
     var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = "orderNo=" + orderNo + "&funid=" + funid + "&totalAmount=" + totalAmount + "&orgAmount=" + orgAmount + "&advance=" + advance + "&payRate=" + payRate + "&repaymentMonth=" + repaymentMonth + "&currency=" + currency + '&subject=' + subject + "&goodsDetail=" + goodsDetail + "&timeoutExpress=" + timeoutExpress + "&msisdn=" + msisdn + "&address=" + address + "&username=" + username + "&remark=" + remark + Key;
+    var md5EncryptStrig = "orderNo=" + orderNo + "&funid=" + funid + "&totalAmount=" + totalAmount + "&orgAmount=" + orgAmount + "&advance=" + advance + "&payRate=" + payRate + "&repaymentMonth=" + repaymentMonth + "&currency=" + currency + "&subject=" + subject + "&goodsDetail=" + goodsDetail + "&timeoutExpress=" + timeoutExpress + "&msisdn=" + msisdn + "&address=" + address + "&username=" + username + "&remark=" + remark + Key;
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
@@ -2075,7 +2760,7 @@ F._createOrder = function(params, callback) {
         msisdn: msisdn,
         address: address,
         username: username,
-        remark: remark,
+        remark: remark
     };
 
     $.ajax({
@@ -2087,66 +2772,77 @@ F._createOrder = function(params, callback) {
             callback(ret);
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 case 60001:
-                    F._confirm('Gợi ý', 'Đã hết hàng', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {}
-                    }]);
+                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
 
                     break;
 
                 case 40000:
                     // 加密错误
-                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {}
-                    }]);
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
                     break;
 
                 case 50020:
                     // http调用错误
-                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {}
-                    }]);
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
                     break;
 
                 case 60005:
                     // 订单已创建
-                    F._confirm('Gợi ý', 'Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán', 'tips', [{
-                        name: 'Thanh toán',
-                        func: function() {
-                            window.location.href = './order.html';
+                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
+                        {
+                            name: "Thanh toán",
+                            func: function() {
+                                window.location.href = "./order.html";
+                            }
                         }
-                    }]);
+                    ]);
                     break;
 
                 case 50000:
                     // 系统运行错误 (表示创建错误)
-                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {}
-                    }]);
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Đặt hàng thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {}
-                    }]);
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 支付（分期）订单
 F._payOrder = function(params, callback) {
@@ -2154,10 +2850,10 @@ F._payOrder = function(params, callback) {
 
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.pay";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
     var version = "1.0";
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
     var currency = "VND";
     var subject = "repayment";
     var timeoutExpress = params.timeoutExpress; // 半个小时
@@ -2169,77 +2865,84 @@ F._payOrder = function(params, callback) {
     var repaymentMonth = params.repaymentMonth;
     var prepay = params.prepay;
     var payway = params.payway;
-    var paypassword = params.paypassword || '';
-
+    var paypassword = params.paypassword || "";
 
     var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
     var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = "orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&totalAmount=" + totalAmount + "&advance=" + advance + "&payRate=" + payRate +
-        "&repaymentMonth=" + repaymentMonth + "&prepay=" + prepay + "&payway=" + payway + "&paypassword=" + paypassword + Key;
+    var md5EncryptStrig = "orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&totalAmount=" + totalAmount + "&advance=" + advance + "&payRate=" + payRate + "&repaymentMonth=" + repaymentMonth + "&prepay=" + prepay + "&payway=" + payway + "&paypassword=" + paypassword + Key;
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
-        "appId": appId,
-        "method": method,
-        "charset": charset,
-        "signType": signType,
-        "encrypt": encrypt,
-        "timestamp": timestamp,
-        "version": version,
-        "orderNo": orderNo,
-        "tradeNo": tradeNo,
-        "totalAmount": totalAmount,
-        "advance": advance,
-        "payRate": payRate,
-        "repaymentMonth": repaymentMonth,
-        "prepay": prepay,
-        "payway": payway,
-        "paypassword": paypassword,
+        appId: appId,
+        method: method,
+        charset: charset,
+        signType: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        orderNo: orderNo,
+        tradeNo: tradeNo,
+        totalAmount: totalAmount,
+        advance: advance,
+        payRate: payRate,
+        repaymentMonth: repaymentMonth,
+        prepay: prepay,
+        payway: payway,
+        paypassword: paypassword
     };
 
     var loading = new F._loading();
-    if (payway == '2') {
+    if (payway == "2") {
         loading.hide();
         if (params._noConfirm) {
-            var full_confirm = F._confirm('Gợi ý', 'Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán', 'success', [{
-                name: 'Thanh toán',
-                func: function() {
-                    window.open(F._url_joint(F._payOrder_td, data));
-                    full_confirm.close();
-                    F._confirm('Gợi ý', '', 'tips', [{
-                        name: 'Thanh toán thất bại',
-                        func: function() {
-                            window.location.href = '../index.html';
-                        }
-                    }, {
-                        name: 'Thanh toán thành công',
-                        func: function() {
-                            window.location.href = './order.html';
-                        }
-                    }]);
+            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._payOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
                 }
-            }]);
+            ]);
         } else {
-            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
-                name: 'Thanh toán',
-                func: function() {
-                    window.open(F._url_joint(F._payOrder_td, data));
-                    full_confirm.close();
-                    F._confirm('Gợi ý', '', 'tips', [{
-                        name: 'Thanh toán thất bại',
-                        func: function() {
-                            window.location.href = '../index.html';
-                        }
-                    }, {
-                        name: 'Thanh toán thành công',
-                        func: function() {
-                            window.location.href = './order.html';
-                        }
-                    }]);
+            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._payOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
                 }
-            }]);
-
+            ]);
         }
     } else {
         $.ajax({
@@ -2256,87 +2959,100 @@ F._payOrder = function(params, callback) {
                         break;
 
                     case 40005: // 信息未完善
-                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                            name: 'Để sau',
-                            func: function() {}
-                        }, {
-                            name: 'Hoàn thiện ngay',
-                            func: function() {
-                                // getSchoolInfo_addInfo();
+                        F._confirm("Gợi ý", "Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước", "tips", [
+                            {
+                                name: "Để sau",
+                                func: function() {}
+                            },
+                            {
+                                name: "Hoàn thiện ngay",
+                                func: function() {
+                                    // getSchoolInfo_addInfo();
+                                }
                             }
-                        }]);
+                        ]);
                         break;
 
                     case 50010: // 订单过期
-                        F._confirm('Gợi ý', 'Đơn hàng đã quá hạn', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Đơn hàng đã quá hạn", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
 
                     case 40008: // Số dư không đủ
-                        F._confirm('Gợi ý', 'Số dư không đủ', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Số dư không đủ", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
 
                     case 40060: // 学校不支持分期
-                        F._confirm('Gợi ý', 'Trường của bạn không hỗ trợ chương trình trả góp, bạn vui lòng thanh toán toàn bộ', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Trường của bạn không hỗ trợ chương trình trả góp, bạn vui lòng thanh toán toàn bộ", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
 
                     case 50006: // 用户被加入黑名单
-                        F._confirm('Gợi ý', 'Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
 
                     case 60051: // 交易密码错误
-                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
 
                     default:
-                        $('#loading').remove();
-                        F._confirm('Gợi ý', 'Thanh toán thất bại', 'error', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        $("#loading").remove();
+                        F._confirm("Gợi ý", "Thanh toán thất bại", "error", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
                 }
             },
             error: function(ret) {
-                console.error('request error');
+                console.error("request error");
                 callback(false);
             }
         });
     }
-}
+};
 
 // 创建（还款）订单
 F._createNormalOrder = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    if (!F._isLogin()) return false;
-
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.createnormal";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
     var version = "1.0";
     var notifyUrlBg = "";
     var orderNo = (function() {
         var mydate = new Date();
         return appId + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
-    }());
+    })();
     var funid = localStorage.getItem("funId");
     var totalAmount = params.totalAmount; // 总金额
     var currency = params.currency;
@@ -2347,7 +3063,7 @@ F._createNormalOrder = function(params, callback) {
     var orderNo1 = params.orderNo1;
     var tradeNo1 = params.tradeNo1;
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appId=" + appId;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
@@ -2355,7 +3071,7 @@ F._createNormalOrder = function(params, callback) {
 
     var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "orderNo=" + orderNo;
     md5EncryptStrig += "&funid=" + funid;
     md5EncryptStrig += "&totalAmount=" + totalAmount;
@@ -2371,25 +3087,25 @@ F._createNormalOrder = function(params, callback) {
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
-        "appId": appId,
-        "method": method,
-        "charset": charset,
-        "signType": signType,
-        "encrypt": encrypt,
-        "timestamp": timestamp,
-        "version": version,
-        "notifyUrlBg": notifyUrlBg,
-        "orderNo": orderNo,
-        "funid": funid,
-        "totalAmount": totalAmount,
-        "currency": currency,
-        "subject": subject,
-        "repaymentMonth": repaymentMonth,
-        "goodsDetail": goodsDetail,
-        "timeoutExpress": timeoutExpress,
-        "orderNo1": orderNo1,
-        "tradeNo1": tradeNo1,
-    }
+        appId: appId,
+        method: method,
+        charset: charset,
+        signType: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        notifyUrlBg: notifyUrlBg,
+        orderNo: orderNo,
+        funid: funid,
+        totalAmount: totalAmount,
+        currency: currency,
+        subject: subject,
+        repaymentMonth: repaymentMonth,
+        goodsDetail: goodsDetail,
+        timeoutExpress: timeoutExpress,
+        orderNo1: orderNo1,
+        tradeNo1: tradeNo1
+    };
 
     $.ajax({
         type: "POST",
@@ -2401,36 +3117,35 @@ F._createNormalOrder = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thất bại', 'tips', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đơn hàng được khởi tạo thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
         }
     });
-}
+};
 
 // 支付（还款）订单
 F._payNormalOrder = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'tradeKey';
+    var Key = "tradeKey";
 
     var appId = localStorage.getItem("funId");
     var method = "fun.trade.paynormal";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
     var version = "1.0";
     var orderNo = params.orderNo;
@@ -2438,16 +3153,16 @@ F._payNormalOrder = function(params, callback) {
     var repaymentMonth = params.repaymentMonth;
     var totalAmount = params.amount;
     var payway = params.payWay;
-    var paypassword = params.paypassword || '';
+    var paypassword = params.paypassword || "";
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appId=" + appId;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "orderNo=" + orderNo;
     md5EncryptStrig += "&tradeNo=" + tradeNo;
     md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
@@ -2458,65 +3173,73 @@ F._payNormalOrder = function(params, callback) {
     var encrypt = md5(md5EncryptStrig);
 
     var data = {
-        "appId": appId,
-        "method": method,
-        "charset": charset,
-        "signType": signType,
-        "encrypt": encrypt,
-        "timestamp": timestamp,
-        "version": version,
-        "orderNo": orderNo,
-        "tradeNo": tradeNo,
-        "repaymentMonth": repaymentMonth,
-        "totalAmount": totalAmount,
-        "payway": payway,
-        "paypassword": paypassword,
+        appId: appId,
+        method: method,
+        charset: charset,
+        signType: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        orderNo: orderNo,
+        tradeNo: tradeNo,
+        repaymentMonth: repaymentMonth,
+        totalAmount: totalAmount,
+        payway: payway,
+        paypassword: paypassword
     };
-    if (payway == '2') {
+    if (payway == "2") {
         var loading = new F._loading();
         loading.hide();
         if (params._noConfirm) {
-            var full_confirm = F._confirm('Gợi ý', 'Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán', 'success', [{
-                name: 'Thanh toán',
-                func: function() {
-                    window.open(F._url_join(F._payNormalOrder_td, data));
-                    full_confirm.close();
-                    F._confirm('Gợi ý', '', 'tips', [{
-                        name: 'Thanh toán thất bại',
-                        func: function() {
-                            window.location.href = '../index.html';
-                        }
-                    }, {
-                        name: 'Thanh toán thành công',
-                        func: function() {
-                            window.location.href = './bill.html';
-                        }
-                    }]);
+            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_join(F._payNormalOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./bill.html";
+                                }
+                            }
+                        ]);
+                    }
                 }
-            }]);
+            ]);
         } else {
-            var full_confirm = F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thành công', 'success', [{
-                name: 'Thanh toán',
-                func: function() {
-                    window.open(F._url_join(F._payNormalOrder_td, data));
-                    full_confirm.close();
-                    F._confirm('Gợi ý', '', 'tips', [{
-                        name: 'Thanh toán thất bại',
-                        func: function() {
-                            window.location.href = '../index.html';
-                        }
-                    }, {
-                        name: 'Thanh toán thành công',
-                        func: function() {
-                            window.location.href = './bill.html';
-                        }
-                    }]);
+            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_join(F._payNormalOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./bill.html";
+                                }
+                            }
+                        ]);
+                    }
                 }
-            }]);
+            ]);
         }
-
     } else {
-
         $.ajax({
             type: "POST",
             url: F._payNormalOrder_td,
@@ -2527,42 +3250,42 @@ F._payNormalOrder = function(params, callback) {
 
                 switch (ret.code) {
                     case 10000:
-
                         break;
 
                     case 60051: // 交易密码错误
-                        F._confirm('Gợi ý', 'Mật mã giao dịch sai', 'tips', [{
-                            name: 'Xác nhận',
-                            func: function() {}
-                        }]);
+                        F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
                         break;
 
                     default:
-                        $('#loading').remove();
-                        window.location.href = './errorPay.html';
+                        $("#loading").remove();
+                        window.location.href = "./errorPay.html";
                         break;
                 }
             },
             error: function(ret) {
-                console.error('request error');
+                console.error("request error");
                 callback(false);
             }
         });
-
     }
-}
+};
 
 // 修改/添加用户详细信息
 F._userAddDetailInfo = function(params, callback) {
     if (!F._isLogin()) return false;
 
-    var Key = 'userKey';
+    var Key = "userKey";
     var appId = localStorage.getItem("funId");
-    var method = 'fun.uc.useradddetail';
-    var charset = 'utf-8';
+    var method = "fun.uc.useradddetail";
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
 
-    var version = '1.0';
+    var version = "1.0";
 
     var username = params.username;
     var funid = localStorage.getItem("funId");
@@ -2592,93 +3315,121 @@ F._userAddDetailInfo = function(params, callback) {
     var headimage = params.headimage;
     var birthday = params.birthday;
 
-
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var encrypt = F._encrypt_MD5([{
-        key: "username",
-        value: username
-    }, {
-        key: "funid",
-        value: funid
-    }, {
-        key: "birthday",
-        value: birthday
-    }, {
-        key: "identification",
-        value: identification
-    }, {
-        key: "address",
-        value: address
-    }, {
-        key: "email",
-        value: email
-    }, {
-        key: "connectusername1",
-        value: connectusername1
-    }, {
-        key: "connectusermsisdn1",
-        value: connectusermsisdn1
-    }, {
-        key: "connectuserrelation1",
-        value: connectuserrelation1
-    }, {
-        key: "connectuseridentification1",
-        value: connectuseridentification1
-    }, {
-        key: "connectusername2",
-        value: connectusername2
-    }, {
-        key: "connectusermsisdn2",
-        value: connectusermsisdn2
-    }, {
-        key: "connectuserrelation2",
-        value: connectuserrelation2
-    }, {
-        key: "connectuseridentification2",
-        value: connectuseridentification2
-    }, {
-        key: "connectusername3",
-        value: connectusername3
-    }, {
-        key: "connectusermsisdn3",
-        value: connectusermsisdn3
-    }, {
-        key: "connectuserrelation3",
-        value: connectuserrelation3
-    }, {
-        key: "connectuseridentification3",
-        value: connectuseridentification3
-    }, {
-        key: "collegeaddr",
-        value: collegeaddr
-    }, {
-        key: "collegename",
-        value: collegename
-    }, {
-        key: "degree",
-        value: degree
-    }, {
-        key: "headimage",
-        value: headimage
-    }, {
-        key: "sex",
-        value: sex
-    }, {
-        key: "department",
-        value: department
-    }, {
-        key: "specialty",
-        value: specialty
-    }, {
-        key: "admissiontime",
-        value: admissiontime
-    }, {
-        key: "graduationtime",
-        value: graduationtime
-    }], Key);
-
-
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "username",
+                value: username
+            },
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "birthday",
+                value: birthday
+            },
+            {
+                key: "identification",
+                value: identification
+            },
+            {
+                key: "address",
+                value: address
+            },
+            {
+                key: "email",
+                value: email
+            },
+            {
+                key: "connectusername1",
+                value: connectusername1
+            },
+            {
+                key: "connectusermsisdn1",
+                value: connectusermsisdn1
+            },
+            {
+                key: "connectuserrelation1",
+                value: connectuserrelation1
+            },
+            {
+                key: "connectuseridentification1",
+                value: connectuseridentification1
+            },
+            {
+                key: "connectusername2",
+                value: connectusername2
+            },
+            {
+                key: "connectusermsisdn2",
+                value: connectusermsisdn2
+            },
+            {
+                key: "connectuserrelation2",
+                value: connectuserrelation2
+            },
+            {
+                key: "connectuseridentification2",
+                value: connectuseridentification2
+            },
+            {
+                key: "connectusername3",
+                value: connectusername3
+            },
+            {
+                key: "connectusermsisdn3",
+                value: connectusermsisdn3
+            },
+            {
+                key: "connectuserrelation3",
+                value: connectuserrelation3
+            },
+            {
+                key: "connectuseridentification3",
+                value: connectuseridentification3
+            },
+            {
+                key: "collegeaddr",
+                value: collegeaddr
+            },
+            {
+                key: "collegename",
+                value: collegename
+            },
+            {
+                key: "degree",
+                value: degree
+            },
+            {
+                key: "headimage",
+                value: headimage
+            },
+            {
+                key: "sex",
+                value: sex
+            },
+            {
+                key: "department",
+                value: department
+            },
+            {
+                key: "specialty",
+                value: specialty
+            },
+            {
+                key: "admissiontime",
+                value: admissiontime
+            },
+            {
+                key: "graduationtime",
+                value: graduationtime
+            }
+        ],
+        Key
+    );
 
     // var md5SigntypeStrig = '';
     // md5SigntypeStrig += "appId=" + appId;
@@ -2753,8 +3504,8 @@ F._userAddDetailInfo = function(params, callback) {
         department: department,
         specialty: specialty,
         admissiontime: admissiontime,
-        graduationtime: graduationtime,
-    }
+        graduationtime: graduationtime
+    };
 
     $.ajax({
         type: "POST",
@@ -2765,35 +3516,34 @@ F._userAddDetailInfo = function(params, callback) {
             callback(ret);
             switch (ret.code) {
                 case 10000:
-
                     break;
 
                 default:
-                    $('#loading').remove();
-                    F._confirm('Gợi ý', 'error', 'error', [{
-                        name: 'Xác nhận',
-                        func: function() {
-
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
-                    }]);
+                    ]);
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
         }
     });
-}
+};
 
 // 获取用户详细信息
 F._userViewDetailInfo = function(params, callback) {
     var appId = localStorage.getItem("funId");
     var method = "fun.uc.userviewdetail";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
     var version = "1.0";
-    var Key = 'userKey';
+    var Key = "userKey";
     var funid = localStorage.getItem("funId");
 
     // var md5SigntypeStrig = '';
@@ -2804,16 +3554,16 @@ F._userViewDetailInfo = function(params, callback) {
     // var signType = md5(md5SigntypeStrig);
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var md5SigntypeStrig = '';
-    md5SigntypeStrig += 'appId=' + appId;
-    md5SigntypeStrig += '&method=' + method;
-    md5SigntypeStrig += '&charset=' + charset;
+    var md5SigntypeStrig = "";
+    md5SigntypeStrig += "appId=" + appId;
+    md5SigntypeStrig += "&method=" + method;
+    md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
-    md5EncryptStrig += 'funid=' + funid;
-    md5EncryptStrig += '&msisdn=' + '';
+    var md5EncryptStrig = "";
+    md5EncryptStrig += "funid=" + funid;
+    md5EncryptStrig += "&msisdn=" + "";
     md5EncryptStrig += Key;
     var encrypt = md5(md5EncryptStrig);
 
@@ -2825,9 +3575,9 @@ F._userViewDetailInfo = function(params, callback) {
         version: version,
         Key: Key,
         funid: funid,
-        msisdn: '',
+        msisdn: "",
         signType: signType,
-        encrypt: encrypt,
+        encrypt: encrypt
     };
 
     $.ajax({
@@ -2879,12 +3629,12 @@ F._userViewDetailInfo = function(params, callback) {
                     if (is_fullInfo === false) {
                         callback({
                             status: false,
-                            data: ret,
+                            data: ret
                         });
                     } else {
                         callback({
                             status: true,
-                            data: ret,
+                            data: ret
                         });
                     }
                     break;
@@ -2892,46 +3642,46 @@ F._userViewDetailInfo = function(params, callback) {
                 case 40000:
                     callback({
                         status: false,
-                        data: {},
+                        data: {}
                     });
                     break;
 
                 default:
-                    $('#loading').remove();
+                    $("#loading").remove();
                     callback({
                         status: false,
-                        data: {},
+                        data: {}
                     });
                     break;
             }
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
         }
     });
-}
+};
 
 // 获取学校数据
 F._getSchoolInfo = function(params, callback) {
-    var Key = 'userKey';
+    var Key = "userKey";
     var appid = localStorage.getItem("funId");
     var method = "fun.uc.getschoolinfo";
-    var charset = 'utf-8';
+    var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = '1.0';
+    var version = "1.0";
 
-    var notifyurlbg = '';
-    var name = params.name || ''; // 默认查全部
+    var notifyurlbg = "";
+    var name = params.name || ""; // 默认查全部
 
-    var md5SigntypeStrig = '';
+    var md5SigntypeStrig = "";
     md5SigntypeStrig += "appid=" + appid;
     md5SigntypeStrig += "&method=" + method;
     md5SigntypeStrig += "&charset=" + charset;
     md5SigntypeStrig += Key;
     var signtype = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = '';
+    var md5EncryptStrig = "";
     md5EncryptStrig += "name=" + name;
     md5EncryptStrig += Key;
     var encrypt = md5(md5EncryptStrig);
@@ -2945,7 +3695,7 @@ F._getSchoolInfo = function(params, callback) {
         timestamp: timestamp,
         version: version,
         notifyurlbg: notifyurlbg,
-        name: name,
+        name: name
     };
 
     $.ajax({
@@ -2955,37 +3705,309 @@ F._getSchoolInfo = function(params, callback) {
         success: function(ret) {
             ret = JSON.parse(ret);
             callback(ret);
-
         },
         error: function(ret) {
-            console.error('request error');
+            console.error("request error");
             callback(false);
-        },
+        }
     });
-}
+};
 
 // 22222222222222
+F._checkValidLogin = function() {
+    var validTime = localStorage.getItem("validTime");
+    if (validTime) {
+        if (+validTime <= +new Date()) {
+            // Invalid
+            localStorage.clear();
+        }
+    }
+};
 
-window.setTimeout(function() {
-    var username = null;
-    if (localStorage.getItem("funId")) {
+F._hrefUtils = (function(loc) {
+    var utils = {
+        convertQs: function(qs) {
+            var qs = qs || loc.search.substring(1);
+            if (!qs) return null;
+            var qsArr = qs.split(/&/),
+                qsPar = {};
+            for (var i = 0; i < qsArr.length; i++) {
+                if (qsArr[i]) {
+                    var nm = qsArr[i].split(/=/);
+                    qsPar[decodeURIComponent(nm[0])] = decodeURIComponent(nm[1] || "");
+                }
+            }
+            return qsPar;
+        }
+    };
+
+    function parse(url) {
+        var i;
+        var url = url || loc.href;
+        var regExp = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+        var names = ["url", "scheme", "slash", "host", "port", "path", "query", "hash"];
+        var result = regExp.exec(url);
+        var result_format = {};
+
+        for (i = 0; i < names.length; i += 1) {
+            result_format[names[i]] = result[i];
+        }
+        result_format.query = utils.convertQs(result_format.query);
+
+        return result_format;
+    }
+
+    return {
+        parse: parse
+    };
+})(location);
+
+function header_add() {
+    var dot_str = is_dot_for_index();
+    var html_str = '\
+        <div class="header__nav">\
+            <div class="header__nav-main">\
+                <div class="header__n-m-left header__n-m-left_login">\
+                    <div class="header__n-m-l-item1">Xin chào, </div>\
+                    <div class="header__n-m-l-item2">\
+                        <div class="">\
+                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>\
+                            <span class="header__n-m-l-i2-arrow"></span>\
+                        </div>\
+                        <div class="userLogin-info">\
+                            <div class="userLogin-info__top col-xs-24">\
+                                <div class="userLogin-info__top-face" style="background-image: url(' + dot_str + './img/37.png);"></div>\
+                                <div class="userLogin-info__top-order">\
+                                    <p style="margin-bottom: 10px;">\
+                                        <a href="' + dot_str + './html/order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a>\
+                                    </p>\
+                                    <p>\
+                                        <a href="' + dot_str + './html/bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a>\
+                                    </p>\
+                                </div>\
+                            </div>\
+                            <div class="userLogin-info__bottom col-xs-24">\
+                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <a href="' + dot_str + './html/center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>\
+                </div>\
+                <div class="header__n-m-left header__n-m-left_nologin">\
+                    <a href="' + dot_str + './html/login.html" class="header__n-m-l-login">Đăng nhập</a>\
+                    <a href="' + dot_str + './html/register.html" class="header__n-m-l-reg">Đăng ký</a>\
+                </div>\
+                <div class="header__n-m-right">\
+                    <a href="' + dot_str + './index.html" class="header__n-m-home">BUYOO Trang chủ</a>\
+                    <a href="' + dot_str + './html/buyIntro.html" class="header__n-m-help">Trung tâm hỗ trợ</a>\
+                </div>\
+            </div>\
+        </div>\
+        <div class="header__content">\
+            <div class="header__content-main">\
+                <div class="header__c-m-logo">\
+                    <a href="' + dot_str + './index.html" class="header__c-m-l-img" style="background-image: url(' + dot_str + './img/LOGO2.jpg);"></a>\
+                </div>\
+                <div class="header__c-m-search">\
+                    <input type="text" class="header__c-m-s-input" id="findIpt" onkeydown="F._entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">\
+                    <span class="header__c-m-s-button" onclick="F._gotoFind()" style="background-image: url(' + dot_str + './img/search_logo.png);"></span>\
+                </div>\
+                <div class="header__c-m-cart" onclick="window.location.href=\'' + dot_str + './html/cart.html\'">\
+                    <span class="header__c-m-c-icon" style="background-image: url(' + dot_str + './img/2389463949327.png);"></span>\
+                    <span class="header__c-m-c-text">Giỏ hàng</span>\
+                    <span class="header__c-m-c-number">0</span>\
+                </div>\
+            </div>\
+        </div>';
+
+    $("#header").html(html_str);
+
+    function set_avatar() {
+        var username = null;
+
         username = localStorage.getItem("username");
         if (!username) username = localStorage.getItem("msisdn");
         $("#userMsisdn").html(center_char_encrypt(username));
-        // $("#userMsisdn").html(center_char_encrypt(localStorage.getItem("msisdn")));
 
         F._userViewDetailInfo({}, function(ret) {
             if (ret.data.headimage) {
-                $('.userLogin-info__top-face').eq(0).css('background-image', 'url('+ ret.data.headimage +')');
+                $(".userLogin-info__top-face")
+                    .eq(0)
+                    .css("background-image", "url(" + ret.data.headimage + ")");
             }
         });
 
-        $('.header__nav-main').addClass('header__nav-main_login');
+        $(".header__nav-main").addClass("header__nav-main_login");
     }
-}, 700);
 
+    function set_cart_num(num) {
+        $(".header__c-m-c-number").html(num);
+        if (num > 0) {
+            $(".header__c-m-c-icon").css("background-image", 'url("' + dot_str + './img/89247239874.png")');
+        } else {
+            $(".header__c-m-c-icon").css("background-image", 'url("' + dot_str + './img/2389463949327.png")');
+        }
+    }
 
-F._order_cancel = function (callback) {
+    function calc_num(array) {
+        var index;
+        var num = 0;
+        for (index = 0; index < array.length; index++) {
+            num += array[index].quantity;
+        }
+        return num;
+    }
+
+    function set_unlogin_cart_num() {
+        localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
+        var cart = JSON.parse(localStorage.getItem("cart"));
+        
+        set_cart_num(calc_num(cart));
+    }
+
+    F._checkValidLogin();
+    if (localStorage.getItem("funId")) {
+        set_avatar();
+        F._cart_getInfo({}, function(ret) {
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+            set_cart_num(calc_num(ret.cartitems));
+        });
+    } else {
+        set_unlogin_cart_num();
+    }
+}
+
+function footer_add() {
+    var dot_str = is_dot_for_index();
+    var html_str = '\
+        <div class="footer__top col-xs-24">\
+            <div class="footer__top-main">\
+                <div class="footer__t-m-item col-xs-24">\
+                    <div class="footer__t-m-i-left col-xs-5">\
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>\
+                    </div>\
+                    <div class="footer__t-m-i-right col-xs-19">\
+                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>\
+                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>\
+                    </div>\
+                </div>\
+                <div class="footer__t-m-item">\
+                    <div class="footer__t-m-i-left col-xs-5">\
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>\
+                    </div>\
+                    <div class="footer__t-m-i-right col-xs-19">\
+                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>\
+                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>\
+                    </div>\
+                </div>\
+                <div class="footer__t-m-item">\
+                    <div class="footer__t-m-i-left col-xs-5">\
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>\
+                    </div>\
+                    <div class="footer__t-m-i-right col-xs-19">\
+                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>\
+                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>\
+                    </div>\
+                </div>\
+                <div class="footer__t-m-item">\
+                    <div class="footer__t-m-i-left col-xs-5">\
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>\
+                    </div>\
+                    <div class="footer__t-m-i-right col-xs-19">\
+                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>\
+                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>\
+                    </div>\
+                </div>\
+                <div class="footer__t-m-item">\
+                    <div class="footer__t-m-i-left col-xs-5">\
+                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>\
+                    </div>\
+                    <div class="footer__t-m-i-right col-xs-19">\
+                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>\
+                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+        <div class="footer__bottom2 col-xs-24">\
+            <div class="footer__bottom2-main">\
+                <div class="footer__b2-m-row1">\
+                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>\
+                    <ul class="footer__b2-m-r1-main col-xs-24">\
+                        <a href="' + dot_str + './html/about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>\
+                        <a href="' + dot_str + './html/join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>\
+                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">hợp tác thương mại:</a>\
+                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>\
+                    </ul>\
+                </div>\
+                <div class="footer__b2-m-row2">\
+                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>\
+                    <ul class="footer__b2-m-r2-main col-xs-24">\
+                        <a href="' + dot_str + './html/buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>\
+                        <a href="' + dot_str + './html/billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>\
+                        <a href="' + dot_str + './html/safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>\
+                        <a href="' + dot_str + './html/refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>\
+                    </ul>\
+                </div>\
+                <div class="footer__b2-m-row3">\
+                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>\
+                    <ul class="footer__b2-m-r3-main col-xs-24">\
+                        <li class="footer__b2-m-r3-m-item col-xs-24">\
+                            <img src="' + dot_str + './img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">\
+                        </li>\
+                    </ul>\
+                </div>\
+                <div class="footer__b2-m-row5">\
+                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>\
+                    <ul class="footer__b2-m-r5-main col-xs-24">\
+                        <li class="footer__b2-m-r5-m-item col-xs-24">\
+                            <img src="' + dot_str + './img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">\
+                        </li>\
+                        <li class="footer__b2-m-r5-m-item col-xs-24">\
+                            <img src="' + dot_str + './img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">\
+                        </li>\
+                    </ul>\
+                </div>\
+                <div class="footer__b2-m-row7 col-xs-24">\
+                    <div class="footer__b2-m-r7-left col-xs-12">\
+                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">\
+                            <img src="' + dot_str + './img/273y4294.png" class="footer__b2-m-r7-l-r1-icon">\
+                            <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>\
+                        </label>\
+                        <div class="footer__b2-m-r7-l-row2">\
+                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(' + dot_str + './img/29476021983473.png)"></a>\
+                        </div>\
+                    </div>\
+                    <div class="footer__b2-m-r7-right col-xs-12">\
+                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(' + dot_str + './img/780689798.png);"></a>\
+                    </div>\
+                </div>\
+                <div class="footer__b2-m-row6 col-xs-24">\
+                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>\
+                    <div class="footer__b2-m-r6-right col-xs-12"></div>\
+                </div>\
+            </div>\
+        </div>';
+
+    $("#footer").html(html_str);
+}
+
+F._gotoFind = function() {
+    var findcontent = $("#findIpt").val();
+    if (findcontent != "") {
+        window.location.href = is_dot_for_index() + "./html/search.html?findcontent=" + findcontent;
+    }
+};
+
+F._entersearch = function() {
+    var event = window.event || arguments.callee.caller.arguments[0];
+    if (event.keyCode == 13) {
+        F._gotoFind();
+    }
+};
+
+F._order_cancel = function(callback) {
     var html_str = '\
         <div class="order-cancel" id="order-cancel">\
             <div class="order-cancel__main">\
@@ -3026,45 +4048,44 @@ F._order_cancel = function (callback) {
             </div>\
         </div>';
 
-    $('body').append(html_str);
+    $("body").append(html_str);
 
-    $('.order-cancel__m-t-b-r2-item').on('click', function () {
+    $(".order-cancel__m-t-b-r2-item").on("click", function() {
         var self = $(this);
-        $('.order-cancel__m-t-b-r2-item').removeClass('order-cancel__m-t-b-r2-item_active');
-        self.addClass('order-cancel__m-t-b-r2-item_active');
+        $(".order-cancel__m-t-b-r2-item").removeClass("order-cancel__m-t-b-r2-item_active");
+        self.addClass("order-cancel__m-t-b-r2-item_active");
     });
 
-    $('.order-cancel__m-t-b-r3-m-l-text').on('click', function () {
-        $('#order-cancel').remove();
+    $(".order-cancel__m-t-b-r3-m-l-text").on("click", function() {
+        $("#order-cancel").remove();
     });
 
-    $('.order-cancel__m-t-r-close').on('click', function () {
-        $('#order-cancel').remove();
+    $(".order-cancel__m-t-r-close").on("click", function() {
+        $("#order-cancel").remove();
     });
 
-    $('.order-cancel__m-t-b-r3-m-r-text').on('click', function () {
-        var result = '';
-        $('.order-cancel__m-t-b-r2-item').each(function () {
+    $(".order-cancel__m-t-b-r3-m-r-text").on("click", function() {
+        var result = "";
+        $(".order-cancel__m-t-b-r2-item").each(function() {
             var self = $(this);
-            if (self.hasClass('order-cancel__m-t-b-r2-item_active')) {
-                result = self.data('code');
+            if (self.hasClass("order-cancel__m-t-b-r2-item_active")) {
+                result = self.data("code");
             }
         });
         callback(result);
     });
-}
-
+};
 
 // 加密中间字符
 function center_char_encrypt(str) {
     var i;
-    var result = '';
+    var result = "";
     if (str.length > 0) {
         for (i = 0; i < str.length; i++) {
             if (i < 3 || i >= str.length - 3) {
                 result += str[i];
             } else {
-                result += '*';
+                result += "*";
             }
         }
     }
@@ -3073,9 +4094,9 @@ function center_char_encrypt(str) {
 
 F._setUrl = function(key, value) {
     function joint(data) {
-        var str = '';
+        var str = "";
         for (i in data) {
-            str += '&' + i + '=' + data[i];
+            str += "&" + i + "=" + data[i];
         }
         return str.slice(1);
     }
@@ -3083,28 +4104,46 @@ F._setUrl = function(key, value) {
     var parse = F._hrefUtils.parse();
     parse.query = parse.query || {};
     parse.query[key] = value;
-    var url = '/' + parse.path + '?' + joint(parse.query)
+    var url = "/" + parse.path + "?" + joint(parse.query);
 
-    history.pushState({
-        url: url,
-        title: document.title
-    }, document.title, url);
+    history.pushState(
+        {
+            url: url,
+            title: document.title
+        },
+        document.title,
+        url
+    );
+};
+
+/**
+ * 当前页是否为index.html
+ */
+function is_index() {
+    var parse = F._hrefUtils.parse() || {};
+    var file_name = parse.path.slice(-10, -1);
+    var result = false;
+    if (parse.path.slice(-5, -1) === ".htm") {
+        if (parse.path.slice(-10, -1) === "index.htm") {
+            result = true;
+        }
+    } else {
+        result = true;
+    }
+    return result;
 }
 
+function is_dot_for_index() {
+    return is_index() ? "" : ".";
+}
 
 // 打开商品详情
 function gotoDetails(typeId, brandId, id, discount, orgPrice) {
-    // console.log(typeId);
-    // console.log(brandId);
-    // console.log(id);
-    // console.log(discount);
-    // console.log(orgPrice);
-    // return false;
-    discount = (100 - parseInt(discount)) || '';
-    orgPrice = orgPrice || '';
-    id = id || '';
+    discount = 100 - parseInt(discount) || "";
+    orgPrice = orgPrice || "";
+    id = id || "";
 
-    function is_index() {
+    /* function is_index() {
         var parse = F._hrefUtils.parse() || {};
         var file_name = parse.path.slice(-10, -1);
         var result = '.';
@@ -3116,11 +4155,11 @@ function gotoDetails(typeId, brandId, id, discount, orgPrice) {
             result = '';
         }
         return result;
-    }
+    } */
 
     if (typeId != "" && brandId != "") {
-        // window.open("./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
-        window.location.href = is_index() + "./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId + "&id=" + id;
+        // window.open("./html/details.html?typeId=" + typeId + "&brandId=" + brandId);
+        window.location.href = is_dot_for_index() + "./html/details.html?typeId=" + typeId + "&brandId=" + brandId + "&id=" + id;
     } else {
         window.location.href = "";
     }
@@ -3134,7 +4173,6 @@ function userQuit() {
     }
 }
 
-
 F._verify_wait = function(params) {
     function extend(def_params, params) {
         var i;
@@ -3144,7 +4182,7 @@ F._verify_wait = function(params) {
             var str = {}.toString.call(obj);
             var str_length = {}.toString.call(obj).length;
             for (i = 0; i < str_length; i += 1) {
-                if (str[i] === ' ') {
+                if (str[i] === " ") {
                     return str.slice(i + 1, -1).toLowerCase();
                 }
             }
@@ -3153,7 +4191,7 @@ F._verify_wait = function(params) {
 
         for (i in params) {
             if (params.hasOwnProperty(i)) {
-                if (def_params[i] !== undefined && type(params[i]) === 'object') {
+                if (def_params[i] !== undefined && type(params[i]) === "object") {
                     extend(def_params[i], params[i]);
                 } else {
                     def_params[i] = params[i];
@@ -3184,9 +4222,9 @@ F._verify_wait = function(params) {
 
         if (_time >= 0) {
             if (def_params.isVue) {
-                F.vue.verify_text = _time + ' s';
+                F.vue.verify_text = _time + " s";
             } else {
-                $(def_params.target).html(_time + ' s');
+                $(def_params.target).html(_time + " s");
             }
             _time -= 1;
             setTimeout(function() {
@@ -3194,9 +4232,9 @@ F._verify_wait = function(params) {
             }, 1000);
         } else {
             if (def_params.isVue) {
-                F.vue.verify_text = 'gửi lại';
+                F.vue.verify_text = "gửi lại";
             } else {
-                $(def_params.target).html('gửi lại');
+                $(def_params.target).html("gửi lại");
             }
 
             verify_sending = false;
@@ -3206,18 +4244,18 @@ F._verify_wait = function(params) {
 
     return {
         verify_sending_status: verify_sending_status,
-        verify_sending_change: verify_sending_change,
+        verify_sending_change: verify_sending_change
     };
-}
+};
 
 F._isLogin = function() {
     if (!localStorage.getItem("funId")) {
-        window.location.href = 'login.html';
+        window.location.href = "login.html";
         return false;
     } else {
         return true;
     }
-}
+};
 
 /**
  * 金额格式化
@@ -3230,11 +4268,11 @@ F._isLogin = function() {
  */
 F._priceFormat = function(price, separator, interval) {
     price = parseInt(price);
-    price = price === price ? price + '' : '';
+    price = price === price ? price + "" : "";
     separator = separator || ",";
     interval = interval || 3;
     var i;
-    var result = '';
+    var result = "";
     var price_length = price.length;
     var quotient = parseInt(price_length / interval);
     var module = price_length % interval;
@@ -3252,65 +4290,26 @@ F._priceFormat = function(price, separator, interval) {
         result = price;
     }
     return result;
-}
+};
 
 // 把参数拼接到url上
 F._url_joint = function(url, params) {
-    url += '?';
+    url += "?";
     var i;
-    var params_str = '';
+    var params_str = "";
     for (i in params) {
-        params_str += '&' + i + '=' + params[i];
+        params_str += "&" + i + "=" + params[i];
     }
     url += params_str.slice(1);
     return url;
-}
-
-F._hrefUtils = function(loc) {
-    var utils = {
-        convertQs: function(qs) {
-            var qs = qs || loc.search.substring(1);
-            if (!qs) return null;
-            var qsArr = qs.split(/&/),
-                qsPar = {};
-            for (var i = 0; i < qsArr.length; i++) {
-                if (qsArr[i]) {
-                    var nm = qsArr[i].split(/=/);
-                    qsPar[decodeURIComponent(nm[0])] = decodeURIComponent(nm[1] || '');
-                }
-            }
-            return qsPar;
-        }
-    };
-
-    function parse(url) {
-        var i;
-        var url = url || loc.href;
-        var regExp = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
-        var names = ['url', 'scheme', 'slash', 'host', 'port', 'path', 'query', 'hash'];
-        var result = regExp.exec(url);
-        var result_format = {};
-
-        for (i = 0; i < names.length; i += 1) {
-            result_format[names[i]] = result[i];
-        }
-        result_format.query = utils.convertQs(result_format.query);
-
-        return result_format;
-
-    }
-
-    return {
-        parse: parse
-    }
-}(location);
+};
 
 F._url_join = function(url, params) {
     var i;
-    url += '?';
-    var params_str = '';
+    url += "?";
+    var params_str = "";
     for (i in params) {
-        params_str += '&' + i + '=' + params[i];
+        params_str += "&" + i + "=" + params[i];
     }
     url += params_str.slice(1);
     return url;
@@ -3318,30 +4317,30 @@ F._url_join = function(url, params) {
 
 // 提示框类
 F._confirm = function(title, text, type, button) {
-    this.title = title || '';
-    this.text = text || '';
+    this.title = title || "";
+    this.text = text || "";
 
     this.new_date = +new Date();
-    this.new_date_plus = this.new_date + 100 + '';
-    this.new_date += '';
+    this.new_date_plus = this.new_date + 100 + "";
+    this.new_date += "";
     this.random_id = this.new_date.slice(8, -1);
     this.mask_id = this.new_date.slice(2, -2);
-    this.mask_index = '1' + this.new_date.slice(2, -2);
-    this.confirm_index = '1' + this.new_date_plus.slice(2, -2);
-    this.button0_text = '';
-    this.button1_text = '';
+    this.mask_index = "1" + this.new_date.slice(2, -2);
+    this.confirm_index = "1" + this.new_date_plus.slice(2, -2);
+    this.button0_text = "";
+    this.button1_text = "";
     this.func0 = function() {};
     this.func1 = function() {};
-    this.button_left_display = 'inline-block';
-    this.button_right_display = 'inline-block';
+    this.button_left_display = "inline-block";
+    this.button_right_display = "inline-block";
 
-    this.background_image_tips = 'data:image/png;base64,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';
-    this.background_image_error = 'data:image/png;base64,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';
-    this.background_image_success = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAIAAAC3ytZVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyNjg2REIyRDY4NzZFNzExOUM1N0IyNzkxNDcwOEIzQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFNEE4RDVBRTk3OTMxMUU3OTI0MEE5N0FCMTAzNDc0MyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFNEE4RDVBRDk3OTMxMUU3OTI0MEE5N0FCMTAzNDc0MyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M0IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMjRDMzFFQzM2NzdFNzExQTNFQ0M2MUJFOTM0OEZBRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyNjg2REIyRDY4NzZFNzExOUM1N0IyNzkxNDcwOEIzQiIvPiA8L3JkZjpEZXNjcmlwdGlv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';
-    this.background_image_url = ''
+    this.background_image_tips = "data:image/png;base64,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";
+    this.background_image_error = "data:image/png;base64,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";
+    this.background_image_success = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAIAAAC3ytZVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyNjg2REIyRDY4NzZFNzExOUM1N0IyNzkxNDcwOEIzQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFNEE4RDVBRTk3OTMxMUU3OTI0MEE5N0FCMTAzNDc0MyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFNEE4RDVBRDk3OTMxMUU3OTI0MEE5N0FCMTAzNDc0MyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M0IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMjRDMzFFQzM2NzdFNzExQTNFQ0M2MUJFOTM0OEZBRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyNjg2REIyRDY4NzZFNzExOUM1N0IyNzkxNDcwOEIzQiIvPiA8L3JkZjpEZXNjcmlwdGlv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";
+    this.background_image_url = "";
 
     if (button.length === 1) {
-        this.button_left_display = 'none';
+        this.button_left_display = "none";
         this.button1_text = button[0].name;
         this.func1 = button[0].func;
     } else {
@@ -3356,20 +4355,20 @@ F._confirm = function(title, text, type, button) {
     var func1 = this.func1;
 
     function close() {
-        $('#mask' + random_id + '').remove();
-        $('#confirm' + random_id + '').remove();
+        $("#mask" + random_id + "").remove();
+        $("#confirm" + random_id + "").remove();
     }
 
     switch (type) {
-        case 'error':
+        case "error":
             this.background_image_url = this.background_image_error;
             break;
 
-        case 'success':
+        case "success":
             this.background_image_url = this.background_image_success;
             break;
 
-        case 'tips':
+        case "tips":
             this.background_image_url = this.background_image_tips;
             break;
 
@@ -3391,24 +4390,24 @@ F._confirm = function(title, text, type, button) {
                 <div class="confirm__b-m-b-text">' + this.text + '</div>\
                 <div class="confirm__b-m-b-operate">\
                     <span class="confirm__b-m-b-o-left" id="item-left' + this.random_id + '" style="display:' + this.button_left_display + '">' + this.button0_text + '</span>\
-                    <span class="confirm__b-m-b-o-right" id="item-right' + this.random_id + '" style="display:' + this.button_right_display + '">' + this.button1_text + '</span>\
+                    <span class="confirm__b-m-b-o-right" id="item-right' + this.random_id + '" style="display:' + this.button_right_display + '">' + this.button1_text + "</span>\
                 </div>\
             </div>\
         </div>\
-    </div>';
+    </div>";
 
-    $('body').append(this.mark_html);
-    $('body').append(this.confirm_html);
+    $("body").append(this.mark_html);
+    $("body").append(this.confirm_html);
 
-    $('#item-left' + random_id + '').one("click", function() {
+    $("#item-left" + random_id + "").one("click", function() {
         func0();
         close();
     });
-    $('#item-right' + random_id + '').one("click", function() {
+    $("#item-right" + random_id + "").one("click", function() {
         func1();
         close();
     });
-    $('#close' + random_id + '').one("click", function() {
+    $("#close" + random_id + "").one("click", function() {
         close();
     });
 
@@ -3428,21 +4427,21 @@ F._loading = function() {
     // }
 
     function show() {
-        if ($('.loading').length === 0) {
-            $('body').append(loading_html);
+        if ($(".loading").length === 0) {
+            $("body").append(loading_html);
         }
     }
 
     function hide() {
-        $('#loading').remove();
+        $("#loading").remove();
         // $('#loading').hide();
     }
 
     return {
         show: show,
-        hide: hide,
-    }
-}
+        hide: hide
+    };
+};
 
 // 交易密码
 F._payPwd_open = function(callback) {
@@ -3477,109 +4476,107 @@ F._payPwd_open = function(callback) {
             </div>\
         </div>\
     </div>';
-    $('body').append(html);
+    $("body").append(html);
 
     function submit() {
-        var input_val = $('.pay-pwd__b-r1-r-input').val();
+        var input_val = $(".pay-pwd__b-r1-r-input").val();
         if (input_val.length !== 6) {
-            $('.pay-pwd__b-r4-text').show();
+            $(".pay-pwd__b-r4-text").show();
             return false;
         } else {
-            $('.pay-pwd__b-r4-text').hide();
+            $(".pay-pwd__b-r4-text").hide();
         }
         callback(input_val);
     }
 
-    $(".pay-pwd__t-r-close").one('click', function() {
+    $(".pay-pwd__t-r-close").one("click", function() {
         var self = $(this);
-        $('#pay-pwd_wrap').remove();
+        $("#pay-pwd_wrap").remove();
     });
 
     $("body").keydown(function(e) {
         var curKey = e.which;
-        if (curKey == "13") { //keyCode=13是回车键
+        if (curKey == "13") {
+            //keyCode=13是回车键
             submit();
         }
     });
 
     // 忘记密码
-    $(".pay-pwd__b-r2-text").on('click', function() {
-        window.open('./back_id.html?phoneNum=' + F.msisdn + '&from=payPwd');
+    $(".pay-pwd__b-r2-text").on("click", function() {
+        window.open("./back_id.html?phoneNum=" + F.msisdn + "&from=payPwd");
     });
 
     // 提交
-    $(".pay-pwd__b-r3-button").on('click', function() {
+    $(".pay-pwd__b-r3-button").on("click", function() {
         submit();
     });
-}
+};
 
 F._baseinfo = function(data, userInfo) {
     function get_birthday(val) {
-        console.log(val);
-        var result = '';
+        var result = "";
 
         var nD = new Date(val);
         var year = nD.getFullYear();
         var month = nD.getMonth() + 1;
         var date = nD.getDate();
 
-        (month < 10) && (month = '0' + month);
-        (date < 10) && (date = '0' + date);
+        month < 10 && (month = "0" + month);
+        date < 10 && (date = "0" + date);
 
-        result = year + '-' + month + '-' + date;
+        result = year + "-" + month + "-" + date;
 
         return result;
     }
 
-    console.log(get_birthday(userInfo.birthday));
-
-    var username = userInfo.username || '';
-    var sex = userInfo.sex === '1' ? 'Nam' : 'Nữ';
-    var identification = userInfo.identification || '';
-    var address = userInfo.address || '';
-    var email = userInfo.email || '';
-    var collegename = userInfo.collegename || '';
-    var collegeaddr = userInfo.collegeaddr || '';
-    var department = userInfo.department || '';
-    var specialty = userInfo.specialty || '';
-    var degree = userInfo.degree || '';
+    var username = userInfo.username || "";
+    var sex = userInfo.sex === "1" ? "Nam" : "Nữ";
+    var identification = userInfo.identification || "";
+    var address = userInfo.address || "";
+    var email = userInfo.email || "";
+    var collegename = userInfo.collegename || "";
+    var collegeaddr = userInfo.collegeaddr || "";
+    var department = userInfo.department || "";
+    var specialty = userInfo.specialty || "";
+    var degree = userInfo.degree || "";
     var birthday = get_birthday(userInfo.birthday);
-    var admissiontime = userInfo.admissiontime ? userInfo.admissiontime.slice(0, 7) : '';
-    var graduationtime = userInfo.graduationtime ? userInfo.graduationtime.slice(0, 7) : '';
+    var admissiontime = userInfo.admissiontime ? userInfo.admissiontime.slice(0, 7) : "";
+    var graduationtime = userInfo.graduationtime ? userInfo.graduationtime.slice(0, 7) : "";
 
-    var headimage = userInfo.headimage || '';
+    var headimage = userInfo.headimage || "";
 
-    var connectusername = '';
-    var connectusermsisdn = '';
-    var connectuserrelation = '';
-    var connectuseridentification = '';
-    var collegename__list = '';
+    var connectusername = "";
+    var connectusermsisdn = "";
+    var connectuserrelation = "";
+    var connectuseridentification = "";
+    var collegename__list = "";
     var contact_order;
     var connect_json = {
-        connectusername1: userInfo.connectusername1 || '',
-        connectusermsisdn1: userInfo.connectusermsisdn1 || '',
-        connectuserrelation1: userInfo.connectuserrelation1 || '',
-        connectuseridentification1: userInfo.connectuseridentification1 || '',
+        connectusername1: userInfo.connectusername1 || "",
+        connectusermsisdn1: userInfo.connectusermsisdn1 || "",
+        connectuserrelation1: userInfo.connectuserrelation1 || "",
+        connectuseridentification1: userInfo.connectuseridentification1 || "",
 
-        connectusername2: userInfo.connectusername2 || '',
-        connectusermsisdn2: userInfo.connectusermsisdn2 || '',
-        connectuserrelation2: userInfo.connectuserrelation2 || '',
-        connectuseridentification2: userInfo.connectuseridentification2 || '',
+        connectusername2: userInfo.connectusername2 || "",
+        connectusermsisdn2: userInfo.connectusermsisdn2 || "",
+        connectuserrelation2: userInfo.connectuserrelation2 || "",
+        connectuseridentification2: userInfo.connectuseridentification2 || "",
 
-        connectusername3: userInfo.connectusername3 || '',
-        connectusermsisdn3: userInfo.connectusermsisdn3 || '',
-        connectuserrelation3: userInfo.connectuserrelation3 || '',
-        connectuseridentification3: userInfo.connectuseridentification3 || '',
+        connectusername3: userInfo.connectusername3 || "",
+        connectusermsisdn3: userInfo.connectusermsisdn3 || "",
+        connectuserrelation3: userInfo.connectuserrelation3 || "",
+        connectuseridentification3: userInfo.connectuseridentification3 || ""
     };
 
     var school_id_name_json = {};
 
     function init(data) {
         var i;
-        var collegename_html = '';
+        var collegename_html = "";
 
         for (i = 0; i < data.length; i++) {
-            collegename_html += '<li class="actionsheet__list-item js_collegename" data-collegename="' + data[i].id + '">' + data[i].name + '</li>';
+            collegename_html += '<li class="actionsheet__list-item js_collegename" data-collegename="' + data[i].id + '">' + data[i].name + "</li>";
             school_id_name_json[data[i].id] = data[i].name;
             if (!collegename) collegename = data[i].id;
         }
@@ -3590,11 +4587,13 @@ F._baseinfo = function(data, userInfo) {
     init(data);
 
     var alert__baseinfo_main_height = document.documentElement.clientHeight * 0.924;
-    console.log(alert__baseinfo_main_height);
 
-    var baseinfo_html = '\
+    var baseinfo_html =
+        '\
     <div class="alert__baseinfo" style="display: block;" id="alert__baseinfo">\
-        <div class="alert__baseinfo-main" style="height: '+ alert__baseinfo_main_height +'px">\
+        <div class="alert__baseinfo-main" style="height: ' +
+        alert__baseinfo_main_height +
+        'px">\
             <div class="alert__b-m-title col-xs-24">\
                 <span class="alert__b-m-t-text">Điền thông tin cá nhân</span>\
                 <span class="alert__b-m-t-close" id="baseinfo_hide"></span>\
@@ -3604,14 +4603,18 @@ F._baseinfo = function(data, userInfo) {
                     <div class="alert__b-m-b-row1 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Họ tên <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Họ tên" id="MO__username" value="' + username + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Họ tên" id="MO__username" value="' +
+        username +
+        '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row2 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Giới tính <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-row2">\
-                                <span class="actionsheet__left js_sex" id="MO__sex">' + sex + '</span>\
+                                <span class="actionsheet__left js_sex" id="MO__sex">' +
+        sex +
+        '</span>\
                                 <span class="actionsheet__right js_sex">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
@@ -3625,7 +4628,9 @@ F._baseinfo = function(data, userInfo) {
                     <div class="alert__b-m-b-row3 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Số chứng minh thư <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" id="MO__identification" value="' + identification + '" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" id="MO__identification" value="' +
+        identification +
+        '" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row4 col-xs-24">\
@@ -3664,38 +4669,54 @@ F._baseinfo = function(data, userInfo) {
                                     </div>\
                                 </div> -->\
                             <div class="alert__b-m-b-r4-bottom col-xs-24">\
-                                <textarea class="alert__b-m-b-r4-b-textarea" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng" id="MO__address">' + address + '</textarea>\
+                                <textarea class="alert__b-m-b-r4-b-textarea" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng" id="MO__address">' +
+        address +
+        '</textarea>\
                             </div>\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row5 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Địa chỉ thư điện tử <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="email" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ thư điện tử" id="MO__email" value="' + email + '">\
+                            <input type="email" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ thư điện tử" id="MO__email" value="' +
+        email +
+        '">\
                         </div>\
                     </div>\
                 </div>\
                 <div class="alert__b-m-body col-xs-24">\
-                    <div class="alert__b-m-b-row6 col-xs-24 ' + (connect_json.connectuseridentification1 ? 'alert__b-m-b-row6_active' : '') + '">\
+                    <div class="alert__b-m-b-row6 col-xs-24 ' +
+        (connect_json.connectuseridentification1 ? "alert__b-m-b-row6_active" : "") +
+        '">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 1 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername1" value="' + (connect_json.connectuseridentification1 ? connect_json.connectuseridentification1 : '') + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername1" value="' +
+        (connect_json.connectuseridentification1 ? connect_json.connectuseridentification1 : "") +
+        '">\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="1">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="1">Sửa ></span>\
                         </div>\
                     </div>\
-                    <div class="alert__b-m-b-row6 col-xs-24 ' + (connect_json.connectusername2 ? 'alert__b-m-b-row6_active' : "") + '">\
+                    <div class="alert__b-m-b-row6 col-xs-24 ' +
+        (connect_json.connectusername2 ? "alert__b-m-b-row6_active" : "") +
+        '">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 2 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername2" value="' + (connect_json.connectusername2 ? connect_json.connectusername2 : '') + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername2" value="' +
+        (connect_json.connectusername2 ? connect_json.connectusername2 : "") +
+        '">\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="2">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="2">Sửa ></span>\
                         </div>\
                     </div>\
-                    <div class="alert__b-m-b-row6 col-xs-24 ' + (connect_json.connectusername3 ? 'alert__b-m-b-row6_active' : "") + '">\
+                    <div class="alert__b-m-b-row6 col-xs-24 ' +
+        (connect_json.connectusername3 ? "alert__b-m-b-row6_active" : "") +
+        '">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 3 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername3" value="' + (connect_json.connectusername3 ? connect_json.connectusername3 : '') + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername3" value="' +
+        (connect_json.connectusername3 ? connect_json.connectusername3 : "") +
+        '">\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="3">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="3">Sửa ></span>\
                         </div>\
@@ -3706,37 +4727,49 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Tốt nghiệp trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-collegename">\
-                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' + school_id_name_json[collegename] + '</span>\
+                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' +
+        school_id_name_json[collegename] +
+        '</span>\
                                 <span class="actionsheet__right js_collegename" data-collegename="">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
-                                <div class="actionsheet__list">' + collegename__list + '</div>\
+                                <div class="actionsheet__list">' +
+        collegename__list +
+        '</div>\
                             </div>\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row7 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Địa chỉ trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ trường" id="MO__collegeaddr" value="' + collegeaddr + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ trường" id="MO__collegeaddr" value="' +
+        collegeaddr +
+        '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row7 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoa <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Khoa" id="MO__department" value="' + department + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Khoa" id="MO__department" value="' +
+        department +
+        '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row7 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Chuyên ngành <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Chuyên ngành" id="MO__specialty" value="' + specialty + '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Chuyên ngành" id="MO__specialty" value="' +
+        specialty +
+        '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row8 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Học vị <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-degree">\
-                                <span class="actionsheet__left js_degree" data-degree="" id="MO__degree">' + degree + '</span>\
+                                <span class="actionsheet__left js_degree" data-degree="" id="MO__degree">' +
+        degree +
+        '</span>\
                                 <span class="actionsheet__right js_degree" data-degree="">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
@@ -3759,7 +4792,9 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Ngày Sinh <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet alert__b-m-b-r11-birthday">\
-                                <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' + birthday + '"></span>\
+                                <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' +
+        birthday +
+        '"></span>\
                             </div>\
                         </div>\
                     </div>\
@@ -3767,11 +4802,15 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoảng thời gian học <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet alert__b-m-b-r9-startyear">\
-                                <span class="actionsheet__left"><input type="month" id="MO__admissiontime" value="' + admissiontime + '"></span>\
+                                <span class="actionsheet__left"><input type="month" id="MO__admissiontime" value="' +
+        admissiontime +
+        '"></span>\
                             </div>\
                             <span class="alert__b-m-b-r9-line">-</span>\
                             <div class="actionsheet alert__b-m-b-r9-endyear">\
-                                <span class="actionsheet__left"><input type="month" id="MO__graduationtime" value="' + graduationtime + '"></span>\
+                                <span class="actionsheet__left"><input type="month" id="MO__graduationtime" value="' +
+        graduationtime +
+        '"></span>\
                             </div>\
                         </div>\
                     </div>\
@@ -3790,27 +4829,27 @@ F._baseinfo = function(data, userInfo) {
             sex = val;
         }
 
-        var actionsheet_handle = $('.actionsheet-row2');
-        if (actionsheet_handle.hasClass('actionsheet_active')) {
-            actionsheet_handle.removeClass('actionsheet_active');
+        var actionsheet_handle = $(".actionsheet-row2");
+        if (actionsheet_handle.hasClass("actionsheet_active")) {
+            actionsheet_handle.removeClass("actionsheet_active");
         } else {
-            actionsheet_handle.addClass('actionsheet_active')
+            actionsheet_handle.addClass("actionsheet_active");
         }
-        $('#MO__sex').html(val);
+        $("#MO__sex").html(val);
     }
 
     // 选择关系
     function relation_select(val) {
         if (val) {
             connectusernamen = val;
-            $('#input_relation').html(val);
+            $("#input_relation").html(val);
         }
 
-        var actionsheet_handle = $('.actionsheet-relation');
-        if (actionsheet_handle.hasClass('actionsheet_active')) {
-            actionsheet_handle.removeClass('actionsheet_active');
+        var actionsheet_handle = $(".actionsheet-relation");
+        if (actionsheet_handle.hasClass("actionsheet_active")) {
+            actionsheet_handle.removeClass("actionsheet_active");
         } else {
-            actionsheet_handle.addClass('actionsheet_active');
+            actionsheet_handle.addClass("actionsheet_active");
         }
     }
 
@@ -3818,86 +4857,88 @@ F._baseinfo = function(data, userInfo) {
     function degree_select(val) {
         if (val) {
             degree = val;
-            $('#MO__degree').html(val);
+            $("#MO__degree").html(val);
         }
 
-        var actionsheet_handle = $('.actionsheet-degree');
-        if (actionsheet_handle.hasClass('actionsheet_active')) {
-            actionsheet_handle.removeClass('actionsheet_active');
+        var actionsheet_handle = $(".actionsheet-degree");
+        if (actionsheet_handle.hasClass("actionsheet_active")) {
+            actionsheet_handle.removeClass("actionsheet_active");
         } else {
-            actionsheet_handle.addClass('actionsheet_active')
+            actionsheet_handle.addClass("actionsheet_active");
         }
     }
 
     // 选择学校
     function collegename_select(val) {
         if (val) {
-            $('#MO__collegename').html(school_id_name_json[val]);
+            $("#MO__collegename").html(school_id_name_json[val]);
             collegename = val;
         }
 
-        var actionsheet_handle = $('.actionsheet-collegename');
-        if (actionsheet_handle.hasClass('actionsheet_active')) {
-            actionsheet_handle.removeClass('actionsheet_active');
+        var actionsheet_handle = $(".actionsheet-collegename");
+        if (actionsheet_handle.hasClass("actionsheet_active")) {
+            actionsheet_handle.removeClass("actionsheet_active");
         } else {
-            actionsheet_handle.addClass('actionsheet_active')
+            actionsheet_handle.addClass("actionsheet_active");
         }
     }
 
     // 联系人 - 添加
     function alert__contact_show(order) {
-        contact_order = order + '';
+        contact_order = order + "";
 
-        var input_username = '';
-        var input_msisdn = '';
-        var input_relation = '';
-        var input_identification = '';
+        var input_username = "";
+        var input_msisdn = "";
+        var input_relation = "";
+        var input_identification = "";
 
-        var input_identification_display = contact_order === '1' ? 'inline-block' : 'none';
-        var relation_display = contact_order === '1' ? 'none' : 'block';
+        var input_identification_display = contact_order === "1" ? "inline-block" : "none";
+        var relation_display = contact_order === "1" ? "none" : "block";
 
         function submit_alert__contact(username, msisdn, relation, identification) {
             if (!username.length) {
-                alert('Vui lòng nhập Họ tên');
+                alert("Vui lòng nhập Họ tên");
                 return false;
             }
 
             if (!msisdn.length) {
-                alert('Vui lòng nhập Số điện thoại');
+                alert("Vui lòng nhập Số điện thoại");
                 return false;
             }
 
             if (!relation.length) {
-                alert('Vui lòng chọn mối quan hệ');
+                alert("Vui lòng chọn mối quan hệ");
                 return false;
             }
 
-            if ((!identification.length) && (contact_order === '1')) {
-                alert('Bắt buộc phải cài đặt số chứng minh thư của người liên hệ đầu tiên');
+            if (!identification.length && contact_order === "1") {
+                alert("Bắt buộc phải cài đặt số chứng minh thư của người liên hệ đầu tiên");
                 return false;
             }
 
-            connect_json['connectusername' + contact_order] = username;
-            connect_json['connectusermsisdn' + contact_order] = msisdn;
-            connect_json['connectuserrelation' + contact_order] = relation;
-            connect_json['connectuseridentification' + contact_order] = identification;
+            connect_json["connectusername" + contact_order] = username;
+            connect_json["connectusermsisdn" + contact_order] = msisdn;
+            connect_json["connectuserrelation" + contact_order] = relation;
+            connect_json["connectuseridentification" + contact_order] = identification;
 
-            $('#connectusername' + contact_order).val(username);
-            $('.alert__b-m-b-row6').eq(+contact_order - 1).addClass('alert__b-m-b-row6_active');
+            $("#connectusername" + contact_order).val(username);
+            $(".alert__b-m-b-row6")
+                .eq(+contact_order - 1)
+                .addClass("alert__b-m-b-row6_active");
 
             alert__contact_hide();
         }
 
-        if (connect_json['connectusername' + contact_order]) {
-            input_username = connect_json['connectusername' + contact_order];
-            input_msisdn = connect_json['connectusermsisdn' + contact_order];
-            input_relation = connect_json['connectuserrelation' + contact_order];
-            input_identification = connect_json['connectuseridentification' + contact_order];
+        if (connect_json["connectusername" + contact_order]) {
+            input_username = connect_json["connectusername" + contact_order];
+            input_msisdn = connect_json["connectusermsisdn" + contact_order];
+            input_relation = connect_json["connectuserrelation" + contact_order];
+            input_identification = connect_json["connectuseridentification" + contact_order];
         } else {
-            input_username = '';
-            input_msisdn = '';
-            input_relation = '';
-            input_identification = '';
+            input_username = "";
+            input_msisdn = "";
+            input_relation = "";
+            input_identification = "";
         }
 
         var contact_html = '\
@@ -3966,82 +5007,82 @@ F._baseinfo = function(data, userInfo) {
             </div>\
         </div>';
 
-        $('body').append('<div class="mask-contact" style="display: block;" id="mask-contact"></div>');
-        $('body').append(contact_html);
+        $("body").append('<div class="mask-contact" style="display: block;" id="mask-contact"></div>');
+        $("body").append(contact_html);
 
-        $(".js_relation").on('click', function() {
+        $(".js_relation").on("click", function() {
             var self = $(this);
-            relation_select(self.data('relation'));
+            relation_select(self.data("relation"));
         });
 
-        $("#alert__contact_hide").on('click', function() {
+        $("#alert__contact_hide").on("click", function() {
             alert__contact_hide();
         });
 
-        $("#submit_alert__contact").on('click', function() {
+        $("#submit_alert__contact").on("click", function() {
             var self = $(this);
-            var input_username = $('#input_username').val();
-            var input_msisdn = $('#input_msisdn').val();
-            var input_relation = $('#input_relation').html();
-            var input_identification = $('#input_identification').val() || '';
+            var input_username = $("#input_username").val();
+            var input_msisdn = $("#input_msisdn").val();
+            var input_relation = $("#input_relation").html();
+            var input_identification = $("#input_identification").val() || "";
             submit_alert__contact(input_username, input_msisdn, input_relation, input_identification);
         });
     }
 
     function alert__contact_hide() {
-        $('#alert__contact').remove();
-        $('#mask-contact').remove();
+        $("#alert__contact").remove();
+        $("#mask-contact").remove();
     }
 
     var show = function() {
-        $('body').append(baseinfo_html);
-        $('body').append('<div class="baseinfo__mask" id="baseinfo__mask"></div>');
+        $("body").append(baseinfo_html);
+        $("body").append('<div class="baseinfo__mask" id="baseinfo__mask"></div>');
 
-        $(".js_sex").on('click', function() {
+        $(".js_sex").on("click", function() {
             var self = $(this);
-            sex_select(self.data('sex'));
+            sex_select(self.data("sex"));
         });
 
-        $(".js_degree").on('click', function() {
+        $(".js_degree").on("click", function() {
             var self = $(this);
-            degree_select(self.data('degree'));
+            degree_select(self.data("degree"));
         });
 
-        $(".js_contact_show").on('click', function() {
+        $(".js_contact_show").on("click", function() {
             var self = $(this);
-            alert__contact_show(self.data('contact'));
+            alert__contact_show(self.data("contact"));
         });
 
-        $(".js_collegename").on('click', function() {
+        $(".js_collegename").on("click", function() {
             var self = $(this);
-            collegename_select(self.data('collegename'));
+            collegename_select(self.data("collegename"));
         });
 
-        $("#baseinfo_hide").on('click', function() {
+        $("#baseinfo_hide").on("click", function() {
             var self = $(this);
             hide();
         });
-    }
+    };
 
     var hide = function() {
-        $('#alert__baseinfo').remove();
-        $('#baseinfo__mask').remove();
-    }
+        $("#alert__baseinfo").remove();
+        $("#baseinfo__mask").remove();
+    };
 
     var submit = function(callback) {
-        username = $('#MO__username').val();
+        username = $("#MO__username").val();
         sex = sex;
-        identification = $('#MO__identification').val();
-        address = $('#MO__address').val();
-        email = $('#MO__email').val();
-        collegename = collegename + '';
-        collegeaddr = $('#MO__collegeaddr').val();
-        department = $('#MO__department').val();
-        specialty = $('#MO__specialty').val();
+        identification = $("#MO__identification").val();
+        address = $("#MO__address").val();
+        email = $("#MO__email").val();
+        collegename = collegename + "";
+        collegeaddr = $("#MO__collegeaddr").val();
+        department = $("#MO__department").val();
+        specialty = $("#MO__specialty").val();
         degree = degree;
-        admissiontime = $('#MO__admissiontime').val();
-        graduationtime = $('#MO__graduationtime').val();
-        birthday = $('#MO__birthday').val();
+        admissiontime = $("#MO__admissiontime").val();
+        graduationtime = $("#MO__graduationtime").val();
+        birthday = $("#MO__birthday").val();
         // connectusername1 = connectusername1;
         // connectusermsisdn1 = connectusermsisdn1;
         // connectuserrelation1 = connectuserrelation1;
@@ -4056,84 +5097,83 @@ F._baseinfo = function(data, userInfo) {
         // connectuseridentification3 = connectuseridentification3;
         headimage = headimage;
 
-
         if (!username.length) {
-            alert('Vui lòng nhập Họ tên');
+            alert("Vui lòng nhập Họ tên");
             return false;
         }
 
         if (!sex.length) {
-            alert('Vui lòng nhập Giới tính');
+            alert("Vui lòng nhập Giới tính");
             return false;
         }
 
         if (!identification.length) {
-            alert('Vui lòng nhập Số chứng minh thư');
+            alert("Vui lòng nhập Số chứng minh thư");
             return false;
         }
 
         if (!address.length) {
-            alert('Vui lòng nhập Nơi ở');
+            alert("Vui lòng nhập Nơi ở");
             return false;
         }
 
         if (!email.length) {
-            alert('Vui lòng nhập Địa chỉ thư điện tử');
+            alert("Vui lòng nhập Địa chỉ thư điện tử");
             return false;
         }
 
         if (!/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/.test(email)) {
-            alert('Địa chỉ thư điện tử sai');
+            alert("Địa chỉ thư điện tử sai");
             return false;
         }
 
         if (!(connect_json.connectuseridentification1 && connect_json.connectuseridentification1.length)) {
-            alert('Vui lòng Người liên lạc 1');
+            alert("Vui lòng Người liên lạc 1");
             return false;
         }
 
         if (!(connect_json.connectusername2 && connect_json.connectusername2.length)) {
-            alert('Vui lòng Người liên lạc 2');
+            alert("Vui lòng Người liên lạc 2");
             return false;
         }
 
         if (!(connect_json.connectusername3 && connect_json.connectusername3.length)) {
-            alert('Vui lòng Người liên lạc 3');
+            alert("Vui lòng Người liên lạc 3");
             return false;
         }
 
         if (!collegename.length) {
-            alert('Vui lòng nhập Tốt nghiệp trường');
+            alert("Vui lòng nhập Tốt nghiệp trường");
             return false;
         }
 
         if (!collegeaddr.length) {
-            alert('Vui lòng nhập Địa chỉ trường');
+            alert("Vui lòng nhập Địa chỉ trường");
             return false;
         }
 
         if (!department.length) {
-            alert('Vui lòng nhập Khoa');
+            alert("Vui lòng nhập Khoa");
             return false;
         }
 
         if (!specialty.length) {
-            alert('Vui lòng nhập Chuyên ngành');
+            alert("Vui lòng nhập Chuyên ngành");
             return false;
         }
 
         if (!degree.length) {
-            alert('Vui lòng nhập Học vị');
+            alert("Vui lòng nhập Học vị");
             return false;
         }
 
         if (!admissiontime.length) {
-            alert('Vui lòng nhập Thời gian nhập học');
+            alert("Vui lòng nhập Thời gian nhập học");
             return false;
         }
 
         if (!birthday.length) {
-            alert('Vui lòng nhập Ngày Sinh');
+            alert("Vui lòng nhập Ngày Sinh");
             return false;
         }
 
@@ -4143,20 +5183,19 @@ F._baseinfo = function(data, userInfo) {
         // }
 
         if (graduationtime) {
-
             if (parseInt(admissiontime.slice(0, 4)) >= parseInt(graduationtime.slice(0, 4))) {
-                alert('Khoảng thời gian học sai');
+                alert("Khoảng thời gian học sai");
                 return false;
             }
-            admissiontime = admissiontime + '-11 11:11:11';
-            graduationtime = graduationtime + '-11 11:11:11';
+            admissiontime = admissiontime + "-11 11:11:11";
+            graduationtime = graduationtime + "-11 11:11:11";
         } else {
-            admissiontime = admissiontime + '-11 11:11:11';
+            admissiontime = admissiontime + "-11 11:11:11";
         }
 
         callback({
             username: username,
-            sex: sex === 'Nam' ? '1' : '2',
+            sex: sex === "Nam" ? "1" : "2",
             identification: identification,
             address: address,
             email: email,
@@ -4180,16 +5219,16 @@ F._baseinfo = function(data, userInfo) {
             connectuserrelation3: connect_json.connectuserrelation3,
             connectuseridentification3: connect_json.connectuseridentification3,
             headimage: headimage,
-            birthday: birthday,
+            birthday: birthday
         });
     };
 
     return {
         show: show,
         hide: hide,
-        submit: submit,
-    }
-}
+        submit: submit
+    };
+};
 
 /* 时间戳格式化(时间戳默认为unix-10位数)
  * 
@@ -4212,7 +5251,7 @@ F._baseinfo = function(data, userInfo) {
  *  6:0000.00.00
  */
 F._timeStrForm = function(str, model, unUnix) {
-    var reStr = ''; //返回值
+    var reStr = ""; //返回值
     var monthFormat; //月格式化
     var dateFormat; //日格式化
     var hourFormat; //时格式化
@@ -4238,11 +5277,11 @@ F._timeStrForm = function(str, model, unUnix) {
 
     if (!unUnix) {
         // 时间戳默认为unix
-        str = str + '000';
+        str = str + "000";
     }
 
     // 不为数字,转为数字
-    if (typeof str !== 'number') {
+    if (typeof str !== "number") {
         str = Number(str);
     }
 
@@ -4260,23 +5299,23 @@ F._timeStrForm = function(str, model, unUnix) {
     minuteFormat = minute;
     secondFormat = second;
 
-    (monthFormat < 10) && (monthFormat = '0' + monthFormat);
-    (dateFormat < 10) && (dateFormat = '0' + dateFormat);
-    (hourFormat < 10) && (hourFormat = '0' + hourFormat);
-    (minuteFormat < 10) && (minuteFormat = '0' + minuteFormat);
-    (secondFormat < 10) && (secondFormat = '0' + secondFormat);
+    monthFormat < 10 && (monthFormat = "0" + monthFormat);
+    dateFormat < 10 && (dateFormat = "0" + dateFormat);
+    hourFormat < 10 && (hourFormat = "0" + hourFormat);
+    minuteFormat < 10 && (minuteFormat = "0" + minuteFormat);
+    secondFormat < 10 && (secondFormat = "0" + secondFormat);
 
     switch (model) {
         case 1:
-            reStr = year + '-' + monthFormat + '-' + dateFormat;
+            reStr = year + "-" + monthFormat + "-" + dateFormat;
             break;
 
         case 2:
-            reStr = year + '-' + monthFormat + '-' + dateFormat + " " + hourFormat + ":" + minuteFormat;
+            reStr = year + "-" + monthFormat + "-" + dateFormat + " " + hourFormat + ":" + minuteFormat;
             break;
 
         case 3:
-            reStr = year + '-' + monthFormat + '-' + dateFormat + " " + hourFormat + ":" + minuteFormat + ":" + secondFormat;
+            reStr = year + "-" + monthFormat + "-" + dateFormat + " " + hourFormat + ":" + minuteFormat + ":" + secondFormat;
             break;
 
         case 4:
@@ -4292,21 +5331,28 @@ F._timeStrForm = function(str, model, unUnix) {
             monthDiff = monthNow - month; // 相差几年
             yearDiff = yearNow - year; // 相差几年
 
-            if (yearDiff === 0) { // 今年发的
-                if (monthDiff === 0) { //这个月发的
-                    if (dayDiff === 0) { // 今天发的
+            if (yearDiff === 0) {
+                // 今年发的
+                if (monthDiff === 0) {
+                    //这个月发的
+                    if (dayDiff === 0) {
+                        // 今天发的
                         reStr = hourFormat + ":" + minuteFormat;
-                    } else if (dayDiff === 1) { // 昨天发的
+                    } else if (dayDiff === 1) {
+                        // 昨天发的
                         reStr = "昨天 " + hourFormat + ":" + minuteFormat;
-                    } else if (dayDiff === 2) { //前天发的
+                    } else if (dayDiff === 2) {
+                        //前天发的
                         reStr = "前天 " + hourFormat + ":" + minuteFormat;
                     } else {
                         reStr = month + "月" + date + "日 " + hourFormat + ":" + minuteFormat;
                     }
-                } else { //不是这个月发的
+                } else {
+                    //不是这个月发的
                     reStr = month + "月" + date + "日 " + hourFormat + ":" + minuteFormat;
                 }
-            } else { // 非今年发的
+            } else {
+                // 非今年发的
                 reStr = year + "年" + month + "月" + date + "日 " + hourFormat + ":" + minuteFormat;
             }
             break;
@@ -4325,39 +5371,51 @@ F._timeStrForm = function(str, model, unUnix) {
             yearDiff = yearNow - year; // 相差几年
 
             // 格式化 年份
-            year = (year + '*').slice(-3, -1);
+            year = (year + "*").slice(-3, -1);
 
-            if (yearDiff === 0) { // 今年发的
-                if (monthDiff === 0) { //这个月发的
-                    if (dayDiff === 0) { // 今天发的
+            if (yearDiff === 0) {
+                // 今年发的
+                if (monthDiff === 0) {
+                    //这个月发的
+                    if (dayDiff === 0) {
+                        // 今天发的
                         reStr = hourFormat + ":" + minuteFormat;
-                    } else if (dayDiff === 1) { // 昨天发的
+                    } else if (dayDiff === 1) {
+                        // 昨天发的
                         reStr = "昨天";
-                    } else if (dayDiff === 2) { //前天发的
+                    } else if (dayDiff === 2) {
+                        //前天发的
                         reStr = "前天";
                     } else {
                         reStr = month + "月" + date + "日";
                     }
-                } else { //不是这个月发的
+                } else {
+                    //不是这个月发的
                     reStr = month + "月" + date + "日";
                 }
-            } else { // 非今年发的
+            } else {
+                // 非今年发的
                 reStr = year + "/" + month + "/" + date + "/";
             }
             break;
 
         case 6:
-            reStr = year + '.' + monthFormat + '.' + dateFormat;
+            reStr = year + "." + monthFormat + "." + dateFormat;
             break;
 
         case 7:
-            reStr = year + '/' + monthFormat + '/' + dateFormat;
+            reStr = year + "/" + monthFormat + "/" + dateFormat;
             break;
 
         default:
-            reStr = year + '-' + monthFormat + '-' + dateFormat + " " + hourFormat + ":" + minuteFormat;
+            reStr = year + "-" + monthFormat + "-" + dateFormat + " " + hourFormat + ":" + minuteFormat;
             break;
     }
 
     return reStr;
 };
+
+// 3333333333333333
+
+header_add();
+footer_add();

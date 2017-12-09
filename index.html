@@ -34,25 +34,6 @@
             pointer-events: inherit;
         }
 
-        /*#center .swiper-button-next,
-        #center .swiper-button-prev {
-            position: absolute;
-            width: 50px;
-            height: 100px;
-            top: 40%;
-            line-height: 100px;
-            text-align: center;
-            color: #fff;
-            font-size: 28px;
-            text-decoration: none;
-            font-family: '黑体';
-            background: rgba(0, 0, 0, 0.1);
-            right: 0;
-            display: none;
-            z-index: 10000;
-            pointer-events: inherit;
-        }*/
-
         #new_banner .swiper-button-prev,
         #phone_banner .swiper-button-prev,
         #ipad_banner .swiper-button-prev,
@@ -108,6 +89,7 @@
     }*/
 
         /* tcy -end-*/
+
         .sec1:after {
             display: block;
             content: "";
@@ -256,8 +238,8 @@
 </head>
 
 <body ng-app="indexApp" ng-controller="indexCtrl">
-    <div class="all">
-        <div class="header__nav">
+    <header class="header" id="header">
+        <!-- <div class="header__nav">
             <div class="header__nav-main">
                 <div class="header__n-m-left header__n-m-left_login">
                     <div class="header__n-m-l-item1">Xin chào, </div>
@@ -290,25 +272,28 @@
                     <a href="./html/register.html" class="header__n-m-l-reg">Đăng ký</a>
                 </div>
                 <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./html/buyIntro.html'">Trung tâm hỗ trợ</span>
+                    <a href="./index.html" class="header__n-m-home">BUYOO Trang chủ</a>
+                    <a href="./html/buyIntro.html" class="header__n-m-help">Trung tâm hỗ trợ</a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="all">
-        <div class="content header_c">
-            <div class="search_left left">
-                <a href="./index.html" class="logo">
-                    <img src="img/LOGO2.jpg" alt="">
-                </a>
+        <div class="header__content">
+            <div class="header__content-main">
+                <div class="header__c-m-logo">
+                    <a href="./index.html" class="header__c-m-l-img" style="background-image: url(./img/LOGO2.jpg);"></a>
+                </div>
+                <div class="header__c-m-search">
+                    <input type="text" class="header__c-m-s-input" id="findIpt" onkeydown="F._entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
+                    <span class="header__c-m-s-button" onclick="F._gotoFind()" style="background-image: url(./img/search_logo.png);"></span>
+                </div>
+                <div class="header__c-m-cart">
+                    <span class="header__c-m-c-icon" style="background-image: url(./img/2389463949327.png);"></span>
+                    <span class="header__c-m-c-text">购物车</span>
+                    <span class="header__c-m-c-number">8</span>
+                </div>
             </div>
-            <div class="search_right right">
-                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
-                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
-            </div>
-        </div>
-    </div>
+        </div> -->
+    </header>
     <div class="all">
         <div class="content navh">
             <div class="category left">
@@ -345,17 +330,17 @@
             <div class="category_1 left">
                 <a href="./html/cellphoneBanner.html">
                     <div class="category_1_1">
-                        <span>Truyền thông di động</span>
+                        <div>Điện thoại di động</div>
                     </div>
                 </a>
                 <a href="./html/computerPage.html">
                     <div class="category_1_2" ng-click="gotoComputer()">
-                        <span>Máy vi tính làm việc</span>
+                        <div>Laptop</div>
                     </div>
                 </a>
                 <a href="./html/shumapeijian.html">
                     <div class="category_1_3">
-                        <span>Kỹ thuật số thông minh</span>
+                        <div>Linh kiện & phụ kiện</div>
                     </div>
                 </a>
             </div>
@@ -461,7 +446,7 @@
     <div class="all margin_top53">
         <div class="header">
             <div class="content">
-                <div class="header_name left">Truyền thông di động</div>
+                <div class="header_name left">Điện thoại di động</div>
             </div>
         </div>
         <div class="content category_content">
@@ -585,7 +570,7 @@
     <div class="all margin_top53">
         <div class="header">
             <div class="content">
-                <div class="header_name left">Kỹ thuật số thông minh</div>
+                <div class="header_name left">Linh kiện & phụ kiện</div>
                 <div class="header_category right">
                 </div>
             </div>
@@ -646,8 +631,8 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer__top col-xs-24">
+    <footer class="footer" id="footer">
+        <!-- <div class="footer__top col-xs-24">
             <div class="footer__top-main">
                 <div class="footer__t-m-item col-xs-24">
                     <div class="footer__t-m-i-left col-xs-5">
@@ -703,7 +688,7 @@
                     <ul class="footer__b2-m-r1-main col-xs-24">
                         <a href="./html/about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
                         <a href="./html/join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
+                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">hợp tác thương mại:</a>
                         <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
                     </ul>
                 </div>
@@ -743,7 +728,6 @@
                         </label>
                         <div class="footer__b2-m-r7-l-row2">
                             <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(./img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(./img/2309409384203.png)"></a> -->
                         </div>
                     </div>
                     <div class="footer__b2-m-r7-right col-xs-12">
@@ -755,10 +739,12 @@
                     <div class="footer__b2-m-r6-right col-xs-12"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </footer>
-    <script src="js/common.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/md555.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js"></script>
     <script type="text/javascript" src="js/swiper.min.js"></script>
     <script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/yii.js"></script>
@@ -766,14 +752,11 @@
     <script src="js/img_silder.js"></script>
     <script src="js/xSlider.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/popup.js"></script>
-    <script src="js/md555.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/angularjs.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="js/common/common.js" type="text/javascript" charset="utf-8"></script> -->
     <script type="text/javascript">
         window.setTimeout(function () {
             if (localStorage.getItem("funId")) {
@@ -854,13 +837,6 @@
         }
 
         loadData();
-
-        function entersearch() {
-            var event = window.event || arguments.callee.caller.arguments[0];
-            if (event.keyCode == 13) {
-                gotoFind();
-            }
-        }
     </script>
 </body>
 

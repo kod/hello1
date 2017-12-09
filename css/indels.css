@@ -36,7 +36,7 @@
 		#one3 .img a.bigs{width:598px;height:347px;padding:0}
 		#one3 .img a.bigs img{width:100%;height:100%}
 		
-		#two3 .img img{width:146px;height:100px;border-right:2px solid #f5f5f5}
+		#two3 .img img{width:auto;height:100px;border-right:2px solid #f5f5f5}
 		#two3 .img a:last-child img{border-right:none}
 		.row{position:relative}
 		#myScrollspy{position:fixed;right:25px;bottom:2%;width:120px;background: #E6E6E6;text-align: center;z-index: 999;}

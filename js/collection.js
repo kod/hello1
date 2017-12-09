@@ -454,8 +454,8 @@ app.controller('collectionCtrl', function($scope, $http, $filter) {
     //点击商品页面跳转详情
     function gotoDetails(typeId, brandId) {
         if (brandId != null && brandId != "" && typeId != null && typeId != "") {
-            window.location.href = "./details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-            // window.open("./details_iphone.html?typeId=" + typeId + "&brandId=" + brandId)
+            window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+            // window.open("./details.html?typeId=" + typeId + "&brandId=" + brandId)
         } else {
             window.location.href = "";
         }

@@ -4,6 +4,8 @@ function createLoginSssion(funId, msisdn) {
         sessionStorage.setItem("funId", funId);
         localStorage.setItem("funId", funId);
         localStorage.setItem("msisdn", msisdn);
+        localStorage.setItem("validTime", +new Date() + 7*24*60*60*1000);
+
         //		sessionStorage.setItem("userName",userName);
         //		sessionStorage.setItem("userNick",userNick);
     } else {

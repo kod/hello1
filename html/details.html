@@ -18,116 +18,63 @@
     <link rel="stylesheet" type="text/css" href="../css/index_img.css">
     <link rel="stylesheet" href="../css/base.css">
     <style>
-    /* tcy -start-*/
+        /* tcy -start-*/
 
-    .swiper-slide-img {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        height: 100%;
-        width: 100%;
-    }
+        .swiper-slide-img {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            height: 100%;
+            width: 100%;
+        }
 
-    .vnd-unit {
-        font-size: 14px;
-        color: #666;
-        line-height: 1;
-        margin-top: 19px;
-        font-weight: 500;
-    }
+        .vnd-unit {
+            font-size: 14px;
+            color: #666;
+            line-height: 1;
+            margin-top: 19px;
+            font-weight: 500;
+        }
 
-    .oldprice {
-        color: #666;
-        padding-top: 3px;
-        margin-left: 10px;
-        line-height: 1;
-        margin-bottom: 10px;
-        display: none;
-    }
+        .oldprice {
+            color: #666;
+            padding-top: 3px;
+            margin-left: 10px;
+            line-height: 1;
+            margin-bottom: 10px;
+            display: none;
+        }
 
-    .oldprice__price {
-        text-decoration: line-through;
-    }
+        .oldprice__price {
+            text-decoration: line-through;
+        }
 
-    .oldprice__price span {
-        text-decoration: line-through;
-    }
+        .oldprice__price span {
+            text-decoration: line-through;
+        }
 
-    .discount {
-        color: #666;
-        /*padding-top: 3px;*/
-        margin-left: 10px;
-        line-height: 1;
-        display: none;
-    }
+        .discount {
+            color: #666;
+            /*padding-top: 3px;*/
+            margin-left: 10px;
+            line-height: 1;
+            display: none;
+        }
 
-    .discount__text {
+        .money_active .oldprice {
+            display: block;
+        }
 
-    }
+        .money_active .discount {
+            display: block;
+        }
 
-    .discount__num {
-        /*color: #F7004C;*/
-    }
-
-    .money_active .oldprice {
-        display: block;
-    }
-
-    .money_active .discount {
-        display: block;
-    }
-    /* tcy -end-*/
+        /* tcy -end-*/
     </style>
 </head>
 
 <body ng-app="detailsApp" ng-controller="detailsCtrl">
-    <div class="all">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
-                                </div>
-                            </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="all">
-        <div class="content header_c">
-            <div class="search_left left">
-                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
-            </div>
-            <div class="search_right right">
-                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
-                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
-            </div>
-        </div>
-    </div>
+    <header class="header" id="header"></header>
     <div class="all tt">
         <div class="content navh">
             <div class="category left">
@@ -166,12 +113,21 @@
                 </div>
                 <!--收藏-->
                 <div class="sc" ng-controller="collcetionCtrl">
-                    <span ng-click="shoucangClick()"><img id="shoucangImg" style="padding-top: 2px;" src="../img/sc (1).jpg" alt="" /> <a>Chọn sản phẩm</a></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span ng-click="shoucangClick()">
+                        <img id="shoucangImg" style="padding-top: 2px;" src="../img/sc (1).jpg" alt="" />
+                        <a>Chọn sản phẩm</a>
+                    </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
             <div class="right">
-                <h2><span>Kinh doanh độc lập</span>&nbsp;&nbsp;<i ng-bind="brandDetail.name" style="padding-top: 2px; font-weight: 700;"></i></h2>
-                <p class="p"><span></span><a href=""></a></p>
+                <h2>
+                    <span>Kinh doanh độc lập</span>&nbsp;&nbsp;
+                    <i ng-bind="brandDetail.name" style="padding-top: 2px; font-weight: 700;"></i>
+                </h2>
+                <p class="p">
+                    <span></span>
+                    <a href=""></a>
+                </p>
                 <div class="money" id="tcy__money">
                     <p style="line-height: 45px;">
                         <!-- Giá &nbsp;&nbsp;&nbsp;hiện&nbsp;&nbsp;&nbsp;tại: -->
@@ -181,14 +137,17 @@
                     </p>
                     <div class="oldprice">
                         <span class="oldprice__text">Giá trước đây:</span>
-                        <span class="oldprice__price"><span id="oldprice__price-num"></span>&nbsp;VND</span>
+                        <span class="oldprice__price">
+                            <span id="oldprice__price-num"></span>&nbsp;VND</span>
                     </div>
                     <div class="discount">
                         <span class="discount__text">Tiết kiệm:</span>
-                        <span class="discount__num"><span id="discount__num-num"></span>%</span>
+                        <span class="discount__num">
+                            <span id="discount__num-num"></span>%</span>
                     </div>
                     <div class="comments">
-                        <a href="#comment"><span ng-controller="commentCtrls" ng-bind="totalNumber"></span> &nbsp;bình luận</a>
+                        <a href="#comment">
+                            <span ng-controller="commentCtrls" ng-bind="totalNumber"></span> &nbsp;bình luận</a>
                     </div>
                 </div>
                 <div class="center">
@@ -319,7 +278,9 @@
                         </div>
                         <div class="left cen-right" style="width:250px;">
                             <!-- <p style="">Chỉ còn<span ng-bind="numbers"></span> </p> -->
-                            <p style=""><span ng-bind="numbers"></span> </p>
+                            <p style="">
+                                <span ng-bind="numbers"></span>
+                            </p>
                         </div>
                     </div>
                     <div ng-controller="instalmentCtrl">
@@ -354,14 +315,23 @@
                                 Trả góp hàng tháng:
                             </div>
                             <div class="left cen-right" style="width:350px">
-                                <p> <b ng-bind="resPrice | priceFormat"></b> VND <img src="../img/14.jpg" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 17px;" ng-click="information()" data-toggle="modal" data-target="#myhead" class="moneryIcon" /></p>
+                                <p>
+                                    <b ng-bind="resPrice | priceFormat"></b> VND
+                                    <img src="../img/14.jpg" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 17px;" ng-click="information()"
+                                        data-toggle="modal" data-target="#myhead" class="moneryIcon" />
+                                </p>
                             </div>
                         </div>
                         <div class="gm">
                             <div class="left cen-left">
+                                <button ng-click="addCart()">
+                                    <a>Thêm vào giỏ hàng</a>
+                                </button>
                             </div>
                             <div class="left cen-right">
-                                <button ng-click="gotoPay()" style="width: 270px;"><a style="font-size: 18px;">Mua ngay</a></button>
+                                <button ng-click="gotoPay()">
+                                    <a>Mua ngay</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -403,11 +373,16 @@
                 <div ng-controller="commentCtrl">
                     <div class="top">Bình luận về sản phẩm</div>
                     <div class="top-fen" style="display: none;">
-                        <div class="left" style=""><b><i ng-bind="average"></i></b></div>
+                        <div class="left" style="">
+                            <b>
+                                <i ng-bind="average"></i>
+                            </b>
+                        </div>
                         <div class="left img" id="xinxin">
                         </div>
                         <div class="left text">
-                            <span>Có tất cả <span ng-controller="commentCtrls" ng-bind="totalNumber"></span> dữ liệu</span>
+                            <span>Có tất cả
+                                <span ng-controller="commentCtrls" ng-bind="totalNumber"></span> dữ liệu</span>
                         </div>
                     </div>
                 </div>
@@ -423,15 +398,17 @@
                             <div class="right text">
                                 <div class="people_top">
                                     <div class="left">
-                                        <p style="float: left;">Đánh giá: <span ng-bind="item.score"></span></p>
+                                        <p style="float: left;">Đánh giá:
+                                            <span ng-bind="item.score"></span>
+                                        </p>
                                         <div id="ttt" ng-class="{tt0:item.score==0.5,tt1:item.score==1,tt2:item.score==1.5,tt3:item.score==2,tt4:item.score==2.5,tt5:item.score==3,tt6:item.score==3.5,tt7:item.score==4,tt8:item.score==4.5,tt9:item.score==5}"></div>
                                     </div>
                                     <div class="right" ng-bind="item.updateTime"></div>
                                 </div>
                                 <p ng-bind="item.content"></p>
                                 <span class="img" ng-repeat="item1 in item.userImg">
-                                        <img src="{{item1.url}}" ng-click="changePic($event)"/>
-                                    </span>
+                                    <img src="{{item1.url}}" ng-click="changePic($event)" />
+                                </span>
                             </div>
                             <!--放大图片-->
                             <div id="js-imgview-mask" class="imgview-mask" style="display: none;" ng-click="closePic()">
@@ -446,8 +423,10 @@
                     <div id="page" class="right">
                         <div>
                             <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
-                            <span style="padding-top: 3px;">Trang hiện tại: <span ng-init="nowPage=1" ng-bind="nowPage"></span>&nbsp;&nbsp;</span>
-                            <span style="padding-top: 3px;">Trang: <span ng-bind="totalPage"></span> tiên</span>
+                            <span style="padding-top: 3px;">Trang hiện tại:
+                                <span ng-init="nowPage=1" ng-bind="nowPage"></span>&nbsp;&nbsp;</span>
+                            <span style="padding-top: 3px;">Trang:
+                                <span ng-bind="totalPage"></span> tiên</span>
                             <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                         </div>
                     </div>
@@ -464,116 +443,7 @@
     </article>
     <div class="login-box">
     </div>
-    <footer class="footer">
-        <div class="footer__top col-xs-24">
-            <div class="footer__top-main">
-                <div class="footer__t-m-item col-xs-24">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer__bottom2 col-xs-24">
-            <div class="footer__bottom2-main">
-                <div class="footer__b2-m-row1">
-                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                    <ul class="footer__b2-m-r1-main col-xs-24">
-                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row2">
-                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                    <ul class="footer__b2-m-r2-main col-xs-24">
-                        <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row3">
-                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                    <ul class="footer__b2-m-r3-main col-xs-24">
-                        <li class="footer__b2-m-r3-m-item col-xs-24">
-                            <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row5">
-                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                    <ul class="footer__b2-m-r5-main col-xs-24">
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                </div>
-                <div class="footer__b2-m-row6 col-xs-24">
-                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                    <div class="footer__b2-m-r6-right col-xs-12"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer" id="footer"></footer>
     <!-- 弹出模态框 -->
     <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div style="display: table;width:690px;height:100%;margin:0 auto;">
@@ -581,7 +451,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="left">Thông tin về số tiền trả góp</div>
-                        <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                        <div class="right" data-dismiss="modal">
+                            <span class="alert__b-m-t-close"></span>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <table border="1">
@@ -626,113 +498,99 @@
 <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
 <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->
 <script>
-window.setTimeout(function() {
-    if (localStorage.getItem("funId")) {
-        F._userViewDetailInfo({}, function(ret) {
-            if (ret.data.headimage) {
-                $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
-            }
-        });
-    }
-}, 700);
-
-F.query = F._hrefUtils.parse().query || {};
-
-// F.discount = F.query.discount || '';
-// F.orgPrice = F.query.orgPrice || '';
-F.id = F.query.id || '';
-
-// console.log(F.id);
-// console.log(F.discount);
-// console.log(F.orgPrice);
-
-// if (F.discount && F.orgPrice) {
-//     $('#tcy__money').addClass('money_active');
-//     $('#discount__num-num').html(F.discount);
-//     $('#oldprice__price-num').html(F._priceFormat(F.orgPrice));
-// }
-
-var swiper = new Swiper('#index_banner', {
-    paginationClickable: true,
-    longSwipesRatio: 0.3,
-    touchRatio: 1,
-    autoplay: 6000,
-    effect: 'fade',
-    pagination: '.swiper-pagination',
-    observer: true, //修改swiper自己或子元素时, 自动初始化swiper
-    observeParents: true, //修改swiper的父元素时, 自动初始化swiper
-    prevButton: '.swiper-button-prev',
-    nextButton: '.swiper-button-next',
-});
-$('.bb button').click(function() {
-    $('.bb button').removeClass('b_active');
-    $(this).addClass('b_active');
-})
-$('.bl2 button').click(function() {
-    $('.bl2 button').removeClass('b_active');
-    $(this).addClass('b_active');
-})
-$('.btn').click(function() {
-    $('.btn').removeClass('b_active');
-    $(this).addClass('b_active');
-})
-$('body').delegate('.ys a', 'click', function() {
-    $('.ys a').removeClass('act');
-    $(this).addClass('act');
-});
-
-$('body').delegate('.nc button', 'click', function() {
-    $('.nc button').removeClass('act');
-    $(this).addClass('act');
-})
-$('body').delegate('.yys button', 'click', function() {
-    $('.yys button').removeClass('act');
-    $(this).addClass('act');
-})
-$('body').delegate('.btn', 'click', function() {
-    $('.btn').removeClass('act');
-    $(this).addClass('act');
-})
-$('.details .left .top').find('li').each(function(index) {
-    $(this).click(function() {
-        if ($(this).is('.act') == false) {
-            $('.details .left .top').find('li').removeClass('act').eq(index).addClass('act');
-            $('.details_center').find('.details_centerlist').stop().hide().eq(index).stop().show();
+    window.setTimeout(function () {
+        if (localStorage.getItem("funId")) {
+            F._userViewDetailInfo({}, function (ret) {
+                if (ret.data.headimage) {
+                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
+                }
+            });
         }
+    }, 700);
+
+    F.query = F._hrefUtils.parse().query || {};
+
+    F.id = F.query.id || '';
+
+    var swiper = new Swiper('#index_banner', {
+        paginationClickable: true,
+        longSwipesRatio: 0.3,
+        touchRatio: 1,
+        autoplay: 6000,
+        effect: 'fade',
+        pagination: '.swiper-pagination',
+        observer: true, //修改swiper自己或子元素时, 自动初始化swiper
+        observeParents: true, //修改swiper的父元素时, 自动初始化swiper
+        prevButton: '.swiper-button-prev',
+        nextButton: '.swiper-button-next',
+    });
+    $('.bb button').click(function () {
+        $('.bb button').removeClass('b_active');
+        $(this).addClass('b_active');
     })
-})
+    $('.bl2 button').click(function () {
+        $('.bl2 button').removeClass('b_active');
+        $(this).addClass('b_active');
+    })
+    $('.btn').click(function () {
+        $('.btn').removeClass('b_active');
+        $(this).addClass('b_active');
+    })
+    $('body').delegate('.ys a', 'click', function () {
+        $('.ys a').removeClass('act');
+        $(this).addClass('act');
+    });
 
-$(".bdsharebuttonbox").hide();
-$("#share").hover(function() {
-    $(".bdsharebuttonbox").show();
-}, function() {
+    $('body').delegate('.nc button', 'click', function () {
+        $('.nc button').removeClass('act');
+        $(this).addClass('act');
+    })
+    $('body').delegate('.yys button', 'click', function () {
+        $('.yys button').removeClass('act');
+        $(this).addClass('act');
+    })
+    $('body').delegate('.btn', 'click', function () {
+        $('.btn').removeClass('act');
+        $(this).addClass('act');
+    })
+    $('.details .left .top').find('li').each(function (index) {
+        $(this).click(function () {
+            if ($(this).is('.act') == false) {
+                $('.details .left .top').find('li').removeClass('act').eq(index).addClass('act');
+                $('.details_center').find('.details_centerlist').stop().hide().eq(index).stop().show();
+            }
+        })
+    })
+
     $(".bdsharebuttonbox").hide();
-})
-$(".bdsharebuttonbox").hover(function() {
-    $(".bdsharebuttonbox").show();
-}, function() {
-    $(".bdsharebuttonbox").hide();
-})
+    $("#share").hover(function () {
+        $(".bdsharebuttonbox").show();
+    }, function () {
+        $(".bdsharebuttonbox").hide();
+    })
+    $(".bdsharebuttonbox").hover(function () {
+        $(".bdsharebuttonbox").show();
+    }, function () {
+        $(".bdsharebuttonbox").hide();
+    })
 
-function gotoFind() {
-    var findcontent = $("#findIpt").val();
-    if (findcontent != "") {
-        window.location.href = "search.html?findcontent=" + findcontent;
-    }
-}
+    // function gotoFind() {
+    //     var findcontent = $("#findIpt").val();
+    //     if (findcontent != "") {
+    //         window.location.href = "search.html?findcontent=" + findcontent;
+    //     }
+    // }
 
-function entersearch() {
-    var event = window.event || arguments.callee.caller.arguments[0];
-    if (event.keyCode == 13)
-
-    {
-        gotoFind();
-    }
-}
-var bodyh = $('body').height();
-$('#shoucang').height(bodyh);
+    // function entersearch() {
+    //     var event = window.event || arguments.callee.caller.arguments[0];
+    //     if (event.keyCode == 13) {
+    //         gotoFind();
+    //     }
+    // }
+    var bodyh = $('body').height();
+    $('#shoucang').height(bodyh);
 </script>
-<script src="../js/details_iphone_copy.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/details_copy.js" type="text/javascript" charset="utf-8"></script>
 <!-- <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> -->
 
 </html>

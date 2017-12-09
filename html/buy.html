@@ -10,114 +10,78 @@
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <link rel="stylesheet" href="../css/base.css">
     <title>ABOUT US</title>
+    <script src="../js/jquery.js"></script>
     <script src="../js/md5.js"></script>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
-    * {
-        text-align: justify;
-    }
+        * {
+            text-align: justify;
+        }
 
-    .body__main {
-        margin-bottom: 50px;
-        font-size: 16px;
-        padding-top: 50px;
-    }
+        .body {
+            border-top: 1px solid #72aef0;
+        }
 
-    .body__main:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .body__main {
+            margin-bottom: 50px;
+            font-size: 16px;
+            padding-top: 50px;
+        }
 
-    .body__main-banner {
-        padding-top: 30px;
-        margin-bottom: 50px;
-    }
+        .body__main:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .body__m-b-img {
-        width: 1200px;
-    }
+        .body__main-banner {
+            padding-top: 30px;
+            margin-bottom: 50px;
+        }
 
-    .body__main-title {
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 40px;
-    }
+        .body__m-b-img {
+            width: 1200px;
+        }
 
-    h3.body__main-item {
-        margin-bottom: 10px;
-        line-height: 1.6;
-        color: #1479f1;
-    }
+        .body__main-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    .body__main-item {
-        margin-bottom: 25px;
-        line-height: 1.6;
-    }
+        h3.body__main-item {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #1479f1;
+        }
 
-    .body__main-tips {
-        margin-top: -10px;
-        margin-bottom: 25px;
-    }
+        .body__main-item {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
 
-    .body__m-t-title {
-        color: #999;
-        margin-bottom: 10px;
-    }
+        .body__main-tips {
+            margin-top: -10px;
+            margin-bottom: 25px;
+        }
 
-    .body__m-t-item {
-        color: #666;
-        line-height: 1.6;
-        font-size: 12px;
-    }
+        .body__m-t-title {
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .body__m-t-item {
+            color: #666;
+            line-height: 1.6;
+            font-size: 12px;
+        }
     </style>
 </head>
 
 <body>
     <div class="content" id="vue-el">
-        <header class="header">
-            <div class="header__nav">
-                <div class="header__nav-main">
-                    <div class="header__n-m-left header__n-m-left_login">
-                        <div class="header__n-m-l-item1">Xin chào, </div>
-                        <div class="header__n-m-l-item2">
-                            <div class="">
-                                <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                                <span class="header__n-m-l-i2-arrow"></span>                                
-                            </div>
-                            <div class="userLogin-info">
-                                <div class="userLogin-info__top col-xs-24">
-                                    <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                    <div class="userLogin-info__top-order">
-                                        <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                        <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
-                                    </div>
-                                </div>
-                                <div class="userLogin-info__bottom col-xs-24">
-                                    <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                    </div>
-                    <div class="header__n-m-left header__n-m-left_nologin">
-                        <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                        <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                    </div>
-                    <div class="header__n-m-right">
-                        <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                        <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                    </div>
-                </div>
-            </div>
-            <div class="header__title">
-                <div class="header__title-main">
-                    <img src="../img/LOGO2.jpg" class="header__t-m-img" @click="gohome">
-                    <span class="header__t-m-text">Mua sắm trả góp</span>
-                </div>
-            </div>
-        </header>
+        <header class="header" id="header"></header>
         <section class="body">
             <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
                 <!-- <div class="body__main-banner col-xs-24">
@@ -129,204 +93,107 @@
                 <div class="body__main-item col-xs-24">Thanh toán bằng ngân hàng trực tuyến hoặc số dư tài khoản cá nhân.</div>
 
                 <h3 class="body__main-item col-xs-24">2. Thẩm tra tài liệu</h3>
-                <div class="body__main-item col-xs-24">Khi bạn đăng ký và gửi thông tin cá nhân của bạn, nhân viên dịch vụ khách hàng và người quản lí trường học của chúng tôi sẽ liên hệ ngay với bạn để xác minh dữ liệu, nếu bạn vượt qua, sẽ ký một thỏa thuận khách hàng. Xin lưu ý rằng tất cả các thông tin đăng ký Buyoo có quyền giải thích cuối cùng về chứng từ này.</div>
+                <div class="body__main-item col-xs-24">Khi bạn đăng ký và gửi thông tin cá nhân của bạn, nhân viên dịch vụ khách hàng và người quản lí trường học
+                    của chúng tôi sẽ liên hệ ngay với bạn để xác minh dữ liệu, nếu bạn vượt qua, sẽ ký một thỏa thuận khách
+                    hàng. Xin lưu ý rằng tất cả các thông tin đăng ký Buyoo có quyền giải thích cuối cùng về chứng từ này.</div>
 
                 <h3 class="body__main-item col-xs-24">3. Giao hàng</h3>
-                <div class="body__main-item col-xs-24">Sau khi bạn được duyệt hồ sơ và hoàn tất thủ tục thanh toán lần đầu, người phụ trách trường học của chúng tôi sẽ liên lạc với bạn và giao hàng tận tay bạn.</div>
+                <div class="body__main-item col-xs-24">Sau khi bạn được duyệt hồ sơ và hoàn tất thủ tục thanh toán lần đầu, người phụ trách trường học của chúng
+                    tôi sẽ liên lạc với bạn và giao hàng tận tay bạn.</div>
 
                 <h3 class="body__main-item col-xs-24">4. Thanh toán lần đầu và hoàn trả thanh toán.</h3>
-                <div class="body__main-item col-xs-24">Nếu muốn mua hàng trả góp, sau khi bạn gửi đơn đặt hàng và được thẩm duyệt, bạn có thể thanh toán tại "Đơn hàng của tôi", hàng tháng bạn đăng nhập tài khoản của buyoo trước ngày đến hạn thanh toán, kích chuột vào "Thanh toán ngay" để thanh toán.</div>
+                <div class="body__main-item col-xs-24">Nếu muốn mua hàng trả góp, sau khi bạn gửi đơn đặt hàng và được thẩm duyệt, bạn có thể thanh toán tại "Đơn
+                    hàng của tôi", hàng tháng bạn đăng nhập tài khoản của buyoo trước ngày đến hạn thanh toán, kích chuột
+                    vào "Thanh toán ngay" để thanh toán.</div>
                 <div class="body__main-tips col-xs-24">
                     <div class="body__m-t-title col-xs-24">Nhắc nhở:</div>
-                    <div class="body__m-t-item col-xs-24">1. Khi lập lịch thanh toán nên chọn số kì thanh toán, bạn có thể xem chi tiết về khoản phí và số tiền phải trả mỗi kỳ.</div>
+                    <div class="body__m-t-item col-xs-24">1. Khi lập lịch thanh toán nên chọn số kì thanh toán, bạn có thể xem chi tiết về khoản phí và số tiền
+                        phải trả mỗi kỳ.</div>
                     <div class="body__m-t-item col-xs-24">2. Lịch thanh toán trả góp cần phải được thẩm duyệt, sau khi thẩm duyệt có kết quả sẽ liên hệ với bạn.</div>
                     <div class="body__m-t-item col-xs-24">3. Trước ngày đến hạn của ngày trả nợ hàng tháng, hãy thanh toán kịp thời trên website hoặc trên app.</div>
                 </div>
-                
+
                 <h3 class="body__main-item col-xs-24">5. Tài khoản và Bảo mật</h3>
-                <div class="body__main-item col-xs-24">Cho dù đó là ứng dụng App hay trang web của chúng tôi, bạn có thể thay đổi hoặc truy xuất mật khẩu đăng nhập từ mã xác minh điện thoại di động của bạn tại trung tâm cá nhân của bạn</div>
-                
+                <div class="body__main-item col-xs-24">Cho dù đó là ứng dụng App hay trang web của chúng tôi, bạn có thể thay đổi hoặc truy xuất mật khẩu đăng nhập
+                    từ mã xác minh điện thoại di động của bạn tại trung tâm cá nhân của bạn</div>
+
                 <h3 class="body__main-item col-xs-24">6. Cách sửa đổi và truy xuất mật khẩu đăng nhập</h3>
-                <div class="body__main-item col-xs-24">Cho dù đó là ứng dụng App hay trang web của chúng tôi, bạn có thể thay đổi hoặc truy xuất mật khẩu đăng nhập từ mã xác minh điện thoại di động của bạn tại trung tâm cá nhân của bạn</div>
-                
+                <div class="body__main-item col-xs-24">Cho dù đó là ứng dụng App hay trang web của chúng tôi, bạn có thể thay đổi hoặc truy xuất mật khẩu đăng nhập
+                    từ mã xác minh điện thoại di động của bạn tại trung tâm cá nhân của bạn</div>
+
                 <h3 class="body__main-item col-xs-24">7. Làm thế nào để hoàn trả khoản thanh toán lần đầu của bạn khi đơn hàng bị hủy</h3>
-                <div class="body__main-item col-xs-24">Nếu đơn hàng của bạn không được phê duyệt, hệ thống sẽ hủy đơn hàng của bạn, khoản tiền thanh toán lần đầu của bạn sẽ tự động hoàn lại vào số dư tài khoản của bạn và sẽ thông báo bằng tin nhắn, nếu muốn đăng ký rút tiền, vui lòng nhấp vào chức năng "rút tiền mặt", chúng tôi sẽ hoàn phí trong vòng 7-14 ngày làm việc vào tài khoản bạn yêu cầu</div>
+                <div class="body__main-item col-xs-24">Nếu đơn hàng của bạn không được phê duyệt, hệ thống sẽ hủy đơn hàng của bạn, khoản tiền thanh toán lần đầu
+                    của bạn sẽ tự động hoàn lại vào số dư tài khoản của bạn và sẽ thông báo bằng tin nhắn, nếu muốn đăng
+                    ký rút tiền, vui lòng nhấp vào chức năng "rút tiền mặt", chúng tôi sẽ hoàn phí trong vòng 7-14 ngày làm
+                    việc vào tài khoản bạn yêu cầu</div>
 
                 <h3 class="body__main-item col-xs-24">8. Làm thế nào để đổi trả hàng</h3>
-                <div class="body__main-item col-xs-24">Tất cả các vấn đề về chất lượng sản phẩm mà bạn gặp phải là mối quan tâm lớn nhất của chúng tôi, vui lòng liên hệ với dịch vụ khách hàng, chúng tôi sẽ nhanh chóng liên hệ với bạn để phối hợp giải quyết.</div>
+                <div class="body__main-item col-xs-24">Tất cả các vấn đề về chất lượng sản phẩm mà bạn gặp phải là mối quan tâm lớn nhất của chúng tôi, vui lòng
+                    liên hệ với dịch vụ khách hàng, chúng tôi sẽ nhanh chóng liên hệ với bạn để phối hợp giải quyết.</div>
 
         </section>
-        <footer class="footer">
-            <div class="footer__top col-xs-24">
-                <div class="footer__top-main">
-                    <div class="footer__t-m-item col-xs-24">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom2 col-xs-24">
-                <div class="footer__bottom2-main">
-                    <div class="footer__b2-m-row1">
-                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                        <ul class="footer__b2-m-r1-main col-xs-24">
-                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row2">
-                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                        <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row3">
-                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                        <ul class="footer__b2-m-r3-main col-xs-24">
-                            <li class="footer__b2-m-r3-m-item col-xs-24">
-                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row5">
-                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                        <ul class="footer__b2-m-r5-main col-xs-24">
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                    </div>
-                    <div class="footer__b2-m-row6 col-xs-24">
-                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                        <div class="footer__b2-m-r6-right col-xs-12"></div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <footer class="footer" id="footer"></footer>
         </div>
         <script>
-        require([
-            '../js/jquery1.11.2',
-            '../js/vue.min',
-            '../js/md5',
-            '../js/common',
-        ], function($, Vue, md5) {
+            require([
+                '../js/jquery1.11.2',
+                '../js/vue.min',
+                '../js/md5',
+                '../js/common',
+            ], function ($, Vue, md5) {
 
-            F.vue = {
-                body__main_height: document.documentElement.clientHeight - 133 - 210,
-            };
+                F.vue = {
+                    body__main_height: document.documentElement.clientHeight - 133 - 210,
+                };
 
-            var load = function() {
-                new_vue();
-            };
+                var load = function () {
+                    new_vue();
+                };
 
-            var pre_data = function(data) {
+                var pre_data = function (data) {
 
-            }
-
-            F.loadData = function(params, callback) {
-                if (callback === undefined) callback = params;
-
-                var all_data = {};
-                var request_length = 0; //请求个数
-
-                // 请求是否全部返回
-                function all_loaded() {
-                    if (Object.keys(all_data).length === request_length) {
-                        pre_data(all_data);
-                        // Q.hideProgress();
-                        callback(all_data);
-                    }
                 }
-                // if (params.loadData_isLoading !== false) Q.showProgress();
 
-                all_loaded();
-            };
+                F.loadData = function (params, callback) {
+                    if (callback === undefined) callback = params;
 
-            function new_vue() {
-                F.vue = new Vue({
-                    el: $('#vue-el')[0],
-                    data: F.vue,
-                    methods: {
-                        gohome: gohome,
-                    },
-                    computed: {
+                    var all_data = {};
+                    var request_length = 0; //请求个数
 
-                    },
+                    // 请求是否全部返回
+                    function all_loaded() {
+                        if (Object.keys(all_data).length === request_length) {
+                            pre_data(all_data);
+                            // Q.hideProgress();
+                            callback(all_data);
+                        }
+                    }
+                    // if (params.loadData_isLoading !== false) Q.showProgress();
+
+                    all_loaded();
+                };
+
+                function new_vue() {
+                    F.vue = new Vue({
+                        el: $('#vue-el')[0],
+                        data: F.vue,
+                        methods: {
+                            gohome: gohome,
+                        },
+                        computed: {
+
+                        },
+                    });
+                }
+
+                function gohome() {
+                    window.location.href = '../index.html';
+                }
+
+                F.loadData(function () {
+                    load();
                 });
-            }
-
-            function gohome() {
-                window.location.href = '../index.html';
-            }
-
-            F.loadData(function() {
-                load();
             });
-        });
         </script>
 </body>
 

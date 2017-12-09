@@ -10,144 +10,108 @@
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <link rel="stylesheet" href="../css/base.css">
     <title>JOIN US</title>
+    <script src="../js/jquery.js"></script>
     <script src="../js/md5.js"></script>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
-    * {
-        text-align: justify;
-    }
+        * {
+            text-align: justify;
+        }
 
-    .body__main {
-        font-size: 16px;
-    }
+        .body {
+            border-top: 1px solid #72aef0;
+        }
 
-    .body__main:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .body__main {
+            font-size: 16px;
+        }
 
-    .body__main-banner {
-        padding-top: 30px;
-        margin-bottom: 50px;
-    }
+        .body__main:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .body__m-b-img {
-        width: 1200px;
-    }
+        .body__main-banner {
+            padding-top: 30px;
+            margin-bottom: 50px;
+        }
 
-    .body__main-title {
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 40px;
-    }
+        .body__m-b-img {
+            width: 1200px;
+        }
 
-    .body__main-list {
-        margin-bottom: 30px;
-        line-height: 1.5;
-    }
+        .body__main-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    .body__m-l-item {
-        margin-bottom: 10px;
-    }
+        .body__main-list {
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
 
-    .body__m-red {
-        color: #F7004C;
-        margin-bottom: 50px;
-    }
+        .body__m-l-item {
+            margin-bottom: 10px;
+        }
 
-    .body__m-r-item {
-        margin-bottom: 10px;
-    }
+        .body__m-red {
+            color: #F7004C;
+            margin-bottom: 50px;
+        }
 
-    .body__m-cell {
-        margin-bottom: 50px;
-    }
+        .body__m-r-item {
+            margin-bottom: 10px;
+        }
 
-    .body__m-c-title {
-        border-bottom: 1px solid #147af3;
-        font-size: 22px;
-        color: #444;
-    }
+        .body__m-cell {
+            margin-bottom: 50px;
+        }
 
-    .body__m-c-t-text {
-        border-bottom: 4px solid #147af3;
-        padding-bottom: 8px;
-    }
+        .body__m-c-title {
+            border-bottom: 1px solid #147af3;
+            font-size: 22px;
+            color: #444;
+        }
 
-    .body__m-c-main {
-        padding-top: 20px;
-        line-height: 1.7;
-    }
+        .body__m-c-t-text {
+            border-bottom: 4px solid #147af3;
+            padding-bottom: 8px;
+        }
 
-    .body__m-c-m-item {
-        margin-bottom: 15px;
-    }
+        .body__m-c-main {
+            padding-top: 20px;
+            line-height: 1.7;
+        }
 
-    .body__m-email {
-        line-height: 24px;
-        margin-bottom: 100px;
-    }
+        .body__m-c-m-item {
+            margin-bottom: 15px;
+        }
 
-    .body__m-e-pot {
-        height: 20px;
-        width: 20px;
-        background-color: #f41050;
-        border-radius: 100%;
-        vertical-align: middle;
-    }
+        .body__m-email {
+            line-height: 24px;
+            margin-bottom: 100px;
+        }
 
-    .body__m-e-text {
-        color: #2f7cfb;
-    }
+        .body__m-e-pot {
+            height: 20px;
+            width: 20px;
+            background-color: #f41050;
+            border-radius: 100%;
+            vertical-align: middle;
+        }
+
+        .body__m-e-text {
+            color: #2f7cfb;
+        }
     </style>
 </head>
 
 <body>
     <div class="content" id="vue-el">
-        <header class="header">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
-                                </div>
-                            </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                </div>
-            </div>
-        </div>
-            <div class="header__title">
-                <div class="header__title-main">
-                    <img src="../img/LOGO2.jpg" class="header__t-m-img" @click="gohome">
-                    <span class="header__t-m-text">Đến với chúng tôi</span>
-                </div>
-            </div>
-        </header>
+        <header class="header" id="header"></header>
         <section class="body">
             <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
                 <div class="body__main-banner col-xs-24">
@@ -163,7 +127,8 @@
                     <p class="body__m-l-item">6 Bạn muốn kinh nghiệm thực tập của bạn trở thành điểm nổi bật trong sơ yếu lí lịch của bạn </p>
                 </div>
                 <div class="body__m-red col-xs-24">
-                    <p class="body__m-r-item">Chúng tôi đang tìm một người xuất sắc như bạn, nếu đúng, mời bạn hãy gia nhập với chúng tôi, cùng chúng tôi thay đổi thế giới!</p>
+                    <p class="body__m-r-item">Chúng tôi đang tìm một người xuất sắc như bạn, nếu đúng, mời bạn hãy gia nhập với chúng tôi, cùng chúng
+                        tôi thay đổi thế giới!</p>
                 </div>
                 <div class="body__m-cell col-xs-24">
                     <div class="body__m-c-title col-xs-24">
@@ -176,11 +141,20 @@
                         </li>
                         <li class="body__m-c-m-item col-xs-24">
                             <div class="body__m-c-m-i-left col-xs-24" style="width: 200px;">Trách nhiệm công việc:</div>
-                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Chịu trách nhiệm thực hiện các chính sách tiếp thị và chấp hành các quy định của công ty để đảm bảo hoàn thành kế hoạch mục tiêu hàng năm của công ty; Duy trì và thiết lập các kênh mạng lưới tiếp thị của trường học, phản hồi kịp thời về công ty các thông tin thị trường liên quan và nhu cầu của khách hàng; Kết hợp với đề án tiếp thị trong kế hoạch hoạt động của công ty để đưa ra những phương án tiếp thị có tính thực hiện và phát triển; Định kì tổ chức các hoạt động phát triển thị trường; Phối hợp xây dựng đội ngũ tiếp thị, tham gia đào tạo nhân viên tiếp thị, và thiết lập một mối quan hệ tốt với sinh viên.</div>
+                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Chịu trách nhiệm thực hiện các chính sách tiếp thị và chấp hành các quy định của công ty để đảm
+                                bảo hoàn thành kế hoạch mục tiêu hàng năm của công ty; Duy trì và thiết lập các kênh mạng
+                                lưới tiếp thị của trường học, phản hồi kịp thời về công ty các thông tin thị trường liên
+                                quan và nhu cầu của khách hàng; Kết hợp với đề án tiếp thị trong kế hoạch hoạt động của công
+                                ty để đưa ra những phương án tiếp thị có tính thực hiện và phát triển; Định kì tổ chức các
+                                hoạt động phát triển thị trường; Phối hợp xây dựng đội ngũ tiếp thị, tham gia đào tạo nhân
+                                viên tiếp thị, và thiết lập một mối quan hệ tốt với sinh viên.</div>
                         </li>
                         <li class="body__m-c-m-item col-xs-24">
                             <div class="body__m-c-m-i-left col-xs-24" style="width: 200px;">Yêu cầu công việc:</div>
-                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Có 1 năm kinh nghiệm trở lên trong tiếp thị, ưu tiên người thông thạo với các trường đại học; Khả năng phân tích logic cao, giao tiếp và phối hợp tốt, chú ý đến các chi tiết nhỏ, không ngừng theo đuổi phương án tiếp thị tối ưu; Sẵn sàng suy nghĩ, sẵn sàng chia sẻ, sẵn sàng giao tiếp, có tinh thần làm việc theo nhóm và tinh thần trách nhiệm.</div>
+                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Có 1 năm kinh nghiệm trở lên trong tiếp thị, ưu tiên người thông thạo với các trường đại học;
+                                Khả năng phân tích logic cao, giao tiếp và phối hợp tốt, chú ý đến các chi tiết nhỏ, không
+                                ngừng theo đuổi phương án tiếp thị tối ưu; Sẵn sàng suy nghĩ, sẵn sàng chia sẻ, sẵn sàng
+                                giao tiếp, có tinh thần làm việc theo nhóm và tinh thần trách nhiệm.</div>
                         </li>
                         <li class="body__m-c-m-item col-xs-24">
                             <div class="body__m-c-m-i-left col-xs-24" style="width: 200px;">Lương tháng:</div>
@@ -195,18 +169,28 @@
                     <div class="body__m-c-main col-xs-24">
                         <li class="body__m-c-m-item col-xs-24">
                             <div class="body__m-c-m-i-left col-xs-24" style="width: 200px;">Mô tả công việc</div>
-                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Bạn sẽ tham gia vào các hoạt động liên quan đến kế hoạch phát triển sản phẩm trong trường và hợp tác cộng đồng; từ việc khai thác, đàm phán các kênh thị trường đến thiết kế tài liệu, tuyên truyền quảng cáo cho các kênh, đến việc triển khai cuối cùng của sự kiện; phải phát huy tối đa  tài năng của bạn để đặt nền móng vững chắc cho sự nghiệp tương lai của bạn; Chúng tôi rất hoan nghênh các đối tác có can đảm và ý tưởng để phát triển thị trường vững mạnh, tham gia vào phát triển một thương hiệu tốt nhất.</div>
+                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Bạn sẽ tham gia vào các hoạt động liên quan đến kế hoạch phát triển sản phẩm trong trường và
+                                hợp tác cộng đồng; từ việc khai thác, đàm phán các kênh thị trường đến thiết kế tài liệu,
+                                tuyên truyền quảng cáo cho các kênh, đến việc triển khai cuối cùng của sự kiện; phải phát
+                                huy tối đa tài năng của bạn để đặt nền móng vững chắc cho sự nghiệp tương lai của bạn; Chúng
+                                tôi rất hoan nghênh các đối tác có can đảm và ý tưởng để phát triển thị trường vững mạnh,
+                                tham gia vào phát triển một thương hiệu tốt nhất.</div>
                         </li>
                         <li class="body__m-c-m-item col-xs-24">
                             <div class="body__m-c-m-i-left col-xs-24" style="width: 200px;">Yêu cầu công việc</div>
-                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Không giới hạn chuyên ngành, ưu tiên sinh viên năm hai, năm ba Kỹ năng ngôn ngữ và kỹ năng giao tiếp tốt, được công nhận và sẵn sàng quảng bá sản phẩm của công ty; Tổ chức các hoạt động trực tuyến và ngoại tuyến, làm tốt công việc mua bán và bảo trì cho khách hàng; Ưu tiên các sinh viên có kinh nghiệm làm việc, cán bộ lớp, có kinh nghiệm quản lí tại trường.</div>
+                            <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">Không giới hạn chuyên ngành, ưu tiên sinh viên năm hai, năm ba Kỹ năng ngôn ngữ và kỹ năng giao
+                                tiếp tốt, được công nhận và sẵn sàng quảng bá sản phẩm của công ty; Tổ chức các hoạt động
+                                trực tuyến và ngoại tuyến, làm tốt công việc mua bán và bảo trì cho khách hàng; Ưu tiên các
+                                sinh viên có kinh nghiệm làm việc, cán bộ lớp, có kinh nghiệm quản lí tại trường.</div>
                         </li>
                         <li class="body__m-c-m-item col-xs-24">
                             <div class="body__m-c-m-i-left col-xs-24" style="width: 200px;">Chúng tôi có thể cho bạn</div>
                             <div class="body__m-c-m-i-right col-xs-24" style="width: 1000px;">
                                 <p>1. Thù lao thực tập cao;</p>
-                                <p>2. Khắc phục hạn chế (như bối cảnh, kinh nghiệm), có cơ hội phát huy tài năng, có nền tảng để không ngừng học hỏi và nâng cao kinh nghiệm gấp đôi.</p>
-                                <p>3. Công ty định kỳ dạy nghề và hướng dẫn, người có biểu hiện ưu tú có thể tham dự hội nghị nhân viên xuất sắc.</p>
+                                <p>2. Khắc phục hạn chế (như bối cảnh, kinh nghiệm), có cơ hội phát huy tài năng, có nền tảng
+                                    để không ngừng học hỏi và nâng cao kinh nghiệm gấp đôi.</p>
+                                <p>3. Công ty định kỳ dạy nghề và hướng dẫn, người có biểu hiện ưu tú có thể tham dự hội nghị
+                                    nhân viên xuất sắc.</p>
                             </div>
                         </li>
                     </div>
@@ -214,181 +198,73 @@
                 <div class="body__m-email col-xs-24">
                     <span class="body__m-e-pot"></span>
                     <!-- 请将简历发送至 <span class="body__m-e-text">hr.vn@buyoo.asia</span> 邮箱，我们会尽快与您联系！ -->
-                    Các ứng viên gửi sơ yếu lí lịch đến hòm thư <a href="mailto:hr.vn@buyoo.asia" class="body__m-e-text">hr.vn@buyoo.asia</a>, chúng tôi sẽ nhanh chóng liên hệ với bạn!
+                    Các ứng viên gửi sơ yếu lí lịch đến hòm thư
+                    <a href="mailto:hr.vn@buyoo.asia" class="body__m-e-text">hr.vn@buyoo.asia</a>, chúng tôi sẽ nhanh chóng liên hệ với bạn!
                 </div>
             </div>
         </section>
-        <footer class="footer">
-            <div class="footer__top col-xs-24">
-                <div class="footer__top-main">
-                    <div class="footer__t-m-item col-xs-24">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom2 col-xs-24">
-                <div class="footer__bottom2-main">
-                    <div class="footer__b2-m-row1">
-                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                        <ul class="footer__b2-m-r1-main col-xs-24">
-                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row2">
-                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                        <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row3">
-                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                        <ul class="footer__b2-m-r3-main col-xs-24">
-                            <li class="footer__b2-m-r3-m-item col-xs-24">
-                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row5">
-                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                        <ul class="footer__b2-m-r5-main col-xs-24">
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                    </div>
-                    <div class="footer__b2-m-row6 col-xs-24">
-                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                        <div class="footer__b2-m-r6-right col-xs-12"></div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <footer class="footer" id="footer"></footer>
     </div>
     <script>
-    require([
-        '../js/jquery1.11.2',
-        '../js/vue.min',
-        '../js/md5',
-        '../js/common',
-    ], function($, Vue, md5) {
+        require([
+            '../js/jquery1.11.2',
+            '../js/vue.min',
+            '../js/md5',
+            '../js/common',
+        ], function ($, Vue, md5) {
 
-        F.vue = {
-            body__main_height: document.documentElement.clientHeight - 133 - 210,
-        };
+            F.vue = {
+                body__main_height: document.documentElement.clientHeight - 133 - 210,
+            };
 
-        var load = function() {
-            new_vue();
-        };
+            var load = function () {
+                new_vue();
+            };
 
-        var pre_data = function(data) {
+            var pre_data = function (data) {
 
-        }
-
-        F.loadData = function(params, callback) {
-            if (callback === undefined) callback = params;
-
-            var all_data = {};
-            var request_length = 0; //请求个数
-
-            // 请求是否全部返回
-            function all_loaded() {
-                if (Object.keys(all_data).length === request_length) {
-                    pre_data(all_data);
-                    // Q.hideProgress();
-                    callback(all_data);
-                }
             }
-            // if (params.loadData_isLoading !== false) Q.showProgress();
 
-            all_loaded();
-        };
+            F.loadData = function (params, callback) {
+                if (callback === undefined) callback = params;
 
-        function new_vue() {
-            F.vue = new Vue({
-                el: $('#vue-el')[0],
-                data: F.vue,
-                methods: {
-                    gohome: gohome,
-                },
-                computed: {
+                var all_data = {};
+                var request_length = 0; //请求个数
 
-                },
+                // 请求是否全部返回
+                function all_loaded() {
+                    if (Object.keys(all_data).length === request_length) {
+                        pre_data(all_data);
+                        // Q.hideProgress();
+                        callback(all_data);
+                    }
+                }
+                // if (params.loadData_isLoading !== false) Q.showProgress();
+
+                all_loaded();
+            };
+
+            function new_vue() {
+                F.vue = new Vue({
+                    el: $('#vue-el')[0],
+                    data: F.vue,
+                    methods: {
+                        gohome: gohome,
+                    },
+                    computed: {
+
+                    },
+                });
+            }
+
+            function gohome() {
+                window.location.href = '../index.html';
+            }
+
+            F.loadData(function () {
+                load();
             });
-        }
-
-        function gohome() {
-            window.location.href = '../index.html';
-        }
-
-        F.loadData(function() {
-            load();
         });
-    });
     </script>
 </body>
 

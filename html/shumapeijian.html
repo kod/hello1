@@ -8,7 +8,7 @@
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
-    <title>Kỹ thuật số thông minh</title>
+    <title>Linh kiện & phụ kiện</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/swiper.min.css">
     <link href="../css/style.css" rel="stylesheet">
@@ -18,80 +18,33 @@
     <link rel="stylesheet" href="../css/shuma.css" />
     <link rel="stylesheet" href="../css/base.css">
     <style>
-    /* tcy -start-*/
+        /* tcy -start-*/
+        .swiper-slide-img {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+        }
 
-    .swiper-slide-img {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        height: 100%;
-        width: 100%;
-    }
+        .swiper-button-prev {
+            display: none;
+        }
 
-    .swiper-button-prev {
-        display: none;
-    }
+        .swiper-button-next {
+            display: none;
+        }
 
-    .swiper-button-next {
-        display: none;
-    }
-
-    /* tcy -end-*/
+        /* tcy -end-*/
     </style>
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" ng-app="digitalApp" ng-controller="shumaCtrl">
-    <div class="all">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
-                                </div>
-                            </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="all">
-        <div class="content header_c">
-            <div class="search_left left">
-                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
-            </div>
-            <div class="search_right right">
-                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
-                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
-            </div>
-        </div>
-    </div>
+    <header class="header" id="header"></header>
     <div class="all">
         <div class="content navh">
             <div class="category left">
-                <a href="#" class="category_a">Kỹ thuật số thông minh</a>
+                <a href="#" class="category_a">Linh kiện & phụ kiện</a>
             </div>
             <div class="nav left">
                 <a href="../index.html" class="">Trang chủ</a>
@@ -127,7 +80,9 @@
                 <div class="category_1 left">
                     <div class="hot_brand" style="height:100%">
                         <p>Thương hiệu nổi tiếng</p>
-                        <a ng-repeat="item in ppq" style="padding:7px 14px"><span ng-bind="item.name" ng-click="gotoMore2(item.id)"></span></a>
+                        <a ng-repeat="item in ppq" style="padding:7px 14px">
+                            <span ng-bind="item.name" ng-click="gotoMore2(item.id)"></span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -140,9 +95,11 @@
                     <li class="banner1__m-b-item" ng-repeat="jinxuan_item in jinxuan" ng-click="product(jinxuan_item.typeId,jinxuan_item.brandId)">
                         <div class="banner1__m-b-i-img" style="background-image: url({{ jinxuan_item.imageUrl }});"></div>
                         <div class="banner1__m-b-i-title" ng-bind="jinxuan_item.name"></div>
-                        <div class="banner1__m-b-i-price">Giá bán: <span class="banner1__m-b-i-p-money" ng-bind="jinxuan_item.maxprice | priceFormat">3000</span> VND</div>
+                        <div class="banner1__m-b-i-price">Giá bán:
+                            <span class="banner1__m-b-i-p-money" ng-bind="jinxuan_item.maxprice | priceFormat">3000</span> VND</div>
                         <div class="banner1__m-b-i-fenqi">
-                            <span class="banner1__m-b-i-f-money" ng-bind="jinxuan_item.maxprice/12 | priceFormat">12.000.000</span><span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
+                            <span class="banner1__m-b-i-f-money" ng-bind="jinxuan_item.maxprice/12 | priceFormat">12.000.000</span>
+                            <span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
                         </div>
                     </li>
                 </div>
@@ -156,15 +113,18 @@
                 </div>
                 <div class="banner1__main">
                     <div class="banner1__main-top">
-                        <div ng-repeat="sub_top_item in classfy._sub_top" ng-class="{ 'banner1__main-top-1': sub_top_item.position === 1, 'banner1__main-top-2': sub_top_item.position === 2, }" style="background-image: url({{sub_top_item.imageUrl}});" ng-click="product(sub_top_item.typeId,sub_top_item.brandId)"></div>
+                        <div ng-repeat="sub_top_item in classfy._sub_top" ng-class="{ 'banner1__main-top-1': sub_top_item.position === 1, 'banner1__main-top-2': sub_top_item.position === 2, }"
+                            style="background-image: url({{sub_top_item.imageUrl}});" ng-click="product(sub_top_item.typeId,sub_top_item.brandId)"></div>
                     </div>
                     <div class="banner1__main-bottom">
                         <li class="banner1__m-b-item" ng-repeat="sub_bottom_item in classfy['_sub_bottom']" ng-click="product(sub_bottom_item.typeId,sub_bottom_item.brandId)">
                             <div class="banner1__m-b-i-img" style="background-image: url({{ sub_bottom_item.imageUrl }});"></div>
                             <div class="banner1__m-b-i-title" ng-bind="sub_bottom_item.name"></div>
-                            <div class="banner1__m-b-i-price">Giá bán: <span class="banner1__m-b-i-p-money" ng-bind="sub_bottom_item.maxprice | priceFormat">3000</span> VND</div>
+                            <div class="banner1__m-b-i-price">Giá bán:
+                                <span class="banner1__m-b-i-p-money" ng-bind="sub_bottom_item.maxprice | priceFormat">3000</span> VND</div>
                             <div class="banner1__m-b-i-fenqi">
-                                <span class="banner1__m-b-i-f-money" ng-bind="sub_bottom_item.maxprice/12 | priceFormat">500</span><span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
+                                <span class="banner1__m-b-i-f-money" ng-bind="sub_bottom_item.maxprice/12 | priceFormat">500</span>
+                                <span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
                             </div>
                         </li>
                     </div>
@@ -176,122 +136,17 @@
                 <div class="content">
                     <h4>Dãy thương hiệu</h4>
                     <div class="img">
-                        <a ng-repeat="item in ppq"><span ng-click="gotoMore1(item.id)"><img src="{{item.imageUrl}}" alt=""/></span></a>
+                        <a ng-repeat="item in ppq">
+                            <span ng-click="gotoMore1(item.id)">
+                                <img src="{{item.imageUrl}}" alt="" />
+                            </span>
+                        </a>
                     </div>
                 </div>
             </article>
         </div>
     </div>
-        <footer class="footer">
-            <div class="footer__top col-xs-24">
-                <div class="footer__top-main">
-                    <div class="footer__t-m-item col-xs-24">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom2 col-xs-24">
-                <div class="footer__bottom2-main">
-                    <div class="footer__b2-m-row1">
-                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                        <ul class="footer__b2-m-r1-main col-xs-24">
-                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row2">
-                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                        <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row3">
-                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                        <ul class="footer__b2-m-r3-main col-xs-24">
-                            <li class="footer__b2-m-r3-m-item col-xs-24">
-                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row5">
-                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                        <ul class="footer__b2-m-r5-main col-xs-24">
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                    </div>
-                    <div class="footer__b2-m-row6 col-xs-24">
-                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                        <div class="footer__b2-m-r6-right col-xs-12"></div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    <footer class="footer" id="footer"></footer>
     <script src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/swiper.min.js"></script>
     <script src="../js/bootstrap.js"></script>
@@ -305,32 +160,28 @@
     <script src="../js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script> -->
-    <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js"></script>
     <script>
 
-    $('.move_top').click(function() {
-        $('html,body').animate({
-            scrollTop: '0px'
-        }, 1000);
-    })
+        $('.move_top').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 1000);
+        })
 
-    function gotoFind() {
-        var findcontent = $("#findIpt").val();
-        if (findcontent != "") {
-            window.location.href = "search.html?findcontent=" + findcontent;
-        }
-    }
+        // function gotoFind() {
+        //     var findcontent = $("#findIpt").val();
+        //     if (findcontent != "") {
+        //         window.location.href = "search.html?findcontent=" + findcontent;
+        //     }
+        // }
 
-    function entersearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13)
-
-        {
-            gotoFind();
-        }
-    }
+        // function entersearch() {
+        //     var event = window.event || arguments.callee.caller.arguments[0];
+        //     if (event.keyCode == 13) {
+        //         gotoFind();
+        //     }
+        // }
     </script>
     <script src="../js/index_four.js" type="text/javascript" charset="utf-8"></script>
 </body>

@@ -25,59 +25,7 @@
 </head>
 
 <body ng-app="orderApp" ng-controller="orderCtrl">
-    <div class="all">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;">
-                                        <a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a>
-                                    </p>
-                                    <p>
-                                        <a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="all">
-        <div class="content header_c">
-            <div class="search_left left">
-                <a href="../index.html" class="logo">
-                    <img src="../img/LOGO2.jpg" alt="">
-                </a>
-            </div>
-            <div class="search_right right">
-                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
-                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
-            </div>
-        </div>
-    </div>
+    <header class="header" id="header"></header>
     <div class="all all_nav">
         <div class="content navh" style="overflow: inherit;">
             <div class="category left" style="width:182px;height:37px;background: transparent;">
@@ -254,117 +202,7 @@
         </div>
         <!-- /.modal -->
     </div>
-    <footer class="footer">
-        <div class="footer__top col-xs-24">
-            <div class="footer__top-main">
-                <div class="footer__t-m-item col-xs-24">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer__bottom2 col-xs-24">
-            <div class="footer__bottom2-main">
-                <div class="footer__b2-m-row1">
-                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                    <ul class="footer__b2-m-r1-main col-xs-24">
-                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row2">
-                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                    <ul class="footer__b2-m-r2-main col-xs-24">
-                        <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row3">
-                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                    <ul class="footer__b2-m-r3-main col-xs-24">
-                        <li class="footer__b2-m-r3-m-item col-xs-24">
-                            <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row5">
-                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                    <ul class="footer__b2-m-r5-main col-xs-24">
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon">
-                            <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                </div>
-                <div class="footer__b2-m-row6 col-xs-24">
-                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                    <div class="footer__b2-m-r6-right col-xs-12"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer" id="footer"></footer>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/cropbox.js"></script>
@@ -503,19 +341,19 @@
             //window.location.href="";
         });
 
-        function gotoFind() {
-            var findcontent = $("#findIpt").val();
-            if (findcontent != "") {
-                window.location.href = "./search.html?findcontent=" + findcontent;
-            }
-        }
+        // function gotoFind() {
+        //     var findcontent = $("#findIpt").val();
+        //     if (findcontent != "") {
+        //         window.location.href = "./search.html?findcontent=" + findcontent;
+        //     }
+        // }
 
-        function entersearch() {
-            var event = window.event || arguments.callee.caller.arguments[0];
-            if (event.keyCode == 13) {
-                gotoFind();
-            }
-        }
+        // function entersearch() {
+        //     var event = window.event || arguments.callee.caller.arguments[0];
+        //     if (event.keyCode == 13) {
+        //         gotoFind();
+        //     }
+        // }
     </script>
     <script src="../js/order.js" type="text/javascript" charset="utf-8"></script>
 </body>

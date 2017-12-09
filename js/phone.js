@@ -164,8 +164,8 @@ app.controller('ppqPhoneCtrl', function($scope, $http) {
 
 function gotoDetails(typeId, brandId) {
     if (typeId != "" && brandId != "") {
-        window.location.href = "details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-        // window.open("details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
+        window.location.href = "details.html?typeId=" + typeId + "&brandId=" + brandId;
+        // window.open("details.html?typeId=" + typeId + "&brandId=" + brandId);
     } else {
         window.location.href = "";
     }
@@ -234,9 +234,9 @@ app.controller("cellCtrl", function($scope, $http) {
     }
 })
 
-function gotoFind() {
-    var findcontent = $("#findIpt").val();
-    if (findcontent != "") {
-        window.location.href = "search.html?findcontent=" + findcontent;
-    }
-}
+// function gotoFind() {
+//     var findcontent = $("#findIpt").val();
+//     if (findcontent != "") {
+//         window.location.href = "search.html?findcontent=" + findcontent;
+//     }
+// }

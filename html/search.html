@@ -16,110 +16,64 @@
     <link rel="stylesheet" type="text/css" href="../css/index_img.css">
     <link rel="stylesheet" href="../css/base.css">
     <style>
-    .dropup {
-        transform: rotate(180deg);
-    }
+        .dropup {
+            transform: rotate(180deg);
+        }
 
-    article .changePage button {
-        width: inherit;
-        height: inherit;
-        padding: 3px 8px;
-    }
+        article .changePage button {
+            width: inherit;
+            height: inherit;
+            padding: 3px 8px;
+        }
 
-    article .changePage input {
-        width: 50px
-    }
+        article .changePage input {
+            width: 50px
+        }
 
-    .one:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .one:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .one .right .right-top input[type=submit] {
-        border: 1px solid #aaa;
-        cursor: pointer;
-        background: #fff;
-        width: 55px;
-        height: 25px;
-    }
+        .one .right .right-top input[type=submit] {
+            border: 1px solid #aaa;
+            cursor: pointer;
+            background: #fff;
+            width: 55px;
+            height: 25px;
+        }
 
-    .one .right .right-top input[type=submit]:hover {
-        background-color: #0075f6;
-        color: #fff
-    }
+        .one .right .right-top input[type=submit]:hover {
+            background-color: #0075f6;
+            color: #fff
+        }
 
-    .one .right {
-        width: 100%;
-    }
+        .one .right {
+            width: 100%;
+        }
 
-    .one .right .ul a {
-        position: relative;
-        height: 351px;
-    }
+        .one .right .ul a {
+            position: relative;
+            height: 351px;
+        }
 
-    .one .right .ul a h5 {
-        line-height: 20px;
-    }
+        .one .right .ul a h5 {
+            line-height: 20px;
+        }
 
-    .changePage:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .changePage:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
     </style>
 </head>
 
 <body id="app" ng-app='searchApp' ng-controller="searchCtrl">
-    <div class="all">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
-                                </div>
-                            </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="all">
-        <div class="content header_c">
-            <div class="search_left left">
-                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
-            </div>
-            <div class="search_right right">
-                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
-                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
-            </div>
-        </div>
-    </div>
+    <header class="header" id="header"></header>
     <div class="all" style="border-bottom:2px solid #107AEA">
         <div class="content navh">
             <div class="category left">
@@ -140,24 +94,29 @@
                 </div>
                 <div class="right">
                     <div class="right-top">
-                        <span class="left" ng-click="changeOrder('default')"><!-- Xác nhận thứ tự --></span>
+                        <span class="left" ng-click="changeOrder('default')">
+                            <!-- Xác nhận thứ tự -->
+                        </span>
                         <!-- <span class="right">Có một <b ng-bind="totalnumber"></b> phẩm   &nbsp;&nbsp;&nbsp; </span> -->
-                        <span class="right" style="cursor: default;"><b ng-bind="totalnumber"></b> Sản Phẩm Được Tìm Thấy</span>
+                        <span class="right" style="cursor: default;">
+                            <b ng-bind="totalnumber"></b> Sản Phẩm Được Tìm Thấy</span>
                     </div>
                     <div class="ul" style="overflow: visible;padding-left:6%;">
                         <a ng-repeat="item in findDetails" ng-click="product(item.typeId,item.brandId,item.id)">
-                        <img src="{{item.iconUrl}}" alt="" />
-                        <h4 ng-bind="item.name"></h4>
-                        <!--    <div>{{item.id}}</div>-->
-                        <p>Giá bán: <span ng-bind="item.price | priceFormat"></span> VND </p>
-                        <h5><span ng-bind="item.price/12 | priceFormat"></span> VND x 12 Tháng</h5>
-                        <!-- <h5>Trả góp hàng tháng: <br /> <span ng-bind="item.price/12 | priceFormat"></span> VND x12</h5> -->
-                        <span ng-show="item.promotion" class="item-badge" style="background-image: url(../img/badge1.png);">
-                            <span class="item-badge__reduce">GIẢM</span>
-                            <span class="item-badge__mian" ng-bind="100 - item.discount"></span>
-                            <span class="item-badge__percent">%</span>
-                        </span>                  
-                    </a>
+                            <img src="{{item.iconUrl}}" alt="" />
+                            <h4 ng-bind="item.name"></h4>
+                            <!--    <div>{{item.id}}</div>-->
+                            <p>Giá bán:
+                                <span ng-bind="item.price | priceFormat"></span> VND </p>
+                            <h5>
+                                <span ng-bind="item.price/12 | priceFormat"></span> VND x 12 Tháng</h5>
+                            <!-- <h5>Trả góp hàng tháng: <br /> <span ng-bind="item.price/12 | priceFormat"></span> VND x12</h5> -->
+                            <span ng-show="item.promotion" class="item-badge" style="background-image: url(../img/badge1.png);">
+                                <span class="item-badge__reduce">GIẢM</span>
+                                <span class="item-badge__mian" ng-bind="100 - item.discount"></span>
+                                <span class="item-badge__percent">%</span>
+                            </span>
+                        </a>
                     </div>
                     <h1 ng-bind="findTip" style="font-size: 25px;"></h1>
                 </div>
@@ -165,123 +124,16 @@
             <div class="changePage">
                 <div style="margin-bottom: 30px;">
                     <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
-                    <span style="padding-top: 3px;">Trang hiện tại: <span ng-init="nowPage=1" ng-bind="nowPage" class="pop"></span>&nbsp;&nbsp;</span>
-                    <span style="padding-top: 3px;">Trang : <span ng-bind="totalPage"></span> tiên</span>
+                    <span style="padding-top: 3px;">Trang hiện tại:
+                        <span ng-init="nowPage=1" ng-bind="nowPage" class="pop"></span>&nbsp;&nbsp;</span>
+                    <span style="padding-top: 3px;">Trang :
+                        <span ng-bind="totalPage"></span> tiên</span>
                     <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                 </div>
             </div>
         </div>
     </article>
-    <footer class="footer">
-        <div class="footer__top col-xs-24">
-            <div class="footer__top-main">
-                <div class="footer__t-m-item col-xs-24">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer__bottom2 col-xs-24">
-            <div class="footer__bottom2-main">
-                <div class="footer__b2-m-row1">
-                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                    <ul class="footer__b2-m-r1-main col-xs-24">
-                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row2">
-                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                    <ul class="footer__b2-m-r2-main col-xs-24">
-                        <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row3">
-                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                    <ul class="footer__b2-m-r3-main col-xs-24">
-                        <li class="footer__b2-m-r3-m-item col-xs-24">
-                            <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row5">
-                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                    <ul class="footer__b2-m-r5-main col-xs-24">
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                </div>
-                <div class="footer__b2-m-row6 col-xs-24">
-                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                    <div class="footer__b2-m-r6-right col-xs-12"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer" id="footer"></footer>
     <script src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/swiper.min.js"></script>
     <script src="../js/yii.js"></script>
@@ -300,322 +152,315 @@
     <!-- <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script> -->
     <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->
     <script>
-    window.setTimeout(function() {
-        if (localStorage.getItem("funId")) {
-            F._userViewDetailInfo({}, function(ret) {
-                if (ret.data.headimage) {
-                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
-                }
-            });
-        }
-    }, 700);
-
-    F.query = F._hrefUtils.parse().query || {};
-
-    var currentpage = F.query.page || 1;
-
-    var swiper = new Swiper('#index_banner', {
-        pagination: '.swiper-pagination',
-        loop: true,
-        grabCursor: true,
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        autoplay: 4000,
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
-    });
-
-    $('#findIpt').val(F.query.findcontent || '');
-
-
-
-    $('.hot_brand').hover(function() {
-        $('.hot_brand').removeClass('act');
-        $(this).addClass('act')
-    }, function() {
-        $(this).removeClass('act');
-        $('.category_1 .hot_brand:nth-child(2)').addClass('act');
-    })
-
-    $('#importPage').change(function() {
-        var number = $(this).val();
-        if (number < 0) {
-
-            $(this).val('')
-        }
-        var maxlength = $("#importPage").attr('maxlength');
-        if (number > maxlength) {
-
-            $(this).val('')
-        }
-    })
-    $('.priceone,.pricetwo').change(function() {
-        var number = $(this).val();
-        if (number < 0) {
-
-            $(this).val('')
-        }
-        if (isNaN(number)) {
-
-            $(this).val('')
-        }
-
-    })
-
-    function entersearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13)
-
-        {
-            gotoFind();
-        }
-    }
-
-    function keysearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13)
-
-        {
-            angular.element(document.getElementById('app')).scope().confirm()
-        }
-    }
-
-
-
-
-    var loading = new F._loading();
-
-    var app = angular.module("searchApp", []);
-    app.filter('priceFormat', function() { //可以注入依赖
-        return F._priceFormat;
-    });
-
-    app.controller("searchCtrl", function($scope, $http) {
-        //截取Url里面的参数   
-        function GetRequest() {
-            var url = location.search; //获取url中"?"符后的字串  
-            var theRequest = new Object();
-            if (url.indexOf("?") != -1) {
-                var str = url.substr(1);
-                strs = str.split("&");
-                for (var i = 0; i < strs.length; i++) {
-                    theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]); //获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>, （unescape只针对数字, 中文乱码)  
-                }
+        window.setTimeout(function () {
+            if (localStorage.getItem("funId")) {
+                F._userViewDetailInfo({}, function (ret) {
+                    if (ret.data.headimage) {
+                        $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
+                    }
+                });
             }
-            return theRequest;
-        }
+        }, 700);
 
-        var request = new Object();
-        request = GetRequest();
-        /*搜索接口*/
+        F.query = F._hrefUtils.parse().query || {};
 
-        var appid = localStorage.getItem("funId");
-        var method = 'fun.find.finding';
-        var charset = 'utf-8';
+        var currentpage = F.query.page || 1;
 
-        var funid = '';
-        var findcontent = findcontent;
-        var pagesize = '8';
-        var Key = 'commodityKey';
-        sousuoReq(currentpage); //页面加载获取数据
+        var swiper = new Swiper('#index_banner', {
+            pagination: '.swiper-pagination',
+            loop: true,
+            grabCursor: true,
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplay: 4000,
+            prevButton: '.swiper-button-prev',
+            nextButton: '.swiper-button-next',
+        });
+
+        $('#findIpt').val(F.query.findcontent || '');
 
 
-        /*下一页*/
-        $scope.nextPage = function() {
-            currentpage++;
 
-            F._setUrl('page', currentpage);
-            $scope.nowPage = currentpage;
-            sousuoReq(currentpage);
-            $('#lastPagebtn').css({
-                'background': '#0075F6'
-            }).attr('disabled', false)
-        }
-        /*上一页*/
-        $scope.lastPage = function() {
-            currentpage--;
-            F._setUrl('page', currentpage);
-            $scope.nowPage = currentpage;
-            sousuoReq(currentpage);
-            $('#nextPagebtn').css({
-                'background': '#0075F6'
-            }).attr('disabled', false)
-        }
+        $('.hot_brand').hover(function () {
+            $('.hot_brand').removeClass('act');
+            $(this).addClass('act')
+        }, function () {
+            $(this).removeClass('act');
+            $('.category_1 .hot_brand:nth-child(2)').addClass('act');
+        })
 
-        $scope.confirm = function() {
-            currentpage = $("#importPage").val();
-            $('.pop').html(currentpage);
-            if (currentpage >= $scope.totalPage) {
-                currentpage = $scope.totalPage;
-            } else if (currentpage <= 1) {
-                currentpage = 1;
-            } else {
+        $('#importPage').change(function () {
+            var number = $(this).val();
+            if (number < 0) {
+
+                $(this).val('')
+            }
+            var maxlength = $("#importPage").attr('maxlength');
+            if (number > maxlength) {
+
+                $(this).val('')
+            }
+        })
+        $('.priceone,.pricetwo').change(function () {
+            var number = $(this).val();
+            if (number < 0) {
+
+                $(this).val('')
+            }
+            if (isNaN(number)) {
+
+                $(this).val('')
+            }
+
+        })
+
+        // function entersearch() {
+        //     var event = window.event || arguments.callee.caller.arguments[0];
+        //     if (event.keyCode == 13) {
+        //         gotoFind();
+        //     }
+        // }
+
+        // function keysearch() {
+        //     var event = window.event || arguments.callee.caller.arguments[0];
+        //     if (event.keyCode == 13) {
+        //         angular.element(document.getElementById('app')).scope().confirm()
+        //     }
+        // }
+
+        var loading = new F._loading();
+
+        var app = angular.module("searchApp", []);
+        app.filter('priceFormat', function () { //可以注入依赖
+            return F._priceFormat;
+        });
+
+        app.controller("searchCtrl", function ($scope, $http) {
+            //截取Url里面的参数   
+            function GetRequest() {
+                var url = location.search; //获取url中"?"符后的字串  
+                var theRequest = new Object();
+                if (url.indexOf("?") != -1) {
+                    var str = url.substr(1);
+                    strs = str.split("&");
+                    for (var i = 0; i < strs.length; i++) {
+                        theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]); //获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>, （unescape只针对数字, 中文乱码)  
+                    }
+                }
+                return theRequest;
+            }
+
+            var request = new Object();
+            request = GetRequest();
+            /*搜索接口*/
+
+            var appid = localStorage.getItem("funId");
+            var method = 'fun.find.finding';
+            var charset = 'utf-8';
+
+            var funid = '';
+            var findcontent = findcontent;
+            var pagesize = '8';
+            var Key = 'commodityKey';
+            sousuoReq(currentpage); //页面加载获取数据
+
+
+            /*下一页*/
+            $scope.nextPage = function () {
+                currentpage++;
+
+                F._setUrl('page', currentpage);
                 $scope.nowPage = currentpage;
+                sousuoReq(currentpage);
+                $('#lastPagebtn').css({
+                    'background': '#0075F6'
+                }).attr('disabled', false)
             }
-            sousuoReq(currentpage);
-            $('#nextPagebtn').css({
-                'background': '#0075F6'
-            }).attr('disabled', false)
-            $('#lastPagebtn').css({
-                'background': '#0075F6'
-            }).attr('disabled', false)
-        }
+            /*上一页*/
+            $scope.lastPage = function () {
+                currentpage--;
+                F._setUrl('page', currentpage);
+                $scope.nowPage = currentpage;
+                sousuoReq(currentpage);
+                $('#nextPagebtn').css({
+                    'background': '#0075F6'
+                }).attr('disabled', false)
+            }
 
-        function sousuoReq(currentpage) {
-
-            var findcontent = request['findcontent'];
-
-            // loading.show();
-            // F._findProducts({
-            //     findcontent: findcontent,
-            //     pagesize: pagesize,
-            //     currentpage: currentpage,
-            // }, function(ret) {
-            //     loading.hide();
-            //     if (!ret) return false;
-            //     if (ret.code !== 10000) return false;
-
-
-            //     $scope.findDetails = ret.details;
-            //     $scope.totalnumber = ret.totalnumber;
-
-            //     $scope.totalPage = ret.totalpage;
-
-            //     if ($scope.totalPage == 1) {
-            //         $("#nextPagebtn").attr("disabled", true);
-            //         $("#nextPagebtn").css("background", "#d7d7d7");
-            //         $("#lastPagebtn").attr("disabled", true);
-            //         $("#lastPagebtn").css("background", "#d7d7d7");
-            //     } else {
-            //         if (currentpage <= 1) {
-            //             $("#lastPagebtn").attr("disabled", true);
-            //             $("#lastPagebtn").css("background", "#d7d7d7");
-            //             $("#nextPagebtn").attr("disabled", false);
-            //             $("#nextPagebtn").css("background", "#0075F6");
-            //         } else if (currentpage >= $scope.totalPage) {
-            //             $("#nextPagebtn").attr("disabled", true);
-            //             $("#nextPagebtn").css("background", "#d7d7d7");
-            //             $("#lastPagebtn").attr("disabled", false);
-            //             $("#lastPagebtn").css("background", "#0075F6");
-            //         }
-            //     }
-            //     if ($scope.findDetails.length > 0) {
-            //         for (var i = 0; i < $scope.findDetails.length; i++) {
-            //             var imgUrls = $scope.findDetails[i].imageUrls;
-            //             var imgUrlsArray = imgUrls.split("|");
-            //             $scope.findDetails[i].image = imgUrlsArray[0];
-            //         }
-
-            //         $scope.findTip = "";
-            //     } else {
-            //         $scope.findTip = "Xin lỗi, không tìm thấy “" + findcontent + "”";
-
-            //     }
-            // });
-
-
-            var url = F._findProducts_cd;
-            var ajax = new ajaxClass($http, url, "GET");
-
-
-            var md5SigntypeStrig = "appid=" + appid + "&method=" + method + "&charset=" + charset + Key;
-            var signType = hex_md5(md5SigntypeStrig);
-
-
-            var md5EncryptStrig = "funid=" + funid + "&findcontent=" + findcontent + "&pagesize=" + pagesize + "&currentpage=" + currentpage + Key;
-            var encrypt = md5(md5EncryptStrig);
-
-
-            ajax.params = {
-                appid: appid,
-                method: method,
-                charset: charset,
-                //          signtype: 'e3f82d7c51a8e0a09c396fd929e5133e',
-                signtype: signType,
-                encrypt: encrypt,
-                timestamp: '2017-09-06 11:30:50',
-                version: '1.0',
-                funid: funid,
-                findcontent: findcontent,
-                pagesize: pagesize,
-                currentpage: currentpage
-            };
-            ajax.successCallback = function(res) {
-
-
-                if (res.data.code == 10000) {
-
-                    $scope.findDetails = res.data.details;
-                    $scope.totalnumber = res.data.totalnumber;
-
+            $scope.confirm = function () {
+                currentpage = $("#importPage").val();
+                $('.pop').html(currentpage);
+                if (currentpage >= $scope.totalPage) {
+                    currentpage = $scope.totalPage;
+                } else if (currentpage <= 1) {
+                    currentpage = 1;
+                } else {
                     $scope.nowPage = currentpage;
-                    $scope.totalPage = res.data.totalpage;
+                }
+                sousuoReq(currentpage);
+                $('#nextPagebtn').css({
+                    'background': '#0075F6'
+                }).attr('disabled', false)
+                $('#lastPagebtn').css({
+                    'background': '#0075F6'
+                }).attr('disabled', false)
+            }
 
-                    if ($scope.totalPage == 1) {
-                        $("#nextPagebtn").attr("disabled", true);
-                        $("#nextPagebtn").css("background", "#d7d7d7");
-                        $("#lastPagebtn").attr("disabled", true);
-                        $("#lastPagebtn").css("background", "#d7d7d7");
-                    } else {
-                        if (currentpage <= 1) {
-                            $("#lastPagebtn").attr("disabled", true);
-                            $("#lastPagebtn").css("background", "#d7d7d7");
-                            $("#nextPagebtn").attr("disabled", false);
-                            $("#nextPagebtn").css("background", "#0075F6");
-                        } else if (currentpage >= $scope.totalPage) {
+            function sousuoReq(currentpage) {
+
+                var findcontent = request['findcontent'];
+
+                // loading.show();
+                // F._findProducts({
+                //     findcontent: findcontent,
+                //     pagesize: pagesize,
+                //     currentpage: currentpage,
+                // }, function(ret) {
+                //     loading.hide();
+                //     if (!ret) return false;
+                //     if (ret.code !== 10000) return false;
+
+
+                //     $scope.findDetails = ret.details;
+                //     $scope.totalnumber = ret.totalnumber;
+
+                //     $scope.totalPage = ret.totalpage;
+
+                //     if ($scope.totalPage == 1) {
+                //         $("#nextPagebtn").attr("disabled", true);
+                //         $("#nextPagebtn").css("background", "#d7d7d7");
+                //         $("#lastPagebtn").attr("disabled", true);
+                //         $("#lastPagebtn").css("background", "#d7d7d7");
+                //     } else {
+                //         if (currentpage <= 1) {
+                //             $("#lastPagebtn").attr("disabled", true);
+                //             $("#lastPagebtn").css("background", "#d7d7d7");
+                //             $("#nextPagebtn").attr("disabled", false);
+                //             $("#nextPagebtn").css("background", "#0075F6");
+                //         } else if (currentpage >= $scope.totalPage) {
+                //             $("#nextPagebtn").attr("disabled", true);
+                //             $("#nextPagebtn").css("background", "#d7d7d7");
+                //             $("#lastPagebtn").attr("disabled", false);
+                //             $("#lastPagebtn").css("background", "#0075F6");
+                //         }
+                //     }
+                //     if ($scope.findDetails.length > 0) {
+                //         for (var i = 0; i < $scope.findDetails.length; i++) {
+                //             var imgUrls = $scope.findDetails[i].imageUrls;
+                //             var imgUrlsArray = imgUrls.split("|");
+                //             $scope.findDetails[i].image = imgUrlsArray[0];
+                //         }
+
+                //         $scope.findTip = "";
+                //     } else {
+                //         $scope.findTip = "Xin lỗi, không tìm thấy “" + findcontent + "”";
+
+                //     }
+                // });
+
+
+                var url = F._findProducts_cd;
+                var ajax = new ajaxClass($http, url, "GET");
+
+
+                var md5SigntypeStrig = "appid=" + appid + "&method=" + method + "&charset=" + charset + Key;
+                var signType = hex_md5(md5SigntypeStrig);
+
+
+                var md5EncryptStrig = "funid=" + funid + "&findcontent=" + findcontent + "&pagesize=" + pagesize + "&currentpage=" + currentpage + Key;
+                var encrypt = md5(md5EncryptStrig);
+
+
+                ajax.params = {
+                    appid: appid,
+                    method: method,
+                    charset: charset,
+                    //          signtype: 'e3f82d7c51a8e0a09c396fd929e5133e',
+                    signtype: signType,
+                    encrypt: encrypt,
+                    timestamp: '2017-09-06 11:30:50',
+                    version: '1.0',
+                    funid: funid,
+                    findcontent: findcontent,
+                    pagesize: pagesize,
+                    currentpage: currentpage
+                };
+                ajax.successCallback = function (res) {
+
+
+                    if (res.data.code == 10000) {
+
+                        $scope.findDetails = res.data.details;
+                        $scope.totalnumber = res.data.totalnumber;
+
+                        $scope.nowPage = currentpage;
+                        $scope.totalPage = res.data.totalpage;
+
+                        if ($scope.totalPage == 1) {
                             $("#nextPagebtn").attr("disabled", true);
                             $("#nextPagebtn").css("background", "#d7d7d7");
-                            $("#lastPagebtn").attr("disabled", false);
-                            $("#lastPagebtn").css("background", "#0075F6");
+                            $("#lastPagebtn").attr("disabled", true);
+                            $("#lastPagebtn").css("background", "#d7d7d7");
+                        } else {
+                            if (currentpage <= 1) {
+                                $("#lastPagebtn").attr("disabled", true);
+                                $("#lastPagebtn").css("background", "#d7d7d7");
+                                $("#nextPagebtn").attr("disabled", false);
+                                $("#nextPagebtn").css("background", "#0075F6");
+                            } else if (currentpage >= $scope.totalPage) {
+                                $("#nextPagebtn").attr("disabled", true);
+                                $("#nextPagebtn").css("background", "#d7d7d7");
+                                $("#lastPagebtn").attr("disabled", false);
+                                $("#lastPagebtn").css("background", "#0075F6");
+                            }
                         }
-                    }
-                    if ($scope.findDetails.length > 0) {
-                        for (var i = 0; i < $scope.findDetails.length; i++) {
-                            // var imgUrls = $scope.findDetails[i].imageUrls;
-                            // var imgUrlsArray = imgUrls.split("|");
-                            $scope.findDetails[i].image = $scope.findDetails[i].iconUrl;
+                        if ($scope.findDetails.length > 0) {
+                            for (var i = 0; i < $scope.findDetails.length; i++) {
+                                // var imgUrls = $scope.findDetails[i].imageUrls;
+                                // var imgUrlsArray = imgUrls.split("|");
+                                $scope.findDetails[i].image = $scope.findDetails[i].iconUrl;
+
+                            }
+                            console.dir($scope.findDetails);
+                            $scope.findTip = "";
+                        } else {
+                            $scope.findTip = "Xin lỗi, không tìm thấy “" + findcontent + "”";
 
                         }
-                        console.dir($scope.findDetails);
-                        $scope.findTip = "";
-                    } else {
-                        $scope.findTip = "Xin lỗi, không tìm thấy “" + findcontent + "”";
 
                     }
+                };
+                ajax.failureCallback = function (res) {
 
-                }
-            };
-            ajax.failureCallback = function(res) {
+                };
+                ajax.requestData();
+            }
 
-            };
-            ajax.requestData();
+            $scope.product = function (typeId, brandId, id) {
+                gotoDetails(typeId, brandId, id);
+                // gotoDetails(typeId, brandId);
+            }
+        })
+
+        //点击商品页面跳转详情
+        // function gotoDetails(typeId, brandId) {
+        //     if (brandId != null && brandId != "" && typeId != null && typeId != "") {
+        //         //window.location.href = "details.html?typeId=" + typeId + "&brandId=" + brandId;
+        //         // window.open("details.html?typeId=" + typeId + "&brandId=" + brandId)
+
+        //         // tcy
+        //         window.location.href = "details.html?typeId=" + typeId + "&brandId=" + brandId;
+        //     } else {
+        //         window.location.href = "";
+        //     }
+        // }
+
+        function gotoFind() {
+            var findcontent = $("#findIpt").val();
+            if (findcontent != "") {
+                window.location.href = "search.html?findcontent=" + findcontent;
+            }
         }
-
-        $scope.product = function(typeId, brandId, id) {
-            gotoDetails(typeId, brandId, id);
-            // gotoDetails(typeId, brandId);
-        }
-    })
-
-    //点击商品页面跳转详情
-    // function gotoDetails(typeId, brandId) {
-    //     if (brandId != null && brandId != "" && typeId != null && typeId != "") {
-    //         //window.location.href = "details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-    //         // window.open("details_iphone.html?typeId=" + typeId + "&brandId=" + brandId)
-
-    //         // tcy
-    //         window.location.href = "details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
-    //     } else {
-    //         window.location.href = "";
-    //     }
-    // }
-
-    function gotoFind() {
-        var findcontent = $("#findIpt").val();
-        if (findcontent != "") {
-            window.location.href = "search.html?findcontent=" + findcontent;
-        }
-    }
     </script>
 </body>
 

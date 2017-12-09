@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="False">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <link rel="stylesheet" href="../css/base.css">
+    <title>cart</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/md5.js"></script>
+    <script src="../js/require2.3.5.min.js"></script>
+    <style>
+        .body {
+            line-height: 1;
+        }
+
+        .body {
+            border-top: 1px solid #72aef0;
+        }
+
+        .body__main {
+            padding-top: 30px;
+        }
+
+        .body__main-login {
+            text-align: center;
+            padding-top: 50px;
+            background-color: #dfeffc;
+        }
+
+        .body__m-l-row1 {
+            color: #FF3B57;
+            margin-bottom: 45px;
+        }
+
+        .body__m-l-r2-button {
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            width: 340px;
+            text-align: center;
+            color: #fff;
+            background-color: #207def;
+            margin-bottom: 50px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .body__m-l-r2-button:hover {
+            background-color: #105dcf;
+        }
+
+        .body__main-table {
+            margin-bottom: 15px;
+        }
+
+        .body__m-t-tr {
+            background-color: #f2f2f2;
+            height: 45px;
+            line-height: 45px;
+            color: #666;
+        }
+
+        .body__m-t-t-all {
+            float: left;
+            width: 70px;
+            height: 45px;
+        }
+
+        .body__m-t-t-a-text {
+            font-size: 13px;
+        }
+
+        .body__m-t-t-product {
+            float: left;
+            text-align: center;
+            width: 350px;
+        }
+
+        .body__m-t-t-periods {
+            float: left;
+            text-align: center;
+            width: 100px;
+        }
+
+        .body__m-t-t-dpayment {
+            float: left;
+            text-align: center;
+            width: 150px;
+        }
+
+        .body__m-t-t-number {
+            float: left;
+            text-align: center;
+            width: 100px;
+        }
+
+        .body__m-t-t-total {
+            float: left;
+            text-align: center;
+            width: 200px;
+        }
+
+        .body__m-t-t-operate {
+            float: left;
+            text-align: center;
+            width: 230px;
+        }
+
+        .body__m-t-t-checkbox {
+            float: left;
+            width: 100px;
+        }
+
+        .body__m-t-item {
+            background-color: #fffce4;
+            border-bottom: 1px solid #eee;
+        }
+
+        .body__m-t-i-checkbox {
+            position: relative;
+            z-index: 44;
+            float: left;
+            width: 70px;
+            height: 115px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-input {
+            position: relative;
+            z-index: 33;
+        }
+
+        .body__m-t-i-c-mask {
+            position: absolute;
+            z-index: 99;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .body__m-t-i-product {
+            float: left;
+            width: 350px;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-p-img {
+            float: left;
+            height: 105px;
+            width: 105px;
+            background-color: #fff;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .body__m-t-i-p-text {
+            float: left;
+            width: 245px;
+            margin-top: 45px;
+            padding-left: 5px;
+            line-height: 1.4;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .body__m-t-i-periods {
+            float: left;
+            width: 100px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-dpayment {
+            float: left;
+            width: 150px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-number {
+            float: left;
+            width: 100px;
+            padding-top: 35px;
+        }
+
+        .body__m-t-i-n-wrap {
+            float: left;
+            height: 40px;
+            width: 70px;
+            margin-left: 15px;
+        }
+
+        .body__m-t-i-n-left {
+            float: left;
+            width: 50px;
+            height: 40px;
+        }
+
+        .body__m-t-i-n-l-input:disabled {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #e8e8e8;
+            background-color: #fff;
+        }
+
+        .body__m-t-i-n-right {
+            float: left;
+            width: 20px;
+            height: 40px;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .body__m-t-i-n-r-top {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-top_disable {
+            opacity: 0.6;
+        }
+
+        .body__m-t-i-n-r-t-arrow {
+            padding-top: 1px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #9d9d9d transparent;
+        }
+
+        .body__m-t-i-n-r-bottom {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-bottom_disable {
+            opacity: 0.56
+        }
+
+        .body__m-t-i-n-r-b-arrow {
+            vertical-align: middle;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #9d9d9d transparent transparent transparent;
+        }
+
+        .body__m-t-i-total {
+            float: left;
+            width: 200px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-operate {
+            float: left;
+            width: 230px;
+            padding-top: 35px;
+            text-align: center;
+        }
+
+        .body__m-t-t-o-del {
+            margin-bottom: 8px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .body__m-t-t-o-del:hover {
+            color: #0076f7;
+        }
+
+        .body__m-t-t-o-favorites {
+            margin-bottom: 8px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .body__m-t-t-o-favorites:hover {
+            color: #0076f7;
+        }
+
+        .body__main-total {
+            text-align: right;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .body__main-statistics {
+            color: #666;
+            border: 1px solid #eee;
+            margin-bottom: 100px;
+        }
+
+        .body__m-s-left {
+            float: left;
+            width: 950px;
+        }
+
+        .body__m-s-l-left {
+            float: left;
+            width: 340px;
+        }
+
+        .body__m-s-l-l-left {
+            position: relative;
+            float: left;
+            width: 140px;
+            height: 90px;
+            line-height: 90px;
+            text-align: center;
+        }
+
+        .body__m-s-l-l-l-mask {
+            position: absolute;
+            z-index: 99;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .body__m-s-l-l-right {
+            float: left;
+            width: 200px;
+            padding-top: 30px;
+            line-height: 1;
+        }
+
+        .body__m-s-l-l-r-del {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .body__m-s-l-l-r-del:hover {
+            color: #0076f7;
+        }
+
+        .body__m-s-l-l-r-favorite {
+            cursor: pointer;
+        }
+
+        .body__m-s-l-l-r-favorite:hover {
+            color: #0076f7;
+        }
+
+        .body__m-s-l-right {
+            float: left;
+            width: 610px;
+        }
+
+        .body__m-s-l-r-left {
+            float: left;
+            width: 210px;
+            padding-top: 27px;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .body__m-s-l-r-right {
+            float: left;
+            width: 400px;
+            padding-right: 30px;
+            text-align: right;
+        }
+
+        .body__m-s-l-r-r-top {
+            padding-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .body__m-s-l-r-r-t-text {
+            padding-top: 7px;
+        }
+
+        .body__m-s-l-r-r-t-vat {
+            padding-top: 7px;
+        }
+
+        .body__m-s-l-r-r-t-price {
+            font-size: 24px;
+            color: #F7004C;
+        }
+
+        .body__m-s-l-r-r-t-unit {
+            padding-top: 7px;
+        }
+
+        .body__m-s-l-r-r-b-price {
+            color: #F7004C;
+        }
+
+        .body__m-s-right {
+            float: left;
+            width: 248px;
+            height: 90px;
+            line-height: 90px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #207def;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .body__m-s-right:hover {
+            background-color: #106ddf;
+        }
+
+        .body__main-empty {
+            padding-top: 50px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .body__m-e-row1 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .body__m-e-r2-button {
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            width: 340px;
+            text-align: center;
+            color: #fff;
+            background-color: #207def;
+            margin-bottom: 50px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .body__m-e-r2-button:hover {
+            background-color: #105dcf;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="content" id="vue-el">
+        <header class="header" id="header"></header>
+        <section class="body">
+            <div class="body__main-login" style="display: none;" v-show="!isLogin && LS__data.length">
+                <div class="body__m-l-row1">您还没有登录，登陆后购物车的商品将保存到您的账号中</div>
+                <div class="body__m-l-row2">
+                    <a href="./login.html" class="body__m-l-r2-button">Đăng nhập</a>
+                </div>
+            </div>
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                <div class="body__main-table col-xs-24" style="display: none;" v-show="LS__data.length">
+                    <div class="body__m-t-tr col-xs-24">
+                        <div class="body__m-t-t-all">
+                            <!-- <input type="checkbox" name="" id="body__m-t-t-a-input" class="body__m-t-t-a-input">
+                            <label for="body__m-t-t-a-input" class="body__m-t-t-a-text">全部</label> -->
+                        </div>
+                        <div class="body__m-t-t-product">Sản phẩm</div>
+                        <div class="body__m-t-t-periods">Số kỳ</div>
+                        <div class="body__m-t-t-dpayment">Thanh toán lần đầu</div>
+                        <div class="body__m-t-t-number">Số LƯỢNG</div>
+                        <div class="body__m-t-t-total">Tổng tiền</div>
+                        <div class="body__m-t-t-operate">Thao tác</div>
+                    </div>
+                    <li class="body__m-t-item col-xs-24" v-for="(val,key) in LS__data">
+                        <div class="body__m-t-i-checkbox" v-bind="{ for: 'body__m-t-i-input' + key }">
+                            <input type="checkbox" class="body__m-t-i-input" v-model="val._checked">
+                            <div class="body__m-t-i-c-mask" @click.stop="select_item(key)"></div>
+                        </div>
+                        <div class="body__m-t-i-product" @click="gotoDetails(val._detail.typeId, val._detail.brandId, val._detail.id)">
+                            <div class="body__m-t-i-p-img" :style="{'background-image': 'url('+ val.iconUrl +')'}"></div>
+                            <div class="body__m-t-i-p-text" v-html="val.subject"></div>
+                        </div>
+                        <div class="body__m-t-i-periods" v-html="val.repaymentMonth"></div>
+                        <div class="body__m-t-i-dpayment" v-html="priceFormat(val.totalAmount * val.payRate * val.quantity) + 'VND'"></div>
+                        <div class="body__m-t-i-number">
+                            <div class="body__m-t-i-n-wrap">
+                                <div class="body__m-t-i-n-left">
+                                    <input type="text" class="body__m-t-i-n-l-input" v-model="val.quantity" disabled>
+                                </div>
+                                <div class="body__m-t-i-n-right">
+                                    <div class="body__m-t-i-n-r-top" :class="{'body__m-t-i-n-r-top_disable': false}" @click="plus(key, val.id)">
+                                        <span class="body__m-t-i-n-r-t-arrow"></span>
+                                    </div>
+                                    <div class="body__m-t-i-n-r-bottom" :class="{'body__m-t-i-n-r-bottom_disable': val.quantity <= 1}" @click="minus(key, val.id)">
+                                        <span class="body__m-t-i-n-r-b-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body__m-t-i-total" v-html="priceFormat(val.totalAmount * val.quantity) + 'VND'"></div>
+                        <div class="body__m-t-i-operate">
+                            <div class="body__m-t-t-o-del" @click="del_product(val.id, key)">Xóa</div>
+                            <div class="body__m-t-t-o-favorites" @click="add_favorites(val._detail.typeId, val._detail.brandId, val._detail.name, val._detail.name, val._detail.iconUrl, val._detail.price)">Thêm vào danh sách yêu thích</div>
+                        </div>
+                    </li>
+                </div>
+                <div class="body__main-total col-xs-24" style="display: none;" v-html="productNum +' SẢN PHẨM'" v-show="LS__data.length"></div>
+                <div class="body__main-statistics col-xs-24" style="display: none;" v-show="LS__data.length">
+                    <div class="body__m-s-left">
+                        <div class="body__m-s-l-left">
+                            <div class="body__m-s-l-l-left" @click="edit_all_select(LS__data)">
+                                <input type="checkbox" class="body__m-s-l-l-l-input" id="body__m-s-l-l-l-input" v-model="is_selected_all">
+                                <span class="body__m-s-l-l-l-text">Chọn hết</span>
+                                <div class="body__m-s-l-l-l-mask"></div>
+                            </div>
+                            <div class="body__m-s-l-l-right">
+                                <div class="body__m-s-l-l-r-del" @click="del_all_product(LS__data)">Xóa</div>
+                                <div class="body__m-s-l-l-r-favorite">Thêm vào danh sách yêu thích</div>
+                            </div>
+                        </div>
+                        <div class="body__m-s-l-right">
+                            <div class="body__m-s-l-r-left">已选
+                                <span style="color: #F7004C;" v-html="selectedProductNum"></span> 件商品</div>
+                            <div class="body__m-s-l-r-right">
+                                <div class="body__m-s-l-r-r-top">
+                                    <span class="body__m-s-l-r-r-t-text">Tổng tiền</span>
+                                    <span class="body__m-s-l-r-r-t-vat">(Đã bao gồm VAT):</span>
+                                    <span class="body__m-s-l-r-r-t-price" v-html="priceFormat(selectedTotalAmount)"></span>
+                                    <span class="body__m-s-l-r-r-t-unit">VND</span>
+                                </div>
+                                <div class="body__m-s-l-r-r-bottom">
+                                    <span class="body__m-s-l-r-r-b-text">Tiết kiệm:</span>
+                                    <span class="body__m-s-l-r-r-b-price" v-html="priceFormat(selectedSaving)"></span>
+                                    <span class="body__m-s-l-r-r-b-unit">VND</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body__m-s-right" @click="submit(LS__data)">Tiến hành thanh toán</div>
+                </div>
+                <div class="body__main-empty col-xs-24" style="display: none;" v-show="!LS__data.length">
+                    <div class="body__m-e-row1 col-xs-24">Không có sản phẩm nào trong giỏ hàng</div>
+                    <div class="body__m-e-row2 col-xs-24">
+                        <a href="../index.html" class="body__m-e-r2-button">Tiếp tục mua hàng</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer" id="footer"></footer>
+    </div>
+    <script>
+        require([
+            '../js/jquery1.11.2',
+            '../js/vue.min',
+            '../js/md5',
+            '../js/common',
+        ], function ($, Vue, md5) {
+            var loading = new F._loading();
+
+            F.vue = {
+                body__main_height: document.documentElement.clientHeight - 133 - 210 - 210,
+                LS__data: [],
+                is_selected_all: false,
+                productNum: 0, // 购物车商品数量
+                selectedProductNum: 0, // 已选择商品数量
+                selectedSaving: 0, // 优惠金额
+                selectedTotalAmount: 0, // 总金额
+                isLogin: false
+            };
+
+            var load = function () {
+                new_vue();
+            };
+
+            var pre_data = function (data) {
+                var cart_getInfo = data._cart_getInfo;
+                F.vue.LS__data = edit_cartitems(cart_getInfo.cartitems);
+                console.log(F.vue.LS__data);
+
+                calc(F.vue.LS__data);
+            }
+
+            F.loadData = function (params, callback) {
+                if (callback === undefined) callback = params;
+
+                var all_data = {};
+                var request_length = 1; //请求个数
+
+                // 请求是否全部返回
+                function all_loaded() {
+                    if (Object.keys(all_data).length === request_length) {
+                        pre_data(all_data);
+                        loading.hide();
+                        callback(all_data);
+                    }
+                }
+                loading.show();
+
+                loadData_cart_getInfo(function (ret) {
+                    all_data._cart_getInfo = ret;
+                    all_loaded();
+                });
+            };
+
+            function new_vue() {
+                F.vue = new Vue({
+                    el: $('#vue-el')[0],
+                    data: F.vue,
+                    methods: {
+                        gohome: gohome,
+                        plus: plus,
+                        minus: minus,
+                        edit_all_select: edit_all_select,
+                        select_item: select_item,
+                        del_product: del_product,
+                        del_all_product: del_all_product,
+                        add_favorites: add_favorites,
+                        submit: submit,
+                        gotoDetails: gotoDetails,
+                        priceFormat: F._priceFormat,
+                    },
+                    computed: {
+
+                    },
+                    watch: {
+                        LS__data: function (val, oldVal) {
+                            var data = this.LS__data;
+                            localStorage.setItem("cart", JSON.stringify(data));
+                            calc(data);
+                        },
+                    },
+                });
+            }
+
+            function submit(data) {
+                var i;
+                var advance = 0;
+                var pay_products = [];
+                for (i = 0; i < data.length; i++) {
+                    if (data[i]._checked === true) { // 已选
+                        pay_products.push(data[i]);
+                        advance += data[i].advance * data[i].quantity;
+                    } else { // 未选
+
+                    }
+                }
+
+                if ((advance === 0) && (advance === F.vue.selectedTotalAmount)) {
+                    F._confirm("Gợi ý", "Vui lòng chọn sản phẩm bạn cần", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function () { }
+                        }
+                    ]);
+                    return false;
+                }
+                sessionStorage.setItem("pay_cart_data", JSON.stringify(pay_products));
+                sessionStorage.setItem("pay_cart_advance", advance);
+                window.location.href = "pay.html?from=cart";
+            }
+
+            function add_favorites(type_id, brand_id, brand_name, brand_desc, brand_image, brand_price) {
+                var loading = new F._loading();
+                loading.show();
+
+                F._userAddCollection(
+                    {
+                        type_id: type_id,
+                        brand_id: brand_id,
+                        brand_name: brand_name,
+                        brand_desc: brand_desc,
+                        brand_image: brand_image,
+                        brand_price: brand_price
+                    },
+                    function (ret) {
+                        loading.hide();
+                        F._confirm("Gợi ý", "Thành công", "success", [
+                            {
+                                name: "Xác nhận",
+                                func: function () { }
+                            }
+                        ]);
+                    }
+                );
+
+            }
+
+            function del_all_product(array) {
+                var id_array = [];
+                var index_array = [];
+                for (let index = 0; index < array.length; index++) {
+                    if (array[index]._checked) {
+                        index_array.push(index);
+                        id_array.push(array[index].id);
+                    }
+                }
+                if (!id_array.length) return false;
+                del_product(id_array.join(','), index_array);
+            }
+
+            function del_product(id, key) {
+                console.log(id);
+                console.log(key);
+                function login_case(id) {
+                    F._cart_remove({
+                        cartitemids: id,
+                    }, function (ret) {
+                        if (!ret) return false;
+                        if (ret.code !== 10000) return false;
+                        location.reload();
+                    });
+
+                    if (typeof id === 'number') { // 删除单件
+
+                    } else { // 删除多件
+
+                    }
+                }
+
+                function unlogin_case(key) {
+                    // console.log(key);
+                    // console.log(typeof key);
+                    // console.log(F.vue.LS__data);
+                    // return false;
+                    var index;
+                    var data = F.vue.LS__data;
+                    var empty_array = [];
+                    if (typeof key === 'number') {
+                        F.vue.LS__data.splice(key, 1);
+                    } else {
+                        for (index = 0; index < data.length; index++) {
+                            if (key.indexOf(index) === -1) empty_array.push(data[index]);
+                        }
+                        F.vue.LS__data = empty_array;
+                    }
+                }
+                // console.log(id);
+                // return false;
+                F._confirm("Gợi ý", "Xác nhận xóa?", "tips", [
+                    {
+                        name: "Hủy",
+                        func: function () {
+                        }
+                    },
+                    {
+                        name: "Xóa",
+                        func: function () {
+                            if (localStorage.getItem("funId")) {
+                                login_case(id);
+                            } else {
+                                unlogin_case(key);
+                            }
+                        }
+                    }
+                ]);
+
+            }
+
+            function select_item(key) {
+                var item = F.vue.LS__data[key];
+                item._checked = !item._checked;
+                F.vue.LS__data.splice(key, 1, item);
+            }
+
+            function edit_all_select(data) {
+                if (is_all_select(data)) {
+                    // 全选
+                    F.select_all(false, data);
+                } else {
+                    // 未全选
+                    F.select_all(true, data);
+                }
+            }
+
+            /**
+             * 是否已全选
+             * @Author   taichiyi
+             * @DateTime 2017-07-08
+             * @return   {Boolean}  true：已全选；false：没全选
+             */
+            function is_all_select(data) {
+                var i;
+                if (data.length === 0) return false;
+
+                for (i = 0; i < data.length; i++) {
+                    if (data[i]._checked === false) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function calc(data) {
+                console.log(data);
+                var i;
+                var productNum = 0;
+                var selectedProductNum = 0;
+                var selectedSaving = 0;
+                var selectedTotalAmount = 0;
+                if (data.length === 0) return false;
+
+                if (is_all_select(data)) { // 全选
+                    F.vue.is_selected_all = true;
+                } else {
+                    F.vue.is_selected_all = false;
+                }
+
+                for (i = 0; i < data.length; i++) {
+                    productNum += data[i].quantity;
+                    if (data[i]._checked === true) { // 已选
+                        selectedProductNum += data[i].quantity;
+                        selectedSaving += data[i].orgAmount ? (data[i].orgAmount - data[i].totalAmount) * data[i].quantity : 0;
+                        selectedTotalAmount += data[i].totalAmount * data[i].quantity;
+                    } else { // 未选
+
+                    }
+                }
+                F.vue.productNum = productNum;
+                F.vue.selectedProductNum = selectedProductNum;
+                F.vue.selectedSaving = selectedSaving;
+                F.vue.selectedTotalAmount = selectedTotalAmount;
+            }
+
+
+            // 全选 或 全不选
+            F.select_all = function (boole, data) {
+                boole = !!boole;
+
+                function run(boole) {
+                    var i;
+                    var result = [];
+
+                    for (i = 0; i < data.length; i += 1) {
+                        var def_object = data[i];
+                        def_object._checked = boole;
+                        result.push(def_object);
+                    }
+                    return result;
+                }
+
+                F.vue.LS__data = run(boole);
+            };
+
+            function edit_cartitems(array) {
+                var index;
+
+                var result = [];
+                for (index = 0; index < array.length; index++) {
+
+                    var element = array[index];
+                    element.iconUrl = JSON.parse(element.detail).iconUrl;
+                    element._detail = JSON.parse(element.detail);
+                    element._checked = true;
+                    result.push(element);
+                }
+
+                return result;
+            }
+
+            function plus(index, id) {
+                var item = F.vue.LS__data[index];
+                item.quantity += 1;
+                F.vue.LS__data.splice(index, 1, item);
+
+                F._cart_changeNum({
+                    cartitemid: id,
+                    quetity: item.quantity,
+                }, function (ret) {
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                });
+            }
+
+            function minus(index, id) {
+                var item = F.vue.LS__data[index];
+                if (item.quantity <= 1) return false;
+                item.quantity -= 1;
+                F.vue.LS__data.splice(index, 1, item);
+
+                F._cart_changeNum({
+                    cartitemid: id,
+                    quetity: item.quantity,
+                }, function (ret) {
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                });
+            }
+
+            function gohome() {
+                window.location.href = '../index.html';
+            }
+
+            function loadData_cart_getInfo(callback) {
+                // 本地购物车上传到服务器
+                function localToServer(callback) {
+                    localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
+                    var cartitems = JSON.parse(localStorage.getItem("cart"));
+                    if (cartitems.length) return callback();
+                    F._cart_gate(
+                        {
+                            cartitems: localStorage.getItem("cart")
+                        },
+                        function (ret) {
+                            if (!ret) return false;
+                            if (ret.code !== 10000) return false;
+
+                            localStorage.setItem("cart", "[]");
+                            callback();
+                        }
+                    );
+                }
+
+                function unlogin_case() {
+                    localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
+                    var ret = JSON.parse(localStorage.getItem("cart"));
+                    callback({
+                        cartitems: ret,
+                        code: 10000
+                    });
+                }
+
+                if (localStorage.getItem("funId")) {
+                    F.vue.isLogin = true;
+                    localToServer(function () {
+                        F._cart_getInfo({}, function (ret) {
+                            if (!ret) return false;
+                            if (ret.code !== 10000) return false;
+
+                            callback(ret);
+                        });
+                    })
+
+                } else {
+                    F.vue.isLogin = false;
+                    unlogin_case();
+                }
+
+            }
+
+            F.loadData(function () {
+                load();
+            });
+        })
+    </script>
+</body>
+
+</html>

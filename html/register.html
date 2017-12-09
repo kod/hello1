@@ -14,133 +14,135 @@
     <link href="../css/index_add_img.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
     <style>
-    body {
-        background-color: #fff;
-    }
+        body {
+            background-color: #fff;
+        }
 
-    .modal-content {
-        border-radius: 0;
-    }
+        .modal-content {
+            border-radius: 0;
+        }
 
-    .modal-header {
-        background: #F2F2F2;
-    }
+        .modal-header {
+            background: #F2F2F2;
+        }
 
-    .modal-header .left,
-    .modal-body p {
-        font-size: 18px;
-        color: #333;
-        font-weight: bold;
-    }
+        .modal-header .left,
+        .modal-body p {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
 
-    .modal-header .right {
-        font-size: 17px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+        .modal-header .right {
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-    .modal-body {
-        text-align: center;
-        padding: 30px 0
-    }
+        .modal-body {
+            text-align: center;
+            padding: 30px 0
+        }
 
-    .modal-body p {
-        margin: 15px 0
-    }
+        .modal-body p {
+            margin: 15px 0
+        }
 
-    .modal-body ul {
-        display: inline-block;
-        margin-top: 30px
-    }
+        .modal-body ul {
+            display: inline-block;
+            margin-top: 30px
+        }
 
-    .modal-body ul li {
-        float: left;
-    }
+        .modal-body ul li {
+            float: left;
+        }
 
-    .modal-body ul li a {
-        padding: 8px 37px;
-        background: #0076F7;
-        color: #fff;
-        display: block;
-    }
+        .modal-body ul li a {
+            padding: 8px 37px;
+            background: #0076F7;
+            color: #fff;
+            display: block;
+        }
 
-    .modal-body ul li:last-child a {
-        background: #DFDFDF;
-        color: #666;
-        margin-left: 20px
-    }
+        .modal-body ul li:last-child a {
+            background: #DFDFDF;
+            color: #666;
+            margin-left: 20px
+        }
 
-    .modal-dialog {
-        margin: 7% auto;
-    }
+        .modal-dialog {
+            margin: 7% auto;
+        }
 
-    .fade.in {
-        background: rgba(0, 0, 0, 0.5);
-    }
+        .fade.in {
+            background: rgba(0, 0, 0, 0.5);
+        }
 
-    #tel.error {
-        border: 1px solid #D43F3A
-    }
+        #tel.error {
+            border: 1px solid #D43F3A
+        }
 
-    .opp {
-        width: 30px;
-        height: 30px;
-        display: inline-block !important;
-        cursor: pointer;
-    }
+        .opp {
+            width: 30px;
+            height: 30px;
+            display: inline-block !important;
+            cursor: pointer;
+        }
 
-    #laod {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        z-index: 9999;
-        background: rgba(0, 0, 0, 0.5);
-        display: none;
-    }
+        #laod {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
 
-    #laod img {
-        width: 50px;
-        height: 50px;
-        margin-top: 500px
-    }
+        #laod img {
+            width: 50px;
+            height: 50px;
+            margin-top: 500px
+        }
 
-    .r_from {
-        line-height: 50px;
-    }
+        .r_from {
+            line-height: 50px;
+        }
 
-    .register_center .register_content .errormsg {
-        bottom: 123px;
-        padding-left: 5;
-    }
-    /*tcy*/
+        .register_center .register_content .errormsg {
+            bottom: 123px;
+            padding-left: 5;
+        }
 
-    .prefix {
-        position: absolute;
-        left: 70px;
-        top: 0px;
-        margin: 0 !important;
-    }
+        /*tcy*/
 
-    .prefix__text {
-        margin: 0px !important;
-        padding: 0px !important;
-        font-weight: 300 !important;
-        width: auto !important;
-        /*text-align: left !important;*/
-    }
+        .prefix {
+            position: absolute;
+            left: 70px;
+            top: 0px;
+            margin: 0 !important;
+        }
 
-    .prefix__img {
-        display: inline-block;
-        /*margin: 0px !important;*/
-        padding: 0px !important;
-        margin-top: 18px !important;
-        height: 15px;
-        display: inline-block !important;
-    }
-    /*tcy*/
+        .prefix__text {
+            margin: 0px !important;
+            padding: 0px !important;
+            font-weight: 300 !important;
+            width: auto !important;
+            /*text-align: left !important;*/
+        }
+
+        .prefix__img {
+            display: inline-block;
+            /*margin: 0px !important;*/
+            padding: 0px !important;
+            margin-top: 18px !important;
+            height: 15px;
+            display: inline-block !important;
+        }
+
+        /*tcy*/
     </style>
 </head>
 
@@ -148,20 +150,24 @@
     <div class="register_center">
         <div class="register_content">
             <span id="errormsg" class='errormsg'></span>
-            <a href="../index.html"> <img src="../img/LOGO2.jpg" width="" height="150px" /></a>
+            <a href="../index.html">
+                <img src="../img/LOGO2.jpg" width="" height="150px" />
+            </a>
             <!-- <a href="../index.html"> <img src="../img/LOGO2.jpg" width="428px" height="160px" /></a> -->
             <p class="register_title">Tạo tài khoản mới</p>
             <p class="r_from" style="position: relative;">
                 <span>Số điện thoại</span>
-                <input id="tel" type="tel" style="padding-left: 70px;" placeholder="Số điện thoại" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
+                <input id="tel" type="tel" style="padding-left: 70px;" placeholder="Số điện thoại" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
+                    data-on-val="">
                 <span class="prefix">
-                <img src="../img/VN.png" alt="logo" class="prefix__img">
-                <span class="prefix__text">+84</span>
+                    <img src="../img/VN.png" alt="logo" class="prefix__img">
+                    <span class="prefix__text">+84</span>
                 </span>
             </p>
             <p class="r_from" ng-controller="zhuceOptCtrl">
                 <span>Mã xác nhận</span>
-                <input id="telCode" class="dx" type="text" value="" placeholder="Mã xác nhận" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
+                <input id="telCode" class="dx" type="text" value="" placeholder="Mã xác nhận" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
+                    data-on-val="">
                 <button id="djs" data='off' class="djs" ng-click="duanxinOpt()" disabled="disabled">Gửi mã</button>
             </p>
             <p class="r_from">
@@ -176,19 +182,24 @@
             </p>
             <p class="r_from">
                 <span>Mật mã giao dịch</span>
-                <input id="pwd2" type="password" placeholder="Vui lòng nhập 6 chữ số" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" />
+                <input id="pwd2" type="password" placeholder="Vui lòng nhập 6 chữ số" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/"
+                />
             </p>
             <p style="padding-left: 170px;padding-right: 120px; font-size: 12px; color: #999;margin-top: -20px;margin-bottom: 25px;">* Quan trọng! Để đảm bảo an toàn cho số tiền của bạn trong tài khoản, hãy cài đặt và ghi nhớ mật khẩu giao dịch</p>
             <p class="r_from">
                 <span>Nhập lại Mật mã</span>
-                <input id="re_pwd2" type="password" placeholder="Nhập lại Mật mã giao dịch" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" />
+                <input id="re_pwd2" type="password" placeholder="Nhập lại Mật mã giao dịch" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/"
+                />
             </p>
             <p class="r_from mar_top12">
                 <span></span>
                 <button id="submit" class="f_ss">Đăng ký ngay</button>
             </p>
             <p class="r_from2">
-                <input id="xy" class="xy" name="xy" checked='true' type="checkbox" />&nbsp; <a href="register_help.html" target="_self">Đồng ý với điều <span class="" style="color: #0076f7;">khoản của Buyoo</span></a>
+                <input id="xy" class="xy" name="xy" checked='true' type="checkbox" />&nbsp;
+                <a href="register_help.html" target="_self">Đồng ý với điều
+                    <span class="" style="color: #0076f7;">khoản của Buyoo</span>
+                </a>
             </p>
         </div>
     </div>
@@ -198,131 +209,28 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Gợi ý</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <img src="../img/32.png" alt="" />
                     <p>Đăng ký thành công</p>
                     <!-- <p>Đăng ký thành công, đăng nhập ngay</p> -->
                     <ul>
-                        <li><a href="../index.html">Xác nhận</a></li>
+                        <li>
+                            <a href="../index.html">Xác nhận</a>
+                        </li>
                         <!-- <li><a href="login.html?from=register">Xác nhận</a></li> -->
-                        <li><a href="">Hủy</a></li>
+                        <li>
+                            <a href="">Hủy</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer__top col-xs-24">
-            <div class="footer__top-main">
-                <div class="footer__t-m-item col-xs-24">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="footer__bottom2 col-xs-24">
-                <div class="footer__bottom2-main">
-                    <div class="footer__b2-m-row1">
-                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                        <ul class="footer__b2-m-r1-main col-xs-24">
-                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row2">
-                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                        <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row3">
-                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                        <ul class="footer__b2-m-r3-main col-xs-24">
-                            <li class="footer__b2-m-r3-m-item col-xs-24">
-                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row5">
-                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                        <ul class="footer__b2-m-r5-main col-xs-24">
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                    </div>
-                    <div class="footer__b2-m-row6 col-xs-24">
-                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                        <div class="footer__b2-m-r6-right col-xs-12"></div>
-                    </div>
-                </div>
-            </div>
-    </footer>
+    <footer class="footer" id="footer"></footer>
     <div id="laod">
         <img src="../img/dd.gif" alt="" />
     </div>
@@ -341,215 +249,215 @@
 <script src="../js/sys/sessionStorage.js"></script>
 <script src="../js/common.js"></script>
 <script type="text/javascript">
-// window.setTimeout(function() {
-//     $('#myModal').show().addClass('in');
-// }, 700);
+    // window.setTimeout(function() {
+    //     $('#myModal').show().addClass('in');
+    // }, 700);
 
-F.query = F._hrefUtils.parse().query || {};
-$('#tel').val(F.query.msisdn || '');
-$('#telCode').val(F.query.otp || '');
+    F.query = F._hrefUtils.parse().query || {};
+    $('#tel').val(F.query.msisdn || '');
+    $('#telCode').val(F.query.otp || '');
 
-$("#tel").bind("input propertychange", function() {
-    var phone = $("#tel").val();
-    if (phone && F._phoneExpr.test(phone)) {
-        $('#errormsg').hide();
-        $('#djs').attr('disabled', false).css('background', '#0075f6')
-        $('#tel').removeClass('error');
-    } else {
-        $('#errormsg').show();
-        $('#errormsg').html('Định dạng số điện thoại không đúng...');
-        $('#djs').attr('disabled', true).css('background', '#ddd')
-        $('#tel').addClass('error')
-    }
+    $("#tel").bind("input propertychange", function () {
+        var phone = $("#tel").val();
+        if (phone && F._phoneExpr.test(phone)) {
+            $('#errormsg').hide();
+            $('#djs').attr('disabled', false).css('background', '#0075f6')
+            $('#tel').removeClass('error');
+        } else {
+            $('#errormsg').show();
+            $('#errormsg').html('Định dạng số điện thoại không đúng...');
+            $('#djs').attr('disabled', true).css('background', '#ddd')
+            $('#tel').addClass('error')
+        }
 
-})
-$('#pwd').change(function() {
-    var pwd = $("#pwd").val();
-    if (pwd && F._pwdExpr.test(pwd)) {
-        $('#errormsg').hide();
-    } else {
-        $('#errormsg').show();
-        $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
-
-    }
-})
-$('#pwd2').blur(function() {
-    var pwd = $("#pwd2").val();
-    if (pwd && F._payPwdeExpr.test(pwd)) {
-        $('#errormsg').hide();
-
-    } else {
-        $('#errormsg').show();
-        $('#errormsg').html('Mã xác minh gồm 6 số');
-
-    }
-
-})
-$('#telCode').change(function() {
-    var telCode = $(this).val();
-    if (F._codeExpr.test(telCode)) {
-        // if (telCode.length > 4 && telCode.length < 8) {
-        $('#errormsg').hide();
-        $('#submit').attr('disabled', false).css('background', '#0075f6')
-    } else {
-        $('#errormsg').show();
-        $('#errormsg').html('Độ dài mã xác nhận không đúng...');
-        $('#submit').attr('disabled', true).css('background', '#ddd')
-    }
-})
-
-
-$('.modal-header .right').click(function() {
-    $('#myModal').hide().removeClass('in');
-})
-$('.opp').click(function() {
-    if ($(this).attr('src') == '../img/q.png') {
-        $(this).attr('src', '../img/qq.png');
-        $(this).prev().attr('type', 'text');
-    } else {
-        $(this).attr('src', '../img/q.png');
-        $(this).prev().attr('type', 'password');
-    }
-})
-$("body").keydown(function(e) {
-    var curKey = e.which;
-    if (curKey == "13") { //keyCode=13是回车键
-        $('#submit').click();
-    }
-});
-</script>
-<script type="text/javascript">
-var loading = new F._loading();
-
-var app = angular.module("zhuceAPP", []);
-//  验证码
-app.controller("zhuceOptCtrl", function($scope, $http, $filter) {
-    $scope.duanxinOpt = function() {
-
-
-        // $('#djs').attr('disabled', true).css('background', '#ddd')
-
-        if (F.verify_wait && F.verify_wait.verify_sending_status()) return false;
-
-        F.verify_wait = new F._verify_wait({
-            time: 120,
-            target: '#djs',
-            // isVue: true,
-        });
-        F.verify_wait.verify_sending_change(true);
-
-        F._userAction_otp({
-            msisdn: $('#tel').val(),
-        }, function(ret) {
-            if (ret.status !== 10000) {
-                F.verify_wait.verify_sending_change(false);
-            }
-        });
-    }
-})
-//  Đăng kí
-app.controller("zhuceCtrl", function($scope, $http, $filter) {
-    $("#submit").click(function() {
-        var tel = $('#tel').val();
-        var telCode = $('#telCode').val();
-        var pwd = $('#pwd').val();
-        var pwd2 = $('#pwd2').val();
-        var re_pwd = $('#re_pwd').val();
-        var re_pwd2 = $('#re_pwd2').val();
-        var xy = $('input[name="xy"]').prop("checked");
-        if (tel == '') {
-            getMsg('Số điện thoại không được để trống', 1);
-            $("#tel")[0].focus();
-            $("#tel").addClass('error');
-            return false;
-        } else if (telCode == '') {
-            getMsg('Độ dài mã xác nhận không đúng', 1);
-            $("#telCode")[0].focus();
-            $("#telCode").addClass('error');
-            return false;
-        } else if (!F._pwdExpr.test(pwd)) {
-            // } else if (pwd == '' || pwd.length < 6 || pwd.length > 16) {
+    })
+    $('#pwd').change(function () {
+        var pwd = $("#pwd").val();
+        if (pwd && F._pwdExpr.test(pwd)) {
+            $('#errormsg').hide();
+        } else {
             $('#errormsg').show();
             $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
-            $("#pwd")[0].focus();
-            $("#pwd").addClass('error');
 
-        } else if (!F._payPwdeExpr.test(pwd2)) {
-            getMsg('Vui lòng nhập 6 chữ số', 1);
-            $("#pwd2")[0].focus();
-            return false;
+        }
+    })
+    $('#pwd2').blur(function () {
+        var pwd = $("#pwd2").val();
+        if (pwd && F._payPwdeExpr.test(pwd)) {
+            $('#errormsg').hide();
+
         } else {
+            $('#errormsg').show();
+            $('#errormsg').html('Mã xác minh gồm 6 số');
 
-            if (pwd !== re_pwd) {
-                getMsg('Hai lần nhập mật khẩu đăng nhập không giống nhau', 1);
+        }
+
+    })
+    $('#telCode').change(function () {
+        var telCode = $(this).val();
+        if (F._codeExpr.test(telCode)) {
+            // if (telCode.length > 4 && telCode.length < 8) {
+            $('#errormsg').hide();
+            $('#submit').attr('disabled', false).css('background', '#0075f6')
+        } else {
+            $('#errormsg').show();
+            $('#errormsg').html('Độ dài mã xác nhận không đúng...');
+            $('#submit').attr('disabled', true).css('background', '#ddd')
+        }
+    })
+
+
+    $('.modal-header .right').click(function () {
+        $('#myModal').hide().removeClass('in');
+    })
+    $('.opp').click(function () {
+        if ($(this).attr('src') == '../img/q.png') {
+            $(this).attr('src', '../img/qq.png');
+            $(this).prev().attr('type', 'text');
+        } else {
+            $(this).attr('src', '../img/q.png');
+            $(this).prev().attr('type', 'password');
+        }
+    })
+    $("body").keydown(function (e) {
+        var curKey = e.which;
+        if (curKey == "13") { //keyCode=13是回车键
+            $('#submit').click();
+        }
+    });
+</script>
+<script type="text/javascript">
+    var loading = new F._loading();
+
+    var app = angular.module("zhuceAPP", []);
+    //  验证码
+    app.controller("zhuceOptCtrl", function ($scope, $http, $filter) {
+        $scope.duanxinOpt = function () {
+
+
+            // $('#djs').attr('disabled', true).css('background', '#ddd')
+
+            if (F.verify_wait && F.verify_wait.verify_sending_status()) return false;
+
+            F.verify_wait = new F._verify_wait({
+                time: 120,
+                target: '#djs',
+                // isVue: true,
+            });
+            F.verify_wait.verify_sending_change(true);
+
+            F._userAction_otp({
+                msisdn: $('#tel').val(),
+            }, function (ret) {
+                if (ret.status !== 10000) {
+                    F.verify_wait.verify_sending_change(false);
+                }
+            });
+        }
+    })
+    //  Đăng kí
+    app.controller("zhuceCtrl", function ($scope, $http, $filter) {
+        $("#submit").click(function () {
+            var tel = $('#tel').val();
+            var telCode = $('#telCode').val();
+            var pwd = $('#pwd').val();
+            var pwd2 = $('#pwd2').val();
+            var re_pwd = $('#re_pwd').val();
+            var re_pwd2 = $('#re_pwd2').val();
+            var xy = $('input[name="xy"]').prop("checked");
+            if (tel == '') {
+                getMsg('Số điện thoại không được để trống', 1);
+                $("#tel")[0].focus();
+                $("#tel").addClass('error');
                 return false;
-            }
-            if (pwd2 !== re_pwd2) {
-                getMsg('Hai lần nhập mật mã giao dịch không giống nhau', 1);
+            } else if (telCode == '') {
+                getMsg('Độ dài mã xác nhận không đúng', 1);
+                $("#telCode")[0].focus();
+                $("#telCode").addClass('error');
                 return false;
-            }
+            } else if (!F._pwdExpr.test(pwd)) {
+                // } else if (pwd == '' || pwd.length < 6 || pwd.length > 16) {
+                $('#errormsg').show();
+                $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
+                $("#pwd")[0].focus();
+                $("#pwd").addClass('error');
 
-            var msisdn = $('#tel').val();
-            var password = $('#pwd').val();
-            var payPassword = $('#pwd2').val();
-            var otp = $('#telCode').val();
-            if (payPassword && F._payPwdeExpr.test(payPassword)) {
-                $('#errormsg').hide();
-                $('#submit').attr('disabled', false)
-                // if (msisdn != 0 && password != 0 && otp != 0) {
-                if (msisdn != 0 && password != 0 && payPassword != 0 && otp != 0) {
+            } else if (!F._payPwdeExpr.test(pwd2)) {
+                getMsg('Vui lòng nhập 6 chữ số', 1);
+                $("#pwd2")[0].focus();
+                return false;
+            } else {
 
-                    $("#telCode").removeClass('error');
+                if (pwd !== re_pwd) {
+                    getMsg('Hai lần nhập mật khẩu đăng nhập không giống nhau', 1);
+                    return false;
+                }
+                if (pwd2 !== re_pwd2) {
+                    getMsg('Hai lần nhập mật mã giao dịch không giống nhau', 1);
+                    return false;
+                }
 
-                    loading.show();
-                    F._userAction_register({
-                        provider: '0',
-                        msisdn: msisdn,
-                        username: '',
-                        password: password,
-                        payPassword: payPassword,
-                        otp: otp,
-                        check: '1',
-                        appid: '',
-                    }, function(ret) {
-                        loading.hide();
-                        if (!ret) return false;
-                        if (ret.status !== 10000) return false;
+                var msisdn = $('#tel').val();
+                var password = $('#pwd').val();
+                var payPassword = $('#pwd2').val();
+                var otp = $('#telCode').val();
+                if (payPassword && F._payPwdeExpr.test(payPassword)) {
+                    $('#errormsg').hide();
+                    $('#submit').attr('disabled', false)
+                    // if (msisdn != 0 && password != 0 && otp != 0) {
+                    if (msisdn != 0 && password != 0 && payPassword != 0 && otp != 0) {
 
-                        F._userAction_login({
+                        $("#telCode").removeClass('error');
+
+                        loading.show();
+                        F._userAction_register({
+                            provider: '0',
                             msisdn: msisdn,
+                            username: '',
                             password: password,
-                        }, function(ret) {
+                            payPassword: payPassword,
+                            otp: otp,
+                            check: '1',
+                            appid: '',
+                        }, function (ret) {
+                            loading.hide();
                             if (!ret) return false;
                             if (ret.status !== 10000) return false;
 
-                            $('#myModal').show().addClass('in');
+                            F._userAction_login({
+                                msisdn: msisdn,
+                                password: password,
+                            }, function (ret) {
+                                if (!ret) return false;
+                                if (ret.status !== 10000) return false;
+
+                                $('#myModal').show().addClass('in');
+                            });
+
                         });
 
-                    });
+                    }
+                } else {
+                    $('#errormsg').show();
+                    $('#errormsg').html('Mã xác minh gồm 6 số');
 
                 }
-            } else {
-                $('#errormsg').show();
-                $('#errormsg').html('Mã xác minh gồm 6 số');
-
             }
+        })
+        //提示信息
+        function getMsg(msg, type) {
+            var html = '<img src="../img/tishi.png" />';
+            html += msg;
+            if (type == 1) {
+                $('#errormsg').show();
+                $('#errormsg').html(html);
+            } else {
+                $('#errormsg2').show();
+                $('#errormsg2').html(html);
+            }
+
         }
     })
-    //提示信息
-    function getMsg(msg, type) {
-        var html = '<img src="../img/tishi.png" />';
-        html += msg;
-        if (type == 1) {
-            $('#errormsg').show();
-            $('#errormsg').html(html);
-        } else {
-            $('#errormsg2').show();
-            $('#errormsg2').html(html);
-        }
-
-    }
-})
 </script>
 
 </html>

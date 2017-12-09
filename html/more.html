@@ -15,143 +15,100 @@
     <link href="../css/index_add_img.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/index_img.css">
     <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/jquery.js"></script>
     <style>
-    .dropup {
-        transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-        /* IE 9 */
-        -moz-transform: rotate(180deg);
-        /* Firefox */
-        -webkit-transform: rotate(180deg);
-        /* Safari 和 Chrome */
-        -o-transform: rotate(180deg);
-    }
+        .dropup {
+            transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            /* IE 9 */
+            -moz-transform: rotate(180deg);
+            /* Firefox */
+            -webkit-transform: rotate(180deg);
+            /* Safari 和 Chrome */
+            -o-transform: rotate(180deg);
+        }
 
-    article .changePage button {
-        width: inherit;
-        height: inherit;
-        padding: 3px 8px;
-    }
+        article .changePage button {
+            width: inherit;
+            height: inherit;
+            padding: 3px 8px;
+        }
 
-    article .changePage input {
-        width: 50px
-    }
+        article .changePage input {
+            width: 50px
+        }
 
-    .one .right .right-top input[type=submit] {
-        border: 1px solid #aaa;
-        cursor: pointer;
-        background: #fff;
-        width: 55px;
-        height: 25px;
-    }
+        .one .right .right-top input[type=submit] {
+            border: 1px solid #aaa;
+            cursor: pointer;
+            background: #fff;
+            width: 55px;
+            height: 25px;
+        }
 
-    .one .right .right-top input[type=submit]:hover {
-        background-color: #0075f6;
-        color: #fff
-    }
+        .one .right .right-top input[type=submit]:hover {
+            background-color: #0075f6;
+            color: #fff
+        }
 
-    .one .right .ul a h5 {
-        font-size: 14px;
-        line-height: 19px;
-    }
-    /*tcy -start-*/
+        .one .right .ul a h5 {
+            font-size: 14px;
+            line-height: 19px;
+        }
 
-    .category1-row1-item_active {
-        background-color: #0076F7;
-        color: #fff !important;
-    }
+        /*tcy -start-*/
 
-    .category1-row2-item_active {
-        background-color: #0076F7;
-        color: #fff !important;
-    }
+        .category1-row1-item_active {
+            background-color: #0076F7;
+            color: #fff !important;
+        }
 
-    .category2-row1-item_active {
-        background-color: #0076F7;
-        color: #fff !important;
-    }
+        .category1-row2-item_active {
+            background-color: #0076F7;
+            color: #fff !important;
+        }
 
-    .category2-row2-item_active {
-        background-color: #0076F7;
-        color: #fff !important;
-    }
+        .category2-row1-item_active {
+            background-color: #0076F7;
+            color: #fff !important;
+        }
 
-    .category3-row1-item_active {
-        background-color: #0076F7;
-        color: #fff !important;
-    }
+        .category2-row2-item_active {
+            background-color: #0076F7;
+            color: #fff !important;
+        }
 
-    .category3-row2-item_active {
-        background-color: #0076F7;
-        color: #fff !important;
-    }
+        .category3-row1-item_active {
+            background-color: #0076F7;
+            color: #fff !important;
+        }
 
-    .ul:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .category3-row2-item_active {
+            background-color: #0076F7;
+            color: #fff !important;
+        }
 
-    .one .left li .left .img {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        height: 100%;
-        width: 100%;
-    }
-    /*tcy -end-*/
+        .ul:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .one .left li .left .img {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            height: 100%;
+            width: 100%;
+        }
+
+        /*tcy -end-*/
     </style>
 </head>
 
 <body id="app" ng-app='moreApp' ng-controller="moreCtrl">
-    <div class="all">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
-                                </div>
-                            </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="all">
-        <div class="content header_c">
-            <div class="search_left left">
-                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
-            </div>
-            <div class="search_right right">
-                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
-                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
-            </div>
-        </div>
-    </div>
+    <header class="header" id="header"></header>
     <div class="all">
         <div class="content navh">
             <div class="category left">
@@ -169,25 +126,31 @@
         <div class="content">
             <div class="category_1 left">
                 <div class="hot_brand" ng-class="{act:brandAct==1}">
-                    <p style="padding-right: 16px;" ng-click="changeProductType(1)"><i></i> Truyền thông di động</p>
+                    <p style="padding-right: 16px;" ng-click="changeProductType(1)">
+                        <i></i> Điện thoại di động</p>
                     <div class="category_act">
                         <div class="category_open">
                             <div class="cateory-top">
-                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="cellphoneBanner.html">Truyền thông di động </a>&nbsp;&nbsp; &nbsp;&nbsp;
+                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp;
+                                <a href="cellphoneBanner.html">Điện thoại di động </a>&nbsp;&nbsp; &nbsp;&nbsp;
                             </div>
                             <div class="cateory-center">
                                 <div class="list">
-                                    <div class="left list-le">Truyền thông di động: </div>
+                                    <div class="left list-le">Điện thoại di động: </div>
                                     <div class="left list-ri listover">
                                         <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category1-row1-item category1-row1-item_active">Tất cả</a>
-                                        <a ng-repeat="item in ppq" class="category1-row1-item"><span ng-bind="item.name" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })"></span></a>
+                                        <a ng-repeat="item in ppq" class="category1-row1-item">
+                                            <span ng-bind="item.name" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })"></span>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="list">
                                     <div class="left list-le">Nhãn hiệu : </div>
                                     <div class="left list-ri listin" style="vertical-align: middle;">
                                         <a ng-click="getAllProductInfo({ classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category1-row2-item category1-row2-item_active">Tất cả</a>
-                                        <a ng-repeat="item in shoujimore" ng-class="{act1:item.id==navId}" class="category1-row2-item"><span ng-bind="item.name" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })"></span></a>
+                                        <a ng-repeat="item in shoujimore" ng-class="{act1:item.id==navId}" class="category1-row2-item">
+                                            <span ng-bind="item.name" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })"></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -195,25 +158,32 @@
                     </div>
                 </div>
                 <div class="hot_brand" ng-class="{act:brandAct==2}">
-                    <p style="padding-right:24px;" ng-click="changeProductType(2)"><i></i> Máy vi tính làm việc</p>
+                    <p style="padding-right:24px;" ng-click="changeProductType(2)">
+                        <i></i> Laptop</p>
                     <div class="category_act">
                         <div class="category_open">
                             <div class="cateory-top">
-                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="computerPage.html">Máy vi tính làm việc </a>&nbsp;&nbsp; &nbsp;&nbsp;
+                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp;
+                                <a href="computerPage.html">Laptop </a>&nbsp;&nbsp; &nbsp;&nbsp;
                             </div>
                             <div class="cateory-center">
                                 <div class="list">
-                                    <div class="left list-le">Máy vi tính làm việc: </div>
+                                    <div class="left list-le">Laptop: </div>
                                     <div class="left list-ri listover">
                                         <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category2-row1-item category2-row1-item_active">Tất cả</a>
-                                        <a ng-repeat="item in nav" class="category2-row1-item"><span  ng-bind="item.name" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })"></span></a>
+                                        <a ng-repeat="item in nav" class="category2-row1-item">
+                                            <span ng-bind="item.name" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })"></span>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="list">
                                     <div class="left list-le">Nhãn hiệu : </div>
                                     <div class="left list-ri listin">
                                         <a ng-click="getAllProductInfo({ classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category2-row2-item category2-row2-item_active">Tất cả</a>
-                                        <a ng-repeat="item in diannaomore" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })" class="category2-row2-item"><span ng-bind="item.name"></span></a>
+                                        <a ng-repeat="item in diannaomore" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })"
+                                            class="category2-row2-item">
+                                            <span ng-bind="item.name"></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -221,18 +191,23 @@
                     </div>
                 </div>
                 <div class="hot_brand" ng-class="{act:brandAct==5}">
-                    <p ng-click="changeProductType(5)"><i></i> Kỹ thuật số thông minh</p>
+                    <p ng-click="changeProductType(5)">
+                        <i></i> Linh kiện & phụ kiện</p>
                     <div class="category_act">
                         <div class="category_open">
                             <div class="cateory-top">
-                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="shumapeijian.html">Kỹ thuật số thông minh </a>&nbsp;&nbsp; &nbsp;&nbsp;
+                                <a href="../index.html">Trang chủ</a> &nbsp;&nbsp;>&nbsp;&nbsp;
+                                <a href="shumapeijian.html">Linh kiện & phụ kiện </a>&nbsp;&nbsp; &nbsp;&nbsp;
                             </div>
                             <div class="cateory-center">
                                 <div class="list">
-                                    <div class="left list-le">Kỹ thuật số thông minh: </div>
+                                    <div class="left list-le">Linh kiện & phụ kiện: </div>
                                     <div class="left list-ri listover">
                                         <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category3-row1-item category3-row1-item_active">Tất cả</a>
-                                        <a ng-repeat="item in choose" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })" class="category3-row1-item"><span  ng-bind="item.name"></span></a>
+                                        <a ng-repeat="item in choose" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ sub_classfy_id: item.id, parent_id: item.parentId })"
+                                            class="category3-row1-item">
+                                            <span ng-bind="item.name"></span>
+                                        </a>
                                         <!--<a href="#" >精品推荐</a>-->
                                     </div>
                                 </div>
@@ -240,7 +215,10 @@
                                     <div class="left list-le">Nhãn hiệu : </div>
                                     <div class="left list-ri listin">
                                         <a ng-click="getAllProductInfo({ sub_classfy_id: 0, classfy_id: 0, parent_id: item.parentId })" class="category3-row2-item category3-row2-item_active">Tất cả</a>
-                                        <a ng-repeat="item in shumamore" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })" class="category3-row2-item"><span ng-bind="item.name"></span></a>
+                                        <a ng-repeat="item in shumamore" ng-class="{act1:item.id==navId}" ng-click="getAllProductInfo({ classfy_id: item.id, parent_id: item.parentId })"
+                                            class="category3-row2-item">
+                                            <span ng-bind="item.name"></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -271,26 +249,34 @@
                 </div>
                 <div class="right">
                     <div class="right-top">
-                        <span class="left" ng-click="changeOrder('default')"><!-- Xác nhận thứ tự --></span>
+                        <span class="left" ng-click="changeOrder('default')">
+                            <!-- Xác nhận thứ tự -->
+                        </span>
                         <!-- <span class="right">Có một <b ng-bind="rows"></b> phẩm   &nbsp;&nbsp;&nbsp; </span> -->
-                        <span class="right" style="cursor: default;"><b ng-bind="rows"></b> Sản Phẩm Được Tìm Thấy</span>
+                        <span class="right" style="cursor: default;">
+                            <b ng-bind="rows"></b> Sản Phẩm Được Tìm Thấy</span>
                     </div>
                     <div class="ul">
                         <!--<h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>-->
-                        <a ng-repeat="item in nowProduct |filter | orderBy :Porder + Norder +orderType" ng-click="product(item.typeId, item.brandId, item.id, item.discount, item.orgPrice)" target="_self">
+                        <a ng-repeat="item in nowProduct |filter | orderBy :Porder + Norder +orderType" ng-click="product(item.typeId, item.brandId, item.id, item.discount, item.orgPrice)"
+                            target="_self">
                             <img src="{{item.iconUrl}}" alt="" />
                             <!-- <img src="{{item.image}}" alt="" /> -->
                             <h4 ng-bind="item.name"></h4>
                             <!--    <div>{{item.id}}</div>-->
-                            <p>Giá bán: <span ng-bind="item.price | priceFormat"></span> VND <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lượng hàng: <span ng-bind="item.numbers"></span> VND--></p>
+                            <p>Giá bán:
+                                <span ng-bind="item.price | priceFormat"></span> VND
+                                <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lượng hàng: <span ng-bind="item.numbers"></span> VND-->
+                            </p>
                             <!--<h5>Thanh toán lần đầu:<span ng-bind="item.price*0.2"></span> VND &nbsp;&nbsp;</h5> -->
                             <!-- <h5>Trả góp hàng tháng: <br /><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x12</h5> -->
-                            <h5><span ng-bind="item.fenqiPrice | priceFormat"></span> VND x 12 Tháng</h5>
+                            <h5>
+                                <span ng-bind="item.fenqiPrice | priceFormat"></span> VND x 12 Tháng</h5>
                             <span ng-show="item.promotion" class="item-badge" style="background-image: url(../img/badge1.png);">
                                 <span class="item-badge__reduce">GIẢM</span>
                                 <span class="item-badge__mian" ng-bind="100 - item.discount"></span>
                                 <span class="item-badge__percent">%</span>
-                            </span>                  
+                            </span>
                         </a>
                     </div>
                     <h1 ng-bind="noProductTip" style="font-size: 25px;"></h1>
@@ -299,123 +285,16 @@
             <div class="changePage">
                 <div style="margin-bottom: 30px;">
                     <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
-                    <span style="padding-top: 3px;">Trang hiện tại: <span ng-init="nowPage=1" ng-bind="nowPage"></span>&nbsp;&nbsp;</span>
-                    <span style="padding-top: 3px;">Trang : <span ng-bind="totalPage"></span> tiên</span>
+                    <span style="padding-top: 3px;">Trang hiện tại:
+                        <span ng-init="nowPage=1" ng-bind="nowPage"></span>&nbsp;&nbsp;</span>
+                    <span style="padding-top: 3px;">Trang :
+                        <span ng-bind="totalPage"></span> tiên</span>
                     <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                 </div>
             </div>
         </div>
     </article>
-        <footer class="footer">
-            <div class="footer__top col-xs-24">
-                <div class="footer__top-main">
-                    <div class="footer__t-m-item col-xs-24">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                            <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                            <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                            <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                            <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                        </div>
-                    </div>
-                    <div class="footer__t-m-item">
-                        <div class="footer__t-m-i-left col-xs-5">
-                            <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                        </div>
-                        <div class="footer__t-m-i-right col-xs-19">
-                            <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                            <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom2 col-xs-24">
-                <div class="footer__bottom2-main">
-                    <div class="footer__b2-m-row1">
-                        <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                        <ul class="footer__b2-m-r1-main col-xs-24">
-                            <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                            <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                            <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row2">
-                        <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                        <ul class="footer__b2-m-r2-main col-xs-24">
-                            <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                            <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                            <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                            <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row3">
-                        <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                        <ul class="footer__b2-m-r3-main col-xs-24">
-                            <li class="footer__b2-m-r3-m-item col-xs-24">
-                                <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row5">
-                        <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                        <ul class="footer__b2-m-r5-main col-xs-24">
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                            <li class="footer__b2-m-r5-m-item col-xs-24">
-                                <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                    </div>
-                    <div class="footer__b2-m-row6 col-xs-24">
-                        <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                        <div class="footer__b2-m-r6-right col-xs-12"></div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    <footer class="footer" id="footer"></footer>
     <script src="../js/common.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/swiper.min.js"></script>
@@ -436,35 +315,31 @@
     <script src="../js/localStorage.js" type="text/javascript" charset="utf-8"></script>
     <script>
 
-    $(".hot_brand").click(function() {
-        $('.hot_brand').removeClass('act');
-        $(this).addClass('act')
-    })
+        $(".hot_brand").click(function () {
+            $('.hot_brand').removeClass('act');
+            $(this).addClass('act')
+        })
 
-    function gotoFind() {
-        var findcontent = $("#findIpt").val();
-        if (findcontent != "") {
-            window.location.href = "search.html?findcontent=" + findcontent;
+        // function gotoFind() {
+        //     var findcontent = $("#findIpt").val();
+        //     if (findcontent != "") {
+        //         window.location.href = "search.html?findcontent=" + findcontent;
+        //     }
+        // }
+
+        // function entersearch() {
+        //     var event = window.event || arguments.callee.caller.arguments[0];
+        //     if (event.keyCode == 13) {
+        //         gotoFind();
+        //     }
+        // }
+
+        function keysearch() {
+            var event = window.event || arguments.callee.caller.arguments[0];
+            if (event.keyCode == 13) {
+                angular.element(document.getElementById('app')).scope().confirm()
+            }
         }
-    }
-
-    function entersearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13)
-
-        {
-            gotoFind();
-        }
-    }
-
-    function keysearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13)
-
-        {
-            angular.element(document.getElementById('app')).scope().confirm()
-        }
-    }
     </script>
     <script src="../js/commodityJS/more.js" type="text/javascript" charset="utf-8"></script>
 </body>

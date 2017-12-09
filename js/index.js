@@ -58,12 +58,12 @@ var swiper = new Swiper('#smart_banner', {
     nextButton: '.swiper-button-next',
 });
 
-function gotoFind() {
-    var findcontent = $("#findIpt").val();
-    if (findcontent != "") {
-        window.location.href = "./html/search.html?findcontent=" + findcontent;
-    }
-}
+// function gotoFind() {
+//     var findcontent = $("#findIpt").val();
+//     if (findcontent != "") {
+//         window.location.href = "./html/search.html?findcontent=" + findcontent;
+//     }
+// }
 
 //数据请求
 var app = angular.module('indexApp', []);
@@ -784,8 +784,8 @@ app.controller('smartbrandCtrl', function($scope, $http) {
 
 // function gotoDetails(typeId, brandId) {
 //     if (typeId != "" && brandId != "") {
-//         // window.open("./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId);
-//         window.location.href = "./html/details_iphone.html?typeId=" + typeId + "&brandId=" + brandId;
+//         // window.open("./html/details.html?typeId=" + typeId + "&brandId=" + brandId);
+//         window.location.href = "./html/details.html?typeId=" + typeId + "&brandId=" + brandId;
 //     } else {
 //         window.location.href = "";
 //     }

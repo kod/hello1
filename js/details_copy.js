@@ -1,16 +1,16 @@
 /*Jquery*/
 $(".clickLi").on("click", function() {
     $(".clickLi").each(function() {
-        $(this).removeClass("act")
+        $(this).removeClass("act");
     });
-    $(this).addClass("act")
-
+    $(this).addClass("act");
 });
 
 /*Angular*/
 
-var app = angular.module('detailsApp', []);
-app.filter('priceFormat', function() { //可以注入依赖
+var app = angular.module("detailsApp", []);
+app.filter("priceFormat", function() {
+    //可以注入依赖
     return F._priceFormat;
 });
 
@@ -18,18 +18,19 @@ var getImgUrls = function($scope, data) {
     var url = data.imageUrls;
     var resUrl = url.split("|");
     $scope.imgUrls = [];
-    for (var i = 0; i < resUrl.length; i++) { //resUrl.length
+    for (var i = 0; i < resUrl.length; i++) {
+        //resUrl.length
         $scope.imgUrls.push(resUrl[i]);
         if (i == 5) {
             break;
         }
     }
     if (resUrl.length > 4) {
-        $('.swiper-pagination').addClass('otherswiper');
+        $(".swiper-pagination").addClass("otherswiper");
     } else {
-        $('.swiper-pagination').removeClass('otherswiper');
+        $(".swiper-pagination").removeClass("otherswiper");
     }
-}
+};
 
 /**
  * 根据是否促销改变响应参数
@@ -39,19 +40,20 @@ var getImgUrls = function($scope, data) {
  * @return   {none}        无
  */
 function promotion_set(item) {
-    if (item.promotion) { // 有促销
-        $('#tcy__money').addClass('money_active');
-        $('#discount__num-num').html(100 - item.discount);
-        $('#oldprice__price-num').html(F._priceFormat(item.orgPrice));
-    } else { // 无促销
-        $('#tcy__money').removeClass('money_active');
+    if (item.promotion) {
+        // 有促销
+        $("#tcy__money").addClass("money_active");
+        $("#discount__num-num").html(100 - item.discount);
+        $("#oldprice__price-num").html(F._priceFormat(item.orgPrice));
+    } else {
+        // 无促销
+        $("#tcy__money").removeClass("money_active");
     }
 }
 
-
-//截取Url里面的参数   
+//截取Url里面的参数
 function GetRequest() {
-    var url = location.search; //获取url中"?"符后的字串  
+    var url = location.search; //获取url中"?"符后的字串
     var theRequest = new Object();
     if (url.indexOf("?") != -1) {
         var str = url.substr(1);
@@ -66,44 +68,40 @@ function GetRequest() {
 var request = new Object();
 request = GetRequest();
 
-var typeId = request['typeId'];
-var brandId = request['brandId'];
+var typeId = request["typeId"];
+var brandId = request["brandId"];
 
-
-//详情页面数据请求接口      
-app.controller('detailsCtrl', function($scope, $http, $filter) {
-
+//详情页面数据请求接口
+app.controller("detailsCtrl", function($scope, $http, $filter) {
     var funId = localStorage.getItem("funId");
 
     if (funId) {
-        F._userGetCollection({
-            msisdn: localStorage.getItem("msisdn"),
-        }, function(ret) {
-            if (!ret) return false;
+        F._userGetCollection(
+            {
+                msisdn: localStorage.getItem("msisdn")
+            },
+            function(ret) {
+                if (!ret) return false;
 
-            if (ret.code !== 10000) return false;
+                if (ret.code !== 10000) return false;
 
-            var collData = ret.details;
+                var collData = ret.details;
 
-            if (collData == 0 || collData == null || collData == '' || collData == undefined) {
+                if (collData == 0 || collData == null || collData == "" || collData == undefined) {
+                    localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
+                } else {
+                    localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
+                    for (var i = 0; i < collData.length; i++) {
+                        var brandid = collData[i].brandId;
 
-                localStorage.setItem('funId=' + funId + 'brandId=' + brandId, 0)
-            } else {
-                localStorage.setItem('funId=' + funId + 'brandId=' + brandId, 0);
-                for (var i = 0; i < collData.length; i++) {
-
-                    var brandid = collData[i].brandId;
-
-                    if (brandId == brandid) {
-
-                        localStorage.setItem('funId=' + funId + 'brandId=' + brandId, 1);
-                    } else {
-
+                        if (brandId == brandid) {
+                            localStorage.setItem("funId=" + funId + "brandId=" + brandId, 1);
+                        } else {
+                        }
                     }
                 }
-
             }
-        });
+        );
     }
 
     $scope.a = "18";
@@ -112,13 +110,13 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
     var ajax = new ajaxClass($http, url, "GET");
 
     var data = {
-        appid: '2016102146225135',
-        method: 'fun.brand.query',
-        charset: 'utf-8',
-        signtype: '',
-        encrypt: '',
-        timestamp: '2017-09-06 11:30:50',
-        version: '1.0',
+        appid: "2016102146225135",
+        method: "fun.brand.query",
+        charset: "utf-8",
+        signtype: "",
+        encrypt: "",
+        timestamp: "2017-09-06 11:30:50",
+        version: "1.0",
         brand_id: brandId
     };
     ajax.params = getMd5Code(data, "commodityKey");
@@ -126,25 +124,21 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
     ajax.successCallback = function(res) {
         /*tcy*/
         var colorChange = function(item, image) {
-            console.log(item);
             if (!image) return false;
             // $('.swiper-slide-img').eq(0).css('background-image', 'url(' + image + ')')
             swiper.slideTo(0);
 
-            console.log('id'+item.id);
-            console.dir('nowProductDetail' + $scope.nowProductDetail);
             if ($scope.propertiesDetail[0].image == "") {
                 $scope.nowProductDetail[1] = item.id;
             } else {
                 $scope.nowProductDetail[0] = item.id;
             }
 
-            console.dir($scope.nowProductDetail);
             getPrice($scope.nowProductDetail);
             $scope.nowUrl = item.image;
 
             $scope.nowOneInfo = item.value;
-        }
+        };
         /*tcy*/
 
         var brandDetail = res.data.brand_detail;
@@ -153,16 +147,15 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
         var resCode = res.data.code;
 
         if (resCode == 10000) {
-
             if (productDetail.length === 0) {
-                alert('Sản phẩm không tồn tại hoặc đã hết hàng');
+                alert("Sản phẩm không tồn tại hoặc đã hết hàng");
                 window.history.back();
                 return false;
             }
 
             //创建用户浏览记录session
             var funId = localStorage.getItem("funId");
-            var sc_status = localStorage.getItem('funId=' + funId + 'brandId=' + brandId);
+            var sc_status = localStorage.getItem("funId=" + funId + "brandId=" + brandId);
 
             if (sc_status == null || sc_status == 0) {
                 $("#shoucangImg").attr("src", "../img/sc (1).jpg");
@@ -184,7 +177,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
             $scope.shoucang = brandDetail.name;
             $scope.type_id = brandDetail.typeId;
             for (var i = 0; i < $scope.productDetail.length; i++) {
-
                 var propertiesIds_str = productDetail[i].propertiesIds;
                 if (isNaN(propertiesIds_str)) {
                     var propertiesIds_array = propertiesIds_str.split("-");
@@ -215,43 +207,33 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         break;
                     }
                 }
-                console.log(result);
                 return result;
             }
 
             if ($scope.productDetail.length > 0) {
                 //产品属性判断 1显示电脑  2其他产品
                 if ($scope.productDetail.length > 0) {
-
                     var product_detail = find_properties(F.id, $scope.productDetail);
-                    console.dir(product_detail);
 
                     promotion_set(product_detail);
-
 
                     var propertiesIds = product_detail.propertiesIds;
 
                     // var propertiesIds = $scope.productDetail[0].propertiesIds;
-                    var propertiesIdsNum = propertiesIds.split("-");
-                    console.log(propertiesIdsNum);
+                    var propertiesIdsNum = propertiesIds ? propertiesIds.split("-") : [];
                 } else {
                     var propertiesIdsNum = [1];
                 }
 
                 switch (propertiesIdsNum.length) {
-                    case 1:
-
-                        $("#diannao").css("display", "block");
-                        // $("#shouji").css("display", "none");
+                    case 0:
+                        $("#shouji").css("display", "none");
                         $("#two").css("display", "none");
 
-                        // $scope.nowProductDetail = propertiesIdsNum[0];
                         $scope.nowProductDetail = propertiesIdsNum;
                         $scope.nowProductClass = [];
                         $scope.f = propertiesIdsNum[0];
                         for (var i = 0; i < $scope.productDetail.length; i++) {
-
-
                             if ($scope.productDetail[i].typeId == typeId) {
                                 $scope.nowProductClass.push($scope.productDetail[i]);
                             }
@@ -259,9 +241,12 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         initPrice($scope.nowProductDetail);
                         getImgUrls($scope, product_detail);
+
+                        $scope.nowUrl = product_detail.iconUrl;
+
                         $scope.classify = function(obj) {
                             return true;
-                        }
+                        };
 
                         //颜色按钮点击事件
                         $scope.colorChange = colorChange;
@@ -275,14 +260,66 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             $scope.nowOneInfo = item.value;
                             $scope.nowTwoInfo = "";
                             $scope.nowThreeInfo = "";
-                            $(".swiper-slide").css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1')
-                            $(".swiper-slide:nth-child(1) img").attr('src', item.image).parent().addClass('swiper-slide-active').css('transform', 'translate3d(0px, 0px, 0px)').css('opacity', '1');
+                            $(".swiper-slide")
+                                .css("transform", "translate3d(0px, 0px, 0px)")
+                                .css("opacity", "1");
+                            $(".swiper-slide:nth-child(1) img")
+                                .attr("src", item.image)
+                                .parent()
+                                .addClass("swiper-slide-active")
+                                .css("transform", "translate3d(0px, 0px, 0px)")
+                                .css("opacity", "1");
+                        };
+
+                        break;
+
+                    case 1:
+                        $("#diannao").css("display", "block");
+                        // $("#shouji").css("display", "none");
+                        $("#two").css("display", "none");
+
+                        // $scope.nowProductDetail = propertiesIdsNum[0];
+                        $scope.nowProductDetail = propertiesIdsNum;
+                        $scope.nowProductClass = [];
+                        $scope.f = propertiesIdsNum[0];
+                        for (var i = 0; i < $scope.productDetail.length; i++) {
+                            if ($scope.productDetail[i].typeId == typeId) {
+                                $scope.nowProductClass.push($scope.productDetail[i]);
+                            }
                         }
+
+                        initPrice($scope.nowProductDetail);
+                        getImgUrls($scope, product_detail);
+                        $scope.classify = function(obj) {
+                            return true;
+                        };
+
+                        //颜色按钮点击事件
+                        $scope.colorChange = colorChange;
+
+                        $scope.change = function(item) {
+                            $scope.nowProductDetail[0] = item.id;
+
+                            getPrice($scope.nowProductDetail);
+
+                            $scope.nowUrl = item.image;
+                            $scope.nowOneInfo = item.value;
+                            $scope.nowTwoInfo = "";
+                            $scope.nowThreeInfo = "";
+                            $(".swiper-slide")
+                                .css("transform", "translate3d(0px, 0px, 0px)")
+                                .css("opacity", "1");
+                            $(".swiper-slide:nth-child(1) img")
+                                .attr("src", item.image)
+                                .parent()
+                                .addClass("swiper-slide-active")
+                                .css("transform", "translate3d(0px, 0px, 0px)")
+                                .css("opacity", "1");
+                        };
 
                         break;
 
                     case 2:
-
                         $("#diannao").css("display", "none");
                         // $("#shouji").css("display", "none");
                         $("#two").css("display", "block");
@@ -291,7 +328,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                         // var propertiesIds = $scope.productDetail[0].propertiesIds;
 
-                        var propertiesIdsArray = propertiesIds.split('-');
+                        var propertiesIdsArray = propertiesIds.split("-");
 
                         for (var i = 0; i < propertiesIdsArray.length; i++) {
                             for (var j = 0; j < $scope.propertiesDetail.length; j++) {
@@ -307,37 +344,34 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                                 $scope.propertiesDetails.push($scope.propertiesDetail[t]);
                             } else if ($scope.propertiesDetail[t].name == $scope.propertiesDetailName[1]) {
                                 $scope.propertiesDetailss.push($scope.propertiesDetail[t]);
-
                             }
-
                         }
                         if ($scope.propertiesDetail[0].image == "") {
-                            $('.pob').show();
-                            $('.pob-in').hide();
-                            $('.pobb').show();
-                            $('.pobb-in').hide();
-                            $('.ppob').hide();
-                            $('.ppobb').hide();
+                            $(".pob").show();
+                            $(".pob-in").hide();
+                            $(".pobb").show();
+                            $(".pobb-in").hide();
+                            $(".ppob").hide();
+                            $(".ppobb").hide();
                             $scope.f = propertiesIdsArray[1];
                             $scope.s = propertiesIdsArray[0];
-
                         } else {
-                            $('.pob-in').show();
-                            $('.pob').hide();
-                            $('.pobb-in').show();
-                            $('.pobb').hide();
-                            $('.ppob').hide();
-                            $('.ppobb').hide();
+                            $(".pob-in").show();
+                            $(".pob").hide();
+                            $(".pobb-in").show();
+                            $(".pobb").hide();
+                            $(".ppob").hide();
+                            $(".ppobb").hide();
                             $scope.f = propertiesIdsArray[0];
                             $scope.s = propertiesIdsArray[1];
                         }
                         if ($scope.propertiesDetailName[1] == $scope.propertiesDetail[0].name) {
-                            $('.ppob').show()
-                            $('.pob-in').hide();
-                            $('.pob').hide();
-                            $('.ppobb').show()
-                            $('.pobb-in').hide();
-                            $('.pobb').hide();
+                            $(".ppob").show();
+                            $(".pob-in").hide();
+                            $(".pob").hide();
+                            $(".ppobb").show();
+                            $(".pobb-in").hide();
+                            $(".pobb").hide();
                             $scope.f = propertiesIdsArray[0];
                             $scope.s = propertiesIdsArray[1];
                         }
@@ -351,9 +385,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             }
                         }
 
-
                         initPrice(propertiesIds);
-
 
                         //轮播图ImageUrl
                         getImgUrls($scope, product_detail);
@@ -363,7 +395,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             getPrice($scope.nowProductDetail);
                             $scope.nowUrl = item.image;
                             $scope.nowOneInfo = item.value;
-                        }
+                        };
                         //颜色按钮点击事件
                         $scope.colorChange = colorChange;
 
@@ -373,7 +405,6 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             swiper.slideTo(0);
 
                             $scope.nowProductDetail[0] = item.id;
-                            console.dir($scope.nowProductDetail);
 
                             getPrice($scope.nowProductDetail);
 
@@ -382,8 +413,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                             $scope.nowUrl = item.image;
 
                             $scope.nowOneInfo = item.value;
-
-                        }
+                        };
                         //内存按钮点击事件
                         $scope.sizeChange = function(item) {
                             if ($scope.propertiesDetail[0].image == "") {
@@ -396,7 +426,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
 
                             $scope.nowTwoInfo = item.value;
                             $scope.nowThreeInfo = "";
-                        }
+                        };
 
                         break;
 
@@ -406,59 +436,46 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                 }
 
                 function getPrice(item) {
-
                     //数组转化为字符串
                     if (isNaN(item)) {
                         var str = item.join("-");
                         var nowPropertiesIds = str.split(",");
-
                     } else {
                         var nowPropertiesIds = item;
-
                     }
 
                     //输出价格
-
-                    console.log(nowPropertiesIds);
-                    console.dir($scope.nowProductClass);
                     for (var i = 0; i < $scope.nowProductClass.length; i++) {
-
                         if (nowPropertiesIds == $scope.nowProductClass[i].propertiesIds) {
-
                             promotion_set($scope.nowProductClass[i]);
                             getImgUrls($scope, $scope.nowProductClass[i]);
 
                             window.__goodsDetail = $scope.nowProductClass[i];
-
-                            $('.vnd').show();
+                            $(".vnd").show();
                             $scope.price = $scope.nowProductClass[i].price;
                             $scope.numbers = $scope.nowProductClass[i].numbers;
 
-                            $('#price_text').html('');
+                            $("#price_text").html("");
 
                             break;
                         } else {
                             $scope.price = "Đã hết hàng";
                             $scope.numbers = 0;
-                            $('#price_text').html('Đã hết hàng');
-                            $('.vnd').hide();
+                            $("#price_text").html("Đã hết hàng");
+                            $(".vnd").hide();
                         }
                     }
-
                 }
 
                 function initPrice(item) {
-
                     if (isNaN(item)) {
                         var str = item;
                         var nowPropertiesIds = str.split(",");
                         var initPropertiesIdsArray = str.split("-");
 
                         if (initPropertiesIdsArray.length == 2) {
-
                             twoPropertiesIds();
                         } else if (initPropertiesIdsArray.length == 3) {
-
                             threePropertiesIds();
                         }
                     } else {
@@ -468,10 +485,8 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                     }
 
                     function threePropertiesIds() {
-
                         for (var i = 0; i < $scope.propertiesDetail.length; i++) {
                             if (initPropertiesIdsArray[0] == $scope.propertiesDetail[i].id) {
-
                                 $scope.nowUrl = $scope.propertiesDetail[i].image;
                                 $scope.nowOneInfo = $scope.propertiesDetail[i].value;
                             }
@@ -485,14 +500,13 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                     }
 
                     function twoPropertiesIds() {
-
                         function is_properties(id) {
-                            id = id + '';
+                            id = id + "";
                             var i;
                             var result = false;
 
                             for (i = 0; i < initPropertiesIdsArray.length; i++) {
-                                if ((initPropertiesIdsArray[i] + '') === id) {
+                                if (initPropertiesIdsArray[i] + "" === id) {
                                     result = true;
                                     break;
                                 }
@@ -503,10 +517,12 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         var i;
                         for (i = 0; i < $scope.propertiesDetail.length; i++) {
                             if (is_properties($scope.propertiesDetail[i].id)) {
-                                if ($scope.propertiesDetail[i].image) { // 颜色
+                                if ($scope.propertiesDetail[i].image) {
+                                    // 颜色
                                     $scope.nowUrl = $scope.propertiesDetail[i].image;
                                     $scope.nowOneInfo = $scope.propertiesDetail[i].value;
-                                } else { // 非颜色
+                                } else {
+                                    // 非颜色
                                     $scope.nowTwoInfo = $scope.propertiesDetail[i].value;
                                 }
                             }
@@ -558,12 +574,9 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         $scope.nowThreeInfo = "";
                     }
 
-
-
                     for (var i = 0; i < $scope.nowProductClass.length; i++) {
-
                         if (nowPropertiesIds == $scope.nowProductClass[i].propertiesIds) {
-                            $('.vnd').show();
+                            $(".vnd").show();
                             window.__goodsDetail = $scope.nowProductClass[i];
                             $scope.price = $scope.nowProductClass[i].price;
                             $scope.numbers = $scope.nowProductClass[i].numbers;
@@ -571,7 +584,7 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         } else {
                             $scope.price = "Đã hết hàng";
                             $scope.numbers = "0";
-                            $('.vnd').hide();
+                            $(".vnd").hide();
                         }
                     }
 
@@ -579,97 +592,105 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                         if (!F._isLogin()) return false;
 
                         var funId = localStorage.getItem("funId");
-                        var sc_status = localStorage.getItem('funId=' + funId + 'brandId=' + brandId);
+                        var sc_status = localStorage.getItem("funId=" + funId + "brandId=" + brandId);
                         var loading = new F._loading();
                         loading.show();
                         if (sc_status == null || sc_status == 0) {
-
-                            var msisdn_s = localStorage.getItem('msisdn');
+                            var msisdn_s = localStorage.getItem("msisdn");
                             if (funId == null || funId == "") {
-                                window.location.href = "login.html"
+                                window.location.href = "login.html";
                             } else {
-                                var url = F._userAddCollection_uc;
-                                var ajax = new ajaxClass($http, url, "POST");
-                                var appId = "110";
-                                var method = 'fun.uc.addcollection';
-                                var charset = 'utf-8';
-                                var funid = funId;
+                                F._userAddCollection(
+                                    {
+                                        type_id: $scope.type_id,
+                                        brand_id: brandId,
+                                        brand_name: $scope.shoucang,
+                                        brand_desc: $scope.shoucang,
+                                        brand_image: $scope.nowUrl,
+                                        brand_price: $scope.price
+                                    },
+                                    function(ret) {
+                                        loading.hide();
 
-                                var msisdn = msisdn_s;
-                                //              var funid = "VNQO1RVA7QUM";
-                                //              var msisdn = localStorage.getItem("msisdn");
-
-                                var brand_id = brandId;
-                                var brand_name = $scope.shoucang;
-                                var brand_desc = $scope.shoucang;
-                                var type_id = $scope.type_id;
-                                var brand_image = $scope.nowUrl;
-
-                                var brand_price = $scope.price;
-                                var Key = 'userKey';
-
-                                var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
-                                var signType = hex_md5(md5SigntypeStrig);
-
-
-                                var md5EncryptStrig = "funid=" + funid + "&msisdn=" + msisdn + "&type_id=" + type_id + "&brand_id=" + brand_id + "&brand_name=" + brand_name + "&brand_desc=" + brand_desc + "&brand_image=" + brand_image + "&brand_price=" + brand_price + Key;
-                                var encrypt = md5(md5EncryptStrig);
-
-
-                                ajax.data = $.param({
-                                    appId: appId,
-                                    method: method,
-                                    charset: charset,
-                                    signType: signType,
-                                    encrypt: encrypt,
-                                    timestamp: '2016-09-21 03:07:50',
-                                    version: '1.0',
-                                    funid: funid,
-                                    msisdn: msisdn,
-                                    type_id: type_id,
-                                    brand_id: brand_id,
-                                    brand_desc: brand_desc,
-                                    brand_name: brand_name,
-                                    brand_image: brand_image,
-                                    brand_price: brand_price
-
-                                });
-                                ajax.headers = {
-                                    'Content-Type': 'application/x-www-form-urlencoded'
-                                };
-
-                                ajax.successCallback = function(res) {
-                                    loading.hide();
-
-
-                                    if (res.data.code = 10000) {
-                                        $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
-                                        localStorage.setItem('funId=' + funId + 'brandId=' + brandId, 1);
+                                        if ((res.data.code = 10000)) {
+                                            $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
+                                            localStorage.setItem("funId=" + funId + "brandId=" + brandId, 1);
+                                        }
                                     }
-                                };
-                                ajax.failureCallback = function(res) {};
-                                ajax.requestData();
+                                );
+                                // var url = F._userAddCollection_uc;
+                                // var ajax = new ajaxClass($http, url, "POST");
+                                // var appId = "110";
+                                // var method = "fun.uc.addcollection";
+                                // var charset = "utf-8";
+                                // var funid = funId;
+
+                                // var msisdn = msisdn_s;
+
+                                // var brand_id = brandId;
+                                // var brand_name = $scope.shoucang;
+                                // var brand_desc = $scope.shoucang;
+                                // var type_id = $scope.type_id;
+                                // var brand_image = $scope.nowUrl;
+
+                                // var brand_price = $scope.price;
+                                // var Key = "userKey";
+
+                                // var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
+                                // var signType = hex_md5(md5SigntypeStrig);
+
+                                // var md5EncryptStrig = "funid=" + funid + "&msisdn=" + msisdn + "&type_id=" + type_id + "&brand_id=" + brand_id + "&brand_name=" + brand_name + "&brand_desc=" + brand_desc + "&brand_image=" + brand_image + "&brand_price=" + brand_price + Key;
+                                // var encrypt = md5(md5EncryptStrig);
+
+                                // ajax.data = $.param({
+                                //     appId: appId,
+                                //     method: method,
+                                //     charset: charset,
+                                //     signType: signType,
+                                //     encrypt: encrypt,
+                                //     timestamp: "2016-09-21 03:07:50",
+                                //     version: "1.0",
+                                //     funid: funid,
+                                //     msisdn: msisdn,
+                                //     type_id: type_id,
+                                //     brand_id: brand_id,
+                                //     brand_desc: brand_desc,
+                                //     brand_name: brand_name,
+                                //     brand_image: brand_image,
+                                //     brand_price: brand_price
+                                // });
+                                // ajax.headers = {
+                                //     "Content-Type": "application/x-www-form-urlencoded"
+                                // };
+
+                                // ajax.successCallback = function(res) {
+                                //     loading.hide();
+
+                                //     if ((res.data.code = 10000)) {
+                                //         $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
+                                //         localStorage.setItem("funId=" + funId + "brandId=" + brandId, 1);
+                                //     }
+                                // };
+                                // ajax.failureCallback = function(res) {};
+                                // ajax.requestData();
                             }
                         } else {
-
                             var url = F._userCancelCollection_uc;
                             var ajax = new ajaxClass($http, url, "POST");
                             var appId = "110";
-                            var method = 'fun.uc.cancelcollection';
-                            var charset = 'utf-8';
+                            var method = "fun.uc.cancelcollection";
+                            var charset = "utf-8";
                             var funid = localStorage.getItem("funId");
-                            var msisdn = localStorage.getItem('msisdn');
+                            var msisdn = localStorage.getItem("msisdn");
 
                             var brand_id = brandId;
-                            var Key = 'userKey';
+                            var Key = "userKey";
 
                             var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
                             var signType = hex_md5(md5SigntypeStrig);
 
-
                             var md5EncryptStrig = "funid=" + funid + "&msisdn=" + msisdn + "&brand_id=" + brand_id + Key;
                             var encrypt = md5(md5EncryptStrig);
-
 
                             ajax.data = $.param({
                                 appId: appId,
@@ -677,34 +698,31 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
                                 charset: charset,
                                 signType: signType,
                                 encrypt: encrypt,
-                                timestamp: '2016-09-21 03:07:50',
-                                version: '1.0',
+                                timestamp: "2016-09-21 03:07:50",
+                                version: "1.0",
                                 funid: funid,
                                 msisdn: msisdn,
-                                brand_id: brand_id,
+                                brand_id: brand_id
                             });
                             ajax.headers = {
-                                'Content-Type': 'application/x-www-form-urlencoded'
+                                "Content-Type": "application/x-www-form-urlencoded"
                             };
 
                             ajax.successCallback = function(res) {
                                 loading.hide();
 
-                                if (res.data.code = 10000) {
-                                    localStorage.setItem('funId=' + funId + 'brandId=' + brandId, 0);
-                                    $("#shoucangImg").attr("src", "../img/sc (1).jpg")
+                                if ((res.data.code = 10000)) {
+                                    localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
+                                    $("#shoucangImg").attr("src", "../img/sc (1).jpg");
                                 }
                             };
-                            ajax.failureCallback = function(res) {
-
-                            };
+                            ajax.failureCallback = function(res) {};
                             ajax.requestData();
                         }
-                    }
+                    };
                 }
-
             } else {
-                alert('Sản phẩm không tồn tại hoặc đã hết hàng');
+                alert("Sản phẩm không tồn tại hoặc đã hết hàng");
                 window.location.href = document.referrer;
             }
         } else {
@@ -713,12 +731,10 @@ app.controller('detailsCtrl', function($scope, $http, $filter) {
     };
     ajax.failureCallback = function(res) {};
     ajax.requestData();
-
 }); //controllr
 
 /*获取评论接口*/
 app.controller("commentCtrls", function($scope, $http, $filter) {
-
     var appId = localStorage.getItem("funId");
     var method = "fun.evaluation.query";
     var charset = "utf-8";
@@ -745,8 +761,8 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
         charset: charset,
         signType: signType,
         encrypt: encrypt,
-        timestamp: '2017-09-06 11:30:50',
-        version: '1.0',
+        timestamp: "2017-09-06 11:30:50",
+        version: "1.0",
         brand_id: brand_id,
         msisdn: msisdn,
         pagesize: pagesize,
@@ -754,7 +770,6 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
     };
 
     ajax.successCallback = function(res) {
-
         var resCode = res.data.code;
         var detail = res.data.detail;
 
@@ -762,26 +777,24 @@ app.controller("commentCtrls", function($scope, $http, $filter) {
             $(".top-fen").css("display", "block");
 
             $scope.totalNumber = res.data.totalNumber;
-
         } else {
             $("#page").css("display", "none");
         }
-    }
+    };
     ajax.failureCallback = function(res) {};
     ajax.requestData();
-
-
 });
 
-app.filter('reverse', function() { //可以注入依赖
+app.filter("reverse", function() {
+    //可以注入依赖
     return function(text) {
-        var newTelVal = '';
+        var newTelVal = "";
         if (text.length <= 2) {
             for (var i = 0; i < text.length; i++) {
                 if (i < 0 || i >= text.length) {
                     newTelVal += text[i];
                 } else {
-                    newTelVal += '*';
+                    newTelVal += "*";
                 }
             }
             text = newTelVal;
@@ -791,7 +804,7 @@ app.filter('reverse', function() { //可以注入依赖
                 if (i < 1 || i >= text.length) {
                     newTelVal += text[i];
                 } else {
-                    newTelVal += '*';
+                    newTelVal += "*";
                 }
             }
             text = newTelVal;
@@ -801,17 +814,16 @@ app.filter('reverse', function() { //可以注入依赖
                 if (i < 1 || i >= text.length - 1) {
                     newTelVal += text[i];
                 } else {
-                    newTelVal += '*';
+                    newTelVal += "*";
                 }
             }
             text = newTelVal;
             return text.split("").join("");
         }
-    }
+    };
 });
 
 app.controller("commentCtrl", function($scope, $http, $filter) {
-
     $scope.nowPage = 1;
     var appId = localStorage.getItem("funId");
     var method = "fun.evaluation.query";
@@ -827,7 +839,6 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
     var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
     var signType = hex_md5(md5SigntypeStrig);
 
-
     var md5EncryptStrig = "brand_id=" + brand_id + "&msisdn=" + msisdn + "&pagesize=" + pagesize + "&currentPage=" + currentPage + Key;
     var encrypt = hex_md5(md5EncryptStrig);
 
@@ -840,8 +851,8 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
         charset: charset,
         signType: signType,
         encrypt: encrypt,
-        timestamp: '2017-09-06 11:30:50',
-        version: '1.0',
+        timestamp: "2017-09-06 11:30:50",
+        version: "1.0",
         brand_id: brand_id,
         msisdn: msisdn,
         pagesize: pagesize,
@@ -849,7 +860,6 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
     };
 
     ajax.successCallback = function(res) {
-
         var resCode = res.data.code;
         var detail = res.data.detail;
 
@@ -857,33 +867,30 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
             $(".top-fen").css("display", "block");
             $scope.userComment = detail;
             if ($scope.userComment.length > 0) {
-
                 $scope.average = res.data.average;
                 if (res.data.average == 0) {
-                    $('#xinxin').append('');
+                    $("#xinxin").append("");
                 } else if (res.data.average < 1 && res.data.average > 0) {
-                    $('#xinxin').append("<img src='../img/f (9).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (9).jpg' alt='' />");
                 } else if (res.data.average == 1) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' />");
                 } else if (res.data.average < 2 && res.data.average > 1) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
                 } else if (res.data.average == 2) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
                 } else if (res.data.average < 3 && res.data.average > 2) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
                 } else if (res.data.average == 3) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
                 } else if (res.data.average < 4 && res.data.average > 3) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
                 } else if (res.data.average == 4) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
                 } else if (res.data.average < 5 && res.data.average > 4) {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (9).jpg' alt='' />");
                 } else {
-                    $('#xinxin').append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
-
+                    $("#xinxin").append("<img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' /> <img src='../img/f (8).jpg' alt='' />");
                 }
-
             } else {
                 $("#page").css("display", "none");
                 $scope.totalNumber = 0;
@@ -893,14 +900,12 @@ app.controller("commentCtrl", function($scope, $http, $filter) {
         } else {
             $("#page").css("display", "none");
         }
-    }
+    };
     ajax.failureCallback = function(res) {};
     ajax.requestData();
-
-})
+});
 
 app.controller("commentCtrlcomm", function($scope, $http, $filter) {
-
     $scope.nowPage = 1;
     var appId = localStorage.getItem("funId");
     var method = "fun.evaluation.query";
@@ -918,10 +923,12 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
 
         $scope.nowPage = currentPage;
         reqAjax(currentPage);
-        $('#lastPagebtn').css({
-            'background': '#0075F6'
-        }).attr('disabled', false)
-    }
+        $("#lastPagebtn")
+            .css({
+                background: "#0075F6"
+            })
+            .attr("disabled", false);
+    };
     /*上一页*/
     $scope.lastPage = function() {
         currentPage--;
@@ -929,20 +936,19 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
         $scope.nowPage = currentPage;
         reqAjax(currentPage);
 
-        $('#nextPagebtn').css({
-            'background': '#0075F6'
-        }).attr('disabled', false)
-    }
+        $("#nextPagebtn")
+            .css({
+                background: "#0075F6"
+            })
+            .attr("disabled", false);
+    };
     //跳转当前页
     $scope.gotoPage = function(num) {
-
         currentPage = num;
         reqAjax(currentPage);
-    }
-
+    };
 
     function reqAjax(currentPage) {
-
         var currentPage = currentPage;
 
         var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
@@ -960,8 +966,8 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
             charset: charset,
             signType: signType,
             encrypt: encrypt,
-            timestamp: '2017-09-06 11:30:50',
-            version: '1.0',
+            timestamp: "2017-09-06 11:30:50",
+            version: "1.0",
             brand_id: brand_id,
             msisdn: msisdn,
             pagesize: pagesize,
@@ -969,7 +975,6 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
         };
 
         ajax.successCallback = function(res) {
-
             var resCode = res.data.code;
             var detail = res.data.detail;
 
@@ -985,9 +990,9 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
 
                         for (var j = 0; j < resUrl.length; j++) {
                             var imgObj = {
-                                'urlName': "urlName",
+                                urlName: "urlName",
                                 url: resUrl[j]
-                            }
+                            };
                             $scope.userComment[i].userImg.push(imgObj);
                         }
                     }
@@ -1024,152 +1029,149 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
             } else {
                 $("#page").css("display", "none");
             }
-        }
+        };
         ajax.failureCallback = function(res) {};
         ajax.requestData();
     }
-
 
     $scope.changePic = function($event) {
         var img = $event.srcElement || $event.target;
         angular.element("#bigimage")[0].src = img.src;
         angular.element("#js-imgview")[0].style.display = "block";
         angular.element("#js-imgview-mask")[0].style.display = "block";
-    }
+    };
     $scope.closePic = function() {
-
         angular.element("#js-imgview")[0].style.display = "none";
         angular.element("#js-imgview-mask")[0].style.display = "none";
-
-    }
-
-
-})
+    };
+});
 
 //app.filter('ttnumber', function() { //可以注入依赖
-//      
+//
 //      return function(text) {
 //          var overlists=$('#people .li').size();
 //        for(var t=0;t<overlists;t++){
 //          if(text<1){
-//              
+//
 //              //$('.ttt').css("display","none")
 //              $(".tt0").css("display","block");
-//              
+//
 //          }else if(text==1){
 //              //$('.ttt').css("display","none")
 //              $(".tt1").css("display","block");
-//              
-//              
+//
+//
 //          }else if(text>1&&text<2){
 //              //$('.ttt').css("display","none")
 //              $(".tt2").css("display","block");
-//              
-//              
+//
+//
 //          }else if(text==2){
 //              //$('.ttt').css("display","none")
 //              $(".tt3").css("display","block");
-//              
-//              
+//
+//
 //          }else if(text>2&&text<3){
 //              //$('.ttt').css("display","none")
 //              $(".tt4").css("display","block");
-//              
-//              
+//
+//
 //          }else if(text==3){
 //              //$('.ttt').css("display","none")
 //              $(".tt5").css("display","block");
-//              
+//
 //          }else if(text>3&&text<4){
 //              //$('.ttt').css("display","none")
 //              $(".tt6").css("display","block");
-//              
+//
 //          }else if(text==4){
 //              //$('.ttt').css("display","none")
 //              $(".tt7").css("display","block");
-//              
-//              
+//
+//
 //          }else if(text>4&&text<5){
 //              //$('.ttt').css("display","none")
 //              $(".tt8").css("display","block");
-//              
-//              
+//
+//
 //          }else{
 //              //$('.ttt').css("display","none")
-//              $(".tt9").css("display","block");   
-//              
+//              $(".tt9").css("display","block");
+//
 //          }
 //       }
 //      }
 //})
 
-
 //获取收藏接口
-app.controller('collcetionCtrl', function($scope, $http, $filter) {
-
-})
-app.controller('instalmentCtrl', function($scope, $http, $filter) {
-
+app.controller("collcetionCtrl", function($scope, $http, $filter) {});
+app.controller("instalmentCtrl", function($scope, $http, $filter) {
     $scope.paymentNum = "0.5";
 
-    $scope.$watch('paymentNum', function(newValue, oldValue) {
-
-        if (newValue == 1.0) {
-            $(".fenqiNumBtn button").attr("disabled", true).addClass('actives')
-            $('.moneryIcon').hide();
-            $scope.resPrice = $scope.price;
-        } else {
-            if ($(".fenqiNumBtn button:last-child").is('.b_active') == false) {
-
-                $(".fenqiNumBtn button:last-child").removeClass('b_active');
-
+    $scope.$watch(
+        "paymentNum",
+        function(newValue, oldValue) {
+            if (newValue == 1.0) {
+                $(".fenqiNumBtn button")
+                    .attr("disabled", true)
+                    .addClass("actives");
+                $(".moneryIcon").hide();
+                $scope.resPrice = $scope.price;
             } else {
-                $(".fenqiNumBtn button:last-child").addClass('b_active');
+                if ($(".fenqiNumBtn button:last-child").is(".b_active") == false) {
+                    $(".fenqiNumBtn button:last-child").removeClass("b_active");
+                } else {
+                    $(".fenqiNumBtn button:last-child").addClass("b_active");
+                }
 
+                $(".fenqiNumBtn button")
+                    .attr("disabled", false)
+                    .removeClass("actives");
+                $(".moneryIcon").show();
+                fenqiAjax($scope.price, newValue, $scope.fenqiNum);
             }
-
-            $(".fenqiNumBtn button").attr("disabled", false).removeClass('actives')
-            $('.moneryIcon').show();
-            fenqiAjax($scope.price, newValue, $scope.fenqiNum);
-        }
-    }, true);
+        },
+        true
+    );
 
     $scope.fenqiNum = "12";
     $scope.fenqi = function(num) {
         $scope.fenqiNum = num;
 
         var price = $scope.price;
-
-    }
-    $scope.$watch('fenqiNum', function(newValue, oldValue) {
-
-        fenqiAjax($scope.price, $scope.paymentNum, newValue);
-
-    }, true);
-    $scope.$watch('price', function(newValue, oldValue) {
-
-        fenqiAjax(newValue, $scope.paymentNum, $scope.fenqiNum);
-    }, true);
+    };
+    $scope.$watch(
+        "fenqiNum",
+        function(newValue, oldValue) {
+            fenqiAjax($scope.price, $scope.paymentNum, newValue);
+        },
+        true
+    );
+    $scope.$watch(
+        "price",
+        function(newValue, oldValue) {
+            fenqiAjax(newValue, $scope.paymentNum, $scope.fenqiNum);
+        },
+        true
+    );
 
     //  获取分期金额信息接口
     function fenqiAjax(totalamounts, payrate, repaymentmonths) {
-
         var url = F._returnMoney_im;
         var ajax = new ajaxClass($http, url, "POST");
 
-        var appid = localStorage.getItem("funId") || '';
-        var method = 'fun.trade.returnMoney';
-        var charset = 'utf-8';
+        var appid = localStorage.getItem("funId") || "";
+        var method = "fun.trade.returnMoney";
+        var charset = "utf-8";
         var totalamounts = totalamounts;
         var repaymentmonths = repaymentmonths;
         var payrate = payrate;
-        var Key = 'settleKey';
+        var Key = "settleKey";
 
         var detailsArrayString = totalamounts + "_" + repaymentmonths + "_" + payrate;
 
         var md5SigntypeStrig = "appid=" + appid + "&method=" + method + "&charset=" + charset + Key;
         var signType = hex_md5(md5SigntypeStrig);
-
 
         var md5EncryptStrig = "totalamounts=" + totalamounts + "&repaymentmonths=" + repaymentmonths + "&payrate=" + payrate + Key;
         var encrypt = md5(md5EncryptStrig);
@@ -1180,42 +1182,126 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
             charset: charset,
             signtype: signType,
             encrypt: encrypt,
-            timestamp: '2016-09-21 03:07:50',
-            version: '1.0',
+            timestamp: "2016-09-21 03:07:50",
+            version: "1.0",
             totalamounts: totalamounts,
             repaymentmonths: repaymentmonths,
             payrate: payrate
         });
         ajax.headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            "Content-Type": "application/x-www-form-urlencoded"
         };
 
         ajax.successCallback = function(res) {
-
             if (res.data.code == 10000) {
                 if (payrate == 1.0) {
-
                     $scope.resPrice = $scope.price;
                 } else {
                     $scope.resPrice = res.data.details[detailsArrayString][0].interest + res.data.details[detailsArrayString][0].principal;
                 }
 
                 //  分期金额
-                $('table tbody').html('');
+                $("table tbody").html("");
                 $scope.information = function() {
-                    $('table tbody').html('');
+                    $("table tbody").html("");
                     var fenqi = JSON.stringify(res.data.details);
                     for (i = 1; i < res.data.details[detailsArrayString].length + 1; i++) {
-                        $('table tbody').append("<tr><td>" + i + " Số kỳ</td><td>" + F._priceFormat(res.data.details[detailsArrayString][i - 1].principal) + " VND</td><td>" + F._priceFormat(res.data.details[detailsArrayString][i - 1].interest) + " VND</td></tr>");
+                        $("table tbody").append("<tr><td>" + i + " Số kỳ</td><td>" + F._priceFormat(res.data.details[detailsArrayString][i - 1].principal) + " VND</td><td>" + F._priceFormat(res.data.details[detailsArrayString][i - 1].interest) + " VND</td></tr>");
                     }
-                }
+                };
             }
         };
-        ajax.failureCallback = function(res) {
-
-        };
+        ajax.failureCallback = function(res) {};
         ajax.requestData();
     }
+
+    $scope.addCart = function() {
+        var payRate = +$scope.paymentNum;
+        var quantity = 1;
+        var totalAmount = +window.__goodsDetail.price;
+        var orgAmount = window.__goodsDetail.orgPrice;
+        var advance = totalAmount * payRate;
+        var repaymentMonth = +payRate === 1 ? 0 : +$scope.fenqiNum;
+        var subject = window.__goodsDetail.name;
+        var itemId = window.__goodsDetail.id;
+
+        if (!(totalAmount > 0)) {
+            F._confirm("Gợi ý", "Đã hết hàng", "error", [
+                {
+                    name: "Xác nhận",
+                    func: function() {}
+                }
+            ]);
+            return false;
+        }
+
+        var cartitems = [
+            {
+                payRate: payRate,
+                quantity: quantity,
+                totalAmount: totalAmount,
+                orgAmount: orgAmount,
+                advance: advance,
+                repaymentMonth: repaymentMonth,
+                subject: subject,
+                itemId: itemId
+            }
+        ];
+        function login_case() {
+            F._cart_gate(
+                {
+                    cartitems: JSON.stringify(cartitems)
+                },
+                function(ret) {
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                    $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1)
+                    F._confirm("Gợi ý", "1 sản phẩm mới đã được thêm vào giỏ hàng của bạn", "success", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                }
+            );
+        }
+
+        function unlogin_case() {
+            function is_exist(array, itemId, payRate, repaymentMonth) {
+                var index;
+                var result = false;
+                for (index = 0; index < array.length; index++) {
+                    if (array[index].itemId === itemId && array[index].payRate === payRate && array[index].repaymentMonth === repaymentMonth) {
+                        array[index].quantity += 1;
+                        result = true;
+                    }
+                }
+                return result;
+            }
+
+            localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
+            var cart = JSON.parse(localStorage.getItem("cart"));
+            cartitems[0].detail = JSON.stringify(window.__goodsDetail);
+            if (!is_exist(cart, itemId, payRate, repaymentMonth)) {
+                cart.push(cartitems[0]);
+            }
+            cart = JSON.stringify(cart);
+            localStorage.setItem("cart", cart);
+            $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1)
+            F._confirm("Gợi ý", "1 sản phẩm mới đã được thêm vào giỏ hàng của bạn", "success", [
+                {
+                    name: "Xác nhận",
+                    func: function() {}
+                }
+            ]);
+        }
+
+        if (localStorage.getItem("funId")) {
+            login_case();
+        } else {
+            unlogin_case();
+        }
+    };
 
     $scope.gotoPay = function() {
         var fenqiNum = $scope.fenqiNum;
@@ -1223,14 +1309,13 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
         var paymentNum = $scope.paymentNum;
         var buyNum = 1;
 
-
         if (!(+$scope.numbers > 0)) {
-            F._confirm('Gợi ý', 'Đã hết hàng', 'error', [{
-                name: 'Xác nhận',
-                func: function() {
-
+            F._confirm("Gợi ý", "Đã hết hàng", "error", [
+                {
+                    name: "Xác nhận",
+                    func: function() {}
                 }
-            }]);
+            ]);
 
             return false;
         }
@@ -1238,11 +1323,10 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
         var imgUrl = $scope.nowUrl;
         var productInfo = $scope.brandDetail.name + " " + $scope.nowOneInfo + " " + $scope.nowTwoInfo + " " + $scope.nowThreeInfo;
 
-
         if (!isNaN(price) && price > 0 && fenqiNum != "" && !isNaN(price)) {
             var funId = localStorage.getItem("funId");
             if (funId != "" && funId != null) {
-                payInfo('1', imgUrl, productInfo, buyNum, price, fenqiNum, paymentNum, window.__goodsDetail);
+                payInfo("1", imgUrl, productInfo, buyNum, price, fenqiNum, paymentNum, window.__goodsDetail);
                 window.location.href = "pay.html";
             } else {
                 window.location.href = "login.html";
@@ -1250,5 +1334,5 @@ app.controller('instalmentCtrl', function($scope, $http, $filter) {
         } else {
             //("请选择商品类型!");
         }
-    }
-})
+    };
+});

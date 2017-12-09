@@ -16,6 +16,10 @@
     <link href="../css/pay.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
     <style>
+        .body {
+            border-top: 1px solid #72aef0;
+        }
+
         #three {
             margin-bottom: 50px;
         }
@@ -71,98 +75,426 @@
         }
 
         /*tcy -end-*/
+
+        .body__main {
+            padding-top: 30px;
+        }
+
+        .body__main-login {
+            text-align: center;
+            padding-top: 50px;
+            background-color: #dfeffc;
+        }
+
+        .body__m-l-row1 {
+            color: #FF3B57;
+            margin-bottom: 45px;
+        }
+
+        .body__m-l-r2-button {
+            height: 50px;
+            line-height: 50px;
+            width: 340px;
+            text-align: center;
+            color: #fff;
+            background-color: #207def;
+            margin-bottom: 50px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .body__m-l-r2-button:hover {
+            background-color: #105dcf;
+        }
+
+        .body__main-table {
+            margin-bottom: 15px;
+        }
+
+        .body__m-t-tr {
+            background-color: #f2f2f2;
+            height: 45px;
+            line-height: 45px;
+            color: #666;
+        }
+
+        .body__m-t-t-all {
+            float: left;
+            width: 100px;
+            height: 45px;
+        }
+
+        .body__m-t-t-a-text {
+            font-size: 13px;
+        }
+
+        .body__m-t-t-product {
+            float: left;
+            text-align: center;
+            width: 350px;
+        }
+
+        .body__m-t-t-periods {
+            float: left;
+            text-align: center;
+            width: 100px;
+        }
+
+        .body__m-t-t-dpayment {
+            float: left;
+            text-align: center;
+            width: 150px;
+        }
+
+        .body__m-t-t-number {
+            float: left;
+            text-align: center;
+            width: 100px;
+        }
+
+        .body__m-t-t-total {
+            float: left;
+            text-align: center;
+            width: 200px;
+        }
+
+        .body__m-t-t-operate {
+            float: left;
+            text-align: center;
+            width: 50px;
+        }
+
+        .body__m-t-t-checkbox {
+            float: left;
+            width: 100px;
+        }
+
+        .body__m-t-item {
+            background-color: #fffce4;
+            border-bottom: 1px solid #eee;
+        }
+
+        .body__m-t-i-checkbox {
+            position: relative;
+            z-index: 44;
+            float: left;
+            width: 100px;
+            height: 115px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-input {
+            position: relative;
+            z-index: 33;
+        }
+
+        .body__m-t-i-c-mask {
+            position: absolute;
+            z-index: 99;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .body__m-t-i-product {
+            float: left;
+            width: 350px;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-p-img {
+            float: left;
+            height: 105px;
+            width: 105px;
+            background-color: #fff;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .body__m-t-i-p-text {
+            float: left;
+            width: 245px;
+            margin-top: 45px;
+            padding-left: 5px;
+            line-height: 1.4;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .body__m-t-i-periods {
+            float: left;
+            width: 100px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-dpayment {
+            float: left;
+            width: 150px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-number {
+            float: left;
+            width: 100px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-n-wrap {
+            float: left;
+            height: 40px;
+            width: 70px;
+            margin-left: 15px;
+        }
+
+        .body__m-t-i-n-left {
+            float: left;
+            width: 50px;
+            height: 40px;
+            text-align: center;
+        }
+
+        .body__m-t-i-n-l-input:disabled {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #e8e8e8;
+            background-color: #fff;
+        }
+
+        .body__m-t-i-n-right {
+            float: left;
+            width: 20px;
+            height: 40px;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .body__m-t-i-n-r-top {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-top_disable {
+            opacity: 0.6;
+        }
+
+        .body__m-t-i-n-r-t-arrow {
+            padding-top: 1px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #9d9d9d transparent;
+        }
+
+        .body__m-t-i-n-r-bottom {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-bottom_disable {
+            opacity: 0.56
+        }
+
+        .body__m-t-i-n-r-b-arrow {
+            vertical-align: middle;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #9d9d9d transparent transparent transparent;
+        }
+
+        .body__m-t-i-total {
+            float: left;
+            width: 200px;
+            padding-top: 45px;
+            text-align: center;
+        }
+
+        .body__m-t-i-operate {
+            float: left;
+            width: 50px;
+            padding-top: 35px;
+            /* text-align: center; */
+        }
+
+        .body__m-t-t-o-del {
+            margin-bottom: 8px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .body__m-t-t-o-del:hover {
+            color: #0076f7;
+        }
+
+        .body__m-t-t-o-favorites {
+            margin-bottom: 8px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .body__m-t-t-o-favorites:hover {
+            color: #0076f7;
+        }
+
+        .body__main-total {
+            text-align: right;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .body__main-statistics {
+            color: #666;
+            border: 1px solid #eee;
+            margin-bottom: 100px;
+        }
+
+        .body__m-s-left {
+            float: left;
+            width: 950px;
+        }
+
+        .body__m-s-l-left {
+            float: left;
+            width: 340px;
+        }
+
+        .body__m-s-l-l-left {
+            position: relative;
+            float: left;
+            width: 140px;
+            height: 90px;
+            line-height: 90px;
+            text-align: center;
+        }
+
+        .body__m-s-l-l-l-mask {
+            position: absolute;
+            z-index: 99;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .body__m-s-l-l-right {
+            float: left;
+            width: 200px;
+            padding-top: 30px;
+            line-height: 1;
+        }
+
+        .body__m-s-l-l-r-del {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .body__m-s-l-l-r-del:hover {
+            color: #0076f7;
+        }
+
+        .body__m-s-l-l-r-favorite {
+            cursor: pointer;
+        }
+
+        .body__m-s-l-l-r-favorite:hover {
+            color: #0076f7;
+        }
+
+        .body__m-s-l-right {
+            float: left;
+            width: 610px;
+        }
+
+        .body__m-s-l-r-left {
+            float: left;
+            width: 210px;
+            padding-top: 27px;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .body__m-s-l-r-right {
+            float: left;
+            width: 400px;
+            padding-right: 30px;
+            text-align: right;
+        }
+
+        .body__m-s-l-r-r-top {
+            padding-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .body__m-s-l-r-r-t-text {
+            padding-top: 7px;
+        }
+
+        .body__m-s-l-r-r-t-vat {
+            padding-top: 7px;
+        }
+
+        .body__m-s-l-r-r-t-price {
+            font-size: 24px;
+            color: #F7004C;
+        }
+
+        .body__m-s-l-r-r-t-unit {
+            padding-top: 7px;
+        }
+
+        .body__m-s-l-r-r-b-price {
+            color: #F7004C;
+        }
+
+        .body__m-s-right {
+            float: left;
+            width: 248px;
+            height: 90px;
+            line-height: 90px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #207def;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .body__m-s-right:hover {
+            background-color: #106ddf;
+        }
     </style>
 </head>
 
 <body ng-app="payApp" ng-controller="payCtrl">
     <div ng-controller="addressCtrl">
-        <div class="all">
-            <div class="header__nav">
-                <div class="header__nav-main">
-                    <div class="header__n-m-left header__n-m-left_login">
-                        <div class="header__n-m-l-item1">Xin chào, </div>
-                        <div class="header__n-m-l-item2">
-                            <div class="">
-                                <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                                <span class="header__n-m-l-i2-arrow"></span>
-                            </div>
-                            <div class="userLogin-info">
-                                <div class="userLogin-info__top col-xs-24">
-                                    <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                    <div class="userLogin-info__top-order">
-                                        <p style="margin-bottom: 10px;">
-                                            <a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a>
-                                        </p>
-                                        <p>
-                                            <a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="userLogin-info__bottom col-xs-24">
-                                    <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>
-                    </div>
-                    <div class="header__n-m-left header__n-m-left_nologin">
-                        <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                        <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                    </div>
-                    <div class="header__n-m-right">
-                        <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                        <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="all banner">
-            <div class="content header_c">
-                <div class="search_left left">
-                    <a href="../index.html" class="logo">
-                        <img src="../img/LOGO2.jpg" alt="" />
-                    </a>
-                </div>
-                <div class="left pay">
-                    <a href="">Trung tâm thanh toán</a>
-                </div>
-            </div>
-        </div>
-        <!--板块-->
-        <!-- <article id="one" ng-controller="addCtrl">
-            <div class="content">
-                <div class="one">
-                    <div class="top_title">
-                        <i></i> <span>Xác nhận địa chỉ nhận hàng</span>
-                    </div>
-                    <div class="address">
-                        <ul style="overflow: hidden;" class="address">
-                            <li class="li address-li" ng-class="{act:item.isdefault=='Y'}" ng-repeat="item in addrlistData">
-                                <span class="left leftname address-username" ng-bind="item.username"></span>
-                                <span class="right rightname address-msisdn" ng-bind="item.msisdn"></span>
-                                <hr style="clear: both;" />
-                                <span class="pp address-address" ng-bind="item.address"></span>
-                                <div class="default">Địa chỉ mặc định</div>
-                                <div class="foot_title">
-                                    <span class="moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
-                                    <span class="xg" data-toggle="modal" data-target="#myModal" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)">Sửa</span>
-                                    <span class="sc" ng-click="remove(item.id)">Xoá</span>
-                                </div>
-                                <div class="address_bg" ng-click="mm($event)"></div>
-                            </li>
-                            <li class="addAddrli" ng-click="addppp()" data-toggle="modal" data-target="#myModal">
-                                <img src="../img/addaddr.jpg" alt="" />
-                                <div class="addaddress">
-                                    <img src="../img/addaddr_03.png" alt="" />
-                                    <span>Thêm địa chỉ nhận hàng</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </article> -->
-        <div class="" style="height: 30px; width: 100%;"></div>
+        <header class="header" id="header"></header>
+        <div class="body" style="height: 30px; width: 100%;"></div>
         <section class="site" id="one" ng-controller="addCtrl">
             <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
             <div class="site__main col-xs-24">
@@ -196,12 +528,39 @@
         </section>
         <article id="two">
             <div class="content">
+                <div class="body__main-table col-xs-24" ng-if="isToCart">
+                    <div class="body__m-t-tr col-xs-24">
+                        <div class="body__m-t-t-all"></div>
+                        <div class="body__m-t-t-product">Sản phẩm</div>
+                        <div class="body__m-t-t-periods">Số kỳ</div>
+                        <div class="body__m-t-t-dpayment">Thanh toán lần đầu</div>
+                        <div class="body__m-t-t-number">Số LƯỢNG</div>
+                        <div class="body__m-t-t-total">Tổng tiền</div>
+                        <div class="body__m-t-t-operate">&nbsp;</div>
+                    </div>
+                    <li class="body__m-t-item col-xs-24" ng-if="isToCart" ng-repeat="(key, val) in LS__data">
+                        <div class="body__m-t-i-checkbox"></div>
+                        <div class="body__m-t-i-product" ng-click="gotoDetails(val._detail.typeId, val._detail.brandId, val._detail.id)">
+                            <div class="body__m-t-i-p-img" ng-style="{'background-image': 'url('+ val.iconUrl +')'}"></div>
+                            <div class="body__m-t-i-p-text" ng-bind="val.subject"></div>
+                        </div>
+                        <div class="body__m-t-i-periods" ng-bind="val.repaymentMonth"></div>
+                        <div class="body__m-t-i-dpayment" ng-bind="(val.totalAmount * val.payRate * val.quantity | priceFormat) + 'VND'"></div>
+                        <div class="body__m-t-i-number" ng-bind="val.quantity"></div>
+                        <div class="body__m-t-i-total" ng-bind="(val.totalAmount * val.quantity | priceFormat) + 'VND'"></div>
+                        <div class="body__m-t-i-operate">
+                            <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" ng-click="fenqiAjax(val.totalAmount, val.payRate, val.repaymentMonth)"
+                                data-toggle="modal" data-target="#myhead" class="moneryIcon" />
+                        </div>
+                    </li>
+                </div>
+
                 <div class="two">
                     <div class="top_title">
                         <i></i>
                         <span>Xác nhận thông tin đặt hàng</span>
                     </div>
-                    <div class="information">
+                    <div class="information" ng-if="!isToCart">
                         <table>
                             <thead>
                                 <tr>
@@ -231,14 +590,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <!--<div class="list">
-                            <div class="left li-left">账单还款日 : </div>
-                            <div class="left li-right">
-                                <select name="">
-                                    <option value="4">每月四次</option>
-                                </select>
-                            </div>
-                        </div>-->
                         <div class="list">
                             <div class="left li-left">Chọn tỉ lệ thanh toán lần đầu : </div>
                             <div class="left li-right">
@@ -258,10 +609,10 @@
                             <div class="left li-left">Chọn số kỳ thanh toán : </div>
                             <div class="left li-right fenqiNumBtn">
                                 <!--<button id="fenqiNum1" ng-click="fenqi(1)">1 tháng</button>-->
-                                <button id="fenqiNum3" ng-click="fenqi(3)">3 tháng</button>
-                                <button id="fenqiNum6" ng-click="fenqi(6)">6 tháng</button>
-                                <button id="fenqiNum9" ng-click="fenqi(9)">9 tháng</button>
-                                <button id="fenqiNum12" ng-click="fenqi(12)">12 tháng</button>
+                                <button id="fenqiNum3" ng-class="{ 'b_active': fenqiNum === 3 }" ng-click="fenqi(3)">3 tháng</button>
+                                <button id="fenqiNum6" ng-class="{ 'b_active': fenqiNum === 6 }" ng-click="fenqi(6)">6 tháng</button>
+                                <button id="fenqiNum9" ng-class="{ 'b_active': fenqiNum === 9 }" ng-click="fenqi(9)">9 tháng</button>
+                                <button id="fenqiNum12" ng-class="{ 'b_active': fenqiNum === 12 }" ng-click="fenqi(12)">12 tháng</button>
                             </div>
                         </div>
                     </div>
@@ -288,18 +639,25 @@
                         </li>
                     </ul>
                     <div class="fc" style="vertical-align: right;">
-                        <p ng-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;">
+                        <p ng-show="isToCart" style="text-align: right; padding-right: 10px; line-height: 40px;">
+                            <span style="padding-top: 2px; padding-right:5px;">Tổng tiền:</span>
                             <i ng-bind="resPrice | priceFormat"></i>
                             <span class="" style="padding-top: 3px;">VND</span>
                         </p>
-                        <p ng-show="paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
+
+                        <p ng-show="!isToCart && paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;">
+                            <span style="padding-top: 2px; padding-right:5px;">Tổng tiền:</span>
+                            <i ng-bind="resPrice | priceFormat"></i>
+                            <span class="" style="padding-top: 3px;">VND</span>
+                        </p>
+                        <p ng-show="!isToCart && paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
                             Trả góp hàng tháng:
                             <i ng-bind="resPrice | priceFormat" style="margin-left: 5px;"></i>
                             <span class="" style="color: #F7004C; padding-top: 2px;">VND X
                                 <span ng-bind="fenqiNum"></span>
                             </span>
-                            <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;"
-                                ng-click="information()" data-toggle="modal" data-target="#myhead" class="moneryIcon" />
+                            <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" ng-click="information()"
+                                data-toggle="modal" data-target="#myhead" class="moneryIcon" />
                         </p>
                         <div class="" style="text-align: right;">
                             <a href="" class="aa no_checkbox" onclick="submit()">Mua ngay</a>
@@ -382,117 +740,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer__top col-xs-24">
-            <div class="footer__top-main">
-                <div class="footer__t-m-item col-xs-24">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer__bottom2 col-xs-24">
-            <div class="footer__bottom2-main">
-                <div class="footer__b2-m-row1">
-                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                    <ul class="footer__b2-m-r1-main col-xs-24">
-                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row2">
-                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                    <ul class="footer__b2-m-r2-main col-xs-24">
-                        <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row3">
-                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                    <ul class="footer__b2-m-r3-main col-xs-24">
-                        <li class="footer__b2-m-r3-m-item col-xs-24">
-                            <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row5">
-                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                    <ul class="footer__b2-m-r5-main col-xs-24">
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon">
-                            <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                </div>
-                <div class="footer__b2-m-row6 col-xs-24">
-                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                    <div class="footer__b2-m-r6-right col-xs-12"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer" id="footer"></footer>
     <script src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/swiper.min.js"></script>
     <script src="../js/bootstrap.js"></script>
@@ -642,6 +890,47 @@
             F.num = parseInt(F.num);
             F.total = F.price * F.num;
 
+            function edit_orderdetails(array) {
+                var index;
+                var result = [];
+                var result_ids = [];
+                for (index = 0; index < array.length; index++) {
+                    var empty_object = {};
+                    empty_object.payRate = array[index].payRate + '';
+                    empty_object.orderNo = (function () {
+                        var mydate = new Date();
+                        return localStorage.getItem("funId") + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
+                    })();
+                    empty_object.totalAmount = array[index].totalAmount + '';
+                    empty_object.orgAmount = array[index].orgAmount + '';
+                    empty_object.advance = array[index].advance + '';
+                    empty_object.currency = "VND";
+                    empty_object.subject = array[index].subject;
+                    empty_object.goodsDetail = array[index].detail;
+                    empty_object.timeoutExpress = "86400";
+                    empty_object.repaymentMonth = array[index].repaymentMonth + '';
+                    empty_object.number = array[index].quantity + '';
+                    empty_object.cartitemid = array[index].id + '';
+                    result.push(empty_object);
+                    result_ids.push(array[index].id);
+                }
+                F.result_ids = result_ids.join(',');
+                return result;
+            }
+
+            if (F.isToCart) {
+                loading.show();
+                F._batchCreateOrder({
+                    orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
+                    msisdn: F.msisdn,
+                    address: F.address,
+                    username: F.username,
+                    remark: '',
+                }, batchCreateOrder_callback);
+
+                return false;
+            }
+
             if (F.paymentNum === 1) { // 全款
 
                 loading.show();
@@ -676,6 +965,90 @@
                 }, createOrder_callback);
 
             }
+        }
+
+        function batchCreateOrder_callback(ret) {
+            loading.hide();
+
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+
+            // 删除购物车中国相应的商品
+            F._cart_remove({
+                cartitemids: F.result_ids,
+            }, function (ret) {
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+            });
+
+            return false;
+            F.orderNo = ret.orderNo;
+            F.tradeNo = ret.tradeNo;
+
+            F.createOrder_info.isCreate = true;
+            F.createOrder_info.isFull = false;
+
+
+            loading.show();
+            F._userViewDetailInfo({}, function (ret) {
+                loading.hide();
+                if (!ret) return false;
+
+                if (ret.status) { // 资料齐全
+
+                    var payway = '';
+                    payway_get(function (result) {
+                        payway = result + '';
+                    });
+
+
+                    if (payway === '1') {
+                        F._payPwd_open(function (paypassword) {
+                            loading.show();
+                            F._payOrder({
+                                timeoutExpress: 1800, // 半个小时
+                                totalAmount: F.total, // 总金额
+                                orderNo: F.orderNo,
+                                tradeNo: F.tradeNo,
+                                advance: parseInt(F.price * F.num * F.paymentNum),
+                                payRate: F.paymentNum,
+                                repaymentMonth: F.fenqiNum,
+                                prepay: parseInt(F.price * F.num * F.paymentNum),
+                                payway: payway,
+                                paypassword: paypassword,
+                            }, payOrder_callback);
+                        });
+                    } else {
+                        loading.show();
+                        F._payOrder({
+                            timeoutExpress: 1800, // 半个小时
+                            totalAmount: F.total, // 总金额
+                            orderNo: F.orderNo,
+                            tradeNo: F.tradeNo,
+                            advance: parseInt(F.price * F.num * F.paymentNum),
+                            payRate: F.paymentNum,
+                            repaymentMonth: F.fenqiNum,
+                            prepay: parseInt(F.price * F.num * F.paymentNum),
+                            payway: payway,
+                            paypassword: '',
+                        }, payOrder_callback);
+                    }
+
+
+                } else { // 资料不全
+
+                    F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                        name: 'Để sau',
+                        func: function () { }
+                    }, {
+                        name: 'Hoàn thiện ngay',
+                        func: function () {
+                            getSchoolInfo_addInfo(ret.data);
+                        }
+                    }]);
+
+                }
+            });
         }
 
         function createOrder_callback(ret) {
@@ -867,10 +1240,10 @@
             $(this).find('p').css('color', '#fff');
         })
 
-        $('.li-right button').click(function () {
-            $('.li-right button').removeClass('b_active');
-            $(this).addClass('b_active');
-        })
+        // $('.li-right button').click(function () {
+        //     $('.li-right button').removeClass('b_active');
+        //     $(this).addClass('b_active');
+        // })
         $('.way li').click(function () {
             $('.way li').removeClass('act');
             $(this).addClass('act');

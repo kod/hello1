@@ -18,72 +18,28 @@
     <link rel="stylesheet" href="../css/personal.css" />
     <link rel="stylesheet" href="../css/base.css">
     <style>
-    .navh .nav a:nth-child(1) {
-        border-bottom: 5px solid #0075f6;
-        height: 37px;
-    }
-    /*tcy*/
+        .navh .nav a:nth-child(1) {
+            border-bottom: 5px solid #0075f6;
+            height: 37px;
+        }
 
-    .footer {
-        float: left;
-    }
+        /*tcy*/
 
-    .perone input,
-    #degree {
-        color: #333;
-    }
-    /*tcy*/
+        .footer {
+            float: left;
+        }
+
+        .perone input,
+        #degree {
+            color: #333;
+        }
+
+        /*tcy*/
     </style>
 </head>
 
 <body ng-app="selfApp" ng-controller="selfCtrl">
-    <div class="all">
-        <div class="header__nav">
-            <div class="header__nav-main">
-                <div class="header__n-m-left header__n-m-left_login">
-                    <div class="header__n-m-l-item1">Xin chào, </div>
-                    <div class="header__n-m-l-item2">
-                        <div class="">
-                            <span class="header__n-m-l-i2-iphone" id="userMsisdn"></span>
-                            <span class="header__n-m-l-i2-arrow"></span>                                
-                        </div>
-                        <div class="userLogin-info">
-                            <div class="userLogin-info__top col-xs-24">
-                                <div class="userLogin-info__top-face" style="background-image: url(../img/37.png);"></div>
-                                <div class="userLogin-info__top-order">
-                                    <p style="margin-bottom: 10px;"><a href="./order.html" class="userLogin-info__t-r-item1">Đơn hàng của tôi</a></p>
-                                    <p><a href="./bill.html" class="userLogin-info__t-r-item2">Hóa đơn của tôi</a></p>
-                                </div>
-                            </div>
-                            <div class="userLogin-info__bottom col-xs-24">
-                                <div class="userLogin-info__bottom-button" onclick="userQuit()">đăng xuất</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a >
-                </div>
-                <div class="header__n-m-left header__n-m-left_nologin">
-                    <a href="./login.html" class="header__n-m-l-login">Đăng nhập</a>
-                    <a href="./register.html" class="header__n-m-l-reg">Đăng ký</a>
-                </div>
-                <div class="header__n-m-right">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='./buyIntro.html'">Trung tâm hỗ trợ</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="all">
-        <div class="content header_c">
-            <div class="search_left left">
-                <a href="../index.html" class="logo"><img src="../img/LOGO2.jpg" alt=""></a>
-            </div>
-            <div class="search_right right">
-                <input type="text" class="search" id="findIpt" onkeydown="entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">
-                <input type="submit" class="search_logo" value="" onclick="gotoFind()">
-            </div>
-        </div>
-    </div>
+    <header class="header" id="header"></header>
     <div class="all all_nav">
         <div class="content navh" style="overflow: inherit;">
             <div class="category left" style="width:182px;height:37px;background: transparent;">
@@ -94,7 +50,7 @@
                 <a href="../index.html" class="">Trang chủ</a>
             </div>
             <div class="iwant right">
-                <a href="bill.html" class="">Tôi muốn thanh toán nợ  &gt;</a>
+                <a href="bill.html" class="">Tôi muốn thanh toán nợ &gt;</a>
             </div>
         </div>
     </div>
@@ -108,10 +64,10 @@
                         <div class="phone">
                             <img src="../img/37.png" onerror="nofind(this)" alt="" class="img-phone" data-toggle="modal" data-target="#myhead" />
                             <script type="text/javascript">
-                            function nofind(img) {
-                                img.src = "../img/37.png";
-                                img.onerror = null;
-                            }
+                                function nofind(img) {
+                                    img.src = "../img/37.png";
+                                    img.onerror = null;
+                                }
                             </script>
                             <p>Chào buổi sáng！</p>
                         </div>
@@ -168,19 +124,22 @@
                         <div class="perone">
                             <div style="position: relative;">
                                 <span>Người liên lạc 1</span>
-                                <input type="text" id="g_cname1" disabled="disabled" /> <i class="in1" data-toggle="modal" data-target="#addperon">Thay đổi   > </i>
+                                <input type="text" id="g_cname1" disabled="disabled" />
+                                <i class="in1" data-toggle="modal" data-target="#addperon">Thay đổi > </i>
                                 <br />
                                 <button class="addperon addperons" data-toggle="modal" data-target="#addperon">Nhấp để thêm người liên lạc</button>
                             </div>
                             <div style="position: relative;">
                                 <span>Người liên lạc 2</span>
-                                <input type="text" id="g_cname2" disabled="disabled" /> <i class="in2" data-toggle="modal" data-target="#addperon1">Thay đổi   > </i>
+                                <input type="text" id="g_cname2" disabled="disabled" />
+                                <i class="in2" data-toggle="modal" data-target="#addperon1">Thay đổi > </i>
                                 <br />
                                 <button class="addperon addperon1" data-toggle="modal" data-target="#addperon1">Nhấp để thêm người liên lạc</button>
                             </div>
                             <div style="position: relative;">
                                 <span>Người liên lạc 3</span>
-                                <input type="text" id="g_cname3" disabled="disabled" /> <i class="in3" data-toggle="modal" data-target="#addperon2">Thay đổi   > </i>
+                                <input type="text" id="g_cname3" disabled="disabled" />
+                                <i class="in3" data-toggle="modal" data-target="#addperon2">Thay đổi > </i>
                                 <br />
                                 <button class="addperon addperon2" data-toggle="modal" data-target="#addperon2">Nhấp để thêm người liên lạc</button>
                             </div>
@@ -258,7 +217,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Cài đặt ảnh đại diện</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="modal_one">
@@ -304,7 +265,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Người liên lạc 1</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <p style="color: #888;font-size: 12px;margin-bottom: 20px;margin-top: -10px;padding-left: 50px;">* Nếu không cần thiết chúng tôi sẽ không liên hệ, các thông tin đều được bảo mật</p>
@@ -336,7 +299,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Người liên lạc 2</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <p style="color: #888;font-size: 12px;margin-bottom: 20px;margin-top: -10px;padding-left: 50px;">* Nếu không cần thiết chúng tôi sẽ không liên hệ, các thông tin đều được bảo mật</p>
@@ -384,7 +349,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Người liên lạc 3</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <p style="color: #888;font-size: 12px;margin-bottom: 20px;margin-top: -10px;padding-left: 50px;">* Nếu không cần thiết chúng tôi sẽ không liên hệ, các thông tin đều được bảo mật</p>
@@ -426,121 +393,12 @@
         </div>
         <!-- /.modal -->
     </div>
-    <footer class="footer">
-        <div class="footer__top col-xs-24">
-            <div class="footer__top-main">
-                <div class="footer__t-m-item col-xs-24">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img0"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Chất lượng hoàn hảo</div>
-                        <div class="footer__t-m-i-r-desc">100% được cấp phép</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img1"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Trung tâm an ninh</div>
-                        <div class="footer__t-m-i-r-desc">Kiểm tra hàng rồi mới thanh toán</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img2"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thủ tục đơn giản</div>
-                        <div class="footer__t-m-i-r-desc">Thẻ học sinh cũng có thể đăng ký</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img3"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Thanh toán dễ dàng</div>
-                        <div class="footer__t-m-i-r-desc">Ngồi nhà thanh toán trực tuyến</div>
-                    </div>
-                </div>
-                <div class="footer__t-m-item">
-                    <div class="footer__t-m-i-left col-xs-5">
-                        <span class="footer__t-m-i-l-img footer__t-m-i-l-img4"></span>
-                    </div>
-                    <div class="footer__t-m-i-right col-xs-19">
-                        <div class="footer__t-m-i-r-title">Cung cấp độc quyền</div>
-                        <div class="footer__t-m-i-r-desc">Dịch vụ hoàn trả sớm miễn phí</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer__bottom2 col-xs-24">
-            <div class="footer__bottom2-main">
-                <div class="footer__b2-m-row1">
-                    <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>
-                    <ul class="footer__b2-m-r1-main col-xs-24">
-                        <a href="./about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>
-                        <a href="./join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">商务合作:</a>
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row2">
-                    <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>
-                    <ul class="footer__b2-m-r2-main col-xs-24">
-                        <a href="./buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>
-                        <a href="./billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>
-                        <a href="./safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>
-                        <a href="./refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row3">
-                    <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>
-                    <ul class="footer__b2-m-r3-main col-xs-24">
-                        <li class="footer__b2-m-r3-m-item col-xs-24">
-                            <img src="../img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row5">
-                    <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>
-                    <ul class="footer__b2-m-r5-main col-xs-24">
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                        <li class="footer__b2-m-r5-m-item col-xs-24">
-                            <img src="../img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__b2-m-row7 col-xs-24">
-                    <div class="footer__b2-m-r7-left col-xs-12">
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">
-                            <img src="../img/273y4294.png" class="footer__b2-m-r7-l-r1-icon" style=""><a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>
-                        </label>
-                        <div class="footer__b2-m-r7-l-row2">
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/29476021983473.png)"></a>
-                            <!-- <a href="" class="footer__b2-m-r7-l-r2-app" style="background-image: url(../img/2309409384203.png)"></a> -->
-                        </div>
-                    </div>
-                    <div class="footer__b2-m-r7-right col-xs-12">
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(../img/780689798.png);"></a>
-                    </div>
-                </div>
-                <div class="footer__b2-m-row6 col-xs-24">
-                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>
-                    <div class="footer__b2-m-r6-right col-xs-12"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer" id="footer"></footer>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script type="text/javascript">
-    var hh = $('.one-right').height();
-    $('.one-left').height(hh + 60);
+        var hh = $('.one-right').height();
+        $('.one-left').height(hh + 60);
     </script>
     <script type="text/javascript" src="../js/cropbox.js"></script>
     <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
@@ -555,259 +413,258 @@
     <script src="../js/common/check_login.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common/getUserInfo.js" type="text/javascript" charset="utf-8"></script>
     <script>
-    window.setTimeout(function() {
-        if (localStorage.getItem("funId")) {
-            F._userViewDetailInfo({}, function(ret) {
-                if (ret.data.headimage) {
-                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
-                }
-            });
-        }
-    }, 700);
-
-    function day_options_produce_htmlStr() {
-        var i;
-        var result = '';
-        for (i = 1; i < 32; i++) {
-            (i < 10) && (i = '0' + i);
-            result += '<option value="' + i + '">' + i + '</option>';
-        }
-        return result;
-    }
-
-    function month_options_produce_htmlStr() {
-        var i;
-        var result = '';
-        for (i = 1; i < 13; i++) {
-            (i < 10) && (i = '0' + i);
-            result += '<option value="' + i + '">' + i + '</option>';
-        }
-        return result;
-    }
-
-    function year_options_produce_htmlStr(val) {
-        val = val || 0;
-        var i;
-        var result = '';
-        var year_now = new Date().getFullYear() + val;
-        for (i = year_now; i > 1900 - 1; i--) {
-            result += '<option value="' + i + '">' + i + '</option>';
-        }
-        return result;
-    }
-
-    var day_options_produce = day_options_produce_htmlStr()
-    var month_options_produce = month_options_produce_htmlStr()
-    var year_options_produce = year_options_produce_htmlStr()
-
-    $('#birthday-day').append(day_options_produce);
-    $('#birthday-month').append(month_options_produce);
-    $('#birthday-year').append(year_options_produce);
-
-    $('#sctime-ov').append(year_options_produce_htmlStr(8));
-    $('#sctime-ac').append(year_options_produce);
-    $('#sctime-ac-m').append(month_options_produce);
-    $('#sctime-ov-m').append(month_options_produce);
-
-
-    $(window).load(function() {
-        var options = {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: '../img/avatar.jpg'
-        }
-        var cropper = $('.imageBox').cropbox(options);
-        $('#upload-file').on('change', function() {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                options.imgSrc = e.target.result;
-                cropper = $('.imageBox').cropbox(options);
+        window.setTimeout(function () {
+            if (localStorage.getItem("funId")) {
+                F._userViewDetailInfo({}, function (ret) {
+                    if (ret.data.headimage) {
+                        $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
+                    }
+                });
             }
-            reader.readAsDataURL(this.files[0]);
-            //this.files = [];
-        })
-        $('#btnCrop').on('click', function() {
-            var img = cropper.getDataURL();
-            $('.cropped').html('');
+        }, 700);
 
-            $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
-            setTimeout(function() {
-                var img = $('.cropped').html()
-                if (img == '' || img == 0) {
-
-                } else {
-                    $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
-                    var imgSrc = $('#upimg').attr('src');
-                    upload(imgSrc);
-                }
-            }, 500)
-        })
-        $('#btnZoomIn').on('click', function() {
-            cropper.zoomIn();
-        })
-        $('#btnZoomOut').on('click', function() {
-            cropper.zoomOut();
-        })
-    });
-
-    function upload(imgSrcs) {
-        var imgSrc = imgSrcs;
-        var blob = dataURLtoBlob(imgSrc);
-
-        function dataURLtoBlob(dataurl) {
-            var arr = dataurl.split(','),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
+        function day_options_produce_htmlStr() {
+            var i;
+            var result = '';
+            for (i = 1; i < 32; i++) {
+                (i < 10) && (i = '0' + i);
+                result += '<option value="' + i + '">' + i + '</option>';
             }
-            return new Blob([u8arr], {
-                type: mime
-            });
+            return result;
         }
 
-        $('.sure').click(function() {
-            var funid = localStorage.getItem("funId");
-            var formData = new FormData();
-            formData.append("funid", funid);
-            formData.append("files", blob, 'jpg');
+        function month_options_produce_htmlStr() {
+            var i;
+            var result = '';
+            for (i = 1; i < 13; i++) {
+                (i < 10) && (i = '0' + i);
+                result += '<option value="' + i + '">' + i + '</option>';
+            }
+            return result;
+        }
 
-            F._uploadFilesUser(formData, function(ret) {
+        function year_options_produce_htmlStr(val) {
+            val = val || 0;
+            var i;
+            var result = '';
+            var year_now = new Date().getFullYear() + val;
+            for (i = year_now; i > 1900 - 1; i--) {
+                result += '<option value="' + i + '">' + i + '</option>';
+            }
+            return result;
+        }
 
-            });
+        var day_options_produce = day_options_produce_htmlStr()
+        var month_options_produce = month_options_produce_htmlStr()
+        var year_options_produce = year_options_produce_htmlStr()
+
+        $('#birthday-day').append(day_options_produce);
+        $('#birthday-month').append(month_options_produce);
+        $('#birthday-year').append(year_options_produce);
+
+        // $('#sctime-ov').append(year_options_produce_htmlStr(8));
+        $('#sctime-ov').append(year_options_produce);
+        $('#sctime-ac').append(year_options_produce);
+        $('#sctime-ac-m').append(month_options_produce);
+        $('#sctime-ov-m').append(month_options_produce);
+
+
+        $(window).load(function () {
+            var options = {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: '../img/avatar.jpg'
+            }
+            var cropper = $('.imageBox').cropbox(options);
+            $('#upload-file').on('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    options.imgSrc = e.target.result;
+                    cropper = $('.imageBox').cropbox(options);
+                }
+                reader.readAsDataURL(this.files[0]);
+                //this.files = [];
+            })
+            $('#btnCrop').on('click', function () {
+                var img = cropper.getDataURL();
+                $('.cropped').html('');
+
+                $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
+                setTimeout(function () {
+                    var img = $('.cropped').html()
+                    if (img == '' || img == 0) {
+
+                    } else {
+                        $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
+                        var imgSrc = $('#upimg').attr('src');
+                        upload(imgSrc);
+                    }
+                }, 500)
+            })
+            $('#btnZoomIn').on('click', function () {
+                cropper.zoomIn();
+            })
+            $('#btnZoomOut').on('click', function () {
+                cropper.zoomOut();
+            })
+        });
+
+        function upload(imgSrcs) {
+            var imgSrc = imgSrcs;
+            var blob = dataURLtoBlob(imgSrc);
+
+            function dataURLtoBlob(dataurl) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {
+                    type: mime
+                });
+            }
+
+            $('.sure').click(function () {
+                var funid = localStorage.getItem("funId");
+                var formData = new FormData();
+                formData.append("funid", funid);
+                formData.append("files", blob, 'jpg');
+
+                F._uploadFilesUser(formData, function (ret) {
+
+                });
+            })
+        }
+        $('.uphead').click(function () {
+            $('.modal_one').hide();
+            $('.modal_two').show();
         })
-    }
-    $('.uphead').click(function() {
-        $('.modal_one').hide();
-        $('.modal_two').show();
-    })
 
 
 
-    $('.sure').click(function() {
+        $('.sure').click(function () {
 
-        $('.modal_two').hide();
-        $('.modal_three').show();
-        var img = $('.upimg').attr('src');
-        $('.img-phone').attr('src', img);
-        $('.modal-header').find('.left').html('Cài đặt')
-
-    })
-    $('.success').click(function() {
-        setTimeout(function() {
-            $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
-            $('.modal_one').show();
             $('.modal_two').hide();
-            $('.modal_three').hide();
+            $('.modal_three').show();
+            var img = $('.upimg').attr('src');
+            $('.img-phone').attr('src', img);
+            $('.modal-header').find('.left').html('Cài đặt')
 
-        }, 1500)
-        $('#upimg').attr('src', '');
-        $('#upload-file').val('');
-        //window.location.href='';
-    });
+        })
+        $('.success').click(function () {
+            setTimeout(function () {
+                $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
+                $('.modal_one').show();
+                $('.modal_two').hide();
+                $('.modal_three').hide();
 
-    function gotoFind() {
-        var findcontent = $("#findIpt").val();
-        if (findcontent != "") {
-            window.location.href = "./search.html?findcontent=" + findcontent;
-        }
-    }
+            }, 1500)
+            $('#upimg').attr('src', '');
+            $('#upload-file').val('');
+            //window.location.href='';
+        });
 
-    function entersearch() {
-        var event = window.event || arguments.callee.caller.arguments[0];
-        if (event.keyCode == 13)
-
-        {
-            gotoFind();
-        }
-    }
-    $('.sub_b1').click(function() {
-        var name = $('#per1_name').val();
-        if (name == 0 && name == '') {
-            $('#g_cname1').val(name);
-            $('.addperons').show();
-            $('.in1').hide();
-        } else {
-            $('.addperons').hide();
-            $('.in1').show();
-            $('#g_cname1').val(name);
-        }
-    })
-    $('.sub_b2').click(function() {
-        var name = $('#per2_name').val();
-        if (name == 0 && name == '') {
-            $('.addperon1').show();
-            $('.in2').hide();
-        } else {
-            $('.addperon1').hide();
-            $('.in2').show();
-            $('#g_cname2').val(name);
-        }
-    })
-
-    $('.sub_b3').click(function() {
-        var name = $('#per3_name').val();
-        if (name == 0 && name == '') {
-            $('.addperon2').show();
-            $('.in3').hide();
-        } else {
-            $('.addperon2').hide();
-            $('.in3').show();
-            $('#g_cname3').val(name);
-        }
-    })
-
-
-    $('#sctime-ac').change(function() {
-        var thiss = $(this).val();
-        var num = $('#sctime-ov').val();
-
-        if (num && thiss > num) {
-            $('#tis').show();
-            $('#submit').attr('disabled', true)
-        } else {
-
-            $('#tis').hide();
-            $('#submit').attr('disabled', false)
-        }
-    })
-    $('#sctime-ov').change(function() {
-        var thiss = $(this).val();
-        var num = $('#sctime-ac').val();
-        if (!thiss) $('#sctime-ov-m').val('');
-
-        if (thiss && thiss <= num) {
-            $('#tis').show();
-            $('#submit').attr('disabled', true)
-        } else {
-            $('#tis').hide();
-            $('#submit').attr('disabled', false)
-        }
-
-    })
-    $('#sctime-ac-m').change(function() {
-        // var thiss = $(this).val();
-        // var numovs = $('#sctime-ac').val();
-        // if (thiss && !numovs) {
-        //     $('#tis').hide();
-        //     $('#submit').attr('disabled', false)
-        // } else {
-        //     $('#tis').show();
-        //     $('#submit').attr('disabled', true)
+        // function gotoFind() {
+        //     var findcontent = $("#findIpt").val();
+        //     if (findcontent != "") {
+        //         window.location.href = "./search.html?findcontent=" + findcontent;
+        //     }
         // }
 
-        // var thiss = $(this).val();
-        // var numovs = $('#sctime-ac').val();
-        // if (thiss > numovs) {
-        //     $('#tis').show();
-        //     $('#submit').attr('disabled', true)
-        // } else {
-        //     $('#tis').hide();
-        //     $('#submit').attr('disabled', false)
+        // function entersearch() {
+        //     var event = window.event || arguments.callee.caller.arguments[0];
+        //     if (event.keyCode == 13) {
+        //         gotoFind();
+        //     }
         // }
-    })
+        $('.sub_b1').click(function () {
+            var name = $('#per1_name').val();
+            if (name == 0 && name == '') {
+                $('#g_cname1').val(name);
+                $('.addperons').show();
+                $('.in1').hide();
+            } else {
+                $('.addperons').hide();
+                $('.in1').show();
+                $('#g_cname1').val(name);
+            }
+        })
+        $('.sub_b2').click(function () {
+            var name = $('#per2_name').val();
+            if (name == 0 && name == '') {
+                $('.addperon1').show();
+                $('.in2').hide();
+            } else {
+                $('.addperon1').hide();
+                $('.in2').show();
+                $('#g_cname2').val(name);
+            }
+        })
+
+        $('.sub_b3').click(function () {
+            var name = $('#per3_name').val();
+            if (name == 0 && name == '') {
+                $('.addperon2').show();
+                $('.in3').hide();
+            } else {
+                $('.addperon2').hide();
+                $('.in3').show();
+                $('#g_cname3').val(name);
+            }
+        })
+
+
+        $('#sctime-ac').change(function () {
+            var thiss = $(this).val();
+            var num = $('#sctime-ov').val();
+
+            if (num && thiss > num) {
+                $('#tis').show();
+                $('#submit').attr('disabled', true)
+            } else {
+
+                $('#tis').hide();
+                $('#submit').attr('disabled', false)
+            }
+        })
+        $('#sctime-ov').change(function () {
+            var thiss = $(this).val();
+            var num = $('#sctime-ac').val();
+            if (!thiss) $('#sctime-ov-m').val('');
+
+            if (thiss && thiss <= num) {
+                $('#tis').show();
+                $('#submit').attr('disabled', true)
+            } else {
+                $('#tis').hide();
+                $('#submit').attr('disabled', false)
+            }
+
+        })
+        $('#sctime-ac-m').change(function () {
+            // var thiss = $(this).val();
+            // var numovs = $('#sctime-ac').val();
+            // if (thiss && !numovs) {
+            //     $('#tis').hide();
+            //     $('#submit').attr('disabled', false)
+            // } else {
+            //     $('#tis').show();
+            //     $('#submit').attr('disabled', true)
+            // }
+
+            // var thiss = $(this).val();
+            // var numovs = $('#sctime-ac').val();
+            // if (thiss > numovs) {
+            //     $('#tis').show();
+            //     $('#submit').attr('disabled', true)
+            // } else {
+            //     $('#tis').hide();
+            //     $('#submit').attr('disabled', false)
+            // }
+        })
     // $('#sctime-ov-m').change(function() {
     //     var thiss = $(this).val();
     //     if (!thiss && $('#sctime-ov').val().length) {

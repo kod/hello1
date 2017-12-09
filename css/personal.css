@@ -2,7 +2,7 @@
 .perone{padding-bottom:25px;border-bottom:1px solid #ddd;padding-left:100px;padding-top:30px}
 .perone span{display: inline-block;width:150px;text-align: right;color:#999;padding-right:8px;padding-top: 5px;}
 .perone input,#degree{width:250px;height:30px;margin-bottom:15px;border: 1px solid #ddd;padding-left:10px;outline: none;color:#999;font-size:13px}
-select{width:80px;color:#999;padding-left:20px;height:30px;margin-bottom:15px;border: 1px solid #ddd;outline: none;}
+select{width:80px;color:#333;padding-left:20px;height:30px;margin-bottom:15px;border: 1px solid #ddd;outline: none;}
 .addleft{float:left}
 .addright{float:left}
 textarea{width:250px;height:80px;margin-bottom:15px;border: 1px solid #ddd;padding-left:10px;outline: none;color:#999;font-size:13px;margin-left: 5px;resize: none;}

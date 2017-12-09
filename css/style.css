@@ -428,6 +428,42 @@ a:focus {
     text-decoration: none;
 }
 
+.banner_c .category_1 .category_1_1 div {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.banner_c .category_1 .category_1_2 div {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.banner_c .category_1 .category_1_3 div {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .banner_c .category_1 .category_1_1 span {
     bottom: 28px;
     left: 16px
