@@ -2,7 +2,6 @@ var app = angular.module('centerMainApp', []);
 
 app.controller('centerMainCtrl', function($scope, $http, $filter) {
 	
-//	msisdnFormatSession(msisdn);
 	$scope.msisdn = localStorage.getItem("msisdnFormat");
 	var  telVal= localStorage.getItem("msisdn");
 	

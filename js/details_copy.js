@@ -71,6 +71,18 @@ request = GetRequest();
 var typeId = request["typeId"];
 var brandId = request["brandId"];
 
+function is_collect(array) {
+    var index;
+    var result = false;
+    brandId = +brandId;
+    for (index = 0; index < array.length; index++) {
+        if (array[index].brandId === brandId) {
+            result = true;
+        }
+    }
+    return result;
+}
+
 //详情页面数据请求接口
 app.controller("detailsCtrl", function($scope, $http, $filter) {
     var funId = localStorage.getItem("funId");
@@ -78,28 +90,37 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
     if (funId) {
         F._userGetCollection(
             {
-                msisdn: localStorage.getItem("msisdn")
+                msisdn: localStorage.getItem("msisdn"),
+                pagesize: 100,
+                currentpage: 1
             },
             function(ret) {
                 if (!ret) return false;
 
                 if (ret.code !== 10000) return false;
 
-                var collData = ret.details;
+                // var collData = ret.details;
+                console.log(ret);
 
-                if (collData == 0 || collData == null || collData == "" || collData == undefined) {
-                    localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
+                if (is_collect(ret.details)) {
+                    $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
                 } else {
-                    localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
-                    for (var i = 0; i < collData.length; i++) {
-                        var brandid = collData[i].brandId;
-
-                        if (brandId == brandid) {
-                            localStorage.setItem("funId=" + funId + "brandId=" + brandId, 1);
-                        } else {
-                        }
-                    }
+                    $("#shoucangImg").attr("src", "../img/sc (1).jpg");
                 }
+
+                // if (collData == 0 || collData == null || collData == "" || collData == undefined) {
+                //     localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
+                // } else {
+                //     localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
+                //     for (var i = 0; i < collData.length; i++) {
+                //         var brandid = collData[i].brandId;
+
+                //         if (brandId == brandid) {
+                //             localStorage.setItem("funId=" + funId + "brandId=" + brandId, 1);
+                //         } else {
+                //         }
+                //     }
+                // }
             }
         );
     }
@@ -154,14 +175,14 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
             }
 
             //创建用户浏览记录session
-            var funId = localStorage.getItem("funId");
-            var sc_status = localStorage.getItem("funId=" + funId + "brandId=" + brandId);
+            // var funId = localStorage.getItem("funId");
+            // var sc_status = localStorage.getItem("funId=" + funId + "brandId=" + brandId);
 
-            if (sc_status == null || sc_status == 0) {
-                $("#shoucangImg").attr("src", "../img/sc (1).jpg");
-            } else {
-                $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
-            }
+            // if (sc_status == null || sc_status == 0) {
+            //     $("#shoucangImg").attr("src", "../img/sc (1).jpg");
+            // } else {
+            //     $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
+            // }
 
             var productDetailObj = res.data.product_detail[0];
             if (productDetailObj != undefined) {
@@ -171,6 +192,11 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 }
             }
 
+            function userScanSession(res) {
+                if (window.localStorage) {
+                    localStorage.setItem("userScanJson", res);
+                }
+            }
             userScanSession(JSON.stringify(productDetailObj));
             $scope.brandDetail = brandDetail;
             $scope.productDetail = productDetail;
@@ -591,89 +617,15 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                     $scope.shoucangClick = function() {
                         if (!F._isLogin()) return false;
 
-                        var funId = localStorage.getItem("funId");
-                        var sc_status = localStorage.getItem("funId=" + funId + "brandId=" + brandId);
                         var loading = new F._loading();
                         loading.show();
-                        if (sc_status == null || sc_status == 0) {
-                            var msisdn_s = localStorage.getItem("msisdn");
-                            if (funId == null || funId == "") {
-                                window.location.href = "login.html";
-                            } else {
-                                F._userAddCollection(
-                                    {
-                                        type_id: $scope.type_id,
-                                        brand_id: brandId,
-                                        brand_name: $scope.shoucang,
-                                        brand_desc: $scope.shoucang,
-                                        brand_image: $scope.nowUrl,
-                                        brand_price: $scope.price
-                                    },
-                                    function(ret) {
-                                        loading.hide();
-
-                                        if ((res.data.code = 10000)) {
-                                            $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
-                                            localStorage.setItem("funId=" + funId + "brandId=" + brandId, 1);
-                                        }
-                                    }
-                                );
-                                // var url = F._userAddCollection_uc;
-                                // var ajax = new ajaxClass($http, url, "POST");
-                                // var appId = "110";
-                                // var method = "fun.uc.addcollection";
-                                // var charset = "utf-8";
-                                // var funid = funId;
-
-                                // var msisdn = msisdn_s;
-
-                                // var brand_id = brandId;
-                                // var brand_name = $scope.shoucang;
-                                // var brand_desc = $scope.shoucang;
-                                // var type_id = $scope.type_id;
-                                // var brand_image = $scope.nowUrl;
-
-                                // var brand_price = $scope.price;
-                                // var Key = "userKey";
-
-                                // var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
-                                // var signType = hex_md5(md5SigntypeStrig);
-
-                                // var md5EncryptStrig = "funid=" + funid + "&msisdn=" + msisdn + "&type_id=" + type_id + "&brand_id=" + brand_id + "&brand_name=" + brand_name + "&brand_desc=" + brand_desc + "&brand_image=" + brand_image + "&brand_price=" + brand_price + Key;
-                                // var encrypt = md5(md5EncryptStrig);
-
-                                // ajax.data = $.param({
-                                //     appId: appId,
-                                //     method: method,
-                                //     charset: charset,
-                                //     signType: signType,
-                                //     encrypt: encrypt,
-                                //     timestamp: "2016-09-21 03:07:50",
-                                //     version: "1.0",
-                                //     funid: funid,
-                                //     msisdn: msisdn,
-                                //     type_id: type_id,
-                                //     brand_id: brand_id,
-                                //     brand_desc: brand_desc,
-                                //     brand_name: brand_name,
-                                //     brand_image: brand_image,
-                                //     brand_price: brand_price
-                                // });
-                                // ajax.headers = {
-                                //     "Content-Type": "application/x-www-form-urlencoded"
-                                // };
-
-                                // ajax.successCallback = function(res) {
-                                //     loading.hide();
-
-                                //     if ((res.data.code = 10000)) {
-                                //         $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
-                                //         localStorage.setItem("funId=" + funId + "brandId=" + brandId, 1);
-                                //     }
-                                // };
-                                // ajax.failureCallback = function(res) {};
-                                // ajax.requestData();
-                            }
+                        if ($("#shoucangImg").attr("src") === "../img/sc (1).jpg") {
+                            F._userBatchCollection({
+                                brandids: brandId,
+                            }, function (ret) {
+                                loading.hide();
+                                $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
+                            });
                         } else {
                             var url = F._userCancelCollection_uc;
                             var ajax = new ajaxClass($http, url, "POST");
@@ -712,7 +664,7 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                                 loading.hide();
 
                                 if ((res.data.code = 10000)) {
-                                    localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
+                                    // localStorage.setItem("funId=" + funId + "brandId=" + brandId, 0);
                                     $("#shoucangImg").attr("src", "../img/sc (1).jpg");
                                 }
                             };
@@ -1217,7 +1169,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
 
     $scope.addCart = function() {
         var payRate = +$scope.paymentNum;
-        var quantity = 1;
+        var quantity = F.vue.buyNum;
         var totalAmount = +window.__goodsDetail.price;
         var orgAmount = window.__goodsDetail.orgPrice;
         var advance = totalAmount * payRate;
@@ -1237,12 +1189,12 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
 
         var cartitems = [
             {
-                payRate: payRate,
+                // payRate: payRate,
                 quantity: quantity,
-                totalAmount: totalAmount,
-                orgAmount: orgAmount,
-                advance: advance,
-                repaymentMonth: repaymentMonth,
+                // totalAmount: totalAmount,
+                // orgAmount: orgAmount,
+                // advance: advance,
+                // repaymentMonth: repaymentMonth,
                 subject: subject,
                 itemId: itemId
             }
@@ -1255,7 +1207,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                 function(ret) {
                     if (!ret) return false;
                     if (ret.code !== 10000) return false;
-                    $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1)
+                    $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1);
                     F._confirm("Gợi ý", "1 sản phẩm mới đã được thêm vào giỏ hàng của bạn", "success", [
                         {
                             name: "Xác nhận",
@@ -1287,7 +1239,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
             }
             cart = JSON.stringify(cart);
             localStorage.setItem("cart", cart);
-            $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1)
+            $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1);
             F._confirm("Gợi ý", "1 sản phẩm mới đã được thêm vào giỏ hàng của bạn", "success", [
                 {
                     name: "Xác nhận",
@@ -1307,7 +1259,8 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
         var fenqiNum = $scope.fenqiNum;
         var price = $scope.price;
         var paymentNum = $scope.paymentNum;
-        var buyNum = 1;
+        var buyNum = F.vue.buyNum;
+        // var buyNum = 1;
 
         if (!(+$scope.numbers > 0)) {
             F._confirm("Gợi ý", "Đã hết hàng", "error", [
@@ -1326,7 +1279,26 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
         if (!isNaN(price) && price > 0 && fenqiNum != "" && !isNaN(price)) {
             var funId = localStorage.getItem("funId");
             if (funId != "" && funId != null) {
-                payInfo("1", imgUrl, productInfo, buyNum, price, fenqiNum, paymentNum, window.__goodsDetail);
+                var pay_products = {
+                    iconUrl: window.__goodsDetail.iconUrl,
+                    subject: window.__goodsDetail.name,
+                    quantity: buyNum,
+                    orgPrice: window.__goodsDetail.orgPrice,
+                    totalAmount: price,
+                    _detail: window.__goodsDetail
+                };
+                sessionStorage.setItem("pay_cart_data", JSON.stringify([pay_products]));
+
+                sessionStorage.setItem("imgUrl", imgUrl);
+                sessionStorage.setItem("productInfo", productInfo);
+                sessionStorage.setItem("buyNum", buyNum);
+                sessionStorage.setItem("price", price);
+                sessionStorage.setItem("orgPrice", window.__goodsDetail.orgPrice);
+                sessionStorage.setItem("fenqiNum", fenqiNum);
+                sessionStorage.setItem("paymentNum", paymentNum);
+                sessionStorage.setItem("goodsDetail", JSON.stringify(window.__goodsDetail));
+
+                // payInfo("1", imgUrl, productInfo, buyNum, price, fenqiNum, paymentNum, window.__goodsDetail);
                 window.location.href = "pay.html";
             } else {
                 window.location.href = "login.html";

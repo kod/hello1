@@ -6,6 +6,7 @@ app.filter("priceFormat", function() {
 
 app.controller("payCtrl", function($scope, $http, $filter) {
     $scope.price = sessionStorage.getItem("price");
+    $scope.orgPrice = sessionStorage.getItem("orgPrice");
     $scope.num = sessionStorage.getItem("buyNum");
     $scope.info = sessionStorage.getItem("productInfo");
     $scope.imgUrl = sessionStorage.getItem("imgUrl");
@@ -25,9 +26,35 @@ app.controller("payCtrl", function($scope, $http, $filter) {
         $scope.isToCart = false;
         F.isToCart = false;
     }
-    console.log($scope.LS__data);
 
+    
+    F.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
+    $scope.LS__data = F.LS__data;
+    console.log($scope.LS__data);
+    
+    F.is_product_multi = F.LS__data.length > 1;
+
+    function calc_allTotalData(array) {
+        var i;
+        var index;
+        var result = {
+            totalAmount: 0,
+            orgPrice: 0,
+        };
+        for (index = 0; index < array.length; index++) {
+            result.totalAmount += array[index].totalAmount * array[index].quantity;
+            result.orgPrice += array[index].orgPrice * array[index].quantity;
+        }
+        return result;
+    }
+    
+    var allTotalData_result = calc_allTotalData(F.LS__data);
+    $scope.allTotalAmount = F.allTotalAmount = allTotalData_result.totalAmount;
+    console.log($scope.allTotalAmount);
+    
     F.price = $scope.price;
+    F.orgPrice = allTotalData_result.orgPrice;
+    console.log(F.orgPrice);
     F.num = $scope.num;
     F.info = $scope.info;
     F.imgUrl = $scope.imgUrl;
@@ -50,7 +77,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
             $(".fenqiNumBtn button")
                 .attr("disabled", false)
                 .removeClass("actives");
-            fenqiAjax($scope.price, newValue, $scope.fenqiNum);
+            fenqiAjax($scope.allTotalAmount, newValue, $scope.fenqiNum);
         }
     });
     $scope.paymentNumChange = function(num) {
@@ -60,7 +87,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
             $(".fenqiNumBtn button")
                 .attr("disabled", true)
                 .addClass("actives");
-            $scope.resPrice = $scope.price;
+            $scope.resPrice = $scope.allTotalAmount;
             $scope.paymentNum = num;
             F.paymentNum = num;
         } else {
@@ -71,7 +98,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
                 .removeClass("actives");
             $scope.paymentNum = num;
             F.paymentNum = num;
-            fenqiAjax($scope.price, num, $scope.fenqiNum);
+            fenqiAjax($scope.allTotalAmount, num, $scope.fenqiNum);
         }
     };
 
@@ -83,16 +110,17 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     $scope.$watch(
         "fenqiNum",
         function(newValue, oldValue) {
-            fenqiAjax($scope.price, $scope.paymentNum, newValue);
+            fenqiAjax($scope.allTotalAmount, $scope.paymentNum, newValue);
         },
         true
     );
 
     //	获取分期金额信息接口
     function fenqiAjax(totalamounts, payrate, repaymentmonths) {
-        console.log(totalamounts);
-        console.log(payrate);
-        console.log(repaymentmonths);
+        // console.log(totalamounts);
+        // console.log(payrate);
+        // console.log(repaymentmonths);
+        // return false;
         var url = F._returnMoney_im;
         var ajax = new ajaxClass($http, url, "POST");
 
@@ -133,7 +161,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
                 if ($scope.isToCart) {
                     $scope.resPrice = sessionStorage.getItem("pay_cart_advance");
                 } else if (payrate == "1.0") {
-                    $scope.resPrice = $scope.price;
+                    $scope.resPrice = $scope.allTotalAmount;
                 } else {
                     $scope.resPrice = res.data.details[detailsArrayString][0].interest + res.data.details[detailsArrayString][0].principal;
                 }

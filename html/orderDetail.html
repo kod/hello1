@@ -728,8 +728,9 @@
 
                             if (params.payway === '1') {
                                 F._payPwd_open(function (paypassword) {
-
+                                    
                                     loading.show();
+                                    console.log(11111);
                                     F._payOrder({
                                         timeoutExpress: 1800, // 半个小时
                                         totalAmount: params.total, // 总金额

@@ -314,13 +314,8 @@ app.controller('orderCtrl', function ($scope, $http, $filter, $sce) {
                             $scope.newOrderList[j] = $scope.orderList[j];
                             var goodsDetailObj = $scope.orderList[j].goodsDetail; //数组对象goodsDetail的JSON解析成对象
 
-
-
                             var price = goodsDetailObj.price;
                             var creatData = goodsDetailObj.createTime;
-                            // var imageUrls = goodsDetailObj.imageUrls; //得到imageUrls
-                            // var imageUrlArray = imageUrls.split("|"); //截取imageUrls
-                            // var imageUrl = imageUrlArray[0];
 
                             var imageUrl = goodsDetailObj.iconUrl;
 

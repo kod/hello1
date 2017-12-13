@@ -107,7 +107,9 @@
             background-color: #105dcf;
         }
 
-        .body__main-table {
+        .ls-data-css {}
+
+        /* .body__main-table {
             margin-bottom: 15px;
         }
 
@@ -339,7 +341,6 @@
             float: left;
             width: 50px;
             padding-top: 35px;
-            /* text-align: center; */
         }
 
         .body__m-t-t-o-del {
@@ -487,7 +488,7 @@
 
         .body__m-s-right:hover {
             background-color: #106ddf;
-        }
+        } */
     </style>
 </head>
 
@@ -528,33 +529,6 @@
         </section>
         <article id="two">
             <div class="content">
-                <div class="body__main-table col-xs-24" ng-if="isToCart">
-                    <div class="body__m-t-tr col-xs-24">
-                        <div class="body__m-t-t-all"></div>
-                        <div class="body__m-t-t-product">Sản phẩm</div>
-                        <div class="body__m-t-t-periods">Số kỳ</div>
-                        <div class="body__m-t-t-dpayment">Thanh toán lần đầu</div>
-                        <div class="body__m-t-t-number">Số LƯỢNG</div>
-                        <div class="body__m-t-t-total">Tổng tiền</div>
-                        <div class="body__m-t-t-operate">&nbsp;</div>
-                    </div>
-                    <li class="body__m-t-item col-xs-24" ng-if="isToCart" ng-repeat="(key, val) in LS__data">
-                        <div class="body__m-t-i-checkbox"></div>
-                        <div class="body__m-t-i-product" ng-click="gotoDetails(val._detail.typeId, val._detail.brandId, val._detail.id)">
-                            <div class="body__m-t-i-p-img" ng-style="{'background-image': 'url('+ val.iconUrl +')'}"></div>
-                            <div class="body__m-t-i-p-text" ng-bind="val.subject"></div>
-                        </div>
-                        <div class="body__m-t-i-periods" ng-bind="val.repaymentMonth"></div>
-                        <div class="body__m-t-i-dpayment" ng-bind="(val.totalAmount * val.payRate * val.quantity | priceFormat) + 'VND'"></div>
-                        <div class="body__m-t-i-number" ng-bind="val.quantity"></div>
-                        <div class="body__m-t-i-total" ng-bind="(val.totalAmount * val.quantity | priceFormat) + 'VND'"></div>
-                        <div class="body__m-t-i-operate">
-                            <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" ng-click="fenqiAjax(val.totalAmount, val.payRate, val.repaymentMonth)"
-                                data-toggle="modal" data-target="#myhead" class="moneryIcon" />
-                        </div>
-                    </li>
-                </div>
-
                 <div class="two">
                     <div class="top_title">
                         <i></i>
@@ -579,14 +553,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr ng-repeat="(index, item) in LS__data" class="ls-data-css">
                                     <td>
-                                        <img src="{{imgUrl}}" alt="" style="width: 85px;" />
-                                        <span ng-bind="'【Hàng】'+info" style="margin-top: 30px; width: 590px;"></span>
+                                        <img src="{{item.iconUrl}}" alt="" style="width: 85px; cursor: pointer;" ng-click="gotoDetails(item._detail.typeId, item._detail.brandId, item._detail.id)">
+                                        <span ng-bind="'【Hàng】'+item.subject" style="margin-top: 30px; width: 590px;"></span>
                                     </td>
-                                    <td id="buyNum" ng-bind="num"></td>
-                                    <td id="price" ng-bind="price"></td>
-                                    <td ng-bind="price*num"></td>
+                                    <td id="buyNum" ng-bind="item.quantity"></td>
+                                    <td id="price" ng-bind="item.totalAmount | priceFormat"></td>
+                                    <td ng-bind="item.totalAmount*item.quantity | priceFormat"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -594,7 +568,6 @@
                             <div class="left li-left">Chọn tỉ lệ thanh toán lần đầu : </div>
                             <div class="left li-right">
                                 <select ng-model="paymentNum" ng-change="paymentNumChange(paymentNum)">
-                                    <!--<option value="" ng-if="false"></option>-->
                                     <option value="1.0">Trả toàn bộ</option>
                                     <option value="0.2">20%</option>
                                     <option value="0.3">30%</option>
@@ -602,13 +575,12 @@
                                     <option value="0.5">50%</option>
                                 </select>
                                 <span style="line-height: 25px;">Thanh toán lần đầu
-                                    <i ng-bind="price*num*paymentNum | priceFormat"></i> VND</span>
+                                    <i ng-bind="allTotalAmount*paymentNum | priceFormat"></i> VND</span>
                             </div>
                         </div>
                         <div class="list">
                             <div class="left li-left">Chọn số kỳ thanh toán : </div>
                             <div class="left li-right fenqiNumBtn">
-                                <!--<button id="fenqiNum1" ng-click="fenqi(1)">1 tháng</button>-->
                                 <button id="fenqiNum3" ng-class="{ 'b_active': fenqiNum === 3 }" ng-click="fenqi(3)">3 tháng</button>
                                 <button id="fenqiNum6" ng-class="{ 'b_active': fenqiNum === 6 }" ng-click="fenqi(6)">6 tháng</button>
                                 <button id="fenqiNum9" ng-class="{ 'b_active': fenqiNum === 9 }" ng-click="fenqi(9)">9 tháng</button>
@@ -639,18 +611,12 @@
                         </li>
                     </ul>
                     <div class="fc" style="vertical-align: right;">
-                        <p ng-show="isToCart" style="text-align: right; padding-right: 10px; line-height: 40px;">
+                        <p ng-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;">
                             <span style="padding-top: 2px; padding-right:5px;">Tổng tiền:</span>
                             <i ng-bind="resPrice | priceFormat"></i>
                             <span class="" style="padding-top: 3px;">VND</span>
                         </p>
-
-                        <p ng-show="!isToCart && paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;">
-                            <span style="padding-top: 2px; padding-right:5px;">Tổng tiền:</span>
-                            <i ng-bind="resPrice | priceFormat"></i>
-                            <span class="" style="padding-top: 3px;">VND</span>
-                        </p>
-                        <p ng-show="!isToCart && paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
+                        <p ng-show="paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
                             Trả góp hàng tháng:
                             <i ng-bind="resPrice | priceFormat" style="margin-left: 5px;"></i>
                             <span class="" style="color: #F7004C; padding-top: 2px;">VND X
@@ -660,12 +626,12 @@
                                 data-toggle="modal" data-target="#myhead" class="moneryIcon" />
                         </p>
                         <div class="" style="text-align: right;">
-                            <a href="" class="aa no_checkbox" onclick="submit()">Mua ngay</a>
+                            <a href="" class="aa no_checkbox1" onclick="submit()">Mua ngay</a>
                         </div>
-                        <div class="p" style="text-align: right;">
+                        <div class="p" style="text-align: right; opacity: 0;">
                             <input type="checkbox" id="selectAll" />
                             <span>Đồng ý</span>
-                            <a href="buyIntro.html" target="_self">Hợp đồng liên quan đến khoản vay</a>
+                            <i href="buyIntro.html" target="_self">Hợp đồng liên quan đến khoản vay</i>
                         </div>
                     </div>
                 </div>
@@ -753,10 +719,7 @@
     <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/commodityJS/pay.js" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script> -->
-    <!-- tcy -start- -->
     <script src="../js/md5.js"></script>
-    <!-- tcy -end- -->
     <script src="../js/vue.min.js"></script>
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
     <script>
@@ -802,12 +765,49 @@
                             payway = result + '';
                         });
 
-                        if (payway === '1') {
-                            F._payPwd_open(function (paypassword) {
+                        if (F.is_product_multi) {
+                            if (payway === '1') {
+                                F._payPwd_open(function (paypassword) {
+                                    loading.show();
+                                    F._batchPayment({
+                                        orderdetails: F.orderdetails,
+                                        payway: payway,
+                                        paypassword: paypassword,
+                                    }, batchPayment_callback);
+                                });
+                            } else {
+                                loading.show();
+                                F._payPwd_open(function (paypassword) {
+                                    loading.show();
+                                    F._batchPayment({
+                                        orderdetails: F.orderdetails,
+                                        payway: payway,
+                                        paypassword: '',
+                                    }, batchPayment_callback);
+                                });
+                            }
+                        } else {
+                            if (payway === '1') {
+                                F._payPwd_open(function (paypassword) {
+                                    loading.show();
+                                    F._payOrder({
+                                        timeoutExpress: 1800, // 半个小时
+                                        totalAmount: F.allTotalAmount, // 总金额
+                                        orderNo: F.orderNo,
+                                        tradeNo: F.tradeNo,
+                                        advance: parseInt(F.price * F.num * F.paymentNum),
+                                        payRate: F.paymentNum,
+                                        repaymentMonth: F.fenqiNum,
+                                        prepay: parseInt(F.price * F.num * F.paymentNum),
+                                        payway: payway,
+                                        paypassword: paypassword,
+                                    }, payOrder_callback);
+                                });
+                            } else {
                                 loading.show();
                                 F._payOrder({
                                     timeoutExpress: 1800, // 半个小时
-                                    totalAmount: F.total, // 总金额
+                                    totalAmount: F.allTotalAmount, // 总金额
                                     orderNo: F.orderNo,
                                     tradeNo: F.tradeNo,
                                     advance: parseInt(F.price * F.num * F.paymentNum),
@@ -815,23 +815,9 @@
                                     repaymentMonth: F.fenqiNum,
                                     prepay: parseInt(F.price * F.num * F.paymentNum),
                                     payway: payway,
-                                    paypassword: paypassword,
+                                    paypassword: '',
                                 }, payOrder_callback);
-                            });
-                        } else {
-                            loading.show();
-                            F._payOrder({
-                                timeoutExpress: 1800, // 半个小时
-                                totalAmount: F.total, // 总金额
-                                orderNo: F.orderNo,
-                                tradeNo: F.tradeNo,
-                                advance: parseInt(F.price * F.num * F.paymentNum),
-                                payRate: F.paymentNum,
-                                repaymentMonth: F.fenqiNum,
-                                prepay: parseInt(F.price * F.num * F.paymentNum),
-                                payway: payway,
-                                paypassword: '',
-                            }, payOrder_callback);
+                            }
                         }
 
                         break;
@@ -864,6 +850,8 @@
 
         // 提交订单
         function submit() {
+            // console.log(F.is_product_multi);
+            // return false;
             if (!localStorage.getItem("funId")) {
                 F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
                     name: 'Xác nhận',
@@ -885,40 +873,63 @@
                 return false;
             }
 
+            function get_num(array) {
+                var index;
+                var quantity = 0;
+                for (index = 0; index < array.length; index++) {
+                    quantity += array[index].quantity;
+                }
+                return quantity;
+            }
+
             F.paymentNum = parseFloat(F.paymentNum);
             F.price = parseFloat(F.price);
-            F.num = parseInt(F.num);
-            F.total = F.price * F.num;
+            F.num = get_num(F.LS__data);
 
             function edit_orderdetails(array) {
                 var index;
                 var result = [];
-                var result_ids = [];
-                for (index = 0; index < array.length; index++) {
-                    var empty_object = {};
-                    empty_object.payRate = array[index].payRate + '';
-                    empty_object.orderNo = (function () {
+                var item = {
+                    payRate: F.paymentNum + '',
+                    orderNo: (function () {
                         var mydate = new Date();
                         return localStorage.getItem("funId") + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
-                    })();
-                    empty_object.totalAmount = array[index].totalAmount + '';
-                    empty_object.orgAmount = array[index].orgAmount + '';
-                    empty_object.advance = array[index].advance + '';
-                    empty_object.currency = "VND";
-                    empty_object.subject = array[index].subject;
-                    empty_object.goodsDetail = array[index].detail;
-                    empty_object.timeoutExpress = "86400";
-                    empty_object.repaymentMonth = array[index].repaymentMonth + '';
-                    empty_object.number = array[index].quantity + '';
-                    empty_object.cartitemid = array[index].id + '';
-                    result.push(empty_object);
+                    })(),
+                    totalAmount: 0,
+                    orgAmount: 0,
+                    advance: 0,
+                    currency: "VND",
+                    subject: "",
+                    goodsDetail: [],
+                    timeoutExpress: 86400,
+                    repaymentMonth: F.fenqiNum,
+                };
+                var result_ids = [];
+
+                function edit_detail(item) {
+                    var result = {};
+                    var detail = JSON.parse(item.detail);
+                    detail.number = item.quantity;
+                    detail.cartitemid = item.id + '';
+                    detail.orgPrice = item.orgPrice;
+                    return detail;
+                }
+
+                for (index = 0; index < array.length; index++) {
+                    item.totalAmount += array[index].totalAmount * array[index].quantity;
+                    item.orgAmount += array[index].orgPrice ? array[index].orgPrice * array[index].quantity : 0;
+                    item.advance += array[index].totalAmount * array[index].quantity * F.paymentNum;
+                    item.subject += array[index].subject + ', ';
+                    item.goodsDetail.push(edit_detail(array[index]));
+
                     result_ids.push(array[index].id);
                 }
                 F.result_ids = result_ids.join(',');
+                result.push(item);
                 return result;
             }
 
-            if (F.isToCart) {
+            if (F.is_product_multi) {
                 loading.show();
                 F._batchCreateOrder({
                     orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
@@ -935,9 +946,9 @@
 
                 loading.show();
                 F._fullOrderCreate({
-                    totalamount: F.total,
-                    orgamount: F.total,
-                    advance: F.total,
+                    totalamount: F.allTotalAmount,
+                    orgamount: F.orgPrice,
+                    advance: F.allTotalAmount,
                     payrate: '1',
                     repaymentmonth: '0',
                     subject: F.info,
@@ -952,8 +963,8 @@
 
                 loading.show();
                 F._createOrder({
-                    totalAmount: F.total,
-                    orgAmount: F.total,
+                    totalAmount: F.allTotalAmount,
+                    orgAmount: F.orgPrice,
                     advance: parseInt(F.price * F.num * F.paymentNum),
                     payRate: F.paymentNum,
                     repaymentMonth: F.fenqiNum,
@@ -962,6 +973,7 @@
                     msisdn: F.msisdn,
                     address: F.address,
                     username: F.username,
+                    number: F.num,
                 }, createOrder_callback);
 
             }
@@ -972,22 +984,46 @@
 
             if (!ret) return false;
             if (ret.code !== 10000) return false;
+            F.orderdetails = JSON.stringify(ret.orderdetails);
 
             // 删除购物车中国相应的商品
             F._cart_remove({
                 cartitemids: F.result_ids,
+                orderno: '',
             }, function (ret) {
                 if (!ret) return false;
                 if (ret.code !== 10000) return false;
             });
 
-            return false;
-            F.orderNo = ret.orderNo;
-            F.tradeNo = ret.tradeNo;
+            // var payway = '';
+            // payway_get(function (result) {
+            //     payway = result + '';
+            // });
 
-            F.createOrder_info.isCreate = true;
-            F.createOrder_info.isFull = false;
+            // if (payway === '1') {
+            //     F._payPwd_open(function (paypassword) {
+            //         loading.show();
+            //         F._batchPayment({
+            //             orderdetails: JSON.stringify(ret.orderdetails),
+            //             payway: payway,
+            //             paypassword: paypassword,
+            //         }, batchPayment_callback);
+            //     });
+            // } else {
+            //     F._batchPayment({
+            //         orderdetails: JSON.stringify(ret.orderdetails),
+            //         payway: payway,
+            //         paypassword: paypassword,
+            //     }, batchPayment_callback);
 
+            // }
+
+            // return false;
+            // F.orderNo = ret.orderNo;
+            // F.tradeNo = ret.tradeNo;
+
+            // F.createOrder_info.isCreate = true;
+            // F.createOrder_info.isFull = false;
 
             loading.show();
             F._userViewDetailInfo({}, function (ret) {
@@ -1001,39 +1037,26 @@
                         payway = result + '';
                     });
 
-
                     if (payway === '1') {
                         F._payPwd_open(function (paypassword) {
                             loading.show();
-                            F._payOrder({
-                                timeoutExpress: 1800, // 半个小时
-                                totalAmount: F.total, // 总金额
-                                orderNo: F.orderNo,
-                                tradeNo: F.tradeNo,
-                                advance: parseInt(F.price * F.num * F.paymentNum),
-                                payRate: F.paymentNum,
-                                repaymentMonth: F.fenqiNum,
-                                prepay: parseInt(F.price * F.num * F.paymentNum),
+                            F._batchPayment({
+                                orderdetails: F.orderdetails,
                                 payway: payway,
                                 paypassword: paypassword,
-                            }, payOrder_callback);
+                            }, batchPayment_callback);
                         });
                     } else {
                         loading.show();
-                        F._payOrder({
-                            timeoutExpress: 1800, // 半个小时
-                            totalAmount: F.total, // 总金额
-                            orderNo: F.orderNo,
-                            tradeNo: F.tradeNo,
-                            advance: parseInt(F.price * F.num * F.paymentNum),
-                            payRate: F.paymentNum,
-                            repaymentMonth: F.fenqiNum,
-                            prepay: parseInt(F.price * F.num * F.paymentNum),
-                            payway: payway,
-                            paypassword: '',
-                        }, payOrder_callback);
+                        F._payPwd_open(function (paypassword) {
+                            loading.show();
+                            F._batchPayment({
+                                orderdetails: F.orderdetails,
+                                payway: payway,
+                                paypassword: '',
+                            }, batchPayment_callback);
+                        });
                     }
-
 
                 } else { // 资料不全
 
@@ -1046,9 +1069,16 @@
                             getSchoolInfo_addInfo(ret.data);
                         }
                     }]);
-
                 }
             });
+        }
+
+        function batchPayment_callback(ret) {
+            loading.hide();
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+
+            window.location.href = './successPay.html';
         }
 
         function createOrder_callback(ret) {
@@ -1082,7 +1112,7 @@
                             loading.show();
                             F._payOrder({
                                 timeoutExpress: 1800, // 半个小时
-                                totalAmount: F.total, // 总金额
+                                totalAmount: F.allTotalAmount, // 总金额
                                 orderNo: F.orderNo,
                                 tradeNo: F.tradeNo,
                                 advance: parseInt(F.price * F.num * F.paymentNum),
@@ -1097,7 +1127,7 @@
                         loading.show();
                         F._payOrder({
                             timeoutExpress: 1800, // 半个小时
-                            totalAmount: F.total, // 总金额
+                            totalAmount: F.allTotalAmount, // 总金额
                             orderNo: F.orderNo,
                             tradeNo: F.tradeNo,
                             advance: parseInt(F.price * F.num * F.paymentNum),
@@ -1159,7 +1189,7 @@
                     F._orderFullPay({
                         orderNo: F.orderNo,
                         tradeNo: F.tradeNo,
-                        total: F.total,
+                        total: F.allTotalAmount,
                         payway: payway,
                         paypassword: paypassword,
                     }, orderFullPay_callback);
@@ -1170,7 +1200,7 @@
                 F._orderFullPay({
                     orderNo: F.orderNo,
                     tradeNo: F.tradeNo,
-                    total: F.total,
+                    total: F.allTotalAmount,
                     payway: payway,
                 }, orderFullPay_callback);
             }

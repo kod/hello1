@@ -21,6 +21,242 @@
         footer {
             float: left;
         }
+
+        .item__title {
+            font-size: 14px;
+        }
+
+        .item__title-time {
+            margin-right: 10px;
+        }
+
+        .item__title-tradeNo {
+            margin-top: 1px;
+        }
+
+        .item__main {
+            position: relative;
+        }
+
+        .item__main::after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .item__main-item-left {
+            float: left;
+            width: 50px;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .item__main-item-right {
+            float: left;
+            width: 440px;
+            line-height: 1.5;
+            padding-top: 13px;
+            padding-left: 10px;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* order-list -start- */
+
+        .order-list {
+            position: relative;
+        }
+
+        .order-list::after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .order-list__title {
+            background-color: #f5f5f5;
+            color: #666;
+            height: 35px;
+            line-height: 35px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 3px;
+        }
+
+        .order-list__title-item1 {
+            float: left;
+            text-align: center;
+            width: 500px;
+        }
+
+        .order-list__title-item2 {
+            float: left;
+            text-align: center;
+            width: 160px;
+        }
+
+        .order-list__title-item3 {
+            float: left;
+            text-align: center;
+            width: 160px;
+        }
+
+        .order-list__title-item4 {
+            float: left;
+            text-align: center;
+            width: 160px;
+        }
+
+        .order-list__content-item {
+            border: 1px solid #e5e5e5;
+            margin-bottom: 20px;
+        }
+
+        .order-list__c-i-title {
+            background-color: #f5f5f5;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: #666;
+            padding-left: 15px;
+        }
+
+        .order-list__c-i-t-time {
+            color: #aaa;
+            margin-right: 25px;
+            font-weight: 300;
+        }
+
+        .order-list__c-i-t-ordertext {
+            color: #aaa;
+            margin-right: 5px;
+        }
+
+        .order-list__c-i-t-orderno {
+            margin-top: 1px;
+        }
+
+        .order-list__c-i-m-item1 {
+            position: relative;
+            float: left;
+            width: 500px;
+            border-right: 1px solid #e5e5e5;
+        }
+
+        .order-list__c-i-m-item2 {
+            float: left;
+            width: 160px;
+            text-align: center;
+            padding-top: 15px;
+            color: #666;
+        }
+
+        .order-list__c-i-m-item3 {
+            float: left;
+            width: 160px;
+            text-align: center;
+            padding-top: 15px;
+            color: #666;
+        }
+
+        .order-list__c-i-m-item4 {
+            float: left;
+            width: 160px;
+            text-align: center;
+            padding-top: 15px;
+            color: #666;
+        }
+
+        .order-list__c-i-m-i4-span {
+            color: #007ff0;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            cursor: pointer;
+        }
+
+        .order-list__c-i-m-i4-span:hover {
+            border-bottom: 1px solid #007ff0;
+        }
+        
+
+        .order-list__c-i-m-i1-good {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .order-list__c-i-m-i1-good:last-of-type {
+            border-bottom-width: 0px; 
+        }
+
+        .order-list__c-i-m-i1-g-line1 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            right: -160px;
+            background-color: #e5e5e5;
+        }
+
+        .order-list__c-i-m-i1-g-line2 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            right: -320px;
+            background-color: #e5e5e5;
+        }
+
+        .order-list__c-i-m-i1-g-left {
+            float: left;
+            width: 400px;
+        }
+
+        .order-list__c-i-m-i1-g-l-img {
+            float: left;
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .order-list__c-i-m-i1-g-l-name {
+            float: left;
+            width: 340px;
+            line-height: 1.5;
+            font-weight: 300;
+            padding-top: 13px;
+            padding-left: 10px;
+            cursor: pointer;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .order-list__c-i-m-i1-g-right {
+            float: left;
+            width: 98px;
+            text-align: center;
+            padding-top: 12px;
+            color: #aaa;
+            font-weight: 300;
+        }
+        /* order-list -end- */
     </style>
 </head>
 
@@ -90,10 +326,45 @@
                         <dd class="nav-item" data-index="30000" ng-click="reqType(30000)">Đang chờ nhận hàng</dd>
                         <dd class="nav-item" data-index="30001" ng-click="reqType(30001)">Đang chờ đánh giá</dd>
                     </dl>
+                    <div class="order-list">
+                        <div class="order-list__title col-xs-24">
+                            <div class="order-list__title-item1">Thông tin đơn hàng</div>
+                            <div class="order-list__title-item2">Tổng tiền</div>
+                            <div class="order-list__title-item3">Trạng thái</div>
+                            <div class="order-list__title-item4">Thao tác</div>
+                        </div>
+                        <div class="order-list__content col-xs-24">
+                            <div class="order-list__content-item col-xs-24" ng-repeat="(key, item) in newOrderList">
+                                <div class="order-list__c-i-title col-xs-24">
+                                    <span class="order-list__c-i-t-time" ng-bind="timeStrForm(item.createTime, 2, 1)"></span>
+                                    <span class="order-list__c-i-t-ordertext">Mã đơn hàng:</span>
+                                    <span class="order-list__c-i-t-orderno" ng-bind="item.tradeNo"></span>
+                                </div>
+                                <div class="order-list__c-i-main col-xs-24">
+                                    <div class="order-list__c-i-m-item1">
+                                        <div class="order-list__c-i-m-i1-good col-xs-24" ng-repeat="detail in newOrderList[key].goodsDetail">
+                                            <div class="order-list__c-i-m-i1-g-left">
+                                                <div class="order-list__c-i-m-i1-g-l-img" ng-click="product(detail.typeId,detail.brandId)" style="background-image: url({{detail.iconUrl}});"></div>
+                                                <div class="order-list__c-i-m-i1-g-l-name" ng-click="product(detail.typeId,detail.brandId)" ng-bind="detail.name"></div>
+                                            </div>
+                                            <div class="order-list__c-i-m-i1-g-right" ng-bind="'x' + detail.numbers"></div>
+                                        </div>
+                                        <div class="order-list__c-i-m-i1-g-line1"></div>
+                                        <div class="order-list__c-i-m-i1-g-line2"></div>
+                                    </div>
+                                    <div class="order-list__c-i-m-item2" ng-bind="(item.totalAmount | priceFormat) + ' VND'"></div>
+                                    <div class="order-list__c-i-m-item3" ng-bind-html="item.tradeStatusMsg"></div>
+                                    <div class="order-list__c-i-m-item4">
+                                        <span class="order-list__c-i-m-i4-span" ng-click="openDetail(item.orderNo, item.tradeNo, item.tradeNo, item.tradeNo, item.tradeStatus, item.imgUrl, item.subject, key, itemc.type)">Quản lý đơn hàng</span>
+                                        <span class="order-list__c-i-m-i4-span">Quản lý đơn hàng</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="table_list">
-                        <!--全部订单-->
                         <div class="dl_list">
-                            <table>
+                            <!-- <table>
                                 <thead>
                                     <tr>
                                         <th>Thông tin đơn hàng</th>
@@ -103,8 +374,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in newOrderList">
+                                    <tr ng-repeat="(key, item) in newOrderList">
                                         <td>
+                                            <div class="item__title">
+                                                <span class="item__title-time" ng-bind="timeStrForm(item.createTime, 2, 1)"></span>
+                                                <span class="item__t-t-text">Mã đơn hàng:</span>
+                                                <span class="item__title-tradeNo" ng-bind="item.tradeNo"></span>
+                                            </div>
+                                            <div class="item__main">
+                                                <div class="item__main-item col-xs-24" ng-repeat="detail in newOrderList[key].goodsDetail">
+                                                    <div class="item__main-item-left" style="background-image: url({{detail.iconUrl}});"></div>
+                                                    <div class="item__main-item-right" ng-bind="detail.name"></div>
+                                                </div>
+                                            </div>
                                             <div class="media" ng-click="product(item.goodsDetail.typeId,item.goodsDetail.brandId)">
                                                 <div class="media-left media-middle">
                                                     <a href="" target="_self">
@@ -128,11 +410,11 @@
                                             <span class="ztl" ng-bind-html="item.tradeStatusMsg"></span>
                                         </td>
                                         <td>
-                                            <a style="display:block;" ng-repeat="(key, itemc) in item.operate" ng-bind="itemc.name" ng-class="'operate' + key" ng-click="openDetail(item.orderNo, item.tradeNo, item.goodsDetail.typeId, item.goodsDetail.brandId, item.tradeStatus, item.imgUrl, item.subject, key, itemc.type)"></a>
+                                            <a style="display:block;" ng-repeat="(key, itemc) in item.operate" ng-bind="itemc.name" ng-class="'operate' + key" ng-click="openDetail(item.orderNo, item.tradeNo, item.tradeNo, item.tradeNo, item.tradeStatus, item.imgUrl, item.subject, key, itemc.type)"></a>
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> -->
                             <div class="changePage">
                                 <div style="margin-bottom: 30px;">
                                     <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
@@ -143,7 +425,7 @@
                                     <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                                 </div>
                             </div>
-                            <div class="no_list">
+                            <div class="no_list" ng-if="!newOrderList.length">
                                 <img src="../img/order.jpg" alt="" />
                                 <p>Bạn chưa có đơn hàng nào cả, mau đặt hàng ngay thôi!！</p>
                                 <a href="../index.html">Đến trang chủ >></a>
@@ -210,7 +492,7 @@
     <script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script> -->
     <!-- <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script> -->
     <script src="../js/common/getUserInfo.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js"></script>
@@ -231,19 +513,19 @@
         //         }
         //     })
         // })
-        var table = $('.table_list');
-        var num = $('.dl_list').size();
-        for (var i = 0; i < num; i++) {
-            var s = $('.dl_list')[i].querySelector('table');
-            var no = $('.dl_list')[i].querySelector('.no_list');
-            var e = s.querySelector('tbody')
-            if (e == null) {
-                no.style.display = "block"
-            } else {
-                no.style.display = "none"
-            }
 
-        }
+        // var table = $('.table_list');
+        // var num = $('.dl_list').size();
+        // for (var i = 0; i < num; i++) {
+        //     var s = $('.dl_list')[i].querySelector('table');
+        //     var no = $('.dl_list')[i].querySelector('.no_list');
+        //     var e = s.querySelector('tbody')
+        //     if (e == null) {
+        //         no.style.display = "block"
+        //     } else {
+        //         no.style.display = "none"
+        //     }
+        // }
         $(window).load(function () {
             var options = {
                 thumbBox: '.thumbBox',

@@ -217,6 +217,12 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                 $('#per3_gx').val(res.data.connectuserrelation3);
                 $('#per3_id').val(res.data.connectuseridentification3);
                 $('#g_byyx').val(res.data.collegename);
+                if (F._edit_support_school(res.data.collegename, F.schoolList)) {
+                    $('#suport_tips').hide();
+                } else {
+                    $('#suport_tips').show();
+                }
+                
                 $('#g_xxdz').val(res.data.collegeaddr);
                 $('#g_yx').val(res.data.department);
                 $('#g_zy').val(res.data.specialty);
@@ -274,8 +280,19 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
 
     loadData_getSchoolInfo(function(ret) {
-
-        $scope.schoolList = ret.details;
+        function edit_details(array) {
+            var index;
+            var result = [];
+            for (index = 0; index < array.length; index++) {
+                if (array[index].staging !== 2) {
+                    result.push(array[index]);
+                }
+            }
+            console.log(result);
+            return result;
+        }
+        
+        $scope.schoolList = F.schoolList = edit_details(ret.details);
         $scope.getUserInfoDetails();
     });
 

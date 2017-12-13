@@ -1178,6 +1178,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .footer__b2-m-r3-m-i-img {
   /*width: 80%;*/
+  margin-right: 15px;
   margin-bottom: 25px;
   /*height: 45px;*/
 }
@@ -1281,6 +1282,41 @@ input[type="number"]::-webkit-inner-spin-button {
   color: #969696;
 }
 
+.footer__b2-m-r7-l-item1 {
+  float: left;
+  width: 270px;
+}
+
+.footer__b2-m-r7-l-i1-top {
+  color: #0076F7;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.footer__b2-m-r7-l-i1-bottom {
+  color: #e1e1e1;
+}
+
+.footer__b2-m-r7-l-item2 {
+  float: left;
+  width: 275px;
+}
+
+.footer__b2-m-r7-l-i2-top {
+  color: #0076F7;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.footer__b2-m-r7-l-i2-bottom {
+  color: #e1e1e1;
+}
+
+.footer__b2-m-r7-l-item3 {
+  float: left;
+  width: 300px;
+}
+
 .footer__b2-m-r7-l-row1 {
   float: left;
   width: 33%;
@@ -1305,7 +1341,7 @@ input[type="number"]::-webkit-inner-spin-button {
   float: left;
   width: 67%;
   line-height: 40px;
-  padding-left: 4%;
+  padding-left: 8%;
   border-left: 1px solid #293d54;
 }
 
@@ -1944,6 +1980,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .alert__b-m-b-row7 {
   margin-bottom: 25px;
+}
+
+.alert__b-m-b-row33 {
+  padding-left: 390px;
+  padding-right: 300px;
+  padding-top: 10px;
+  display: none;
 }
 
 .alert__b-m-b-row7 .actionsheet {

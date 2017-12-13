@@ -70,6 +70,80 @@
         }
 
         /* tcy -end-*/
+
+        .body__m-t-i-n-wrap {
+            float: left;
+            height: 40px;
+            width: 70px;
+            margin-left: 15px;
+        }
+
+        .body__m-t-i-n-left {
+            float: left;
+            width: 50px;
+            height: 40px;
+        }
+
+        .body__m-t-i-n-l-input:disabled {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #e8e8e8;
+            background-color: #fff;
+        }
+
+        .body__m-t-i-n-right {
+            float: left;
+            width: 20px;
+            height: 40px;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .body__m-t-i-n-r-top {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-top_disable {
+            opacity: 0.6;
+        }
+
+        .body__m-t-i-n-r-t-arrow {
+            padding-top: 1px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #9d9d9d transparent;
+        }
+
+        .body__m-t-i-n-r-bottom {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-bottom_disable {
+            opacity: 0.56
+        }
+
+        .body__m-t-i-n-r-b-arrow {
+            vertical-align: middle;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #9d9d9d transparent transparent transparent;
+        }
     </style>
 </head>
 
@@ -198,7 +272,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="nc pobb-in" style="margin-bottom: 5px;">
+                        <div class="nc pobb-in" style="margin-bottom: 10px;">
                             <div class="left cen-left" style="padding-top: 2px;">
                                 <span ng-bind="propertiesDetailName[1]+' :'"></span>
                             </div>
@@ -272,19 +346,41 @@
                             </div>
                         </div>
                     </div>
-                    <div class="kc" style="line-height: 30px; margin-bottom: 10px;">
+                    <div class="bl2" style="margin-bottom: 10px;">
+                        <div class="left cen-left" style="padding-top:5px; margin-bottom: 10px;">
+                            Số lượng:
+                        </div>
+                        <input type="hidden" name="" id="fenqiNumIpt" value="1" />
+                        <div class="left cen-right fenqiNumBtn">
+                            <div class="body__m-t-i-n-wrap" id="body__m-t-i-n-wrap">
+                                <div class="body__m-t-i-n-left">
+                                    <input type="text" class="body__m-t-i-n-l-input" value="1" v-model="buyNum" disabled>
+                                </div>
+                                <div class="body__m-t-i-n-right">
+                                    <div class="body__m-t-i-n-r-top" :class="{'body__m-t-i-n-r-top_disable': buyNum >= store}" @click="plus()">
+                                        <span class="body__m-t-i-n-r-t-arrow"></span>
+                                    </div>
+                                    <div class="body__m-t-i-n-r-bottom" :class="{'body__m-t-i-n-r-bottom_disable': buyNum <= 1}" @click="minus()">
+                                        <span class="body__m-t-i-n-r-b-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="kc" style="line-height: 30px; margin-bottom: 50px;">
                         <div class="left cen-left">
-                            Dự&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trữ:
+                            Tuyển dụng:
                         </div>
                         <div class="left cen-right" style="width:250px;">
                             <!-- <p style="">Chỉ còn<span ng-bind="numbers"></span> </p> -->
-                            <p style="">
-                                <span ng-bind="numbers"></span>
+                            <p>
+                                <span id="tcy-numbers" ng-bind="numbers"></span>
                             </p>
                         </div>
                     </div>
                     <div ng-controller="instalmentCtrl">
-                        <div class="bl" style="clear: both; margin-bottom: 20px;">
+                        <div class="bl" style="display: none; clear: both; margin-bottom: 20px; ">
                             <div class="left cen-left" style="padding-top:2px;">
                                 Tỉ lệ thanh toán lần đầu:
                             </div>
@@ -298,7 +394,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="bl2">
+                        <div class="bl2" style="display: none;">
                             <div class="left cen-left" style="padding-top:5px; margin-bottom: 10px;">
                                 Chọn số kỳ thanh toán:
                             </div>
@@ -310,7 +406,7 @@
                                 <button class="b_active" ng-click="fenqi(12)" style="margin-right: 5px;">12 tháng</button>
                             </div>
                         </div>
-                        <div class="yg">
+                        <div class="yg" style="display: none;">
                             <div class="left cen-left">
                                 Trả góp hàng tháng:
                             </div>
@@ -345,7 +441,8 @@
                             <li>Tham số sản phẩm </li>
                             <li>Danh sách đóng gói </li>
                             <li>Bảo hiểm sau khi mua </li>
-                            <a href="#comment" style="color:#888;margin-left:10px">Bình luận về sản phẩm(<span ng-controller="commentCtrls" ng-bind="totalNumber"></span>)</a>
+                            <a href="#comment" style="color:#888;margin-left:10px">Bình luận về sản phẩm(
+                                <span ng-controller="commentCtrls" ng-bind="totalNumber"></span>)</a>
                         </ul>
                     </div>
                     <div class="details_center">
@@ -488,9 +585,10 @@
 <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/localStorage.js" type="text/javascript" charset="utf-8"></script>
-<script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script> -->
 <!-- tcy -start- -->
 <script src="../js/md5.js"></script>
 <script src="../js/common.js"></script>
@@ -506,6 +604,47 @@
                 }
             });
         }
+    }, 700);
+
+    function plus() {
+        if (F.vue.buyNum >= F.vue.store) return false;
+        F.vue.buyNum += 1;
+    }
+
+    function minus() {
+        if (F.vue.buyNum <= 1) return false;
+        F.vue.buyNum -= 1;
+    }
+
+
+    F.vue = {
+        buyNum: 1,
+    }
+
+    function new_vue() {
+        F.vue.store = +$('#tcy-numbers').html();
+        F.vue = new Vue({
+            el: $('#body__m-t-i-n-wrap')[0],
+            data: F.vue,
+            methods: {
+                plus: plus,
+                minus: minus,
+            },
+            computed: {
+
+            },
+            watch: {
+                // LS__data: function (val, oldVal) {
+                //     var data = this.LS__data;
+                //     localStorage.setItem("cart", JSON.stringify(data));
+                //     calc(data);
+                // },
+            },
+        });
+    }
+
+    setTimeout(function () {
+        new_vue();
     }, 700);
 
     F.query = F._hrefUtils.parse().query || {};

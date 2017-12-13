@@ -21,6 +21,14 @@
         footer {
             float: left;
         }
+
+        #lastPagebtn {
+            padding: 3px 8px;
+        }
+
+        #nextPagebtn {
+            background-color: rgb(0, 117, 246);
+        }
     </style>
 
 </head>
@@ -106,7 +114,17 @@
                                         <b ng-bind="item.brandPrice/12 | priceFormat"></b> VND</i> x 12 Tháng</p>
                             </dd>
                         </dl>
-                        <ul class="pagination" style="margin: 15px 0px;float: right;">
+                        <div class="changePage">
+                            <div style="margin-bottom: 30px;">
+                                <button id="lastPagebtn" ng-click="lastPage(currentpage)">&lt;</button>
+                                <span style="padding-top: 3px;">Trang hiện tại:
+                                    <span ng-init="nowPage=1" ng-bind="nowPage" class="pop"></span>&nbsp;&nbsp;</span>
+                                <span style="padding-top: 3px;">Trang :
+                                    <span ng-bind="totalPage"></span> tiên</span>
+                                <button id="nextPagebtn" ng-click="nextPage(currentpage)">&gt;</button>
+                            </div>
+                        </div>            
+                        <!-- <ul class="pagination" style="margin: 15px 0px;float: right;">
                             <li ng-class="{true:'disabled'}[p_current==1]">
                                 <a href="javascript:void(0);" ng-click="p_index()">Trang chủ</a>
                             </li>
@@ -116,15 +134,16 @@
                             <li ng-class="{true:'disabled'}[p_current==p_all_page]">
                                 <a href="javascript:void(0);" ng-click="p_last()">Trang cuối</a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <div class="over" style="margin-bottom: 30px;">
-                            <input type="checkbox" id="selectAll" ng-click="overlistgood()" /> Chọn hết
+                            <input type="checkbox" id="selectAll" ng-click="overlistgood()" /> 
+                            <label for="selectAll">Chọn hết</label>
                             <button disabled="disabled" ng-click="clearsc()" class="btns">Hủy sưu tập</button>
                             <!--<button disabled="disabled">清除已下架商品</button>-->
-                            <div class="right">
+                            <!-- <div class="right">
                                 Bạn
                                 <i ng-bind="length"></i>một thông báo &nbsp;
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="no_list">
@@ -192,7 +211,7 @@
     <script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/getMd5Code.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/localStorage.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script> -->
     <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
     <!-- <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script> -->

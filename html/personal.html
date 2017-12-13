@@ -146,11 +146,11 @@
                         </div>
                         <div class="perone">
                             <span>Tốt nghiệp trường</span>
-                            <!-- <input type="text" id="g_byyx" /> -->
                             <select name="" id="g_byyx" style="width: 250px; color: #333;">
                                 <option ng-repeat="item in schoolList" ng-value="item.id" ng-bind="item.name">school name</option>
                             </select>
                             <br />
+                            <div style="padding-left: 155px; margin-bottom: 10px; color: #999; display: none;" id="suport_tips">* Bạn học thân mến, tạm thời chúng tôi chỉ thực hiện thanh toán trả góp tại những trường đại học có trong danh sách, những trường đại học không thể chọn được vì nhân lực công ty chúng tôi có hạn nên tạm thời chưa thể thanh toán, nhưng bạn có thể lựa chọn thanh toán toàn bộ. Nếu có thắc mắc gì, xin hãy để lại lời nhắn trên facebook. Cám ơn sự ủng hộ của bạn.</div>                            
                             <span>Địa chỉ trường</span>
                             <input type="text" id="g_xxdz" />
                             <br />
@@ -404,7 +404,7 @@
     <script src="../js/md555.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/sys/sessionStorage.js" type="text/javascript" charset="utf-8"></script> -->
     <!-- tcy -start- -->
     <script src="../js/md5.js"></script>
     <script src="../js/common.js"></script>
@@ -422,6 +422,15 @@
                 });
             }
         }, 700);
+
+        $("#g_byyx").change(function () {
+            var id = $("#g_byyx").val();
+            if (F._edit_support_school(id, F.schoolList)) {
+                $('#suport_tips').hide();
+            } else {
+                $('#suport_tips').show();
+            }
+        });
 
         function day_options_produce_htmlStr() {
             var i;

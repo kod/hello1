@@ -90,7 +90,7 @@
         .body__m-t-t-dpayment {
             float: left;
             text-align: center;
-            width: 150px;
+            width: 200px;
         }
 
         .body__m-t-t-number {
@@ -108,7 +108,7 @@
         .body__m-t-t-operate {
             float: left;
             text-align: center;
-            width: 230px;
+            width: 280px;
         }
 
         .body__m-t-t-checkbox {
@@ -188,7 +188,7 @@
 
         .body__m-t-i-dpayment {
             float: left;
-            width: 150px;
+            width: 200px;
             padding-top: 45px;
             text-align: center;
         }
@@ -282,7 +282,7 @@
 
         .body__m-t-i-operate {
             float: left;
-            width: 230px;
+            width: 280px;
             padding-top: 35px;
             text-align: center;
         }
@@ -457,11 +457,10 @@
             cursor: pointer;
             border-radius: 3px;
         }
-        
+
         .body__m-e-r2-button:hover {
             background-color: #105dcf;
         }
-
     </style>
 </head>
 
@@ -483,9 +482,9 @@
                             <label for="body__m-t-t-a-input" class="body__m-t-t-a-text">全部</label> -->
                         </div>
                         <div class="body__m-t-t-product">Sản phẩm</div>
-                        <div class="body__m-t-t-periods">Số kỳ</div>
-                        <div class="body__m-t-t-dpayment">Thanh toán lần đầu</div>
-                        <div class="body__m-t-t-number">Số LƯỢNG</div>
+                        <!-- <div class="body__m-t-t-periods">Số kỳ</div> -->
+                        <div class="body__m-t-t-dpayment">Giá sản phẩm</div>
+                        <div class="body__m-t-t-number">Số lượng</div>
                         <div class="body__m-t-t-total">Tổng tiền</div>
                         <div class="body__m-t-t-operate">Thao tác</div>
                     </div>
@@ -498,8 +497,8 @@
                             <div class="body__m-t-i-p-img" :style="{'background-image': 'url('+ val.iconUrl +')'}"></div>
                             <div class="body__m-t-i-p-text" v-html="val.subject"></div>
                         </div>
-                        <div class="body__m-t-i-periods" v-html="val.repaymentMonth"></div>
-                        <div class="body__m-t-i-dpayment" v-html="priceFormat(val.totalAmount * val.payRate * val.quantity) + 'VND'"></div>
+                        <!-- <div class="body__m-t-i-periods" v-html="val.repaymentMonth"></div> -->
+                        <div class="body__m-t-i-dpayment" v-html="priceFormat(val.totalAmount) + 'VND'"></div>
                         <div class="body__m-t-i-number">
                             <div class="body__m-t-i-n-wrap">
                                 <div class="body__m-t-i-n-left">
@@ -533,7 +532,7 @@
                             </div>
                             <div class="body__m-s-l-l-right">
                                 <div class="body__m-s-l-l-r-del" @click="del_all_product(LS__data)">Xóa</div>
-                                <div class="body__m-s-l-l-r-favorite">Thêm vào danh sách yêu thích</div>
+                                <div class="body__m-s-l-l-r-favorite" @click="add_batchfavorites(LS__data)">Thêm vào danh sách yêu thích</div>
                             </div>
                         </div>
                         <div class="body__m-s-l-right">
@@ -541,8 +540,8 @@
                                 <span style="color: #F7004C;" v-html="selectedProductNum"></span> 件商品</div>
                             <div class="body__m-s-l-r-right">
                                 <div class="body__m-s-l-r-r-top">
-                                    <span class="body__m-s-l-r-r-t-text">Tổng tiền</span>
-                                    <span class="body__m-s-l-r-r-t-vat">(Đã bao gồm VAT):</span>
+                                    <span class="body__m-s-l-r-r-t-text">Tổng tiền:</span>
+                                    <!-- <span class="body__m-s-l-r-r-t-vat">(Đã bao gồm VAT):</span> -->
                                     <span class="body__m-s-l-r-r-t-price" v-html="priceFormat(selectedTotalAmount)"></span>
                                     <span class="body__m-s-l-r-r-t-unit">VND</span>
                                 </div>
@@ -593,7 +592,6 @@
             var pre_data = function (data) {
                 var cart_getInfo = data._cart_getInfo;
                 F.vue.LS__data = edit_cartitems(cart_getInfo.cartitems);
-                console.log(F.vue.LS__data);
 
                 calc(F.vue.LS__data);
             }
@@ -633,6 +631,7 @@
                         del_product: del_product,
                         del_all_product: del_all_product,
                         add_favorites: add_favorites,
+                        add_batchfavorites: add_batchfavorites,
                         submit: submit,
                         gotoDetails: gotoDetails,
                         priceFormat: F._priceFormat,
@@ -652,18 +651,18 @@
 
             function submit(data) {
                 var i;
-                var advance = 0;
+                // var advance = 0;
                 var pay_products = [];
                 for (i = 0; i < data.length; i++) {
                     if (data[i]._checked === true) { // 已选
                         pay_products.push(data[i]);
-                        advance += data[i].advance * data[i].quantity;
+                        // advance += data[i].advance * data[i].quantity;
                     } else { // 未选
 
                     }
                 }
 
-                if ((advance === 0) && (advance === F.vue.selectedTotalAmount)) {
+                if (F.vue.selectedTotalAmount === 0) {
                     F._confirm("Gợi ý", "Vui lòng chọn sản phẩm bạn cần", "tips", [
                         {
                             name: "Xác nhận",
@@ -673,34 +672,45 @@
                     return false;
                 }
                 sessionStorage.setItem("pay_cart_data", JSON.stringify(pay_products));
-                sessionStorage.setItem("pay_cart_advance", advance);
-                window.location.href = "pay.html?from=cart";
+                // sessionStorage.setItem("pay_cart_advance", advance);
+                window.location.href = "pay.html?from=all";
+            }
+
+            function add_batchfavorites(array) {
+                var index;
+                var brandids = [];
+                for (index = 0; index < array.length; index++) {
+                    if (array[index]._checked) brandids.push(array[index]._detail.brandId);
+                }
+                F._userBatchCollection({
+                    brandids: brandids.join(','),
+                }, function (ret) {
+                    loading.hide();
+                    F._confirm("Gợi ý", "Thành công", "success", [
+                        {
+                            name: "Xác nhận",
+                            func: function () { }
+                        }
+                    ]);
+                });
+
             }
 
             function add_favorites(type_id, brand_id, brand_name, brand_desc, brand_image, brand_price) {
                 var loading = new F._loading();
                 loading.show();
 
-                F._userAddCollection(
-                    {
-                        type_id: type_id,
-                        brand_id: brand_id,
-                        brand_name: brand_name,
-                        brand_desc: brand_desc,
-                        brand_image: brand_image,
-                        brand_price: brand_price
-                    },
-                    function (ret) {
-                        loading.hide();
-                        F._confirm("Gợi ý", "Thành công", "success", [
-                            {
-                                name: "Xác nhận",
-                                func: function () { }
-                            }
-                        ]);
-                    }
-                );
-
+                F._userBatchCollection({
+                    brandids: brand_id,
+                }, function (ret) {
+                    loading.hide();
+                    F._confirm("Gợi ý", "Thành công", "success", [
+                        {
+                            name: "Xác nhận",
+                            func: function () { }
+                        }
+                    ]);
+                });
             }
 
             function del_all_product(array) {
@@ -717,11 +727,10 @@
             }
 
             function del_product(id, key) {
-                console.log(id);
-                console.log(key);
                 function login_case(id) {
                     F._cart_remove({
                         cartitemids: id,
+                        orderno: '',
                     }, function (ret) {
                         if (!ret) return false;
                         if (ret.code !== 10000) return false;
@@ -736,10 +745,6 @@
                 }
 
                 function unlogin_case(key) {
-                    // console.log(key);
-                    // console.log(typeof key);
-                    // console.log(F.vue.LS__data);
-                    // return false;
                     var index;
                     var data = F.vue.LS__data;
                     var empty_array = [];
@@ -752,8 +757,6 @@
                         F.vue.LS__data = empty_array;
                     }
                 }
-                // console.log(id);
-                // return false;
                 F._confirm("Gợi ý", "Xác nhận xóa?", "tips", [
                     {
                         name: "Hủy",
@@ -827,7 +830,7 @@
                     productNum += data[i].quantity;
                     if (data[i]._checked === true) { // 已选
                         selectedProductNum += data[i].quantity;
-                        selectedSaving += data[i].orgAmount ? (data[i].orgAmount - data[i].totalAmount) * data[i].quantity : 0;
+                        selectedSaving += data[i].orgPrice ? (data[i].orgPrice - data[i].totalAmount) * data[i].quantity : 0;
                         selectedTotalAmount += data[i].totalAmount * data[i].quantity;
                     } else { // 未选
 
@@ -866,8 +869,11 @@
                 for (index = 0; index < array.length; index++) {
 
                     var element = array[index];
-                    element.iconUrl = JSON.parse(element.detail).iconUrl;
-                    element._detail = JSON.parse(element.detail);
+                    var detail = JSON.parse(element.detail);
+                    element.iconUrl = detail.iconUrl;
+                    element.totalAmount = detail.price;
+                    element.orgPrice = detail.orgPrice;
+                    element._detail = detail;
                     element._checked = true;
                     result.push(element);
                 }

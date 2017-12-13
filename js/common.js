@@ -30,7 +30,8 @@ F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 
 F._userAction_register_uc = F._IP + ":8180/fun/userCenter/userAction/register"; // 注册
 F._userAction_getUserInfoById_uc = F._IP + ":8180/fun/userCenter/userAction/getUserInfoById"; //
 F._userCancelCollection_uc = F._IP + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
-F._userAddCollection_uc = F._IP + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
+// F._userAddCollection_uc = F._IP + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
+F._userBatchCollection_uc = F._IP + ":8180/fun/usercenter/userBatchCollection"; // 批量添加收藏
 F._userGetCollection_uc = F._IP + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
 F._initTopComputer_cp = F._IP + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
 F._initNewCellphone_cp = F._IP + ":8185/fun/cellphone/initNewCellphone"; //
@@ -103,7 +104,7 @@ F._batchPayment = function(params, callback) {
 
     var Key = "tradeKey";
 
-    var appId = '0';
+    var appId = "0";
     var method = "fun.trade.batchPayment";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -111,9 +112,10 @@ F._batchPayment = function(params, callback) {
     var funid = localStorage.getItem("funId");
     var orderdetails = params.orderdetails;
     var payway = params.payway;
+    var paypassword = params.paypassword;
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
-    
+
     var encrypt = F._encrypt_MD5(
         [
             {
@@ -127,6 +129,10 @@ F._batchPayment = function(params, callback) {
             {
                 key: "payway",
                 value: payway
+            },
+            {
+                key: "paypassword",
+                value: paypassword
             },
         ],
         Key
@@ -143,6 +149,7 @@ F._batchPayment = function(params, callback) {
         funid: funid,
         orderdetails: orderdetails,
         payway: payway,
+        paypassword: paypassword,
     };
 
     $.ajax({
@@ -203,7 +210,7 @@ F._batchCreateOrder = function(params, callback) {
 
     var Key = "tradeKey";
 
-    var appId = '0';
+    var appId = "0";
     var method = "fun.trade.batchCreateOrder";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -216,7 +223,7 @@ F._batchCreateOrder = function(params, callback) {
     var remark = params.remark;
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
-    
+
     var encrypt = F._encrypt_MD5(
         [
             {
@@ -242,7 +249,7 @@ F._batchCreateOrder = function(params, callback) {
             {
                 key: "remark",
                 value: remark
-            },
+            }
         ],
         Key
     );
@@ -315,8 +322,8 @@ F._batchCreateOrder = function(params, callback) {
     });
 };
 
-// 收藏-添加
-F._userAddCollection = function(params, callback) {
+// 收藏-可批量添加
+F._userBatchCollection = function(params, callback) {
     if (!F._isLogin()) return false;
     var Key = "userKey";
 
@@ -324,18 +331,12 @@ F._userAddCollection = function(params, callback) {
     var method = "fun.uc.addcollection";
     var charset = "utf-8";
     var timestamp = (+new Date() + "").slice(3);
-    var version = "1.0";
+    var version = "2.0";
 
     var funid = localStorage.getItem("funId");
-    var msisdn = localStorage.getItem("msisdn");
-    var type_id = params.type_id;
-    var brand_id = params.brand_id;
-    var brand_name = params.brand_name;
-    var brand_desc = params.brand_desc;
-    var brand_image = params.brand_image;
-    var brand_price = params.brand_price;
+    var brandids = params.brandids;
 
-    var signType = F._signType_MD5(appId, method, charset, Key, false);
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
 
     var encrypt = F._encrypt_MD5(
         [
@@ -344,58 +345,28 @@ F._userAddCollection = function(params, callback) {
                 value: funid
             },
             {
-                key: "msisdn",
-                value: msisdn
-            },
-            {
-                key: "type_id",
-                value: type_id
-            },
-            {
-                key: "brand_id",
-                value: brand_id
-            },
-            {
-                key: "brand_name",
-                value: brand_name
-            },
-            {
-                key: "brand_desc",
-                value: brand_desc
-            },
-            {
-                key: "brand_image",
-                value: brand_image
-            },
-            {
-                key: "brand_price",
-                value: brand_price
+                key: "brandids",
+                value: brandids
             },
         ],
         Key
     );
 
     var data = {
-        appId: appId,
+        appid: appId,
         method: method,
         charset: charset,
-        signType: signType,
+        signtype: signType,
         encrypt: encrypt,
         timestamp: timestamp,
         version: version,
         funid: funid,
-        msisdn: msisdn,
-        type_id: type_id,
-        brand_id: brand_id,
-        brand_name: brand_name,
-        brand_desc: brand_desc,
-        brand_image: brand_image,
-        brand_price: brand_price,
+        brandids: brandids,
     };
 
     $.ajax({
         type: "POST",
-        url: F._userAddCollection_uc,
+        url: F._userBatchCollection_uc,
         data: data,
         success: function(ret) {
             ret = JSON.parse(ret);
@@ -422,6 +393,114 @@ F._userAddCollection = function(params, callback) {
         }
     });
 };
+
+// 收藏-添加
+// F._userAddCollection = function(params, callback) {
+//     if (!F._isLogin()) return false;
+//     var Key = "userKey";
+
+//     var appId = "0";
+//     var method = "fun.uc.addcollection";
+//     var charset = "utf-8";
+//     var timestamp = (+new Date() + "").slice(3);
+//     var version = "1.0";
+
+//     var funid = localStorage.getItem("funId");
+//     var msisdn = localStorage.getItem("msisdn");
+//     var type_id = params.type_id;
+//     var brand_id = params.brand_id;
+//     var brand_name = params.brand_name;
+//     var brand_desc = params.brand_desc;
+//     var brand_image = params.brand_image;
+//     var brand_price = params.brand_price;
+
+//     var signType = F._signType_MD5(appId, method, charset, Key, false);
+
+//     var encrypt = F._encrypt_MD5(
+//         [
+//             {
+//                 key: "funid",
+//                 value: funid
+//             },
+//             {
+//                 key: "msisdn",
+//                 value: msisdn
+//             },
+//             {
+//                 key: "type_id",
+//                 value: type_id
+//             },
+//             {
+//                 key: "brand_id",
+//                 value: brand_id
+//             },
+//             {
+//                 key: "brand_name",
+//                 value: brand_name
+//             },
+//             {
+//                 key: "brand_desc",
+//                 value: brand_desc
+//             },
+//             {
+//                 key: "brand_image",
+//                 value: brand_image
+//             },
+//             {
+//                 key: "brand_price",
+//                 value: brand_price
+//             }
+//         ],
+//         Key
+//     );
+
+//     var data = {
+//         appId: appId,
+//         method: method,
+//         charset: charset,
+//         signType: signType,
+//         encrypt: encrypt,
+//         timestamp: timestamp,
+//         version: version,
+//         funid: funid,
+//         msisdn: msisdn,
+//         type_id: type_id,
+//         brand_id: brand_id,
+//         brand_name: brand_name,
+//         brand_desc: brand_desc,
+//         brand_image: brand_image,
+//         brand_price: brand_price
+//     };
+
+//     $.ajax({
+//         type: "POST",
+//         url: F._userAddCollection_uc,
+//         data: data,
+//         success: function(ret) {
+//             ret = JSON.parse(ret);
+//             callback(ret);
+
+//             switch (ret.code) {
+//                 case 10000:
+//                     break;
+
+//                 default:
+//                     $("#loading").remove();
+//                     F._confirm("Gợi ý", "error", "error", [
+//                         {
+//                             name: "Xác nhận",
+//                             func: function() {}
+//                         }
+//                     ]);
+//                     break;
+//             }
+//         },
+//         error: function(ret) {
+//             console.error("request error");
+//             callback(false);
+//         }
+//     });
+// };
 
 // 购物车-列表
 F._cart_getInfo = function(params, callback) {
@@ -579,6 +658,7 @@ F._cart_remove = function(params, callback) {
     var version = "2.0";
 
     var cartitemids = params.cartitemids;
+    var orderno = params.orderno;
     var funid = localStorage.getItem("funId");
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
@@ -592,6 +672,10 @@ F._cart_remove = function(params, callback) {
             {
                 key: "cartitemids",
                 value: cartitemids
+            },
+            {
+                key: "orderno",
+                value: orderno
             }
         ],
         Key
@@ -606,7 +690,8 @@ F._cart_remove = function(params, callback) {
         timestamp: timestamp,
         version: version,
         funid: funid,
-        cartitemids: cartitemids
+        cartitemids: cartitemids,
+        orderno: orderno
     };
 
     $.ajax({
@@ -1334,6 +1419,8 @@ F._userGetCollection = function(params, callback) {
 
     var funid = localStorage.getItem("funId");
     var msisdn = params.msisdn;
+    var pagesize = params.pagesize;
+    var currentpage = params.currentpage;
 
     var md5SigntypeStrig = "";
     md5SigntypeStrig += "appId=" + appId;
@@ -1345,6 +1432,8 @@ F._userGetCollection = function(params, callback) {
     var md5EncryptStrig = "";
     md5EncryptStrig += "funid=" + funid;
     md5EncryptStrig += "&msisdn=" + msisdn;
+    md5EncryptStrig += "&pagesize=" + pagesize;
+    md5EncryptStrig += "&currentpage=" + currentpage;
     md5EncryptStrig += Key;
     var encrypt = md5(md5EncryptStrig);
 
@@ -1357,7 +1446,9 @@ F._userGetCollection = function(params, callback) {
         timestamp: timestamp,
         version: version,
         funid: funid,
-        msisdn: msisdn
+        msisdn: msisdn,
+        pagesize: pagesize,
+        currentpage: currentpage
     };
 
     $.ajax({
@@ -2232,7 +2323,19 @@ F._userAction_login = function(params, callback) {
             loading.hide();
             switch (ret.status) {
                 case 10000:
-                    createLoginSssion(ret.result, ret.msisdn);
+                    // function createLoginSssion(funId, msisdn) {
+                    //     sessionStorage.setItem("funId", funId);
+                    //     localStorage.setItem("funId", funId);
+                    //     localStorage.setItem("msisdn", msisdn);
+                    //     localStorage.setItem("validTime", +new Date() + 7 * 24 * 60 * 60 * 1000);
+                    // }
+
+                    sessionStorage.setItem("funId", ret.result);
+                    localStorage.setItem("funId", ret.result);
+                    localStorage.setItem("msisdn", ret.msisdn);
+                    localStorage.setItem("validTime", +new Date() + 7 * 24 * 60 * 60 * 1000);
+
+                    // createLoginSssion(ret.result, ret.msisdn);
 
                     F._userViewDetailInfo({}, function(ret) {
                         if (ret.data.username) localStorage.setItem("username", ret.data.username);
@@ -2730,12 +2833,85 @@ F._createOrder = function(params, callback) {
     var msisdn = params.msisdn;
     var address = params.address;
     var username = params.username;
+    var number = params.number;
 
-    var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
-    var signType = md5(md5SigntypeStrig);
+    // var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
+    // var signType = md5(md5SigntypeStrig);
 
-    var md5EncryptStrig = "orderNo=" + orderNo + "&funid=" + funid + "&totalAmount=" + totalAmount + "&orgAmount=" + orgAmount + "&advance=" + advance + "&payRate=" + payRate + "&repaymentMonth=" + repaymentMonth + "&currency=" + currency + "&subject=" + subject + "&goodsDetail=" + goodsDetail + "&timeoutExpress=" + timeoutExpress + "&msisdn=" + msisdn + "&address=" + address + "&username=" + username + "&remark=" + remark + Key;
-    var encrypt = md5(md5EncryptStrig);
+    // var md5EncryptStrig = "orderNo=" + orderNo + "&funid=" + funid + "&totalAmount=" + totalAmount + "&orgAmount=" + orgAmount + "&advance=" + advance + "&payRate=" + payRate + "&repaymentMonth=" + repaymentMonth + "&currency=" + currency + "&subject=" + subject + "&goodsDetail=" + goodsDetail + "&timeoutExpress=" + timeoutExpress + "&msisdn=" + msisdn + "&address=" + address + "&username=" + username + "&remark=" + remark + Key;
+    // var encrypt = md5(md5EncryptStrig);
+
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderNo",
+                value: orderNo
+            },
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "totalAmount",
+                value: totalAmount
+            },
+            {
+                key: "orgAmount",
+                value: orgAmount
+            },
+            {
+                key: "advance",
+                value: advance
+            },
+            {
+                key: "payRate",
+                value: payRate
+            },
+            {
+                key: "repaymentMonth",
+                value: repaymentMonth
+            },
+            {
+                key: "currency",
+                value: currency
+            },
+            {
+                key: "subject",
+                value: subject
+            },
+            {
+                key: "goodsDetail",
+                value: goodsDetail
+            },
+            {
+                key: "timeoutExpress",
+                value: timeoutExpress
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "address",
+                value: address
+            },
+            {
+                key: "username",
+                value: username
+            },
+            {
+                key: "remark",
+                value: remark
+            },
+            {
+                key: "number",
+                value: number
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -2760,7 +2936,8 @@ F._createOrder = function(params, callback) {
         msisdn: msisdn,
         address: address,
         username: username,
-        remark: remark
+        remark: remark,
+        number: number
     };
 
     $.ajax({
@@ -3704,6 +3881,17 @@ F._getSchoolInfo = function(params, callback) {
         data: data,
         success: function(ret) {
             ret = JSON.parse(ret);
+            function edit_details(array) {
+                var index;
+                var result = [];
+                for (index = 0; index < array.length; index++) {
+                    if (array[index].staging !== 2) {
+                        result.push(array[index]);
+                    }
+                }
+                return result;
+            }
+            ret.details = edit_details(ret.details);
             callback(ret);
         },
         error: function(ret) {
@@ -3861,7 +4049,7 @@ function header_add() {
     function set_unlogin_cart_num() {
         localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
         var cart = JSON.parse(localStorage.getItem("cart"));
-        
+
         set_cart_num(calc_num(cart));
     }
 
@@ -3936,15 +4124,13 @@ function footer_add() {
                     <div class="footer__b2-m-r1-title col-xs-24">Thông tin</div>\
                     <ul class="footer__b2-m-r1-main col-xs-24">\
                         <a href="' + dot_str + './html/about.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Về chúng tôi</a>\
-                        <a href="' + dot_str + './html/join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Đến với chúng tôi</a>\
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">hợp tác thương mại:</a>\
-                        <a href="mailto:business.vn@buyoo.asia" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">business.vn@buyoo.asia</a>\
+                        <a href="' + dot_str + './html/join.html" target="_blank" class="footer__b2-m-r1-m-item col-xs-24">Tuyển dụng</a>\
                     </ul>\
                 </div>\
                 <div class="footer__b2-m-row2">\
                     <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>\
                     <ul class="footer__b2-m-r2-main col-xs-24">\
-                        <a href="' + dot_str + './html/buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua sắm trả góp</a>\
+                        <a href="' + dot_str + './html/buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua hàng bằng cách nào</a>\
                         <a href="' + dot_str + './html/billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>\
                         <a href="' + dot_str + './html/safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>\
                         <a href="' + dot_str + './html/refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>\
@@ -3955,6 +4141,7 @@ function footer_add() {
                     <ul class="footer__b2-m-r3-main col-xs-24">\
                         <li class="footer__b2-m-r3-m-item col-xs-24">\
                             <img src="' + dot_str + './img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">\
+                            <img src="' + dot_str + './img/pay_napas.png" alt="" class="footer__b2-m-r3-m-i-img">\
                         </li>\
                     </ul>\
                 </div>\
@@ -3970,17 +4157,23 @@ function footer_add() {
                     </ul>\
                 </div>\
                 <div class="footer__b2-m-row7 col-xs-24">\
-                    <div class="footer__b2-m-r7-left col-xs-12">\
-                        <label for="footer__b2-m-r7-l-r1-email" class="footer__b2-m-r7-l-row1">\
-                            <img src="' + dot_str + './img/273y4294.png" class="footer__b2-m-r7-l-r1-icon">\
-                            <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-r1-email" id="footer__b2-m-r7-l-r1-email">service@buyoo.asia</a>\
-                        </label>\
-                        <div class="footer__b2-m-r7-l-row2">\
-                            <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(' + dot_str + './img/29476021983473.png)"></a>\
-                        </div>\
+                <div class="footer__b2-m-r7-left col-xs-18">\
+                <div class="footer__b2-m-r7-l-item1">\
+                    <div class="footer__b2-m-r7-l-i1-top">Kết nối với chúng tôi</div>\
+                    <a href="mailto:service@buyoo.asia" class="footer__b2-m-r7-l-i1-bottom">service@buyoo.asia</a>\
+                </div>\
+                <div class="footer__b2-m-r7-l-item2">\
+                    <div class="footer__b2-m-r7-l-i2-top">hợp tác thương mại</div>\
+                    <a href="mailto:business.vn@buyoo.asia" class="footer__b2-m-r7-l-i2-bottom">business.vn@buyoo.asia</a>\
+                </div>\
+                <div class="footer__b2-m-r7-l-item3">\
+                    <div class="footer__b2-m-r7-l-row2">\
+                        <a href="https://www.facebook.com/Buyoo.vn" target="_blank" class="footer__b2-m-r7-l-r2-app" style="background-image: url(' + dot_str + './img/29476021983473.png)"></a>\
                     </div>\
-                    <div class="footer__b2-m-r7-right col-xs-12">\
-                        <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(' + dot_str + './img/780689798.png);"></a>\
+                </div>\
+            </div>\
+            <div class="footer__b2-m-r7-right col-xs-6">\
+                <a href="http://online.gov.vn/WebsiteDisplay.aspx?DocId=38418" target="_blank" class="footer__b2-m-r7-r-img" style="background-image: url(' + dot_str + './img/780689798.png);"></a>\
                     </div>\
                 </div>\
                 <div class="footer__b2-m-row6 col-xs-24">\
@@ -4005,6 +4198,18 @@ F._entersearch = function() {
     if (event.keyCode == 13) {
         F._gotoFind();
     }
+};
+
+F._edit_support_school = function(id, array) {
+    id = +id;
+    var index;
+    var result = true;
+    for (index = 0; index < array.length; index++) {
+        if (array[index].id === id) {
+            if (array[index].staging === 0) result = false;
+        }
+    }
+    return result;
 };
 
 F._order_cancel = function(callback) {
@@ -4576,7 +4781,7 @@ F._baseinfo = function(data, userInfo) {
         var collegename_html = "";
 
         for (i = 0; i < data.length; i++) {
-            collegename_html += '<li class="actionsheet__list-item js_collegename" data-collegename="' + data[i].id + '">' + data[i].name + "</li>";
+            collegename_html += '<li class="actionsheet__list-item js_collegename" data-collegename="' + data[i].id + '" data-staging="' + data[i].staging + '">' + data[i].name + "</li>";
             school_id_name_json[data[i].id] = data[i].name;
             if (!collegename) collegename = data[i].id;
         }
@@ -4738,6 +4943,9 @@ F._baseinfo = function(data, userInfo) {
         '</div>\
                             </div>\
                         </div>\
+                        <div class="alert__b-m-b-row33 col-xs-24" id="alert__b-m-b-row33">\
+                            Bạn học thân mến, tạm thời chúng tôi chỉ thực hiện thanh toán trả góp tại những trường đại học có trong danh sách, những trường đại học không thể chọn được vì nhân lực công ty chúng tôi có hạn nên tạm thời chưa thể thanh toán, nhưng bạn có thể lựa chọn thanh toán toàn bộ. Nếu có thắc mắc gì, xin hãy để lại lời nhắn trên facebook. Cám ơn sự ủng hộ của bạn.\
+                        </div>\
                     </div>\
                     <div class="alert__b-m-b-row7 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Địa chỉ trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
@@ -4869,10 +5077,19 @@ F._baseinfo = function(data, userInfo) {
     }
 
     // 选择学校
-    function collegename_select(val) {
+    function collegename_select(val, staging) {
+        staging = +staging;
         if (val) {
             $("#MO__collegename").html(school_id_name_json[val]);
             collegename = val;
+        }
+
+        if (staging === staging) {
+            if (staging === 1) {
+                $("#alert__b-m-b-row33").hide();
+            } else {
+                $("#alert__b-m-b-row33").show();
+            }
         }
 
         var actionsheet_handle = $(".actionsheet-collegename");
@@ -4967,7 +5184,7 @@ F._baseinfo = function(data, userInfo) {
                             <div class="actionsheet actionsheet-relation">\
                                 <span class="actionsheet__left js_relation" data-relation="" id="input_relation">' + input_relation + '</span>\
                                 <span class="actionsheet__right js_relation" data-relation="">\
-                                        <span class="actionsheet__right-arrow"></span>\
+                                    <span class="actionsheet__right-arrow"></span>\
                                 </span>\
                                 <div class="actionsheet__list">\
                                     <li class="actionsheet__list-item js_relation" data-relation="Bố">Bố</li>\
@@ -5038,6 +5255,12 @@ F._baseinfo = function(data, userInfo) {
         $("body").append(baseinfo_html);
         $("body").append('<div class="baseinfo__mask" id="baseinfo__mask"></div>');
 
+        if (F._edit_support_school(collegename, data)) {
+            $("#alert__b-m-b-row33").hide();
+        } else {
+            $("#alert__b-m-b-row33").show();
+        }
+
         $(".js_sex").on("click", function() {
             var self = $(this);
             sex_select(self.data("sex"));
@@ -5055,7 +5278,7 @@ F._baseinfo = function(data, userInfo) {
 
         $(".js_collegename").on("click", function() {
             var self = $(this);
-            collegename_select(self.data("collegename"));
+            collegename_select(self.data("collegename"), self.data("staging"));
         });
 
         $("#baseinfo_hide").on("click", function() {
