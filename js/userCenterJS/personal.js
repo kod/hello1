@@ -53,6 +53,8 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
                 var result = JSON.parse(data);
 
+                F.SchoolInfo = result.details;
+                
                 loading.hide();
 
                 switch (result.code) {
@@ -217,11 +219,11 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                 $('#per3_gx').val(res.data.connectuserrelation3);
                 $('#per3_id').val(res.data.connectuseridentification3);
                 $('#g_byyx').val(res.data.collegename);
-                if (F._edit_support_school(res.data.collegename, F.schoolList)) {
-                    $('#suport_tips').hide();
-                } else {
-                    $('#suport_tips').show();
-                }
+                // if (F._edit_support_school(res.data.collegename, F.schoolList)) {
+                //     $('#suport_tips').hide();
+                // } else {
+                //     $('#suport_tips').show();
+                // }
                 
                 $('#g_xxdz').val(res.data.collegeaddr);
                 $('#g_yx').val(res.data.department);

@@ -1219,27 +1219,31 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
         }
 
         function unlogin_case() {
-            function is_exist(array, itemId, payRate, repaymentMonth) {
+            function is_exist(array, itemId) {
+                // console.log(array);
+                // console.log(itemId);
+                // return false;
                 var index;
                 var result = false;
                 for (index = 0; index < array.length; index++) {
-                    if (array[index].itemId === itemId && array[index].payRate === payRate && array[index].repaymentMonth === repaymentMonth) {
-                        array[index].quantity += 1;
+                    if (array[index].itemId === itemId) {
+                        array[index].quantity += parseInt(cartitems[0].quantity);
                         result = true;
                     }
                 }
+                console.log(result);
                 return result;
             }
 
             localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
             var cart = JSON.parse(localStorage.getItem("cart"));
             cartitems[0].detail = JSON.stringify(window.__goodsDetail);
-            if (!is_exist(cart, itemId, payRate, repaymentMonth)) {
+            if (!is_exist(cart, itemId)) {
                 cart.push(cartitems[0]);
             }
             cart = JSON.stringify(cart);
             localStorage.setItem("cart", cart);
-            $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1);
+            $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + parseInt(cartitems[0].quantity));
             F._confirm("Gợi ý", "1 sản phẩm mới đã được thêm vào giỏ hàng của bạn", "success", [
                 {
                     name: "Xác nhận",
@@ -1285,18 +1289,21 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                     quantity: buyNum,
                     orgPrice: window.__goodsDetail.orgPrice,
                     totalAmount: price,
-                    _detail: window.__goodsDetail
+                    detail: JSON.stringify(window.__goodsDetail),
+                    _detail: window.__goodsDetail,
                 };
+                // console.log(JSON.stringify([pay_products]));
+                // return false;
                 sessionStorage.setItem("pay_cart_data", JSON.stringify([pay_products]));
 
-                sessionStorage.setItem("imgUrl", imgUrl);
-                sessionStorage.setItem("productInfo", productInfo);
-                sessionStorage.setItem("buyNum", buyNum);
-                sessionStorage.setItem("price", price);
-                sessionStorage.setItem("orgPrice", window.__goodsDetail.orgPrice);
-                sessionStorage.setItem("fenqiNum", fenqiNum);
-                sessionStorage.setItem("paymentNum", paymentNum);
-                sessionStorage.setItem("goodsDetail", JSON.stringify(window.__goodsDetail));
+                // sessionStorage.setItem("imgUrl", imgUrl);
+                // sessionStorage.setItem("productInfo", productInfo);
+                // sessionStorage.setItem("buyNum", buyNum);
+                // sessionStorage.setItem("price", price);
+                // sessionStorage.setItem("orgPrice", window.__goodsDetail.orgPrice);
+                // sessionStorage.setItem("fenqiNum", fenqiNum);
+                // sessionStorage.setItem("paymentNum", paymentNum);
+                // sessionStorage.setItem("goodsDetail", JSON.stringify(window.__goodsDetail));
 
                 // payInfo("1", imgUrl, productInfo, buyNum, price, fenqiNum, paymentNum, window.__goodsDetail);
                 window.location.href = "pay.html";

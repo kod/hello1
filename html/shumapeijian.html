@@ -95,10 +95,11 @@
                     <li class="banner1__m-b-item" ng-repeat="jinxuan_item in jinxuan" ng-click="product(jinxuan_item.typeId,jinxuan_item.brandId)">
                         <div class="banner1__m-b-i-img" style="background-image: url({{ jinxuan_item.imageUrl }});"></div>
                         <div class="banner1__m-b-i-title" ng-bind="jinxuan_item.name"></div>
-                        <div class="banner1__m-b-i-price">Giá bán:
-                            <span class="banner1__m-b-i-p-money" ng-bind="jinxuan_item.maxprice | priceFormat">3000</span> VND</div>
+                        <div class="banner1__m-b-i-price">
+                            <!-- Giá bán: -->
+                            <span class="banner1__m-b-i-p-money" ng-bind="jinxuan_item.maxprice | priceFormat"></span> VND</div>
                         <div class="banner1__m-b-i-fenqi">
-                            <span class="banner1__m-b-i-f-money" ng-bind="jinxuan_item.maxprice/12 | priceFormat">12.000.000</span>
+                            <span class="banner1__m-b-i-f-money" ng-bind="jinxuan_item.maxprice/12 | priceFormat"></span>
                             <span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
                         </div>
                     </li>
@@ -108,7 +109,7 @@
         <div class="" ng-controller="tuijianCtrl">
             <section class="banner1" ng-repeat="classfy in Products" ng-if="classfy._total">
                 <div class="banner1__title">
-                    <div class="banner1__title-left" ng-bind="classfy.name">MI Phone</div>
+                    <div class="banner1__title-left" ng-bind="classfy.name"></div>
                     <div class="banner1__title-right" ng-click="gotoMore1(classfy._sub_top[0].classfyId)">Xem nhiều hơn &gt; </div>
                 </div>
                 <div class="banner1__main">
@@ -120,10 +121,11 @@
                         <li class="banner1__m-b-item" ng-repeat="sub_bottom_item in classfy['_sub_bottom']" ng-click="product(sub_bottom_item.typeId,sub_bottom_item.brandId)">
                             <div class="banner1__m-b-i-img" style="background-image: url({{ sub_bottom_item.imageUrl }});"></div>
                             <div class="banner1__m-b-i-title" ng-bind="sub_bottom_item.name"></div>
-                            <div class="banner1__m-b-i-price">Giá bán:
-                                <span class="banner1__m-b-i-p-money" ng-bind="sub_bottom_item.maxprice | priceFormat">3000</span> VND</div>
+                            <div class="banner1__m-b-i-price">
+                                <!-- Giá bán: -->
+                                <span class="banner1__m-b-i-p-money" ng-bind="sub_bottom_item.maxprice | priceFormat"></span> VND</div>
                             <div class="banner1__m-b-i-fenqi">
-                                <span class="banner1__m-b-i-f-money" ng-bind="sub_bottom_item.maxprice/12 | priceFormat">500</span>
+                                <span class="banner1__m-b-i-f-money" ng-bind="sub_bottom_item.maxprice/12 | priceFormat"></span>
                                 <span class="banner1__m-b-i-f-month">VND x 12 Tháng</span>
                             </div>
                         </li>

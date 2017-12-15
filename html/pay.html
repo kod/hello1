@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <title>Trung tâm thanh toán</title>
+    <link href="../css/jquery-accordion-menu.css" rel="stylesheet" type="text/css">    
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/swiper.min.css">
     <link href="../css/style.css" rel="stylesheet">
@@ -106,389 +107,6 @@
         .body__m-l-r2-button:hover {
             background-color: #105dcf;
         }
-
-        .ls-data-css {}
-
-        /* .body__main-table {
-            margin-bottom: 15px;
-        }
-
-        .body__m-t-tr {
-            background-color: #f2f2f2;
-            height: 45px;
-            line-height: 45px;
-            color: #666;
-        }
-
-        .body__m-t-t-all {
-            float: left;
-            width: 100px;
-            height: 45px;
-        }
-
-        .body__m-t-t-a-text {
-            font-size: 13px;
-        }
-
-        .body__m-t-t-product {
-            float: left;
-            text-align: center;
-            width: 350px;
-        }
-
-        .body__m-t-t-periods {
-            float: left;
-            text-align: center;
-            width: 100px;
-        }
-
-        .body__m-t-t-dpayment {
-            float: left;
-            text-align: center;
-            width: 150px;
-        }
-
-        .body__m-t-t-number {
-            float: left;
-            text-align: center;
-            width: 100px;
-        }
-
-        .body__m-t-t-total {
-            float: left;
-            text-align: center;
-            width: 200px;
-        }
-
-        .body__m-t-t-operate {
-            float: left;
-            text-align: center;
-            width: 50px;
-        }
-
-        .body__m-t-t-checkbox {
-            float: left;
-            width: 100px;
-        }
-
-        .body__m-t-item {
-            background-color: #fffce4;
-            border-bottom: 1px solid #eee;
-        }
-
-        .body__m-t-i-checkbox {
-            position: relative;
-            z-index: 44;
-            float: left;
-            width: 100px;
-            height: 115px;
-            padding-top: 45px;
-            text-align: center;
-        }
-
-        .body__m-t-i-input {
-            position: relative;
-            z-index: 33;
-        }
-
-        .body__m-t-i-c-mask {
-            position: absolute;
-            z-index: 99;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-        }
-
-        .body__m-t-i-product {
-            float: left;
-            width: 350px;
-            cursor: pointer;
-        }
-
-        .body__m-t-i-p-img {
-            float: left;
-            height: 105px;
-            width: 105px;
-            background-color: #fff;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-
-        }
-
-        .body__m-t-i-p-text {
-            float: left;
-            width: 245px;
-            margin-top: 45px;
-            padding-left: 5px;
-            line-height: 1.4;
-            display: -webkit-box;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-wrap: break-word;
-            white-space: normal;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-
-        .body__m-t-i-periods {
-            float: left;
-            width: 100px;
-            padding-top: 45px;
-            text-align: center;
-        }
-
-        .body__m-t-i-dpayment {
-            float: left;
-            width: 150px;
-            padding-top: 45px;
-            text-align: center;
-        }
-
-        .body__m-t-i-number {
-            float: left;
-            width: 100px;
-            padding-top: 45px;
-            text-align: center;
-        }
-
-        .body__m-t-i-n-wrap {
-            float: left;
-            height: 40px;
-            width: 70px;
-            margin-left: 15px;
-        }
-
-        .body__m-t-i-n-left {
-            float: left;
-            width: 50px;
-            height: 40px;
-            text-align: center;
-        }
-
-        .body__m-t-i-n-l-input:disabled {
-            width: 50px;
-            height: 40px;
-            text-align: center;
-            border: 1px solid #e8e8e8;
-            background-color: #fff;
-        }
-
-        .body__m-t-i-n-right {
-            float: left;
-            width: 20px;
-            height: 40px;
-            border-top: 1px solid #e8e8e8;
-            border-bottom: 1px solid #e8e8e8;
-            border-right: 1px solid #e8e8e8;
-        }
-
-        .body__m-t-i-n-r-top {
-            height: 19px;
-            line-height: 19px;
-            width: 19px;
-            border-top: 1px solid #fff;
-            border-right: 1px solid #fff;
-            border-left: 1px solid #fff;
-            background-color: #e8e8e8;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .body__m-t-i-n-r-top_disable {
-            opacity: 0.6;
-        }
-
-        .body__m-t-i-n-r-t-arrow {
-            padding-top: 1px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: transparent transparent #9d9d9d transparent;
-        }
-
-        .body__m-t-i-n-r-bottom {
-            height: 19px;
-            line-height: 19px;
-            width: 19px;
-            border: 1px solid #fff;
-            background-color: #e8e8e8;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .body__m-t-i-n-r-bottom_disable {
-            opacity: 0.56
-        }
-
-        .body__m-t-i-n-r-b-arrow {
-            vertical-align: middle;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #9d9d9d transparent transparent transparent;
-        }
-
-        .body__m-t-i-total {
-            float: left;
-            width: 200px;
-            padding-top: 45px;
-            text-align: center;
-        }
-
-        .body__m-t-i-operate {
-            float: left;
-            width: 50px;
-            padding-top: 35px;
-        }
-
-        .body__m-t-t-o-del {
-            margin-bottom: 8px;
-            color: #666;
-            cursor: pointer;
-        }
-
-        .body__m-t-t-o-del:hover {
-            color: #0076f7;
-        }
-
-        .body__m-t-t-o-favorites {
-            margin-bottom: 8px;
-            color: #666;
-            cursor: pointer;
-        }
-
-        .body__m-t-t-o-favorites:hover {
-            color: #0076f7;
-        }
-
-        .body__main-total {
-            text-align: right;
-            color: #666;
-            font-size: 13px;
-            margin-bottom: 25px;
-        }
-
-        .body__main-statistics {
-            color: #666;
-            border: 1px solid #eee;
-            margin-bottom: 100px;
-        }
-
-        .body__m-s-left {
-            float: left;
-            width: 950px;
-        }
-
-        .body__m-s-l-left {
-            float: left;
-            width: 340px;
-        }
-
-        .body__m-s-l-l-left {
-            position: relative;
-            float: left;
-            width: 140px;
-            height: 90px;
-            line-height: 90px;
-            text-align: center;
-        }
-
-        .body__m-s-l-l-l-mask {
-            position: absolute;
-            z-index: 99;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-        }
-
-        .body__m-s-l-l-right {
-            float: left;
-            width: 200px;
-            padding-top: 30px;
-            line-height: 1;
-        }
-
-        .body__m-s-l-l-r-del {
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-        .body__m-s-l-l-r-del:hover {
-            color: #0076f7;
-        }
-
-        .body__m-s-l-l-r-favorite {
-            cursor: pointer;
-        }
-
-        .body__m-s-l-l-r-favorite:hover {
-            color: #0076f7;
-        }
-
-        .body__m-s-l-right {
-            float: left;
-            width: 610px;
-        }
-
-        .body__m-s-l-r-left {
-            float: left;
-            width: 210px;
-            padding-top: 27px;
-            text-align: right;
-            padding-right: 10px;
-        }
-
-        .body__m-s-l-r-right {
-            float: left;
-            width: 400px;
-            padding-right: 30px;
-            text-align: right;
-        }
-
-        .body__m-s-l-r-r-top {
-            padding-top: 20px;
-            margin-bottom: 12px;
-        }
-
-        .body__m-s-l-r-r-t-text {
-            padding-top: 7px;
-        }
-
-        .body__m-s-l-r-r-t-vat {
-            padding-top: 7px;
-        }
-
-        .body__m-s-l-r-r-t-price {
-            font-size: 24px;
-            color: #F7004C;
-        }
-
-        .body__m-s-l-r-r-t-unit {
-            padding-top: 7px;
-        }
-
-        .body__m-s-l-r-r-b-price {
-            color: #F7004C;
-        }
-
-        .body__m-s-right {
-            float: left;
-            width: 248px;
-            height: 90px;
-            line-height: 90px;
-            font-size: 16px;
-            text-align: center;
-            background-color: #207def;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .body__m-s-right:hover {
-            background-color: #106ddf;
-        } */
     </style>
 </head>
 
@@ -575,7 +193,7 @@
                                     <option value="0.5">50%</option>
                                 </select>
                                 <span style="line-height: 25px;">Thanh toán lần đầu
-                                    <i ng-bind="allTotalAmount*paymentNum | priceFormat"></i> VND</span>
+                                    <i ng-bind="totalamount*paymentNum | priceFormat"></i> VND</span>
                             </div>
                         </div>
                         <div class="list">
@@ -708,9 +326,10 @@
     </div>
     <footer class="footer" id="footer"></footer>
     <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-accordion-menu.js" type="text/javascript"></script>    
     <script type="text/javascript" src="../js/swiper.min.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="../js/yii.js"></script>
+    <!-- <script src="../js/yii.js"></script> -->
     <script src="../js/base.js"></script>
     <script src="../js/img_silder.js"></script>
     <script src="../js/xSlider.js"></script>
@@ -722,6 +341,7 @@
     <script src="../js/md5.js"></script>
     <script src="../js/vue.min.js"></script>
     <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+
     <script>
         window.setTimeout(function () {
             if (localStorage.getItem("funId")) {
@@ -792,13 +412,13 @@
                                     loading.show();
                                     F._payOrder({
                                         timeoutExpress: 1800, // 半个小时
-                                        totalAmount: F.allTotalAmount, // 总金额
+                                        totalAmount: F.totalamount, // 总金额
                                         orderNo: F.orderNo,
                                         tradeNo: F.tradeNo,
-                                        advance: parseInt(F.price * F.num * F.paymentNum),
+                                        advance: parseInt(F.totalamount * F.paymentNum),
                                         payRate: F.paymentNum,
                                         repaymentMonth: F.fenqiNum,
-                                        prepay: parseInt(F.price * F.num * F.paymentNum),
+                                        prepay: parseInt(F.totalamount * F.paymentNum),
                                         payway: payway,
                                         paypassword: paypassword,
                                     }, payOrder_callback);
@@ -807,13 +427,13 @@
                                 loading.show();
                                 F._payOrder({
                                     timeoutExpress: 1800, // 半个小时
-                                    totalAmount: F.allTotalAmount, // 总金额
+                                    totalAmount: F.totalamount, // 总金额
                                     orderNo: F.orderNo,
                                     tradeNo: F.tradeNo,
-                                    advance: parseInt(F.price * F.num * F.paymentNum),
+                                    advance: parseInt(F.totalamount * F.paymentNum),
                                     payRate: F.paymentNum,
                                     repaymentMonth: F.fenqiNum,
-                                    prepay: parseInt(F.price * F.num * F.paymentNum),
+                                    prepay: parseInt(F.totalamount * F.paymentNum),
                                     payway: payway,
                                     paypassword: '',
                                 }, payOrder_callback);
@@ -883,8 +503,8 @@
             }
 
             F.paymentNum = parseFloat(F.paymentNum);
-            F.price = parseFloat(F.price);
-            F.num = get_num(F.LS__data);
+            F.totalamount = parseFloat(F.totalamount);
+            F.quantity = get_num(F.LS__data);
 
             function edit_orderdetails(array) {
                 var index;
@@ -946,34 +566,35 @@
 
                 loading.show();
                 F._fullOrderCreate({
-                    totalamount: F.allTotalAmount,
+                    totalamount: F.totalamount,
                     orgamount: F.orgPrice,
-                    advance: F.allTotalAmount,
+                    advance: F.totalamount,
                     payrate: '1',
                     repaymentmonth: '0',
-                    subject: F.info,
+                    subject: F.subject,
                     goodsdetail: F.goodsDetail,
                     timeoutexpress: '86400',
                     msisdn: F.msisdn,
                     address: F.address,
                     username: F.username,
+                    number: F.quantity,
                 }, fullOrderCreate_callback);
 
             } else {
 
                 loading.show();
                 F._createOrder({
-                    totalAmount: F.allTotalAmount,
+                    totalAmount: F.totalamount,
                     orgAmount: F.orgPrice,
-                    advance: parseInt(F.price * F.num * F.paymentNum),
+                    advance: parseInt(F.totalamount * F.paymentNum),
                     payRate: F.paymentNum,
                     repaymentMonth: F.fenqiNum,
-                    subject: F.info,
+                    subject: F.subject,
                     goodsDetail: F.goodsDetail,
                     msisdn: F.msisdn,
                     address: F.address,
                     username: F.username,
-                    number: F.num,
+                    number: F.quantity,
                 }, createOrder_callback);
 
             }
@@ -1112,13 +733,13 @@
                             loading.show();
                             F._payOrder({
                                 timeoutExpress: 1800, // 半个小时
-                                totalAmount: F.allTotalAmount, // 总金额
+                                totalAmount: F.totalamount, // 总金额
                                 orderNo: F.orderNo,
                                 tradeNo: F.tradeNo,
-                                advance: parseInt(F.price * F.num * F.paymentNum),
+                                advance: parseInt(F.totalamount * F.paymentNum),
                                 payRate: F.paymentNum,
                                 repaymentMonth: F.fenqiNum,
-                                prepay: parseInt(F.price * F.num * F.paymentNum),
+                                prepay: parseInt(F.totalamount * F.paymentNum),
                                 payway: payway,
                                 paypassword: paypassword,
                             }, payOrder_callback);
@@ -1127,13 +748,13 @@
                         loading.show();
                         F._payOrder({
                             timeoutExpress: 1800, // 半个小时
-                            totalAmount: F.allTotalAmount, // 总金额
+                            totalAmount: F.totalamount, // 总金额
                             orderNo: F.orderNo,
                             tradeNo: F.tradeNo,
-                            advance: parseInt(F.price * F.num * F.paymentNum),
+                            advance: parseInt(F.totalamount * F.paymentNum),
                             payRate: F.paymentNum,
                             repaymentMonth: F.fenqiNum,
-                            prepay: parseInt(F.price * F.num * F.paymentNum),
+                            prepay: parseInt(F.totalamount * F.paymentNum),
                             payway: payway,
                             paypassword: '',
                         }, payOrder_callback);
@@ -1189,7 +810,7 @@
                     F._orderFullPay({
                         orderNo: F.orderNo,
                         tradeNo: F.tradeNo,
-                        total: F.allTotalAmount,
+                        total: F.totalamount,
                         payway: payway,
                         paypassword: paypassword,
                     }, orderFullPay_callback);
@@ -1200,7 +821,7 @@
                 F._orderFullPay({
                     orderNo: F.orderNo,
                     tradeNo: F.tradeNo,
-                    total: F.allTotalAmount,
+                    total: F.totalamount,
                     payway: payway,
                 }, orderFullPay_callback);
             }

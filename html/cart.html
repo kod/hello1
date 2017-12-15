@@ -591,6 +591,7 @@
 
             var pre_data = function (data) {
                 var cart_getInfo = data._cart_getInfo;
+                console.log(cart_getInfo);
                 F.vue.LS__data = edit_cartitems(cart_getInfo.cartitems);
 
                 calc(F.vue.LS__data);
@@ -642,7 +643,7 @@
                     watch: {
                         LS__data: function (val, oldVal) {
                             var data = this.LS__data;
-                            localStorage.setItem("cart", JSON.stringify(data));
+                            if (!F.vue.isLogin) localStorage.setItem("cart", JSON.stringify(data));
                             calc(data);
                         },
                     },
@@ -650,6 +651,8 @@
             }
 
             function submit(data) {
+                if (!F._isLogin()) return false;
+                
                 var i;
                 // var advance = 0;
                 var pay_products = [];
@@ -919,7 +922,8 @@
                 function localToServer(callback) {
                     localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
                     var cartitems = JSON.parse(localStorage.getItem("cart"));
-                    if (cartitems.length) return callback();
+                    console.log(cartitems);
+                    if (cartitems.length === 0) return callback();
                     F._cart_gate(
                         {
                             cartitems: localStorage.getItem("cart")

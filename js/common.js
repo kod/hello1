@@ -133,7 +133,7 @@ F._batchPayment = function(params, callback) {
             {
                 key: "paypassword",
                 value: paypassword
-            },
+            }
         ],
         Key
     );
@@ -149,7 +149,7 @@ F._batchPayment = function(params, callback) {
         funid: funid,
         orderdetails: orderdetails,
         payway: payway,
-        paypassword: paypassword,
+        paypassword: paypassword
     };
 
     $.ajax({
@@ -162,10 +162,27 @@ F._batchPayment = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
+                    // window.location.href = './successPay.html';
                     break;
 
-                case 60001:
-                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                case 40005: // 信息未完善
+                    F._confirm("Gợi ý", "Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước", "tips", [
+                        {
+                            name: "Để sau",
+                            func: function() {}
+                        },
+                        {
+                            name: "Hoàn thiện ngay",
+                            func: function() {
+                                // getSchoolInfo_addInfo();
+                            }
+                        }
+                    ]);
+
+                    break;
+
+                case 50010: // 订单过期
+                    F._confirm("Gợi ý", "Đơn hàng đã quá hạn", "tips", [
                         {
                             name: "Xác nhận",
                             func: function() {}
@@ -174,21 +191,38 @@ F._batchPayment = function(params, callback) {
 
                     break;
 
-                case 60005:
-                    // 订单已创建
-                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
+                case 40008: // Số dư không đủ
+                    F._confirm("Gợi ý", "Số dư không đủ", "tips", [
                         {
-                            name: "Thanh toán",
-                            func: function() {
-                                window.location.href = "./order.html";
-                            }
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+
+                    break;
+
+                case 50006: // 用户被加入黑名单
+                    F._confirm("Gợi ý", "Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+
+                    break;
+
+                case 60051: // 交易密码错误
+                    F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
                         }
                     ]);
                     break;
 
                 default:
                     $("#loading").remove();
-                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                    F._confirm("Gợi ý", "Thanh toán thất bại", "tips", [
                         {
                             name: "Xác nhận",
                             func: function() {}
@@ -347,7 +381,7 @@ F._userBatchCollection = function(params, callback) {
             {
                 key: "brandids",
                 value: brandids
-            },
+            }
         ],
         Key
     );
@@ -361,7 +395,7 @@ F._userBatchCollection = function(params, callback) {
         timestamp: timestamp,
         version: version,
         funid: funid,
-        brandids: brandids,
+        brandids: brandids
     };
 
     $.ajax({
@@ -2100,7 +2134,7 @@ F._queryOrder = function(params, callback) {
     var method = "fun.trade.query";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
+    var version = "2.0";
 
     var orderNo = params.orderNo;
     var tradeNo = params.tradeNo;
@@ -2514,6 +2548,7 @@ F._fullOrderCreate = function(params, callback) {
     var address = params.address;
     var username = params.username;
     var remark = params.remark || "";
+    var number = params.number;
 
     var md5SigntypeStrig = "";
     md5SigntypeStrig += "appid=" + appid;
@@ -2538,6 +2573,7 @@ F._fullOrderCreate = function(params, callback) {
     md5EncryptStrig += "&address=" + address;
     md5EncryptStrig += "&username=" + username;
     md5EncryptStrig += "&remark=" + remark;
+    md5EncryptStrig += "&number=" + number;
     md5EncryptStrig += Key;
     var encrypt = md5(md5EncryptStrig);
 
@@ -2563,7 +2599,8 @@ F._fullOrderCreate = function(params, callback) {
         msisdn: msisdn,
         address: address,
         username: username,
-        remark: remark
+        remark: remark,
+        number: number
     };
     $.ajax({
         type: "POST",
@@ -3608,45 +3645,6 @@ F._userAddDetailInfo = function(params, callback) {
         Key
     );
 
-    // var md5SigntypeStrig = '';
-    // md5SigntypeStrig += "appId=" + appId;
-    // md5SigntypeStrig += "&method=" + method;
-    // md5SigntypeStrig += "&charset=" + charset;
-    // md5SigntypeStrig += Key;
-    // var signType = md5(md5SigntypeStrig);
-
-    // var md5EncryptStrig = '';
-    // md5EncryptStrig += "username=" + username;
-    // md5EncryptStrig += "&funid=" + funid;
-    // md5EncryptStrig += "&birthday=" + birthday;
-    // md5EncryptStrig += "&identification=" + identification;
-    // md5EncryptStrig += "&address=" + address;
-    // md5EncryptStrig += "&email=" + email;
-    // md5EncryptStrig += "&connectusername1=" + connectusername1;
-    // md5EncryptStrig += "&connectusermsisdn1=" + connectusermsisdn1;
-    // md5EncryptStrig += "&connectuserrelation1=" + connectuserrelation1;
-    // md5EncryptStrig += "&connectuseridentification1=" + connectuseridentification1;
-    // md5EncryptStrig += "&connectusername2=" + connectusername2;
-    // md5EncryptStrig += "&connectusermsisdn2=" + connectusermsisdn2;
-    // md5EncryptStrig += "&connectuserrelation2=" + connectuserrelation2;
-    // md5EncryptStrig += "&connectuseridentification2=" + connectuseridentification2;
-    // md5EncryptStrig += "&connectusername3=" + connectusername3;
-    // md5EncryptStrig += "&connectusermsisdn3=" + connectusermsisdn3;
-    // md5EncryptStrig += "&connectuserrelation3=" + connectuserrelation3;
-    // md5EncryptStrig += "&connectuseridentification3=" + connectuseridentification3;
-    // md5EncryptStrig += "&collegeaddr=" + collegeaddr;
-    // md5EncryptStrig += "&collegename=" + collegename;
-    // md5EncryptStrig += "&degree=" + degree;
-    // md5EncryptStrig += "&headimage=" + headimage;
-    // md5EncryptStrig += "&sex=" + sex;
-    // md5EncryptStrig += "&department=" + department;
-    // md5EncryptStrig += "&specialty=" + specialty;
-    // md5EncryptStrig += "&admissiontime=" + admissiontime;
-    // md5EncryptStrig += "&graduationtime=" + graduationtime;
-    // md5EncryptStrig += Key;
-
-    // var encrypt = md5(md5EncryptStrig);
-
     var data = {
         appId: appId,
         method: method,
@@ -3902,6 +3900,105 @@ F._getSchoolInfo = function(params, callback) {
 };
 
 // 22222222222222
+F._run_accordionMenu = function(jQuery, data, callback) {
+    function edit_demoListItem(array) {
+        var index;
+        var support_str = "";
+        var nosupport_str = "";
+        var result = "";
+
+        for (index = 0; index < array.length; index++) {
+            if (array[index].staging !== 2) {
+                if (array[index].staging === 1) {
+                    support_str += '<li class="demo-list-item demo-list-item_support" data-id="' + array[index].id + '" data-name="' + array[index].name + '"><a href="javascript:;">' + array[index].name + "</a></li>";
+                } else {
+                    nosupport_str += '<li class="demo-list-item demo-list-item_nosupport" data-id="' + array[index].id + '" data-name="' + array[index].name + '"><a href="javascript:;">' + array[index].name + "</a></li>";
+                }
+            }
+        }
+        result = support_str + nosupport_str;
+        return result;
+    }
+    var html = '<div class="jquery-accordion-menu-content">\
+            <div id="jquery-accordion-menu" class="jquery-accordion-menu red">\
+                <div class="jquery-accordion-menu-header" id="form">\
+                        <div class="jquery-accordion-menu-header-close">+</div>\
+                </div>\
+                <ul id="demo-list">' + edit_demoListItem(data) + "</ul>\
+            </div>\
+        </div>";
+
+    $("body").append(html);
+
+    $(".demo-list-item").on("click", function() {
+        var self = $(this);
+        var is_support = self.hasClass("demo-list-item_support");
+        var id = self.data("id");
+        var name = self.data("name");
+        callback({
+            id: id,
+            name: name,
+            is_support: is_support
+        });
+        is_support && $(".jquery-accordion-menu-content").remove();
+    });
+
+    $(".jquery-accordion-menu-header-close").on("click", function() {
+        $(".jquery-accordion-menu-content").remove();
+    });
+
+    jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+    (function($) {
+        $.expr[":"].Contains = function(a, i, m) {
+            return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+        };
+        function filterList(header, list) {
+            var form = $("<form>").attr({
+                    class: "filterform",
+                    action: "#"
+                }),
+                input = $("<input>").attr({
+                    class: "filterinput",
+                    type: "text",
+                    placeholder: "Tìm kiếm"
+                });
+            $(form)
+                .append(input)
+                .appendTo(header);
+            $(input)
+                .change(function() {
+                    var filter = $(this).val();
+                    if (filter) {
+                        $matches = $(list)
+                            .find("a:Contains(" + filter + ")")
+                            .parent();
+                        $("li", list)
+                            .not($matches)
+                            .slideUp();
+                        $matches.slideDown();
+                    } else {
+                        $(list)
+                            .find("li")
+                            .slideDown();
+                    }
+                    return false;
+                })
+                .keyup(function() {
+                    $(this).change();
+                });
+        }
+        $(function() {
+            filterList($("#form"), $("#demo-list"));
+        });
+    })(jQuery);
+
+    //顶部导航切换
+    $("#demo-list li").click(function() {
+        $("#demo-list li.active").removeClass("active");
+        $(this).addClass("active");
+    });
+};
+
 F._checkValidLogin = function() {
     var validTime = localStorage.getItem("validTime");
     if (validTime) {
@@ -3987,7 +4084,8 @@ function header_add() {
                 </div>\
                 <div class="header__n-m-right">\
                     <a href="' + dot_str + './index.html" class="header__n-m-home">BUYOO Trang chủ</a>\
-                    <a href="' + dot_str + './html/buyIntro.html" class="header__n-m-help">Trung tâm hỗ trợ</a>\
+                    <!-- <a href="' + dot_str + './html/buyflowIntro.html" class="header__n-m-help">Mua hàng bằng cách nào</a> -->\
+                    <!-- <a href="' + dot_str + './html/buyIntro.html" class="header__n-m-help">Trung tâm hỗ trợ</a> -->\
                 </div>\
             </div>\
         </div>\
@@ -4131,10 +4229,8 @@ function footer_add() {
                     <div class="footer__b2-m-r2-title col-xs-24">Giúp đỡ</div>\
                     <ul class="footer__b2-m-r2-main col-xs-24">\
                         <a href="' + dot_str + './html/buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua hàng bằng cách nào</a>\
-                        <a href="' + dot_str + './html/billIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Thanh toán đơn hàng</a>\
-                        <a href="' + dot_str + './html/safeIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Tài khoản và bảo mật</a>\
-                        <a href="' + dot_str + './html/refundIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Hoàn tiền và bảo hành</a>\
-                    </ul>\
+                        <a href="' + dot_str + './html/buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Trung tâm hỗ trợ</a>\
+                        </ul>\
                 </div>\
                 <div class="footer__b2-m-row3">\
                     <div class="footer__b2-m-r3-title col-xs-24">Phương thức thanh toán</div>\
@@ -5078,26 +5174,35 @@ F._baseinfo = function(data, userInfo) {
 
     // 选择学校
     function collegename_select(val, staging) {
-        staging = +staging;
-        if (val) {
-            $("#MO__collegename").html(school_id_name_json[val]);
-            collegename = val;
-        }
-
-        if (staging === staging) {
-            if (staging === 1) {
-                $("#alert__b-m-b-row33").hide();
-            } else {
-                $("#alert__b-m-b-row33").show();
+        F._run_accordionMenu(jQuery, data, function(ret) {
+            console.log(ret);
+            if (ret.is_support) {
+                $("#MO__collegename").html(ret.name);
+                collegename = ret.id;
             }
-        }
+        });
+        return false;
 
-        var actionsheet_handle = $(".actionsheet-collegename");
-        if (actionsheet_handle.hasClass("actionsheet_active")) {
-            actionsheet_handle.removeClass("actionsheet_active");
-        } else {
-            actionsheet_handle.addClass("actionsheet_active");
-        }
+        // staging = +staging;
+        // if (val) {
+        //     $("#MO__collegename").html(school_id_name_json[val]);
+        //     collegename = val;
+        // }
+
+        // if (staging === staging) {
+        //     if (staging === 1) {
+        //         $("#alert__b-m-b-row33").hide();
+        //     } else {
+        //         $("#alert__b-m-b-row33").show();
+        //     }
+        // }
+
+        // var actionsheet_handle = $(".actionsheet-collegename");
+        // if (actionsheet_handle.hasClass("actionsheet_active")) {
+        //     actionsheet_handle.removeClass("actionsheet_active");
+        // } else {
+        //     actionsheet_handle.addClass("actionsheet_active");
+        // }
     }
 
     // 联系人 - 添加

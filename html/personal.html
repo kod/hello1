@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <title>Trung tâm cá nhân</title>
+    <link href="../css/jquery-accordion-menu.css" rel="stylesheet" type="text/css">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/swiper.min.css">
     <link href="../css/style.css" rel="stylesheet">
@@ -34,6 +35,23 @@
             color: #333;
         }
 
+        .abc {
+            color: #0075f6;
+        }
+
+        .g_byyx-label {
+            position: relative;
+        }
+
+        .g_byyx-label-mask {
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            z-index: 11111;
+        }
+        
         /*tcy*/
     </style>
 </head>
@@ -146,11 +164,17 @@
                         </div>
                         <div class="perone">
                             <span>Tốt nghiệp trường</span>
-                            <select name="" id="g_byyx" style="width: 250px; color: #333;">
-                                <option ng-repeat="item in schoolList" ng-value="item.id" ng-bind="item.name">school name</option>
-                            </select>
+                            <a class="g_byyx-label">
+                                <select name="" id="g_byyx" style="width: 250px; color: #333;" disabled>
+                                    <option ng-repeat="item in schoolList" ng-value="item.id" ng-bind="item.name" class="abc">school name</option>
+                                </select>
+                                <b class="g_byyx-label-mask"></b>
+                            </a>
                             <br />
-                            <div style="padding-left: 155px; margin-bottom: 10px; color: #999; display: none;" id="suport_tips">* Bạn học thân mến, tạm thời chúng tôi chỉ thực hiện thanh toán trả góp tại những trường đại học có trong danh sách, những trường đại học không thể chọn được vì nhân lực công ty chúng tôi có hạn nên tạm thời chưa thể thanh toán, nhưng bạn có thể lựa chọn thanh toán toàn bộ. Nếu có thắc mắc gì, xin hãy để lại lời nhắn trên facebook. Cám ơn sự ủng hộ của bạn.</div>                            
+                            <div style="padding-left: 155px; margin-bottom: 10px; color: #f00; display: block;" id="suport_tips">* Bạn học thân mến, tạm thời chúng tôi chỉ thực hiện thanh toán trả góp tại những trường đại
+                                học có trong danh sách, những trường đại học không thể chọn được vì nhân lực công ty chúng
+                                tôi có hạn nên tạm thời chưa thể thanh toán, nhưng bạn có thể lựa chọn thanh toán toàn bộ.
+                                Nếu có thắc mắc gì, xin hãy để lại lời nhắn trên facebook. Cám ơn sự ủng hộ của bạn.</div>
                             <span>Địa chỉ trường</span>
                             <input type="text" id="g_xxdz" />
                             <br />
@@ -412,6 +436,7 @@
     <!-- <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script> -->
     <script src="../js/common/check_login.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common/getUserInfo.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-accordion-menu.js" type="text/javascript"></script>    
     <script>
         window.setTimeout(function () {
             if (localStorage.getItem("funId")) {
@@ -423,13 +448,22 @@
             }
         }, 700);
 
+
         $("#g_byyx").change(function () {
+            return false; // 总是显示
             var id = $("#g_byyx").val();
             if (F._edit_support_school(id, F.schoolList)) {
                 $('#suport_tips').hide();
             } else {
                 $('#suport_tips').show();
             }
+        });
+        
+        $(".g_byyx-label-mask").on('click', function () {
+            F._run_accordionMenu(jQuery, F.SchoolInfo, function (ret) {
+                console.log(ret);
+                if (ret.is_support) $('#g_byyx').val(ret.id);
+            });
         });
 
         function day_options_produce_htmlStr() {

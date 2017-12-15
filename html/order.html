@@ -144,11 +144,14 @@
             margin-top: 1px;
         }
 
-        .order-list__c-i-m-item1 {
+        .order-list__c-i-main {
             position: relative;
+        }
+
+        .order-list__c-i-m-item1 {
             float: left;
             width: 500px;
-            border-right: 1px solid #e5e5e5;
+            /* border-right: 1px solid #e5e5e5; */
         }
 
         .order-list__c-i-m-item2 {
@@ -176,6 +179,7 @@
         }
 
         .order-list__c-i-m-i4-span {
+            height: 18px;
             color: #007ff0;
             margin-bottom: 10px;
             line-height: 1.2;
@@ -185,7 +189,7 @@
         .order-list__c-i-m-i4-span:hover {
             border-bottom: 1px solid #007ff0;
         }
-        
+
 
         .order-list__c-i-m-i1-good {
             padding-top: 10px;
@@ -194,24 +198,33 @@
         }
 
         .order-list__c-i-m-i1-good:last-of-type {
-            border-bottom-width: 0px; 
+            border-bottom-width: 0px;
         }
 
-        .order-list__c-i-m-i1-g-line1 {
+        .order-list__c-i-m-line1 {
             position: absolute;
             top: 0;
             bottom: 0;
             width: 1px;
-            right: -160px;
+            right: 160px;
             background-color: #e5e5e5;
         }
 
-        .order-list__c-i-m-i1-g-line2 {
+        .order-list__c-i-m-line2 {
             position: absolute;
             top: 0;
             bottom: 0;
             width: 1px;
-            right: -320px;
+            right: 320px;
+            background-color: #e5e5e5;
+        }
+
+        .order-list__c-i-m-line3 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            right: 480px;
             background-color: #e5e5e5;
         }
 
@@ -256,6 +269,7 @@
             color: #aaa;
             font-weight: 300;
         }
+
         /* order-list -end- */
     </style>
 </head>
@@ -334,7 +348,7 @@
                             <div class="order-list__title-item4">Thao tác</div>
                         </div>
                         <div class="order-list__content col-xs-24">
-                            <div class="order-list__content-item col-xs-24" ng-repeat="(key, item) in newOrderList">
+                            <div class="order-list__content-item col-xs-24" ng-repeat="(key, item) in orderList">
                                 <div class="order-list__c-i-title col-xs-24">
                                     <span class="order-list__c-i-t-time" ng-bind="timeStrForm(item.createTime, 2, 1)"></span>
                                     <span class="order-list__c-i-t-ordertext">Mã đơn hàng:</span>
@@ -342,22 +356,25 @@
                                 </div>
                                 <div class="order-list__c-i-main col-xs-24">
                                     <div class="order-list__c-i-m-item1">
-                                        <div class="order-list__c-i-m-i1-good col-xs-24" ng-repeat="detail in newOrderList[key].goodsDetail">
+                                        <div class="order-list__c-i-m-i1-good col-xs-24" ng-repeat="detail in orderList[key].goodsDetail">
                                             <div class="order-list__c-i-m-i1-g-left">
                                                 <div class="order-list__c-i-m-i1-g-l-img" ng-click="product(detail.typeId,detail.brandId)" style="background-image: url({{detail.iconUrl}});"></div>
                                                 <div class="order-list__c-i-m-i1-g-l-name" ng-click="product(detail.typeId,detail.brandId)" ng-bind="detail.name"></div>
                                             </div>
-                                            <div class="order-list__c-i-m-i1-g-right" ng-bind="'x' + detail.numbers"></div>
+                                            <div class="order-list__c-i-m-i1-g-right" ng-bind="'x' + detail.number"></div>
                                         </div>
-                                        <div class="order-list__c-i-m-i1-g-line1"></div>
-                                        <div class="order-list__c-i-m-i1-g-line2"></div>
                                     </div>
                                     <div class="order-list__c-i-m-item2" ng-bind="(item.totalAmount | priceFormat) + ' VND'"></div>
                                     <div class="order-list__c-i-m-item3" ng-bind-html="item.tradeStatusMsg"></div>
                                     <div class="order-list__c-i-m-item4">
-                                        <span class="order-list__c-i-m-i4-span" ng-click="openDetail(item.orderNo, item.tradeNo, item.tradeNo, item.tradeNo, item.tradeStatus, item.imgUrl, item.subject, key, itemc.type)">Quản lý đơn hàng</span>
-                                        <span class="order-list__c-i-m-i4-span">Quản lý đơn hàng</span>
+                                        <!-- <span class="order-list__c-i-m-i4-span" ng-click="openDetail(item.orderNo, item.tradeNo, item.tradeNo, item.tradeNo, item.tradeStatus, item.imgUrl, item.subject, key, itemc.type)">Quản lý đơn hàng</span> -->
+                                        <div ng-repeat="(key2, val2) in item.orderOperate">
+                                            <span class="order-list__c-i-m-i4-span" ng-click="order_func(val2.type, item.orderNo, item.tradeNo, item.tradeStatus)" ng-bind="val2.name"></span>
+                                        </div>
                                     </div>
+                                    <div class="order-list__c-i-m-line1"></div>
+                                    <div class="order-list__c-i-m-line2"></div>
+                                    <div class="order-list__c-i-m-line3"></div>
                                 </div>
                             </div>
                         </div>

@@ -8,17 +8,18 @@
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <link href="../css/jquery-accordion-menu.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/base.css">
     <title>Tình trạng cụ thể đơn hàng</title>
     <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-accordion-menu.js" type="text/javascript"></script>
     <script src="../js/md5.js"></script>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
+        .body {
+            border-top: 1px solid #72aef0;
+        }
 
-    .body {
-        border-top: 1px solid #72aef0;
-    }
-        
         .body__main-time {
             line-height: 45px;
             color: #888;
@@ -453,14 +454,14 @@
                         <span class="body__m-p-t-price">Giá sản phẩm</span>
                         <span class="body__m-p-t-subtotal">Tổng cộng</span>
                     </div>
-                    <div class="body__m-p-main">
-                        <div class="body__m-p-m-info" @click="openProduct()">
-                            <div class="body__m-p-m-i-img" :style="{ 'background-image': 'url(' + first_image + ')' }"></div>
-                            <div class="body__m-p-m-i-text" v-html="goodsDetail.name"></div>
+                    <div class="body__m-p-main" v-for="(val, key) in goodsDetail">
+                        <div class="body__m-p-m-info" @click="openProduct(val.typeId, val.brandId)">
+                            <div class="body__m-p-m-i-img" :style="{ 'background-image': 'url(' + val.iconUrl + ')' }"></div>
+                            <div class="body__m-p-m-i-text" v-html="val.name"></div>
                         </div>
-                        <span class="body__m-p-m-num">1</span>
-                        <span class="body__m-p-m-price" v-html="priceFormat(goodsDetail.price)"></span>
-                        <span class="body__m-p-m-subtotal" v-html="priceFormat(goodsDetail.price)"></span>
+                        <span class="body__m-p-m-num" v-html="val.number"></span>
+                        <span class="body__m-p-m-price" v-html="priceFormat(val.price)"></span>
+                        <span class="body__m-p-m-subtotal" v-html="priceFormat(val.price * val.number)"></span>
                     </div>
                 </div>
                 <!-- <div class="bar-title">
@@ -509,11 +510,11 @@
     </div>
     <script>
         require([
-            '../js/jquery1.11.2',
+            // '../js/jquery1.11.2',
             '../js/vue.min',
             '../js/md5',
             '../js/common',
-        ], function ($, Vue, md5) {
+        ], function (Vue, md5) {
 
             var loading = new F._loading();
 
@@ -556,21 +557,17 @@
 
                 var trade_queryOrder = data._trade_queryOrder;
                 F.vue.orgAmount = trade_queryOrder.orgAmount;
+                F.vue.totalAmount = trade_queryOrder.totalAmount;
                 F.vue.payRate = trade_queryOrder.payRate;
                 F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
-
-                F.vue.address = trade_queryOrder.address;
                 F.vue.orderNo = trade_queryOrder.orderNo;
                 F.vue.createTime = trade_queryOrder.createTime;
-                F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
                 F.vue.msisdn = trade_queryOrder.msisdn;
                 F.vue.username = trade_queryOrder.username;
-                F.vue.goodsDetail = trade_queryOrder.goodsDetail;
+                F.vue.address = trade_queryOrder.address;
                 F.vue.tradeStatus = trade_queryOrder.tradeStatus;
-                F.vue.payRate = trade_queryOrder.payRate;
-                F.vue.first_image = trade_queryOrder.goodsDetail.iconUrl;
-                // F.vue.first_image = trade_queryOrder.goodsDetail.imageUrls.split('|')[0];
-                F.vue.advance = trade_queryOrder.goodsDetail.price * 1 * trade_queryOrder.payRate;
+                F.vue.advance = trade_queryOrder.advance;
+                F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
 
             }
 
@@ -626,18 +623,28 @@
                 });
             }
 
+            function edit_goodsDetail(array) {
+                var index;
+                for (index = 0; index < array.length; index++) {
+                    if (!array[index].price) {
+                        array[index].price = array[index].totalAmount;
+                    }
+                }
+                return array;
+            }
+
             function operate_rihgt() {
 
                 if (F.vue.tradeStatus === '10000') {
                     order_pay({
+                        totalAmount: F.vue.totalAmount,
                         tradeNo: F.query.tradeNo,
                         orderNo: F.query.orderNo,
-                        total: F.vue.goodsDetail.price,
-                        price: F.vue.goodsDetail.price,
-                        fenqiNum: F.vue.repaymentMonth,
-                        paymentNum: F.vue.payRate,
+                        advance: F.vue.advance,
+                        payRate: F.vue.payRate,
+                        repaymentMonth: F.vue.repaymentMonth,
+                        prepay: F.vue.advance,
                         payway: F.vue.balance_pay ? '1' : '2',
-                        num: 1,
                     });
                 }
             }
@@ -728,18 +735,17 @@
 
                             if (params.payway === '1') {
                                 F._payPwd_open(function (paypassword) {
-                                    
+
                                     loading.show();
-                                    console.log(11111);
                                     F._payOrder({
                                         timeoutExpress: 1800, // 半个小时
-                                        totalAmount: params.total, // 总金额
+                                        totalAmount: params.totalAmount, // 总金额
                                         orderNo: params.orderNo,
                                         tradeNo: params.tradeNo,
-                                        advance: params.price * params.num * params.paymentNum,
-                                        payRate: params.paymentNum,
-                                        repaymentMonth: params.fenqiNum,
-                                        prepay: params.price * params.num * params.paymentNum,
+                                        advance: params.advance,
+                                        payRate: params.payRate,
+                                        repaymentMonth: params.repaymentMonth,
+                                        prepay: params.prepay,
                                         payway: params.payway,
                                         paypassword: paypassword,
                                         _noConfirm: true,
@@ -758,10 +764,10 @@
                                     totalAmount: params.total, // 总金额
                                     orderNo: params.orderNo,
                                     tradeNo: params.tradeNo,
-                                    advance: params.price * params.num * params.paymentNum,
+                                    advance: F.vue.advance,
                                     payRate: params.paymentNum,
                                     repaymentMonth: params.fenqiNum,
-                                    prepay: params.price * params.num * params.paymentNum,
+                                    prepay: F.vue.orgAmount,
                                     payway: params.payway,
                                     paypassword: '',
                                     _noConfirm: true,
@@ -801,16 +807,15 @@
                     switch (ret.code) {
                         case 10000:
                             order_pay({
+                                totalAmount: F.vue.totalAmount,
                                 tradeNo: F.query.tradeNo,
                                 orderNo: F.query.orderNo,
-                                total: F.vue.goodsDetail.price,
-                                price: F.vue.goodsDetail.price,
-                                fenqiNum: F.vue.repaymentMonth,
-                                paymentNum: F.vue.payRate,
+                                advance: F.vue.advance,
+                                payRate: F.vue.payRate,
+                                repaymentMonth: F.vue.repaymentMonth,
+                                prepay: F.vue.advance,
                                 payway: F.vue.balance_pay ? '1' : '2',
-                                num: 1,
                             });
-
                             break;
 
                         default:
@@ -862,9 +867,9 @@
                 window.location.href = '../index.html';
             }
 
-            function openProduct() {
-                var typeId = F.query.typeId;
-                var brandId = F.query.brandId;
+            function openProduct(typeId, brandId) {
+                // var typeId = F.query.typeId;
+                // var brandId = F.query.brandId;
                 window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
             }
 
