@@ -96,6 +96,7 @@ F._encrypt_MD5 = function(params, Key) {
     }
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
+    console.log(md5EncryptStrig);
     return md5(md5EncryptStrig);
 };
 
@@ -157,264 +158,6 @@ F._findOrderDetails = function(params, callback) {
 
             switch (ret.code) {
                 case 10000:
-                    break;
-
-                default:
-                    $("#loading").remove();
-                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
-                        {
-                            name: "Xác nhận",
-                            func: function() {}
-                        }
-                    ]);
-                    break;
-            }
-        },
-        error: function(ret) {
-            console.error("request error");
-            callback(false);
-        }
-    });
-};
-
-// 批量订单-支付
-F._batchPayment = function(params, callback) {
-    if (!F._isLogin()) return false;
-
-    var Key = "tradeKey";
-
-    var appId = "0";
-    var method = "fun.trade.batchPayment";
-    var charset = "utf-8";
-    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "2.0";
-    var funid = localStorage.getItem("funId");
-    var orderdetails = params.orderdetails;
-    var payway = params.payway;
-    var paypassword = params.paypassword;
-
-    var signType = F._signType_MD5(appId, method, charset, Key, true);
-
-    var encrypt = F._encrypt_MD5(
-        [
-            {
-                key: "funid",
-                value: funid
-            },
-            {
-                key: "orderdetails",
-                value: orderdetails
-            },
-            {
-                key: "payway",
-                value: payway
-            },
-            {
-                key: "paypassword",
-                value: paypassword
-            }
-        ],
-        Key
-    );
-
-    var data = {
-        appid: appId,
-        method: method,
-        charset: charset,
-        signtype: signType,
-        encrypt: encrypt,
-        timestamp: timestamp,
-        version: version,
-        funid: funid,
-        orderdetails: orderdetails,
-        payway: payway,
-        paypassword: paypassword
-    };
-
-    $.ajax({
-        type: "POST",
-        url: F._batchPayment_td,
-        data: data,
-        success: function(ret) {
-            ret = JSON.parse(ret);
-            callback(ret);
-
-            switch (ret.code) {
-                case 10000:
-                    // window.location.href = './successPay.html';
-                    break;
-
-                case 40005: // 信息未完善
-                    F._confirm("Gợi ý", "Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước", "tips", [
-                        {
-                            name: "Để sau",
-                            func: function() {}
-                        },
-                        {
-                            name: "Hoàn thiện ngay",
-                            func: function() {
-                                // getSchoolInfo_addInfo();
-                            }
-                        }
-                    ]);
-
-                    break;
-
-                case 50010: // 订单过期
-                    F._confirm("Gợi ý", "Đơn hàng đã quá hạn", "tips", [
-                        {
-                            name: "Xác nhận",
-                            func: function() {}
-                        }
-                    ]);
-
-                    break;
-
-                case 40008: // Số dư không đủ
-                    F._confirm("Gợi ý", "Số dư không đủ", "tips", [
-                        {
-                            name: "Xác nhận",
-                            func: function() {}
-                        }
-                    ]);
-
-                    break;
-
-                case 50006: // 用户被加入黑名单
-                    F._confirm("Gợi ý", "Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang", "tips", [
-                        {
-                            name: "Xác nhận",
-                            func: function() {}
-                        }
-                    ]);
-
-                    break;
-
-                case 60051: // 交易密码错误
-                    F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
-                        {
-                            name: "Xác nhận",
-                            func: function() {}
-                        }
-                    ]);
-                    break;
-
-                default:
-                    $("#loading").remove();
-                    F._confirm("Gợi ý", "Thanh toán thất bại", "tips", [
-                        {
-                            name: "Xác nhận",
-                            func: function() {}
-                        }
-                    ]);
-                    break;
-            }
-        },
-        error: function(ret) {
-            console.error("request error");
-            callback(false);
-        }
-    });
-};
-
-// 批量订单-创建
-F._batchCreateOrder = function(params, callback) {
-    if (!F._isLogin()) return false;
-
-    var Key = "tradeKey";
-
-    var appId = "0";
-    var method = "fun.trade.batchCreateOrder";
-    var charset = "utf-8";
-    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "2.0";
-    var funid = localStorage.getItem("funId");
-    var orderdetails = params.orderdetails;
-    var msisdn = params.msisdn;
-    var address = params.address;
-    var username = params.username;
-    var remark = params.remark;
-
-    var signType = F._signType_MD5(appId, method, charset, Key, true);
-
-    var encrypt = F._encrypt_MD5(
-        [
-            {
-                key: "funid",
-                value: funid
-            },
-            {
-                key: "orderdetails",
-                value: orderdetails
-            },
-            {
-                key: "msisdn",
-                value: msisdn
-            },
-            {
-                key: "address",
-                value: address
-            },
-            {
-                key: "username",
-                value: username
-            },
-            {
-                key: "remark",
-                value: remark
-            }
-        ],
-        Key
-    );
-
-    var data = {
-        appid: appId,
-        method: method,
-        charset: charset,
-        signtype: signType,
-        encrypt: encrypt,
-        timestamp: timestamp,
-        version: version,
-        funid: funid,
-        orderdetails: orderdetails,
-        msisdn: msisdn,
-        address: address,
-        username: username,
-        remark: remark
-    };
-
-    $.ajax({
-        type: "POST",
-        url: F._batchCreateOrder_td,
-        data: data,
-        success: function(ret) {
-            ret = JSON.parse(ret);
-            callback(ret);
-
-            switch (ret.code) {
-                case 10000:
-                    break;
-
-                case 60001:
-                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
-                        {
-                            name: "Xác nhận",
-                            func: function() {}
-                        }
-                    ]);
-
-                    break;
-
-                case 60005:
-                    // 订单已创建
-                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
-                        {
-                            name: "Thanh toán",
-                            func: function() {
-                                window.location.href = "./order.html";
-                            }
-                        }
-                    ]);
                     break;
 
                 default:
@@ -2529,6 +2272,326 @@ F._userAction_otp = function(params, callback) {
     });
 };
 
+// 批量订单-创建
+F._batchCreateOrder = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "tradeKey";
+
+    var appId = "0";
+    var method = "fun.trade.batchCreateOrder";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+    var funid = localStorage.getItem("funId");
+    var orderdetails = params.orderdetails;
+    var msisdn = params.msisdn;
+    var address = params.address;
+    var username = params.username;
+    var remark = params.remark;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderdetails",
+                value: orderdetails
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "address",
+                value: address
+            },
+            {
+                key: "username",
+                value: username
+            },
+            {
+                key: "remark",
+                value: remark
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        orderdetails: orderdetails,
+        msisdn: msisdn,
+        address: address,
+        username: username,
+        remark: remark
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._batchCreateOrder_td,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                case 60001:
+                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+
+                    break;
+
+                case 60005:
+                    // 订单已创建
+                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
+                        {
+                            name: "Thanh toán",
+                            func: function() {
+                                window.location.href = "./order.html";
+                            }
+                        }
+                    ]);
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 批量订单-支付
+F._batchPayment = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "tradeKey";
+
+    var appId = "0";
+    var method = "fun.trade.batchPayment";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+    var funid = localStorage.getItem("funId");
+    // var orderdetails = params.orderdetails;
+    var payway = params.payway;
+    var paypassword = params.paypassword;
+    var orderno = params.orderno;
+    var tradeno = params.tradeno;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderno",
+                value: orderno
+            },
+            {
+                key: "tradeno",
+                value: tradeno
+            },
+            {
+                key: "payway",
+                value: payway
+            },
+            {
+                key: "paypassword",
+                value: paypassword
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        // orderdetails: orderdetails,
+        orderno: orderno,
+        tradeno: tradeno,
+        payway: payway,
+        paypassword: paypassword,
+    };
+
+    var loading = new F._loading();
+    if (payway == "1") {
+        $.ajax({
+            type: "POST",
+            url: F._batchPayment_td,
+            data: data,
+            success: function(ret) {
+                ret = JSON.parse(ret);
+                callback(ret);
+
+                switch (ret.code) {
+                    case 10000:
+                        // window.location.href = './successPay.html';
+                        break;
+
+                    case 40005: // 信息未完善
+                        F._confirm("Gợi ý", "Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước", "tips", [
+                            {
+                                name: "Để sau",
+                                func: function() {}
+                            },
+                            {
+                                name: "Hoàn thiện ngay",
+                                func: function() {
+                                    // getSchoolInfo_addInfo();
+                                }
+                            }
+                        ]);
+
+                        break;
+
+                    case 50010: // 订单过期
+                        F._confirm("Gợi ý", "Đơn hàng đã quá hạn", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+
+                        break;
+
+                    case 40008: // Số dư không đủ
+                        F._confirm("Gợi ý", "Số dư không đủ", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+
+                        break;
+
+                    case 50006: // 用户被加入黑名单
+                        F._confirm("Gợi ý", "Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+
+                        break;
+
+                    case 60051: // 交易密码错误
+                        F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+                        break;
+
+                    default:
+                        $("#loading").remove();
+                        F._confirm("Gợi ý", "Thanh toán thất bại", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+                        break;
+                }
+            },
+            error: function(ret) {
+                console.error("request error");
+                callback(false);
+            }
+        });
+    } else {
+        loading.hide();
+        if (params._noConfirm) {
+            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._batchPayment_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        } else {
+            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._batchPayment_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        }
+    }
+};
+
 // 创建（全额）订单
 F._fullOrderCreate = function(params, callback) {
     if (!F._isLogin()) return false;
@@ -2722,7 +2785,7 @@ F._orderFullPay = function(params, callback) {
     var version = "1.0";
     var orderno = params.orderNo;
     var tradeno = params.tradeNo;
-    var advance = params.total;
+    var advance = params.advance;
     var payway = params.payway;
     var paypassword = params.paypassword || "";
 
@@ -3122,7 +3185,6 @@ F._createOrder = function(params, callback) {
 
 // 支付（分期）订单
 F._payOrder = function(params, callback) {
-    console.log(params);
     if (!F._isLogin()) return false;
 
     var appId = localStorage.getItem("funId");
@@ -5322,7 +5384,6 @@ F._baseinfo = function(data, userInfo) {
     // 选择学校
     function collegename_select(val, staging) {
         F._run_accordionMenu(jQuery, data, function(ret) {
-            console.log(ret);
             if (ret.is_support) {
                 $("#MO__collegename").html(ret.name);
                 collegename = ret.id;

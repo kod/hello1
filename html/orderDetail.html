@@ -543,6 +543,7 @@
                 F.vue.address = trade_queryOrder.address;
                 F.vue.tradeStatus = trade_queryOrder.tradeStatus;
                 F.vue.advance = trade_queryOrder.advance;
+                F.vue.sourceOrderType = trade_queryOrder.sourceOrderType;
                 F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
 
             }
@@ -575,7 +576,6 @@
                     el: $('#vue-el')[0],
                     data: F.vue,
                     methods: {
-                        gohome: gohome,
                         operate_rihgt: operate_rihgt,
                         operate_left: operate_left,
                         openProduct: openProduct,
@@ -663,57 +663,60 @@
             function order_pay(params, callback) {
                 console.log(params);
 
-                if (F.vue.repaymentMonth === 0) { //全额
+                function normalOrder(params) {
+                    if (F.vue.repaymentMonth === 0) { //全额
 
-                    if (params.payway === '1') {
-                        F._payPwd_open(function (paypassword) {
-                            loading.show();
+                        if (params.payway === '1') {
+                            F._payPwd_open(function (paypassword) {
+                                loading.show();
+                                F._orderFullPay({
+                                    orderNo: params.orderNo,
+                                    tradeNo: params.tradeNo,
+                                    advance: params.advance,
+                                    payway: params.payway,
+                                    paypassword: paypassword,
+                                    _noConfirm: true,
+                                }, payOrder_callback);
+                            });
+                        } else {
                             F._orderFullPay({
                                 orderNo: params.orderNo,
                                 tradeNo: params.tradeNo,
-                                total: params.total,
+                                advance: params.advance,
                                 payway: params.payway,
-                                paypassword: paypassword,
+                                paypassword: '',
                                 _noConfirm: true,
-                            }, function (ret) {
-                                loading.hide();
-                                if (!ret) return false;
+                            }, payOrder_callback);
+                        }
 
-                                if (ret.code !== 10000) return false;
-                                window.location.href = './successPay.html';
-                            });
-
-                        });
                     } else {
-                        F._orderFullPay({
-                            orderNo: params.orderNo,
-                            tradeNo: params.tradeNo,
-                            total: params.total,
-                            payway: params.payway,
-                            paypassword: '',
-                            _noConfirm: true,
-                        }, function (ret) {
+                        loading.show();
+                        F._userViewDetailInfo({}, function (ret) {
                             loading.hide();
                             if (!ret) return false;
 
-                            if (ret.code !== 10000) return false;
-                            window.location.href = './successPay.html';
-                        });
-                    }
 
-                } else {
-                    loading.show();
-                    F._userViewDetailInfo({}, function (ret) {
-                        loading.hide();
-                        if (!ret) return false;
+                            if (ret.status) { // 资料齐全
 
+                                if (params.payway === '1') {
+                                    F._payPwd_open(function (paypassword) {
 
-                        if (ret.status) { // 资料齐全
-
-                            if (params.payway === '1') {
-                                F._payPwd_open(function (paypassword) {
-
-                                    loading.show();
+                                        loading.show();
+                                        F._payOrder({
+                                            timeoutExpress: 1800, // 半个小时
+                                            totalAmount: params.totalAmount, // 总金额
+                                            orderNo: params.orderNo,
+                                            tradeNo: params.tradeNo,
+                                            advance: params.advance,
+                                            payRate: params.payRate,
+                                            repaymentMonth: params.repaymentMonth,
+                                            prepay: params.prepay,
+                                            payway: params.payway,
+                                            paypassword: paypassword,
+                                            _noConfirm: true,
+                                        }, payOrder_callback);
+                                    });
+                                } else {
                                     F._payOrder({
                                         timeoutExpress: 1800, // 半个小时
                                         totalAmount: params.totalAmount, // 总金额
@@ -724,54 +727,61 @@
                                         repaymentMonth: params.repaymentMonth,
                                         prepay: params.prepay,
                                         payway: params.payway,
-                                        paypassword: paypassword,
+                                        paypassword: '',
                                         _noConfirm: true,
-                                    }, function (ret) {
-                                        loading.hide();
-                                        if (!ret) return false;
-
-                                        if (ret.code !== 10000) return false;
-
-                                        window.location.href = './successPay.html';
-                                    });
-                                });
-                            } else {
-                                F._payOrder({
-                                    timeoutExpress: 1800, // 半个小时
-                                    totalAmount: params.totalAmount, // 总金额
-                                    orderNo: params.orderNo,
-                                    tradeNo: params.tradeNo,
-                                    advance: params.advance,
-                                    payRate: params.payRate,
-                                    repaymentMonth: params.repaymentMonth,
-                                    prepay: params.prepay,
-                                    payway: params.payway,
-                                    paypassword: '',
-                                    _noConfirm: true,
-                                }, function (ret) {
-                                    loading.hide();
-                                    if (!ret) return false;
-
-                                    if (ret.code !== 10000) return false;
-
-                                    window.location.href = './successPay.html';
-                                });
-                            }
-
-                        } else { // 资料不全
-                            F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                                name: 'Để sau',
-                                func: function () { }
-                            }, {
-                                name: 'Hoàn thiện ngay',
-                                func: function () {
-                                    getSchoolInfo_addInfo(ret.data);
+                                    }, payOrder_callback);
                                 }
-                            }]);
 
-                        }
-                    });
+                            } else { // 资料不全
+                                F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                                    name: 'Để sau',
+                                    func: function () { }
+                                }, {
+                                    name: 'Hoàn thiện ngay',
+                                    func: function () {
+                                        getSchoolInfo_addInfo(ret.data);
+                                    }
+                                }]);
+
+                            }
+                        });
+                    }
                 }
+
+                function cart_order(params) {
+                    F._payPwd_open(function (paypassword) {
+                        loading.show();
+                        F._batchPayment({
+                            // orderdetails: F.orderdetails,
+                            orderno: F.query.orderNo,
+                            tradeno: F.query.tradeNo,
+                            payway: params.payway,
+                            paypassword: paypassword,
+                        }, payOrder_callback);
+                    });
+
+                    // F._batchPayment({
+                    //     // orderdetails: F.orderdetails,
+                    //     orderno: F.query.orderNo,
+                    //     tradeno: F.query.tradeNo,
+                    //     payway: params.payway,
+                    //     paypassword: paypassword,
+                    // }, payOrder_callback);
+                }
+
+                switch (F.vue.sourceOrderType) {
+                    case 0: // 普通订单
+                        normalOrder(params);
+                        break;
+
+                    case 1: // 购物车订单
+                        cart_order(params);
+                        break;
+
+                    default:
+                        break;
+                }
+
             }
 
             function userAddDetailInfo(data) {
@@ -840,8 +850,28 @@
 
             }
 
-            function gohome() {
-                window.location.href = '../index.html';
+            function batchPayment_callback(ret) {
+                loading.hide();
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                window.location.href = './successPay.html';
+            }
+
+            function orderFullPay_callback(ret) {
+                loading.hide();
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                window.location.href = './successPay.html';
+            }
+
+            function payOrder_callback(ret) {
+                loading.hide();
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                window.location.href = './successPay.html';
             }
 
             function openProduct(typeId, brandId) {

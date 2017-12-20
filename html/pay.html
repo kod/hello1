@@ -419,21 +419,22 @@
                                 F._payPwd_open(function (paypassword) {
                                     loading.show();
                                     F._batchPayment({
-                                        orderdetails: F.orderdetails,
+                                        // orderdetails: F.orderdetails,
+                                        orderno: F.orderdetails.orderNo,
+                                        tradeno: F.orderdetails.tradeNo,
                                         payway: payway,
                                         paypassword: paypassword,
                                     }, batchPayment_callback);
                                 });
                             } else {
                                 loading.show();
-                                F._payPwd_open(function (paypassword) {
-                                    loading.show();
-                                    F._batchPayment({
-                                        orderdetails: F.orderdetails,
-                                        payway: payway,
-                                        paypassword: '',
-                                    }, batchPayment_callback);
-                                });
+                                F._batchPayment({
+                                    // orderdetails: F.orderdetails,
+                                    orderno: F.orderdetails.orderNo,
+                                    tradeno: F.orderdetails.tradeNo,
+                                    payway: payway,
+                                    paypassword: '',
+                                }, batchPayment_callback);
                             }
                         } else {
                             if (payway === '1') {
@@ -573,6 +574,7 @@
 
                     result_ids.push(array[index].id);
                 }
+                item.subject = item.subject.slice(0, -2);
                 F.result_ids = result_ids.join(',');
                 result.push(item);
                 return result;
@@ -634,7 +636,7 @@
 
             if (!ret) return false;
             if (ret.code !== 10000) return false;
-            F.orderdetails = JSON.stringify(ret.orderdetails);
+            F.orderdetails = ret.orderdetails;
 
             // 删除购物车中国相应的商品
             F._cart_remove({
@@ -645,36 +647,6 @@
                 if (ret.code !== 10000) return false;
             });
 
-            // var payway = '';
-            // payway_get(function (result) {
-            //     payway = result + '';
-            // });
-
-            // if (payway === '1') {
-            //     F._payPwd_open(function (paypassword) {
-            //         loading.show();
-            //         F._batchPayment({
-            //             orderdetails: JSON.stringify(ret.orderdetails),
-            //             payway: payway,
-            //             paypassword: paypassword,
-            //         }, batchPayment_callback);
-            //     });
-            // } else {
-            //     F._batchPayment({
-            //         orderdetails: JSON.stringify(ret.orderdetails),
-            //         payway: payway,
-            //         paypassword: paypassword,
-            //     }, batchPayment_callback);
-
-            // }
-
-            // return false;
-            // F.orderNo = ret.orderNo;
-            // F.tradeNo = ret.tradeNo;
-
-            // F.createOrder_info.isCreate = true;
-            // F.createOrder_info.isFull = false;
-
             var payway = F.vue.payway;
 
             function go_pay() {
@@ -682,27 +654,29 @@
                     F._payPwd_open(function (paypassword) {
                         loading.show();
                         F._batchPayment({
-                            orderdetails: F.orderdetails,
+                            // orderdetails: F.orderdetails,
+                            orderno: F.orderdetails.orderNo,
+                            tradeno: F.orderdetails.tradeNo,
                             payway: payway,
                             paypassword: paypassword,
                         }, batchPayment_callback);
                     });
                 } else {
                     loading.show();
-                    F._payPwd_open(function (paypassword) {
-                        loading.show();
-                        F._batchPayment({
-                            orderdetails: F.orderdetails,
-                            payway: payway,
-                            paypassword: '',
-                        }, batchPayment_callback);
-                    });
+                    F._batchPayment({
+                        // orderdetails: F.orderdetails,
+                        orderno: F.orderdetails.orderNo,
+                        tradeno: F.orderdetails.tradeNo,
+                        payway: payway,
+                        paypassword: '',
+                    }, batchPayment_callback);
                 }
             }
 
-            if (ret.orderdetails[0].repaymentMonth === 0) { // 全款
+            if (ret.orderdetails.repaymentMonth === 0) { // 全款
                 go_pay();
             } else {
+                loading.show();
                 F._userViewDetailInfo({}, function (ret) {
                     loading.hide();
                     if (!ret) return false;
@@ -839,7 +813,7 @@
                     F._orderFullPay({
                         orderNo: F.orderNo,
                         tradeNo: F.tradeNo,
-                        total: F.totalamount,
+                        advance: F.totalamount,
                         payway: payway,
                         paypassword: paypassword,
                     }, orderFullPay_callback);
@@ -850,7 +824,7 @@
                 F._orderFullPay({
                     orderNo: F.orderNo,
                     tradeNo: F.tradeNo,
-                    total: F.totalamount,
+                    advance: F.totalamount,
                     payway: payway,
                 }, orderFullPay_callback);
             }
