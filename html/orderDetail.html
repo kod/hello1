@@ -174,63 +174,6 @@
             margin-bottom: 15px;
         }
 
-        .body__main-bottom:after {
-            display: block;
-            content: "";
-            clear: both;
-            height: 0;
-        }
-
-        .body__m-b-item {
-            float: left;
-            height: 40px;
-            line-height: 40px;
-            width: 230px;
-            border: 1px solid #dfdfdf;
-            font-size: 0;
-            margin-right: 30px;
-            cursor: pointer;
-        }
-
-        .body__m-b-i-icon1 {
-            height: 38px;
-            width: 38px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            background-image: url(../img/bank01.png);
-            margin-right: 55px;
-        }
-
-        .body__m-b-i-icon2 {
-            height: 38px;
-            width: 38px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            background-image: url(../img/bank02.png);
-            margin-right: 55px;
-            display: none;
-        }
-
-        .body__m-b-i-text {
-            font-size: 18px;
-            color: #666;
-        }
-
-        .body__m-b-item_acitve {
-            border-color: #83C44E;
-            background-color: #F4F9E4;
-        }
-
-        .body__m-b-item_acitve .body__m-b-i-icon1 {
-            display: none;
-        }
-
-        .body__m-b-item_acitve .body__m-b-i-icon2 {
-            display: inline-block;
-        }
-
         .body__main-button {
             padding-left: 130px;
             margin-bottom: 50px;
@@ -470,7 +413,10 @@
                     </div>
                 </div> -->
                 <div class="body__m-i-top">
-                    <div class="body__m-i-t-name" v-html="'số kỳ thanh toán:&nbsp;&nbsp;&nbsp;&nbsp;' + (repaymentMonth === 0 ? 'Trả toàn bộ' : repaymentMonth)"></div>
+                    <div class="body__m-i-t-name" v-html="'Số kỳ thanh toán:&nbsp;&nbsp;&nbsp;&nbsp;' + (repaymentMonth === 0 ? 'Trả toàn bộ' : repaymentMonth + ' Tháng')"></div>
+                </div>
+                <div class="body__m-i-top">
+                    <div class="body__m-i-t-name" v-html="'Tỉ lệ thanh toán lần đầu :&nbsp;&nbsp;&nbsp;&nbsp;' + (payRate === 1 ? 'Trả toàn bộ' : payRate * 100 + '%')"></div>
                 </div>
                 <div class="" style="display: none" v-show="tradeStatus === '10000'">
                     <div class="bar-title">
@@ -480,16 +426,45 @@
                     </div>
                     <div class="body__main-pay">
                         <!-- <div class="body__m-p-text">Phương thức thanh toán: </div> -->
-                        <div class="body__main-bottom">
-                            <div class="body__m-b-item" @click="balance_pay = false" :class="{ 'body__m-b-item_acitve': !balance_pay }">
-                                <span class="body__m-b-i-icon1" style="background-image: url(../img/bank01.png);"></span>
-                                <span class="body__m-b-i-icon2" style="background-image: url(../img/bank02.png);"></span>
-                                <span class="body__m-b-i-text">Ngân hàng</span>
+                        <!-- <div class="payway__main-bottom">
+                            <div class="payway__m-b-item" @click="balance_pay = false" :class="{ 'payway__m-b-item_acitve': !balance_pay }">
+                                <span class="payway__m-b-i-icon1" style="background-image: url(../img/bank01.png);"></span>
+                                <span class="payway__m-b-i-icon2" style="background-image: url(../img/bank02.png);"></span>
+                                <span class="payway__m-b-i-text">Ngân hàng</span>
                             </div>
-                            <div class="body__m-b-item" @click="balance_pay = true" :class="{ 'body__m-b-item_acitve': balance_pay }">
-                                <span class="body__m-b-i-icon1" style="background-image: url(../img/bank01.png);"></span>
-                                <span class="body__m-b-i-icon2" style="background-image: url(../img/bank02.png);"></span>
-                                <span class="body__m-b-i-text">Số dư</span>
+                            <div class="payway__m-b-item" @click="balance_pay = true" :class="{ 'payway__m-b-item_acitve': balance_pay }">
+                                <span class="payway__m-b-i-icon1" style="background-image: url(../img/bank01.png);"></span>
+                                <span class="payway__m-b-i-icon2" style="background-image: url(../img/bank02.png);"></span>
+                                <span class="payway__m-b-i-text">Số dư</span>
+                            </div>
+                        </div> -->
+                        <div class="payway__main-bottom" id="payway__main-bottom">
+                            <div class="payway__m-b-item" @click="payway = '3'" :class="{ 'payway__m-b-item_acitve': payway === '3' }">
+                                <div class="payway__m-b-i-text">napas</div>
+                                <div class="payway__m-b-i-icon">
+                                    <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_napas.png);"></span>
+                                </div>
+                                <div class="payway__m-b-i-indicator">
+                                    <span class="payway__m-b-i-i-img"></span>
+                                </div>
+                            </div>
+                            <div class="payway__m-b-item" @click="payway = '2'" :class="{ 'payway__m-b-item_acitve': payway === '2' }">
+                                <div class="payway__m-b-i-text">VTC PAY</div>
+                                <div class="payway__m-b-i-icon">
+                                    <span class="payway__m-b-i-icon-img" style="background-image: url(https://vtcpay.vn/Content/Images/logo-pay.svg);"></span>
+                                </div>
+                                <div class="payway__m-b-i-indicator">
+                                    <span class="payway__m-b-i-i-img"></span>
+                                </div>
+                            </div>
+                            <div class="payway__m-b-item" @click="payway = '1'" :class="{ 'payway__m-b-item_acitve': payway === '1' }">
+                                <div class="payway__m-b-i-text">Ngân hàng</div>
+                                <div class="payway__m-b-i-icon">
+                                    <span class="payway__m-b-i-icon-img" style="background-image: url(../img/f98asdfhusd.png);"></span>
+                                </div>
+                                <div class="payway__m-b-i-indicator">
+                                    <span class="payway__m-b-i-i-img"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -523,6 +498,7 @@
             F.vue = {
                 body__main_height: document.documentElement.clientHeight - 133 - 210,
                 balance_pay: false, // 是否用余额支付
+                payway: '3',
                 operate_right_text: {
                     '10000': 'Thanh toán',
                     'TRADE_CLOSED': '',
@@ -644,7 +620,7 @@
                         payRate: F.vue.payRate,
                         repaymentMonth: F.vue.repaymentMonth,
                         prepay: F.vue.advance,
-                        payway: F.vue.balance_pay ? '1' : '2',
+                        payway: F.vue.payway,
                     });
                 }
             }
@@ -685,6 +661,7 @@
 
             // 支付订单
             function order_pay(params, callback) {
+                console.log(params);
 
                 if (F.vue.repaymentMonth === 0) { //全额
 
@@ -761,13 +738,13 @@
                             } else {
                                 F._payOrder({
                                     timeoutExpress: 1800, // 半个小时
-                                    totalAmount: params.total, // 总金额
+                                    totalAmount: params.totalAmount, // 总金额
                                     orderNo: params.orderNo,
                                     tradeNo: params.tradeNo,
-                                    advance: F.vue.advance,
-                                    payRate: params.paymentNum,
-                                    repaymentMonth: params.fenqiNum,
-                                    prepay: F.vue.orgAmount,
+                                    advance: params.advance,
+                                    payRate: params.payRate,
+                                    repaymentMonth: params.repaymentMonth,
+                                    prepay: params.prepay,
                                     payway: params.payway,
                                     paypassword: '',
                                     _noConfirm: true,
@@ -814,7 +791,7 @@
                                 payRate: F.vue.payRate,
                                 repaymentMonth: F.vue.repaymentMonth,
                                 prepay: F.vue.advance,
-                                payway: F.vue.balance_pay ? '1' : '2',
+                                payway: F.vue.payway,
                             });
                             break;
 

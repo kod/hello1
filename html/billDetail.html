@@ -14,328 +14,328 @@
     <script src="../js/md5.js"></script>
     <script src="../js/require2.3.5.min.js"></script>
     <style>
-    .body {
-        border-top: 1px solid #72aef0;
-    }
-    
-    .body__main-time {
-        line-height: 45px;
-        color: #888;
-        border-bottom: 1px solid #d9d9d9;
-        padding-bottom: 10px;
-        margin-top: 10px;
-        margin-bottom: 40px;
-    }
+        .body {
+            border-top: 1px solid #72aef0;
+        }
 
-    .body__main-time:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .body__main-time {
+            line-height: 45px;
+            color: #888;
+            border-bottom: 1px solid #d9d9d9;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
 
-    .body__m-t-left {
-        float: left;
-        width: 800px;
-    }
+        .body__main-time:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .body__m-t-right {
-        float: left;
-        width: 400px;
-        text-align: right;
-        font-size: 16px;
-        color: #333;
-        /*color: #4a9df4;*/
-    }
+        .body__m-t-left {
+            float: left;
+            width: 800px;
+        }
 
-    .body__m-t-order {
-        margin-left: 15px;
-        padding-left: 18px;
-        border-left: 1px solid #d9d9d9;
-    }
+        .body__m-t-right {
+            float: left;
+            width: 400px;
+            text-align: right;
+            font-size: 16px;
+            color: #333;
+            /*color: #4a9df4;*/
+        }
 
-    .body__main-info {
-        margin-bottom: 60px;
-        padding-left: 35px;
-    }
+        .body__m-t-order {
+            margin-left: 15px;
+            padding-left: 18px;
+            border-left: 1px solid #d9d9d9;
+        }
 
-    .body__m-i-top {
-        margin-bottom: 30px;
-    }
+        .body__main-info {
+            margin-bottom: 60px;
+            padding-left: 35px;
+        }
 
-    .body__m-i-bottom {
-        margin-bottom: 30px;
-    }
+        .body__m-i-top {
+            margin-bottom: 30px;
+        }
 
-    .body__m-i-t-name {
-        margin-right: 30px;
-    }
+        .body__m-i-bottom {
+            margin-bottom: 30px;
+        }
 
-    .body__main-phone {
-        margin-bottom: 70px;
-    }
+        .body__m-i-t-name {
+            margin-right: 30px;
+        }
 
-    .body__m-p-title {
-        text-align: center;
-        font-size: 0;
-        line-height: 32px;
-        color: #888;
-        margin-bottom: 10px;
-    }
+        .body__main-phone {
+            margin-bottom: 70px;
+        }
 
-    .body__m-p-t-info {
-        width: 590px;
-        font-size: 14px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-title {
+            text-align: center;
+            font-size: 0;
+            line-height: 32px;
+            color: #888;
+            margin-bottom: 10px;
+        }
 
-    .body__m-p-t-num {
-        width: 125px;
-        font-size: 14px;
-        margin-left: 25px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-t-info {
+            width: 590px;
+            font-size: 14px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-t-price {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-t-num {
+            width: 125px;
+            font-size: 14px;
+            margin-left: 25px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-t-subtotal {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        border-bottom: 5px solid #add4fb;
-    }
+        .body__m-p-t-price {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-main {
-        font-size: 0;
-    }
+        .body__m-p-t-subtotal {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            border-bottom: 5px solid #add4fb;
+        }
 
-    .body__m-p-m-info {
-        display: inline-block;
-        width: 590px;
-        font-size: 14px;
-        cursor: pointer;
-    }
+        .body__m-p-main {
+            font-size: 0;
+        }
 
-    .body__m-p-m-info:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .body__m-p-m-info {
+            display: inline-block;
+            width: 590px;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
-    .body__m-p-m-num {
-        width: 125px;
-        font-size: 14px;
-        text-align: center;
-        margin-left: 25px;
-        margin-top: 35px;
-    }
+        .body__m-p-m-info:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .body__m-p-m-price {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        text-align: center;
-        margin-top: 35px;
-    }
+        .body__m-p-m-num {
+            width: 125px;
+            font-size: 14px;
+            text-align: center;
+            margin-left: 25px;
+            margin-top: 35px;
+        }
 
-    .body__m-p-m-subtotal {
-        width: 205px;
-        margin-left: 25px;
-        font-size: 14px;
-        text-align: center;
-        margin-top: 35px;
-    }
+        .body__m-p-m-price {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 35px;
+        }
 
-    .body__m-p-m-info {
-        font-size: 0px;
-    }
+        .body__m-p-m-subtotal {
+            width: 205px;
+            margin-left: 25px;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 35px;
+        }
 
-    .body__m-p-m-i-img {
-        float: left;
-        width: 120px;
-        height: 120px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        border-radius: 3px;
-    }
+        .body__m-p-m-info {
+            font-size: 0px;
+        }
 
-    .body__m-p-m-i-text {
-        float: left;
-        width: 470px;
-        font-size: 14px;
-        margin-top: 30px;
-        line-height: 1.5;
+        .body__m-p-m-i-img {
+            float: left;
+            width: 120px;
+            height: 120px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-radius: 3px;
+        }
 
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        word-wrap: break-word;
-        white-space: normal !important;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    }
+        .body__m-p-m-i-text {
+            float: left;
+            width: 470px;
+            font-size: 14px;
+            margin-top: 30px;
+            line-height: 1.5;
 
-    .body__main-pay {
-        padding-left: 35px;
-        margin-bottom: 80px;
-    }
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal !important;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
 
-    .body__m-p-text {
-        color: #888;
-        margin-bottom: 15px;
-    }
+        .body__main-pay {
+            padding-left: 35px;
+            margin-bottom: 80px;
+        }
 
-    .body__main-bottom:after {
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
-    }
+        .body__m-p-text {
+            color: #888;
+            margin-bottom: 15px;
+        }
 
-    .body__m-b-item {
-        float: left;
-        height: 40px;
-        line-height: 40px;
-        width: 230px;
-        border: 1px solid #dfdfdf;
-        font-size: 0;
-        margin-right: 30px;
-        cursor: pointer;
-    }
+        .body__main-bottom:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
 
-    .body__m-b-i-icon1 {
-        height: 38px;
-        width: 38px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-image: url(../img/bank01.png);
-        margin-right: 55px;
-    }
+        .body__m-b-item {
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            width: 230px;
+            border: 1px solid #dfdfdf;
+            font-size: 0;
+            margin-right: 30px;
+            cursor: pointer;
+        }
 
-    .body__m-b-i-icon2 {
-        height: 38px;
-        width: 38px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-image: url(../img/bank02.png);
-        margin-right: 55px;
-        display: none;
-    }
+        .body__m-b-i-icon1 {
+            height: 38px;
+            width: 38px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/bank01.png);
+            margin-right: 55px;
+        }
 
-    .body__m-b-i-text {
-        font-size: 18px;
-        color: #666;
-    }
+        .body__m-b-i-icon2 {
+            height: 38px;
+            width: 38px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/bank02.png);
+            margin-right: 55px;
+            display: none;
+        }
 
-    .body__m-b-item_acitve {
-        border-color: #83C44E;
-        background-color: #F4F9E4;
-    }
+        .body__m-b-i-text {
+            font-size: 18px;
+            color: #666;
+        }
 
-    .body__m-b-item_acitve .body__m-b-i-icon1 {
-        display: none;
-    }
+        .body__m-b-item_acitve {
+            border-color: #83C44E;
+            background-color: #F4F9E4;
+        }
 
-    .body__m-b-item_acitve .body__m-b-i-icon2 {
-        display: inline-block;
-    }
+        .body__m-b-item_acitve .body__m-b-i-icon1 {
+            display: none;
+        }
 
-    .body__main-button {
-        padding-left: 130px;
-        margin-bottom: 50px;
-    }
+        .body__m-b-item_acitve .body__m-b-i-icon2 {
+            display: inline-block;
+        }
 
-    .body__main-left {
-        height: 45px;
-        line-height: 45px;
-        width: 280px;
-        text-align: center;
-        background-color: #147af3;
-        color: #fff;
-        border-radius: 3px;
-        cursor: pointer;
-    }
+        .body__main-button {
+            padding-left: 130px;
+            margin-bottom: 50px;
+        }
 
-    .body__main-left:hover {
-        background-color: #045ac3;
-    }
+        .body__main-left {
+            height: 45px;
+            line-height: 45px;
+            width: 280px;
+            text-align: center;
+            background-color: #147af3;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
 
-    .body__main-price {
-        text-align: right;
-        padding-right: 5px;
-    }
+        .body__main-left:hover {
+            background-color: #045ac3;
+        }
 
-    .body__m-p-text {
-        font-size: 26px;
-        color: #F7004C;
-    }
+        .body__main-price {
+            text-align: right;
+            padding-right: 5px;
+        }
 
-    .body__m-p-symbol {
-        color: #787878;
-        font-weight: bold;
-        font-size: 16px;
-        padding-top: 6px;
-    }
+        .body__m-p-text {
+            font-size: 26px;
+            color: #F7004C;
+        }
 
-    .body__main-operate {
-        margin-bottom: 50px;
-        text-align: right;
-        margin-left: 15px;
-    }
+        .body__m-p-symbol {
+            color: #787878;
+            font-weight: bold;
+            font-size: 16px;
+            padding-top: 6px;
+        }
 
-    .body__m-o-left {
-        line-height: 45px;
-        width: 200px;
-        background-color: #ddd;
-        color: #666;
-        text-align: center;
-        cursor: pointer;
-    }
+        .body__main-operate {
+            margin-bottom: 50px;
+            text-align: right;
+            margin-left: 15px;
+        }
 
-    .body__m-o-left:hover {
-        background-color: #ccc;
-    }
+        .body__m-o-left {
+            line-height: 45px;
+            width: 200px;
+            background-color: #ddd;
+            color: #666;
+            text-align: center;
+            cursor: pointer;
+        }
 
-    .body__m-o-right {
-        line-height: 45px;
-        width: 200px;
-        background-color: #147af3;
-        color: #fff;
-        border-radius: 3px;
-        text-align: center;
-        margin-left: 15px;
-        cursor: pointer;
-    }
+        .body__m-o-left:hover {
+            background-color: #ccc;
+        }
 
-    .body__m-o-right:hover {
-        background-color: #045ad3;
-    }
+        .body__m-o-right {
+            line-height: 45px;
+            width: 200px;
+            background-color: #147af3;
+            color: #fff;
+            border-radius: 3px;
+            text-align: center;
+            margin-left: 15px;
+            cursor: pointer;
+        }
 
-    .body__main-fristpay {
-        text-align: right;
-        margin-bottom: 20px;
-        display: none;
-    }
+        .body__m-o-right:hover {
+            background-color: #045ad3;
+        }
 
-    .body__m-f-text {
-        font-size: #999;
-        padding-right: 80px;
-    }
+        .body__main-fristpay {
+            text-align: right;
+            margin-bottom: 20px;
+            display: none;
+        }
 
-    .body__m-f-price {
-        font-size: 24px;
-        color: #F7004C;
-        vertical-align: middle;
-    }
+        .body__m-f-text {
+            font-size: #999;
+            padding-right: 80px;
+        }
+
+        .body__m-f-price {
+            font-size: 24px;
+            color: #F7004C;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -360,14 +360,14 @@
                         <span class="body__m-p-t-price">Giá sản phẩm</span>
                         <span class="body__m-p-t-subtotal">Tổng cộng</span>
                     </div>
-                    <div class="body__m-p-main">
-                        <div class="body__m-p-m-info" @click="openProduct()">
-                            <div class="body__m-p-m-i-img" :style="{ 'background-image': 'url(' + first_image + ')' }"></div>
-                            <div class="body__m-p-m-i-text" v-html="goodsDetail.name"></div>
+                    <div class="body__m-p-main" v-for="(val, key) in goodsDetail">
+                        <div class="body__m-p-m-info" @click="openProduct(val.typeId, val.brandId)">
+                            <div class="body__m-p-m-i-img" :style="{ 'background-image': 'url(' + val.iconUrl + ')' }"></div>
+                            <div class="body__m-p-m-i-text" v-html="val.name"></div>
                         </div>
-                        <span class="body__m-p-m-num">1</span>
-                        <span class="body__m-p-m-price" v-html="priceFormat(goodsDetail.price)"></span>
-                        <span class="body__m-p-m-subtotal" v-html="priceFormat(goodsDetail.price)"></span>
+                        <span class="body__m-p-m-num" v-html="val.number"></span>
+                        <span class="body__m-p-m-price" v-html="priceFormat(val.price)"></span>
+                        <span class="body__m-p-m-subtotal" v-html="priceFormat(val.price * val.number)"></span>
                     </div>
                 </div>
                 <div class="bar-title">
@@ -390,8 +390,7 @@
                         </div>
                     </div>
                     <div class="body__main-pay">
-                        <!-- <div class="body__m-p-text">Phương thức thanh toán: </div> -->
-                        <div class="body__main-bottom">
+                        <!-- <div class="body__main-bottom">
                             <div class="body__m-b-item" @click="balance_pay = false" :class="{ 'body__m-b-item_acitve': !balance_pay }">
                                 <span class="body__m-b-i-icon1" style="background-image: url(../img/bank01.png);"></span>
                                 <span class="body__m-b-i-icon2" style="background-image: url(../img/bank02.png);"></span>
@@ -402,11 +401,42 @@
                                 <span class="body__m-b-i-icon2" style="background-image: url(../img/bank02.png);"></span>
                                 <span class="body__m-b-i-text">Số dư</span>
                             </div>
+                        </div> -->
+                        <div class="payway__main-bottom" id="payway__main-bottom">
+                            <div class="payway__m-b-item" @click="payway = '3'" :class="{ 'payway__m-b-item_acitve': payway === '3' }">
+                                <div class="payway__m-b-i-text">napas</div>
+                                <div class="payway__m-b-i-icon">
+                                    <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_napas.png);"></span>
+                                </div>
+                                <div class="payway__m-b-i-indicator">
+                                    <span class="payway__m-b-i-i-img"></span>
+                                </div>
+                            </div>
+                            <div class="payway__m-b-item" @click="payway = '2'" :class="{ 'payway__m-b-item_acitve': payway === '2' }">
+                                <div class="payway__m-b-i-text">VTC PAY</div>
+                                <div class="payway__m-b-i-icon">
+                                    <span class="payway__m-b-i-icon-img" style="background-image: url(https://vtcpay.vn/Content/Images/logo-pay.svg);"></span>
+                                </div>
+                                <div class="payway__m-b-i-indicator">
+                                    <span class="payway__m-b-i-i-img"></span>
+                                </div>
+                            </div>
+                            <div class="payway__m-b-item" @click="payway = '1'" :class="{ 'payway__m-b-item_acitve': payway === '1' }">
+                                <div class="payway__m-b-i-text">Ngân hàng</div>
+                                <div class="payway__m-b-i-icon">
+                                    <span class="payway__m-b-i-icon-img" style="background-image: url(../img/f98asdfhusd.png);"></span>
+                                </div>
+                                <div class="payway__m-b-i-indicator">
+                                    <span class="payway__m-b-i-i-img"></span>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="body__main-fristpay" v-show="(status === '10001' && period === '1' && !isPay) || (status === '10007' && period === '5' && !isPay)">
-                    <span class="body__m-f-text">Tổng tiền: <span class="body__m-f-price" v-html="priceFormat(nowPay)"></span> VND</span>
+                    <span class="body__m-f-text">Tổng tiền:
+                        <span class="body__m-f-price" v-html="priceFormat(nowPay)"></span> VND</span>
                 </div>
                 <div class="body__main-price" v-show="(status === '10001' && period === '1' && !isPay) || (status === '10007' && period === '5' && !isPay)">
                     <span class="body__m-p-text" v-html="priceFormat(nowPay)"></span>
@@ -421,173 +451,194 @@
         <footer class="footer" id="footer"></footer>
     </div>
     <script>
-    require([
-        '../js/jquery1.11.2',
-        '../js/vue.min',
-        '../js/md5',
-        '../js/common',
-    ], function($, Vue, md5) {
-        // 状态值 1: 本期 2: 下期 3: 未出账单 4: 已还账单
-        var loading = new F._loading();
-        F.is_submit = false; // 是否创建成功过账单
+        require([
+            '../js/jquery1.11.2',
+            '../js/vue.min',
+            '../js/md5',
+            '../js/common',
+        ], function ($, Vue, md5) {
+            // 状态值 1: 本期 2: 下期 3: 未出账单 4: 已还账单
+            var loading = new F._loading();
+            F.is_submit = false; // 是否创建成功过账单
 
-        F.query = F._hrefUtils.parse().query;
+            F.query = F._hrefUtils.parse().query;
 
-        F.vue = {
-            body__main_height: document.documentElement.clientHeight - 133 - 210,
-            balance_pay: false, // 是否用余额支付
-            operate_right_text: {
-                '1': 'Thanh toán',
-                '5': 'Thanh toán',
-            },
-            operate_left_text: {
-                '1': '',
-                '5': '',
-            },
-            nowPeriods: parseInt(localStorage.getItem('billDetailPeriods')), // 当前待还期数
-            nowPay: '', // 当前要还金额
-            totalAmount: 0, // 总金额
-            alreadyPay: 0, // 已还总金额
-            futurePay: 0, // 未还总金额
-            period: F.query.period,
-            status: localStorage.getItem('billDetailStatus'),
-            isPay: false, // 是否已支付
-        };
-
-
-
-        var load = function() {
-            new_vue();
-        };
-
-        var pre_data = function(data) {
-
-            var i;
-            var trade_queryOrder = data._trade_queryOrder;
-            var trade_inquiryBill = data._trade_inquiryBill;
-            F.vue.address = trade_queryOrder.address;
-            F.vue.orderNo = trade_queryOrder.orderNo;
-            F.vue.createTime = trade_queryOrder.createTime;
-            F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
-            F.vue.msisdn = trade_queryOrder.msisdn;
-            F.vue.username = trade_queryOrder.username;
-            F.vue.goodsDetail = trade_queryOrder.goodsDetail;
-            F.vue.tradeStatus = trade_queryOrder.tradeStatus;
-            // F.vue.payRate = trade_queryOrder.payRate;
-            F.vue.first_image = trade_queryOrder.goodsDetail.imageUrls.split('|')[0];
-            // F.vue.advance = trade_queryOrder.goodsDetail.price * 1 * trade_queryOrder.payRate;
+            F.vue = {
+                body__main_height: document.documentElement.clientHeight - 133 - 210,
+                balance_pay: false, // 是否用余额支付
+                payway: '3',
+                operate_right_text: {
+                    '1': 'Thanh toán',
+                    '5': 'Thanh toán',
+                },
+                operate_left_text: {
+                    '1': '',
+                    '5': '',
+                },
+                nowPeriods: parseInt(localStorage.getItem('billDetailPeriods')), // 当前待还期数
+                nowPay: '', // 当前要还金额
+                totalAmount: 0, // 总金额
+                alreadyPay: 0, // 已还总金额
+                futurePay: 0, // 未还总金额
+                period: F.query.period,
+                status: localStorage.getItem('billDetailStatus'),
+                isPay: false, // 是否已支付
+            };
 
 
-            F.vue.totalAmount = trade_inquiryBill.totalAmount;
-            F.vue.advance = trade_inquiryBill.advance;
-            F.vue.payRate = trade_inquiryBill.payRate;
-            F.vue.repaymentMonth = trade_inquiryBill.repaymentMonth;
 
-            // 本期是否已还
-            F.vue.isPay = trade_inquiryBill.detail[F.vue.nowPeriods - 1].status === '10002' ? true : false;
+            var load = function () {
+                new_vue();
+            };
 
-            for (i = 0; i < trade_inquiryBill.detail.length; i++) {
-                if (trade_inquiryBill.detail[i].status == '10001' || trade_inquiryBill.detail[i].status == '10007') {
-                    F.vue.futurePay += trade_inquiryBill.detail[i].principal + trade_inquiryBill.detail[i].interest;
+            var pre_data = function (data) {
 
-                    if (!F.vue.nowPay) {
-                        F.vue.nowPay = trade_inquiryBill.detail[i].principal + trade_inquiryBill.detail[i].interest;
+                var i;
+                var trade_queryOrder = data._trade_queryOrder;
+                var trade_inquiryBill = data._trade_inquiryBill;
+                F.vue.address = trade_queryOrder.address;
+                F.vue.orderNo = trade_queryOrder.orderNo;
+                F.vue.createTime = trade_queryOrder.createTime;
+                F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
+                F.vue.msisdn = trade_queryOrder.msisdn;
+                F.vue.username = trade_queryOrder.username;
+                F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
+                F.vue.tradeStatus = trade_queryOrder.tradeStatus;
+                // F.vue.payRate = trade_queryOrder.payRate;
+
+
+                F.vue.totalAmount = trade_inquiryBill.totalAmount;
+                F.vue.advance = trade_inquiryBill.advance;
+                F.vue.payRate = trade_inquiryBill.payRate;
+                F.vue.repaymentMonth = trade_inquiryBill.repaymentMonth;
+
+                // 本期是否已还
+                F.vue.isPay = trade_inquiryBill.detail[F.vue.nowPeriods - 1].status === '10002' ? true : false;
+
+                for (i = 0; i < trade_inquiryBill.detail.length; i++) {
+                    if (trade_inquiryBill.detail[i].status == '10001' || trade_inquiryBill.detail[i].status == '10007') {
+                        F.vue.futurePay += trade_inquiryBill.detail[i].principal + trade_inquiryBill.detail[i].interest;
+
+                        if (!F.vue.nowPay) {
+                            F.vue.nowPay = trade_inquiryBill.detail[i].principal + trade_inquiryBill.detail[i].interest;
+                        }
+                    } else {
+                        F.vue.alreadyPay += trade_inquiryBill.detail[i].principal + trade_inquiryBill.detail[i].interest;
                     }
-                } else {
-                    F.vue.alreadyPay += trade_inquiryBill.detail[i].principal + trade_inquiryBill.detail[i].interest;
                 }
+                F.vue.futurePay = F.vue.futurePay;
+                F.vue.alreadyPay = F.vue.alreadyPay;
+
+
             }
-            F.vue.futurePay = F.vue.futurePay;
-            F.vue.alreadyPay = F.vue.alreadyPay;
 
+            F.loadData = function (params, callback) {
+                if (callback === undefined) callback = params;
 
-        }
+                var all_data = {};
+                var request_length = 2; //请求个数
 
-        F.loadData = function(params, callback) {
-            if (callback === undefined) callback = params;
-
-            var all_data = {};
-            var request_length = 2; //请求个数
-
-            // 请求是否全部返回
-            function all_loaded() {
-                if (Object.keys(all_data).length === request_length) {
-                    pre_data(all_data);
-                    loading.hide();
-                    callback(all_data);
+                // 请求是否全部返回
+                function all_loaded() {
+                    if (Object.keys(all_data).length === request_length) {
+                        pre_data(all_data);
+                        loading.hide();
+                        callback(all_data);
+                    }
                 }
-            }
-            loading.show();
-
-            loadData_trade_queryOrder(function(ret) {
-                all_data._trade_queryOrder = ret;
-                all_loaded();
-            });
-
-            loadData_trade_inquiryBill(function(ret) {
-                all_data._trade_inquiryBill = ret;
-                all_loaded();
-            });
-        };
-
-        function new_vue() {
-            F.vue = new Vue({
-                el: $('#vue-el')[0],
-                data: F.vue,
-                methods: {
-                    gohome: gohome,
-                    operate_rihgt: operate_rihgt,
-                    operate_left: operate_left,
-                    openProduct: openProduct,
-                    priceFormat: F._priceFormat,
-                },
-                computed: {
-
-                },
-            });
-        }
-
-        function loadData_trade_queryOrder(callback) {
-            F._queryOrder({
-                orderNo: F.query.orderNo,
-                tradeNo: F.query.tradeNo,
-            }, function(ret) {
-                callback(ret);
-            });
-        }
-
-        function loadData_trade_inquiryBill(callback) {
-            F._inquiryBill({
-                orderNo: F.query.orderNo,
-                tradeNo: F.query.tradeNo,
-            }, function(ret) {
-                callback(ret);
-            });
-        }
-
-        function operate_rihgt() {
-            if ((F.vue.status === '10001' && F.vue.period === '1') || (F.vue.status === '10007' && F.vue.period === '5')) {
                 loading.show();
-                F._createNormalOrder({
-                    totalAmount: F.vue.totalAmount,
-                    currency: "VND",
-                    subject: F.vue.goodsDetail.name,
-                    repaymentMonth: F.vue.nowPeriods + '',
-                    goodsDetail: JSON.stringify(F.vue.goodsDetail),
-                    timeoutExpress: '3600',
-                    orderNo1: F.query.orderNo,
-                    tradeNo1: F.query.tradeNo,
-                }, function(ret) {
-                    loading.hide();
 
-                    if (!ret) return false;
+                loadData_trade_queryOrder(function (ret) {
+                    all_data._trade_queryOrder = ret;
+                    all_loaded();
+                });
 
-                    if (ret.code !== 10000) return false;
+                loadData_trade_inquiryBill(function (ret) {
+                    all_data._trade_inquiryBill = ret;
+                    all_loaded();
+                });
+            };
 
-                    var payWay = F.vue.balance_pay ? '1' : '2';
+            function new_vue() {
+                F.vue = new Vue({
+                    el: $('#vue-el')[0],
+                    data: F.vue,
+                    methods: {
+                        gohome: gohome,
+                        operate_rihgt: operate_rihgt,
+                        operate_left: operate_left,
+                        openProduct: openProduct,
+                        priceFormat: F._priceFormat,
+                    },
+                    computed: {
 
-                    if (payWay === '1') {
-                        F._payPwd_open(function(paypassword) {
+                    },
+                });
+            }
+
+            function loadData_trade_queryOrder(callback) {
+                F._queryOrder({
+                    orderNo: F.query.orderNo,
+                    tradeNo: F.query.tradeNo,
+                }, function (ret) {
+                    callback(ret);
+                });
+            }
+
+            function loadData_trade_inquiryBill(callback) {
+                F._inquiryBill({
+                    orderNo: F.query.orderNo,
+                    tradeNo: F.query.tradeNo,
+                }, function (ret) {
+                    callback(ret);
+                });
+            }
+
+            function edit_goodsDetail(array) {
+                var index;
+                for (index = 0; index < array.length; index++) {
+                    if (!array[index].price) {
+                        array[index].price = array[index].totalAmount;
+                    }
+                }
+                return array;
+            }
+
+            function operate_rihgt() {
+                if ((F.vue.status === '10001' && F.vue.period === '1') || (F.vue.status === '10007' && F.vue.period === '5')) {
+                    loading.show();
+                    F._createNormalOrder({
+                        totalAmount: F.vue.totalAmount,
+                        currency: "VND",
+                        subject: '',
+                        repaymentMonth: F.vue.nowPeriods + '',
+                        goodsDetail: JSON.stringify(F.vue.goodsDetail),
+                        timeoutExpress: '3600',
+                        orderNo1: F.query.orderNo,
+                        tradeNo1: F.query.tradeNo,
+                    }, function (ret) {
+                        loading.hide();
+
+                        if (!ret) return false;
+
+                        if (ret.code !== 10000) return false;
+
+                        var payWay = F.vue.payway;
+
+                        if (payWay === '1') {
+                            F._payPwd_open(function (paypassword) {
+                                loading.show();
+                                F._payNormalOrder({
+                                    orderNo: ret.orderNo,
+                                    tradeNo: ret.tradeNo,
+                                    repaymentMonth: F.vue.nowPeriods + '',
+                                    amount: F.vue.nowPay,
+                                    payWay: payWay,
+                                    paypassword: paypassword,
+                                }, payNormalOrder_callback);
+
+                            });
+                        } else {
                             loading.show();
                             F._payNormalOrder({
                                 orderNo: ret.orderNo,
@@ -595,55 +646,45 @@
                                 repaymentMonth: F.vue.nowPeriods + '',
                                 amount: F.vue.nowPay,
                                 payWay: payWay,
-                                paypassword: paypassword,
+                                paypassword: '',
                             }, payNormalOrder_callback);
-
-                        });
-                    } else {
-                        loading.show();
-                        F._payNormalOrder({
-                            orderNo: ret.orderNo,
-                            tradeNo: ret.tradeNo,
-                            repaymentMonth: F.vue.nowPeriods + '',
-                            amount: F.vue.nowPay,
-                            payWay: payWay,
-                            paypassword: '',
-                        }, payNormalOrder_callback);
-                    }
-                });
+                        }
+                    });
+                }
             }
-        }
 
-        function operate_left() {
+            function operate_left() {
 
-        }
+            }
 
-        function payNormalOrder_callback(ret) {
-            loading.hide();
-            if (!ret) return false;
+            function payNormalOrder_callback(ret) {
+                loading.hide();
+                if (!ret) return false;
 
-            if (ret.code !== 10000) return false;
+                if (ret.code !== 10000) return false;
 
-            window.location.href = './successRepayment.html';
-        }
+                window.location.href = './successRepayment.html';
+            }
 
-        function gohome() {
-            window.location.href = '../index.html';
-        }
+            function gohome() {
+                window.location.href = '../index.html';
+            }
 
-        function openProduct() {
-            window.location.href = "./details.html?typeId=" + F.vue.goodsDetail.typeId + "&brandId=" + F.vue.goodsDetail.brandId;
-        }
+            function openProduct(typeId, brandId) {
+                // var typeId = F.query.typeId;
+                // var brandId = F.query.brandId;
+                window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+            }
 
-        var funId = localStorage.getItem("funId");
-        if (funId == "" || funId == null) {
-            window.location.href = "./login.html";
-        }
+            var funId = localStorage.getItem("funId");
+            if (funId == "" || funId == null) {
+                window.location.href = "./login.html";
+            }
 
-        F.loadData(function() {
-            load();
+            F.loadData(function () {
+                load();
+            });
         });
-    });
     </script>
 </body>
 

@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <title>Trung tâm thanh toán</title>
-    <link href="../css/jquery-accordion-menu.css" rel="stylesheet" type="text/css">    
+    <link href="../css/jquery-accordion-menu.css" rel="stylesheet" type="text/css">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/swiper.min.css">
     <link href="../css/style.css" rel="stylesheet">
@@ -152,7 +152,7 @@
                         <i></i>
                         <span>Xác nhận thông tin đặt hàng</span>
                     </div>
-                    <div class="information" ng-if="!isToCart">
+                    <div class="information">
                         <table>
                             <thead>
                                 <tr>
@@ -218,7 +218,36 @@
                     </div>
                 </div>
                 <div class="way">
-                    <ul>
+                    <div class="payway__main-bottom" id="payway__main-bottom">
+                        <div class="payway__m-b-item" @click="payway = '3'" :class="{ 'payway__m-b-item_acitve': payway === '3' }">
+                            <div class="payway__m-b-i-text">napas</div>
+                            <div class="payway__m-b-i-icon">
+                                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_napas.png);"></span>
+                            </div>
+                            <div class="payway__m-b-i-indicator">
+                                <span class="payway__m-b-i-i-img"></span>
+                            </div>
+                        </div>
+                        <div class="payway__m-b-item" @click="payway = '2'" :class="{ 'payway__m-b-item_acitve': payway === '2' }">
+                            <div class="payway__m-b-i-text">VTC PAY</div>
+                            <div class="payway__m-b-i-icon">
+                                <span class="payway__m-b-i-icon-img" style="background-image: url(https://vtcpay.vn/Content/Images/logo-pay.svg);"></span>
+                            </div>
+                            <div class="payway__m-b-i-indicator">
+                                <span class="payway__m-b-i-i-img"></span>
+                            </div>
+                        </div>
+                        <div class="payway__m-b-item" @click="payway = '1'" :class="{ 'payway__m-b-item_acitve': payway === '1' }">
+                            <div class="payway__m-b-i-text">Ngân hàng</div>
+                            <div class="payway__m-b-i-icon">
+                                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/f98asdfhusd.png);"></span>
+                            </div>
+                            <div class="payway__m-b-i-indicator">
+                                <span class="payway__m-b-i-i-img"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <ul>
                         <li class="payway-li act">
                             <i></i>
                             <p>Ngân hàng</p>
@@ -227,7 +256,7 @@
                             <i></i>
                             <p>Số dư</p>
                         </li>
-                    </ul>
+                    </ul> -->
                     <div class="fc" style="vertical-align: right;">
                         <p ng-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;">
                             <span style="padding-top: 2px; padding-right:5px;">Tổng tiền:</span>
@@ -260,7 +289,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="left"> địa chỉ nhận hàng</div>
+                        <div class="left"> Địa chỉ nhận hàng</div>
                         <div class="right" data-dismiss="modal" ng-blur="phoneNum=''">
                             <span class="alert__b-m-t-close"></span>
                         </div>
@@ -326,7 +355,7 @@
     </div>
     <footer class="footer" id="footer"></footer>
     <script src="../js/jquery.js"></script>
-    <script src="../js/jquery-accordion-menu.js" type="text/javascript"></script>    
+    <script src="../js/jquery-accordion-menu.js" type="text/javascript"></script>
     <script type="text/javascript" src="../js/swiper.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <!-- <script src="../js/yii.js"></script> -->
@@ -380,12 +409,12 @@
                 switch (ret.code) {
                     case 10000:
 
-                        var payway = '';
-                        payway_get(function (result) {
-                            payway = result + '';
-                        });
+                        var payway = F.vue.payway;
+                        // payway_get(function (result) {
+                        //     payway = result + '';
+                        // });
 
-                        if (F.is_product_multi) {
+                        if (F.isToCart) {
                             if (payway === '1') {
                                 F._payPwd_open(function (paypassword) {
                                     loading.show();
@@ -470,7 +499,7 @@
 
         // 提交订单
         function submit() {
-            // console.log(F.is_product_multi);
+            // console.log(F.vue.payway);
             // return false;
             if (!localStorage.getItem("funId")) {
                 F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
@@ -549,7 +578,7 @@
                 return result;
             }
 
-            if (F.is_product_multi) {
+            if (F.isToCart) {
                 loading.show();
                 F._batchCreateOrder({
                     orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
@@ -646,52 +675,53 @@
             // F.createOrder_info.isCreate = true;
             // F.createOrder_info.isFull = false;
 
-            loading.show();
-            F._userViewDetailInfo({}, function (ret) {
-                loading.hide();
-                if (!ret) return false;
+            var payway = F.vue.payway;
 
-                if (ret.status) { // 资料齐全
-
-                    var payway = '';
-                    payway_get(function (result) {
-                        payway = result + '';
-                    });
-
-                    if (payway === '1') {
-                        F._payPwd_open(function (paypassword) {
-                            loading.show();
-                            F._batchPayment({
-                                orderdetails: F.orderdetails,
-                                payway: payway,
-                                paypassword: paypassword,
-                            }, batchPayment_callback);
-                        });
-                    } else {
+            function go_pay() {
+                if (payway === '1') {
+                    F._payPwd_open(function (paypassword) {
                         loading.show();
-                        F._payPwd_open(function (paypassword) {
-                            loading.show();
-                            F._batchPayment({
-                                orderdetails: F.orderdetails,
-                                payway: payway,
-                                paypassword: '',
-                            }, batchPayment_callback);
-                        });
-                    }
-
-                } else { // 资料不全
-
-                    F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                        name: 'Để sau',
-                        func: function () { }
-                    }, {
-                        name: 'Hoàn thiện ngay',
-                        func: function () {
-                            getSchoolInfo_addInfo(ret.data);
-                        }
-                    }]);
+                        F._batchPayment({
+                            orderdetails: F.orderdetails,
+                            payway: payway,
+                            paypassword: paypassword,
+                        }, batchPayment_callback);
+                    });
+                } else {
+                    loading.show();
+                    F._payPwd_open(function (paypassword) {
+                        loading.show();
+                        F._batchPayment({
+                            orderdetails: F.orderdetails,
+                            payway: payway,
+                            paypassword: '',
+                        }, batchPayment_callback);
+                    });
                 }
-            });
+            }
+
+            if (ret.orderdetails[0].repaymentMonth === 0) { // 全款
+                go_pay();
+            } else {
+                F._userViewDetailInfo({}, function (ret) {
+                    loading.hide();
+                    if (!ret) return false;
+
+                    if (ret.status) { // 资料齐全
+                        go_pay();
+                    } else { // 资料不全
+                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                            name: 'Để sau',
+                            func: function () { }
+                        }, {
+                            name: 'Hoàn thiện ngay',
+                            func: function () {
+                                getSchoolInfo_addInfo(ret.data);
+                            }
+                        }]);
+                    }
+                });
+            }
         }
 
         function batchPayment_callback(ret) {
@@ -722,11 +752,10 @@
 
                 if (ret.status) { // 资料齐全
 
-                    var payway = '';
-                    payway_get(function (result) {
-                        payway = result + '';
-                    });
-
+                    var payway = F.vue.payway;
+                    // payway_get(function (result) {
+                    //     payway = result + '';
+                    // });
 
                     if (payway === '1') {
                         F._payPwd_open(function (paypassword) {
@@ -798,10 +827,10 @@
             F.createOrder_info.isCreate = true;
             F.createOrder_info.isFull = true;
 
-            var payway = '';
-            payway_get(function (result) {
-                payway = result + '';
-            });
+            var payway = F.vue.payway;
+            // payway_get(function (result) {
+            //     payway = result + '';
+            // });
 
             if (payway === '1') {
 
@@ -855,18 +884,43 @@
         }
 
         // 获取支付方式
-        function payway_get(callback) {
-            var index = 0;
-            $('.payway-li').each(function () {
-                var self = $(this);
-                var id = index === 0 ? '2' : '1';
-                if (self.hasClass('act')) {
-                    callback(id);
-                }
-                index += 1;
+        // function payway_get(callback) {
+        //     var index = 0;
+        //     $('.payway-li').each(function () {
+        //         var self = $(this);
+        //         var id = index === 0 ? '2' : '1';
+        //         if (self.hasClass('act')) {
+        //             callback(id);
+        //         }
+        //         index += 1;
+        //     });
+        // }
+        /*tcy -start-*/
+
+        F.vue = {
+            payway: '3',
+        }
+
+        function new_vue() {
+            F.vue = new Vue({
+                el: $('#payway__main-bottom')[0],
+                data: F.vue,
+                methods: {
+                    // plus: plus,
+                    // minus: minus,
+                },
+                computed: {
+
+                },
+                watch: {
+                    // LS__data: function (val, oldVal) {
+                    //     var data = this.LS__data;
+                    //     localStorage.setItem("cart", JSON.stringify(data));
+                    //     calc(data);
+                    // },
+                },
             });
         }
-        /*tcy -start-*/
 
 
         var swiper = new Swiper('#index_banner', {
@@ -890,6 +944,11 @@
             $(this).find('a').css('color', '#eee');
             $(this).find('p').css('color', '#fff');
         })
+
+        setTimeout(function () {
+            new_vue();
+        }, 1400);
+
 
         // $('.li-right button').click(function () {
         //     $('.li-right button').removeClass('b_active');

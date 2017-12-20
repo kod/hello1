@@ -475,17 +475,17 @@ app.controller("collectionCtrl", function($scope, $http, $filter) {
     };
     $scope.getUserInfoDetails();
 
-    $scope.product = function(typeId, brandId) {
-        gotoDetails(typeId, brandId);
+    $scope.product = function(typeId, brandId, id) {
+        gotoDetails(typeId, brandId, id);
     };
 
-    //点击商品页面跳转详情
-    function gotoDetails(typeId, brandId) {
-        if (brandId != null && brandId != "" && typeId != null && typeId != "") {
-            window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
-            // window.open("./details.html?typeId=" + typeId + "&brandId=" + brandId)
-        } else {
-            window.location.href = "";
-        }
-    }
+    // //点击商品页面跳转详情
+    // function gotoDetails(typeId, brandId) {
+    //     if (brandId != null && brandId != "" && typeId != null && typeId != "") {
+    //         window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+    //         // window.open("./details.html?typeId=" + typeId + "&brandId=" + brandId)
+    //     } else {
+    //         window.location.href = "";
+    //     }
+    // }
 });

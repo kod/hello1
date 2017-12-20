@@ -40,7 +40,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     $scope.totalamount = F.totalamount = allTotalData_result.totalAmount;
     $scope.orgPrice = F.orgPrice = allTotalData_result.orgPrice;
 
-    F.is_product_multi = F.LS__data.length > 1;
+    // F.is_product_multi = F.LS__data.length > 1;
 
     // $("#fenqiNum" + $scope.fenqiNum).addClass("b_active");
 
@@ -142,9 +142,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
 
         ajax.successCallback = function(res) {
             if (res.data.code == 10000) {
-                if ($scope.isToCart) {
-                    $scope.resPrice = sessionStorage.getItem("pay_cart_advance");
-                } else if (payrate == "1.0") {
+                if (payrate == "1.0") {
                     $scope.resPrice = $scope.totalamount;
                 } else {
                     $scope.resPrice = res.data.details[detailsArrayString][0].interest + res.data.details[detailsArrayString][0].principal;

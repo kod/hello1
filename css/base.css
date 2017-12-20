@@ -929,7 +929,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 1px;
   font-size: 12px;
   color: #fff;
-  border-radius: 100%;
+  border-radius: 14px;
   background-color: #f70023;
 }
 
@@ -1262,6 +1262,11 @@ input[type="number"]::-webkit-inner-spin-button {
 .footer__b2-m-r6-right {
   text-align: right;
   padding-right: 50px;
+}
+
+.footer__b2-m-r6-r-tel {
+  color: #CFF546;
+  font-weight: 300;
 }
 
 .footer__b2-m-r6-r-img {
@@ -2708,6 +2713,112 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* order-cancel -end- */
+
+/* .payway -start- */
+.payway__main-bottom:after {
+  display: block;
+  content: "";
+  clear: both;
+  height: 0;
+}
+
+.payway__m-b-item {
+  float: left;
+  padding-top: 10px;
+  height: 120px;
+  width: 100px;
+  border: 1px solid #dfdfdf;
+  font-size: 0;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.payway__m-b-i-text {
+  min-height: 25px;
+  max-height: 32px;
+  width: 100%;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: center;
+  line-height: 16px;
+  font-size: 13px;
+  color: #333;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.payway__m-b-i-icon {
+  text-align: center;
+}
+
+.payway__m-b-i-icon-img {
+  height: 45px;
+  width: 80px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.payway__m-b-i-indicator {
+  width: 100%;
+  text-align: center;
+  padding-right: 5px;
+}
+
+.payway__m-b-i-i-img {
+  height: 30px;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url(../img/bank01.png);
+}
+
+.payway__m-b-item_acitve {
+  border-color: #83C44E;
+  background-color: #F4F9E4;
+}
+
+.payway__m-b-item_acitve .payway__m-b-i-i-img {
+  background-image: url(../img/bank02.png);
+}
+
+/* .payway__m-b-i-icon1 {
+  height: 38px;
+  width: 38px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../img/bank01.png);
+  margin-right: 55px;
+}
+
+.payway__m-b-i-icon2 {
+  height: 38px;
+  width: 38px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../img/bank02.png);
+  margin-right: 55px;
+  display: none;
+}
+
+.payway__m-b-item_acitve .payway__m-b-i-icon1 {
+  display: none;
+}
+
+.payway__m-b-item_acitve .payway__m-b-i-icon2 {
+  display: inline-block;
+} */
+
+
+/* .payway -end- */
 
 .alert__b-m-title {
   height: 50px;

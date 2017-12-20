@@ -505,7 +505,7 @@
                                     <input type="text" class="body__m-t-i-n-l-input" v-model="val.quantity" disabled>
                                 </div>
                                 <div class="body__m-t-i-n-right">
-                                    <div class="body__m-t-i-n-r-top" :class="{'body__m-t-i-n-r-top_disable': false}" @click="plus(key, val.id)">
+                                    <div class="body__m-t-i-n-r-top" :class="{'body__m-t-i-n-r-top_disable': val.quantity >= F._cardMaxNumber}" @click="plus(key, val.id)">
                                         <span class="body__m-t-i-n-r-t-arrow"></span>
                                     </div>
                                     <div class="body__m-t-i-n-r-bottom" :class="{'body__m-t-i-n-r-bottom_disable': val.quantity <= 1}" @click="minus(key, val.id)">
@@ -652,7 +652,7 @@
 
             function submit(data) {
                 if (!F._isLogin()) return false;
-                
+
                 var i;
                 // var advance = 0;
                 var pay_products = [];
@@ -676,7 +676,7 @@
                 }
                 sessionStorage.setItem("pay_cart_data", JSON.stringify(pay_products));
                 // sessionStorage.setItem("pay_cart_advance", advance);
-                window.location.href = "pay.html?from=all";
+                window.location.href = "pay.html?from=cart";
             }
 
             function add_batchfavorites(array) {
@@ -873,6 +873,7 @@
 
                     var element = array[index];
                     var detail = JSON.parse(element.detail);
+                    element.quantity = element.quantity > F._cardMaxNumber ? F._cardMaxNumber : element.quantity;
                     element.iconUrl = detail.iconUrl;
                     element.totalAmount = detail.price;
                     element.orgPrice = detail.orgPrice;
@@ -886,9 +887,11 @@
 
             function plus(index, id) {
                 var item = F.vue.LS__data[index];
+                if (item.quantity >= F._cardMaxNumber) return false;
                 item.quantity += 1;
                 F.vue.LS__data.splice(index, 1, item);
 
+                if (!F.vue.isLogin) return false;
                 F._cart_changeNum({
                     cartitemid: id,
                     quetity: item.quantity,
@@ -904,6 +907,7 @@
                 item.quantity -= 1;
                 F.vue.LS__data.splice(index, 1, item);
 
+                if (!F.vue.isLogin) return false;
                 F._cart_changeNum({
                     cartitemid: id,
                     quetity: item.quantity,
@@ -918,25 +922,6 @@
             }
 
             function loadData_cart_getInfo(callback) {
-                // 本地购物车上传到服务器
-                function localToServer(callback) {
-                    localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
-                    var cartitems = JSON.parse(localStorage.getItem("cart"));
-                    console.log(cartitems);
-                    if (cartitems.length === 0) return callback();
-                    F._cart_gate(
-                        {
-                            cartitems: localStorage.getItem("cart")
-                        },
-                        function (ret) {
-                            if (!ret) return false;
-                            if (ret.code !== 10000) return false;
-
-                            localStorage.setItem("cart", "[]");
-                            callback();
-                        }
-                    );
-                }
 
                 function unlogin_case() {
                     localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
@@ -949,15 +934,12 @@
 
                 if (localStorage.getItem("funId")) {
                     F.vue.isLogin = true;
-                    localToServer(function () {
-                        F._cart_getInfo({}, function (ret) {
-                            if (!ret) return false;
-                            if (ret.code !== 10000) return false;
+                    F._cart_getInfo({}, function (ret) {
+                        if (!ret) return false;
+                        if (ret.code !== 10000) return false;
 
-                            callback(ret);
-                        });
-                    })
-
+                        callback(ret);
+                    });
                 } else {
                     F.vue.isLogin = false;
                     unlogin_case();

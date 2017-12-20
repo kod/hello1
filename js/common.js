@@ -15,6 +15,7 @@ F._createNormalOrder_td = F._IP + ":8183/fun/trade/createNormalOrder"; // 创建
 F._payNormalOrder_td = F._IP + ":8183/fun/trade/payNormalOrder"; // 支付还款订单
 F._queryOrderList_td = F._IP + ":8183/fun/trade/queryOrderList"; //
 F._orderCancel_td = F._IP + ":8183/fun/trade/orderCancel"; // 取消订单
+F._findOrderDetails_td = F._IP + ":8183/fun/trade/findOrderDetails"; // 订单详细信息查询
 F._userAddDetailInfo_uc = F._IP + ":8180/fun/usercenter/userAddDetailInfo"; // 修改用户信息
 F._userViewDetailInfo_uc = F._IP + ":8180/fun/usercenter/userViewDetailInfo"; // 获取用户详细信息
 F._getSchoolInfo_uc = F._IP + ":8180/fun/usercenter/getSchoolInfo"; // 获取学校列表
@@ -45,7 +46,7 @@ F._initNewComputer_di = F._IP + ":8185/fun/computer/initNewComputer"; //
 F._initTopDigital_di = F._IP + ":8185/fun/digital/initTopDigital"; //
 F._initNewDigital_di = F._IP + ":8185/fun/digital/initNewDigital"; //
 F._initAdDigital_di = F._IP + ":8185/fun/digital/initAdDigital"; //
-F._addEvaluation_cd = F._IP + ":8185/fun/commodity/addEvaluation"; // 添加评论
+F._addEvaluation_cd = F._IP + ":8185/fun/commodity/addEvaluation"; // 添加评价
 F._findProducts_cd = F._IP + ":8185/fun/commodity/findProducts"; // 商品搜索
 F._getProductDetailInfo_cd = F._IP + ":8185/fun/commodity/getProductDetailInfo"; // 获取产品详情
 F._getEvaluationInfo_cd = F._IP + ":8185/fun/commodity/getEvaluationInfo"; // 获取评论
@@ -67,7 +68,7 @@ F._phoneExpr = /^[0-9]{8,11}$/; //手机号
 F._pwdExpr = /^.{8,20}$/; // 密码
 F._codeExpr = /^[0-9]{6}$/; // 验证码
 F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
-
+F._cardMaxNumber = 10; // 单间商品，最多购买件数
 // 1111111111111111
 
 F._winWidth = document.documentElement.clientWidth; //window的宽度
@@ -96,6 +97,84 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+};
+
+// 订单详细信息查询
+F._findOrderDetails = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "tradeKey";
+
+    var appId = "0";
+    var method = "fun.trade.findOrderDetails";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+    var funid = localStorage.getItem("funId");
+    var orderno = params.orderno;
+    var tradeno = params.tradeno;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderno",
+                value: orderno
+            },
+            {
+                key: "tradeno",
+                value: tradeno
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        orderno: orderno,
+        tradeno: tradeno
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._findOrderDetails_td,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
 };
 
 // 批量订单-支付
@@ -427,114 +506,6 @@ F._userBatchCollection = function(params, callback) {
         }
     });
 };
-
-// 收藏-添加
-// F._userAddCollection = function(params, callback) {
-//     if (!F._isLogin()) return false;
-//     var Key = "userKey";
-
-//     var appId = "0";
-//     var method = "fun.uc.addcollection";
-//     var charset = "utf-8";
-//     var timestamp = (+new Date() + "").slice(3);
-//     var version = "1.0";
-
-//     var funid = localStorage.getItem("funId");
-//     var msisdn = localStorage.getItem("msisdn");
-//     var type_id = params.type_id;
-//     var brand_id = params.brand_id;
-//     var brand_name = params.brand_name;
-//     var brand_desc = params.brand_desc;
-//     var brand_image = params.brand_image;
-//     var brand_price = params.brand_price;
-
-//     var signType = F._signType_MD5(appId, method, charset, Key, false);
-
-//     var encrypt = F._encrypt_MD5(
-//         [
-//             {
-//                 key: "funid",
-//                 value: funid
-//             },
-//             {
-//                 key: "msisdn",
-//                 value: msisdn
-//             },
-//             {
-//                 key: "type_id",
-//                 value: type_id
-//             },
-//             {
-//                 key: "brand_id",
-//                 value: brand_id
-//             },
-//             {
-//                 key: "brand_name",
-//                 value: brand_name
-//             },
-//             {
-//                 key: "brand_desc",
-//                 value: brand_desc
-//             },
-//             {
-//                 key: "brand_image",
-//                 value: brand_image
-//             },
-//             {
-//                 key: "brand_price",
-//                 value: brand_price
-//             }
-//         ],
-//         Key
-//     );
-
-//     var data = {
-//         appId: appId,
-//         method: method,
-//         charset: charset,
-//         signType: signType,
-//         encrypt: encrypt,
-//         timestamp: timestamp,
-//         version: version,
-//         funid: funid,
-//         msisdn: msisdn,
-//         type_id: type_id,
-//         brand_id: brand_id,
-//         brand_name: brand_name,
-//         brand_desc: brand_desc,
-//         brand_image: brand_image,
-//         brand_price: brand_price
-//     };
-
-//     $.ajax({
-//         type: "POST",
-//         url: F._userAddCollection_uc,
-//         data: data,
-//         success: function(ret) {
-//             ret = JSON.parse(ret);
-//             callback(ret);
-
-//             switch (ret.code) {
-//                 case 10000:
-//                     break;
-
-//                 default:
-//                     $("#loading").remove();
-//                     F._confirm("Gợi ý", "error", "error", [
-//                         {
-//                             name: "Xác nhận",
-//                             func: function() {}
-//                         }
-//                     ]);
-//                     break;
-//             }
-//         },
-//         error: function(ret) {
-//             console.error("request error");
-//             callback(false);
-//         }
-//     });
-// };
 
 // 购物车-列表
 F._cart_getInfo = function(params, callback) {
@@ -1456,20 +1427,29 @@ F._userGetCollection = function(params, callback) {
     var pagesize = params.pagesize;
     var currentpage = params.currentpage;
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signType = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "funid=" + funid;
-    md5EncryptStrig += "&msisdn=" + msisdn;
-    md5EncryptStrig += "&pagesize=" + pagesize;
-    md5EncryptStrig += "&currentpage=" + currentpage;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -1519,7 +1499,7 @@ F._userGetCollection = function(params, callback) {
 F._findProducts = function(params, callback) {
     var Key = "commodityKey";
 
-    var appid = localStorage.getItem("funId") || "";
+    var appId = localStorage.getItem("funId") || "";
     var method = "fun.find.finding";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -1529,23 +1509,32 @@ F._findProducts = function(params, callback) {
     var pagesize = params.pagesize;
     var currentpage = params.currentpage;
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appid=" + appid;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signType = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "funid=" + funid;
-    md5EncryptStrig += "&findcontent=" + findcontent;
-    md5EncryptStrig += "&pagesize=" + pagesize;
-    md5EncryptStrig += "&currentpage=" + currentpage;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "findcontent",
+                value: findcontent
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            }
+        ],
+        Key
+    );
 
     var data = {
-        appid: appid,
+        appid: appId,
         method: method,
         charset: charset,
         signtype: signType,
@@ -1737,37 +1726,46 @@ F._addEvaluation = function(params, callback) {
     var method = "fun.evaluation.add";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
+    var version = "2.0";
 
     var funid = localStorage.getItem("funId");
-    var msisdn = params.msisdn;
-    var username = params.username;
+    var msisdn = localStorage.getItem("msisdn");
+    var username = localStorage.getItem("username");
     var order_no = params.orderNo;
     var trade_no = params.tradeNo;
-    var brand_id = params.brand_id;
-    var image_urls = params.image_urls;
-    var content = params.content;
-    var score = params.score;
+    var comments = params.comments;
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signType = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "funid=" + funid;
-    md5EncryptStrig += "&msisdn=" + msisdn;
-    md5EncryptStrig += "&username=" + username;
-    md5EncryptStrig += "&trade_no=" + trade_no;
-    md5EncryptStrig += "&order_no=" + order_no;
-    md5EncryptStrig += "&brand_id=" + brand_id;
-    md5EncryptStrig += "&image_urls=" + image_urls;
-    md5EncryptStrig += "&content=" + content;
-    md5EncryptStrig += "&score=" + score;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "username",
+                value: username
+            },
+            {
+                key: "trade_no",
+                value: trade_no
+            },
+            {
+                key: "order_no",
+                value: order_no
+            },
+            {
+                key: "comments",
+                value: comments
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -1782,10 +1780,7 @@ F._addEvaluation = function(params, callback) {
         username: username,
         trade_no: trade_no,
         order_no: order_no,
-        brand_id: brand_id,
-        image_urls: image_urls,
-        content: content,
-        score: score
+        comments: comments
     };
 
     $.ajax({
@@ -2069,19 +2064,25 @@ F._inquiryBill = function(params, callback) {
     var orderNo = params.orderNo;
     var tradeNo = params.tradeNo;
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signType = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "orderNo=" + orderNo;
-    md5EncryptStrig += "&tradeNo=" + tradeNo;
-    md5EncryptStrig += "&useraccount=" + useraccount;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderNo",
+                value: orderNo
+            },
+            {
+                key: "tradeNo",
+                value: tradeNo
+            },
+            {
+                key: "useraccount",
+                value: useraccount
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -2265,7 +2266,7 @@ F._uploadFilesUser = function(data, callback) {
 // 获取电脑banner广告
 F._initTopComputer = function(params, callback) {
     var Key = "commodityKey";
-    var appid = "0";
+    var appId = "0";
     var method = "fun.computer.topad";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -2275,25 +2276,35 @@ F._initTopComputer = function(params, callback) {
     var pagesize = params.pagesize || "5";
     var currentpage = params.currentpage || "1";
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appid=" + appid;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signtype = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "typeid=" + typeid;
-    md5EncryptStrig += "&pagesize=" + pagesize;
-    md5EncryptStrig += "&currentpage=" + currentpage;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "typeid",
+                value: typeid
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            }
+        ],
+        Key
+    );
 
     var data = {
-        appid: appid,
+        appid: appId,
         method: method,
         charset: charset,
-        signtype: signtype,
+        signtype: signType,
         encrypt: encrypt,
         timestamp: timestamp,
         version: version,
@@ -2352,7 +2363,6 @@ F._userAction_login = function(params, callback) {
         data: data,
         success: function(ret) {
             ret = JSON.parse(ret);
-            callback(ret);
 
             loading.hide();
             switch (ret.status) {
@@ -2433,6 +2443,7 @@ F._userAction_login = function(params, callback) {
                     ]);
                     break;
             }
+            callback(ret);
         },
         error: function(ret) {
             callback(false);
@@ -2524,7 +2535,7 @@ F._fullOrderCreate = function(params, callback) {
 
     var Key = "tradeKey";
 
-    var appid = localStorage.getItem("funId");
+    var appId = localStorage.getItem("funId");
     var method = "fun.trade.full.createOrder";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -2532,7 +2543,7 @@ F._fullOrderCreate = function(params, callback) {
 
     var orderno = (function() {
         var mydate = new Date();
-        return appid + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
+        return appId + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
     })();
     var funid = localStorage.getItem("funId");
     var totalamount = params.totalamount;
@@ -2550,38 +2561,83 @@ F._fullOrderCreate = function(params, callback) {
     var remark = params.remark || "";
     var number = params.number;
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appid=" + appid;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signtype = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "orderno=" + orderno;
-    md5EncryptStrig += "&funid=" + funid;
-    md5EncryptStrig += "&totalamount=" + totalamount;
-    md5EncryptStrig += "&orgamount=" + orgamount;
-    md5EncryptStrig += "&advance=" + advance;
-    md5EncryptStrig += "&payrate=" + payrate;
-    md5EncryptStrig += "&repaymentmonth=" + repaymentmonth;
-    md5EncryptStrig += "&currency=" + currency;
-    md5EncryptStrig += "&subject=" + subject;
-    md5EncryptStrig += "&goodsdetail=" + goodsdetail;
-    md5EncryptStrig += "&timeoutexpress=" + timeoutexpress;
-    md5EncryptStrig += "&msisdn=" + msisdn;
-    md5EncryptStrig += "&address=" + address;
-    md5EncryptStrig += "&username=" + username;
-    md5EncryptStrig += "&remark=" + remark;
-    md5EncryptStrig += "&number=" + number;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderno",
+                value: orderno
+            },
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "totalamount",
+                value: totalamount
+            },
+            {
+                key: "orgamount",
+                value: orgamount
+            },
+            {
+                key: "advance",
+                value: advance
+            },
+            {
+                key: "payrate",
+                value: payrate
+            },
+            {
+                key: "repaymentmonth",
+                value: repaymentmonth
+            },
+            {
+                key: "currency",
+                value: currency
+            },
+            {
+                key: "subject",
+                value: subject
+            },
+            {
+                key: "goodsdetail",
+                value: goodsdetail
+            },
+            {
+                key: "timeoutexpress",
+                value: timeoutexpress
+            },
+            {
+                key: "msisdn",
+                value: msisdn
+            },
+            {
+                key: "address",
+                value: address
+            },
+            {
+                key: "username",
+                value: username
+            },
+            {
+                key: "remark",
+                value: remark
+            },
+            {
+                key: "number",
+                value: number
+            }
+        ],
+        Key
+    );
 
     var data = {
-        appid: appid,
+        appid: appId,
         method: method,
         charset: charset,
-        signtype: signtype,
+        signtype: signType,
         encrypt: encrypt,
         timestamp: timestamp,
         version: version,
@@ -2659,7 +2715,7 @@ F._orderFullPay = function(params, callback) {
 
     var Key = "tradeKey";
 
-    var appid = localStorage.getItem("funId");
+    var appId = localStorage.getItem("funId");
     var method = "fun.trade.full.pay";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -2670,27 +2726,39 @@ F._orderFullPay = function(params, callback) {
     var payway = params.payway;
     var paypassword = params.paypassword || "";
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appid=" + appid;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signtype = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "orderno=" + orderno;
-    md5EncryptStrig += "&tradeno=" + tradeno;
-    md5EncryptStrig += "&advance=" + advance;
-    md5EncryptStrig += "&payway=" + payway;
-    md5EncryptStrig += "&paypassword=" + paypassword;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderno",
+                value: orderno
+            },
+            {
+                key: "tradeno",
+                value: tradeno
+            },
+            {
+                key: "advance",
+                value: advance
+            },
+            {
+                key: "payway",
+                value: payway
+            },
+            {
+                key: "paypassword",
+                value: paypassword
+            }
+        ],
+        Key
+    );
 
     var data = {
-        appid: appid,
+        appid: appId,
         method: method,
         charset: charset,
-        signtype: signtype,
+        signtype: signType,
         encrypt: encrypt,
         timestamp: timestamp,
         version: version,
@@ -2702,58 +2770,7 @@ F._orderFullPay = function(params, callback) {
     };
 
     var loading = new F._loading();
-    if (payway == "2") {
-        loading.hide();
-        if (params._noConfirm) {
-            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
-                {
-                    name: "Thanh toán",
-                    func: function() {
-                        window.open(F._url_joint(F._FullPaymentOrder_td, data));
-                        full_confirm.close();
-                        F._confirm("Gợi ý", "", "tips", [
-                            {
-                                name: "Thanh toán thất bại",
-                                func: function() {
-                                    window.location.href = "../index.html";
-                                }
-                            },
-                            {
-                                name: "Thanh toán thành công",
-                                func: function() {
-                                    window.location.href = "./order.html";
-                                }
-                            }
-                        ]);
-                    }
-                }
-            ]);
-        } else {
-            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
-                {
-                    name: "Thanh toán",
-                    func: function() {
-                        window.open(F._url_joint(F._FullPaymentOrder_td, data));
-                        full_confirm.close();
-                        F._confirm("Gợi ý", "", "tips", [
-                            {
-                                name: "Thanh toán thất bại",
-                                func: function() {
-                                    window.location.href = "../index.html";
-                                }
-                            },
-                            {
-                                name: "Thanh toán thành công",
-                                func: function() {
-                                    window.location.href = "./order.html";
-                                }
-                            }
-                        ]);
-                    }
-                }
-            ]);
-        }
-    } else {
+    if (payway == "1") {
         $.ajax({
             type: "POST",
             url: F._FullPaymentOrder_td,
@@ -2838,6 +2855,57 @@ F._orderFullPay = function(params, callback) {
                 callback(false);
             }
         });
+    } else {
+        loading.hide();
+        if (params._noConfirm) {
+            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._FullPaymentOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        } else {
+            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._FullPaymentOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        }
     }
 };
 
@@ -2871,12 +2939,6 @@ F._createOrder = function(params, callback) {
     var address = params.address;
     var username = params.username;
     var number = params.number;
-
-    // var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
-    // var signType = md5(md5SigntypeStrig);
-
-    // var md5EncryptStrig = "orderNo=" + orderNo + "&funid=" + funid + "&totalAmount=" + totalAmount + "&orgAmount=" + orgAmount + "&advance=" + advance + "&payRate=" + payRate + "&repaymentMonth=" + repaymentMonth + "&currency=" + currency + "&subject=" + subject + "&goodsDetail=" + goodsDetail + "&timeoutExpress=" + timeoutExpress + "&msisdn=" + msisdn + "&address=" + address + "&username=" + username + "&remark=" + remark + Key;
-    // var encrypt = md5(md5EncryptStrig);
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
@@ -3060,6 +3122,7 @@ F._createOrder = function(params, callback) {
 
 // 支付（分期）订单
 F._payOrder = function(params, callback) {
+    console.log(params);
     if (!F._isLogin()) return false;
 
     var appId = localStorage.getItem("funId");
@@ -3081,11 +3144,49 @@ F._payOrder = function(params, callback) {
     var payway = params.payway;
     var paypassword = params.paypassword || "";
 
-    var md5SigntypeStrig = "appId=" + appId + "&method=" + method + "&charset=" + charset + Key;
-    var signType = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var md5EncryptStrig = "orderNo=" + orderNo + "&tradeNo=" + tradeNo + "&totalAmount=" + totalAmount + "&advance=" + advance + "&payRate=" + payRate + "&repaymentMonth=" + repaymentMonth + "&prepay=" + prepay + "&payway=" + payway + "&paypassword=" + paypassword + Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderNo",
+                value: orderNo
+            },
+            {
+                key: "tradeNo",
+                value: tradeNo
+            },
+            {
+                key: "totalAmount",
+                value: totalAmount
+            },
+            {
+                key: "advance",
+                value: advance
+            },
+            {
+                key: "payRate",
+                value: payRate
+            },
+            {
+                key: "repaymentMonth",
+                value: repaymentMonth
+            },
+            {
+                key: "prepay",
+                value: prepay
+            },
+            {
+                key: "payway",
+                value: payway
+            },
+            {
+                key: "paypassword",
+                value: paypassword
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -3107,58 +3208,7 @@ F._payOrder = function(params, callback) {
     };
 
     var loading = new F._loading();
-    if (payway == "2") {
-        loading.hide();
-        if (params._noConfirm) {
-            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
-                {
-                    name: "Thanh toán",
-                    func: function() {
-                        window.open(F._url_joint(F._payOrder_td, data));
-                        full_confirm.close();
-                        F._confirm("Gợi ý", "", "tips", [
-                            {
-                                name: "Thanh toán thất bại",
-                                func: function() {
-                                    window.location.href = "../index.html";
-                                }
-                            },
-                            {
-                                name: "Thanh toán thành công",
-                                func: function() {
-                                    window.location.href = "./order.html";
-                                }
-                            }
-                        ]);
-                    }
-                }
-            ]);
-        } else {
-            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
-                {
-                    name: "Thanh toán",
-                    func: function() {
-                        window.open(F._url_joint(F._payOrder_td, data));
-                        full_confirm.close();
-                        F._confirm("Gợi ý", "", "tips", [
-                            {
-                                name: "Thanh toán thất bại",
-                                func: function() {
-                                    window.location.href = "../index.html";
-                                }
-                            },
-                            {
-                                name: "Thanh toán thành công",
-                                func: function() {
-                                    window.location.href = "./order.html";
-                                }
-                            }
-                        ]);
-                    }
-                }
-            ]);
-        }
-    } else {
+    if (payway == "1") {
         $.ajax({
             type: "POST",
             url: F._payOrder_td,
@@ -3248,6 +3298,57 @@ F._payOrder = function(params, callback) {
                 callback(false);
             }
         });
+    } else {
+        loading.hide();
+        if (params._noConfirm) {
+            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._payOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        } else {
+            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._payOrder_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        }
     }
 };
 
@@ -3277,28 +3378,53 @@ F._createNormalOrder = function(params, callback) {
     var orderNo1 = params.orderNo1;
     var tradeNo1 = params.tradeNo1;
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var signType = md5(md5SigntypeStrig);
-
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "orderNo=" + orderNo;
-    md5EncryptStrig += "&funid=" + funid;
-    md5EncryptStrig += "&totalAmount=" + totalAmount;
-    md5EncryptStrig += "&currency=" + currency;
-    md5EncryptStrig += "&subject=" + subject;
-    md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
-    md5EncryptStrig += "&goodsDetail=" + goodsDetail;
-    md5EncryptStrig += "&timeoutExpress=" + timeoutExpress;
-    md5EncryptStrig += "&orderNo1=" + orderNo1;
-    md5EncryptStrig += "&tradeNo1=" + tradeNo1;
-    md5EncryptStrig += Key;
-
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderNo",
+                value: orderNo
+            },
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "totalAmount",
+                value: totalAmount
+            },
+            {
+                key: "currency",
+                value: currency
+            },
+            {
+                key: "subject",
+                value: subject
+            },
+            {
+                key: "repaymentMonth",
+                value: repaymentMonth
+            },
+            {
+                key: "goodsDetail",
+                value: goodsDetail
+            },
+            {
+                key: "timeoutExpress",
+                value: timeoutExpress
+            },
+            {
+                key: "orderNo1",
+                value: orderNo1
+            },
+            {
+                key: "tradeNo1",
+                value: tradeNo1
+            }
+        ],
+        Key
+    );
 
     var data = {
         appId: appId,
@@ -3369,22 +3495,47 @@ F._payNormalOrder = function(params, callback) {
     var payway = params.payWay;
     var paypassword = params.paypassword || "";
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appId=" + appId;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signType = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, false);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "orderNo=" + orderNo;
-    md5EncryptStrig += "&tradeNo=" + tradeNo;
-    md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
-    md5EncryptStrig += "&totalAmount=" + totalAmount;
-    md5EncryptStrig += "&payway=" + payway;
-    md5EncryptStrig += "&paypassword=" + paypassword;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "orderNo",
+                value: orderNo
+            },
+            {
+                key: "tradeNo",
+                value: tradeNo
+            },
+            {
+                key: "repaymentMonth",
+                value: repaymentMonth
+            },
+            {
+                key: "totalAmount",
+                value: totalAmount
+            },
+            {
+                key: "payway",
+                value: payway
+            },
+            {
+                key: "paypassword",
+                value: paypassword
+            }
+        ],
+        Key
+    );
+
+    // var md5EncryptStrig = "";
+    // md5EncryptStrig += "orderNo=" + orderNo;
+    // md5EncryptStrig += "&tradeNo=" + tradeNo;
+    // md5EncryptStrig += "&repaymentMonth=" + repaymentMonth;
+    // md5EncryptStrig += "&totalAmount=" + totalAmount;
+    // md5EncryptStrig += "&payway=" + payway;
+    // md5EncryptStrig += "&paypassword=" + paypassword;
+    // md5EncryptStrig += Key;
+    // var encrypt = md5(md5EncryptStrig);
 
     var data = {
         appId: appId,
@@ -3401,7 +3552,40 @@ F._payNormalOrder = function(params, callback) {
         payway: payway,
         paypassword: paypassword
     };
-    if (payway == "2") {
+    if (payway == "1") {
+        $.ajax({
+            type: "POST",
+            url: F._payNormalOrder_td,
+            data: data,
+            success: function(ret) {
+                ret = JSON.parse(ret);
+                callback(ret);
+
+                switch (ret.code) {
+                    case 10000:
+                        break;
+
+                    case 60051: // 交易密码错误
+                        F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+                        break;
+
+                    default:
+                        $("#loading").remove();
+                        window.location.href = "./errorPay.html";
+                        break;
+                }
+            },
+            error: function(ret) {
+                console.error("request error");
+                callback(false);
+            }
+        });
+    } else {
         var loading = new F._loading();
         loading.hide();
         if (params._noConfirm) {
@@ -3453,39 +3637,6 @@ F._payNormalOrder = function(params, callback) {
                 }
             ]);
         }
-    } else {
-        $.ajax({
-            type: "POST",
-            url: F._payNormalOrder_td,
-            data: data,
-            success: function(ret) {
-                ret = JSON.parse(ret);
-                callback(ret);
-
-                switch (ret.code) {
-                    case 10000:
-                        break;
-
-                    case 60051: // 交易密码错误
-                        F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
-                            {
-                                name: "Xác nhận",
-                                func: function() {}
-                            }
-                        ]);
-                        break;
-
-                    default:
-                        $("#loading").remove();
-                        window.location.href = "./errorPay.html";
-                        break;
-                }
-            },
-            error: function(ret) {
-                console.error("request error");
-                callback(false);
-            }
-        });
     }
 };
 
@@ -3721,12 +3872,6 @@ F._userViewDetailInfo = function(params, callback) {
     var Key = "userKey";
     var funid = localStorage.getItem("funId");
 
-    // var md5SigntypeStrig = '';
-    // md5SigntypeStrig += 'appId=' + appId;
-    // md5SigntypeStrig += '&method=' + method;
-    // md5SigntypeStrig += '&charset=' + charset;
-    // md5SigntypeStrig += Key;
-    // var signType = md5(md5SigntypeStrig);
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
     var md5SigntypeStrig = "";
@@ -3840,7 +3985,7 @@ F._userViewDetailInfo = function(params, callback) {
 // 获取学校数据
 F._getSchoolInfo = function(params, callback) {
     var Key = "userKey";
-    var appid = localStorage.getItem("funId");
+    var appId = localStorage.getItem("funId");
     var method = "fun.uc.getschoolinfo";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -3849,23 +3994,23 @@ F._getSchoolInfo = function(params, callback) {
     var notifyurlbg = "";
     var name = params.name || ""; // 默认查全部
 
-    var md5SigntypeStrig = "";
-    md5SigntypeStrig += "appid=" + appid;
-    md5SigntypeStrig += "&method=" + method;
-    md5SigntypeStrig += "&charset=" + charset;
-    md5SigntypeStrig += Key;
-    var signtype = md5(md5SigntypeStrig);
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-    var md5EncryptStrig = "";
-    md5EncryptStrig += "name=" + name;
-    md5EncryptStrig += Key;
-    var encrypt = md5(md5EncryptStrig);
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "name",
+                value: name
+            }
+        ],
+        Key
+    );
 
     var data = {
-        appid: appid,
+        appid: appId,
         method: method,
         charset: charset,
-        signtype: signtype,
+        signtype: signType,
         encrypt: encrypt,
         timestamp: timestamp,
         version: version,
@@ -4274,7 +4419,9 @@ function footer_add() {
                 </div>\
                 <div class="footer__b2-m-row6 col-xs-24">\
                     <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; 2017 Buyoo. All Rights Reserved</div>\
-                    <div class="footer__b2-m-r6-right col-xs-12"></div>\
+                    <div class="footer__b2-m-r6-right col-xs-12">\
+                        Liên hệ chăm sóc khách hàng: <span class="footer__b2-m-r6-r-tel">1900 555506</span>\
+                    </div>\
                 </div>\
             </div>\
         </div>';

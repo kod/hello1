@@ -1207,7 +1207,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                 function(ret) {
                     if (!ret) return false;
                     if (ret.code !== 10000) return false;
-                    $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + 1);
+                    $(".header__c-m-c-number").html(+$(".header__c-m-c-number").html() + parseInt(cartitems[0].quantity));
                     F._confirm("Gợi ý", "1 sản phẩm mới đã được thêm vào giỏ hàng của bạn", "success", [
                         {
                             name: "Xác nhận",
