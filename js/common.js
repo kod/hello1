@@ -96,7 +96,6 @@ F._encrypt_MD5 = function(params, Key) {
     }
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
-    console.log(md5EncryptStrig);
     return md5(md5EncryptStrig);
 };
 
@@ -2431,7 +2430,7 @@ F._batchPayment = function(params, callback) {
             {
                 key: "paypassword",
                 value: paypassword
-            },
+            }
         ],
         Key
     );
@@ -2449,7 +2448,7 @@ F._batchPayment = function(params, callback) {
         orderno: orderno,
         tradeno: tradeno,
         payway: payway,
-        paypassword: paypassword,
+        paypassword: paypassword
     };
 
     var loading = new F._loading();
@@ -4491,6 +4490,50 @@ function footer_add() {
     $("#footer").html(html_str);
 }
 
+function openforapp_add() {
+    var appVersion = window.navigator.appVersion;
+    function isPhone(appVersion) {
+        return /Android|iPhone|iPad/.test(appVersion);
+    }
+
+    function isAndroid(appVersion) {
+        return /Android/.test(appVersion);
+    }
+
+    function isIOS(appVersion) {
+        return /iPhone|iPad/.test(appVersion);
+    }
+
+    var dot_str = is_dot_for_index();
+    var html_str = '\
+    <div class="openforapp">\
+        <div class="openforapp__left">\
+            <div class="openforapp__left-close">\
+                <img src="' + dot_str + './img/icon-close.png" alt="close" class="openforapp__l-c-img">\
+            </div>\
+            <div class="openforapp__left-app">\
+                <div class="openforapp__l-a-logo">\
+                    <img src="' + dot_str + './img/ICON_72.png" alt="logo" class="openforapp__l-a-l-img">\
+                </div>\
+                <div class="openforapp__l-a-text">\
+                    <div class="openforapp__l-a-t-top">Mở App BUYOO</div>\
+                </div>\
+            </div>\
+        </div>\
+        <div class="openforapp__right">立即打开</div>\
+    </div>';
+
+    if (isPhone(appVersion)) {
+        $("body").prepend(html_str);
+        $(".openforapp__left-close").on("click", function() {
+            $(".openforapp").remove();
+        });
+        $(".openforapp__right").on("click", function() {
+            console.log("open");
+        });
+    }
+}
+
 F._gotoFind = function() {
     var findcontent = $("#findIpt").val();
     if (findcontent != "") {
@@ -5955,3 +5998,4 @@ F._timeStrForm = function(str, model, unUnix) {
 
 header_add();
 footer_add();
+openforapp_add();
