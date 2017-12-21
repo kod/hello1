@@ -33,6 +33,7 @@
         }
 
         .body__m-l-row1 {
+            font-size: 16px;
             color: #FF3B57;
             margin-bottom: 45px;
         }
@@ -469,7 +470,7 @@
         <header class="header" id="header"></header>
         <section class="body">
             <div class="body__main-login" style="display: none;" v-show="!isLogin && LS__data.length">
-                <div class="body__m-l-row1">您还没有登录，登陆后购物车的商品将保存到您的账号中</div>
+                <div class="body__m-l-row1">Bạn vẫn chưa đăng nhập, sau khi đăng nhập, sản phẩm trong giỏ hàng sẽ lưu trong tài khoản của bạn</div>
                 <div class="body__m-l-row2">
                     <a href="./login.html" class="body__m-l-r2-button">Đăng nhập</a>
                 </div>
@@ -536,8 +537,8 @@
                             </div>
                         </div>
                         <div class="body__m-s-l-right">
-                            <div class="body__m-s-l-r-left">已选
-                                <span style="color: #F7004C;" v-html="selectedProductNum"></span> 件商品</div>
+                            <div class="body__m-s-l-r-left">
+                                Đã chọn <span style="color: #F7004C;" v-html="selectedProductNum"></span> sản phẩm</div>
                             <div class="body__m-s-l-r-right">
                                 <div class="body__m-s-l-r-r-top">
                                     <span class="body__m-s-l-r-r-t-text">Tổng tiền:</span>
