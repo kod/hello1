@@ -4520,7 +4520,7 @@ function openforapp_add() {
                 </div>\
             </div>\
         </div>\
-        <div class="openforapp__right">立即打开</div>\
+        <div class="openforapp__right">Mở ngay bây giờ</div>\
     </div>';
 
     if (isPhone(appVersion)) {
@@ -4529,6 +4529,7 @@ function openforapp_add() {
             $(".openforapp").remove();
         });
         $(".openforapp__right").on("click", function() {
+            window.location.href = "buyoovn://www.orangecpp.com:80/mypath?key=mykey";
             console.log("open");
         });
     }
