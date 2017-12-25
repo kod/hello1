@@ -69,6 +69,7 @@ F._phoneExpr = /^[0-9]{8,11}$/; //手机号
 F._pwdExpr = /^.{8,20}$/; // 密码
 F._codeExpr = /^[0-9]{6}$/; // 验证码
 F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
+F._PhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
 // 1111111111111111
 
@@ -4493,9 +4494,9 @@ function footer_add() {
 
 function openforapp_add() {
     var appVersion = window.navigator.appVersion;
-    function isPhone(appVersion) {
-        return /Android|iPhone|iPad/.test(appVersion);
-    }
+    // function isPhone(appVersion) {
+    //     return F._PhoneExpr.test(appVersion);
+    // }
 
     function isAndroid(appVersion) {
         return /Android/.test(appVersion);
@@ -4524,7 +4525,7 @@ function openforapp_add() {
         <div class="openforapp__right">Mở ngay bây giờ</div>\
     </div>';
 
-    if (isPhone(appVersion)) {
+    if (F._PhoneExpr.test(appVersion)) {
         $("body").prepend(html_str);
         $(".openforapp__left-close").on("click", function() {
             $(".openforapp").remove();

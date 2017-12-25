@@ -609,6 +609,8 @@
 <script src="../js/common/common.js" type="text/javascript" charset="utf-8"></script>
 <!-- <script src="../js/sys/config.js" type="text/javascript" charset="utf-8"></script> -->
 <script>
+    var appVersion = window.navigator.appVersion;
+    if (F._PhoneExpr.test(appVersion)) location.href = 'https://play.google.com/store/apps/details?id=com.store.creditstore';
     window.setTimeout(function () {
         if (localStorage.getItem("funId")) {
             F._userViewDetailInfo({}, function (ret) {
