@@ -174,6 +174,47 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 return false;
             }
 
+            function set_meta(params) {
+                console.log(params);
+                var str = '\
+                <meta property="fb:app_id" content="375278562897910" />\
+                <meta property="og:type" content="product" />\
+                <meta property="og:title" content="'+ params.name +'" />\
+                <meta property="og:url" content="'+ params.location.href +'" />\
+                <meta property="og:image" content="'+ params.imageUrl +'" />\
+                <meta property="og:site_name" content="buyoo.vn" />\
+                <meta property="al:ios:url" content="buyoovn://details?typeId='+ params.typeId +'&brandId='+ params.brandId +'&id='+ params.id +'" />\
+                <meta property="al:ios:app_name" content="buyoo" />\
+                <meta property="al:android:package" content="com.store.creditstore">\
+                <meta property="al:android:app_name" content="buyoo" />\
+                <meta property="al:android:url" content="buyoovn://details?typeId='+ params.typeId +'&brandId='+ params.brandId +'&id='+ params.id +'" />';
+
+                $('head').append(str);
+            }
+            console.log(res.data);
+            console.log(res.data.brand_detail);
+            console.log(F.query);
+            set_meta({
+                name: res.data.brand_detail.name,
+                imageUrl: res.data.brand_detail.imageUrl,
+                typeId: F.query.typeId,
+                brandId: F.query.brandId,
+                id: F.query.id,
+                location: window.location,
+            });
+            // <meta property="fb:app_id" content="375278562897910" />
+            // <meta property="og:type" content="product" />
+            // <meta property="og:title" content="本商品名称" />
+            // <meta property="og:url" content="本链接" />
+            // <meta property="og:image" content="商品的第一张图片" />
+            // <meta property="og:site_name" content="buyoo.vn" />
+            // <meta property="al:ios:url" content="buyoovn://details?typeId=1&brandId=30&id=134" />
+            // <meta property="al:ios:app_name" content="buyoo" />
+            // <meta property="al:android:package" content="com.store.creditstore">
+            // <meta property="al:android:app_name" content="buyoo" />
+            // <meta property="al:android:url" content="buyoovn://details?typeId=1&brandId=30&id=134" />
+
+
             //创建用户浏览记录session
             // var funId = localStorage.getItem("funId");
             // var sc_status = localStorage.getItem("funId=" + funId + "brandId=" + brandId);
