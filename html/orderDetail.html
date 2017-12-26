@@ -840,10 +840,8 @@
                     loading.hide();
                     if (!ret) return false;
                     if (ret.code !== 10000) return false;
-                    console.dir(ret);
                     F.vue.returnMoney = ret.details[F.vue.orgAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
                     F.vue.SH__returnMoney = true;
-                    console.dir(F.vue.information);
                 });
 
             }
