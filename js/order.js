@@ -178,6 +178,8 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
     function orderDetailsAjax(status, page, rows) {
         if (!F._isLogin()) return false;
 
+        var loading = new F._loading();
+        loading.show();
         var url = F._queryOrderList_td;
         var ajax = new ajaxClass($http, url, "POST");
 
@@ -218,6 +220,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
         };
 
         ajax.successCallback = function(res) {
+            loading.hide();
             function edit_for_status($scope, tradeStatus) {
                 switch (tradeStatus) {
                     case "10000":
