@@ -73,6 +73,16 @@ F._PhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
 // 1111111111111111
 
+F._DEUBUG = true;
+
+F._consolelog = function(params) {
+    F._DEUBUG && console.log(params);
+}
+
+F._consoledir = function(params) {
+    F._DEUBUG && console.dir(params);
+}
+
 F._winWidth = document.documentElement.clientWidth; //window的宽度
 F._winHeight = document.documentElement.clientHeight; //window的高度
 
