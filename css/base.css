@@ -1247,7 +1247,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .footer__b2-m-r5-m-i-img {
+  display: inline-block;
   height: 50px;
+  width: 156px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .footer__b2-m-row6 {
