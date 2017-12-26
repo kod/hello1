@@ -100,7 +100,6 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 if (ret.code !== 10000) return false;
 
                 // var collData = ret.details;
-                console.log(ret);
 
                 if (is_collect(ret.details)) {
                     $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
@@ -175,7 +174,6 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
             }
 
             function set_meta(params) {
-                console.log(params);
                 var str = '\
                 <meta property="fb:app_id" content="375278562897910" />\
                 <meta property="og:type" content="product" />\
@@ -191,9 +189,6 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
 
                 $('head').append(str);
             }
-            console.log(res.data);
-            console.log(res.data.brand_detail);
-            console.log(F.query);
             set_meta({
                 name: res.data.brand_detail.name,
                 imageUrl: res.data.brand_detail.imageUrl,
@@ -1261,8 +1256,6 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
 
         function unlogin_case() {
             function is_exist(array, itemId) {
-                // console.log(array);
-                // console.log(itemId);
                 // return false;
                 var index;
                 var result = false;
@@ -1272,7 +1265,6 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                         result = true;
                     }
                 }
-                console.log(result);
                 return result;
             }
 
@@ -1333,7 +1325,6 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                     detail: JSON.stringify(window.__goodsDetail),
                     _detail: window.__goodsDetail,
                 };
-                // console.log(JSON.stringify([pay_products]));
                 // return false;
                 sessionStorage.setItem("pay_cart_data", JSON.stringify([pay_products]));
 

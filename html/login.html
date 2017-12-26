@@ -569,7 +569,6 @@
             function localToServer() {
                 localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
                 var cartitems = JSON.parse(localStorage.getItem("cart"));
-                console.log(cartitems);
                 F._cart_gate({
                     cartitems: localStorage.getItem("cart")
                 }, function (ret) {

@@ -637,7 +637,6 @@
                         func: function () {
                             var loading = new F._loading();
                             F._order_cancel(function (code) {
-                                console.log(code);
                                 if (!code) return false;
 
                                 loading.show();
@@ -661,7 +660,6 @@
 
             // 支付订单
             function order_pay(params, callback) {
-                console.log(params);
 
                 function normalOrder(params) {
                     if (F.vue.repaymentMonth === 0) { //全额

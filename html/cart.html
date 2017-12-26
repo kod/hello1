@@ -592,7 +592,6 @@
 
             var pre_data = function (data) {
                 var cart_getInfo = data._cart_getInfo;
-                console.log(cart_getInfo);
                 F.vue.LS__data = edit_cartitems(cart_getInfo.cartitems);
 
                 calc(F.vue.LS__data);
@@ -816,7 +815,6 @@
             }
 
             function calc(data) {
-                console.log(data);
                 var i;
                 var productNum = 0;
                 var selectedProductNum = 0;

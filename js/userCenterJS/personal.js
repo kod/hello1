@@ -260,9 +260,6 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                     (month < 10) && (month = '0' + month);
                     (date < 10) && (date = '0' + date);
 
-                    console.log(year);
-                    console.log(month);
-                    console.log(date);
 
                     $('#birthday-year').val(year);
                     $('#birthday-month').val(month);
@@ -290,7 +287,6 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                     result.push(array[index]);
                 }
             }
-            console.log(result);
             return result;
         }
         
@@ -390,7 +386,6 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
         }
 
         var birthday = get_birthday();
-        // console.log(birthday);
         // return false;
 
         userAddDetailInfo({

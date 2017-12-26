@@ -81,7 +81,6 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                 ];
                 break;
         }
-        console.log(result);
         return result;
     }
 
@@ -397,8 +396,6 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                             // $scope.newOrderList[j]["creatData"] = creatData;
                         }
                     }
-                    console.log($scope.orderList);
-                    // console.log($scope.newOrderList);
 
                     if (status == 0 || status == null || status == "99999") {
                         if ($scope.orderList.length == 0) {
@@ -513,7 +510,6 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
     function order_cancel(orderNo, tradeNo) {
         var loading = new F._loading();
         F._order_cancel(function(code) {
-            console.log(code);
             if (!code) return false;
 
             loading.show();
@@ -535,7 +531,6 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
     }
 
     $scope.order_func = function(type, orderNo, tradeNo, tradeStatus) {
-        console.log(type);
         switch (type) {
             case "detail":
             case "pay":
@@ -558,9 +553,6 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
 
     /* tcy 查看订单详情 -start- */
     $scope.openDetail = function(orderNo, tradeNo, typeId, brandId, tradeStatus, imgUrl, subject, key, type) {
-        console.log(key);
-        console.log(type);
-        console.log(tradeStatus);
         if (key > 0) {
             // 按钮
             switch (type) {

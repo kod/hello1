@@ -450,7 +450,6 @@
             var pre_data = function (data) {
                 var findOrderDetails = data._trade_findOrderDetails;
                 F.vue.LS__data = edit_LS__data(findOrderDetails.goodsDetail);
-                console.log(F.vue.LS__data);
             }
 
             F.loadData = function (params, callback) {
@@ -596,7 +595,6 @@
             }
 
             function submit() {
-                // console.log(F.vue.LS__data);
                 if (F.is_submit) {
                     F._confirm('Gợi ý', 'Đừng gửi lại', 'tips', [{
                         name: 'Xác nhận',
@@ -646,7 +644,6 @@
                     return result;
                 }
 
-                // console.log(edit_comments(F.vue.LS__data));
 
                 loading.show();
                 // return false;

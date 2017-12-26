@@ -6,7 +6,6 @@ app.filter("priceFormat", function() {
 
 app.controller("payCtrl", function($scope, $http, $filter) {
     F.LS__data = $scope.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
-    console.log(F.LS__data);
 
     F.subject = $scope.subject = F.LS__data[0].subject;
     F.goodsDetail = $scope.goodsDetail = F.LS__data[0].detail;
@@ -101,10 +100,6 @@ app.controller("payCtrl", function($scope, $http, $filter) {
 
     //	获取分期金额信息接口
     function fenqiAjax(totalamounts, payrate, repaymentmonths) {
-        // console.log(totalamounts);
-        // console.log(payrate);
-        // console.log(repaymentmonths);
-        // return false;
         var url = F._returnMoney_im;
         var ajax = new ajaxClass($http, url, "POST");
 

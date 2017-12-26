@@ -461,7 +461,6 @@
 
         $(".g_byyx-label-mask").on('click', function () {
             F._run_accordionMenu(jQuery, F.SchoolInfo, function (ret) {
-                console.log(ret);
                 if (ret.is_support) $('#g_byyx').val(ret.id);
             });
         });

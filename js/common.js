@@ -4532,7 +4532,6 @@ function openforapp_add() {
         });
         $(".openforapp__right").on("click", function() {
             window.location.href = "buyoovn://www.orangecpp.com:80/mypath?key=mykey";
-            console.log("open");
         });
     }
 }

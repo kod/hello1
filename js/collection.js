@@ -47,8 +47,6 @@ app.controller("collectionCtrl", function($scope, $http, $filter) {
     var _get = function(page, size, callback) {
         if (!F._isLogin()) return false;
 
-        console.log(page);
-        console.log(size);
 
         F.loading.show();
         var url = F._userGetCollection_uc + "?status=0&page=" + page + "&size=" + size;
@@ -155,7 +153,6 @@ app.controller("collectionCtrl", function($scope, $http, $filter) {
                     }
                     $scope.collList = overlist;
                     F.overlist_id = overlist_id;
-                    console.log(F.overlist_id);
 
                     //	   点击单个取消收藏
                     var listgood = [];
@@ -195,7 +192,6 @@ app.controller("collectionCtrl", function($scope, $http, $filter) {
                                 if (self.prop("checked")) brand_id.push(F.overlist_id[index]);
                                 index += 1;
                             });
-                            console.log(brand_id);
                             brand_id = brand_id.join(",");
                             // return false;
 
