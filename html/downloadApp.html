@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="False">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta property="fb:app_id" content="375278562897910" />
+    <meta property="og:type" content="download" />
+    <meta property="og:title" content="buyoo.vn" />
+    <meta property="og:url" content="本地址" />
+    <meta property="og:image" content="二维码图片  内容为本地址链接" />
+    <meta property="og:site_name" content="buyoo.vn" />
+    <meta property="al:ios:url" content="buyoovn://download" />
+    <meta property="al:ios:app_name" content="buyoo" />
+    <meta property="al:android:package" content="com.store.creditstore">
+    <meta property="al:android:app_name" content="buyoo" />
+    <meta property="al:android:url" content="buyoovn://details" />
+    
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <link rel="stylesheet" href="../css/base.css">
+    <title>title</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/md5.js"></script>
+    <script src="../js/require2.3.5.min.js"></script>
+    <style>
+        .body__main {
+            width: auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content" id="vue-el">
+        <section class="body">
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                loading
+            </div>
+        </section>
+    </div>
+    <script>
+        require([
+            '../js/jquery1.11.2',
+            '../js/vue.min',
+            '../js/md5',
+            '../js/common',
+        ], function ($, Vue, md5) {
+            function set_meta(params) {
+                console.log(params);
+                var str = '\
+                <meta property="fb:app_id" content="375278562897910" />\
+                <meta property="og:type" content="download" />\
+                <meta property="og:title" content="buyoo.vn" />\
+                <meta property="og:url" content="'+ params.location.href +'" />\
+                <meta property="og:image" content="二维码图片  内容为本地址链接" />\
+                <meta property="og:site_name" content="buyoo.vn" />\
+                <meta property="al:ios:url" content="buyoovn://download" />\
+                <meta property="al:ios:app_name" content="buyoo" />\
+                <meta property="al:android:package" content="com.store.creditstore">\
+                <meta property="al:android:app_name" content="buyoo" />\
+                <meta property="al:android:url" content="buyoovn://details" />';
+
+                $('head').append(str);
+                // <meta property="al:android:url" content="buyoovn://details?typeId='+ params.typeId +'&brandId='+ params.brandId +'&id='+ params.id +'" />
+            }
+            set_meta({
+                location: window.location,
+            });
+
+            
+            var loading = new F._loading();
+
+            F.vue = {
+                body__main_height: document.documentElement.clientHeight,
+                // img: '../img/bannner_mobile_mi_note5A.jpg',
+            };
+
+            var load = function () {
+                new_vue();
+            };
+
+            var pre_data = function (data) {
+
+            }
+
+            F.loadData = function (params, callback) {
+                if (callback === undefined) callback = params;
+
+                var all_data = {};
+                var request_length = 0; //请求个数
+
+                // 请求是否全部返回
+                function all_loaded() {
+                    if (Object.keys(all_data).length === request_length) {
+                        pre_data(all_data);
+                        // loading.hide();
+                        callback(all_data);
+                    }
+                }
+                
+                // loading.show();
+
+                all_loaded();
+            };
+
+            function new_vue() {
+                F.vue = new Vue({
+                    el: $('#vue-el')[0],
+                    data: F.vue,
+                    methods: {
+                        gohome: gohome,
+                    },
+                    computed: {
+
+                    },
+                });
+            }
+
+            function gohome() {
+                window.location.href = '../index.html';
+            }
+
+            F.loadData(function () {
+                load();
+            });
+        });
+    </script>
+</body>
+
+</html>
