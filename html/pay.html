@@ -120,11 +120,10 @@
                 <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }"
                     ng-click="set_active(index, item.msisdn, item.address, item.username)" ng-repeat="(index, item) in addrlistData">
                     <div class="site__m-i-row1 col-xs-24">
-                        <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username">Xác nhận địa chỉ nhận</div>
-                        <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn">01685968888</div>
+                        <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
+                        <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
                     </div>
-                    <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address">Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ
-                        thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể Địa chỉ cụ thể </div>
+                    <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address"></div>
                     <div class="site__m-i-row3 col-xs-24">
                         <div class="site__m-i-r3-def">
                             <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
