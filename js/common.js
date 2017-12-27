@@ -5210,7 +5210,7 @@ F._baseinfo = function(data, userInfo) {
         for (i = 0; i < data.length; i++) {
             collegename_html += '<li class="actionsheet__list-item js_collegename" data-collegename="' + data[i].id + '" data-staging="' + data[i].staging + '">' + data[i].name + "</li>";
             school_id_name_json[data[i].id] = data[i].name;
-            if (!collegename) collegename = data[i].id;
+            // if (!collegename) collegename = data[i].id; // 默认值
         }
         // collegename = school_id_name_json[collegename];
         collegename__list = collegename_html;
@@ -5218,6 +5218,8 @@ F._baseinfo = function(data, userInfo) {
 
     init(data);
 
+    var school_name = school_id_name_json[collegename] || '';
+    
     var alert__baseinfo_main_height = document.documentElement.clientHeight * 0.924;
 
     var baseinfo_html =
@@ -5359,9 +5361,7 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Tốt nghiệp trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-collegename">\
-                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' +
-        school_id_name_json[collegename] +
-        '</span>\
+                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' + school_name +'</span>\
                                 <span class="actionsheet__right js_collegename" data-collegename="">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
@@ -5710,11 +5710,11 @@ F._baseinfo = function(data, userInfo) {
         $('#sctime-ac').val(admissiontime_year);
 
         
-        if (F._edit_support_school(collegename, data)) {
-            $("#alert__b-m-b-row33").hide();
-        } else {
-            $("#alert__b-m-b-row33").show();
-        }
+        // if (F._edit_support_school(collegename, data)) {
+        //     $("#alert__b-m-b-row33").hide();
+        // } else {
+        //     $("#alert__b-m-b-row33").show();
+        // }
 
         $(".js_sex").on("click", function() {
             var self = $(this);
