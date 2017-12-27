@@ -1,8 +1,6 @@
 if (!window.F) window.F = {};
 
-// F._IP = "http://47.52.21.255";
-// F._IP = "http://47.52.106.165";
-F._IP = "http://192.168.1.100";
+F._IP = "http://47.52.21.255";
 F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
@@ -74,14 +72,16 @@ F._cardMaxNumber = 10; // 单间商品，最多购买件数
 // 1111111111111111
 
 F._DEUBUG = true;
+F._VERSION = "2.0.0";
+console.log("version " + F._VERSION);
 
 F._consolelog = function(params) {
     F._DEUBUG && console.log(params);
-}
+};
 
 F._consoledir = function(params) {
     F._DEUBUG && console.dir(params);
-}
+};
 
 F._winWidth = document.documentElement.clientWidth; //window的宽度
 F._winHeight = document.documentElement.clientHeight; //window的高度
@@ -4463,7 +4463,8 @@ function footer_add() {
                     <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>\
                     <ul class="footer__b2-m-r5-main col-xs-24">\
                         <li class="footer__b2-m-r5-m-item col-xs-24">\
-                            <a href="https://play.google.com/store/apps/details?id=com.store.creditstore" class="footer__b2-m-r5-m-i-img" target="_blank" style="background-image: url(' + dot_str + './img/o23874238947.png);"></a>\
+                            <!-- <a href="https://play.google.com/store/apps/details?id=com.store.creditstore" class="footer__b2-m-r5-m-i-img" target="_blank" style="background-image: url(' + dot_str + './img/o23874238947.png);"></a> -->\
+                            <img src="' + dot_str + './img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">\
                         </li>\
                         <li class="footer__b2-m-r5-m-item col-xs-24">\
                             <img src="' + dot_str + './img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">\
