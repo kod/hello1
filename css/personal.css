@@ -13,7 +13,7 @@ textarea{width:250px;height:80px;margin-bottom:15px;border: 1px solid #ddd;paddi
 .perone i.in2,.perone i.in3{display: none;}
 .perone small{color:#999}
 #sctime-ac,#sctime-ov{padding-left:14px}
-#sctime-ac-m,#sctime-ov-m{width:53px;padding-left: 11px;}
+#sctime-ac-m,#sctime-ov-m{width:70px;padding-left: 11px;}
 
 #addperon .modal-body,#addperon1 .modal-body,#addperon2 .modal-body{text-align: initial;padding-left:80px;padding: 30px;}
 #addperon .modal-body span,#addperon1 .modal-body span,#addperon2 .modal-body span{display: inline-block;width:180px;text-align: right;color:#999;padding-right:8px;line-height: 30px;}

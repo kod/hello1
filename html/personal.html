@@ -211,20 +211,20 @@
                             </select>
                             <br />
                             <span>Khoảng thời gian học</span>
-                            <select name="" id="sctime-ac" style="color: #333;">
-                                <option value=""></option>
-                            </select>
                             <select name="" id="sctime-ac-m" style="color: #333;">
-                                <option value=""></option>
+                                <option value="">Tháng</option>
+                            </select>
+                            <select name="" id="sctime-ac" style="color: #333;">
+                                <option value="">Năm</option>
                             </select>
                             <input type="text" class="times timesup" style="display:none" />
                             <small>Đến</small>
                             <input type="text" class="times timescl" style="display:none" />
-                            <select name="" id="sctime-ov" style="color: #333;">
-                                <option value=""></option>
-                            </select>
                             <select name="" id="sctime-ov-m" style="color: #333;">
-                                <option value=""></option>
+                                <option value="">Tháng</option>
+                            </select>
+                            <select name="" id="sctime-ov" style="color: #333;">
+                                <option value="">Năm</option>
                             </select>
                             <b id="tis" style="color:red;display: none;">sai</b>
                             <p style="color: #aaa; font-weight: 300;padding-left: 150px;margin-top: -20px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</p>
@@ -465,40 +465,40 @@
             });
         });
 
-        function day_options_produce_htmlStr() {
-            var i;
-            var result = '';
-            for (i = 1; i < 32; i++) {
-                (i < 10) && (i = '0' + i);
-                result += '<option value="' + i + '">' + i + '</option>';
-            }
-            return result;
-        }
+        // function day_options_produce_htmlStr() {
+        //     var i;
+        //     var result = '';
+        //     for (i = 1; i < 32; i++) {
+        //         (i < 10) && (i = '0' + i);
+        //         result += '<option value="' + i + '">' + i + '</option>';
+        //     }
+        //     return result;
+        // }
 
-        function month_options_produce_htmlStr() {
-            var i;
-            var result = '';
-            for (i = 1; i < 13; i++) {
-                (i < 10) && (i = '0' + i);
-                result += '<option value="' + i + '">' + i + '</option>';
-            }
-            return result;
-        }
+        // function month_options_produce_htmlStr() {
+        //     var i;
+        //     var result = '';
+        //     for (i = 1; i < 13; i++) {
+        //         (i < 10) && (i = '0' + i);
+        //         result += '<option value="' + i + '">' + i + '</option>';
+        //     }
+        //     return result;
+        // }
 
-        function year_options_produce_htmlStr(val) {
-            val = val || 0;
-            var i;
-            var result = '';
-            var year_now = new Date().getFullYear() + val;
-            for (i = year_now; i > 1900 - 1; i--) {
-                result += '<option value="' + i + '">' + i + '</option>';
-            }
-            return result;
-        }
+        // function year_options_produce_htmlStr(val) {
+        //     val = val || 0;
+        //     var i;
+        //     var result = '';
+        //     var year_now = new Date().getFullYear() + val;
+        //     for (i = year_now; i > 1900 - 1; i--) {
+        //         result += '<option value="' + i + '">' + i + '</option>';
+        //     }
+        //     return result;
+        // }
 
-        var day_options_produce = day_options_produce_htmlStr()
-        var month_options_produce = month_options_produce_htmlStr()
-        var year_options_produce = year_options_produce_htmlStr()
+        var day_options_produce = F._day_options_produce_htmlStr()
+        var month_options_produce = F._month_options_produce_htmlStr()
+        var year_options_produce = F._year_options_produce_htmlStr()
 
         $('#birthday-day').append(day_options_produce);
         $('#birthday-month').append(month_options_produce);

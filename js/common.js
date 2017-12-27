@@ -4119,6 +4119,56 @@ F._getSchoolInfo = function(params, callback) {
 };
 
 // 22222222222222
+
+F._get_birth_day = function (val) {
+    var nD = new Date(val);
+    var year = nD.getFullYear();
+    var month = nD.getMonth() + 1;
+    var date = nD.getDate();
+
+    (month < 10) && (month = '0' + month);
+    (date < 10) && (date = '0' + date);
+
+
+    return {
+        year: year,
+        month: month,
+        date: date,
+    }
+}
+
+
+F._day_options_produce_htmlStr = function() {
+    var i;
+    var result = '';
+    for (i = 1; i < 32; i++) {
+        (i < 10) && (i = '0' + i);
+        result += '<option value="' + i + '">' + i + '</option>';
+    }
+    return result;
+}
+
+F._month_options_produce_htmlStr = function() {
+    var i;
+    var result = '';
+    for (i = 1; i < 13; i++) {
+        (i < 10) && (i = '0' + i);
+        result += '<option value="' + i + '">' + i + '</option>';
+    }
+    return result;
+}
+
+F._year_options_produce_htmlStr = function(val) {
+    val = val || 0;
+    var i;
+    var result = '';
+    var year_now = new Date().getFullYear() + val;
+    for (i = year_now; i > 1900 - 1; i--) {
+        result += '<option value="' + i + '">' + i + '</option>';
+    }
+    return result;
+}
+
 F._run_accordionMenu = function(jQuery, data, callback) {
     function edit_demoListItem(array) {
         var index;
@@ -5111,6 +5161,8 @@ F._baseinfo = function(data, userInfo) {
     var admissiontime = userInfo.admissiontime ? userInfo.admissiontime.slice(0, 7) : "";
     var graduationtime = userInfo.graduationtime ? userInfo.graduationtime.slice(0, 7) : "";
 
+    var get_birth_day = F._get_birth_day(userInfo.birthday);
+
     var headimage = userInfo.headimage || "";
 
     var connectusername = "";
@@ -5136,6 +5188,19 @@ F._baseinfo = function(data, userInfo) {
         connectuseridentification3: userInfo.connectuseridentification3 || ""
     };
 
+    var day_options_produce = F._day_options_produce_htmlStr()
+    var month_options_produce = F._month_options_produce_htmlStr()
+    var year_options_produce = F._year_options_produce_htmlStr()
+
+    var admissiontime_year = admissiontime.slice(0, 4);
+    var admissiontime_month = admissiontime.slice(5, 7);
+
+    var admissiontime_year = admissiontime.slice(0, 4);
+    var admissiontime_month = admissiontime.slice(5, 7);
+
+    var graduationtime_year = graduationtime.slice(0, 4);
+    var graduationtime_month = graduationtime.slice(5, 7);
+    
     var school_id_name_json = {};
 
     function init(data) {
@@ -5362,29 +5427,38 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Ngày Sinh <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet alert__b-m-b-r11-birthday">\
-                                <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' +
-        birthday +
-        '"></span>\
+                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-day">\
+                                    <option value="">Ngày</option>'+ day_options_produce +'\
+                                </select>\
+                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-month">\
+                                    <option value="">Tháng</option>'+ month_options_produce +'\
+                                </select>\
+                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-year">\
+                                    <option value="">Năm</option>'+ year_options_produce +'\
+                                </select>\
+                                <!-- <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' + birthday + '"></span> -->\
                             </div>\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row9 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoảng thời gian học <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
-                            <div class="actionsheet alert__b-m-b-r9-startyear">\
-                                <span class="actionsheet__left"><input type="month" id="MO__admissiontime" value="' +
-        admissiontime +
-        '"></span>\
-                            </div>\
-                            <span class="alert__b-m-b-r9-line">-</span>\
-                            <div class="actionsheet alert__b-m-b-r9-endyear">\
-                                <span class="actionsheet__left"><input type="month" id="MO__graduationtime" value="' +
-        graduationtime +
-        '"></span>\
-                            </div>\
+                            <select name="" class="alert__b-m-b-r9-select" id="sctime-ac-m" style="color: #333;">\
+                                <option value="">Tháng</option>'+ month_options_produce +'\
+                            </select>\
+                            <select name="" class="alert__b-m-b-r9-select" id="sctime-ac" style="color: #333;">\
+                                <option value="">Năm</option>'+ year_options_produce +'\
+                            </select>\
+                            <span style="vertical-align: middle">Đến</span>\
+                            <select name="" class="alert__b-m-b-r9-select" id="sctime-ov-m" style="color: #333;">\
+                                <option value="">Tháng</option>'+ month_options_produce +'\
+                            </select>\
+                            <select name="" class="alert__b-m-b-r9-select" id="sctime-ov" style="color: #333;">\
+                                <option value="">Năm</option>'+ year_options_produce +'\
+                            </select>\
                         </div>\
+                        <div class="alert__b-m-b-row10 col-xs-24" style="padding-top: 5px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div>\
                     </div>\
-                    <div class="alert__b-m-b-row10 col-xs-24">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div>\
                 </div>\
                 <div class="alert__b-m-footer col-xs-24">\
                     <span class="alert__b-m-f-button" id="submit_baseinfo">Xác nhận tồn tại</span>\
@@ -5625,6 +5699,17 @@ F._baseinfo = function(data, userInfo) {
         $("body").append(baseinfo_html);
         $("body").append('<div class="baseinfo__mask" id="baseinfo__mask"></div>');
 
+        $('#birthday-year').val(get_birth_day.year || '');
+        $('#birthday-month').val(get_birth_day.month || '');
+        $('#birthday-day').val(get_birth_day.date || '');
+
+        $('#sctime-ov-m').val(graduationtime_month);
+        $('#sctime-ov').val(graduationtime_year);
+
+        $('#sctime-ac-m').val(admissiontime_month);
+        $('#sctime-ac').val(admissiontime_year);
+
+        
         if (F._edit_support_school(collegename, data)) {
             $("#alert__b-m-b-row33").hide();
         } else {
@@ -5663,6 +5748,39 @@ F._baseinfo = function(data, userInfo) {
     };
 
     var submit = function(callback) {
+        function get_admissiontime() {
+            var result = '';
+            var admissiontime_month =  $('#sctime-ac-m').val();
+            var admissiontime_year = $('#sctime-ac').val();
+            if (admissiontime_month && admissiontime_year) {
+                result = admissiontime_year + '-' + admissiontime_month;
+            }
+            return result;
+        }
+
+        function get_graduationtime() {
+            var result = '';
+            var graduationtime_month = $('#sctime-ov-m').val();
+            var graduationtime_year = $('#sctime-ov').val();
+            if (graduationtime_month && graduationtime_year) {
+                result = graduationtime_year + '-' + graduationtime_month;
+            }
+            return result;
+        }
+        
+        function get_birthday() {
+            var result = '';
+            // 处理生日
+            var birthdayDay = $('#birthday-day').val();
+            var birthdayMonth = $('#birthday-month').val();
+            var birthdayYear = $('#birthday-year').val();
+
+            if (birthdayDay && birthdayMonth && birthdayYear) {
+                result = birthdayYear + '-' + birthdayMonth + '-' + birthdayDay;
+            }
+            return result;
+        }
+        
         username = $("#MO__username").val();
         sex = sex;
         identification = $("#MO__identification").val();
@@ -5673,9 +5791,12 @@ F._baseinfo = function(data, userInfo) {
         department = $("#MO__department").val();
         specialty = $("#MO__specialty").val();
         degree = degree;
-        admissiontime = $("#MO__admissiontime").val();
-        graduationtime = $("#MO__graduationtime").val();
-        birthday = $("#MO__birthday").val();
+        admissiontime = get_admissiontime();
+        graduationtime = get_graduationtime();
+        // admissiontime = $("#MO__admissiontime").val();
+        // graduationtime = $("#MO__graduationtime").val();
+        birthday = get_birthday();
+        // birthday = $("#MO__birthday").val();
         // connectusername1 = connectusername1;
         // connectusermsisdn1 = connectusermsisdn1;
         // connectuserrelation1 = connectuserrelation1;

@@ -251,21 +251,27 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
                 }
 
                 // 处理生日
-                function set_birthday(val) {
-                    var nD = new Date(val);
-                    var year = nD.getFullYear();
-                    var month = nD.getMonth() + 1;
-                    var date = nD.getDate();
+                // function set_birthday(val) {
+                //     var nD = new Date(val);
+                //     var year = nD.getFullYear();
+                //     var month = nD.getMonth() + 1;
+                //     var date = nD.getDate();
 
-                    (month < 10) && (month = '0' + month);
-                    (date < 10) && (date = '0' + date);
+                //     (month < 10) && (month = '0' + month);
+                //     (date < 10) && (date = '0' + date);
 
 
-                    $('#birthday-year').val(year);
-                    $('#birthday-month').val(month);
-                    $('#birthday-day').val(date);
+                //     $('#birthday-year').val(year);
+                //     $('#birthday-month').val(month);
+                //     $('#birthday-day').val(date);
+                // }
+
+                if (res.data.birthday) {
+                    var get_birth_day = F._get_birth_day(res.data.birthday);
+                    $('#birthday-year').val(get_birth_day.year);
+                    $('#birthday-month').val(get_birth_day.month);
+                    $('#birthday-day').val(get_birth_day.date);
                 }
-                if (res.data.birthday) set_birthday(res.data.birthday);
 
             } else {
 

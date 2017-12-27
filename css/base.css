@@ -2161,6 +2161,13 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 0 7px;
 }
 
+.alert__b-m-b-r9-select {
+  height: 35px;
+  width: 80px;
+  border: 1px solid #d7d7d7;
+  font-size: 14px;
+}
+
 .alert__b-m-b-row11 {
   margin-bottom: 25px;
 }
@@ -2168,6 +2175,8 @@ input[type="number"]::-webkit-inner-spin-button {
 .alert__b-m-b-r11-birthday {
   width: 360px;
   margin-right: 5px;
+  border: 0;
+  padding-top: 5px;
 }
 
 .alert__b-m-b-r11-birthday .actionsheet__left {
@@ -2177,6 +2186,14 @@ input[type="number"]::-webkit-inner-spin-button {
 .alert__b-m-b-row11 input {
   width: 330px;
   /*padding-left: 20px;*/
+}
+
+.alert__b-m-b-r11-b-select {
+  height: 35px;
+  width: 110px;
+  border: 1px solid #d7d7d7;
+  font-size: 14px;
+  margin-right: 10px;
 }
 
 .alert__b-m-b-row10 {
