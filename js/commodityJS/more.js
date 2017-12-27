@@ -169,7 +169,7 @@ app.controller("moreCtrl", function($scope, $http) {
     $scope.changeProductType = changeProductType;
 
     window.setTimeout(function() {
-
+        F._consolelog(111111);
         $('.category1-row1-item').on('click', function() {
             $('.category1-row1-item').removeClass('category1-row1-item_active');
             $(this).addClass('category1-row1-item_active');
