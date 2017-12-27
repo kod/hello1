@@ -1,6 +1,8 @@
 if (!window.F) window.F = {};
 
-F._IP = "http://47.52.21.255";
+F._DEUBUG = true;
+
+F._IP = F._DEUBUG ? "http://192.168.1.100" : "http://47.52.21.255";
 F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
@@ -71,7 +73,6 @@ F._PhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
 // 1111111111111111
 
-F._DEUBUG = true;
 F._VERSION = "2.0.0";
 console.log("version " + F._VERSION);
 
