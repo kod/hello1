@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta property="fb:app_id" content="375278562897910" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="<%title%>" />
+    <meta property="og:description" content="Tôi phát hiện trên buyoo.vn có <%title%>, bảo đảm hàng chính hãng, hàng tháng phải trả thấp nhất <%thang%> VND, siêu rẻ, mau mau mua 1 món hàng thôi"
+    />
+    <meta property="og:url" content="<%url%>" />
+    <meta property="og:image" content="<%image%>" />
+    <meta property="og:site_name" content="buyoo.vn" />
+    <meta property="al:ios:url" content="buyoovn://details?typeId=<%typeId%>&brandId=<%brandId%>&id=<%id%>" />
+    <meta property="al:ios:app_name" content="buyoo" />
+    <meta property="al:android:package" content="com.store.creditstore">
+    <meta property="al:android:app_name" content="buyoo" />
+    <meta property="al:android:url" content="buyoovn://details?typeId=<%typeId%>&brandId=<%brandId%>&id=<%id%>" />
+
+    <title>Tình trạng sản phẩm</title>
+</head>
+
+<body>
+</body>
+<script src="http://192.168.1.98/taichiyi_git/WebStore/js/jquery.js"></script>
+<script src="http://192.168.1.98/taichiyi_git/WebStore/js/md5.js"></script>
+<script src="http://192.168.1.98/taichiyi_git/WebStore/js/common.js"></script>
+<script>
+    function joint(data) {
+        var str = "";
+        for (i in data) {
+            if (i !== 'baseurl') {
+                str += "&" + i + "=" + data[i];
+            }
+        }
+        return str.slice(1);
+    }
+
+    F.query = F._hrefUtils.parse().query;
+
+    // location.href = "./details.html?" + joint(F.query);
+</script>
+
+</html>
