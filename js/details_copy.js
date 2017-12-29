@@ -1333,8 +1333,8 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                 // sessionStorage.setItem("buyNum", buyNum);
                 // sessionStorage.setItem("price", price);
                 // sessionStorage.setItem("orgPrice", window.__goodsDetail.orgPrice);
-                // sessionStorage.setItem("fenqiNum", fenqiNum);
-                // sessionStorage.setItem("paymentNum", paymentNum);
+                sessionStorage.setItem("fenqiNum", fenqiNum);
+                sessionStorage.setItem("paymentNum", paymentNum);
                 // sessionStorage.setItem("goodsDetail", JSON.stringify(window.__goodsDetail));
 
                 // payInfo("1", imgUrl, productInfo, buyNum, price, fenqiNum, paymentNum, window.__goodsDetail);

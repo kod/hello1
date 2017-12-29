@@ -5,13 +5,6 @@ app.filter("priceFormat", function() {
 });
 
 app.controller("payCtrl", function($scope, $http, $filter) {
-    F.LS__data = $scope.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
-
-    F.subject = $scope.subject = F.LS__data[0].subject;
-    F.goodsDetail = $scope.goodsDetail = F.LS__data[0].detail;
-    F.fenqiNum = $scope.fenqiNum = 12;
-    F.paymentNum = $scope.paymentNum = "0.5";
-
     F.query = F._hrefUtils.parse().query || {};
     if (F.query && F.query.from === "cart") {
         $scope.isToCart = true;
@@ -20,6 +13,13 @@ app.controller("payCtrl", function($scope, $http, $filter) {
         $scope.isToCart = false;
         F.isToCart = false;
     }
+
+    F.LS__data = $scope.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
+
+    F.subject = $scope.subject = F.LS__data[0].subject;
+    F.goodsDetail = $scope.goodsDetail = F.LS__data[0].detail;
+    F.fenqiNum = $scope.fenqiNum = F.isToCart ? 12 : +sessionStorage.getItem("fenqiNum");
+    F.paymentNum = $scope.paymentNum = F.isToCart ? "0.5" : sessionStorage.getItem("paymentNum") + "";
 
     function calc_allTotalData(array) {
         var i;
@@ -62,8 +62,8 @@ app.controller("payCtrl", function($scope, $http, $filter) {
         }
     });
     $scope.paymentNumChange = function(num) {
-        num = num + '';
-        if (num == '1.0') {
+        num = num + "";
+        if (num == "1.0") {
             $(".moneryIcon,.installment").hide();
 
             $(".fenqiNumBtn button")
