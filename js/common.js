@@ -74,6 +74,10 @@ F._codeExpr = /^[0-9]{6}$/; // 验证码
 F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
 F._PhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
+
+F._google_store = "https://play.google.com/store/apps/details?id=com.store.creditstore"; // 谷歌应用商店
+F._app_store = ""; // 苹果应用商店
+
 // 1111111111111111
 
 F._consolelog = function(params) {
@@ -4514,7 +4518,7 @@ function footer_add() {
                     <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>\
                     <ul class="footer__b2-m-r5-main col-xs-24">\
                         <li class="footer__b2-m-r5-m-item col-xs-24">\
-                            <!-- <a href="https://play.google.com/store/apps/details?id=com.store.creditstore" class="footer__b2-m-r5-m-i-img" target="_blank" style="background-image: url(' + dot_str + './img/o23874238947.png);"></a> -->\
+                            <!-- <a href="" class="footer__b2-m-r5-m-i-img" target="_blank" style="background-image: url(' + dot_str + './img/o23874238947.png);"></a> -->\
                             <img src="' + dot_str + './img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">\
                         </li>\
                         <li class="footer__b2-m-r5-m-item col-xs-24">\
@@ -4593,7 +4597,13 @@ function openforapp_add() {
             $(".openforapp").remove();
         });
         $(".openforapp__right").on("click", function() {
-            window.location.href = "buyoovn://www.orangecpp.com:80/mypath?key=mykey";
+            var url_str = 'buyoovn://www.orangecpp.com:80/mypath?key=mykey';
+            // if (isIOS()) {
+            //     url_str = F._app_store;
+            // } else {
+            //     url_str = F._google_store;
+            // }
+            window.location.href = url_str;
         });
     }
 }
