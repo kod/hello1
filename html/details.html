@@ -144,6 +144,21 @@
             border-style: solid;
             border-color: #9d9d9d transparent transparent transparent;
         }
+
+        .paymentnum-class {
+            height: 27px;
+            width: 100px !important;
+        }
+        
+        /* .body__m-t-i-n-l-input:disabled {
+            border-color: #0076f7;
+        }
+
+        .body__m-t-i-n-right {
+            border-top-color: #0076f7;
+            border-bottom-color: #0076f7;
+            border-right-color: #0076f7;
+        } */
     </style>
 </head>
 
@@ -380,12 +395,12 @@
                         </div>
                     </div>
                     <div ng-controller="instalmentCtrl">
-                        <div class="bl" style="display: none; clear: both; margin-bottom: 20px; ">
+                        <div class="bl" style="display: none1; clear: both; margin-bottom: 20px; ">
                             <div class="left cen-left" style="padding-top:2px;">
                                 Tỉ lệ thanh toán lần đầu:
                             </div>
                             <div class="left cen-right" style="width:250px;">
-                                <select ng-model="paymentNum" ng-init="paymentNum='0.5'">
+                                <select class="paymentnum-class" ng-model="paymentNum" ng-init="paymentNum='0.5'">
                                     <option value="1.0">Trả toàn bộ</option>
                                     <option value="0.2">20%</option>
                                     <option value="0.3">30%</option>

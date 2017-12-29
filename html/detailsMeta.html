@@ -24,23 +24,63 @@
 
 <body>
 </body>
-<script src="http://192.168.1.98/taichiyi_git/WebStore/js/jquery.js"></script>
-<script src="http://192.168.1.98/taichiyi_git/WebStore/js/md5.js"></script>
-<script src="http://192.168.1.98/taichiyi_git/WebStore/js/common.js"></script>
+<!-- <script src="http://www.buyoo.vn/js/jquery.js"></script>
+<script src="http://www.buyoo.vn/js/md5.js"></script>
+<script src="http://www.buyoo.vn/js/common.js"></script> -->
 <script>
+    var hrefUtils = (function (loc) {
+        var utils = {
+            convertQs: function (qs) {
+                var qs = qs || loc.search.substring(1);
+                if (!qs) return null;
+                var qsArr = qs.split(/&/),
+                    qsPar = {};
+                for (var i = 0; i < qsArr.length; i++) {
+                    if (qsArr[i]) {
+                        var nm = qsArr[i].split(/=/);
+                        qsPar[decodeURIComponent(nm[0])] = decodeURIComponent(nm[1] || "");
+                    }
+                }
+                return qsPar;
+            }
+        };
+
+        function parse(url) {
+            var i;
+            var url = url || loc.href;
+            var regExp = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+            var names = ["url", "scheme", "slash", "host", "port", "path", "query", "hash"];
+            var result = regExp.exec(url);
+            var result_format = {};
+
+            for (i = 0; i < names.length; i += 1) {
+                result_format[names[i]] = result[i];
+            }
+            result_format.query = utils.convertQs(result_format.query);
+
+            return result_format;
+        }
+
+        return {
+            parse: parse
+        };
+    })(location);
+
     function joint(data) {
         var str = "";
         for (i in data) {
-            if (i !== 'baseurl') {
+            if (i === 'typeId' || i === 'brandId' || i === 'id') {
                 str += "&" + i + "=" + data[i];
             }
         }
         return str.slice(1);
     }
 
-    F.query = F._hrefUtils.parse().query;
-
-    // location.href = "./details.html?" + joint(F.query);
+    query = hrefUtils.parse().query;
+    console.log(query);
+    console.log(query.url);
+    console.log("http://www.buyoo.vn/html/details.html?" + joint(query));
+    location.href = "http://www.buyoo.vn/html/details.html?" + joint(query);
 </script>
 
 </html>

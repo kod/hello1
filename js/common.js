@@ -64,6 +64,7 @@ F._cart_gate_cd = F._IP + ":8185/fun/commodity/cart/gate"; // 购物车-添加
 F._cart_remove_cd = F._IP + ":8185/fun/commodity/cart/remove"; // 购物车-删除
 F._cart_changeNum_cd = F._IP + ":8185/fun/commodity/cart/changeNum"; // 购物车-更新商品数量
 F._cart_getInfo_cd = F._IP + ":8185/fun/commodity/cart/getInfo"; // 购物车列表
+F._getHTML_cd = F._IP + ":8185/fun/commodity/getHTML"; //
 F._uploadFiles_uf = F._IP + ":8180/fun/userfile/uploadFiles"; // 上传用户头像
 F._collectFiles_uf = F._IP + ":8180/fun/userfile/collectFiles"; // 用户评论上传图片
 F._returnMoney_im = F._IP + ":8184/fun/installment/returnMoney"; //
