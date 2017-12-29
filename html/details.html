@@ -328,9 +328,9 @@
                     </div>
                     <!--一个属性-->
                     <div class="bb" id="diannao" style="display: none;">
-                        <div class="ys">
+                        <div class="ys" style="margin-bottom:10px;">
                             <div class="left cen-left">
-                                <span ng-bind="propertiesDetail[0].name+' :'"></span>
+                                <span ng-bind="propertiesDetail[0].name+' :'" style="padding-top: 5px;"></span>
                             </div>
                             <!-- <div class="left cen-right">
                                 <span ng-repeat="item in propertiesDetail | filter : classify" ng-click="change(item)">
@@ -347,7 +347,7 @@
                         </div>
                     </div>
                     <div class="bl2" style="margin-bottom: 10px;">
-                        <div class="left cen-left" style="padding-top:5px; margin-bottom: 10px;">
+                        <div class="left cen-left" style="padding-top:8px; margin-bottom: 10px;">
                             Số lượng:
                         </div>
                         <input type="hidden" name="" id="fenqiNumIpt" value="1" />
@@ -357,7 +357,7 @@
                                     <input type="text" class="body__m-t-i-n-l-input" value="1" v-model="buyNum" disabled>
                                 </div>
                                 <div class="body__m-t-i-n-right">
-                                    <div class="body__m-t-i-n-r-top" :class="{'body__m-t-i-n-r-top_disable': buyNum >= store}" @click="plus()">
+                                    <div class="body__m-t-i-n-r-top" :class="{'body__m-t-i-n-r-top_disable': buyNum >= F._cardMaxNumber}" @click="plus()">
                                         <span class="body__m-t-i-n-r-t-arrow"></span>
                                     </div>
                                     <div class="body__m-t-i-n-r-bottom" :class="{'body__m-t-i-n-r-bottom_disable': buyNum <= 1}" @click="minus()">
@@ -610,6 +610,7 @@
 
     function plus() {
         if (F.vue.buyNum >= F.vue.store) return false;
+        if (F.vue.buyNum >= F._cardMaxNumber) return false;
         F.vue.buyNum += 1;
     }
 
