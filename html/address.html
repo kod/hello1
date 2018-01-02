@@ -107,7 +107,7 @@
                 <div class="right one-right" ng-controller="addCtrl">
                     <h2>Đia chỉ nhận hàng của tôi </h2>
                     <h5>Đã thêm <span ng-bind="addrlistLength"></span>địa chỉ nhận  hàng , Có thể thêm tối đã 5 địa chỉ nhận  hàng</h5>
-                    <section class="site" id="one" ng-controller="addCtrl">
+                    <section class="site" id="one">
                         <!-- <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div> -->
                         <div class="site__main col-xs-24">
                             <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }" ng-click="set_active(index)" ng-repeat="(index, item) in addrlistData">
@@ -115,86 +115,37 @@
                                     <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                                     <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
                                 </div>
-                                <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address"></div>
+                                <div class="site__m-i-row2 js_address col-xs-24">
+                                    <div ng-bind="item.address"></div>
+                                    <div ng-bind="item.wardsName + ', ' + item.districtsName + ', ' + item.provincesName"></div>
+                                </div>
                                 <div class="site__m-i-row3 col-xs-24">
                                     <div class="site__m-i-r3-def">
-                                        <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
+                                        <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username,item.wards_id,item.districts_id,item.provinces_id)">Đặt làm mặc định</span>
                                         <span class="site__m-i-r3-f-status">mặc định</span>
                                     </div>
-                                    <div class="site__m-i-r3-edit" data-toggle="modal" data-target="#myModal" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)">
+                                    <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,districts_id:item.districts_id,provinces_id:item.provinces_id,wards_id:item.wards_id,model:'modify'})">
+                                    <!-- <div class="site__m-i-r3-edit" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)"> -->
                                         <span class="site__m-i-r3-e-text">Sửa</span>
                                     </div>
                                     <div class="site__m-i-r3-del">
                                         <span class="site__m-i-r3-d-text" ng-click="remove(item.id)">Xoá</span>
                                     </div>
+                                    <div id="myModal123-label" data-toggle="modal" data-target="#myModal123" style="opacity: 0;"></div>
                                 </div>
                                 <div class="site__m-i-row4">√</div>
                             </li>
-                            <div class="site__main-add" ng-click="addppp()" data-toggle="modal" data-target="#myModal">
+                            <div class="site__main-add" ng-click="addppp()">
                                 <div class="site__m-a-row1"></div>
                                 <div class="site__m-a-row2">Thêm địa chỉ nhận hàng</div>
                             </div>
                         </div>
                     </section>
-                    <!-- <ul style="overflow: hidden;" class="address">
-                        <li class="li" ng-class="{act:item.isdefault=='Y'}" ng-repeat="item in addrlistData">
-                            <div class="add-top">
-                                <div class="left" ng-bind="item.username"></div>
-                                <div class="right" ng-bind="item.msisdn"></div>
-                            </div>
-                            <p ng-bind="item.address"></p>
-                            <div class="default"> Địa chỉ nhận hàng mặc định</div>
-                            <div class="foot_title">
-                                <span class="moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
-                                <span class="xg" data-toggle="modal" data-target="#myModal" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)">Sửa</span>
-                                <span class="sc" ng-click="remove(item.id)">Xoá</span>
-                            </div>
-                        </li>
-                        <li class="addAddrli" ng-click="addppp()" data-toggle="modal" data-target="#myModal">
-                            <img src="../img/addaddr.jpg" alt="" />
-                            <div class="addaddress">
-                                <img src="../img/addaddr_03.png" alt="" />
-                                <span>Thêm địa chỉ nhận hàng</span>
-                            </div>
-                        </li>
-                    </ul> -->
                 </div>
             </div>
         </div>
     </article>
     <!-- 弹出模态框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="left">Địa chỉ nhận hàng</div>
-                    <div class="right" data-dismiss="modal" ng-blur="phoneNum=''"><span class="alert__b-m-t-close"></span></div>
-                </div>
-                <div class="modal-body">
-                    <span>Người nhận hàng</span>
-                    <input type="name" name="" id="names" value="" placeholder="Vui lòng nhập tên người nhận hàng" />
-                    <br />
-                    <span>Số điện thoại</span>
-                    <input type="text" ng-model="phoneNum" name="" id="phone" value="" placeholder="Vui lòng nhập số điện thoại" maxlength="20" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
-                    <br />
-                    <!--<span style="width: 74px;">收货地址</span> <select id="province" runat="server" onchange="selectprovince(this);" style=" width:120px;" name="city"></select>     <select id="city" runat="server" name="city_s" style="width:120px;" ></select>-->
-                    <div class="area">
-                        <div class="left">
-                            <span>Địa chỉ cụ thể</span>
-                        </div>
-                        <div class="left areatext">
-                            <textarea name="" id="textarea" rows="" cols="" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng"></textarea>
-                        </div>
-                    </div>
-                    <h4 id="errormsg" class="errormsg"><img src="../img/tishi.png"><small>Tên và số điện thoại không được để trống....</small></h4>
-                    <a class="rc rcone" ng-click="submit()" style="display: none;">Xác nhận thông tin chính xác và lưu</a>
-                    <a class="rc rctwo" ng-click="submits()">Xác nhận thông tin chính xác và lưu</a>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal -->
-    </div>
     <!-- 弹出模态框（更换头像） -->
     <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

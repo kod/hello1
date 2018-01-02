@@ -167,21 +167,21 @@ app.controller("payCtrl", function($scope, $http, $filter) {
 app.controller("addCtrl", function($scope, $http, $filter) {
     var loading = new F._loading();
     loading.show();
-    F._userAction_userViewAddr({}, function(ret) {
-        loading.hide();
-        if (!ret) return false;
-        if (ret.code !== 10000) return false;
+    // F._userAction_userViewAddr({}, function(ret) {
+    //     loading.hide();
+    //     if (!ret) return false;
+    //     if (ret.code !== 10000) return false;
 
-        $scope.addrlistData = [];
-        $scope.addrlistData = ret.details;
-        $scope.addrlistLength = ret.details.length;
+    //     $scope.addrlistData = [];
+    //     $scope.addrlistData = ret.details;
+    //     $scope.addrlistLength = ret.details.length;
 
-        $scope.$watch("addrlistLength", function(n) {
-            if (n > 4) {
-                $(".addAddrli").css("display", "none");
-            }
-        });
-    });
+    //     $scope.$watch("addrlistLength", function(n) {
+    //         if (n > 4) {
+    //             $(".addAddrli").css("display", "none");
+    //         }
+    //     });
+    // });
 
     var url = F._userAction_userViewAddr_uc;
     var ajax = new ajaxClass($http, url, "POST");
@@ -285,48 +285,63 @@ app.controller("addCtrl", function($scope, $http, $filter) {
 });
 //	新增地址接口
 app.controller("addressCtrl", function($scope, $http, $filter) {
-    $scope.addppp = function() {
-        $("#names").val("");
-        $("#phone").val("");
-        $("#textarea").val("");
-        $(".rcone").hide();
-        $(".rctwo").show();
-        $scope.submits = function() {
-            event.stopPropagation();
-            var na = $("#names").val();
-            var ph = $("#phone").val();
-            var ta = $("#textarea").val();
-
-            if (ta.length == 0 || na.length == 0 || ph.length == 0) {
-                $("#errormsg").show();
-                $("#errormsg").html("Tên và số điện thoại không được để trống");
-            } else {
-                if (F._submits_ing) return false;
-                F._submits_ing = true;
-
-                $("#errormsg").hide();
-                $("#errormsg").html("");
-
-                var loading = new F._loading();
-                loading.show();
-                F._userAction_userAddAddr(
-                    {
-                        msisdn: $("#phone").val(),
-                        address: $("#textarea").val(),
-                        isdefault: "Y",
-                        username: $("#names").val()
-                    },
-                    function(ret) {
-                        loading.hide();
-                        F._submits_ing = false;
-                        if (!ret) return false;
-
-                        if (ret.code === 10000) history.go(0);
-                    }
-                );
-            }
-        };
+    console.log(22222);
+    $scope.addppp = function(params) {
+        console.log(111111);
+        F._add_edit_address({
+            id: "",
+            isdefault: "",
+            msisdn: "",
+            address: "",
+            username: "",
+            districts_id: "",
+            provinces_id: "",
+            wards_id: ""
+        });
     };
+
+    // $scope.addppp = function() {
+    //     $("#names").val("");
+    //     $("#phone").val("");
+    //     $("#textarea").val("");
+    //     $(".rcone").hide();
+    //     $(".rctwo").show();
+    //     $scope.submits = function() {
+    //         event.stopPropagation();
+    //         var na = $("#names").val();
+    //         var ph = $("#phone").val();
+    //         var ta = $("#textarea").val();
+
+    //         if (ta.length == 0 || na.length == 0 || ph.length == 0) {
+    //             $("#errormsg").show();
+    //             $("#errormsg").html("Tên và số điện thoại không được để trống");
+    //         } else {
+    //             if (F._submits_ing) return false;
+    //             F._submits_ing = true;
+
+    //             $("#errormsg").hide();
+    //             $("#errormsg").html("");
+
+    //             var loading = new F._loading();
+    //             loading.show();
+    //             F._userAction_userAddAddr(
+    //                 {
+    //                     msisdn: $("#phone").val(),
+    //                     address: $("#textarea").val(),
+    //                     isdefault: "Y",
+    //                     username: $("#names").val()
+    //                 },
+    //                 function(ret) {
+    //                     loading.hide();
+    //                     F._submits_ing = false;
+    //                     if (!ret) return false;
+
+    //                     if (ret.code === 10000) history.go(0);
+    //                 }
+    //             );
+    //         }
+    //     };
+    // };
 
     //	默认地址
     $scope.moren = function($id, $isdefault, $msisdn, $address, $username) {
@@ -364,39 +379,44 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
             .addClass("site__main-item_active");
     };
 
-    //	修改地址
-    $scope.xiugai = function($id, $isdefault, $msisdn, $address, $username) {
-        $("#errormsg").hide();
-        $("#errormsg").html("");
-        $("#names").val($username);
-        $("#phone").val($msisdn);
-        $("#textarea").val($address);
-
-        $(".rcone").show();
-        $(".rctwo").hide();
-        $scope.submit = function() {
-            if ($("#errormsg").is(":hidden")) {
-                var loading = new F._loading();
-                loading.show();
-                F._userAction_userModifyAddr(
-                    {
-                        addrid: $id,
-                        msisdn: $("#phone").val(),
-                        address: $("#textarea").val(),
-                        isdefault: $isdefault,
-                        username: $("#names").val()
-                    },
-                    function(ret) {
-                        loading.hide();
-                        if (!ret) return false;
-                        if (ret.code !== 10000) return false;
-
-                        window.location.reload();
-                    }
-                );
-            }
-        };
+    $scope.xiugai = function(params) {
+        F._add_edit_address(params);
     };
+
+    //	修改地址
+    // $scope.xiugai = function($id, $isdefault, $msisdn, $address, $username) {
+    //     $("#errormsg").hide();
+    //     $("#errormsg").html("");
+    //     $("#names").val($username);
+    //     $("#phone").val($msisdn);
+    //     $("#textarea").val($address);
+
+    //     $(".rcone").show();
+    //     $(".rctwo").hide();
+    //     $scope.submit = function() {
+    //         if ($("#errormsg").is(":hidden")) {
+    //             var loading = new F._loading();
+    //             loading.show();
+    //             F._userAction_userModifyAddr(
+    //                 {
+    //                     addrid: $id,
+    //                     msisdn: $("#phone").val(),
+    //                     address: $("#textarea").val(),
+    //                     isdefault: $isdefault,
+    //                     username: $("#names").val()
+    //                 },
+    //                 function(ret) {
+    //                     loading.hide();
+    //                     if (!ret) return false;
+    //                     if (ret.code !== 10000) return false;
+
+    //                     window.location.reload();
+    //                 }
+    //             );
+    //         }
+    //     };
+    // };
+
     //  删除地址
     $scope.remove = function($id) {
         event.stopPropagation();

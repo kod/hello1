@@ -2347,7 +2347,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 12px;
   min-height: 63px;
   line-height: 1.5;
-  font-weight: bold;
+  /* font-weight: bold; */
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,6 +1,6 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = false;
+F._DEUBUG = true;
 
 F._VERSION = "2.0.0";
 console.log("version " + F._VERSION);
@@ -119,7 +119,6 @@ F._encrypt_MD5 = function(params, Key) {
     return md5(md5EncryptStrig);
 };
 
-
 // 获取省市区
 F._getCityInfos = function(params, callback) {
     if (!F._isLogin()) return false;
@@ -154,7 +153,7 @@ F._getCityInfos = function(params, callback) {
         encrypt: encrypt,
         timestamp: timestamp,
         version: version,
-        pid: pid,
+        pid: pid
     };
 
     $.ajax({
@@ -1052,6 +1051,9 @@ F._userAction_userModifyAddr = function(params, callback) {
     var address = params.address;
     var isdefault = params.isdefault;
     var username = params.username;
+    var districtsid = params.districtsid;
+    var provincesid = params.provincesid;
+    var wardsid = params.wardsid;
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
@@ -1080,6 +1082,18 @@ F._userAction_userModifyAddr = function(params, callback) {
             {
                 key: "username",
                 value: username
+            },
+            {
+                key: "districtsid",
+                value: districtsid
+            },
+            {
+                key: "provincesid",
+                value: provincesid
+            },
+            {
+                key: "wardsid",
+                value: wardsid
             }
         ],
         Key
@@ -1098,7 +1112,10 @@ F._userAction_userModifyAddr = function(params, callback) {
         msisdn: msisdn,
         address: address,
         isdefault: isdefault,
-        username: username
+        username: username,
+        districtsid: districtsid,
+        provincesid: provincesid,
+        wardsid: wardsid
     };
 
     $.ajax({
@@ -1196,7 +1213,7 @@ F._userAction_userAddAddr = function(params, callback) {
             {
                 key: "wardsid",
                 value: wardsid
-            },
+            }
         ],
         Key
     );
@@ -1216,7 +1233,7 @@ F._userAction_userAddAddr = function(params, callback) {
         username: username,
         districtsid: districtsid,
         provincesid: provincesid,
-        wardsid: wardsid,
+        wardsid: wardsid
     };
 
     $.ajax({
@@ -4209,54 +4226,371 @@ F._getSchoolInfo = function(params, callback) {
 
 // 22222222222222
 
-F._get_birth_day = function (val) {
+
+F._add_edit_address = function(params) {
+    var is_modify = !!params.id;
+
+    function edit_address(data) {
+        var provinces_data = data.provinces_data || [];
+        var districts_data = data.districts_data || [];
+        var wards_data = data.wards_data || [];
+
+        function edit_provinces_option(data) {
+            var i;
+            var result = '<option value="">Lựa chọn</option>';
+            for (i = 0; i < data.length; i++) {
+                result += '<option class="provinces-item" value="' + data[i].id + '" data-pid="' + data[i].id + '">' + data[i].name + "</option>";
+            }
+            return result;
+        }
+        function edit_districts_option(data) {
+            var i;
+            var result = '<option value="">Lựa chọn</option>';
+            for (i = 0; i < data.length; i++) {
+                result += '<option class="districts-item" value="' + data[i].id + '" data-pid="' + data[i].id + '">' + data[i].name + "</option>";
+            }
+            return result;
+        }
+        function edit_wards_option(data) {
+            var i;
+            var result = '<option value="">Lựa chọn</option>';
+            for (i = 0; i < data.length; i++) {
+                result += '<option class="wards-item" value="' + data[i].id + '" data-pid="' + data[i].id + '">' + data[i].name + "</option>";
+            }
+            return result;
+        }
+        var html_str = '\
+        <div class="modal fade" id="myModal123" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
+            <div class="modal-dialog">\
+                <div class="modal-content">\
+                    <div class="modal-header">\
+                        <div class="left">Địa chỉ nhận hàng</div>\
+                        <div class="right" data-dismiss="modal" ng-blur="phoneNum=\'\'"><span class="alert__b-m-t-close"></span></div>\
+                    </div>\
+                    <div class="modal-body">\
+                        <span>Tên *</span>\
+                        <input type="name" name="" id="names" value="' + params.username + '" placeholder="Vui lòng nhập tên người nhận hàng" />\
+                        <br />\
+                        <span style="padding-top:0px;">Địa chỉ nhận hàng * (tầng, số nhà, đường)</span>\
+                        <input type="text" name="" id="textarea" placeholder="" value="' + params.address + '">\
+                        <br />\
+                        <span>Tỉnh/Thành phố *</span>\
+                        <select name="" id="provincesid">\
+                            <option value="">Lựa chọn</option>\
+                        </select>\
+                        <br />\
+                        <span>Quận/huyện *</span>\
+                        <select name="" id="districtsid">\
+                            <option value="">Lựa chọn</option>\
+                        </select>\
+                        <br />\
+                        <span>Phường, xã *</span>\
+                        <select name="" id="wardsid">\
+                            <option value="">Lựa chọn</option>\
+                        </select>\
+                        <br />\
+                        <span>Số điện thoại *</span>\
+                        <input type="text" ng-model="phoneNum" name="" id="phone" value="' + params.msisdn + '" placeholder="Vui lòng nhập số điện thoại" maxlength="20" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
+                        <br />\
+                        <!--<div class="area">\
+                            <div class="left">\
+                                <span>Địa chỉ cụ thể</span>\
+                            </div>\
+                            <div class="left areatext">\
+                                <textarea name="" id="" rows="" cols="" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng"></textarea>\
+                            </div>\
+                        </div>-->\
+                        <h4 id="errormsg" class="errormsg"><img src="../img/tishi.png"><small>Tên và số điện thoại không được để trống....</small></h4>\
+                        <a class="rc rcone" ng-click="submit()" style="display: none;">Xác nhận thông tin chính xác và lưu</a>\
+                        <a class="rc rctwo" id="add-address-submit">Xác nhận thông tin chính xác và lưu</a>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>';
+
+        $("body").append(html_str);
+
+        $("#provincesid").html(edit_provinces_option(provinces_data));
+        $("#districtsid").html(edit_districts_option(districts_data));
+        $("#wardsid").html(edit_wards_option(wards_data));
+
+        $("#provincesid").val(params.provinces_id);
+        $("#districtsid").val(params.districts_id);
+        $("#wardsid").val(params.wards_id);
+
+        $("#myModal123-label").click();
+
+        $(".modal-dialog").on("click", function(event) {
+            event.stopPropagation();
+        });
+
+        $(".alert__b-m-t-close").on("click", function() {
+            $("#myModal123").click();
+        });
+
+        $("#myModal123").on("click", function() {
+            setTimeout(function() {
+                $("#myModal123").remove();
+                $(".modal-backdrop").remove();
+            }, 500);
+        });
+
+        $("#provincesid").on("change", function() {
+            $("#wardsid").html('<option value="">Lựa chọn</option>');
+            var self = $(this);
+            var id = self.val();
+            if (!id) {
+                $("#districtsid").html('<option value="">Lựa chọn</option>');
+                return false;
+            }
+            loading.show();
+            F._getCityInfos(
+                {
+                    pid: id
+                },
+                function(ret) {
+                    loading.hide();
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+
+                    $("#districtsid").html(edit_districts_option(ret.details));
+                    $("#districtsid").on("change", function() {
+                        var self = $(this);
+                        var id = self.val();
+                        if (!id) {
+                            $("#wardsid").html('<option value="">Lựa chọn</option>');
+                            return false;
+                        }
+                        loading.show();
+                        F._getCityInfos(
+                            {
+                                pid: id
+                            },
+                            function(ret) {
+                                loading.hide();
+                                if (!ret) return false;
+                                if (ret.code !== 10000) return false;
+                                $("#wardsid").html(edit_wards_option(ret.details));
+                                $("#wardsid").on("change", function() {
+                                    var self = $(this);
+                                    var id = self.val();
+                                    if (!id) return false;
+                                });
+                            }
+                        );
+                    });
+                }
+            );
+        });
+
+        $("#add-address-submit").on("click", function() {
+            submits();
+        });
+
+        var submits = function() {
+            if (!F._isLogin()) return false;
+
+            var name = $("#names").val();
+            var phone = $("#phone").val();
+            var textarea = $("#textarea").val();
+            var provincesid = $("#provincesid").val();
+            var districtsid = $("#districtsid").val();
+            var wardsid = $("#wardsid").val();
+            console.log(name);
+            console.log(phone);
+            console.log(textarea);
+            console.log(provincesid);
+            console.log(districtsid);
+            console.log(wardsid);
+
+            if (!F._phoneExpr.test(phone)) {
+                $("#errormsg small").html("Số điện thoại sai");
+                $("#errormsg").show();
+                return false;
+            }
+
+            if (name.length < 2) {
+                $("#errormsg small").html("Tên sai");
+                $("#errormsg").show();
+                return false;
+            }
+
+            if (textarea.length < 1) {
+                $("#errormsg small").html("Địa chỉ nhận hàng sai");
+                $("#errormsg").show();
+                return false;
+            }
+
+            if (!provincesid) {
+                $("#errormsg small").html("Tỉnh/Thành phố sai");
+                $("#errormsg").show();
+                return false;
+            }
+
+            if (!districtsid) {
+                $("#errormsg small").html("Quận/huyện sai");
+                $("#errormsg").show();
+                return false;
+            }
+
+            if (!wardsid) {
+                $("#errormsg small").html("Phường, xã sai");
+                $("#errormsg").show();
+                return false;
+            }
+
+            $("#errormsg").hide();
+            $("#errormsg small").html("");
+
+            var loading = new F._loading();
+            loading.show();
+
+            console.log(is_modify);
+            if (is_modify) {
+                F._userAction_userModifyAddr(
+                    {
+                        addrid: params.id,
+                        msisdn: phone,
+                        address: textarea,
+                        isdefault: params.isdefault,
+                        username: name,
+                        districtsid: districtsid,
+                        provincesid: provincesid,
+                        wardsid: wardsid
+                    },
+                    function(ret) {
+                        loading.hide();
+                        if (!ret) return false;
+                        if (ret.code !== 10000) return false;
+
+                        window.location.reload();
+                    }
+                );
+            } else {
+                F._userAction_userAddAddr(
+                    {
+                        msisdn: phone,
+                        address: textarea,
+                        isdefault: "Y",
+                        username: name,
+                        districtsid: districtsid,
+                        provincesid: provincesid,
+                        wardsid: wardsid
+                    },
+                    function(ret) {
+                        loading.hide();
+
+                        if (!ret) return false;
+
+                        if (ret.code === 10000) window.location.reload();
+                    }
+                );
+            }
+        };
+
+        $(".rcone").hide();
+        $(".rctwo").show();
+    }
+
+    loading.show();
+    
+    var all_data = {};
+    var request_length = (is_modify && params.provinces_id) ? 3 : 1; //请求个数
+
+    F._getCityInfos(
+        {
+            pid: "1"
+        },
+        function(ret) {
+            loading.hide();
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+            all_data.provinces_data = ret.details;
+            all_loaded();
+        }
+    );
+
+    if (is_modify && params.provinces_id) {
+        F._getCityInfos(
+            {
+                pid: params.provinces_id
+            },
+            function(ret) {
+                loading.hide();
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+                all_data.districts_data = ret.details;
+                all_loaded();
+            }
+        );
+        F._getCityInfos(
+            {
+                pid: params.districts_id
+            },
+            function(ret) {
+                loading.hide();
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+                all_data.wards_data = ret.details;
+                all_loaded();
+            }
+        );
+    }
+
+    function all_loaded() {
+        if (Object.keys(all_data).length === request_length) {
+            edit_address(all_data);
+            loading.hide();
+        }
+    }
+}
+
+F._get_birth_day = function(val) {
     var nD = new Date(val);
     var year = nD.getFullYear();
     var month = nD.getMonth() + 1;
     var date = nD.getDate();
 
-    (month < 10) && (month = '0' + month);
-    (date < 10) && (date = '0' + date);
-
+    month < 10 && (month = "0" + month);
+    date < 10 && (date = "0" + date);
 
     return {
         year: year,
         month: month,
-        date: date,
-    }
-}
-
+        date: date
+    };
+};
 
 F._day_options_produce_htmlStr = function() {
     var i;
-    var result = '';
+    var result = "";
     for (i = 1; i < 32; i++) {
-        (i < 10) && (i = '0' + i);
-        result += '<option value="' + i + '">' + i + '</option>';
+        i < 10 && (i = "0" + i);
+        result += '<option value="' + i + '">' + i + "</option>";
     }
     return result;
-}
+};
 
 F._month_options_produce_htmlStr = function() {
     var i;
-    var result = '';
+    var result = "";
     for (i = 1; i < 13; i++) {
-        (i < 10) && (i = '0' + i);
-        result += '<option value="' + i + '">' + i + '</option>';
+        i < 10 && (i = "0" + i);
+        result += '<option value="' + i + '">' + i + "</option>";
     }
     return result;
-}
+};
 
 F._year_options_produce_htmlStr = function(val) {
     val = val || 0;
     var i;
-    var result = '';
+    var result = "";
     var year_now = new Date().getFullYear() + val;
     for (i = year_now; i > 1900 - 1; i--) {
-        result += '<option value="' + i + '">' + i + '</option>';
+        result += '<option value="' + i + '">' + i + "</option>";
     }
     return result;
-}
+};
 
 F._run_accordionMenu = function(jQuery, data, callback) {
     function edit_demoListItem(array) {
@@ -4682,7 +5016,7 @@ function openforapp_add() {
             $(".openforapp").remove();
         });
         $(".openforapp__right").on("click", function() {
-            var url_str = 'buyoovn://www.orangecpp.com:80/mypath?key=mykey';
+            var url_str = "buyoovn://www.orangecpp.com:80/mypath?key=mykey";
             // if (isIOS()) {
             //     url_str = F._app_store;
             // } else {
@@ -5283,9 +5617,9 @@ F._baseinfo = function(data, userInfo) {
         connectuseridentification3: userInfo.connectuseridentification3 || ""
     };
 
-    var day_options_produce = F._day_options_produce_htmlStr()
-    var month_options_produce = F._month_options_produce_htmlStr()
-    var year_options_produce = F._year_options_produce_htmlStr()
+    var day_options_produce = F._day_options_produce_htmlStr();
+    var month_options_produce = F._month_options_produce_htmlStr();
+    var year_options_produce = F._year_options_produce_htmlStr();
 
     var admissiontime_year = admissiontime.slice(0, 4);
     var admissiontime_month = admissiontime.slice(5, 7);
@@ -5295,7 +5629,7 @@ F._baseinfo = function(data, userInfo) {
 
     var graduationtime_year = graduationtime.slice(0, 4);
     var graduationtime_month = graduationtime.slice(5, 7);
-    
+
     var school_id_name_json = {};
 
     function init(data) {
@@ -5313,8 +5647,8 @@ F._baseinfo = function(data, userInfo) {
 
     init(data);
 
-    var school_name = school_id_name_json[collegename] || '';
-    
+    var school_name = school_id_name_json[collegename] || "";
+
     var alert__baseinfo_main_height = document.documentElement.clientHeight * 0.924;
 
     var baseinfo_html =
@@ -5456,7 +5790,9 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Tốt nghiệp trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-collegename">\
-                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' + school_name +'</span>\
+                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' +
+        school_name +
+        '</span>\
                                 <span class="actionsheet__right js_collegename" data-collegename="">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
@@ -5523,15 +5859,23 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet alert__b-m-b-r11-birthday">\
                                 <select name="" class="alert__b-m-b-r11-b-select" id="birthday-day">\
-                                    <option value="">Ngày</option>'+ day_options_produce +'\
+                                    <option value="">Ngày</option>' +
+        day_options_produce +
+        '\
                                 </select>\
                                 <select name="" class="alert__b-m-b-r11-b-select" id="birthday-month">\
-                                    <option value="">Tháng</option>'+ month_options_produce +'\
+                                    <option value="">Tháng</option>' +
+        month_options_produce +
+        '\
                                 </select>\
                                 <select name="" class="alert__b-m-b-r11-b-select" id="birthday-year">\
-                                    <option value="">Năm</option>'+ year_options_produce +'\
+                                    <option value="">Năm</option>' +
+        year_options_produce +
+        '\
                                 </select>\
-                                <!-- <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' + birthday + '"></span> -->\
+                                <!-- <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' +
+        birthday +
+        '"></span> -->\
                             </div>\
                         </div>\
                     </div>\
@@ -5539,17 +5883,25 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoảng thời gian học <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ac-m" style="color: #333;">\
-                                <option value="">Tháng</option>'+ month_options_produce +'\
+                                <option value="">Tháng</option>' +
+        month_options_produce +
+        '\
                             </select>\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ac" style="color: #333;">\
-                                <option value="">Năm</option>'+ year_options_produce +'\
+                                <option value="">Năm</option>' +
+        year_options_produce +
+        '\
                             </select>\
                             <span style="vertical-align: middle">Đến</span>\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ov-m" style="color: #333;">\
-                                <option value="">Tháng</option>'+ month_options_produce +'\
+                                <option value="">Tháng</option>' +
+        month_options_produce +
+        '\
                             </select>\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ov" style="color: #333;">\
-                                <option value="">Năm</option>'+ year_options_produce +'\
+                                <option value="">Năm</option>' +
+        year_options_produce +
+        '\
                             </select>\
                         </div>\
                         <div class="alert__b-m-b-row10 col-xs-24" style="padding-top: 5px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div>\
@@ -5794,17 +6146,16 @@ F._baseinfo = function(data, userInfo) {
         $("body").append(baseinfo_html);
         $("body").append('<div class="baseinfo__mask" id="baseinfo__mask"></div>');
 
-        $('#birthday-year').val(get_birth_day.year || '');
-        $('#birthday-month').val(get_birth_day.month || '');
-        $('#birthday-day').val(get_birth_day.date || '');
+        $("#birthday-year").val(get_birth_day.year || "");
+        $("#birthday-month").val(get_birth_day.month || "");
+        $("#birthday-day").val(get_birth_day.date || "");
 
-        $('#sctime-ov-m').val(graduationtime_month);
-        $('#sctime-ov').val(graduationtime_year);
+        $("#sctime-ov-m").val(graduationtime_month);
+        $("#sctime-ov").val(graduationtime_year);
 
-        $('#sctime-ac-m').val(admissiontime_month);
-        $('#sctime-ac').val(admissiontime_year);
+        $("#sctime-ac-m").val(admissiontime_month);
+        $("#sctime-ac").val(admissiontime_year);
 
-        
         // if (F._edit_support_school(collegename, data)) {
         //     $("#alert__b-m-b-row33").hide();
         // } else {
@@ -5844,38 +6195,38 @@ F._baseinfo = function(data, userInfo) {
 
     var submit = function(callback) {
         function get_admissiontime() {
-            var result = '';
-            var admissiontime_month =  $('#sctime-ac-m').val();
-            var admissiontime_year = $('#sctime-ac').val();
+            var result = "";
+            var admissiontime_month = $("#sctime-ac-m").val();
+            var admissiontime_year = $("#sctime-ac").val();
             if (admissiontime_month && admissiontime_year) {
-                result = admissiontime_year + '-' + admissiontime_month;
+                result = admissiontime_year + "-" + admissiontime_month;
             }
             return result;
         }
 
         function get_graduationtime() {
-            var result = '';
-            var graduationtime_month = $('#sctime-ov-m').val();
-            var graduationtime_year = $('#sctime-ov').val();
+            var result = "";
+            var graduationtime_month = $("#sctime-ov-m").val();
+            var graduationtime_year = $("#sctime-ov").val();
             if (graduationtime_month && graduationtime_year) {
-                result = graduationtime_year + '-' + graduationtime_month;
+                result = graduationtime_year + "-" + graduationtime_month;
             }
             return result;
         }
-        
+
         function get_birthday() {
-            var result = '';
+            var result = "";
             // 处理生日
-            var birthdayDay = $('#birthday-day').val();
-            var birthdayMonth = $('#birthday-month').val();
-            var birthdayYear = $('#birthday-year').val();
+            var birthdayDay = $("#birthday-day").val();
+            var birthdayMonth = $("#birthday-month").val();
+            var birthdayYear = $("#birthday-year").val();
 
             if (birthdayDay && birthdayMonth && birthdayYear) {
-                result = birthdayYear + '-' + birthdayMonth + '-' + birthdayDay;
+                result = birthdayYear + "-" + birthdayMonth + "-" + birthdayDay;
             }
             return result;
         }
-        
+
         username = $("#MO__username").val();
         sex = sex;
         identification = $("#MO__identification").val();

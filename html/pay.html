@@ -107,6 +107,23 @@
         .body__m-l-r2-button:hover {
             background-color: #105dcf;
         }
+
+        #myModal123 .modal-body select {
+            font-size: 14px;
+            width: 270px;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px;
+            outline: none;
+            color: #333;
+            margin-right: 1px;
+            height: 33px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
+            border-radius: 3px;
+            margin-bottom: 24px;
+            background-color: #fff;
+        }
     </style>
 </head>
 
@@ -126,19 +143,20 @@
                     <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address"></div>
                     <div class="site__m-i-row3 col-xs-24">
                         <div class="site__m-i-r3-def">
-                            <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username)">Đặt làm mặc định</span>
+                            <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username,item.wards_id,item.districts_id,item.provinces_id)">Đặt làm mặc định</span>
                             <span class="site__m-i-r3-f-status">mặc định</span>
                         </div>
-                        <div class="site__m-i-r3-edit" data-toggle="modal" data-target="#myModal" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)">
+                        <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,districts_id:item.districts_id,provinces_id:item.provinces_id,wards_id:item.wards_id,model:'modify'})">
                             <span class="site__m-i-r3-e-text">Sửa</span>
                         </div>
                         <div class="site__m-i-r3-del">
                             <span class="site__m-i-r3-d-text" ng-click="remove(item.id)">Xoá</span>
                         </div>
+                        <div id="myModal123-label" data-toggle="modal" data-target="#myModal123" style="opacity: 0;"></div>
                     </div>
                     <div class="site__m-i-row4">√</div>
                 </li>
-                <div class="site__main-add" ng-click="addppp()" data-toggle="modal" data-target="#myModal">
+                <div class="site__main-add" ng-click="addppp()">
                     <div class="site__m-a-row1"></div>
                     <div class="site__m-a-row2">Thêm địa chỉ nhận hàng</div>
                 </div>
@@ -284,44 +302,6 @@
             </div>
         </article>
         <!-- 弹出模态框（Modal） -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="left"> Địa chỉ nhận hàng</div>
-                        <div class="right" data-dismiss="modal" ng-blur="phoneNum=''">
-                            <span class="alert__b-m-t-close"></span>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <!-- <div class="phone-flag">
-                            <span class="phone-flag-img"></span>
-                            <span class="phone-flag-code">+84</span>
-                        </div> -->
-                        <span>Người nhận hàng</span>
-                        <input type="name" name="" id="names" value="" placeholder="Vui lòng nhập tên người nhận hàng" />
-                        <br />
-                        <span>Số điện thoại</span>
-                        <input type="tel" ng-model="phoneNum" name="" id="phone" value="" placeholder="Vui lòng nhập số điện thoại" />
-                        <br />
-                        <!--<span style="width: 74px;">收货地址</span> <select id="province" runat="server" onchange="selectprovince(this);" style=" width:120px;" name="city"></select>     <select id="city" runat="server" name="city_s" style="width:120px;" ></select>-->
-                        <div class="area">
-                            <div class="left">
-                                <span>Địa chỉ cụ thể</span>
-                            </div>
-                            <div class="left areatext">
-                                <textarea id="textarea" name="" rows="" cols="" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng"></textarea>
-                            </div>
-                        </div>
-                        <h4 id="errormsg" class="errormsg"></h4>
-                        <a class="rc rcone" ng-click="submit()" style="display: none;">Xác nhận thông tin chính xác và lưu</a>
-                        <a class="rc rctwo" ng-click="submits()">Xác nhận thông tin chính xác và lưu</a>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal -->
-        </div>
         <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div style="display: table;width:690px;height:100%;margin:0 auto;">
                 <div class="modal-dialog" style="display: table-cell;text-align: center;vertical-align: middle;">
