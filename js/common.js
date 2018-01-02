@@ -4226,7 +4226,6 @@ F._getSchoolInfo = function(params, callback) {
 
 // 22222222222222
 
-
 F._add_edit_address = function(params) {
     var is_modify = !!params.id;
 
@@ -4493,9 +4492,9 @@ F._add_edit_address = function(params) {
     }
 
     loading.show();
-    
+
     var all_data = {};
-    var request_length = (is_modify && params.provinces_id) ? 3 : 1; //请求个数
+    var request_length = is_modify && params.provinces_id ? 3 : 1; //请求个数
 
     F._getCityInfos(
         {
@@ -4543,7 +4542,7 @@ F._add_edit_address = function(params) {
             loading.hide();
         }
     }
-}
+};
 
 F._get_birth_day = function(val) {
     var nD = new Date(val);
@@ -5016,7 +5015,13 @@ function openforapp_add() {
             $(".openforapp").remove();
         });
         $(".openforapp__right").on("click", function() {
-            var url_str = "buyoovn://www.orangecpp.com:80/mypath?key=mykey";
+            var url_str = "";
+            var parse = F._hrefUtils.parse();
+            if (parse.path.slice(-12, -1) === "details.htm") {
+                url_str = "buyoovn://buyoo.vn/details.html?typeId=" + parse.query.typeId + "&brandId=" + parse.query.brandId + "&id=" + parse.query.id + "";
+            } else {
+                url_str = "buyoovn://buyoo.vn/";
+            }
             // if (isIOS()) {
             //     url_str = F._app_store;
             // } else {
