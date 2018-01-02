@@ -390,7 +390,7 @@
                         <div class="left cen-right" style="width:250px;">
                             <!-- <p style="">Chỉ còn<span ng-bind="numbers"></span> </p> -->
                             <p>
-                                <span id="tcy-numbers" ng-bind="numbers"></span>
+                                <span id="tcy-numbers" ng-bind="numbers > 0 ? 'Còn hàng' : 'Hết hàng'"></span>
                             </p>
                         </div>
                     </div>
