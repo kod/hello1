@@ -1,73 +1,75 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = true;
+F._DEUBUG = false;
 
 F._VERSION = "2.0.0";
 console.log("version " + F._VERSION);
 
-F._IP = F._DEUBUG ? "http://192.168.1.100" : "http://47.52.21.255";
-F._createFullPayOrder_td = F._IP + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
-F._FullPaymentOrder_td = F._IP + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
-F._payOrder_td = F._IP + ":8183/fun/trade/payOrder"; // 支付（分期）订单
-F._createOrder_td = F._IP + ":8183/fun/trade/createOrder"; // 创建（分期）订单
-F._batchCreateOrder_td = F._IP + ":8183/fun/trade/batchCreateOrder"; // 批量订单-创建
-F._batchPayment_td = F._IP + ":8183/fun/trade/batchPayment"; // 批量订单-支付
-F._queryOrder_td = F._IP + ":8183/fun/trade/queryOrder"; // 订单查询
-F._inquiryBill_td = F._IP + ":8184/fun/trade/inquiryBill"; // 查询账单信息
-F._queryBillList_td = F._IP + ":8184/fun/trade/queryBillList"; //
-F._createNormalOrder_td = F._IP + ":8183/fun/trade/createNormalOrder"; // 创建还款订单
-F._payNormalOrder_td = F._IP + ":8183/fun/trade/payNormalOrder"; // 支付还款订单
-F._queryOrderList_td = F._IP + ":8183/fun/trade/queryOrderList"; //
-F._orderCancel_td = F._IP + ":8183/fun/trade/orderCancel"; // 取消订单
-F._findOrderDetails_td = F._IP + ":8183/fun/trade/findOrderDetails"; // 订单详细信息查询
-F._userAddDetailInfo_uc = F._IP + ":8180/fun/usercenter/userAddDetailInfo"; // 修改用户信息
-F._userViewDetailInfo_uc = F._IP + ":8180/fun/usercenter/userViewDetailInfo"; // 获取用户详细信息
-F._getSchoolInfo_uc = F._IP + ":8180/fun/usercenter/getSchoolInfo"; // 获取学校列表
-F._userAction_otp_uc = F._IP + ":8180/fun/userCenter/userAction/otp"; // 发送短信
-F._userAction_login_uc = F._IP + ":8180/fun/userCenter/userAction/login"; // 用户登入
-F._userAction_changePassword_uc = F._IP + ":8180/fun/userCenter/userAction/changePassword"; // 重置密码
-F._userAction_modifyPayPassword_uc = F._IP + ":8180/fun/userCenter/userAction/modifyPayPassword"; // 修改交易密码
-F._userAction_checkPayPasword_uc = F._IP + ":8180/fun/userCenter/userAction/checkPayPasword"; // 修改交易密码
-F._userAction_userAddAddr_uc = F._IP + ":8180/fun/usercenter/userAddAddr"; // 地址-添加
-F._userAction_userModifyAddr_uc = F._IP + ":8180/fun/usercenter/userModifyAddr"; // 地址-修改
-F._userAction_userDelAddrs_uc = F._IP + ":8180/fun/usercenter/userDelAddrs"; // 地址-删除
-F._userAction_userViewAddr_uc = F._IP + ":8180/fun/usercenter/userViewAddr"; // 地址-列表
-F._userAction_register_uc = F._IP + ":8180/fun/userCenter/userAction/register"; // 注册
-F._userAction_getUserInfoById_uc = F._IP + ":8180/fun/userCenter/userAction/getUserInfoById"; //
-F._userCancelCollection_uc = F._IP + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
-// F._userAddCollection_uc = F._IP + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
-F._userBatchCollection_uc = F._IP + ":8180/fun/usercenter/userBatchCollection"; // 批量添加收藏
-F._userGetCollection_uc = F._IP + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
-F._initTopComputer_cp = F._IP + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
-F._initNewCellphone_cp = F._IP + ":8185/fun/cellphone/initNewCellphone"; //
-F._initAdCellphone_cp = F._IP + ":8185/fun/cellphone/initAdCellphone"; //
-F._initTopCellphone_cp = F._IP + ":8185/fun/cellphone/initTopCellphone"; //
-F._initAdAppleComputer_di = F._IP + ":8185/fun/computer/initAdAppleComputer"; //
-F._initAdGameComputer_di = F._IP + ":8185/fun/computer/initAdGameComputer"; //
-F._initAdTabletComputer_di = F._IP + ":8185/fun/computer/initAdTabletComputer"; //
-F._initAdClassfyComputer_di = F._IP + ":8185/fun/computer/initAdClassfyComputer"; //
-F._initNewComputer_di = F._IP + ":8185/fun/computer/initNewComputer"; //
-F._initTopDigital_di = F._IP + ":8185/fun/digital/initTopDigital"; //
-F._initNewDigital_di = F._IP + ":8185/fun/digital/initNewDigital"; //
-F._initAdDigital_di = F._IP + ":8185/fun/digital/initAdDigital"; //
-F._addEvaluation_cd = F._IP + ":8185/fun/commodity/addEvaluation"; // 添加评价
-F._findProducts_cd = F._IP + ":8185/fun/commodity/findProducts"; // 商品搜索
-F._getProductDetailInfo_cd = F._IP + ":8185/fun/commodity/getProductDetailInfo"; // 获取产品详情
-F._getEvaluationInfo_cd = F._IP + ":8185/fun/commodity/getEvaluationInfo"; // 获取评论
-F._getNewestInfo_cd = F._IP + ":8185/fun/commodity/getNewestInfo"; //
-F._getAdverstInfo_cd = F._IP + ":8185/fun/commodity/getAdverstInfo"; //
-F._getClassfyInfo_cd = F._IP + ":8185/fun/commodity/getClassfyInfo"; //
-F._getAllProductInfo_cd = F._IP + ":8185/fun/commodity/getAllProductInfo"; //
-F._getScreenInfo_cd = F._IP + ":8185/fun/commodity/getScreenInfo"; //
-F._getPromotionInfo_cd = F._IP + ":8185/fun/commodity/getPromotionInfo"; // 促销商品列表
-F._cart_gate_cd = F._IP + ":8185/fun/commodity/cart/gate"; // 购物车-添加
-F._cart_remove_cd = F._IP + ":8185/fun/commodity/cart/remove"; // 购物车-删除
-F._cart_changeNum_cd = F._IP + ":8185/fun/commodity/cart/changeNum"; // 购物车-更新商品数量
-F._cart_getInfo_cd = F._IP + ":8185/fun/commodity/cart/getInfo"; // 购物车列表
-F._getHTML_cd = F._IP + ":8185/fun/commodity/getHTML"; //
-F._uploadFiles_uf = F._IP + ":8180/fun/userfile/uploadFiles"; // 上传用户头像
-F._collectFiles_uf = F._IP + ":8180/fun/userfile/collectFiles"; // 用户评论上传图片
-F._returnMoney_im = F._IP + ":8184/fun/installment/returnMoney"; //
+F._IP_255 = F._DEUBUG ? "http://192.168.1.100" : "http://vn255.buyoo.xyz";
+F._IP_191 = F._DEUBUG ? "http://192.168.1.100" : "http://vn.buyoo.xyz";
+F._createFullPayOrder_td = F._IP_191 + ":8183/fun/trade/full/createFullPayOrder"; // 创建全额订单
+F._FullPaymentOrder_td = F._IP_191 + ":8183/fun/trade/full/FullPaymentOrder"; // 支付全额订单
+F._payOrder_td = F._IP_191 + ":8183/fun/trade/payOrder"; // 支付（分期）订单
+F._createOrder_td = F._IP_191 + ":8183/fun/trade/createOrder"; // 创建（分期）订单
+F._batchCreateOrder_td = F._IP_191 + ":8183/fun/trade/batchCreateOrder"; // 批量订单-创建
+F._batchPayment_td = F._IP_191 + ":8183/fun/trade/batchPayment"; // 批量订单-支付
+F._queryOrder_td = F._IP_191 + ":8183/fun/trade/queryOrder"; // 订单查询
+F._inquiryBill_td = F._IP_191 + ":8184/fun/trade/inquiryBill"; // 查询账单信息
+F._queryBillList_td = F._IP_191 + ":8184/fun/trade/queryBillList"; //
+F._createNormalOrder_td = F._IP_191 + ":8183/fun/trade/createNormalOrder"; // 创建还款订单
+F._payNormalOrder_td = F._IP_191 + ":8183/fun/trade/payNormalOrder"; // 支付还款订单
+F._queryOrderList_td = F._IP_191 + ":8183/fun/trade/queryOrderList"; //
+F._orderCancel_td = F._IP_191 + ":8183/fun/trade/orderCancel"; // 取消订单
+F._findOrderDetails_td = F._IP_191 + ":8183/fun/trade/findOrderDetails"; // 订单详细信息查询
+F._userAddDetailInfo_uc = F._IP_191 + ":8180/fun/usercenter/userAddDetailInfo"; // 修改用户信息
+F._userViewDetailInfo_uc = F._IP_191 + ":8180/fun/usercenter/userViewDetailInfo"; // 获取用户详细信息
+F._getSchoolInfo_uc = F._IP_191 + ":8180/fun/usercenter/getSchoolInfo"; // 获取学校列表
+F._userAction_otp_uc = F._IP_191 + ":8180/fun/userCenter/userAction/otp"; // 发送短信
+F._userAction_login_uc = F._IP_191 + ":8180/fun/userCenter/userAction/login"; // 用户登入
+F._userAction_changePassword_uc = F._IP_191 + ":8180/fun/userCenter/userAction/changePassword"; // 重置密码
+F._userAction_modifyPayPassword_uc = F._IP_191 + ":8180/fun/userCenter/userAction/modifyPayPassword"; // 修改交易密码
+F._userAction_checkPayPasword_uc = F._IP_191 + ":8180/fun/userCenter/userAction/checkPayPasword"; // 修改交易密码
+F._userAction_userAddAddr_uc = F._IP_191 + ":8180/fun/usercenter/userAddAddr"; // 地址-添加
+F._userAction_userModifyAddr_uc = F._IP_191 + ":8180/fun/usercenter/userModifyAddr"; // 地址-修改
+F._userAction_userDelAddrs_uc = F._IP_191 + ":8180/fun/usercenter/userDelAddrs"; // 地址-删除
+F._userAction_userViewAddr_uc = F._IP_191 + ":8180/fun/usercenter/userViewAddr"; // 地址-列表
+F._userAction_register_uc = F._IP_191 + ":8180/fun/userCenter/userAction/register"; // 注册
+F._userAction_getUserInfoById_uc = F._IP_191 + ":8180/fun/userCenter/userAction/getUserInfoById"; //
+F._userCancelCollection_uc = F._IP_191 + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
+// F._userAddCollection_uc = F._IP_191 + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
+F._userBatchCollection_uc = F._IP_191 + ":8180/fun/usercenter/userBatchCollection"; // 批量添加收藏
+F._userGetCollection_uc = F._IP_191 + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
+F._getCityInfos_uc = F._IP_191 + ":8180/fun/usercenter/getCityInfos"; // 省市区(行政区获取)
+F._initTopComputer_cp = F._IP_255 + ":8185/fun/computer/initTopComputer"; // 获取电脑banner广告
+F._initNewCellphone_cp = F._IP_255 + ":8185/fun/cellphone/initNewCellphone"; //
+F._initAdCellphone_cp = F._IP_255 + ":8185/fun/cellphone/initAdCellphone"; //
+F._initTopCellphone_cp = F._IP_255 + ":8185/fun/cellphone/initTopCellphone"; //
+F._initAdAppleComputer_di = F._IP_255 + ":8185/fun/computer/initAdAppleComputer"; //
+F._initAdGameComputer_di = F._IP_255 + ":8185/fun/computer/initAdGameComputer"; //
+F._initAdTabletComputer_di = F._IP_255 + ":8185/fun/computer/initAdTabletComputer"; //
+F._initAdClassfyComputer_di = F._IP_255 + ":8185/fun/computer/initAdClassfyComputer"; //
+F._initNewComputer_di = F._IP_255 + ":8185/fun/computer/initNewComputer"; //
+F._initTopDigital_di = F._IP_255 + ":8185/fun/digital/initTopDigital"; //
+F._initNewDigital_di = F._IP_255 + ":8185/fun/digital/initNewDigital"; //
+F._initAdDigital_di = F._IP_255 + ":8185/fun/digital/initAdDigital"; //
+F._addEvaluation_cd = F._IP_255 + ":8185/fun/commodity/addEvaluation"; // 添加评价
+F._findProducts_cd = F._IP_255 + ":8185/fun/commodity/findProducts"; // 商品搜索
+F._getProductDetailInfo_cd = F._IP_255 + ":8185/fun/commodity/getProductDetailInfo"; // 获取产品详情
+F._getEvaluationInfo_cd = F._IP_255 + ":8185/fun/commodity/getEvaluationInfo"; // 获取评论
+F._getNewestInfo_cd = F._IP_255 + ":8185/fun/commodity/getNewestInfo"; //
+F._getAdverstInfo_cd = F._IP_255 + ":8185/fun/commodity/getAdverstInfo"; //
+F._getClassfyInfo_cd = F._IP_255 + ":8185/fun/commodity/getClassfyInfo"; //
+F._getAllProductInfo_cd = F._IP_255 + ":8185/fun/commodity/getAllProductInfo"; //
+F._getScreenInfo_cd = F._IP_255 + ":8185/fun/commodity/getScreenInfo"; //
+F._getPromotionInfo_cd = F._IP_255 + ":8185/fun/commodity/getPromotionInfo"; // 促销商品列表
+F._cart_gate_cd = F._IP_255 + ":8185/fun/commodity/cart/gate"; // 购物车-添加
+F._cart_remove_cd = F._IP_255 + ":8185/fun/commodity/cart/remove"; // 购物车-删除
+F._cart_changeNum_cd = F._IP_255 + ":8185/fun/commodity/cart/changeNum"; // 购物车-更新商品数量
+F._cart_getInfo_cd = F._IP_255 + ":8185/fun/commodity/cart/getInfo"; // 购物车列表
+F._getHTML_cd = F._IP_255 + ":8185/fun/commodity/getHTML"; //
+F._uploadFiles_uf = F._IP_191 + ":8180/fun/userfile/uploadFiles"; // 上传用户头像
+F._collectFiles_uf = F._IP_191 + ":8180/fun/userfile/collectFiles"; // 用户评论上传图片
+F._returnMoney_im = F._IP_191 + ":8184/fun/installment/returnMoney"; //
 
 F._phoneExpr = /^[0-9]{8,11}$/; //手机号
 F._pwdExpr = /^.{8,20}$/; // 密码
@@ -115,6 +117,74 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+};
+
+
+// 获取省市区
+F._getCityInfos = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "userKey";
+
+    var appId = localStorage.getItem("funId");
+    var method = "fun.uc.getCityInfos";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var pid = params.pid;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "pid",
+                value: pid
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        pid: pid,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._getCityInfos_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
 };
 
 // 订单详细信息查询
@@ -974,7 +1044,7 @@ F._userAction_userModifyAddr = function(params, callback) {
     var method = "fun.uc.usermodifyaddr";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
+    var version = "2.0";
 
     var addrid = params.addrid;
     var funid = localStorage.getItem("funId");
@@ -1080,13 +1150,16 @@ F._userAction_userAddAddr = function(params, callback) {
     var method = "fun.uc.useraddaddr";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
+    var version = "2.0";
 
     var funid = localStorage.getItem("funId");
     var msisdn = params.msisdn;
     var address = params.address;
     var isdefault = params.isdefault;
     var username = params.username;
+    var districtsid = params.districtsid;
+    var provincesid = params.provincesid;
+    var wardsid = params.wardsid;
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
@@ -1111,7 +1184,19 @@ F._userAction_userAddAddr = function(params, callback) {
             {
                 key: "username",
                 value: username
-            }
+            },
+            {
+                key: "districtsid",
+                value: districtsid
+            },
+            {
+                key: "provincesid",
+                value: provincesid
+            },
+            {
+                key: "wardsid",
+                value: wardsid
+            },
         ],
         Key
     );
@@ -1128,7 +1213,10 @@ F._userAction_userAddAddr = function(params, callback) {
         msisdn: msisdn,
         address: address,
         isdefault: isdefault,
-        username: username
+        username: username,
+        districtsid: districtsid,
+        provincesid: provincesid,
+        wardsid: wardsid,
     };
 
     $.ajax({
@@ -2036,17 +2124,13 @@ F._initTopComputer = function(params, callback) {
     var pagesize = params.pagesize || "5";
     var currentpage = params.currentpage || "1";
 
-    var signType = F._signType_MD5(appId, method, charset, Key, false);
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
 
     var encrypt = F._encrypt_MD5(
         [
             {
                 key: "typeid",
                 value: typeid
-            },
-            {
-                key: "pagesize",
-                value: pagesize
             },
             {
                 key: "pagesize",
