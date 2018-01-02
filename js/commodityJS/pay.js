@@ -165,8 +165,6 @@ app.controller("payCtrl", function($scope, $http, $filter) {
 
 //地址address请求
 app.controller("addCtrl", function($scope, $http, $filter) {
-    var loading = new F._loading();
-    loading.show();
     // F._userAction_userViewAddr({}, function(ret) {
     //     loading.hide();
     //     if (!ret) return false;
@@ -183,6 +181,10 @@ app.controller("addCtrl", function($scope, $http, $filter) {
     //     });
     // });
 
+    if (!localStorage.getItem("funId")) return false;
+
+    var loading = new F._loading();
+    loading.show();
     var url = F._userAction_userViewAddr_uc;
     var ajax = new ajaxClass($http, url, "POST");
     var appId = localStorage.getItem("funId");
@@ -285,9 +287,17 @@ app.controller("addCtrl", function($scope, $http, $filter) {
 });
 //	新增地址接口
 app.controller("addressCtrl", function($scope, $http, $filter) {
-    console.log(22222);
     $scope.addppp = function(params) {
-        console.log(111111);
+        if (!localStorage.getItem("funId")) {
+            F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
+                name: 'Xác nhận',
+                func: function () {
+                    window.location.href = 'login.html';
+                }
+            }]);
+            return false;
+        }
+
         F._add_edit_address({
             id: "",
             isdefault: "",

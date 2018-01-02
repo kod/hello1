@@ -1315,7 +1315,8 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
 
         if (!isNaN(price) && price > 0 && fenqiNum != "" && !isNaN(price)) {
             var funId = localStorage.getItem("funId");
-            if (funId != "" && funId != null) {
+            if (true) {
+            // if (funId != "" && funId != null) {
                 var pay_products = {
                     iconUrl: window.__goodsDetail.iconUrl,
                     subject: window.__goodsDetail.name,
