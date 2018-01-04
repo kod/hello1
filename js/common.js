@@ -5028,6 +5028,10 @@ function openforapp_add() {
             //     url_str = F._google_store;
             // }
             window.location.href = url_str;
+
+            setTimeout(function() {
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.store.creditstore';
+            }, 1000);
         });
     }
 }
@@ -6584,4 +6588,4 @@ F._timeStrForm = function(str, model, unUnix) {
 
 header_add();
 footer_add();
-openforapp_add();
+// openforapp_add();
