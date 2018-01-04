@@ -2,7 +2,7 @@ if (!window.F) window.F = {};
 
 F._DEUBUG = true;
 
-F._VERSION = "2.0.0";
+F._VERSION = "2.0.5";
 console.log("version " + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? "http://192.168.1.100" : "http://vn255.buyoo.xyz";
