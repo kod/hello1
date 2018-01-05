@@ -182,14 +182,12 @@
             </p>
             <p class="r_from">
                 <span>Mật mã giao dịch</span>
-                <input id="pwd2" type="password" placeholder="Vui lòng nhập 6 chữ số" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/"
-                />
+                <input id="pwd2" type="password" placeholder="Vui lòng nhập 6 chữ số" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
             </p>
             <p style="padding-left: 170px;padding-right: 120px; font-size: 12px; color: #999;margin-top: -20px;margin-bottom: 25px;">* Quan trọng! Để đảm bảo an toàn cho số tiền của bạn trong tài khoản, hãy cài đặt và ghi nhớ mật khẩu giao dịch</p>
             <p class="r_from">
                 <span>Nhập lại Mật mã</span>
-                <input id="re_pwd2" type="password" placeholder="Nhập lại Mật mã giao dịch" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/"
-                />
+                <input id="re_pwd2" type="password" placeholder="Nhập lại Mật mã giao dịch" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');" data-on-val="">
             </p>
             <p class="r_from mar_top12">
                 <span></span>
