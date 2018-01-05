@@ -252,7 +252,7 @@
     // window.setTimeout(function() {
     //     $('#myModal').show().addClass('in');
     // }, 700);
-
+    $('#tel')[0].focus();
     F.query = F._hrefUtils.parse().query || {};
     $('#tel').val(F.query.msisdn || '');
     $('#telCode').val(F.query.otp || '');
