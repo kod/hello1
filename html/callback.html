@@ -61,7 +61,7 @@
         <header class="header" id="header"></header>
         <section class="body">
             <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
-                <img src="../img/24782487.png" alt="" class="body__main-img">
+                <img alt="" class="body__main-img" v-bind="{ src: icon }">
                 <div class="body__main-title" v-html="msg"></div>
                 <span class="body__main-gohome" @click="gohome">Trang chủ</span>
             </div>
@@ -76,16 +76,33 @@
         ], function ($, Vue) {
 
             var error_json = {
-                40005: 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước',
-                40060: 'Trường của bạn không hỗ trợ chương trình trả góp, bạn vui lòng thanh toán toàn bộ',
-                50006: 'Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang',
-                10003: 'Hủy thanh toán',
+                40005: {
+                    text: 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước',
+                    icon: F._image_error,
+                },
+                40060: {
+                    text: 'Trường của bạn không hỗ trợ chương trình trả góp, bạn vui lòng thanh toán toàn bộ',
+                    icon: F._image_error,
+                },
+                50006: {
+                    text: 'Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang',
+                    icon: F._image_error,
+                },
+                10003: {
+                    text: 'Hủy thanh toán',
+                    icon: F._image_error,
+                },
+                20001: {
+                    text: 'Ngân hàng đang xử lý',
+                    icon: F._image_loading,
+                },
             };
 
             F.query = F._hrefUtils.parse().query || {};
             F.vue = {
                 body__main_height: document.documentElement.clientHeight - 133 - 210,
-                msg: error_json[F.query.msg] || 'error',
+                msg: error_json[F.query.msg] ? error_json[F.query.msg].text : 'error',
+                icon: error_json[F.query.msg] ? error_json[F.query.msg].icon : F._image_error,
             };
 
             var load = function () {
