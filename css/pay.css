@@ -395,6 +395,7 @@ textarea {
 }
 #errormsg small {
     color: #ff6600;
+    font-size: 14px;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

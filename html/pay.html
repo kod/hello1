@@ -135,15 +135,15 @@
             <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
             <div class="site__main col-xs-24">
                 <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }"
-                    ng-click="set_active(index, item.msisdn, item.address, item.username)" ng-repeat="(index, item) in addrlistData">
+                    ng-click="set_active(index, item.msisdn, item, item.username)" ng-repeat="(index, item) in addrlistData">
                     <div class="site__m-i-row1 col-xs-24">
                         <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                         <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
                     </div>
-                    <div class="site__m-i-row2 js_address col-xs-24" ng-bind="item.address"></div>
+                    <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + ', ' + item.wardsName + ', ' + item.districtsName + ', ' + item.provincesName"></div>
                     <div class="site__m-i-row3 col-xs-24">
                         <div class="site__m-i-r3-def">
-                            <span class="site__m-i-r3-f-set moren" ng-click="moren(item.id,item.isdefault,item.msisdn,item.address,item.username,item.wards_id,item.districts_id,item.provinces_id)">Đặt làm mặc định</span>
+                            <span class="site__m-i-r3-f-set moren" ng-click="moren(index,item.id,item.isdefault,item.msisdn,item.address,item.username,item.wards_id,item.districts_id,item.provinces_id)">Đặt làm mặc định</span>
                             <span class="site__m-i-r3-f-status">mặc định</span>
                         </div>
                         <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,districts_id:item.districts_id,provinces_id:item.provinces_id,wards_id:item.wards_id,model:'modify'})">
@@ -490,6 +490,9 @@
                 return false;
             }
 
+            console.log(F.address);
+            console.log(F.addrlistData.length);
+
             if (!F.username || !F.msisdn || !F.address) {
                 F._confirm('Gợi ý', 'Vui lòng Thêm địa chỉ nhận hàng', 'tips', [{
                     name: 'Xác nhận',
@@ -497,7 +500,27 @@
 
                     }
                 }]);
+                return false;
+            }
+            
+            if (!F.address && F.addrlistData.length) {
+                F._confirm('Gợi ý', 'Vui lòng chọn địa chỉ nhận hàng của bạn', 'tips', [{
+                    name: 'Xác nhận',
+                    func: function () {
 
+                    }
+                }]);
+                return false;
+            }
+
+            if (!F.provincesName) {
+                F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ", "tips", [
+                    {
+                        name: "Xác nhận",
+                        func: function () {
+                        }
+                    }
+                ]);
                 return false;
             }
 
@@ -818,22 +841,28 @@
         }
 
         // 获取地址, 姓名, 电话
-        function addressInfo_get(callback) {
-            $('.site__main-item').each(function () {
-                var self = $(this);
-                if (self.hasClass('site__main-item_active')) {
-                    var username = self.find('.js_username').eq(0).html();
-                    var msisdn = self.find('.js_msisdn').eq(0).html();
-                    var address = self.find('.js_address').eq(0).html();
-                    callback({
-                        username: username,
-                        msisdn: msisdn,
-                        address: address,
-                        length: $('.site__main-item').length,
-                    });
-                }
-            });
-        }
+        // function addressInfo_get(callback) {
+        //     function get_address(self) {
+        //         var result = '';
+        //         result = self.find('.js_address_desc').eq(0).html() + ' ' + self.find('.js_address_main').eq(0).html();
+        //         return result;
+        //     }
+        //     $('.site__main-item').each(function () {
+        //         var self = $(this);
+        //         if (self.hasClass('site__main-item_active')) {
+        //             var username = self.find('.js_username').eq(0).html();
+        //             var msisdn = self.find('.js_msisdn').eq(0).html();
+        //             var address = get_address(self);
+        //             // self.find('.js_address').eq(0).html()
+        //             callback({
+        //                 username: username,
+        //                 msisdn: msisdn,
+        //                 address: address,
+        //                 length: $('.site__main-item').length,
+        //             });
+        //         }
+        //     });
+        // }
 
         // 获取支付方式
         // function payway_get(callback) {

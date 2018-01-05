@@ -149,8 +149,21 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
     $scope.getUserInfoDetails();
 
     //      默认地址
-    $scope.moren = function($id, $isdefault, $msisdn, $address, $username, wardsid, districtsid, provincesid) {
+    $scope.moren = function(index, $id, $isdefault, $msisdn, $address, $username, wardsid, districtsid, provincesid) {
+        event.stopPropagation();
         if (!F._isLogin()) return false;
+
+        if (!provincesid) {
+            F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ", "tips", [
+                {
+                    name: "Sửa",
+                    func: function() {
+                        $('.site__m-i-r3-edit').eq(index).click();
+                    }
+                }
+            ]);
+            return false;
+        }
 
         if (confirm("Xác nhận cài đặt địa chỉ nhận hàng mặc định？")) {
             var loading = new F._loading();

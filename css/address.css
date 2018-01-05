@@ -200,6 +200,7 @@
 
 #errormsg small {
     color: #ff6600;
+    font-size: 14px;
 }
 
 input::-webkit-outer-spin-button,

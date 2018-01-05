@@ -224,15 +224,17 @@ app.controller("addCtrl", function($scope, $http, $filter) {
             $scope.addrlistData = [];
 
             for (var i = 0; i < res.data.details.length; i++) {
-                if (res.data.details[i].isdefault === "Y") {
-                    F.address = res.data.details[i].address;
+                if (res.data.details[i].isdefault === "Y" && res.data.details[i].provincesName) {
+                    // F.address = res.data.details[i].address;
+                    F.provincesName = res.data.details[i].districtsName;
+                    F.address = res.data.details[i].address + ", " + res.data.details[i].wardsName + ", " + res.data.details[i].districtsName + ", " + res.data.details[i].provincesName;
                     F.msisdn = res.data.details[i].msisdn;
                     F.username = res.data.details[i].username;
                     $scope.addrlistData_index = i;
                 }
             }
 
-            $scope.addrlistData = res.data.details;
+            $scope.addrlistData = F.addrlistData = res.data.details;
             $scope.addrlistLength = res.data.details.length;
 
             $scope.$watch("addrlistLength", function(n) {
@@ -289,12 +291,14 @@ app.controller("addCtrl", function($scope, $http, $filter) {
 app.controller("addressCtrl", function($scope, $http, $filter) {
     $scope.addppp = function(params) {
         if (!localStorage.getItem("funId")) {
-            F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
-                name: 'Xác nhận',
-                func: function () {
-                    window.location.href = 'login.html';
+            F._confirm("Gợi ý", "Vui lòng đăng nhập", "tips", [
+                {
+                    name: "Xác nhận",
+                    func: function() {
+                        window.location.href = "login.html";
+                    }
                 }
-            }]);
+            ]);
             return false;
         }
 
@@ -354,8 +358,24 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
     // };
 
     //	默认地址
-    $scope.moren = function($id, $isdefault, $msisdn, $address, $username) {
+    $scope.moren = function(index, $id, $isdefault, $msisdn, $address, $username, wardsid, districtsid, provincesid) {
         event.stopPropagation();
+        if (!F._isLogin()) return false;
+
+        if (!provincesid) {
+            F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ", "tips", [
+                {
+                    name: "Sửa",
+                    func: function() {
+                        $(".site__m-i-r3-edit")
+                            .eq(index)
+                            .click();
+                    }
+                }
+            ]);
+            return false;
+        }
+
         if (confirm("Xác nhận cài đặt địa chỉ nhận hàng mặc định？")) {
             var loading = new F._loading();
             loading.show();
@@ -365,7 +385,10 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
                     msisdn: $msisdn,
                     address: $address,
                     isdefault: "Y",
-                    username: $username
+                    username: $username,
+                    districtsid: districtsid,
+                    provincesid: provincesid,
+                    wardsid: wardsid
                 },
                 function(ret) {
                     loading.hide();
@@ -378,8 +401,24 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
         }
     };
 
-    $scope.set_active = function(index, msisdn, address, username) {
-        F.address = address;
+    $scope.set_active = function(index, msisdn, item, username) {
+        // if (!item.provincesName) {
+        //     F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ", "tips", [
+        //         {
+        //             name: "Sửa",
+        //             func: function() {
+        //                 setTimeout(function() {
+        //                     $(".site__m-i-r3-edit")
+        //                         .eq(index)
+        //                         .click();
+        //                 }, 1000);
+        //             }
+        //         }
+        //     ]);
+        //     return false;
+        // }
+        F.provincesName = item.provincesName;
+        F.address = item.address + ", " + item.wardsName + ", " + item.districtsName + ", " + item.provincesName;
         F.msisdn = msisdn;
         F.username = username;
 
