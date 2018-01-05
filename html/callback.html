@@ -92,12 +92,12 @@
                     text: 'Hủy thanh toán',
                     icon: F._image_error,
                 },
-                20001: {
-                    text: 'Ngân hàng đang xử lý',
-                    icon: F._image_loading,
+                20010: {
+                    text: 'Ngân hàng đang xử lý, xin chờ một lát, xin đừng thanh toán lại',
+                    icon: F._image_process,
                 },
             };
-
+            
             F.query = F._hrefUtils.parse().query || {};
             F.vue = {
                 body__main_height: document.documentElement.clientHeight - 133 - 210,
