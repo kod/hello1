@@ -256,6 +256,18 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         ];
                         break;
 
+                    case "10003": // 交易支付等待
+                        $scope.myHtml = "<span>Ngân hàng đang xử lý</span>";
+                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
+                        $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
+                        //  $scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
+                        $scope.orderList[i].operate = [
+                            {
+                                name: "Thông tin cụ thể về đơn hàng"
+                            }
+                        ];
+                        break;
+
                     case "20000":
                         //$scope.orderList[i]['tradeStatusMsg']='Đóng';
                         $scope.myHtml = "<span>Đóng</span>";
