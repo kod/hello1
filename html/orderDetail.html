@@ -387,7 +387,7 @@
                     </div>
                     <div class="body__m-i-bottom">
                         <span class="body__m-i-t-title">Địa chỉ nhận hàng: </span>
-                        <span class="body__m-i-t-address" v-html="address"></span>
+                        <span class="body__m-i-t-address" v-html="address + ', ' + wardsName + ', ' + districtsName + ', ' + provincesName"></span>
                     </div>
                 </div>
                 <div class="body__main-phone">
@@ -541,6 +541,9 @@
                 F.vue.msisdn = trade_queryOrder.msisdn;
                 F.vue.username = trade_queryOrder.username;
                 F.vue.address = trade_queryOrder.address;
+                F.vue.wardsName = trade_queryOrder.wardsName;
+                F.vue.districtsName = trade_queryOrder.districtsName;
+                F.vue.provincesName = trade_queryOrder.provincesName;
                 F.vue.tradeStatus = trade_queryOrder.tradeStatus;
                 F.vue.advance = trade_queryOrder.advance;
                 F.vue.sourceOrderType = trade_queryOrder.sourceOrderType;

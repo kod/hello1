@@ -226,8 +226,17 @@ app.controller("addCtrl", function($scope, $http, $filter) {
             for (var i = 0; i < res.data.details.length; i++) {
                 if (res.data.details[i].isdefault === "Y" && res.data.details[i].provincesName) {
                     // F.address = res.data.details[i].address;
-                    F.provincesName = res.data.details[i].districtsName;
-                    F.address = res.data.details[i].address + ", " + res.data.details[i].wardsName + ", " + res.data.details[i].districtsName + ", " + res.data.details[i].provincesName;
+
+                    F.address = res.data.details[i].address;
+                    F.wardsName = res.data.details[i].wardsName;
+                    F.districtsName = res.data.details[i].districtsName;
+                    F.provincesName = res.data.details[i].provincesName;
+                    F.wardsCode = res.data.details[i].wardsCode;
+                    F.districtsCode = res.data.details[i].districtsCode;
+                    F.provincesCode = res.data.details[i].provincesCode;
+                    
+                    // F.provincesName = res.data.details[i].provincesName;
+                    // F.address = res.data.details[i].address + ", " + res.data.details[i].wardsName + ", " + res.data.details[i].districtsName + ", " + res.data.details[i].provincesName;
                     F.msisdn = res.data.details[i].msisdn;
                     F.username = res.data.details[i].username;
                     $scope.addrlistData_index = i;
@@ -417,8 +426,17 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
         //     ]);
         //     return false;
         // }
+
+        F.address = item.address;
+        F.wardsName = item.wardsName;
+        F.districtsName = item.districtsName;
         F.provincesName = item.provincesName;
-        F.address = item.address + ", " + item.wardsName + ", " + item.districtsName + ", " + item.provincesName;
+        F.wardsCode = item.wardsCode;
+        F.districtsCode = item.districtsCode;
+        F.provincesCode = item.provincesCode;
+        
+        // F.provincesName = item.provincesName;
+        // F.address = item.address + ", " + item.wardsName + ", " + item.districtsName + ", " + item.provincesName;
         F.msisdn = msisdn;
         F.username = username;
 

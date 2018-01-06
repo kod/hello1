@@ -490,9 +490,6 @@
                 return false;
             }
 
-            console.log(F.address);
-            console.log(F.addrlistData.length);
-
             if (!F.username || !F.msisdn || !F.address) {
                 F._confirm('Gợi ý', 'Vui lòng Thêm địa chỉ nhận hàng', 'tips', [{
                     name: 'Xác nhận',
@@ -589,12 +586,15 @@
                     address: F.address,
                     username: F.username,
                     remark: '',
+                    provincesName: F.provincesName,
+                    provincesCode: F.provincesCode,
+                    districtsName: F.districtsName,
+                    districtsCode: F.districtsCode,
+                    wardsName: F.wardsName,
+                    wardsCode: F.wardsCode,
                 }, batchCreateOrder_callback);
 
-                return false;
-            }
-
-            if (F.paymentNum === 1) { // 全款
+            } else if (F.paymentNum === 1) { // 全款
 
                 loading.show();
                 F._fullOrderCreate({
@@ -610,6 +610,12 @@
                     address: F.address,
                     username: F.username,
                     number: F.quantity,
+                    provincesName: F.provincesName,
+                    provincesCode: F.provincesCode,
+                    districtsName: F.districtsName,
+                    districtsCode: F.districtsCode,
+                    wardsName: F.wardsName,
+                    wardsCode: F.wardsCode,
                 }, fullOrderCreate_callback);
 
             } else {
@@ -627,6 +633,12 @@
                     address: F.address,
                     username: F.username,
                     number: F.quantity,
+                    provincesName: F.provincesName,
+                    provincesCode: F.provincesCode,
+                    districtsName: F.districtsName,
+                    districtsCode: F.districtsCode,
+                    wardsName: F.wardsName,
+                    wardsCode: F.wardsCode,
                 }, createOrder_callback);
 
             }
