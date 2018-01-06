@@ -84,6 +84,13 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
             switch (ret.code) {
                 case 10000:
+                    console.log(ret);
+                    var username = $('#g_name').val();
+                    if (username) {
+                        localStorage.setItem("username", username);
+                    } else {
+                        localStorage.setItem("username", "");
+                    }
                     window.location.reload();
                     break;
 
