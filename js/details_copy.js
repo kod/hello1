@@ -968,20 +968,24 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
 
             if (resCode == 10000) {
                 $scope.userComment = detail;
-
+                
                 if ($scope.userComment.length > 0) {
                     for (var i = 0; i < $scope.userComment.length; i++) {
                         //$scope.user=$scope.userComment[i].score;
                         var url = $scope.userComment[i].imageUrls;
-                        var resUrl = url.split("|");
-                        $scope.userComment[i].userImg = [];
-
-                        for (var j = 0; j < resUrl.length; j++) {
-                            var imgObj = {
-                                urlName: "urlName",
-                                url: resUrl[j]
-                            };
-                            $scope.userComment[i].userImg.push(imgObj);
+                        if (url) {
+                            var resUrl = url.split("|");
+                            $scope.userComment[i].userImg = [];
+    
+                            for (var j = 0; j < resUrl.length; j++) {
+                                var imgObj = {
+                                    urlName: "urlName",
+                                    url: resUrl[j]
+                                };
+                                $scope.userComment[i].userImg.push(imgObj);
+                            }
+                        } else {
+                            $scope.userComment[i].userImg = [];
                         }
                     }
 
