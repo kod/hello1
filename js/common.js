@@ -1602,7 +1602,7 @@ F._addEvaluation = function(params, callback) {
 
     var funid = localStorage.getItem("funId");
     var msisdn = localStorage.getItem("msisdn");
-    var username = localStorage.getItem("username");
+    var username = localStorage.getItem("username") || localStorage.getItem("msisdn");
     var order_no = params.orderNo;
     var trade_no = params.tradeNo;
     var comments = params.comments;
@@ -2250,7 +2250,11 @@ F._userAction_login = function(params, callback) {
                     // createLoginSssion(ret.result, ret.msisdn);
 
                     F._userViewDetailInfo({}, function(ret) {
-                        if (ret.data.username) localStorage.setItem("username", ret.data.username);
+                        if (ret.data.username) {
+                            localStorage.setItem("username", ret.data.username);
+                        } else {
+                            localStorage.setItem("username", "");
+                        }
 
                         var hrefUtils_parse = F._hrefUtils.parse();
                         F.query = hrefUtils_parse.query;
@@ -2414,6 +2418,12 @@ F._batchCreateOrder = function(params, callback) {
     var address = params.address;
     var username = params.username;
     var remark = params.remark;
+    var provincesName = params.provincesName;
+    var provincesCode = params.provincesCode;
+    var districtsName = params.districtsName;
+    var districtsCode = params.districtsCode;
+    var wardsName = params.wardsName;
+    var wardsCode = params.wardsCode;
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
 
@@ -2442,7 +2452,31 @@ F._batchCreateOrder = function(params, callback) {
             {
                 key: "remark",
                 value: remark
-            }
+            },
+            {
+                key: "provincesName",
+                value: provincesName
+            },
+            {
+                key: "provincesCode",
+                value: provincesCode
+            },
+            {
+                key: "districtsName",
+                value: districtsName
+            },
+            {
+                key: "districtsCode",
+                value: districtsCode
+            },
+            {
+                key: "wardsName",
+                value: wardsName
+            },
+            {
+                key: "wardsCode",
+                value: wardsCode
+            },
         ],
         Key
     );
@@ -2460,7 +2494,13 @@ F._batchCreateOrder = function(params, callback) {
         msisdn: msisdn,
         address: address,
         username: username,
-        remark: remark
+        remark: remark,
+        provincesName: provincesName,
+        provincesCode: provincesCode,
+        districtsName: districtsName,
+        districtsCode: districtsCode,
+        wardsName: wardsName,
+        wardsCode: wardsCode,
     };
 
     $.ajax({
@@ -2727,7 +2767,7 @@ F._fullOrderCreate = function(params, callback) {
     var method = "fun.trade.full.createOrder";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
+    var version = "2.0";
 
     var orderno = (function() {
         var mydate = new Date();
@@ -2748,6 +2788,12 @@ F._fullOrderCreate = function(params, callback) {
     var username = params.username;
     var remark = params.remark || "";
     var number = params.number;
+    var provincesName = params.provincesName;
+    var provincesCode = params.provincesCode;
+    var districtsName = params.districtsName;
+    var districtsCode = params.districtsCode;
+    var wardsName = params.wardsName;
+    var wardsCode = params.wardsCode;
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
 
@@ -2816,7 +2862,31 @@ F._fullOrderCreate = function(params, callback) {
             {
                 key: "number",
                 value: number
-            }
+            },
+            {
+                key: "provincesName",
+                value: provincesName
+            },
+            {
+                key: "provincesCode",
+                value: provincesCode
+            },
+            {
+                key: "districtsName",
+                value: districtsName
+            },
+            {
+                key: "districtsCode",
+                value: districtsCode
+            },
+            {
+                key: "wardsName",
+                value: wardsName
+            },
+            {
+                key: "wardsCode",
+                value: wardsCode
+            },
         ],
         Key
     );
@@ -2844,7 +2914,13 @@ F._fullOrderCreate = function(params, callback) {
         address: address,
         username: username,
         remark: remark,
-        number: number
+        number: number,
+        provincesName: provincesName,
+        provincesCode: provincesCode,
+        districtsName: districtsName,
+        districtsCode: districtsCode,
+        wardsName: wardsName,
+        wardsCode: wardsCode,
     };
     $.ajax({
         type: "POST",
@@ -3106,7 +3182,7 @@ F._createOrder = function(params, callback) {
     var method = "fun.trade.create";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-    var version = "1.0";
+    var version = "2.0";
     var notifyUrlBg = "notifyUrlBg";
     var timeoutExpress = "86400";
     var currency = "VND";
@@ -3127,6 +3203,12 @@ F._createOrder = function(params, callback) {
     var address = params.address;
     var username = params.username;
     var number = params.number;
+    var provincesName = params.provincesName;
+    var provincesCode = params.provincesCode;
+    var districtsName = params.districtsName;
+    var districtsCode = params.districtsCode;
+    var wardsName = params.wardsName;
+    var wardsCode = params.wardsCode;
 
     var signType = F._signType_MD5(appId, method, charset, Key, false);
 
@@ -3195,7 +3277,31 @@ F._createOrder = function(params, callback) {
             {
                 key: "number",
                 value: number
-            }
+            },
+            {
+                key: "provincesName",
+                value: provincesName
+            },
+            {
+                key: "provincesCode",
+                value: provincesCode
+            },
+            {
+                key: "districtsName",
+                value: districtsName
+            },
+            {
+                key: "districtsCode",
+                value: districtsCode
+            },
+            {
+                key: "wardsName",
+                value: wardsName
+            },
+            {
+                key: "wardsCode",
+                value: wardsCode
+            },
         ],
         Key
     );
@@ -3224,7 +3330,13 @@ F._createOrder = function(params, callback) {
         address: address,
         username: username,
         remark: remark,
-        number: number
+        number: number,
+        provincesName: provincesName,
+        provincesCode: provincesCode,
+        districtsName: districtsName,
+        districtsCode: districtsCode,
+        wardsName: wardsName,
+        wardsCode: wardsCode,
     };
 
     $.ajax({
