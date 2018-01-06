@@ -3077,3 +3077,6 @@ input[type="number"] {
     width: 1200px;
   }
 }
+a[title="站长统计"] {
+  display: none;
+}
