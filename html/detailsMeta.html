@@ -20,67 +20,77 @@
     <meta property="al:android:url" content="buyoovn://details?typeId=<%typeId%>&brandId=<%brandId%>&id=<%id%>" />
 
     <title>Tình trạng sản phẩm</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111518610-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111518610-1');
+    </script>
 </head>
 
 <body>
-</body>
-<!-- <script src="http://www.buyoo.vn/js/jquery.js?version=2.1.0"></script>
+    <!-- <script src="http://www.buyoo.vn/js/jquery.js?version=2.1.0"></script>
 <script src="http://www.buyoo.vn/js/md5.js?version=2.1.0"></script>
 <script src="http://www.buyoo.vn/js/common.js?version=2.1.0"></script> -->
-<script>
-    var hrefUtils = (function (loc) {
-        var utils = {
-            convertQs: function (qs) {
-                var qs = qs || loc.search.substring(1);
-                if (!qs) return null;
-                var qsArr = qs.split(/&/),
-                    qsPar = {};
-                for (var i = 0; i < qsArr.length; i++) {
-                    if (qsArr[i]) {
-                        var nm = qsArr[i].split(/=/);
-                        qsPar[decodeURIComponent(nm[0])] = decodeURIComponent(nm[1] || "");
+    <script>
+        var hrefUtils = (function (loc) {
+            var utils = {
+                convertQs: function (qs) {
+                    var qs = qs || loc.search.substring(1);
+                    if (!qs) return null;
+                    var qsArr = qs.split(/&/),
+                        qsPar = {};
+                    for (var i = 0; i < qsArr.length; i++) {
+                        if (qsArr[i]) {
+                            var nm = qsArr[i].split(/=/);
+                            qsPar[decodeURIComponent(nm[0])] = decodeURIComponent(nm[1] || "");
+                        }
                     }
+                    return qsPar;
                 }
-                return qsPar;
+            };
+
+            function parse(url) {
+                var i;
+                var url = url || loc.href;
+                var regExp = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+                var names = ["url", "scheme", "slash", "host", "port", "path", "query", "hash"];
+                var result = regExp.exec(url);
+                var result_format = {};
+
+                for (i = 0; i < names.length; i += 1) {
+                    result_format[names[i]] = result[i];
+                }
+                result_format.query = utils.convertQs(result_format.query);
+
+                return result_format;
             }
-        };
 
-        function parse(url) {
-            var i;
-            var url = url || loc.href;
-            var regExp = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
-            var names = ["url", "scheme", "slash", "host", "port", "path", "query", "hash"];
-            var result = regExp.exec(url);
-            var result_format = {};
+            return {
+                parse: parse
+            };
+        })(location);
 
-            for (i = 0; i < names.length; i += 1) {
-                result_format[names[i]] = result[i];
+        function joint(data) {
+            var str = "";
+            for (i in data) {
+                if (i === 'typeId' || i === 'brandId' || i === 'id') {
+                    str += "&" + i + "=" + data[i];
+                }
             }
-            result_format.query = utils.convertQs(result_format.query);
-
-            return result_format;
+            return str.slice(1);
         }
 
-        return {
-            parse: parse
-        };
-    })(location);
-
-    function joint(data) {
-        var str = "";
-        for (i in data) {
-            if (i === 'typeId' || i === 'brandId' || i === 'id') {
-                str += "&" + i + "=" + data[i];
-            }
-        }
-        return str.slice(1);
-    }
-
-    query = hrefUtils.parse().query;
-    console.log(query);
-    console.log(query.url);
-    console.log("http://www.buyoo.vn/html/details.html?" + joint(query));
-    location.href = "http://www.buyoo.vn/html/details.html?" + joint(query);
-</script>
+        query = hrefUtils.parse().query;
+        console.log(query);
+        console.log(query.url);
+        console.log("http://www.buyoo.vn/html/details.html?" + joint(query));
+        location.href = "http://www.buyoo.vn/html/details.html?" + joint(query);
+    </script>
+    <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+</body>
 
 </html>

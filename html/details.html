@@ -9,6 +9,15 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <title>Tình trạng sản phẩm</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111518610-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111518610-1');
+    </script>
     <link href="../css/bootstrap.css?version=2.1.0" rel="stylesheet">
     <link rel="stylesheet" href="../css/swiper.min.css?version=2.1.0">
     <link href="../css/style.css?version=2.1.0" rel="stylesheet">
@@ -149,7 +158,7 @@
             height: 27px;
             width: 100px !important;
         }
-        
+
         /* .body__m-t-i-n-l-input:disabled {
             border-color: #0076f7;
         }
@@ -592,162 +601,162 @@
             <img src="../img/dd.gif" alt="" />
         </div>
     </div>
-</body>
-<script src="../js/jquery.js?version=2.1.0"></script>
-<script src="../js/bootstrap.js?version=2.1.0"></script>
-<script src="../js/location.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="../js/swiper.min.js?version=2.1.0"></script>
-<script src="../js/md555.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<script src="../js/ajax.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<script src="../js/angularjs.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<script src="../js/vue.min.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<script src="../js/getMd5Code.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<script src="../js/localStorage.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<!-- <script src="../js/sys/sessionStorage.js?version=2.1.0" type="text/javascript" charset="utf-8"></script> -->
-<!-- tcy -start- -->
-<script src="../js/md5.js?version=2.1.0"></script>
-<script src="../js/common.js?version=2.1.0"></script>
-<!-- tcy -end- -->
-<script src="../js/common/common.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<!-- <script src="../js/sys/config.js?version=2.1.0" type="text/javascript" charset="utf-8"></script> -->
-<script>
-    // var appVersion = window.navigator.appVersion;
-    // if (F._PhoneExpr.test(appVersion)) location.href = F._google_store;
-    window.setTimeout(function () {
-        if (localStorage.getItem("funId")) {
-            F._userViewDetailInfo({}, function (ret) {
-                if (ret.data.headimage) {
-                    $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
-                }
+    <script src="../js/jquery.js?version=2.1.0"></script>
+    <script src="../js/bootstrap.js?version=2.1.0"></script>
+    <script src="../js/location.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/swiper.min.js?version=2.1.0"></script>
+    <script src="../js/md555.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/vue.min.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/getMd5Code.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/localStorage.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/sys/sessionStorage.js?version=2.1.0" type="text/javascript" charset="utf-8"></script> -->
+    <!-- tcy -start- -->
+    <script src="../js/md5.js?version=2.1.0"></script>
+    <script src="../js/common.js?version=2.1.0"></script>
+    <!-- tcy -end- -->
+    <script src="../js/common/common.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/sys/config.js?version=2.1.0" type="text/javascript" charset="utf-8"></script> -->
+    <script>
+        // var appVersion = window.navigator.appVersion;
+        // if (F._PhoneExpr.test(appVersion)) location.href = F._google_store;
+        window.setTimeout(function () {
+            if (localStorage.getItem("funId")) {
+                F._userViewDetailInfo({}, function (ret) {
+                    if (ret.data.headimage) {
+                        $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
+                    }
+                });
+            }
+        }, 700);
+
+        function plus() {
+            if (F.vue.buyNum >= F.vue.store) return false;
+            if (F.vue.buyNum >= F._cardMaxNumber) return false;
+            F.vue.buyNum += 1;
+        }
+
+        function minus() {
+            if (F.vue.buyNum <= 1) return false;
+            F.vue.buyNum -= 1;
+        }
+
+
+        F.vue = {
+            buyNum: 1,
+        }
+
+        function new_vue() {
+            F.vue.store = +$('#tcy-numbers').html();
+            F.vue = new Vue({
+                el: $('#body__m-t-i-n-wrap')[0],
+                data: F.vue,
+                methods: {
+                    plus: plus,
+                    minus: minus,
+                },
+                computed: {
+
+                },
+                watch: {
+                    // LS__data: function (val, oldVal) {
+                    //     var data = this.LS__data;
+                    //     localStorage.setItem("cart", JSON.stringify(data));
+                    //     calc(data);
+                    // },
+                },
             });
         }
-    }, 700);
 
-    function plus() {
-        if (F.vue.buyNum >= F.vue.store) return false;
-        if (F.vue.buyNum >= F._cardMaxNumber) return false;
-        F.vue.buyNum += 1;
-    }
+        setTimeout(function () {
+            new_vue();
+        }, 700);
 
-    function minus() {
-        if (F.vue.buyNum <= 1) return false;
-        F.vue.buyNum -= 1;
-    }
+        F.query = F._hrefUtils.parse().query || {};
 
+        F.id = F.query.id || '';
 
-    F.vue = {
-        buyNum: 1,
-    }
-
-    function new_vue() {
-        F.vue.store = +$('#tcy-numbers').html();
-        F.vue = new Vue({
-            el: $('#body__m-t-i-n-wrap')[0],
-            data: F.vue,
-            methods: {
-                plus: plus,
-                minus: minus,
-            },
-            computed: {
-
-            },
-            watch: {
-                // LS__data: function (val, oldVal) {
-                //     var data = this.LS__data;
-                //     localStorage.setItem("cart", JSON.stringify(data));
-                //     calc(data);
-                // },
-            },
+        var swiper = new Swiper('#index_banner', {
+            paginationClickable: true,
+            longSwipesRatio: 0.3,
+            touchRatio: 1,
+            autoplay: 6000,
+            effect: 'fade',
+            pagination: '.swiper-pagination',
+            observer: true, //修改swiper自己或子元素时, 自动初始化swiper
+            observeParents: true, //修改swiper的父元素时, 自动初始化swiper
+            prevButton: '.swiper-button-prev',
+            nextButton: '.swiper-button-next',
         });
-    }
-
-    setTimeout(function () {
-        new_vue();
-    }, 700);
-
-    F.query = F._hrefUtils.parse().query || {};
-
-    F.id = F.query.id || '';
-
-    var swiper = new Swiper('#index_banner', {
-        paginationClickable: true,
-        longSwipesRatio: 0.3,
-        touchRatio: 1,
-        autoplay: 6000,
-        effect: 'fade',
-        pagination: '.swiper-pagination',
-        observer: true, //修改swiper自己或子元素时, 自动初始化swiper
-        observeParents: true, //修改swiper的父元素时, 自动初始化swiper
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
-    });
-    $('.bb button').click(function () {
-        $('.bb button').removeClass('b_active');
-        $(this).addClass('b_active');
-    })
-    $('.bl2 button').click(function () {
-        $('.bl2 button').removeClass('b_active');
-        $(this).addClass('b_active');
-    })
-    $('.btn').click(function () {
-        $('.btn').removeClass('b_active');
-        $(this).addClass('b_active');
-    })
-    $('body').delegate('.ys a', 'click', function () {
-        $('.ys a').removeClass('act');
-        $(this).addClass('act');
-    });
-
-    $('body').delegate('.nc button', 'click', function () {
-        $('.nc button').removeClass('act');
-        $(this).addClass('act');
-    })
-    $('body').delegate('.yys button', 'click', function () {
-        $('.yys button').removeClass('act');
-        $(this).addClass('act');
-    })
-    $('body').delegate('.btn', 'click', function () {
-        $('.btn').removeClass('act');
-        $(this).addClass('act');
-    })
-    $('.details .left .top').find('li').each(function (index) {
-        $(this).click(function () {
-            if ($(this).is('.act') == false) {
-                $('.details .left .top').find('li').removeClass('act').eq(index).addClass('act');
-                $('.details_center').find('.details_centerlist').stop().hide().eq(index).stop().show();
-            }
+        $('.bb button').click(function () {
+            $('.bb button').removeClass('b_active');
+            $(this).addClass('b_active');
         })
-    })
+        $('.bl2 button').click(function () {
+            $('.bl2 button').removeClass('b_active');
+            $(this).addClass('b_active');
+        })
+        $('.btn').click(function () {
+            $('.btn').removeClass('b_active');
+            $(this).addClass('b_active');
+        })
+        $('body').delegate('.ys a', 'click', function () {
+            $('.ys a').removeClass('act');
+            $(this).addClass('act');
+        });
 
-    $(".bdsharebuttonbox").hide();
-    $("#share").hover(function () {
-        $(".bdsharebuttonbox").show();
-    }, function () {
+        $('body').delegate('.nc button', 'click', function () {
+            $('.nc button').removeClass('act');
+            $(this).addClass('act');
+        })
+        $('body').delegate('.yys button', 'click', function () {
+            $('.yys button').removeClass('act');
+            $(this).addClass('act');
+        })
+        $('body').delegate('.btn', 'click', function () {
+            $('.btn').removeClass('act');
+            $(this).addClass('act');
+        })
+        $('.details .left .top').find('li').each(function (index) {
+            $(this).click(function () {
+                if ($(this).is('.act') == false) {
+                    $('.details .left .top').find('li').removeClass('act').eq(index).addClass('act');
+                    $('.details_center').find('.details_centerlist').stop().hide().eq(index).stop().show();
+                }
+            })
+        })
+
         $(".bdsharebuttonbox").hide();
-    })
-    $(".bdsharebuttonbox").hover(function () {
-        $(".bdsharebuttonbox").show();
-    }, function () {
-        $(".bdsharebuttonbox").hide();
-    })
+        $("#share").hover(function () {
+            $(".bdsharebuttonbox").show();
+        }, function () {
+            $(".bdsharebuttonbox").hide();
+        })
+        $(".bdsharebuttonbox").hover(function () {
+            $(".bdsharebuttonbox").show();
+        }, function () {
+            $(".bdsharebuttonbox").hide();
+        })
 
-    // function gotoFind() {
-    //     var findcontent = $("#findIpt").val();
-    //     if (findcontent != "") {
-    //         window.location.href = "search.html?findcontent=" + findcontent;
-    //     }
-    // }
+        // function gotoFind() {
+        //     var findcontent = $("#findIpt").val();
+        //     if (findcontent != "") {
+        //         window.location.href = "search.html?findcontent=" + findcontent;
+        //     }
+        // }
 
-    // function entersearch() {
-    //     var event = window.event || arguments.callee.caller.arguments[0];
-    //     if (event.keyCode == 13) {
-    //         gotoFind();
-    //     }
-    // }
-    var bodyh = $('body').height();
-    $('#shoucang').height(bodyh);
-</script>
-<script src="../js/details_copy.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
-<!-- <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> -->
+        // function entersearch() {
+        //     var event = window.event || arguments.callee.caller.arguments[0];
+        //     if (event.keyCode == 13) {
+        //         gotoFind();
+        //     }
+        // }
+        var bodyh = $('body').height();
+        $('#shoucang').height(bodyh);
+    </script>
+    <script src="../js/details_copy.js?version=2.1.0" type="text/javascript" charset="utf-8"></script>
+    <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+</body>
 
 </html>
