@@ -366,6 +366,7 @@
         //  Đăng kí
         app.controller("zhuceCtrl", function ($scope, $http, $filter) {
             $("#submit").click(function () {
+                _czc.push(['_trackEvent', '注册', '点击', '点击注册按钮']);
                 var tel = $('#tel').val();
                 var telCode = $('#telCode').val();
                 var pwd = $('#pwd').val();
@@ -468,6 +469,12 @@
         })
     </script>
     <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", "1271691056"]);
+    </script>
 </body>
 
 </html>

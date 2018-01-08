@@ -375,13 +375,13 @@
                                     </div>
                                     <div class="body__m-r1-m-r-m-r2-left">
                                         <input type="tel" class="body__m-r1-m-r-m-r2-l-input" placeholder="Điền số điện thoại di động" v-model="MO__phone" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
-                                            data-on-val="">
+                                            data-on-val="" onclick="_czc.push(['_trackEvent', '输入框', '点击', '用户名']);">
                                     </div>
                                 </div>
                                 <div class="body__m-r1-m-r-m-row3" style="display: none;" v-show="mode === 1">
                                     <div class="body__m-r1-m-r-m-r3-left">
                                         <input type="text" class="body__m-r1-m-r-m-r3-l-input" placeholder="Nhập mã xác nhận" v-model="MO__code" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
-                                            data-on-val="">
+                                            data-on-val="" onclick="_czc.push(['_trackEvent', '输入框', '点击', '密码']);">
                                     </div>
                                     <div class="body__m-r1-m-r-m-r3-right">
                                         <div class="body__m-r1-m-r-m-r3-r-main" id="verify_text" @click="send_code" :class="{ 'body__m-r1-m-r-m-r3-r-main_active': is_phone }"
@@ -544,8 +544,10 @@
 
             function submit() {
                 if (F.vue.mode === 1) { // 快捷登录
+                    _czc.push(['_trackEvent', '登录', '点击', '快捷登录']);
                     shortcut_login();
                 } else {
+                    _czc.push(['_trackEvent', '登录', '点击', '密码登录']);
                     pwd_login();
                 }
             }
@@ -558,6 +560,7 @@
                 }, function (ret) {
                     if (!ret) return false;
                     if (ret.status !== 10000) return false;
+                    _czc.push(['_trackEvent', '登录', '点击', '快捷登录成功']);
                     localToServer();
                 });
             }
@@ -570,6 +573,7 @@
                 }, function (ret) {
                     if (!ret) return false;
                     if (ret.status !== 10000) return false;
+                    _czc.push(['_trackEvent', '登录', '点击', '密码登录成功']);
                     localToServer();
                 });
             }
@@ -598,6 +602,12 @@
         });
     </script>
     <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", "1271691056"]);
+    </script>
 </body>
 
 </html>
