@@ -175,9 +175,9 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
                     address: $address,
                     isdefault: "Y",
                     username: $username,
-                    districtsid: districtsid,
-                    provincesid: provincesid,
-                    wardsid: wardsid
+                    division2st: districtsid,
+                    division3st: provincesid,
+                    division4st: wardsid
                 },
                 function(ret) {
                     loading.hide();

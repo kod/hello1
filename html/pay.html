@@ -149,13 +149,13 @@
                         <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                         <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
                     </div>
-                    <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + ', ' + item.wardsName + ', ' + item.districtsName + ', ' + item.provincesName"></div>
+                    <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + ', ' + item.division4thName + ', ' + item.division3rdName + ', ' + item.division2ndName"></div>
                     <div class="site__m-i-row3 col-xs-24">
                         <div class="site__m-i-r3-def">
-                            <span class="site__m-i-r3-f-set moren" ng-click="moren(index,item.id,item.isdefault,item.msisdn,item.address,item.username,item.wards_id,item.districts_id,item.provinces_id)">Đặt làm mặc định</span>
+                            <span class="site__m-i-r3-f-set moren" ng-click="moren(index,item.id,item.isdefault,item.msisdn,item.address,item.username,item.division4th,item.division3rd,item.division2nd)">Đặt làm mặc định</span>
                             <span class="site__m-i-r3-f-status">mặc định</span>
                         </div>
-                        <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,districts_id:item.districts_id,provinces_id:item.provinces_id,wards_id:item.wards_id,model:'modify'})">
+                        <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,division3rd:item.division3rd,division2nd:item.division2nd,division4th:item.division4th,model:'modify'})">
                             <span class="site__m-i-r3-e-text">Sửa</span>
                         </div>
                         <div class="site__m-i-r3-del">
@@ -519,7 +519,7 @@
                 return false;
             }
 
-            if (!F.provincesName) {
+            if (!F.division2ndName) {
                 F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ, Vui lòng Sửa", "tips", [
                     {
                         name: "Xác nhận",
@@ -595,12 +595,12 @@
                     address: F.address,
                     username: F.username,
                     remark: '',
-                    provincesName: F.provincesName,
-                    provincesCode: F.provincesCode,
-                    districtsName: F.districtsName,
-                    districtsCode: F.districtsCode,
-                    wardsName: F.wardsName,
-                    wardsCode: F.wardsCode,
+                    division2ndName: F.division2ndName,
+                    division2ndCode: F.division2ndCode,
+                    division3rdName: F.division3rdName,
+                    division3rdCode: F.division3rdCode,
+                    division4thName: F.division4thName,
+                    division4thCode: F.division4thCode,
                 }, batchCreateOrder_callback);
 
             } else if (F.paymentNum === 1) { // 全款
@@ -619,12 +619,12 @@
                     address: F.address,
                     username: F.username,
                     number: F.quantity,
-                    provincesName: F.provincesName,
-                    provincesCode: F.provincesCode,
-                    districtsName: F.districtsName,
-                    districtsCode: F.districtsCode,
-                    wardsName: F.wardsName,
-                    wardsCode: F.wardsCode,
+                    division2ndName: F.division2ndName,
+                    division2ndCode: F.division2ndCode,
+                    division3rdName: F.division3rdName,
+                    division3rdCode: F.division3rdCode,
+                    division4thName: F.division4thName,
+                    division4thCode: F.division4thCode,
                 }, fullOrderCreate_callback);
 
             } else {
@@ -642,12 +642,12 @@
                     address: F.address,
                     username: F.username,
                     number: F.quantity,
-                    provincesName: F.provincesName,
-                    provincesCode: F.provincesCode,
-                    districtsName: F.districtsName,
-                    districtsCode: F.districtsCode,
-                    wardsName: F.wardsName,
-                    wardsCode: F.wardsCode,
+                    division2ndName: F.division2ndName,
+                    division2ndCode: F.division2ndCode,
+                    division3rdName: F.division3rdName,
+                    division3rdCode: F.division3rdCode,
+                    division4thName: F.division4thName,
+                    division4thCode: F.division4thCode,
                 }, createOrder_callback);
 
             }

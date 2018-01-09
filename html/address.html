@@ -115,7 +115,7 @@
                 </div>
                 <div class="right one-right" ng-controller="addCtrl">
                     <h2>Đia chỉ nhận hàng của tôi </h2>
-                    <h5>Đã thêm <span ng-bind="addrlistLength"></span> địa chỉ nhận  hàng , Có thể thêm tối đã 5 địa chỉ nhận  hàng</h5>
+                    <h5>Đã thêm <span ng-bind="addrlistLength"></span> địa chỉ nhận hàng , Có thể thêm tối đã 5 địa chỉ nhận hàng</h5>
                     <section class="site" id="one">
                         <!-- <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div> -->
                         <div class="site__main col-xs-24">
@@ -124,13 +124,13 @@
                                     <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                                     <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
                                 </div>
-                                <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + ', ' + item.wardsName + ', ' + item.districtsName + ', ' + item.provincesName"></div>
+                                <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + ', ' + item.division4thName + ', ' + item.division3rdName + ', ' + item.division2ndName"></div>
                                 <div class="site__m-i-row3 col-xs-24">
                                     <div class="site__m-i-r3-def">
-                                        <span class="site__m-i-r3-f-set moren" ng-click="moren(index,item.id,item.isdefault,item.msisdn,item.address,item.username,item.wards_id,item.districts_id,item.provinces_id)">Đặt làm mặc định</span>
+                                        <span class="site__m-i-r3-f-set moren" ng-click="moren(index,item.id,item.isdefault,item.msisdn,item.address,item.username,item.division4th,item.division3rd,item.division2nd)">Đặt làm mặc định</span>
                                         <span class="site__m-i-r3-f-status">mặc định</span>
                                     </div>
-                                    <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,districts_id:item.districts_id,provinces_id:item.provinces_id,wards_id:item.wards_id,model:'modify'})">
+                                    <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,division3rd:item.division3rd,division2nd:item.division2nd,division4th:item.division4th,model:'modify'})">
                                     <!-- <div class="site__m-i-r3-edit" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)"> -->
                                         <span class="site__m-i-r3-e-text">Sửa</span>
                                     </div>
