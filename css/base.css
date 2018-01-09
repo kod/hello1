@@ -1903,8 +1903,12 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 365px;
   border: 1px solid #d7d7d7;
   padding: 0 20px;
-  color: #696969;
+  color: #555;
   font-size: 14px;
+}
+
+.alert__b-m-b-r1-r-input[disabled] {
+  background-color: rgb(238, 238, 238);
 }
 
 .alert__b-m-b-r1-r-input::-webkit-input-placeholder {
