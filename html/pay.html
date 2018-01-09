@@ -201,7 +201,8 @@
                                 <tr ng-repeat="(index, item) in LS__data" class="ls-data-css">
                                     <td>
                                         <img src="{{item.iconUrl}}" alt="" style="width: 85px; cursor: pointer;" ng-click="gotoDetails(item._detail.typeId, item._detail.brandId, item._detail.id)">
-                                        <span ng-bind="'【Hàng】'+item.subject" style="margin-top: 30px; width: 590px;"></span>
+                                        <span ng-bind="item.subject" style="margin-top: 30px; width: 590px;"></span>
+                                        <!-- <span ng-bind="'【Hàng】'+item.subject" style="margin-top: 30px; width: 590px;"></span> -->
                                     </td>
                                     <td id="buyNum" ng-bind="item.quantity"></td>
                                     <td id="price" ng-bind="item.totalAmount | priceFormat"></td>
@@ -293,7 +294,7 @@
                         <p ng-show="paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
                             Trả góp hàng tháng:
                             <i ng-bind="resPrice | priceFormat" style="margin-left: 5px;"></i>
-                            <span class="" style="color: #F7004C; padding-top: 2px;">VND X
+                            <span class="" style="color: #F7004C; padding-top: 2px;">VND x
                                 <span ng-bind="fenqiNum"></span>
                             </span>
                             <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" ng-click="information()"
