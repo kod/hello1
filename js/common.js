@@ -5028,7 +5028,7 @@ function header_add() {
                             </div>\
                         </div>\
                     </div>\
-                    <a href="' + dot_str + './html/center.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>\
+                    <a href="' + dot_str + './html/personal.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>\
                 </div>\
                 <div class="header__n-m-left header__n-m-left_nologin">\
                     <a href="' + dot_str + './html/login.html" class="header__n-m-l-login">Đăng nhập</a>\
