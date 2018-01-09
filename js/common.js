@@ -6009,7 +6009,7 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 1 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
                             <!-- <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername1" value="' + (connect_json.connectusername1 ? connect_json.connectusername1 : "") + '"> -->\
-                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="1">' + (connect_json.connectusername1 ? connect_json.connectusername1 : "") + '</span>\
+                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="1" id="connectusername1">' + (connect_json.connectusername1 ? connect_json.connectusername1 : "") + '</span>\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="1">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="1">Sửa ></span>\
                         </div>\
@@ -6018,7 +6018,7 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 2 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
                             <!-- <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername2" value="' + (connect_json.connectusername2 ? connect_json.connectusername2 : "") + '"> -->\
-                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="2">' + (connect_json.connectusername2 ? connect_json.connectusername2 : "") + '</span>\
+                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="2" id="connectusername2">' + (connect_json.connectusername2 ? connect_json.connectusername2 : "") + '</span>\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="2">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="2">Sửa ></span>\
                         </div>\
@@ -6027,7 +6027,7 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 3 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
                             <!-- <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername3" value="' + (connect_json.connectusername3 ? connect_json.connectusername3 : "") + '"> -->\
-                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="3">' + (connect_json.connectusername3 ? connect_json.connectusername3 : "") + '</span>\
+                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="3" id="connectusername3">' + (connect_json.connectusername3 ? connect_json.connectusername3 : "") + '</span>\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="3">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="3">Sửa ></span>\
                         </div>\
@@ -6249,7 +6249,7 @@ F._baseinfo = function(data, userInfo) {
             connect_json["connectuserrelation" + contact_order] = relation;
             connect_json["connectuseridentification" + contact_order] = identification;
 
-            $("#connectusername" + contact_order).val(username);
+            $("#connectusername" + contact_order).html(username);
             $(".alert__b-m-b-row6")
                 .eq(+contact_order - 1)
                 .addClass("alert__b-m-b-row6_active");
