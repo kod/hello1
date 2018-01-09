@@ -137,6 +137,8 @@
 </head>
 
 <body ng-app="payApp" ng-controller="payCtrl">
+    <div id="myModal123-label" data-toggle="modal" data-target="#myModal123" style="opacity: 0;"></div>
+
     <div ng-controller="addressCtrl">
         <header class="header" id="header"></header>
         <div class="body" style="height: 30px; width: 100%;"></div>
@@ -161,7 +163,6 @@
                         <div class="site__m-i-r3-del">
                             <span class="site__m-i-r3-d-text" ng-click="remove(item.id)">Xoá</span>
                         </div>
-                        <div id="myModal123-label" data-toggle="modal" data-target="#myModal123" style="opacity: 0;"></div>
                     </div>
                     <div class="site__m-i-row4">√</div>
                 </li>
@@ -503,12 +504,12 @@
                 F._confirm('Gợi ý', 'Vui lòng Thêm địa chỉ nhận hàng', 'tips', [{
                     name: 'Xác nhận',
                     func: function () {
-
+                        location.href = location.href + '#';
                     }
                 }]);
                 return false;
             }
-            
+
             if (!F.address && F.addrlistData.length) {
                 F._confirm('Gợi ý', 'Vui lòng chọn địa chỉ nhận hàng của bạn', 'tips', [{
                     name: 'Xác nhận',
