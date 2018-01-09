@@ -4574,7 +4574,6 @@ F._add_edit_address = function(params) {
         $("#districtsid").html(edit_districts_option(districts_data));
         $("#wardsid").html(edit_wards_option(wards_data));
 
-        console.log(params);
         $("#provincesid").val(params.division2nd);
         $("#districtsid").val(params.division3rd);
         $("#wardsid").val(params.division4th);
@@ -5922,12 +5921,9 @@ F._baseinfo = function(data, userInfo) {
 
     var alert__baseinfo_main_height = document.documentElement.clientHeight * 0.924;
 
-    var baseinfo_html =
-        '\
+    var baseinfo_html = '\
     <div class="alert__baseinfo" style="display: block;" id="alert__baseinfo">\
-        <div class="alert__baseinfo-main" style="height: ' +
-        alert__baseinfo_main_height +
-        'px">\
+        <div class="alert__baseinfo-main" style="height: ' + alert__baseinfo_main_height + 'px">\
             <div class="alert__b-m-title col-xs-24">\
                 <span class="alert__b-m-t-text">Điền thông tin cá nhân</span>\
                 <span class="alert__b-m-t-close" id="baseinfo_hide"></span>\
@@ -5937,18 +5933,14 @@ F._baseinfo = function(data, userInfo) {
                     <div class="alert__b-m-b-row1 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Họ tên <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Họ tên" id="MO__username" value="' +
-        username +
-        '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Họ tên" id="MO__username" value="' + username + '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row2 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Giới tính <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-row2">\
-                                <span class="actionsheet__left js_sex" id="MO__sex">' +
-        sex +
-        '</span>\
+                                <span class="actionsheet__left js_sex" id="MO__sex">' + sex + '</span>\
                                 <span class="actionsheet__right js_sex">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
@@ -5962,9 +5954,7 @@ F._baseinfo = function(data, userInfo) {
                     <div class="alert__b-m-b-row3 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Số chứng minh thư <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" id="MO__identification" value="' +
-        identification +
-        '" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" id="MO__identification" ' + (identification ? "disabled" : "") + ' value="' + identification + '" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row4 col-xs-24">\
@@ -6003,54 +5993,41 @@ F._baseinfo = function(data, userInfo) {
                                     </div>\
                                 </div> -->\
                             <div class="alert__b-m-b-r4-bottom col-xs-24">\
-                                <textarea class="alert__b-m-b-r4-b-textarea" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng" id="MO__address">' +
-        address +
-        '</textarea>\
+                                <textarea class="alert__b-m-b-r4-b-textarea" placeholder="Vui lòng bổ sung địa chỉ cụ thể, ví dụ như tên đường, số nhà,số tầng và số phòng" id="MO__address">' + address + '</textarea>\
                             </div>\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row5 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Địa chỉ thư điện tử <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="email" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ thư điện tử" id="MO__email" value="' +
-        email +
-        '">\
+                            <input type="email" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ thư điện tử" id="MO__email" value="' + email + '">\
                         </div>\
                     </div>\
                 </div>\
                 <div class="alert__b-m-body col-xs-24">\
-                    <div class="alert__b-m-b-row6 col-xs-24 ' +
-        (connect_json.connectuseridentification1 ? "alert__b-m-b-row6_active" : "") +
-        '">\
+                    <div class="alert__b-m-b-row6 col-xs-24 ' + (connect_json.connectusername1 ? "alert__b-m-b-row6_active" : "") + '">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 1 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername1" value="' +
-        (connect_json.connectuseridentification1 ? connect_json.connectuseridentification1 : "") +
-        '">\
+                            <!-- <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername1" value="' + (connect_json.connectusername1 ? connect_json.connectusername1 : "") + '"> -->\
+                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="1">' + (connect_json.connectusername1 ? connect_json.connectusername1 : "") + '</span>\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="1">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="1">Sửa ></span>\
                         </div>\
                     </div>\
-                    <div class="alert__b-m-b-row6 col-xs-24 ' +
-        (connect_json.connectusername2 ? "alert__b-m-b-row6_active" : "") +
-        '">\
+                    <div class="alert__b-m-b-row6 col-xs-24 ' + (connect_json.connectusername2 ? "alert__b-m-b-row6_active" : "") + '">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 2 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername2" value="' +
-        (connect_json.connectusername2 ? connect_json.connectusername2 : "") +
-        '">\
+                            <!-- <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername2" value="' + (connect_json.connectusername2 ? connect_json.connectusername2 : "") + '"> -->\
+                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="2">' + (connect_json.connectusername2 ? connect_json.connectusername2 : "") + '</span>\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="2">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="2">Sửa ></span>\
                         </div>\
                     </div>\
-                    <div class="alert__b-m-b-row6 col-xs-24 ' +
-        (connect_json.connectusername3 ? "alert__b-m-b-row6_active" : "") +
-        '">\
+                    <div class="alert__b-m-b-row6 col-xs-24 ' + (connect_json.connectusername3 ? "alert__b-m-b-row6_active" : "") + '">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Người liên lạc 3 <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername3" value="' +
-        (connect_json.connectusername3 ? connect_json.connectusername3 : "") +
-        '">\
+                            <!-- <input type="text" class="alert__b-m-b-r1-r-input" placeholder="" id="connectusername3" value="' + (connect_json.connectusername3 ? connect_json.connectusername3 : "") + '"> -->\
+                            <span class="alert__b-m-b-r1-r-input js_contact_show" data-contact="3">' + (connect_json.connectusername3 ? connect_json.connectusername3 : "") + '</span>\
                             <span class="alert__b-m-b-r1-r-add js_contact_show" data-contact="3">Nhấp để thêm người liên lạc</span>\
                             <span class="alert__b-m-b-r1-r-modify js_contact_show" data-contact="3">Sửa ></span>\
                         </div>\
@@ -6061,52 +6038,40 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Tốt nghiệp trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-collegename">\
-                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' +
-        school_name +
-        '</span>\
+                                <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' + school_name + '</span>\
                                 <span class="actionsheet__right js_collegename" data-collegename="">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
-                                <div class="actionsheet__list">' +
-        collegename__list +
-        '</div>\
+                                <div class="actionsheet__list">' + collegename__list + '</div>\
                             </div>\
                         </div>\
                         <div class="alert__b-m-b-row33 col-xs-24" id="alert__b-m-b-row33">\
-                            Bạn học thân mến, tạm thời chúng tôi chỉ thực hiện thanh toán trả góp tại những trường đại học có trong danh sách, những trường đại học không thể chọn được vì nhân lực công ty chúng tôi có hạn nên tạm thời chưa thể thanh toán, nhưng bạn có thể lựa chọn thanh toán toàn bộ. Nếu có thắc mắc gì, xin hãy để lại lời nhắn trên facebook. Cám ơn sự ủng hộ của bạn.\
+                            * Bạn học thân mến, tạm thời chúng tôi chỉ thực hiện thanh toán trả góp tại những trường đại học có trong danh sách, những trường đại học không thể chọn được vì nhân lực công ty chúng tôi có hạn nên tạm thời chưa thể thanh toán, nhưng bạn có thể lựa chọn thanh toán toàn bộ. Nếu có thắc mắc gì, xin hãy để lại lời nhắn trên facebook. Cám ơn sự ủng hộ của bạn.\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row7 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Địa chỉ trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ trường" id="MO__collegeaddr" value="' +
-        collegeaddr +
-        '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Địa chỉ trường" id="MO__collegeaddr" value="' + collegeaddr + '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row7 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoa <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Khoa" id="MO__department" value="' +
-        department +
-        '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Khoa" id="MO__department" value="' + department + '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row7 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Chuyên ngành <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Chuyên ngành" id="MO__specialty" value="' +
-        specialty +
-        '">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Chuyên ngành" id="MO__specialty" value="' + specialty + '">\
                         </div>\
                     </div>\
                     <div class="alert__b-m-b-row8 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Học vị <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-degree">\
-                                <span class="actionsheet__left js_degree" data-degree="" id="MO__degree">' +
-        degree +
-        '</span>\
+                                <span class="actionsheet__left js_degree" data-degree="" id="MO__degree">' + degree + '</span>\
                                 <span class="actionsheet__right js_degree" data-degree="">\
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
@@ -6130,23 +6095,15 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet alert__b-m-b-r11-birthday">\
                                 <select name="" class="alert__b-m-b-r11-b-select" id="birthday-day">\
-                                    <option value="">Ngày</option>' +
-        day_options_produce +
-        '\
+                                    <option value="">Ngày</option>' + day_options_produce + '\
                                 </select>\
                                 <select name="" class="alert__b-m-b-r11-b-select" id="birthday-month">\
-                                    <option value="">Tháng</option>' +
-        month_options_produce +
-        '\
+                                    <option value="">Tháng</option>' + month_options_produce + '\
                                 </select>\
                                 <select name="" class="alert__b-m-b-r11-b-select" id="birthday-year">\
-                                    <option value="">Năm</option>' +
-        year_options_produce +
-        '\
+                                    <option value="">Năm</option>' + year_options_produce + '\
                                 </select>\
-                                <!-- <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' +
-        birthday +
-        '"></span> -->\
+                                <!-- <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' + birthday + '"></span> -->\
                             </div>\
                         </div>\
                     </div>\
@@ -6154,25 +6111,17 @@ F._baseinfo = function(data, userInfo) {
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoảng thời gian học <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ac-m" style="color: #333;">\
-                                <option value="">Tháng</option>' +
-        month_options_produce +
-        '\
+                                <option value="">Tháng</option>' + month_options_produce + '\
                             </select>\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ac" style="color: #333;">\
-                                <option value="">Năm</option>' +
-        year_options_produce +
-        '\
+                                <option value="">Năm</option>' + year_options_produce + '\
                             </select>\
                             <span style="vertical-align: middle">Đến</span>\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ov-m" style="color: #333;">\
-                                <option value="">Tháng</option>' +
-        month_options_produce +
-        '\
+                                <option value="">Tháng</option>' + month_options_produce + '\
                             </select>\
                             <select name="" class="alert__b-m-b-r9-select" id="sctime-ov" style="color: #333;">\
-                                <option value="">Năm</option>' +
-        year_options_produce +
-        '\
+                                <option value="">Năm</option>' + year_options_produce + '\
                             </select>\
                         </div>\
                         <div class="alert__b-m-b-row10 col-xs-24" style="padding-top: 5px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div>\
@@ -6324,22 +6273,10 @@ F._baseinfo = function(data, userInfo) {
         <div class="alert__contact" style="display: block;" id="alert__contact">\
             <div class="alert__contact-main">\
                 <div class="alert__b-m-title col-xs-24">\
-                    <span class="alert__b-m-t-text alert__b-m-t-text_confirm">提示</span>\
+                    <span class="alert__b-m-t-text alert__b-m-t-text_confirm">Người liên lạc ' + contact_order + '</span>\
                     <span class="alert__b-m-t-close" id="alert__contact_hide"></span>\
                 </div>\
                 <div class="alert__contact-body col-xs-24">\
-                    <div class="alert__c-b-row1 col-xs-24">\
-                        <div class="alert__b-m-b-r1-left col-xs-8">Họ tên <span class="alert__b-m-b-r1-l-requery">*</span></div>\
-                        <div class="alert__b-m-b-r1-right col-xs-11">\
-                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Họ tên" style="width: 100%;" value="' + input_username + '" id="input_username">\
-                        </div>\
-                    </div>\
-                    <div class="alert__c-b-row2 col-xs-24">\
-                        <div class="alert__b-m-b-r1-left col-xs-8">Số điện thoại <span class="alert__b-m-b-r1-l-requery">*</span></div>\
-                        <div class="alert__b-m-b-r1-right col-xs-11">\
-                            <input type="tel" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số điện thoại" style="width: 100%;" value="' + input_msisdn + '" id="input_msisdn">\
-                        </div>\
-                    </div>\
                     <div class="alert__c-b-row3 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Quan hệ <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-11">\
@@ -6369,6 +6306,18 @@ F._baseinfo = function(data, userInfo) {
                                     <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bạn học/ đồng nghiệp">Bạn học/ đồng nghiệp</li>\
                                 </div>\
                             </div>\
+                        </div>\
+                    </div>\
+                    <div class="alert__c-b-row1 col-xs-24">\
+                        <div class="alert__b-m-b-r1-left col-xs-8">Họ tên <span class="alert__b-m-b-r1-l-requery">*</span></div>\
+                        <div class="alert__b-m-b-r1-right col-xs-11">\
+                            <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Họ tên" style="width: 100%;" value="' + input_username + '" id="input_username">\
+                        </div>\
+                    </div>\
+                    <div class="alert__c-b-row2 col-xs-24">\
+                        <div class="alert__b-m-b-r1-left col-xs-8">Số điện thoại <span class="alert__b-m-b-r1-l-requery">*</span></div>\
+                        <div class="alert__b-m-b-r1-right col-xs-11">\
+                            <input type="tel" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số điện thoại" style="width: 100%;" value="' + input_msisdn + '" id="input_msisdn">\
                         </div>\
                     </div>\
                     <div class="alert__c-b-row4 col-xs-24" style="display:' + input_identification_display + ';">\
