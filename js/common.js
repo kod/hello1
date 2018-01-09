@@ -36,7 +36,6 @@ F._userAction_userViewAddr_uc = F._IP_191 + ":8180/fun/usercenter/userViewAddr";
 F._userAction_register_uc = F._IP_191 + ":8180/fun/userCenter/userAction/register"; // 注册
 F._userAction_getUserInfoById_uc = F._IP_191 + ":8180/fun/userCenter/userAction/getUserInfoById"; //
 F._userCancelCollection_uc = F._IP_191 + ":8180/fun/usercenter/userCancelCollection"; // 取消收藏
-// F._userAddCollection_uc = F._IP_191 + ":8180/fun/usercenter/userAddCollection"; // 添加收藏
 F._userBatchCollection_uc = F._IP_191 + ":8180/fun/usercenter/userBatchCollection"; // 批量添加收藏
 F._userGetCollection_uc = F._IP_191 + ":8180/fun/usercenter/userGetCollection"; // 获取收藏列表
 F._getCityInfos_uc = F._IP_191 + ":8180/fun/usercenter/getCityInfos"; // 省市区(行政区获取)
