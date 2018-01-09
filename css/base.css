@@ -2073,7 +2073,7 @@ input[type="number"]::-webkit-inner-spin-button {
   padding-right: 300px;
   padding-top: 10px;
   color: #f00;
-  display: none;
+  /* display: none; */
 }
 
 .alert__b-m-b-row7 .actionsheet {
