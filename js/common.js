@@ -6222,8 +6222,11 @@ F._baseinfo = function(data, userInfo) {
 
         var input_identification_display = contact_order === "1" ? "inline-block" : "none";
         var relation_display = contact_order === "1" ? "none" : "block";
-
+        var parent_display = contact_order !== "1" ? "none" : "block";
+        
         function submit_alert__contact(username, msisdn, relation, identification) {
+            identification = identification || "";
+            
             if (!username.length) {
                 alert("Vui lòng nhập Họ tên");
                 return false;
@@ -6239,10 +6242,11 @@ F._baseinfo = function(data, userInfo) {
                 return false;
             }
 
-            if (!identification.length && contact_order === "1") {
-                alert("Bắt buộc phải cài đặt số chứng minh thư của người liên hệ đầu tiên");
-                return false;
-            }
+            // 身份证选填
+            // if (!identification.length && contact_order === "1") {
+            //     alert("Bắt buộc phải cài đặt số chứng minh thư của người liên hệ đầu tiên");
+            //     return false;
+            // }
 
             connect_json["connectusername" + contact_order] = username;
             connect_json["connectusermsisdn" + contact_order] = msisdn;
@@ -6286,24 +6290,11 @@ F._baseinfo = function(data, userInfo) {
                                     <span class="actionsheet__right-arrow"></span>\
                                 </span>\
                                 <div class="actionsheet__list">\
-                                    <li class="actionsheet__list-item js_relation" data-relation="Bố">Bố</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Chú bác">Chú bác</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Anh em">Anh em</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Ông nội">Ông nội</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bà nội">Bà nội</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Cô">Cô</li>\
-                                    <li class="actionsheet__list-item js_relation" data-relation="Mẹ">Mẹ</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Cậu">Cậu</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Chị em">Chị em</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Ông ngoại">Ông ngoại</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bà ngoại">Bà ngoại</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Dì">Dì</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Vợ/chồng">Vợ/chồng</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bạn trai/bạn gái">Bạn trai/bạn gái</li>\
+                                    <li class="actionsheet__list-item js_relation" style="display:' + parent_display + ';" data-relation="Bố">Bố</li>\
+                                    <li class="actionsheet__list-item js_relation" style="display:' + parent_display + ';" data-relation="Mẹ">Mẹ</li>\
+                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bạn trai / bạn gái">Bạn trai / bạn gái</li>\
                                     <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bạn cùng phòng">Bạn cùng phòng</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bạn thân">Bạn thân</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Thầy cô giáo/ sếp">Thầy cô giáo/ sếp</li>\
-                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bạn học/ đồng nghiệp">Bạn học/ đồng nghiệp</li>\
+                                    <li class="actionsheet__list-item js_relation" style="display:' + relation_display + ';" data-relation="Bạn học">Bạn học</li>\
                                 </div>\
                             </div>\
                         </div>\
@@ -6321,7 +6312,7 @@ F._baseinfo = function(data, userInfo) {
                         </div>\
                     </div>\
                     <div class="alert__c-b-row4 col-xs-24" style="display:' + input_identification_display + ';">\
-                        <div class="alert__b-m-b-r1-left col-xs-8">Số chứng minh thư <span class="alert__b-m-b-r1-l-requery" style="display:' + input_identification_display + ';">*</span></div>\
+                        <div class="alert__b-m-b-r1-left col-xs-8">Số chứng minh thư <span class="alert__b-m-b-r1-l-requery" style="display:' + input_identification_display + ';"></span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-11">\
                             <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Số chứng minh thư" style="width: 100%;" value="' + input_identification + '" id="input_identification" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute(\'data-on-val\', this.value) : this.value = this.getAttribute(\'data-on-val\');" data-on-val="">\
                         </div>\
