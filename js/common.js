@@ -6498,7 +6498,12 @@ F._baseinfo = function(data, userInfo) {
             return false;
         }
 
-        if (!(connect_json.connectuseridentification1 && connect_json.connectuseridentification1.length)) {
+        // if (!(connect_json.connectuseridentification1 && connect_json.connectuseridentification1.length)) {
+        //     alert("Vui lòng Người liên lạc 1");
+        //     return false;
+        // }
+
+        if (!(connect_json.connectusername1 && connect_json.connectusername1.length)) {
             alert("Vui lòng Người liên lạc 1");
             return false;
         }
