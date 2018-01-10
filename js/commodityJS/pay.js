@@ -240,7 +240,6 @@ app.controller("addCtrl", function($scope, $http, $filter) {
                     F.msisdn = res.data.details[i].msisdn;
                     F.username = res.data.details[i].username;
                     $scope.addrlistData_index = i;
-                    console.log($scope.addrlistData_index);
                 }
             }
 

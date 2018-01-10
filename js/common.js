@@ -4668,12 +4668,6 @@ F._add_edit_address = function(params) {
             var division2nd = $("#provincesid").val();
             var division3rd = $("#districtsid").val();
             var division4th = $("#wardsid").val();
-            console.log(name);
-            console.log(phone);
-            console.log(textarea);
-            console.log(division2nd);
-            console.log(division3rd);
-            console.log(division4th);
 
             if (!F._phoneExpr.test(phone)) {
                 $("#errormsg small").html("Số điện thoại sai");
@@ -4717,7 +4711,6 @@ F._add_edit_address = function(params) {
             var loading = new F._loading();
             loading.show();
 
-            console.log(is_modify);
             if (is_modify) {
                 F._userAction_userModifyAddr(
                     {
