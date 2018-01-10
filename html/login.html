@@ -561,7 +561,6 @@
                     if (!ret) return false;
                     if (ret.status !== 10000) return false;
                     _czc.push(['_trackEvent', '登录', '点击', '快捷登录成功']);
-                    localToServer();
                 });
             }
 
@@ -574,21 +573,6 @@
                     if (!ret) return false;
                     if (ret.status !== 10000) return false;
                     _czc.push(['_trackEvent', '登录', '点击', '密码登录成功']);
-                    localToServer();
-                });
-            }
-
-            // 本地购物车上传到服务器
-            function localToServer() {
-                localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
-                var cartitems = JSON.parse(localStorage.getItem("cart"));
-                F._cart_gate({
-                    cartitems: localStorage.getItem("cart")
-                }, function (ret) {
-                    if (!ret) return false;
-                    if (ret.code !== 10000) return false;
-
-                    localStorage.setItem("cart", "[]");
                 });
             }
 

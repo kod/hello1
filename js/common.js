@@ -2269,49 +2269,43 @@ F._userAction_login = function(params, callback) {
             loading.hide();
             switch (ret.status) {
                 case 10000:
-                    // function createLoginSssion(funId, msisdn) {
-                    //     sessionStorage.setItem("funId", funId);
-                    //     localStorage.setItem("funId", funId);
-                    //     localStorage.setItem("msisdn", msisdn);
-                    //     localStorage.setItem("validTime", +new Date() + 7 * 24 * 60 * 60 * 1000);
-                    // }
-
                     sessionStorage.setItem("funId", ret.result);
                     localStorage.setItem("funId", ret.result);
                     localStorage.setItem("msisdn", ret.msisdn);
                     localStorage.setItem("validTime", +new Date() + 7 * 24 * 60 * 60 * 1000);
 
-                    // createLoginSssion(ret.result, ret.msisdn);
+                    F._localToServer(function() {
 
-                    F._userViewDetailInfo({}, function(ret) {
-                        if (ret.data.username) {
-                            localStorage.setItem("username", ret.data.username);
-                        } else {
-                            localStorage.setItem("username", "");
-                        }
-
-                        var hrefUtils_parse = F._hrefUtils.parse();
-                        F.query = hrefUtils_parse.query;
-
-                        if (hrefUtils_parse.path.slice(-10, -1) !== "login.htm") return false;
-
-                        if (F.query) {
-                            switch (F.query.from) {
-                                case "register":
-                                    window.location.href = "../index.html";
-                                    break;
-
-                                case "confirm":
-                                    window.location.href = "../index.html";
-                                    break;
-
-                                default:
-                                    window.history.go(-1);
-                                    break;
+                        F._userViewDetailInfo({}, function(ret) {
+                            if (ret.data.username) {
+                                localStorage.setItem("username", ret.data.username);
+                            } else {
+                                localStorage.setItem("username", "");
                             }
-                        } else {
-                            window.history.go(-1);
-                        }
+
+                            var hrefUtils_parse = F._hrefUtils.parse();
+                            F.query = hrefUtils_parse.query;
+
+                            if (hrefUtils_parse.path.slice(-10, -1) !== "login.htm") return false;
+
+                            if (F.query) {
+                                switch (F.query.from) {
+                                    case "register":
+                                        window.location.href = "../index.html";
+                                        break;
+
+                                    case "confirm":
+                                        window.location.href = "../index.html";
+                                        break;
+
+                                    default:
+                                        window.history.go(-1);
+                                        break;
+                                }
+                            } else {
+                                window.history.go(-1);
+                            }
+                        });
                     });
 
                     break;
@@ -4487,6 +4481,24 @@ F._getSchoolInfo = function(params, callback) {
 
 // 22222222222222
 
+// 本地购物车上传到服务器
+F._localToServer = function(callback) {
+    localStorage.getItem("cart") || localStorage.setItem("cart", "[]");
+    var cartitems = JSON.parse(localStorage.getItem("cart"));
+    F._cart_gate(
+        {
+            cartitems: localStorage.getItem("cart")
+        },
+        function(ret) {
+            callback();
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+
+            localStorage.setItem("cart", "[]");
+        }
+    );
+};
+
 F._add_edit_address = function(params) {
     var is_modify = !!params.id;
 
@@ -6223,10 +6235,10 @@ F._baseinfo = function(data, userInfo) {
         var input_identification_display = contact_order === "1" ? "inline-block" : "none";
         var relation_display = contact_order === "1" ? "none" : "block";
         var parent_display = contact_order !== "1" ? "none" : "block";
-        
+
         function submit_alert__contact(username, msisdn, relation, identification) {
             identification = identification || "";
-            
+
             if (!username.length) {
                 alert("Vui lòng nhập Họ tên");
                 return false;
