@@ -149,11 +149,11 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
     $scope.getUserInfoDetails();
 
     //      默认地址
-    $scope.moren = function(index, $id, $isdefault, $msisdn, $address, $username, wardsid, districtsid, provincesid) {
+    $scope.moren = function(index, $id, $isdefault, $msisdn, $address, $username, division4th, division3rd, division2nd) {
         event.stopPropagation();
         if (!F._isLogin()) return false;
 
-        if (!provincesid) {
+        if (!division2nd) {
             F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ", "tips", [
                 {
                     name: "Sửa",
@@ -175,16 +175,16 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
                     address: $address,
                     isdefault: "Y",
                     username: $username,
-                    division2st: districtsid,
-                    division3st: provincesid,
-                    division4st: wardsid
+                    division2nd: division2nd,
+                    division3rd: division3rd,
+                    division4th: division4th
                 },
                 function(ret) {
                     loading.hide();
                     if (!ret) return false;
                     if (ret.code !== 10000) return false;
 
-                    window.location.reload();
+                    // window.location.reload();
                 }
             );
         }

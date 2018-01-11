@@ -124,6 +124,64 @@ F._encrypt_MD5 = function(params, Key) {
     return md5(md5EncryptStrig);
 };
 
+// 查询用户基本信息
+F._userAction_getUserInfoById = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "userKey";
+    var provider = "0";
+    var id = localStorage.getItem("funId");
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "provider",
+                value: provider
+            },
+            {
+                key: "id",
+                value: id
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        provider: provider,
+        id: id,
+        encryption: encrypt
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._userAction_getUserInfoById_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.status) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
 // 获取省市区
 F._getCityInfos = function(params, callback) {
     if (!F._isLogin()) return false;
@@ -2275,7 +2333,6 @@ F._userAction_login = function(params, callback) {
                     localStorage.setItem("validTime", +new Date() + 7 * 24 * 60 * 60 * 1000);
 
                     F._localToServer(function() {
-
                         F._userViewDetailInfo({}, function(ret) {
                             if (ret.data.username) {
                                 localStorage.setItem("username", ret.data.username);
@@ -4547,17 +4604,17 @@ F._add_edit_address = function(params) {
                         <input type="text" name="" id="textarea" placeholder="" value="' + params.address + '">\
                         <br />\
                         <span>Tỉnh/Thành phố *</span>\
-                        <select name="" id="provincesid">\
+                        <select name="" id="division2nd">\
                             <option value="">Lựa chọn</option>\
                         </select>\
                         <br />\
                         <span>Quận/huyện *</span>\
-                        <select name="" id="districtsid">\
+                        <select name="" id="division3rd">\
                             <option value="">Lựa chọn</option>\
                         </select>\
                         <br />\
                         <span>Phường, xã *</span>\
-                        <select name="" id="wardsid">\
+                        <select name="" id="division4th">\
                             <option value="">Lựa chọn</option>\
                         </select>\
                         <br />\
@@ -4582,13 +4639,13 @@ F._add_edit_address = function(params) {
 
         $("body").append(html_str);
 
-        $("#provincesid").html(edit_provinces_option(provinces_data));
-        $("#districtsid").html(edit_districts_option(districts_data));
-        $("#wardsid").html(edit_wards_option(wards_data));
+        $("#division2nd").html(edit_provinces_option(provinces_data));
+        $("#division3rd").html(edit_districts_option(districts_data));
+        $("#division4th").html(edit_wards_option(wards_data));
 
-        $("#provincesid").val(params.division2nd);
-        $("#districtsid").val(params.division3rd);
-        $("#wardsid").val(params.division4th);
+        $("#division2nd").val(params.division2nd);
+        $("#division3rd").val(params.division3rd);
+        $("#division4th").val(params.division4th);
 
         $("#myModal123-label").click();
 
@@ -4607,12 +4664,12 @@ F._add_edit_address = function(params) {
             }, 500);
         });
 
-        $("#provincesid").on("change", function() {
-            $("#wardsid").html('<option value="">Lựa chọn</option>');
+        $("#division2nd").on("change", function() {
+            $("#division4th").html('<option value="">Lựa chọn</option>');
             var self = $(this);
             var id = self.val();
             if (!id) {
-                $("#districtsid").html('<option value="">Lựa chọn</option>');
+                $("#division3rd").html('<option value="">Lựa chọn</option>');
                 return false;
             }
             loading.show();
@@ -4625,12 +4682,12 @@ F._add_edit_address = function(params) {
                     if (!ret) return false;
                     if (ret.code !== 10000) return false;
 
-                    $("#districtsid").html(edit_districts_option(ret.details));
-                    $("#districtsid").on("change", function() {
+                    $("#division3rd").html(edit_districts_option(ret.details));
+                    $("#division3rd").on("change", function() {
                         var self = $(this);
                         var id = self.val();
                         if (!id) {
-                            $("#wardsid").html('<option value="">Lựa chọn</option>');
+                            $("#division4th").html('<option value="">Lựa chọn</option>');
                             return false;
                         }
                         loading.show();
@@ -4642,8 +4699,8 @@ F._add_edit_address = function(params) {
                                 loading.hide();
                                 if (!ret) return false;
                                 if (ret.code !== 10000) return false;
-                                $("#wardsid").html(edit_wards_option(ret.details));
-                                $("#wardsid").on("change", function() {
+                                $("#division4th").html(edit_wards_option(ret.details));
+                                $("#division4th").on("change", function() {
                                     var self = $(this);
                                     var id = self.val();
                                     if (!id) return false;
@@ -4665,9 +4722,9 @@ F._add_edit_address = function(params) {
             var name = $("#names").val();
             var phone = $("#phone").val();
             var textarea = $("#textarea").val();
-            var division2nd = $("#provincesid").val();
-            var division3rd = $("#districtsid").val();
-            var division4th = $("#wardsid").val();
+            var division2nd = $("#division2nd").val();
+            var division3rd = $("#division3rd").val();
+            var division4th = $("#division4th").val();
 
             if (!F._phoneExpr.test(phone)) {
                 $("#errormsg small").html("Số điện thoại sai");
