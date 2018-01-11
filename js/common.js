@@ -5040,7 +5040,7 @@ function header_add() {
                     <a href="' + dot_str + './html/register.html" class="header__n-m-l-reg">Đăng ký</a>\
                 </div>\
                 <div class="header__n-m-right">\
-                    <a href="' + dot_str + './index.html" class="header__n-m-home">BUYOO Trang chủ</a>\
+                    <a href="' + dot_str + './" class="header__n-m-home">BUYOO Trang chủ</a>\
                     <!-- <a href="' + dot_str + './html/buyflowIntro.html" class="header__n-m-help">Mua hàng bằng cách nào</a> -->\
                     <!-- <a href="' + dot_str + './html/buyIntro.html" class="header__n-m-help">Trung tâm hỗ trợ</a> -->\
                 </div>\
@@ -5049,7 +5049,7 @@ function header_add() {
         <div class="header__content">\
             <div class="header__content-main">\
                 <div class="header__c-m-logo">\
-                    <a href="' + dot_str + './index.html" class="header__c-m-l-img" style="background-image: url(' + dot_str + './img/LOGO2.jpg);"></a>\
+                    <a href="' + dot_str + './" class="header__c-m-l-img" style="background-image: url(' + dot_str + './img/LOGO2.jpg);"></a>\
                 </div>\
                 <div class="header__c-m-search">\
                     <input type="text" class="header__c-m-s-input" id="findIpt" onkeydown="F._entersearch()" placeholder="Vui lòng nhập từ khóa tìm kiếm">\
