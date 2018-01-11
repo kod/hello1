@@ -180,24 +180,24 @@
                 <button id="djs" data='off' class="djs" ng-click="duanxinOpt()" disabled="disabled">Gửi mã</button>
             </p>
             <p class="r_from">
-                <span>Mật khẩu đăng nhập</span>
+                <span>Mật khẩu</span>
                 <input id="pwd" type="password" placeholder="Vui lòng nhập 8-20 chữ số hoặc chữ cái" />
                 <!-- <img src="../img/q.png" style="margin-top: 10px;" alt="" class="opp" /> -->
             </p>
             <p class="r_from">
-                <span>Nhập lại Mật khẩu</span>
-                <input id="re_pwd" type="password" placeholder="Nhập lại Mật khẩu đăng nhập" />
+                <span>Nhập lại mật khẩu</span>
+                <input id="re_pwd" type="password" placeholder="Nhập lại mật khẩu" />
                 <!-- <img src="../img/q.png" style="margin-top: 10px;" alt="" class="opp" /> -->
             </p>
-            <p class="r_from">
+            <p class="r_from" style="height: 0px; overflow: hidden; margin: 0;">
                 <span>Mật mã giao dịch</span>
-                <input id="pwd2" type="password" placeholder="Vui lòng nhập 6 chữ số" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
+                <input id="pwd2" type="password" value="000000" placeholder="Vui lòng nhập 6 chữ số" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
                     data-on-val="">
             </p>
-            <p style="padding-left: 170px;padding-right: 120px; font-size: 12px; color: #999;margin-top: -20px;margin-bottom: 25px;">* Quan trọng! Để đảm bảo an toàn cho số tiền của bạn trong tài khoản, hãy cài đặt và ghi nhớ mật khẩu giao dịch</p>
-            <p class="r_from">
+            <p style="padding-left: 170px;padding-right: 120px; font-size: 12px; color: #999;margin-top: -20px;margin-bottom: 25px;height: 0px; overflow: hidden; margin: 0;">* Quan trọng! Để đảm bảo an toàn cho số tiền của bạn trong tài khoản, hãy cài đặt và ghi nhớ mật khẩu giao dịch</p>
+            <p class="r_from" style="height: 0px; overflow: hidden; margin: 0;">
                 <span>Nhập lại Mật mã</span>
-                <input id="re_pwd2" type="password" placeholder="Nhập lại Mật mã giao dịch" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
+                <input id="re_pwd2" type="password" value="000000" placeholder="Nhập lại Mật mã giao dịch" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
                     data-on-val="">
             </p>
             <p class="r_from mar_top12">
@@ -279,28 +279,27 @@
             }
 
         })
-        $('#pwd').change(function () {
-            var pwd = $("#pwd").val();
-            if (pwd && F._pwdExpr.test(pwd)) {
-                $('#errormsg').hide();
-            } else {
-                $('#errormsg').show();
-                $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
+        // $('#pwd').change(function () {
+        //     var pwd = $("#pwd").val();
+        //     if (pwd && F._pwdExpr.test(pwd)) {
+        //         $('#errormsg').hide();
+        //     } else {
+        //         $('#errormsg').show();
+        //         $('#errormsg').html('Số chữ mật khẩu sai');
 
-            }
-        })
-        $('#pwd2').blur(function () {
-            var pwd = $("#pwd2").val();
-            if (pwd && F._payPwdeExpr.test(pwd)) {
-                $('#errormsg').hide();
+        //     }
+        // })
+        // $('#pwd2').blur(function () {
+        //     var pwd = $("#pwd2").val();
+        //     if (pwd && F._payPwdeExpr.test(pwd)) {
+        //         $('#errormsg').hide();
 
-            } else {
-                $('#errormsg').show();
-                $('#errormsg').html('Mã xác minh gồm 6 số');
+        //     } else {
+        //         $('#errormsg').show();
+        //         $('#errormsg').html('Mã xác minh gồm 6 số');
 
-            }
-
-        })
+        //     }
+        // })
         $('#telCode').change(function () {
             var telCode = $(this).val();
             if (F._codeExpr.test(telCode)) {
@@ -374,85 +373,95 @@
                 var re_pwd = $('#re_pwd').val();
                 var re_pwd2 = $('#re_pwd2').val();
                 var xy = $('input[name="xy"]').prop("checked");
-                if (tel == '') {
+
+                console.log(tel);
+                console.log(telCode);
+                console.log(pwd);
+                console.log(re_pwd);
+                console.log(pwd2);
+                console.log(re_pwd2);
+
+                if (!F._phoneExpr.test(tel)) {
                     getMsg('Số điện thoại không được để trống', 1);
                     $("#tel")[0].focus();
                     $("#tel").addClass('error');
                     return false;
-                } else if (telCode == '') {
+                }
+
+                if (telCode.length !== 6) {
                     getMsg('Độ dài mã xác nhận không đúng', 1);
                     $("#telCode")[0].focus();
                     $("#telCode").addClass('error');
                     return false;
-                } else if (!F._pwdExpr.test(pwd)) {
-                    // } else if (pwd == '' || pwd.length < 6 || pwd.length > 16) {
-                    $('#errormsg').show();
-                    $('#errormsg').html('Số chữ mật khẩu đăng nhập sai');
+                } else {
+                    $("#telCode").removeClass('error');
+                }
+
+                if (!F._pwdExpr.test(pwd)) {
+                    getMsg('Số chữ mật khẩu sai', 1);
                     $("#pwd")[0].focus();
                     $("#pwd").addClass('error');
+                    return false;
+                } else {
+                    $("#pwd").removeClass('error');
+                }
 
-                } else if (!F._payPwdeExpr.test(pwd2)) {
+                if (!F._pwdExpr.test(re_pwd)) {
+                    getMsg('Sai nhập lại mật khẩu', 1);
+                    $("#re_pwd")[0].focus();
+                    $("#re_pwd").addClass('error');
+                    return false;
+                } else {
+                    $("#re_pwd").removeClass('error');
+                }
+
+                if (!F._payPwdeExpr.test(pwd2)) {
                     getMsg('Vui lòng nhập 6 chữ số', 1);
                     $("#pwd2")[0].focus();
                     return false;
-                } else {
-
-                    if (pwd !== re_pwd) {
-                        getMsg('Hai lần nhập mật khẩu đăng nhập không giống nhau', 1);
-                        return false;
-                    }
-                    if (pwd2 !== re_pwd2) {
-                        getMsg('Hai lần nhập mật mã giao dịch không giống nhau', 1);
-                        return false;
-                    }
-
-                    var msisdn = $('#tel').val();
-                    var password = $('#pwd').val();
-                    var payPassword = $('#pwd2').val();
-                    var otp = $('#telCode').val();
-                    if (payPassword && F._payPwdeExpr.test(payPassword)) {
-                        $('#errormsg').hide();
-                        $('#submit').attr('disabled', false)
-                        // if (msisdn != 0 && password != 0 && otp != 0) {
-                        if (msisdn != 0 && password != 0 && payPassword != 0 && otp != 0) {
-
-                            $("#telCode").removeClass('error');
-
-                            loading.show();
-                            F._userAction_register({
-                                provider: '0',
-                                msisdn: msisdn,
-                                username: '',
-                                password: password,
-                                payPassword: payPassword,
-                                otp: otp,
-                                check: '1',
-                                appid: '',
-                            }, function (ret) {
-                                loading.hide();
-                                if (!ret) return false;
-                                if (ret.status !== 10000) return false;
-
-                                F._userAction_login({
-                                    msisdn: msisdn,
-                                    password: password,
-                                }, function (ret) {
-                                    if (!ret) return false;
-                                    if (ret.status !== 10000) return false;
-
-                                    $('#myModal').show().addClass('in');
-                                });
-
-                            });
-
-                        }
-                    } else {
-                        $('#errormsg').show();
-                        $('#errormsg').html('Mã xác minh gồm 6 số');
-
-                    }
                 }
-            })
+
+                if (pwd !== re_pwd) {
+                    getMsg('Hai lần nhập mật khẩu không giống nhau', 1);
+                    return false;
+                }
+                if (pwd2 !== re_pwd2) {
+                    getMsg('Hai lần nhập mật mã giao dịch không giống nhau', 1);
+                    return false;
+                }
+
+                $('#errormsg').hide();
+                $('#submit').attr('disabled', false)
+                $("#telCode").removeClass('error');
+
+                console.log('ok');
+                
+                loading.show();
+                F._userAction_register({
+                    provider: '0',
+                    msisdn: tel,
+                    username: '',
+                    password: pwd,
+                    payPassword: pwd2,
+                    otp: telCode,
+                    check: '1',
+                    appid: '',
+                }, function (ret) {
+                    loading.hide();
+                    if (!ret) return false;
+                    if (ret.status !== 10000) return false;
+
+                    F._userAction_login({
+                        msisdn: tel,
+                        password: pwd,
+                    }, function (ret) {
+                        if (!ret) return false;
+                        if (ret.status !== 10000) return false;
+
+                        $('#myModal').show().addClass('in');
+                    });
+                });
+            });
             //提示信息
             function getMsg(msg, type) {
                 var html = '<img src="../img/tishi.png" />';

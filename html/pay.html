@@ -488,6 +488,16 @@
             });
         }
 
+        function is_initPaypassword(callback) {
+            F._userAction_getUserInfoById({}, function (ret) {
+                if (!ret) return false;;
+                if (ret.status !== 10000) return false;;
+
+                // 返回true: 已设置
+                callback(ret.details.initPassword !== 0);
+            });
+        }
+
         // 提交订单
         function submit() {
             // return false;
@@ -589,70 +599,85 @@
                 return result;
             }
 
-            if (F.isToCart) {
-                loading.show();
-                F._batchCreateOrder({
-                    orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
-                    msisdn: F.msisdn,
-                    address: F.address,
-                    username: F.username,
-                    remark: '',
-                    division2ndName: F.division2ndName,
-                    division2ndCode: F.division2ndCode,
-                    division3rdName: F.division3rdName,
-                    division3rdCode: F.division3rdCode,
-                    division4thName: F.division4thName,
-                    division4thCode: F.division4thCode,
-                }, batchCreateOrder_callback);
+            is_initPaypassword(function (status) {
+                if (status === false && F.vue.payway === '1') {
+                    F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function () {
+                                window.open('./back_id.html?from=payPwd');
+                            }
+                        }
+                    ]);
+                    return false;
+                }
 
-            } else if (F.paymentNum === 1) { // 全款
+                if (F.isToCart) {
+                    loading.show();
+                    F._batchCreateOrder({
+                        orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
+                        msisdn: F.msisdn,
+                        address: F.address,
+                        username: F.username,
+                        remark: '',
+                        division2ndName: F.division2ndName,
+                        division2ndCode: F.division2ndCode,
+                        division3rdName: F.division3rdName,
+                        division3rdCode: F.division3rdCode,
+                        division4thName: F.division4thName,
+                        division4thCode: F.division4thCode,
+                    }, batchCreateOrder_callback);
 
-                loading.show();
-                F._fullOrderCreate({
-                    totalamount: F.totalamount,
-                    orgamount: F.orgPrice,
-                    advance: F.totalamount,
-                    payrate: '1',
-                    repaymentmonth: '0',
-                    subject: F.subject,
-                    goodsdetail: F.goodsDetail,
-                    timeoutexpress: '86400',
-                    msisdn: F.msisdn,
-                    address: F.address,
-                    username: F.username,
-                    number: F.quantity,
-                    division2ndName: F.division2ndName,
-                    division2ndCode: F.division2ndCode,
-                    division3rdName: F.division3rdName,
-                    division3rdCode: F.division3rdCode,
-                    division4thName: F.division4thName,
-                    division4thCode: F.division4thCode,
-                }, fullOrderCreate_callback);
+                } else if (F.paymentNum === 1) { // 全款
 
-            } else {
+                    loading.show();
+                    F._fullOrderCreate({
+                        totalamount: F.totalamount,
+                        orgamount: F.orgPrice,
+                        advance: F.totalamount,
+                        payrate: '1',
+                        repaymentmonth: '0',
+                        subject: F.subject,
+                        goodsdetail: F.goodsDetail,
+                        timeoutexpress: '86400',
+                        msisdn: F.msisdn,
+                        address: F.address,
+                        username: F.username,
+                        number: F.quantity,
+                        division2ndName: F.division2ndName,
+                        division2ndCode: F.division2ndCode,
+                        division3rdName: F.division3rdName,
+                        division3rdCode: F.division3rdCode,
+                        division4thName: F.division4thName,
+                        division4thCode: F.division4thCode,
+                    }, fullOrderCreate_callback);
 
-                loading.show();
-                F._createOrder({
-                    totalAmount: F.totalamount,
-                    orgAmount: F.orgPrice,
-                    advance: parseInt(F.totalamount * F.paymentNum),
-                    payRate: F.paymentNum,
-                    repaymentMonth: F.fenqiNum,
-                    subject: F.subject,
-                    goodsDetail: F.goodsDetail,
-                    msisdn: F.msisdn,
-                    address: F.address,
-                    username: F.username,
-                    number: F.quantity,
-                    division2ndName: F.division2ndName,
-                    division2ndCode: F.division2ndCode,
-                    division3rdName: F.division3rdName,
-                    division3rdCode: F.division3rdCode,
-                    division4thName: F.division4thName,
-                    division4thCode: F.division4thCode,
-                }, createOrder_callback);
+                } else {
 
-            }
+                    loading.show();
+                    F._createOrder({
+                        totalAmount: F.totalamount,
+                        orgAmount: F.orgPrice,
+                        advance: parseInt(F.totalamount * F.paymentNum),
+                        payRate: F.paymentNum,
+                        repaymentMonth: F.fenqiNum,
+                        subject: F.subject,
+                        goodsDetail: F.goodsDetail,
+                        msisdn: F.msisdn,
+                        address: F.address,
+                        username: F.username,
+                        number: F.quantity,
+                        division2ndName: F.division2ndName,
+                        division2ndCode: F.division2ndCode,
+                        division3rdName: F.division3rdName,
+                        division3rdCode: F.division3rdCode,
+                        division4thName: F.division4thName,
+                        division4thCode: F.division4thCode,
+                    }, createOrder_callback);
+
+                }
+
+            });
         }
 
         function batchCreateOrder_callback(ret) {

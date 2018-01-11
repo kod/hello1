@@ -187,7 +187,7 @@
         <div class="text">
             <div class="left txt">Số điện thoại</div>
             <div class="left val">
-                <input type="tel" placeholder="Vui lòng nhập số điện thoại của bạn" style="padding-left: 70px;" id="phoneNum" />
+                <input type="tel" placeholder="Vui lòng nhập số điện thoại của bạn" style="padding-left: 70px;" id="phoneNum" disabled>
                 <div class="phone-flag">
                     <span class="phone-flag-img"></span>
                     <span class="phone-flag-code">+84</span>
@@ -231,6 +231,8 @@
         prevButton: '.swiper-button-prev',
         nextButton: '.swiper-button-next',
     });
+
+    $('#phoneNum').val(localStorage.getItem("msisdn"));
 
     $('.hot_brand').hover(function() {
         $(this).css('background', '#fff');
