@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <link rel="stylesheet" href="../css/base.css?version=2.2.0">
+    <title>paystep</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112306571-1');
+    </script>
+    <script src="../js/jquery.js?version=2.2.0"></script>
+    <script src="../js/md5.js?version=2.2.0"></script>
+    <script src="../js/require2.3.5.min.js?version=2.2.0"></script>
+    <style>
+        * {
+            text-align: justify;
+        }
+
+        h2 {
+            padding-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        img {
+            margin-bottom: 15px;
+            max-width: 1000px;
+        }
+
+        .body {
+            border-top: 1px solid #72aef0;
+        }
+
+        .body__main {
+            margin-bottom: 50px;
+            font-size: 16px;
+            line-height: 24px;
+            width: 1000px;
+        }
+
+        .body__main:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .body__main-row1 {
+            padding-top: 30px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content" id="vue-el">
+        <header class="header" id="header"></header>
+        <div class="body">
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                <div class="body__main-row1">
+                    Chỉ cần thẻ ngân hàng của bạn đã mở chức năng internet banking, bạn có thể trực tiếp thanh toán trên mạng và thanh toán tiền
+                    trả góp hàng tháng, hiện đã hỗ trỡ trên 90% ngân hang của Việt nam, rất tiện lợi, nếu không có chức năng
+                    internet banking hãy liên hệ với ngân hàng của bạn để mở chức năng này.
+                </div>
+                <h2>Cách thanh toán?</h2>
+                <p>
+                    1. Lựa chọn món hàng mình cần, chọn &lt;tỷ lệ thanh toán lần đầu&gt; và &lt;số kỳ thanh toán&gt;, ấn vào &lt;mua ngay&gt;
+                </p>
+                <p>
+                    <img src="../img/payguide_1.jpg" alt="image">
+                </p>
+                <p>
+                    2. Đi vào giao diện thanh toán hàng, tại đây có thể xác nhận lại tỷ lệ thanh toán lần đầu và số kỳ thanh toán, phần gạch
+                    chân màu xanh da trời trong hình thể hiện lựa chọn số tiền thanh toán lần đầu cũng chính là số tiền cần
+                    thanh toán ngay, phần gạch chân màu xanh lá cây thể hiện số tiền cần trả hàng tháng.
+                </p>
+                <p>
+                    <img src="../img/payguide_2.jpg" alt="image">
+                </p>
+                <p>
+                    3. Những thông tin sau khi xác nhận chính xác, lựa chọn ngân hàng thanh toán online, ấn vào &lt;mua ngay&gt;.
+                </p>
+                <p>
+                    <img src="../img/payguide_3.jpg" alt="image">
+                </p>
+                <p>
+                    4. Sau khi ấn &lt;mua ngay&gt; sẽ có xuất hiện 1 cửa sổ đối thoại, ấn vào &lt;thanh toán&gt;
+                </p>
+                <p>
+                    <img src="../img/payguide_4.jpg" alt="image">
+                </p>
+                <p>
+                    5. Sau khi ấn &lt;thanh toán&gt; sẽ nhảy sang giao diện dưới đây, lựa chọn ngân hàng thanh toán trong nước, tìm ngân hàng
+                    mà bạn có tài khoản.
+                </p>
+                <p>
+                    <img src="../img/payguide_5.jpg" alt="image">
+                </p>
+                <p>
+                    6. Lấy vietinBank làm ví dụ, sau khi lựa chọn vietinBank, trên giao diện điền thông tin cá nhân của bạn, ấn vào &lt;thanh
+                    toán&gt;.
+                </p>
+                <p>
+                    <img src="../img/payguide_6.jpg" alt="image">
+                </p>
+                <p>
+                    7. Trong trang giao diện nhập mã xác nhận và chọn đồng ý điều khoản, ấn &lt;chấp nhận&gt;.
+                </p>
+                <p>
+                    <img src="../img/payguide_7.jpg" alt="image">
+                </p>
+                <p>
+                    8. Trong trang giao diện nhập mã OTP tin nhắn của ngân hàng, ấn vào &lt;chấp nhận&gt;.
+                </p>
+                <p>
+                    <img src="../img/payguide_8.jpg" alt="image">
+                </p>
+                <p>
+                    9. Sau khi ấn &lt;thanh toán&gt; sẽ nhảy ra cửa sổ mua thành công, nếu là mua trả góp hãy chờ chúng tôi thẩm duyệt, nếu thanh
+                    toán hết hãy chờ nhận hàng nhé.
+                </p>
+                <p>
+                    <img src="../img/payguide_9.jpg" alt="image">
+                </p>
+                <h2>Làm thế nào để thanh toán nợ?</h2>
+                <p>
+                    1. Mở buyoo.vn, vị trí phái trên góc phải của trang chủ lựa chọn &lt;tôi muốn thanh toán nợ&gt;.
+                </p>
+                <p>
+                    <img src="../img/payguide_10.jpg" alt="image">
+                </p>
+                <p>
+                    2. Sau khi ấn vào, tại cửa sổ mới được mở sẽ thấy thông tin hóa đơn cần thanh toán, ấn vào &lt;hóa đơn kỳ này&gt;.
+                </p>
+                <p>
+                    <img src="../img/payguide_11.jpg" alt="image">
+                </p>
+                <p>
+                    3. Lựa chọn thẻ ngân hàng thanh toán online là được.
+                </p>
+                <p>
+                    <img src="../img/payguide_12.jpg" alt="image">
+                </p>
+            </div>
+        </div>
+        <footer class="footer" id="footer"></footer>
+        <script>
+            require([
+                '../js/jquery1.11.2.js?version=2.2.0',
+                '../js/vue.min.js?version=2.2.0',
+                '../js/md5.js?version=2.2.0',
+                '../js/common.js?version=2.2.0',
+            ], function ($, Vue, md5) {
+
+                F.vue = {
+                    body__main_height: document.documentElement.clientHeight - 133 - 210,
+                };
+
+                var load = function () {
+                    new_vue();
+                };
+
+                var pre_data = function (data) {
+
+                }
+
+                F.loadData = function (params, callback) {
+                    if (callback === undefined) callback = params;
+
+                    var all_data = {};
+                    var request_length = 0; //请求个数
+
+                    // 请求是否全部返回
+                    function all_loaded() {
+                        if (Object.keys(all_data).length === request_length) {
+                            pre_data(all_data);
+                            // Q.hideProgress();
+                            callback(all_data);
+                        }
+                    }
+                    // if (params.loadData_isLoading !== false) Q.showProgress();
+
+                    all_loaded();
+                };
+
+                function new_vue() {
+                    F.vue = new Vue({
+                        el: $('#vue-el')[0],
+                        data: F.vue,
+                        methods: {
+                            gohome: gohome,
+                        },
+                        computed: {
+
+                        },
+                    });
+                }
+
+                function gohome() {
+                    window.location.href = '../index.html';
+                }
+
+                F.loadData(function () {
+                    load();
+                });
+            });
+        </script>
+        <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+</body>
+
+</html>
