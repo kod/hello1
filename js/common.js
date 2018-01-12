@@ -4538,16 +4538,15 @@ F._getSchoolInfo = function(params, callback) {
 
 // 22222222222222
 
-
 F._is_initPaypassword = function(callback) {
-    F._userAction_getUserInfoById({}, function (ret) {
-        if (!ret) return false;;
-        if (ret.status !== 10000) return false;;
+    F._userAction_getUserInfoById({}, function(ret) {
+        if (!ret) return false;
+        if (ret.status !== 10000) return false;
 
         // 返回true: 已设置
         callback(ret.details.initPassword !== 0);
     });
-}
+};
 
 // 本地购物车上传到服务器
 F._localToServer = function(callback) {
@@ -5469,15 +5468,37 @@ F._order_cancel = function(callback) {
 function center_char_encrypt(str) {
     var i;
     var result = "";
-    if (str.length > 0) {
-        for (i = 0; i < str.length; i++) {
-            if (i < 3 || i >= str.length - 3) {
-                result += str[i];
+    function is_phoneNum(str) {
+        str = parseInt(str, 10);
+        console.log(str);
+        return str === str;
+    }
+
+    console.log(is_phoneNum(str));
+
+    if (is_phoneNum(str)) {
+        if (str.length > 0) {
+            for (i = 0; i < str.length; i++) {
+                if (i < 3 || i >= str.length - 4) {
+                    result += str[i];
+                } else {
+                    result += "*";
+                }
+            }
+        }
+    } else {
+        var array = str.split(' ');
+        var length = Math.ceil(array.length / 2);
+        var index;
+        for (index = 0; index < array.length; index++) {
+            if (index < length) {
+                result += '*';
             } else {
-                result += "*";
+                result += array[index];
             }
         }
     }
+
     return result;
 }
 
