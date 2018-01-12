@@ -131,6 +131,10 @@
             border-bottom: 1px solid #eee;
         }
 
+        .body__m-t-item_out {
+            opacity: 0.7;
+        }
+
         .body__m-t-i-checkbox {
             position: relative;
             z-index: 44;
@@ -178,6 +182,7 @@
             float: left;
             width: 245px;
             margin-top: 45px;
+            margin-bottom: 5px;
             padding-left: 5px;
             line-height: 1.4;
             display: -webkit-box;
@@ -187,6 +192,12 @@
             white-space: normal;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+        }
+
+        .body__m-t-i-p-tips {
+            float: left;
+            padding-left: 5px;
+            color: #F7004C;
         }
 
         .body__m-t-i-periods {
@@ -498,14 +509,15 @@
                         <div class="body__m-t-t-total">Tổng tiền</div>
                         <div class="body__m-t-t-operate">Thao tác</div>
                     </div>
-                    <li class="body__m-t-item col-xs-24" v-for="(val,key) in LS__data">
+                    <li class="body__m-t-item col-xs-24" v-for="(val,key) in LS__data" :class="{ 'body__m-t-item_out': val.status === 2 }">
                         <div class="body__m-t-i-checkbox" v-bind="{ for: 'body__m-t-i-input' + key }">
                             <input type="checkbox" class="body__m-t-i-input" v-model="val._checked">
-                            <div class="body__m-t-i-c-mask" @click.stop="select_item(key)"></div>
+                            <div class="body__m-t-i-c-mask" @click.stop="select_item(key, val.status)"></div>
                         </div>
                         <div class="body__m-t-i-product" @click="gotoDetails(val._detail.typeId, val._detail.brandId, val._detail.id)">
                             <div class="body__m-t-i-p-img" :style="{'background-image': 'url('+ val.iconUrl +')'}"></div>
                             <div class="body__m-t-i-p-text" v-html="val.subject"></div>
+                            <div class="body__m-t-i-p-tips" v-html="val.status === 2 ? 'Đã hết hàng' : ''"></div>
                         </div>
                         <!-- <div class="body__m-t-i-periods" v-html="val.repaymentMonth"></div> -->
                         <div class="body__m-t-i-dpayment" v-html="priceFormat(val.totalAmount) + 'VND'"></div>
@@ -789,7 +801,8 @@
 
             }
 
-            function select_item(key) {
+            function select_item(key, status) {
+                if (status === 2) return false;
                 var item = F.vue.LS__data[key];
                 item._checked = !item._checked;
                 F.vue.LS__data.splice(key, 1, item);
@@ -886,7 +899,7 @@
                     element.totalAmount = detail.price;
                     element.orgPrice = detail.orgPrice;
                     element._detail = detail;
-                    element._checked = true;
+                    element._checked = element.status === 2 ? false : true;
                     result.push(element);
                 }
 

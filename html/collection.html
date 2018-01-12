@@ -115,6 +115,7 @@
                                         style="display: none;" />
                                     <span ng-bind="item.brandName"></span>
                                 </h5>
+                                <p ng-if="item.status === '2'" style="color: #F7004C">Đã hết hàng</p>
                                 <p>
                                     <!-- Giá bán: -->
                                     <b ng-bind="item.brandPrice | priceFormat"></b>

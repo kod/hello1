@@ -177,17 +177,17 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 var str = '\
                 <meta property="fb:app_id" content="375278562897910" />\
                 <meta property="og:type" content="product" />\
-                <meta property="og:title" content="'+ params.name +'" />\
-                <meta property="og:url" content="'+ params.location.href +'" />\
-                <meta property="og:image" content="'+ params.imageUrl +'" />\
+                <meta property="og:title" content="' + params.name + '" />\
+                <meta property="og:url" content="' + params.location.href + '" />\
+                <meta property="og:image" content="' + params.imageUrl + '" />\
                 <meta property="og:site_name" content="buyoo.vn" />\
-                <meta property="al:ios:url" content="buyoovn://details?typeId='+ params.typeId +'&brandId='+ params.brandId +'&id='+ params.id +'" />\
+                <meta property="al:ios:url" content="buyoovn://details?typeId=' + params.typeId + "&brandId=" + params.brandId + "&id=" + params.id + '" />\
                 <meta property="al:ios:app_name" content="buyoo" />\
                 <meta property="al:android:package" content="com.store.creditstore">\
                 <meta property="al:android:app_name" content="buyoo" />\
-                <meta property="al:android:url" content="buyoovn://details?typeId='+ params.typeId +'&brandId='+ params.brandId +'&id='+ params.id +'" />';
+                <meta property="al:android:url" content="buyoovn://details?typeId=' + params.typeId + "&brandId=" + params.brandId + "&id=" + params.id + '" />';
 
-                $('head').append(str);
+                $("head").append(str);
             }
             set_meta({
                 name: res.data.brand_detail.name,
@@ -195,7 +195,7 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 typeId: F.query.typeId,
                 brandId: F.query.brandId,
                 id: F.query.id,
-                location: window.location,
+                location: window.location
             });
             // <meta property="fb:app_id" content="375278562897910" />
             // <meta property="og:type" content="product" />
@@ -208,7 +208,6 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
             // <meta property="al:android:package" content="com.store.creditstore">
             // <meta property="al:android:app_name" content="buyoo" />
             // <meta property="al:android:url" content="buyoovn://details?typeId=1&brandId=30&id=134" />
-
 
             //创建用户浏览记录session
             // var funId = localStorage.getItem("funId");
@@ -498,6 +497,7 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 }
 
                 function getPrice(item) {
+                    var is_exist = false;
                     //数组转化为字符串
                     if (isNaN(item)) {
                         var str = item.join("-");
@@ -509,6 +509,7 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                     //输出价格
                     for (var i = 0; i < $scope.nowProductClass.length; i++) {
                         if (nowPropertiesIds == $scope.nowProductClass[i].propertiesIds) {
+                            is_exist = true;
                             promotion_set($scope.nowProductClass[i]);
                             getImgUrls($scope, $scope.nowProductClass[i]);
 
@@ -520,12 +521,14 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                             $("#price_text").html("");
 
                             break;
-                        } else {
-                            $scope.price = "Đã hết hàng";
-                            $scope.numbers = 0;
-                            $("#price_text").html("Đã hết hàng");
-                            $(".vnd").hide();
                         }
+                    }
+
+                    if (is_exist === false) {
+                        $scope.price = "Đã hết hàng";
+                        $scope.numbers = 0;
+                        $("#price_text").html("Đã hết hàng");
+                        $(".vnd").hide();
                     }
                 }
 
@@ -656,12 +659,15 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                         var loading = new F._loading();
                         loading.show();
                         if ($("#shoucangImg").attr("src") === "../img/sc (1).jpg") {
-                            F._userBatchCollection({
-                                brandids: brandId,
-                            }, function (ret) {
-                                loading.hide();
-                                $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
-                            });
+                            F._userBatchCollection(
+                                {
+                                    brandids: brandId
+                                },
+                                function(ret) {
+                                    loading.hide();
+                                    $("#shoucangImg").attr("src", "../img/sc_ok.jpg");
+                                }
+                            );
                         } else {
                             var url = F._userCancelCollection_uc;
                             var ajax = new ajaxClass($http, url, "POST");
@@ -968,7 +974,7 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
 
             if (resCode == 10000) {
                 $scope.userComment = detail;
-                
+
                 if ($scope.userComment.length > 0) {
                     for (var i = 0; i < $scope.userComment.length; i++) {
                         //$scope.user=$scope.userComment[i].score;
@@ -976,7 +982,7 @@ app.controller("commentCtrlcomm", function($scope, $http, $filter) {
                         if (url) {
                             var resUrl = url.split("|");
                             $scope.userComment[i].userImg = [];
-    
+
                             for (var j = 0; j < resUrl.length; j++) {
                                 var imgObj = {
                                     urlName: "urlName",
@@ -1208,6 +1214,17 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
     }
 
     $scope.addCart = function() {
+        if (!(+$scope.numbers > 0)) {
+            F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                {
+                    name: "Xác nhận",
+                    func: function() {}
+                }
+            ]);
+
+            return false;
+        }
+
         var payRate = +$scope.paymentNum;
         var quantity = F.vue.buyNum;
         var totalAmount = +window.__goodsDetail.price;
@@ -1216,16 +1233,6 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
         var repaymentMonth = +payRate === 1 ? 0 : +$scope.fenqiNum;
         var subject = window.__goodsDetail.name;
         var itemId = window.__goodsDetail.id;
-
-        if (!(totalAmount > 0)) {
-            F._confirm("Gợi ý", "Đã hết hàng", "error", [
-                {
-                    name: "Xác nhận",
-                    func: function() {}
-                }
-            ]);
-            return false;
-        }
 
         var cartitems = [
             {
@@ -1304,7 +1311,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
         // var buyNum = 1;
 
         if (!(+$scope.numbers > 0)) {
-            F._confirm("Gợi ý", "Đã hết hàng", "error", [
+            F._confirm("Gợi ý", "Đã hết hàng", "tips", [
                 {
                     name: "Xác nhận",
                     func: function() {}
@@ -1320,7 +1327,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
         if (!isNaN(price) && price > 0 && fenqiNum != "" && !isNaN(price)) {
             var funId = localStorage.getItem("funId");
             if (true) {
-            // if (funId != "" && funId != null) {
+                // if (funId != "" && funId != null) {
                 var pay_products = {
                     iconUrl: window.__goodsDetail.iconUrl,
                     subject: window.__goodsDetail.name,
@@ -1328,7 +1335,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                     orgPrice: window.__goodsDetail.orgPrice,
                     totalAmount: price,
                     detail: JSON.stringify(window.__goodsDetail),
-                    _detail: window.__goodsDetail,
+                    _detail: window.__goodsDetail
                 };
                 // return false;
                 sessionStorage.setItem("pay_cart_data", JSON.stringify([pay_products]));
