@@ -71,6 +71,7 @@
     <!-- <script src="../js/sys/config.js?version=2.3.0" type="text/javascript" charset="utf-8"></script> -->
     <script src="../js/common.js?version=2.3.0"></script>
     <script>
+        $("#pass1").focus();
         $('#pass1').blur(function () {
             var pwd = $(this).val();
             if (F._pwdExpr.test(pwd)) {
