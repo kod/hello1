@@ -5867,6 +5867,8 @@ F._payPwd_open = function(callback) {
     </div>';
     $("body").append(html);
 
+    $(".pay-pwd__b-r1-r-input").focus();
+
     function submit() {
         var input_val = $(".pay-pwd__b-r1-r-input").val();
         if (input_val.length !== 6) {
