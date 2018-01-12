@@ -4538,6 +4538,17 @@ F._getSchoolInfo = function(params, callback) {
 
 // 22222222222222
 
+
+F._is_initPaypassword = function(callback) {
+    F._userAction_getUserInfoById({}, function (ret) {
+        if (!ret) return false;;
+        if (ret.status !== 10000) return false;;
+
+        // 返回true: 已设置
+        callback(ret.details.initPassword !== 0);
+    });
+}
+
 // 本地购物车上传到服务器
 F._localToServer = function(callback) {
     localStorage.getItem("cart") || localStorage.setItem("cart", "[]");

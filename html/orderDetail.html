@@ -424,8 +424,8 @@
                             <div class="body__m-p-m-i-text" v-html="val.name"></div>
                         </div>
                         <span class="body__m-p-m-num" v-html="val.number"></span>
-                        <span class="body__m-p-m-price" v-html="priceFormat(val.price)"></span>
-                        <span class="body__m-p-m-subtotal" v-html="priceFormat(val.price * val.number)"></span>
+                        <span class="body__m-p-m-price" v-html="priceFormat(val.totalAmount)"></span>
+                        <span class="body__m-p-m-subtotal" v-html="priceFormat(val.totalAmount * val.number)"></span>
                     </div>
                 </div>
                 <!-- <div class="bar-title">
@@ -632,27 +632,42 @@
             }
 
             function edit_goodsDetail(array) {
-                var index;
-                for (index = 0; index < array.length; index++) {
-                    if (!array[index].price) {
-                        array[index].price = array[index].totalAmount;
-                    }
-                }
+                // var index;
+                // for (index = 0; index < array.length; index++) {
+                //     if (!array[index].price) {
+                //         array[index].price = array[index].totalAmount;
+                //     }
+                // }
                 return array;
             }
 
             function operate_rihgt() {
-
                 if (F.vue.tradeStatus === '10000') {
-                    order_pay({
-                        totalAmount: F.vue.totalAmount,
-                        tradeNo: F.query.tradeNo,
-                        orderNo: F.query.orderNo,
-                        advance: F.vue.advance,
-                        payRate: F.vue.payRate,
-                        repaymentMonth: F.vue.repaymentMonth,
-                        prepay: F.vue.advance,
-                        payway: F.vue.payway,
+                    console.log(F.vue.payway);
+
+                    F._is_initPaypassword(function (status) {
+                        if (status === false && F.vue.payway === '1') {
+                            F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
+                                {
+                                    name: "Xác nhận",
+                                    func: function () {
+                                        window.open('./back_id.html?from=payPwd');
+                                    }
+                                }
+                            ]);
+                            return false;
+                        }
+
+                        order_pay({
+                            totalAmount: F.vue.totalAmount,
+                            tradeNo: F.query.tradeNo,
+                            orderNo: F.query.orderNo,
+                            advance: F.vue.advance,
+                            payRate: F.vue.payRate,
+                            repaymentMonth: F.vue.repaymentMonth,
+                            prepay: F.vue.advance,
+                            payway: F.vue.payway,
+                        });
                     });
                 }
             }

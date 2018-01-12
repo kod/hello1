@@ -488,16 +488,6 @@
             });
         }
 
-        function is_initPaypassword(callback) {
-            F._userAction_getUserInfoById({}, function (ret) {
-                if (!ret) return false;;
-                if (ret.status !== 10000) return false;;
-
-                // 返回true: 已设置
-                callback(ret.details.initPassword !== 0);
-            });
-        }
-
         // 提交订单
         function submit() {
             // return false;
@@ -599,7 +589,7 @@
                 return result;
             }
 
-            is_initPaypassword(function (status) {
+            F._is_initPaypassword(function (status) {
                 if (status === false && F.vue.payway === '1') {
                     F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
                         {
