@@ -1349,7 +1349,6 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
                 sessionStorage.setItem("paymentNum", paymentNum);
                 // sessionStorage.setItem("goodsDetail", JSON.stringify(window.__goodsDetail));
 
-                // payInfo("1", imgUrl, productInfo, buyNum, price, fenqiNum, paymentNum, window.__goodsDetail);
                 window.location.href = "pay.html";
             } else {
                 window.location.href = "login.html";

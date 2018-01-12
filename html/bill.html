@@ -45,7 +45,7 @@
                 <a href="../index.html" class="">Trang chủ</a>
             </div>
             <div class="iwant right">
-                <a href="./bill.html" class="">Tôi muốn thanh toán nợ  &gt;</a>
+                <a href="./bill.html" class="">Tôi muốn thanh toán nợ &gt;</a>
             </div>
         </div>
     </div>
@@ -59,10 +59,10 @@
                         <div class="phone">
                             <img src="../img/37.png" onerror="nofind(this)" alt="" class="img-phone" data-toggle="modal" data-target="#myhead" />
                             <script type="text/javascript">
-                            function nofind(img) {
-                                img.src = "../img/37.png";
-                                img.onerror = null;
-                            }
+                                function nofind(img) {
+                                    img.src = "../img/37.png";
+                                    img.onerror = null;
+                                }
                             </script>
                             <p>Chào buổi sáng！</p>
                         </div>
@@ -122,9 +122,13 @@
                                     <!-- <td ng-bind="(item.interest | priceFormat) +' VND'"></td> -->
                                     <td ng-bind="item.expireDate"></td>
                                     <td ng-click="openbillDetail(item.orderId,item.transactionId,item.status,item.periods)">
-                                        <p><a href="" style="color: #444;">Tình trạng cụ thể</a></p>
+                                        <p>
+                                            <a href="" style="color: #444;">Tình trạng cụ thể</a>
+                                        </p>
                                         <div class="ppp {{tdname}}">
-                                            <p ng-if="reqPara.period=='1'||reqPara.period=='5'"><a ng-bind="period_json[item.status]"></a></p>
+                                            <p ng-if="reqPara.period=='1'||reqPara.period=='5'">
+                                                <a ng-bind="period_json[item.status]"></a>
+                                            </p>
                                         </div>
                                     </td>
                                 </tr>
@@ -142,8 +146,10 @@
                     <div class="changePage">
                         <div style="margin-bottom: 30px;">
                             <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
-                            <span style="padding-top: 3px;">Trang hiện tại: <span ng-bind="reqPara.page"></span>&nbsp;&nbsp;</span>
-                            <span style="padding-top: 3px;">Trang : <span ng-bind="totalPage"></span> tiên</span>
+                            <span style="padding-top: 3px;">Trang hiện tại:
+                                <span ng-bind="reqPara.page"></span>&nbsp;&nbsp;</span>
+                            <span style="padding-top: 3px;">Trang :
+                                <span ng-bind="totalPage"></span> tiên</span>
                             <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
                         </div>
                     </div>
@@ -162,7 +168,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Cài đặt ảnh đại diện</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="modal_one">
@@ -211,134 +219,144 @@
     <script src="../js/md555.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/md5.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/userCenterJS/bill.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="../js/common/common.js?version=2.3.0" type="text/javascript" charset="utf-8"></script> -->
-    <script src="../js/common/check_login.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/common/getUserInfo.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/bill.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js?version=2.3.0"></script>
     <script>
+        F._isLogin();
 
-    $(function() {
-        var a = $('.bill').html();
-        if (a == '' || a == 0) {
-            $('.no_list').show();
-        } else {
-            $('.no_list').hide();
+        (now = new Date()), (hour = now.getHours());
+        if (hour >= 1 && hour <= 9) {
+            $(".phone p").html("Chào buổi sáng！");
+        } else if (hour >= 12 && hour <= 14) {
+            $(".phone p").html("Chúc bạn buổi trưa vui vẻ！");
+        } else if (hour >= 15 && hour <= 17) {
+            $(".phone p").html("Chúc bạn buổi chiều vui vẻ！");
+        } else if (hour >= 18) {
+            $(".phone p").html("Chúc bạn buổi tối vui vẻ！");
         }
-    })
 
-    $(".nav-item").on('click', function() {
-        var self = $(this);
-        $('.nav-item').removeClass('act');
-        self.addClass('act');
 
-        F._setUrl('status', self.data('index'));
-    });
-
-    // $('.one-right dl').find('dd').each(function(index) {
-    //     $(this).click(function() {
-    //         if ($(this).is('.act') == false) {
-    //             $('.one-right dl dd').removeClass('act').eq(index).addClass('act');
-    //             //					$('.table_list .dl_list').stop().hide().eq(index).stop().show();
-    //         }
-    //     })
-    // })
-    $(window).load(function() {
-        var options = {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: '../img/37.png'
-        }
-        var cropper = $('.imageBox').cropbox(options);
-        $('#upload-file').on('change', function() {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                options.imgSrc = e.target.result;
-                cropper = $('.imageBox').cropbox(options);
+        $(function () {
+            var a = $('.bill').html();
+            if (a == '' || a == 0) {
+                $('.no_list').show();
+            } else {
+                $('.no_list').hide();
             }
-            reader.readAsDataURL(this.files[0]);
-            //this.files = [];
         })
-        $('#btnCrop').on('click', function() {
-            var img = cropper.getDataURL();
-            $('.cropped').html('');
 
-            $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
-            setTimeout(function() {
-                var img = $('.cropped').html()
-                if (img == '' || img == 0) {
+        $(".nav-item").on('click', function () {
+            var self = $(this);
+            $('.nav-item').removeClass('act');
+            self.addClass('act');
 
-                } else {
-                    $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
-                    var imgSrc = $('#upimg').attr('src');
-                    upload(imgSrc);
+            F._setUrl('status', self.data('index'));
+        });
+
+        // $('.one-right dl').find('dd').each(function(index) {
+        //     $(this).click(function() {
+        //         if ($(this).is('.act') == false) {
+        //             $('.one-right dl dd').removeClass('act').eq(index).addClass('act');
+        //             //					$('.table_list .dl_list').stop().hide().eq(index).stop().show();
+        //         }
+        //     })
+        // })
+        $(window).load(function () {
+            var options = {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: '../img/37.png'
+            }
+            var cropper = $('.imageBox').cropbox(options);
+            $('#upload-file').on('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    options.imgSrc = e.target.result;
+                    cropper = $('.imageBox').cropbox(options);
                 }
-            }, 500)
-        })
-        $('#btnZoomIn').on('click', function() {
-            cropper.zoomIn();
-        })
-        $('#btnZoomOut').on('click', function() {
-            cropper.zoomOut();
-        })
-    });
+                reader.readAsDataURL(this.files[0]);
+                //this.files = [];
+            })
+            $('#btnCrop').on('click', function () {
+                var img = cropper.getDataURL();
+                $('.cropped').html('');
 
-    function upload(imgSrcs) {
-        var imgSrc = imgSrcs;
-        var blob = dataURLtoBlob(imgSrc);
+                $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
+                setTimeout(function () {
+                    var img = $('.cropped').html()
+                    if (img == '' || img == 0) {
 
-        function dataURLtoBlob(dataurl) {
-            var arr = dataurl.split(','),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
+                    } else {
+                        $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
+                        var imgSrc = $('#upimg').attr('src');
+                        upload(imgSrc);
+                    }
+                }, 500)
+            })
+            $('#btnZoomIn').on('click', function () {
+                cropper.zoomIn();
+            })
+            $('#btnZoomOut').on('click', function () {
+                cropper.zoomOut();
+            })
+        });
+
+        function upload(imgSrcs) {
+            var imgSrc = imgSrcs;
+            var blob = dataURLtoBlob(imgSrc);
+
+            function dataURLtoBlob(dataurl) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {
+                    type: mime
+                });
             }
-            return new Blob([u8arr], {
-                type: mime
-            });
+            $('.sure').click(function () {
+                var funid = localStorage.getItem("funId");
+                var formData = new FormData();
+                formData.append("funid", funid);
+                formData.append("files", blob, 'jpg');
+                F._uploadFilesUser(formData, function (ret) {
+
+                });
+            })
         }
-        $('.sure').click(function() {
-            var funid = localStorage.getItem("funId");
-            var formData = new FormData();
-            formData.append("funid", funid);
-            formData.append("files", blob, 'jpg');
-            F._uploadFilesUser(formData, function(ret) {
 
-            });
+        $('.uphead').click(function () {
+            $('.modal_one').hide();
+            $('.modal_two').show();
         })
-    }
-
-    $('.uphead').click(function() {
-        $('.modal_one').hide();
-        $('.modal_two').show();
-    })
 
 
 
-    $('.sure').click(function() {
+        $('.sure').click(function () {
 
-        $('.modal_two').hide();
-        $('.modal_three').show();
-        var img = $('.upimg').attr('src');
-        $('.img-phone').attr('src', img);
-        $('.modal-header').find('.left').html('Cài đặt')
-
-    })
-    $('.success').click(function() {
-        setTimeout(function() {
-            $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
-            $('.modal_one').show();
             $('.modal_two').hide();
-            $('.modal_three').hide();
+            $('.modal_three').show();
+            var img = $('.upimg').attr('src');
+            $('.img-phone').attr('src', img);
+            $('.modal-header').find('.left').html('Cài đặt')
 
-        }, 1500)
-        $('#upimg').attr('src', '');
-        $('#upload-file').val('');
-        //window.location.href="";
-    });
+        })
+        $('.success').click(function () {
+            setTimeout(function () {
+                $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
+                $('.modal_one').show();
+                $('.modal_two').hide();
+                $('.modal_three').hide();
+
+            }, 1500)
+            $('#upimg').attr('src', '');
+            $('#upload-file').val('');
+            //window.location.href="";
+        });
 
     // function gotoFind() {
     //     var findcontent = $("#findIpt").val();

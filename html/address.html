@@ -28,32 +28,32 @@
     <link rel="stylesheet" href="../css/base.css?version=2.3.0">
     <script src="../js/jquery.js?version=2.3.0"></script>
     <style>
-    .site {
-        width: 1000px;
-        min-height: 500px !important;
-        margin: 0;
-    }
+        .site {
+            width: 1000px;
+            min-height: 500px !important;
+            margin: 0;
+        }
 
-    .site__main {
-        padding-left: 0;
-    }
+        .site__main {
+            padding-left: 0;
+        }
 
-    .site__main-item {
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
+        .site__main-item {
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
 
-    .site__m-i-r3-e-text {
-        display: inline-block;
-    }
+        .site__m-i-r3-e-text {
+            display: inline-block;
+        }
 
-    .site__m-i-r3-d-text {
-        display: inline-block;
-    }
+        .site__m-i-r3-d-text {
+            display: inline-block;
+        }
 
-    .footer {
-        float: left;
-    }
+        .footer {
+            float: left;
+        }
     </style>
 </head>
 
@@ -67,7 +67,7 @@
                 <a href="../index.html" class="">Trang chủ</a>
             </div>
             <div class="iwant right">
-                <a href="./bill.html" class="">Tôi muốn thanh toán nợ  &gt;</a>
+                <a href="./bill.html" class="">Tôi muốn thanh toán nợ &gt;</a>
             </div>
         </div>
     </div>
@@ -81,10 +81,10 @@
                         <div class="phone">
                             <img src="../img/37.png" onerror="nofind(this)" alt="" class="img-phone" data-toggle="modal" data-target="#myhead" />
                             <script type="text/javascript">
-                            function nofind(img) {
-                                img.src = "../img/37.png";
-                                img.onerror = null;
-                            }
+                                function nofind(img) {
+                                    img.src = "../img/37.png";
+                                    img.onerror = null;
+                                }
                             </script>
                             <p>Chào buổi sáng！</p>
                         </div>
@@ -115,11 +115,13 @@
                 </div>
                 <div class="right one-right" ng-controller="addCtrl">
                     <h2>Đia chỉ nhận hàng của tôi </h2>
-                    <h5>Đã thêm <span ng-bind="addrlistLength"></span> địa chỉ nhận hàng , Có thể thêm tối đã 5 địa chỉ nhận hàng</h5>
+                    <h5>Đã thêm
+                        <span ng-bind="addrlistLength"></span> địa chỉ nhận hàng , Có thể thêm tối đã 5 địa chỉ nhận hàng</h5>
                     <section class="site" id="one">
                         <!-- <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div> -->
                         <div class="site__main col-xs-24">
-                            <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }" ng-click="set_active(index)" ng-repeat="(index, item) in addrlistData">
+                            <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }"
+                                ng-click="set_active(index)" ng-repeat="(index, item) in addrlistData">
                                 <div class="site__m-i-row1 col-xs-24">
                                     <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                                     <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
@@ -131,7 +133,7 @@
                                         <span class="site__m-i-r3-f-status">mặc định</span>
                                     </div>
                                     <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,division3rd:item.division3rd,division2nd:item.division2nd,division4th:item.division4th,model:'modify'})">
-                                    <!-- <div class="site__m-i-r3-edit" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)"> -->
+                                        <!-- <div class="site__m-i-r3-edit" ng-click="xiugai(item.id,item.isdefault,item.msisdn,item.address,item.username)"> -->
                                         <span class="site__m-i-r3-e-text">Sửa</span>
                                     </div>
                                     <div class="site__m-i-r3-del">
@@ -158,7 +160,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="left">Cài đặt ảnh đại diện</div>
-                    <div class="right" data-dismiss="modal"><span class="alert__b-m-t-close"></span></div>
+                    <div class="right" data-dismiss="modal">
+                        <span class="alert__b-m-t-close"></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="modal_one">
@@ -210,144 +214,142 @@
     <script src="../js/getMd5Code.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/ajax.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/userCenterJS/center.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="../js/common/common.js?version=2.3.0" type="text/javascript" charset="utf-8"></script> -->
-    <script src="../js/common/check_login.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/center.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script>
-
-    $(window).load(function() {
-        var options = {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: '../img/37.png'
-        }
-        var cropper = $('.imageBox').cropbox(options);
-        $('#upload-file').on('change', function() {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                options.imgSrc = e.target.result;
-                cropper = $('.imageBox').cropbox(options);
+        F._isLogin();
+        $(window).load(function () {
+            var options = {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: '../img/37.png'
             }
-            reader.readAsDataURL(this.files[0]);
-            //this.files = [];
-        })
-        $('#btnCrop').on('click', function() {
-            var img = cropper.getDataURL();
-            $('.cropped').html('');
-
-            $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
-            setTimeout(function() {
-                var img = $('.cropped').html()
-                if (img == '' || img == 0) {
-
-                } else {
-                    $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
-                    var imgSrc = $('#upimg').attr('src');
-                    upload(imgSrc);
+            var cropper = $('.imageBox').cropbox(options);
+            $('#upload-file').on('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    options.imgSrc = e.target.result;
+                    cropper = $('.imageBox').cropbox(options);
                 }
-            }, 500)
-        })
-        $('#btnZoomIn').on('click', function() {
-            cropper.zoomIn();
-        })
-        $('#btnZoomOut').on('click', function() {
-            cropper.zoomOut();
-        })
-    });
+                reader.readAsDataURL(this.files[0]);
+                //this.files = [];
+            })
+            $('#btnCrop').on('click', function () {
+                var img = cropper.getDataURL();
+                $('.cropped').html('');
 
-    function upload(imgSrcs) {
-        var imgSrc = imgSrcs;
-        var blob = dataURLtoBlob(imgSrc);
+                $('.cropped').append('<img src="' + img + '" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;" class="upimg" id="upimg"><p>180px*180px</p>');
+                setTimeout(function () {
+                    var img = $('.cropped').html()
+                    if (img == '' || img == 0) {
 
-        function dataURLtoBlob(dataurl) {
-            var arr = dataurl.split(','),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
+                    } else {
+                        $('.sure').attr('disabled', false).css('background', '#0075f6').css('color', '#fff');
+                        var imgSrc = $('#upimg').attr('src');
+                        upload(imgSrc);
+                    }
+                }, 500)
+            })
+            $('#btnZoomIn').on('click', function () {
+                cropper.zoomIn();
+            })
+            $('#btnZoomOut').on('click', function () {
+                cropper.zoomOut();
+            })
+        });
+
+        function upload(imgSrcs) {
+            var imgSrc = imgSrcs;
+            var blob = dataURLtoBlob(imgSrc);
+
+            function dataURLtoBlob(dataurl) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {
+                    type: mime
+                });
             }
-            return new Blob([u8arr], {
-                type: mime
-            });
-        }
-        $('.sure').click(function() {
-            var funid = localStorage.getItem("funId");
-            var formData = new FormData();
-            formData.append("funid", funid);
-            formData.append("files", blob, 'jpg');
-            F._uploadFilesUser(formData, function(ret) {
+            $('.sure').click(function () {
+                var funid = localStorage.getItem("funId");
+                var formData = new FormData();
+                formData.append("funid", funid);
+                formData.append("files", blob, 'jpg');
+                F._uploadFilesUser(formData, function (ret) {
 
-            });
+                });
+            })
+        }
+
+        $('.uphead').click(function () {
+            $('.modal_one').hide();
+            $('.modal_two').show();
         })
-    }
-
-    $('.uphead').click(function() {
-        $('.modal_one').hide();
-        $('.modal_two').show();
-    })
 
 
 
-    $('.sure').click(function() {
+        $('.sure').click(function () {
 
-        $('.modal_two').hide();
-        $('.modal_three').show();
-        var img = $('.upimg').attr('src');
-        $('.img-phone').attr('src', img);
-        $('.modal-header').find('.left').html('Cài đặt')
-
-    })
-    $('.success').click(function() {
-        setTimeout(function() {
-            $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
-            $('.modal_one').show();
             $('.modal_two').hide();
-            $('.modal_three').hide();
+            $('.modal_three').show();
+            var img = $('.upimg').attr('src');
+            $('.img-phone').attr('src', img);
+            $('.modal-header').find('.left').html('Cài đặt')
 
-        }, 1500)
-        $('#upimg').attr('src', '');
-        $('#upload-file').val('');
-        //window.location.href="";
-    });
-    $('.addAddrli img').click(function() {
-        $('#names,#phone,#textarea').val('');
+        })
+        $('.success').click(function () {
+            setTimeout(function () {
+                $('.modal-header').find('.left').html('Cài đặt ảnh đại diện')
+                $('.modal_one').show();
+                $('.modal_two').hide();
+                $('.modal_three').hide();
 
-    })
+            }, 1500)
+            $('#upimg').attr('src', '');
+            $('#upload-file').val('');
+            //window.location.href="";
+        });
+        $('.addAddrli img').click(function () {
+            $('#names,#phone,#textarea').val('');
 
-    $('#phone').blur(function() {
-        var phone = $("#phone").val();
-        if (!F._phoneExpr.test(phone)) {
-            $('#errormsg').show();
-            $('#errormsg small').html('định dạng số điện thoại sai');
-            return;
-        }
+        })
 
-        $('#errormsg').hide();
+        $('#phone').blur(function () {
+            var phone = $("#phone").val();
+            if (!F._phoneExpr.test(phone)) {
+                $('#errormsg').show();
+                $('#errormsg small').html('định dạng số điện thoại sai');
+                return;
+            }
 
-    })
-    $('#names').blur(function() {
+            $('#errormsg').hide();
 
-        var name = $("#names").val();
-        if (name.length <= 1) {
-            $('#errormsg').show();
-            $('#errormsg small').html('Định dạng tên không đúng');
-            return;
-        }
+        })
+        $('#names').blur(function () {
 
-        $('#errormsg').hide();
-    })
-    $('#textarea').blur(function() {
-        var addr = $('#textarea').val();
-        if (addr.length < 1) {
-            $('#errormsg').show();
-            $('#errormsg small').html('Định dạng địa chỉ sai');
-            return;
-        }
-        $('#errormsg').hide();
+            var name = $("#names").val();
+            if (name.length <= 1) {
+                $('#errormsg').show();
+                $('#errormsg small').html('Định dạng tên không đúng');
+                return;
+            }
 
-    })
+            $('#errormsg').hide();
+        })
+        $('#textarea').blur(function () {
+            var addr = $('#textarea').val();
+            if (addr.length < 1) {
+                $('#errormsg').show();
+                $('#errormsg small').html('Định dạng địa chỉ sai');
+                return;
+            }
+            $('#errormsg').hide();
+
+        })
 
     // function gotoFind() {
     //     var findcontent = $("#findIpt").val();
@@ -365,7 +367,7 @@
     //     }
     // }
     </script>
-    <script src="../js/userCenterJS/address.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/address.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
 </body>
 

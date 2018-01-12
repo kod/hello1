@@ -181,11 +181,21 @@
     <script src="../js/md555.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/md5.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="../js/common/common.js?version=2.3.0" type="text/javascript" charset="utf-8"></script> -->
-    <script src="../js/common/check_login.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/common/getUserInfo.js?version=2.3.0" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js?version=2.3.0"></script>
     <script type="text/javascript">
+        F._isLogin();
+
+        (now = new Date()), (hour = now.getHours());
+        if (hour >= 1 && hour <= 9) {
+            $(".phone p").html("Chào buổi sáng！");
+        } else if (hour >= 12 && hour <= 14) {
+            $(".phone p").html("Chúc bạn buổi trưa vui vẻ！");
+        } else if (hour >= 15 && hour <= 17) {
+            $(".phone p").html("Chúc bạn buổi chiều vui vẻ！");
+        } else if (hour >= 18) {
+            $(".phone p").html("Chúc bạn buổi tối vui vẻ！");
+        }
+
 
         $(function () {
             var a = $('.shensu').html();
