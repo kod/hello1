@@ -289,7 +289,7 @@
         }
 
         .body__m-p-symbol {
-            color: #787878;
+            color: #F7004C;
             font-weight: bold;
             font-size: 16px;
             padding-top: 6px;
@@ -375,8 +375,8 @@
                             <div class="body__m-p-m-i-text" v-html="val.name"></div>
                         </div>
                         <span class="body__m-p-m-num" v-html="val.number"></span>
-                        <span class="body__m-p-m-price" v-html="priceFormat(val.price)"></span>
-                        <span class="body__m-p-m-subtotal" v-html="priceFormat(val.price * val.number)"></span>
+                        <span class="body__m-p-m-price" v-html="priceFormat(val.totalAmount)"></span>
+                        <span class="body__m-p-m-subtotal" v-html="priceFormat(val.totalAmount * val.number)"></span>
                     </div>
                 </div>
                 <div class="bar-title">
@@ -604,12 +604,12 @@
             }
 
             function edit_goodsDetail(array) {
-                var index;
-                for (index = 0; index < array.length; index++) {
-                    if (!array[index].price) {
-                        array[index].price = array[index].totalAmount;
-                    }
-                }
+                // var index;
+                // for (index = 0; index < array.length; index++) {
+                //     if (!array[index].price) {
+                //         array[index].price = array[index].totalAmount;
+                //     }
+                // }
                 return array;
             }
 
