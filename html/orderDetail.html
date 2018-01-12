@@ -408,7 +408,7 @@
                     </div>
                     <div class="body__m-i-bottom">
                         <span class="body__m-i-t-title">Địa chỉ nhận hàng: </span>
-                        <span class="body__m-i-t-address" v-html="address + ', ' + division4thName + ', ' + division3rdName + ', ' + division2ndName"></span>
+                        <span class="body__m-i-t-address" v-html="address"></span>
                     </div>
                 </div>
                 <div class="body__main-phone">
@@ -560,6 +560,17 @@
 
             var pre_data = function (data) {
 
+                function edit_address(address, division4thName, division3rdName, division2ndName) {
+                    var result = '';
+                    console.log(division4thName);
+                    if (division4thName) {
+                        result = address + ', ' + division4thName + ', ' + division3rdName + ', ' + division2ndName
+                    } else {
+                        result = address;
+                    }
+                    return result;
+                }
+
                 var trade_queryOrder = data._trade_queryOrder;
                 F.vue.orgAmount = trade_queryOrder.orgAmount;
                 F.vue.totalAmount = trade_queryOrder.totalAmount;
@@ -569,7 +580,7 @@
                 F.vue.createTime = trade_queryOrder.createTime;
                 F.vue.msisdn = trade_queryOrder.msisdn;
                 F.vue.username = trade_queryOrder.username;
-                F.vue.address = trade_queryOrder.address;
+                F.vue.address = edit_address(trade_queryOrder.address, trade_queryOrder.division4thName, trade_queryOrder.division3rdName, trade_queryOrder.division2ndName);
                 F.vue.division4thName = trade_queryOrder.division4thName;
                 F.vue.division3rdName = trade_queryOrder.division3rdName;
                 F.vue.division2ndName = trade_queryOrder.division2ndName;
