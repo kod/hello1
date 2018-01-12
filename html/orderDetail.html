@@ -562,7 +562,6 @@
 
                 function edit_address(address, division4thName, division3rdName, division2ndName) {
                     var result = '';
-                    console.log(division4thName);
                     if (division4thName) {
                         result = address + ', ' + division4thName + ', ' + division3rdName + ', ' + division2ndName
                     } else {
@@ -654,7 +653,6 @@
 
             function operate_rihgt() {
                 if (F.vue.tradeStatus === '10000') {
-                    console.log(F.vue.payway);
 
                     F._is_initPaypassword(function (status) {
                         if (status === false && F.vue.payway === '1') {

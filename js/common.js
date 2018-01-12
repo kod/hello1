@@ -5470,11 +5470,8 @@ function center_char_encrypt(str) {
     var result = "";
     function is_phoneNum(str) {
         str = parseInt(str, 10);
-        console.log(str);
         return str === str;
     }
-
-    console.log(is_phoneNum(str));
 
     if (is_phoneNum(str)) {
         if (str.length > 0) {

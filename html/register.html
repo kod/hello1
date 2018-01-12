@@ -373,13 +373,6 @@
                 var re_pwd2 = $('#re_pwd2').val();
                 var xy = $('input[name="xy"]').prop("checked");
 
-                console.log(tel);
-                console.log(telCode);
-                console.log(pwd);
-                console.log(re_pwd);
-                console.log(pwd2);
-                console.log(re_pwd2);
-
                 if (!F._phoneExpr.test(tel)) {
                     getMsg('Số điện thoại không được để trống', 1);
                     $("#tel")[0].focus();
@@ -433,8 +426,6 @@
                 $('#submit').attr('disabled', false)
                 $("#telCode").removeClass('error');
 
-                console.log('ok');
-                
                 loading.show();
                 F._userAction_register({
                     provider: '0',
