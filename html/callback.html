@@ -62,6 +62,30 @@
             padding-bottom: 5px;
             cursor: pointer;
         }
+
+
+        @media only screen and (max-width: 414px) {
+
+            body {
+                width: auto;
+            }
+
+            .header {
+                display: none;
+            }
+
+            .footer {
+                display: none;
+            }
+
+            .body__main {
+                width: auto;
+            }
+
+            .body__main-gohome {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -106,7 +130,7 @@
                     icon: F._image_process,
                 },
             };
-            
+
             F.query = F._hrefUtils.parse().query || {};
             F.vue = {
                 body__main_height: document.documentElement.clientHeight - 133 - 210,
