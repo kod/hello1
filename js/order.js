@@ -224,8 +224,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
             function edit_for_status($scope, tradeStatus) {
                 switch (tradeStatus) {
                     case "10000":
-                        //$scope.orderList[i]['tradeStatusMsg']='Đang chờ thanh toán';
-                        $scope.myHtml = "<span>Đang chờ thanh toán</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
 
@@ -245,10 +244,9 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "10001":
-                        $scope.myHtml = "<span>Đang xử lí</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
-                        //  $scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
                         $scope.orderList[i].operate = [
                             {
                                 name: "Thông tin cụ thể về đơn hàng"
@@ -257,10 +255,9 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "10003": // 交易支付等待
-                        $scope.myHtml = "<span>Ngân hàng đang xử lý</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
-                        //  $scope.orderList[i]['tradeStatusMsg']='Đang xử lí';
                         $scope.orderList[i].operate = [
                             {
                                 name: "Thông tin cụ thể về đơn hàng"
@@ -269,8 +266,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "20000":
-                        //$scope.orderList[i]['tradeStatusMsg']='Đóng';
-                        $scope.myHtml = "<span>Đóng</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
                         $scope.orderList[i].operate = [
@@ -281,8 +277,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "20001":
-                        //$scope.orderList[i]['tradeStatusMsg']='Hoàn thành';
-                        $scope.myHtml = "<span>Hoàn thành</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
                         $scope.orderList[i].operate = [
@@ -293,8 +288,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "20002":
-                        //$scope.orderList[i]['tradeStatusMsg']='Từ chối giao dịch';
-                        $scope.myHtml = "<span>Từ chối giao dịch</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
                         $scope.orderList[i].operate = [
@@ -305,10 +299,9 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "30000":
-                        $scope.myHtml = "<span>Chờ giao hàng</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
-                        //$scope.orderList[i]['tradeStatusMsg']='Chờ giao hàng';
                         $scope.waitList = [];
                         $scope.waitList.push($scope.orderList[i]);
                         $scope.orderList[i].operate = [
@@ -321,7 +314,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "30001":
-                        $scope.myHtml = "<span>Đang chờ đánh giá</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
                         $scope.orderList[i].operate = [
@@ -336,8 +329,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     case "30002":
-                        //$scope.orderList[i]['tradeStatusMsg']='Giao dịch hoàn thành';
-                        $scope.myHtml = "<span>Giao dịch hoàn thành</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
                         $scope.orderList[i].operate = [
@@ -353,7 +345,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                     case "40003":
                     case "40004":
                     case "40005":
-                        $scope.myHtml = "<span>Giao dịch đã bị hủy</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
                         $scope.orderList[i].operate = [
@@ -364,10 +356,9 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         break;
 
                     default:
-                        $scope.myHtml = "<span>Lỗi chưa xác định</span>";
+                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
-                        //$scope.orderList[i]['tradeStatusMsg']='Lỗi chưa xác định';
                         break;
                 }
             }

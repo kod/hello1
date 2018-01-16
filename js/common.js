@@ -77,6 +77,66 @@ F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
 F._PhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
 
+
+
+F._tradeStatus = function(code) {
+    code = +code;
+    var result = "Giao dịch đã bị hủy";
+
+    switch (code) {
+        case 10000:
+            result = "Đang chờ thanh toán";
+            break;
+
+        case 10001:
+            result = "Đang xử lí";
+            break;
+
+        case 10003:
+            result = "Ngân hàng đang xử lý";
+            break;
+
+        case 20000:
+            result = "Đóng";
+            break;
+
+        case 20001:
+            result = "Hoàn thành";
+            break;
+
+        case 20002:
+            result = "Từ chối giao dịch";
+            break;
+
+        case 30000:
+            result = "Chờ giao hàng";
+            break;
+
+        case 30001:
+            result = "Đang chờ đánh giá";
+            break;
+
+        case 30002:
+            result = "Giao dịch hoàn thành";
+            break;
+
+        case 40000:
+        case 40001:
+        case 40002:
+        case 40003:
+        case 40004:
+        case 40005:
+            result = "Giao dịch đã bị hủy";
+            break;
+    
+        default:
+            result = "Lỗi chưa xác định";
+            break;
+    }
+    
+    return result;
+}
+
 F._google_store = "https://play.google.com/store/apps/details?id=com.store.creditstore"; // 谷歌应用商店
 F._app_store = ""; // 苹果应用商店
 
