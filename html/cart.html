@@ -829,7 +829,7 @@
                 if (data.length === 0) return false;
 
                 for (i = 0; i < data.length; i++) {
-                    if (data[i]._checked === false) {
+                    if (data[i].status !== 2 && data[i]._checked === false) {
                         return false;
                     }
                 }
