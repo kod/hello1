@@ -84,12 +84,6 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
             switch (ret.code) {
                 case 10000:
-                    var username = $('#g_name').val();
-                    if (username) {
-                        localStorage.setItem("username", username);
-                    } else {
-                        localStorage.setItem("username", "");
-                    }
                     window.location.reload();
                     break;
 
@@ -399,7 +393,7 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
 
         var birthday = get_birthday();
 
-        if (g_name.split(' ').length < 2) {
+        if (g_name && g_name.split(' ').length < 2) {
             alert('Họ tên sai');
             return false;
         }

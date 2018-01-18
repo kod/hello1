@@ -4394,6 +4394,11 @@ F._userAddDetailInfo = function(params, callback) {
             callback(ret);
             switch (ret.code) {
                 case 10000:
+                    if (username) {
+                        localStorage.setItem("username", username);
+                    } else {
+                        localStorage.setItem("username", "");
+                    }
                     break;
 
                 default:
