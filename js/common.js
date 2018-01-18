@@ -6946,6 +6946,10 @@ F._timeStrForm = function(str, model, unUnix) {
             reStr = year + "/" + monthFormat + "/" + dateFormat;
             break;
 
+        case 8:
+            reStr = dateFormat + "/" + monthFormat + "/" + year;
+            break;
+
         default:
             reStr = year + "-" + monthFormat + "-" + dateFormat + " " + hourFormat + ":" + minuteFormat;
             break;
