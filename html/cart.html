@@ -167,6 +167,7 @@
 
         .body__m-t-i-p-img {
             float: left;
+            position: relative;
             height: 105px;
             width: 105px;
             background-color: #fff;
@@ -482,6 +483,12 @@
         .body__m-e-r2-button:hover {
             background-color: #105dcf;
         }
+
+        .item-badge {
+            zoom: 0.8;
+            top: 0px;
+            left: -30px;
+        }
     </style>
 </head>
 
@@ -515,7 +522,13 @@
                             <div class="body__m-t-i-c-mask" @click.stop="select_item(key, val.status)"></div>
                         </div>
                         <div class="body__m-t-i-product" @click="gotoDetails(val._detail.typeId, val._detail.brandId, val._detail.id)">
-                            <div class="body__m-t-i-p-img" :style="{'background-image': 'url('+ val.iconUrl +')'}"></div>
+                            <div class="body__m-t-i-p-img" :style="{'background-image': 'url('+ val.iconUrl +')'}">
+                                <span v-show="val._detail.promotion" class="item-badge" style="background-image: url(../img/badge1.png);">
+                                    <span class="item-badge__reduce">GIẢM</span>
+                                    <span class="item-badge__mian" v-html="100 - val._detail.discount"></span>
+                                    <span class="item-badge__percent">%</span>
+                                </span>
+                            </div>
                             <div class="body__m-t-i-p-text" v-html="val.subject"></div>
                             <div class="body__m-t-i-p-tips" v-html="val.status === 2 ? 'Đã hết hàng' : ''"></div>
                         </div>
@@ -616,6 +629,7 @@
                 F.vue.LS__data = edit_cartitems(cart_getInfo.cartitems);
 
                 calc(F.vue.LS__data);
+                console.log(F.vue.LS__data);
             }
 
             F.loadData = function (params, callback) {
