@@ -398,8 +398,12 @@ app.controller('selfCtrl', function($scope, $http, $filter) {
         }
 
         var birthday = get_birthday();
-        // return false;
 
+        if (g_name.split(' ').length < 2) {
+            alert('Họ tên sai');
+            return false;
+        }
+        
         userAddDetailInfo({
             birthday: birthday,
             username: g_name,

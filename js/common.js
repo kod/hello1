@@ -5197,7 +5197,7 @@ function header_add() {
 
         username = localStorage.getItem("username");
         if (!username) username = localStorage.getItem("msisdn");
-        $("#userMsisdn").html(center_char_encrypt(username));
+        $("#userMsisdn").html(center_char_encrypt(username, localStorage.getItem("username")));
 
         F._userViewDetailInfo({}, function(ret) {
             if (ret.data.headimage) {
@@ -5525,7 +5525,7 @@ F._order_cancel = function(callback) {
 };
 
 // 加密中间字符
-function center_char_encrypt(str) {
+function center_char_encrypt(str, username) {
     var i;
     var result = "";
     function is_phoneNum(str) {
@@ -5533,7 +5533,7 @@ function center_char_encrypt(str) {
         return str === str;
     }
 
-    if (is_phoneNum(str)) {
+    if (!username) {
         if (str.length > 0) {
             for (i = 0; i < str.length; i++) {
                 if (i < 3 || i >= str.length - 4) {
@@ -6385,6 +6385,11 @@ F._baseinfo = function(data, userInfo) {
                 return false;
             }
 
+            if (username.split(' ').length < 2) {
+                alert('Họ tên sai');
+                return false;
+            }
+        
             if (!msisdn.length) {
                 alert("Vui lòng nhập Số điện thoại");
                 return false;
@@ -6623,6 +6628,11 @@ F._baseinfo = function(data, userInfo) {
 
         if (!username.length) {
             alert("Vui lòng nhập Họ tên");
+            return false;
+        }
+
+        if (username.split(' ').length < 2) {
+            alert('Họ tên sai');
             return false;
         }
 
