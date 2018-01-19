@@ -52,6 +52,26 @@
             color: #777;
             padding: 0 4%;
             line-height: 24px;
+            margin-bottom: 10px;
+        }
+
+        .body__main-button {
+            position: fixed;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            padding: 0 4%;
+        }
+
+        .body__m-b-item {
+            line-height: 45px;
+            background-color: #0075F6;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+        .body__m-b-item:active {
+            background-color: #0055e6;
         }
 
         .body__main-gohome {
@@ -99,6 +119,9 @@
                 <img src="../img/32.png" alt="" class="body__main-img">
                 <div class="body__main-title">Mua thành công</div>
                 <div class="body__main-desc">Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!</div>
+                <div class="body__main-button">
+                    <div class="body__m-b-item" @click="close">Đóng</div>
+                </div>
                 <a href="./order.html" class="body__main-gohome">Kiểm tra đơn hàng</a>
             </div>
         </section>
@@ -117,6 +140,7 @@
 
             var load = function () {
                 new_vue();
+                window.android.backBtnEnabled(false);
             };
 
             var pre_data = function (data) {
@@ -148,6 +172,7 @@
                     data: F.vue,
                     methods: {
                         gohome: gohome,
+                        close: close,
                     },
                     computed: {
 
@@ -160,6 +185,10 @@
 
             function gohome() {
                 window.location.href = '../index.html';
+            }
+
+            function close() {
+                window.android.closeView(true);
             }
 
             F.loadData(function () {

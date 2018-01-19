@@ -52,6 +52,28 @@
             font-size: 15px;
             margin-top: 15px;
             color: #777;
+            padding: 0 4%;
+            line-height: 24px;
+            margin-bottom: 10px;
+        }
+
+        .body__main-button {
+            position: fixed;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            padding: 0 4%;
+        }
+
+        .body__m-b-item {
+            line-height: 45px;
+            background-color: #0075F6;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+        .body__m-b-item:active {
+            background-color: #0055e6;
         }
 
         .body__main-gohome {
@@ -97,6 +119,9 @@
             <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
                 <img src="../img/24782487.png" alt="" class="body__main-img">
                 <div class="body__main-title">Thanh toán thất bại</div>
+                <div class="body__main-button">
+                    <div class="body__m-b-item" @click="close">Đóng</div>
+                </div>
                 <!-- <div class="body__main-desc">Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!</div> -->
                 <span class="body__main-gohome" @click="gohome">Quay về trang chủ</span>
             </div>
@@ -115,6 +140,7 @@
             };
 
             var load = function () {
+                window.android.backBtnEnabled(false);
                 new_vue();
             };
 
@@ -147,6 +173,7 @@
                     data: F.vue,
                     methods: {
                         gohome: gohome,
+                        close: close,
                     },
                     computed: {
 
@@ -159,6 +186,10 @@
 
             function gohome() {
                 window.location.href = '../index.html';
+            }
+
+            function close() {
+                window.android.closeView(false);
             }
 
             F.loadData(function () {
