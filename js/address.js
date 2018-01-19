@@ -1,6 +1,11 @@
 var app = angular.module("indexApp", []);
 var loading = new F._loading();
 app.controller("addCtrl", function($scope, $http, $filter) {
+
+    $scope.edit_address = function(item) {
+        return item.address + (item.division4thName ? ', ' : '') + item.division4thName + (item.division3rdName ? ', ' : '') + item.division3rdName + (item.division2ndName ? ', ' : '') + item.division2ndName
+    }
+    
     var loading = new F._loading();
     loading.show();
     // F._userAction_userViewAddr({}, function(ret) {

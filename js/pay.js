@@ -181,6 +181,10 @@ app.controller("addCtrl", function($scope, $http, $filter) {
     //     });
     // });
 
+    $scope.edit_address = function(item) {
+        return item.address + (item.division4thName ? ', ' : '') + item.division4thName + (item.division3rdName ? ', ' : '') + item.division3rdName + (item.division2ndName ? ', ' : '') + item.division2ndName
+    }
+    
     if (!localStorage.getItem("funId")) return false;
 
     var loading = new F._loading();

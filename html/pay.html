@@ -151,7 +151,7 @@
                         <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                         <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
                     </div>
-                    <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + ', ' + item.division4thName + ', ' + item.division3rdName + ', ' + item.division2ndName"></div>
+                    <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + (item.division4thName ? ', ' : '') + item.division4thName + (item.division3rdName ? ', ' : '') + item.division3rdName + (item.division2ndName ? ', ' : '') + item.division2ndName"></div>
                     <div class="site__m-i-row3 col-xs-24">
                         <div class="site__m-i-r3-def">
                             <span class="site__m-i-r3-f-set moren" ng-click="moren(index,item.id,item.isdefault,item.msisdn,item.address,item.username,item.division4th,item.division3rd,item.division2nd)">Đặt làm mặc định</span>

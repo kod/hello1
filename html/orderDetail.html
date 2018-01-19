@@ -586,13 +586,7 @@
             var pre_data = function (data) {
 
                 function edit_address(address, division4thName, division3rdName, division2ndName) {
-                    var result = '';
-                    if (division4thName) {
-                        result = address + ', ' + division4thName + ', ' + division3rdName + ', ' + division2ndName
-                    } else {
-                        result = address;
-                    }
-                    return result;
+                    return address + (division4thName ? ', ' : '') + division4thName + (division3rdName ? ', ' : '') + division3rdName + (division2ndName ? ', ' : '') + division2ndName;
                 }
 
                 var trade_queryOrder = data._trade_queryOrder;

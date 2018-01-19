@@ -4640,10 +4640,11 @@ F._add_edit_address = function(params) {
         var provinces_data = data.provinces_data || [];
         var districts_data = data.districts_data || [];
         var wards_data = data.wards_data || [];
+        var def_option_item = '<option value="0">Lựa chọn</option>';
 
         function edit_provinces_option(data) {
             var i;
-            var result = '<option value="">Lựa chọn</option>';
+            var result = def_option_item;
             for (i = 0; i < data.length; i++) {
                 result += '<option class="provinces-item" value="' + data[i].id + '" data-pid="' + data[i].id + '">' + data[i].name + "</option>";
             }
@@ -4651,7 +4652,7 @@ F._add_edit_address = function(params) {
         }
         function edit_districts_option(data) {
             var i;
-            var result = '<option value="">Lựa chọn</option>';
+            var result = def_option_item;
             for (i = 0; i < data.length; i++) {
                 result += '<option class="districts-item" value="' + data[i].id + '" data-pid="' + data[i].id + '">' + data[i].name + "</option>";
             }
@@ -4659,7 +4660,7 @@ F._add_edit_address = function(params) {
         }
         function edit_wards_option(data) {
             var i;
-            var result = '<option value="">Lựa chọn</option>';
+            var result = def_option_item;
             for (i = 0; i < data.length; i++) {
                 result += '<option class="wards-item" value="' + data[i].id + '" data-pid="' + data[i].id + '">' + data[i].name + "</option>";
             }
@@ -4682,17 +4683,17 @@ F._add_edit_address = function(params) {
                         <br />\
                         <span>Tỉnh/Thành phố *</span>\
                         <select name="" id="division2nd">\
-                            <option value="">Lựa chọn</option>\
+                            '+ def_option_item +'\
                         </select>\
                         <br />\
                         <span>Quận/huyện *</span>\
                         <select name="" id="division3rd">\
-                            <option value="">Lựa chọn</option>\
+                            '+ def_option_item +'\
                         </select>\
                         <br />\
-                        <span>Phường, xã *</span>\
+                        <span>Phường, xã</span>\
                         <select name="" id="division4th">\
-                            <option value="">Lựa chọn</option>\
+                            '+ def_option_item +'\
                         </select>\
                         <br />\
                         <span>Số điện thoại *</span>\
@@ -4742,11 +4743,11 @@ F._add_edit_address = function(params) {
         });
 
         $("#division2nd").on("change", function() {
-            $("#division4th").html('<option value="">Lựa chọn</option>');
+            $("#division4th").html(def_option_item);
             var self = $(this);
             var id = self.val();
-            if (!id) {
-                $("#division3rd").html('<option value="">Lựa chọn</option>');
+            if (!id || id === "0") {
+                $("#division3rd").html(def_option_item);
                 return false;
             }
             loading.show();
@@ -4760,30 +4761,31 @@ F._add_edit_address = function(params) {
                     if (ret.code !== 10000) return false;
 
                     $("#division3rd").html(edit_districts_option(ret.details));
-                    $("#division3rd").on("change", function() {
+                }
+            );
+        });
+
+        $("#division3rd").on("change", function() {
+            var self = $(this);
+            var id = self.val();
+            if (!id || id === "0") {
+                $("#division4th").html(def_option_item);
+                return false;
+            }
+            loading.show();
+            F._getCityInfos(
+                {
+                    pid: id
+                },
+                function(ret) {
+                    loading.hide();
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                    $("#division4th").html(edit_wards_option(ret.details));
+                    $("#division4th").on("change", function() {
                         var self = $(this);
                         var id = self.val();
-                        if (!id) {
-                            $("#division4th").html('<option value="">Lựa chọn</option>');
-                            return false;
-                        }
-                        loading.show();
-                        F._getCityInfos(
-                            {
-                                pid: id
-                            },
-                            function(ret) {
-                                loading.hide();
-                                if (!ret) return false;
-                                if (ret.code !== 10000) return false;
-                                $("#division4th").html(edit_wards_option(ret.details));
-                                $("#division4th").on("change", function() {
-                                    var self = $(this);
-                                    var id = self.val();
-                                    if (!id) return false;
-                                });
-                            }
-                        );
+                        if (!id) return false;
                     });
                 }
             );
@@ -4799,15 +4801,9 @@ F._add_edit_address = function(params) {
             var name = $("#names").val();
             var phone = $("#phone").val();
             var textarea = $("#textarea").val();
-            var division2nd = $("#division2nd").val();
-            var division3rd = $("#division3rd").val();
-            var division4th = $("#division4th").val();
-
-            if (!F._phoneExpr.test(phone)) {
-                $("#errormsg small").html("Số điện thoại sai");
-                $("#errormsg").show();
-                return false;
-            }
+            var division2nd = $("#division2nd").val() + '';
+            var division3rd = $("#division3rd").val() + '';
+            var division4th = $("#division4th").val() + '';
 
             if (name.length < 2) {
                 $("#errormsg small").html("Tên sai");
@@ -4821,13 +4817,13 @@ F._add_edit_address = function(params) {
                 return false;
             }
 
-            if (!division2nd) {
+            if (!division2nd || division2nd === "0") {
                 $("#errormsg small").html("Tỉnh/Thành phố sai");
                 $("#errormsg").show();
                 return false;
             }
 
-            if (!division3rd) {
+            if (!division3rd || division3rd === "0") {
                 $("#errormsg small").html("Quận/huyện sai");
                 $("#errormsg").show();
                 return false;
@@ -4835,6 +4831,12 @@ F._add_edit_address = function(params) {
 
             if (!division4th) {
                 $("#errormsg small").html("Phường, xã sai");
+                $("#errormsg").show();
+                return false;
+            }
+
+            if (!F._phoneExpr.test(phone)) {
+                $("#errormsg small").html("Số điện thoại sai");
                 $("#errormsg").show();
                 return false;
             }
