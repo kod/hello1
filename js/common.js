@@ -5413,6 +5413,7 @@ function openforapp_add() {
 
     if (F._PhoneExpr.test(appVersion)) {
         $("body").prepend(html_str);
+        $('.openforapp').css('width', F._winWidth + 'px');
         $(".openforapp__left-close").on("click", function() {
             $(".openforapp").remove();
         });
@@ -6976,4 +6977,4 @@ F._timeStrForm = function(str, model, unUnix) {
 
 header_add();
 footer_add();
-// openforapp_add();
+openforapp_add();
