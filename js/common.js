@@ -5438,6 +5438,11 @@ function openforapp_add() {
     }
 }
 
+F._is_mobile = function() {
+    var appVersion = window.navigator.appVersion;
+    return /Android|iPhone|iPad/.test(appVersion);
+}
+
 F._gotoFind = function() {
     var findcontent = $("#findIpt").val();
     if (findcontent != "") {

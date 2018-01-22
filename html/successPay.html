@@ -141,11 +141,12 @@
 
             F.vue = {
                 body__main_height: document.documentElement.clientHeight - 133 - 210,
+                is_mobile: F._is_mobile()
             };
 
             var load = function () {
                 new_vue();
-                window.android.backBtnEnabled(false);
+                F.vue.is_mobile && window.android.backBtnEnabled(false);
             };
 
             var pre_data = function (data) {
@@ -193,7 +194,7 @@
             }
 
             function close() {
-                window.android.closeView(true);
+                F.vue.is_mobile && window.android.closeView(true);
             }
 
             F.loadData(function () {
