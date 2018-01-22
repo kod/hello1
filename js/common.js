@@ -1,8 +1,8 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = true;
+F._DEUBUG = false;
 
-F._VERSION = "2.4.0-alpha";
+F._VERSION = "2.4.0";
 console.log("version " + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? "http://192.168.1.100" : "https://vn255.buyoo.xyz";
