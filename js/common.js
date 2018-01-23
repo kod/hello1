@@ -1,6 +1,6 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = false;
+F._DEUBUG = true;
 
 F._VERSION = "2.4.0";
 console.log("version " + F._VERSION);
@@ -5338,8 +5338,8 @@ function footer_add() {
                     <div class="footer__b2-m-r5-title col-xs-24">TẢI APP BUYOO</div>\
                     <ul class="footer__b2-m-r5-main col-xs-24">\
                         <li class="footer__b2-m-r5-m-item col-xs-24">\
-                            <!-- <a href="" class="footer__b2-m-r5-m-i-img" target="_blank" style="background-image: url(' + dot_str + './img/o23874238947.png);"></a> -->\
-                            <img src="' + dot_str + './img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img">\
+                            <a href="' + dot_str + './html/downloadApp.html?type=android" class="footer__b2-m-r5-m-i-img" target="_blank" style="background-image: url(' + dot_str + './img/o23874238947.png);"></a>\
+                            <!-- <img src="' + dot_str + './img/o23874238947.png" alt="" class="footer__b2-m-r5-m-i-img"> -->\
                         </li>\
                         <li class="footer__b2-m-r5-m-item col-xs-24">\
                             <img src="' + dot_str + './img/2837298347.png" alt="" class="footer__b2-m-r5-m-i-img">\
