@@ -244,6 +244,108 @@
             z-index: 999;
         }
 
+        .sec2:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .sec2__main {
+            width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        .sec2__main:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .sec2__main-item {
+            float: left;
+            position: relative;
+            z-index: 66;
+            width: 20%;
+            background-color: #fff;
+            border-right: 1px solid #f2f2f2;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 20px;
+        }
+
+        .sec2__main-item:hover {
+            cursor: pointer;
+            transition-property: box-shadow;
+            -webkit-transition-property: box-shadow;
+            -moz-transition-property: box-shadow;
+            -o-transition-property: all;
+            transition-duration: .5s;
+            -webkit-transition-duration: .5s;
+            -moz-transition-duration: .5s;
+            -o-transition-duration: .5s;
+            box-shadow: 0 0 15px #d1d1d1;
+            -moz-box-shadow: 0 0 15px #d1d1d1;
+            -webkit-box-shadow: 0 0 15px #d1d1d1;
+            z-index: 99;
+        }
+
+        .sec2__main-more {
+            float: left;
+            width: 20%;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .sec2__m-m-main {
+            display: inline-block;
+            height: 225px;
+            width: 225px;
+            color: #fff;
+            font-size: 20px;
+            padding-top: 80px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(./img/index-more.jpg);
+        }
+
+        .sec2__m-i-pic {
+            height: 203px;
+            margin-bottom: 5px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .sec2__m-i-title {
+            text-align: justify;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 3px;
+            padding-left: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .sec2__m-i-price {
+            color: #F7004C;
+            font-size: 22px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .sec2__m-i-submit {
+            height: 40px;
+            line-height: 40px;
+            background-color: #ea2440;
+            text-align: center;
+            color: #fff;
+        }
+
         .margin_top53 .header {
             height: 60px;
         }
@@ -376,6 +478,29 @@
     </div>
     <!-- <div id="center"></div> -->
     <div class="" style="padding-top: 53px;"></div>
+    <section class="sec2" id="vue1-el" v-show="LS__data.length">
+        <div class="sec2__header header col-xs-24" style="height: 70px;">
+            <div class="content">
+                <div class="header_name left">Khuyến mại lớn</div>
+                <div class="header_category right" @click="discountMore" style="color: #4B9DF4; cursor: pointer;">Xem nhiều hơn &gt; </div>
+            </div>
+        </div>
+        <div class="sec2__main">
+            <div class="sec2__main-item" v-for="(val, key) in LS__data" @click="gotoDetails(val.typeId, val.brandId, val.productId, val.discount, val.orgPrice)">
+                <div class="sec2__m-i-pic col-xs-24" :style="{ 'background-image': 'url('+ val.imageUrl +')' }"></div>
+                <div class="sec2__m-i-title col-xs-24" v-html="val.name"></div>
+                <div class="sec2__m-i-price col-xs-24" v-html="priceFormat(val.orgPrice) + ' VND'"></div>
+                <div class="sec2__m-i-submit col-xs-24" v-html="'去拼单'"></div>
+            </div>
+            <div class="sec2__main-more">
+                <div class="sec2__m-m-main">
+                    <p>下载APP</p>
+                    <p>查看更多拼单</p>
+                </div>
+                <!-- <img src="./img/index-more.jpg" alt="image" class="sec2__m-m-img"> -->
+            </div>
+        </div>
+    </section>
     <div class="all margin_top53">
         <div class="header">
             <div class="content">
@@ -471,7 +596,6 @@
             </div>
         </div>
     </section>
-
     <div class="all margin_top53">
         <div class="header">
             <div class="content">
@@ -866,6 +990,174 @@
                 });
 
 
+            });
+
+            F._merge_getInfo({}, function(ret) {
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                var ccc = {
+                    "pagesize": 1,
+                    "details": [{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    },{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    },{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    },{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    },{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    },{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    },{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    },{
+                        "brandId": 79,
+                        "classfyId": 9,
+                        "createTime": "2018-01-05 15:13:31",
+                        "createUser": "admin",
+                        "desc": "",
+                        "headImages": "",
+                        "id": 8,
+                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
+                        "mergePrice": 170000,
+                        "name": "Mi Camera Dash Cam",
+                        "orgPrice": 1700000,
+                        "position": 3,
+                        "salesVolume": 0,
+                        "status": 1,
+                        "typeId": 5,
+                        "updateTime": "2018-01-05 15:13:31"
+                    }],
+                    "totalnumber": 3,
+                    "currentpage": 1,
+                    "code": 10000,
+                    "totalpage": 3,
+                    "msg": "success"
+                };
+                
+                F.vue1 = {
+                    LS__data: ccc.details.slice(0,4)
+                    // LS__data: ret.details.slice(0,4)
+                };
+
+                F.vue1 = new Vue({
+                    el: $('#vue1-el')[0],
+                    data: F.vue1,
+                    methods: {
+                        priceFormat: F._priceFormat,
+                        gotoDetails: gotoDetails,
+                    },
+                    computed: {
+
+                    },
+                });
             });
         }
 

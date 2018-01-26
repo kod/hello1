@@ -1,6 +1,6 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = false;
+F._DEUBUG = true;
 
 F._VERSION = "2.4.1";
 console.log("version " + F._VERSION);
@@ -70,6 +70,7 @@ F._cart_remove_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/remove";
 F._cart_changeNum_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/changeNum"; // 购物车-更新商品数量
 F._cart_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/getInfo"; // 购物车列表
 F._getHTML_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/getHTML"; //
+F._merge_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/merge/getInfo"; // 拼单
 F._uploadFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/uploadFiles"; // 上传用户头像
 F._collectFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/collectFiles"; // 用户评论上传图片
 F._returnMoney_im = F._IP_191 + ":" + F._port_84 + "/fun/installment/returnMoney"; //
@@ -184,6 +185,95 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+};
+
+// 拼单
+F._merge_getInfo = function(params, callback) {
+    var Key = "commodityKey";
+
+    var appId = '0';
+    var method = "fun.merge.query";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var typeid = params.typeid || '0';
+    var classfyid = params.classfyid || '0';;
+    var position = params.position || '0';;
+    var pagesize = params.pagesize || '1';
+    var currentpage = params.currentpage || '1';
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "typeid",
+                value: typeid
+            },
+            {
+                key: "classfyid",
+                value: classfyid
+            },
+            {
+                key: "position",
+                value: position
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        typeid: typeid,
+        classfyid: classfyid,
+        position: position,
+        pagesize: pagesize,
+        currentpage: currentpage,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._merge_getInfo_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
 };
 
 // 查询用户基本信息
