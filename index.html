@@ -277,7 +277,7 @@
         }
 
         .sec2__main-item:hover {
-            cursor: pointer;
+            /* cursor: pointer; */
             transition-property: box-shadow;
             -webkit-transition-property: box-shadow;
             -moz-transition-property: box-shadow;
@@ -293,10 +293,12 @@
         }
 
         .sec2__main-more {
+            display: inline-block;
             float: left;
             width: 20%;
             text-align: center;
             padding-top: 40px;
+            cursor: pointer;
         }
 
         .sec2__m-m-main {
@@ -344,6 +346,64 @@
             background-color: #ea2440;
             text-align: center;
             color: #fff;
+        }
+
+        .sec2__m-i-addonitem {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 100;
+            opacity: 0;
+            background-color: #fff;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .sec2__m-i-addonitem:hover {
+            /* cursor: pointer; */
+            transition-property: opacity;
+            -webkit-transition-property: opacity;
+            -moz-transition-property: opacity;
+            -o-transition-property: all;
+            transition-duration: .5s;
+            -webkit-transition-duration: .5s;
+            -moz-transition-duration: .5s;
+            -o-transition-duration: .5s;
+            opacity: .98;
+            -webkit-opacity: .98;
+            z-index: 101;
+        }
+
+        .sec2__m-i-a-qr {
+            height: 200px;
+            width: 200px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .sec2__m-i-a-name {
+            text-align: justify;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .sec2__m-i-a-price {
+            color: #F7004C;
+            font-size: 22px;
+            margin-bottom: 5px;
+            padding-left: 10px;
+        }
+
+        .sec2__m-i-a-text {
+            color: #000;
         }
 
         .margin_top53 .header {
@@ -482,23 +542,29 @@
         <div class="sec2__header header col-xs-24" style="height: 70px;">
             <div class="content">
                 <div class="header_name left">Khuyến mại lớn</div>
-                <div class="header_category right" @click="discountMore" style="color: #4B9DF4; cursor: pointer;">Xem nhiều hơn &gt; </div>
+                <!-- <div class="header_category right" @click="discountMore" style="color: #4B9DF4; cursor: pointer;">Xem nhiều hơn &gt; </div> -->
             </div>
         </div>
         <div class="sec2__main">
-            <div class="sec2__main-item" v-for="(val, key) in LS__data" @click="gotoDetails(val.typeId, val.brandId, val.productId, val.discount, val.orgPrice)">
+            <div class="sec2__main-item" v-for="(val, key) in LS__data">
                 <div class="sec2__m-i-pic col-xs-24" :style="{ 'background-image': 'url('+ val.imageUrl +')' }"></div>
                 <div class="sec2__m-i-title col-xs-24" v-html="val.name"></div>
                 <div class="sec2__m-i-price col-xs-24" v-html="priceFormat(val.orgPrice) + ' VND'"></div>
                 <div class="sec2__m-i-submit col-xs-24" v-html="'去拼单'"></div>
+                <div class="sec2__m-i-addonitem">
+                    <div class="sec2__m-i-a-qr"></div>
+                    <div class="sec2__m-i-a-name" v-html="val.name"></div>
+                    <div class="sec2__m-i-a-price" v-html="priceFormat(val.orgPrice) + ' VND'"></div>
+                    <div class="sec2__m-i-a-text">扫描二维码，去拼单</div>
+                </div>
             </div>
-            <div class="sec2__main-more">
+            <a href="https://play.google.com/store/apps/details?id=com.store.creditstore" target="_blank" class="sec2__main-more">
                 <div class="sec2__m-m-main">
                     <p>下载APP</p>
                     <p>查看更多拼单</p>
                 </div>
                 <!-- <img src="./img/index-more.jpg" alt="image" class="sec2__m-m-img"> -->
-            </div>
+            </a>
         </div>
     </section>
     <div class="all margin_top53">
@@ -900,6 +966,7 @@
         </div> -->
     </footer>
     <script src="js/jquery.js?version=2.4.1"></script>
+    <script src="js/jquery.qrcode.min.js?version=2.4.1"></script>
     <script src="js/md555.js?version=2.4.1" type="text/javascript" charset="utf-8"></script>
     <script src="js/md5.js?version=2.4.1" type="text/javascript" charset="utf-8"></script>
     <script src="js/common.js?version=2.4.1"></script>
@@ -992,159 +1059,22 @@
 
             });
 
-            F._merge_getInfo({}, function(ret) {
+            F._merge_getInfo({}, function (ret) {
                 if (!ret) return false;
                 if (ret.code !== 10000) return false;
 
-                var ccc = {
-                    "pagesize": 1,
-                    "details": [{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    },{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    },{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    },{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    },{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    },{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    },{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    },{
-                        "brandId": 79,
-                        "classfyId": 9,
-                        "createTime": "2018-01-05 15:13:31",
-                        "createUser": "admin",
-                        "desc": "",
-                        "headImages": "",
-                        "id": 8,
-                        "imageUrl": "http://47.89.9.226/commodity/img/brand/1510215510593_das01.jpg",
-                        "mergePrice": 170000,
-                        "name": "Mi Camera Dash Cam",
-                        "orgPrice": 1700000,
-                        "position": 3,
-                        "salesVolume": 0,
-                        "status": 1,
-                        "typeId": 5,
-                        "updateTime": "2018-01-05 15:13:31"
-                    }],
-                    "totalnumber": 3,
-                    "currentpage": 1,
-                    "code": 10000,
-                    "totalpage": 3,
-                    "msg": "success"
-                };
-                
+                function set_qr(array) {
+                    for (let index = 0; index < array.length; index++) {
+                        jQuery('.sec2__m-i-a-qr').eq(index).qrcode({
+                            width: 200,
+                            height: 200,
+                            text: array[index].imageUrl
+                        });
+                    }
+                }
+
                 F.vue1 = {
-                    LS__data: ccc.details.slice(0,4)
-                    // LS__data: ret.details.slice(0,4)
+                    LS__data: ret.details.slice(0, 4),
                 };
 
                 F.vue1 = new Vue({
@@ -1152,10 +1082,12 @@
                     data: F.vue1,
                     methods: {
                         priceFormat: F._priceFormat,
-                        gotoDetails: gotoDetails,
                     },
                     computed: {
 
+                    },
+                    mounted: function () {
+                        set_qr(F.vue1.LS__data);
                     },
                 });
             });

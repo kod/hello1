@@ -70,7 +70,7 @@ F._cart_remove_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/remove";
 F._cart_changeNum_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/changeNum"; // 购物车-更新商品数量
 F._cart_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/getInfo"; // 购物车列表
 F._getHTML_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/getHTML"; //
-F._merge_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/merge/getInfo"; // 拼单
+F._merge_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/merge/getInfo"; // 拼单列表
 F._uploadFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/uploadFiles"; // 上传用户头像
 F._collectFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/collectFiles"; // 用户评论上传图片
 F._returnMoney_im = F._IP_191 + ":" + F._port_84 + "/fun/installment/returnMoney"; //
@@ -200,7 +200,7 @@ F._merge_getInfo = function(params, callback) {
     var typeid = params.typeid || '0';
     var classfyid = params.classfyid || '0';;
     var position = params.position || '0';;
-    var pagesize = params.pagesize || '1';
+    var pagesize = params.pagesize || '4';
     var currentpage = params.currentpage || '1';
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
