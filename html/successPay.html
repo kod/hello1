@@ -122,8 +122,8 @@
         <section class="body">
             <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
                 <img src="../img/32.png" alt="" class="body__main-img">
-                <div class="body__main-title">Mua thành công</div>
-                <div class="body__main-desc">Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!</div>
+                <div class="body__main-title" v-html="title"></div>
+                <div class="body__main-desc" v-html="desc"></div>
                 <div class="body__main-button">
                     <div class="body__m-b-item" @click="close">Đóng</div>
                 </div>
@@ -138,10 +138,51 @@
             '../js/vue.min.js?version=2.4.1',
             '../js/common.js?version=2.4.1',
         ], function ($, Vue) {
+            F.query = F._hrefUtils.parse().query || {};
+            console.log(F.query);
+            F.type = F.query.type || "1"; // 1:fenqi;2:quankuang
 
+            var get_title = function(type) {
+                var result = "";
+                switch (type) {
+                    case "1":
+                        result = "Đơn hàng được khởi tạo thành công";
+                        break;
+                
+                    case "2":
+                        result = "Mua thành công";
+                        break;
+                
+                    default:
+                        result = "Đơn hàng được khởi tạo thành công";
+                        break;
+                }
+                return result;
+            }
+            
+            var get_desc = function(type) {
+                var result = "";
+                switch (type) {
+                    case "1":
+                        result = "订单正在审核中，审核结果我们会通过短信通知";
+                        break;
+                
+                    case "2":
+                        result = "Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!";
+                        break;
+                
+                    default:
+                        result = "订单正在审核中，审核结果我们会通过短信通知";
+                        break;
+                }
+                return result;
+            }
+            
             F.vue = {
                 body__main_height: document.documentElement.clientHeight - 133 - 210,
-                is_mobile: F._is_mobile()
+                is_mobile: F._is_mobile(),
+                title: get_title(F.type),
+                desc: get_desc(F.type),
             };
 
             var load = function () {
