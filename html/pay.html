@@ -146,7 +146,7 @@
             <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
             <div class="site__main col-xs-24">
                 <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }"
-                    ng-click="set_active(index, item.msisdn, item, item.username)" ng-repeat="(index, item) in addrlistData">
+                    ng-click="set_active(index, item.msisdn, item, item.username, item,id)" ng-repeat="(index, item) in addrlistData">
                     <div class="site__m-i-row1 col-xs-24">
                         <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                         <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
@@ -183,7 +183,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Buyoo
+                                    <th>Thông tin về sản phẩm
                                         <div class="bg"></div>
                                     </th>
                                     <th>Số lượng
@@ -239,14 +239,14 @@
         </article>
         <article id="three">
             <div class="content">
-                <div class="three">
+                <div class="three fullpay_mark" style="display: none;">
                     <div class="top_title">
                         <i></i>
                         <span>Phương thức thanh toán</span>
                     </div>
                 </div>
                 <div class="way">
-                    <div class="payway__main-bottom" id="payway__main-bottom">
+                    <div class="payway__main-bottom" id="payway__main-bottom" style="display: none;" v-show="paymentNum === 1">
                         <!-- <div class="payway__m-b-item" @click="payway = '3'" :class="{ 'payway__m-b-item_acitve': payway === '3' }">
                             <div class="payway__m-b-i-text">napas</div>
                             <div class="payway__m-b-i-icon">
@@ -545,47 +545,38 @@
             F.totalamount = parseFloat(F.totalamount);
             F.quantity = get_num(F.LS__data);
 
-            function edit_orderdetails(array) {
+            function analyze_orderdetails(array) {
                 var index;
-                var result = [];
-                var item = {
-                    payRate: F.paymentNum + '',
-                    orderNo: (function () {
-                        var mydate = new Date();
-                        return localStorage.getItem("funId") + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
-                    })(),
+                var result = {
                     totalAmount: 0,
                     orgAmount: 0,
                     advance: 0,
-                    currency: "VND",
-                    subject: "",
                     goodsDetail: [],
-                    timeoutExpress: 86400,
-                    repaymentMonth: F.fenqiNum,
+                    subject: '',
                 };
                 var result_ids = [];
 
                 function edit_detail(item) {
                     var result = {};
-                    var detail = JSON.parse(item.detail);
-                    detail.number = item.quantity;
-                    detail.cartitemid = item.id + '';
-                    detail.orgPrice = item.orgPrice;
-                    return detail;
+                    result.number = item.quantity;
+                    result.cartitemid = item.id + '';
+                    result.productInfoId = item.itemId;
+                    return result;
                 }
 
                 for (index = 0; index < array.length; index++) {
-                    item.totalAmount += array[index].totalAmount * array[index].quantity;
-                    item.orgAmount += array[index].orgPrice ? array[index].orgPrice * array[index].quantity : 0;
-                    item.advance += array[index].totalAmount * array[index].quantity * F.paymentNum;
-                    item.subject += array[index].subject + ', ';
-                    item.goodsDetail.push(edit_detail(array[index]));
+                    result.totalAmount += array[index].totalAmount * array[index].quantity;
+                    result.orgAmount += array[index].orgPrice ? array[index].orgPrice * array[index].quantity : 0;
+                    result.advance += array[index].totalAmount * array[index].quantity * F.paymentNum;
+                    result.subject += array[index].subject + ', ';
+                    result.goodsDetail.push(edit_detail(array[index]));
 
-                    result_ids.push(array[index].id);
+                    // result_ids.push(array[index].id);
                 }
-                item.subject = item.subject.slice(0, -2);
-                F.result_ids = result_ids.join(',');
-                result.push(item);
+                result.subject = result.subject.slice(0, -2);
+                // F.result_ids = result_ids.join(',');
+
+                
                 return result;
             }
 
@@ -604,72 +595,176 @@
 
                 if (F.isToCart) {
                     loading.show();
-                    F._batchCreateOrder({
-                        orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
-                        msisdn: F.msisdn,
-                        address: F.address,
-                        username: F.username,
-                        remark: '',
-                        division2ndName: F.division2ndName,
-                        division2ndCode: F.division2ndCode,
-                        division3rdName: F.division3rdName,
-                        division3rdCode: F.division3rdCode,
-                        division4thName: F.division4thName,
-                        division4thCode: F.division4thCode,
-                    }, batchCreateOrder_callback);
+                    var analyze_orderdetails_result = analyze_orderdetails(F.LS__data);
+                    F._createDisOrder({
+                        orderdetails: [{
+                            payRate: F.paymentNum + '',
+                            orderNo: F._create_orderno(localStorage.getItem("funId")),
+                            totalAmount: analyze_orderdetails_result.totalAmount,
+                            orgAmount: analyze_orderdetails_result.orgAmount,
+                            advance: analyze_orderdetails_result.advance,
+                            currency: 'VND',
+                            subject: analyze_orderdetails_result.subject,
+                            goodsDetail: JSON.stringify(analyze_orderdetails_result.goodsDetail),
+                            repaymentMonth: F.fenqiNum,
+                        }],
+                        ordertype: F.paymentNum === 1 ? "3" : "4",
+                        addrid: F.address_id,
+                    }, createDisOrder_callback);
+
+                    // F._batchCreateOrder({
+                    //     orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
+                    //     msisdn: F.msisdn,
+                    //     address: F.address,
+                    //     username: F.username,
+                    //     remark: '',
+                    //     division2ndName: F.division2ndName,
+                    //     division2ndCode: F.division2ndCode,
+                    //     division3rdName: F.division3rdName,
+                    //     division3rdCode: F.division3rdCode,
+                    //     division4thName: F.division4thName,
+                    //     division4thCode: F.division4thCode,
+                    // }, batchCreateOrder_callback);
 
                 } else if (F.paymentNum === 1) { // 全款
 
                     loading.show();
-                    F._fullOrderCreate({
-                        totalamount: F.totalamount,
-                        orgamount: F.orgPrice,
-                        advance: F.totalamount,
-                        payrate: '1',
-                        repaymentmonth: '0',
-                        subject: F.subject,
-                        goodsdetail: F.goodsDetail,
-                        timeoutexpress: '86400',
-                        msisdn: F.msisdn,
-                        address: F.address,
-                        username: F.username,
-                        number: F.quantity,
-                        division2ndName: F.division2ndName,
-                        division2ndCode: F.division2ndCode,
-                        division3rdName: F.division3rdName,
-                        division3rdCode: F.division3rdCode,
-                        division4thName: F.division4thName,
-                        division4thCode: F.division4thCode,
-                    }, fullOrderCreate_callback);
+                    F._createDisOrder({
+                        orderdetails: [{
+                            payRate: '1',
+                            orderNo: F._create_orderno(localStorage.getItem("funId")),
+                            totalAmount: F.totalamount,
+                            orgAmount: F.orgPrice,
+                            advance: F.totalamount,
+                            currency: 'VND',
+                            subject: F.subject,
+                            goodsDetail: JSON.stringify([{
+                                number: F.quantity,
+                                cartitemid: '',
+                                productInfoId: JSON.parse(F.goodsDetail)['id']
+                            }]),
+                            repaymentMonth: 0,
+                        }],
+                        ordertype: "2",
+                        addrid: F.address_id,
+                    }, createDisOrder_callback);
+
+                    // F._fullOrderCreate({
+                    //     totalamount: F.totalamount,
+                    //     orgamount: F.orgPrice,
+                    //     advance: F.totalamount,
+                    //     payrate: '1',
+                    //     repaymentmonth: '0',
+                    //     subject: F.subject,
+                    //     goodsdetail: F.goodsDetail,
+                    //     timeoutexpress: '86400',
+                    //     msisdn: F.msisdn,
+                    //     address: F.address,
+                    //     username: F.username,
+                    //     number: F.quantity,
+                    //     division2ndName: F.division2ndName,
+                    //     division2ndCode: F.division2ndCode,
+                    //     division3rdName: F.division3rdName,
+                    //     division3rdCode: F.division3rdCode,
+                    //     division4thName: F.division4thName,
+                    //     division4thCode: F.division4thCode,
+                    // }, fullOrderCreate_callback);
 
                 } else {
 
                     loading.show();
-                    F._createOrder({
-                        totalAmount: F.totalamount,
-                        orgAmount: F.orgPrice,
-                        advance: parseInt(F.totalamount * F.paymentNum),
-                        payRate: F.paymentNum,
-                        repaymentMonth: F.fenqiNum,
-                        subject: F.subject,
-                        goodsDetail: F.goodsDetail,
-                        msisdn: F.msisdn,
-                        address: F.address,
-                        username: F.username,
-                        number: F.quantity,
-                        division2ndName: F.division2ndName,
-                        division2ndCode: F.division2ndCode,
-                        division3rdName: F.division3rdName,
-                        division3rdCode: F.division3rdCode,
-                        division4thName: F.division4thName,
-                        division4thCode: F.division4thCode,
-                    }, createOrder_callback);
+                    F._createDisOrder({
+                        orderdetails: [{
+                            payRate: F.paymentNum + '',
+                            orderNo: F._create_orderno(localStorage.getItem("funId")),
+                            totalAmount: F.totalamount,
+                            orgAmount: F.orgPrice,
+                            advance: parseInt(F.totalamount * F.paymentNum),
+                            currency: 'VND',
+                            subject: F.subject,
+                            goodsDetail: JSON.stringify([{
+                                number: F.quantity,
+                                cartitemid: '',
+                                productInfoId: JSON.parse(F.goodsDetail)['id']
+                            }]),
+                            repaymentMonth: F.fenqiNum,
+                        }],
+                        ordertype: "0",
+                        addrid: F.address_id,
+                    }, createDisOrder_callback);
 
+                    // F._createOrder({
+                    //     totalAmount: F.totalamount,
+                    //     orgAmount: F.orgPrice,
+                    //     advance: parseInt(F.totalamount * F.paymentNum),
+                    //     payRate: F.paymentNum,
+                    //     repaymentMonth: F.fenqiNum,
+                    //     subject: F.subject,
+                    //     goodsDetail: F.goodsDetail,
+                    //     msisdn: F.msisdn,
+                    //     address: F.address,
+                    //     username: F.username,
+                    //     number: F.quantity,
+                    //     division2ndName: F.division2ndName,
+                    //     division2ndCode: F.division2ndCode,
+                    //     division3rdName: F.division3rdName,
+                    //     division3rdCode: F.division3rdCode,
+                    //     division4thName: F.division4thName,
+                    //     division4thCode: F.division4thCode,
+                    // }, createOrder_callback);
                 }
 
             });
         }
 
+        function createDisOrder_callback(ret) {
+            loading.hide();
+
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+            F.orderNo = ret.orderNo;
+            F.tradeNo = ret.tradeNo;
+
+            var payway = F.vue.payway;
+            function go_pay() {
+                if (payway === '1') {
+                    F._payPwd_open(function (paypassword) {
+                        loading.show();
+                        F._payDisOrder({
+                            orderno: F.orderNo,
+                            tradeno: F.tradeNo,
+                            payway: payway,
+                            paypassword: paypassword,
+                        }, paymentDisOrder_callback);
+                    });
+                } else {
+                    loading.show();
+                    F._payDisOrder({
+                        orderno: F.orderNo,
+                        tradeno: F.tradeNo,
+                        payway: payway,
+                        paypassword: '',
+                    }, paymentDisOrder_callback);
+                }
+            }
+
+            if (F.paymentNum === 1) {
+                // 全款
+                go_pay();
+            } else {
+                console.log('111111111');
+                // window.location.href = './successOrder.html?type=1';
+            }
+        }
+
+        function paymentDisOrder_callback(ret) {
+            loading.hide();
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+
+            window.location.href = './successPay.html?type=2';
+        }
+        
         function batchCreateOrder_callback(ret) {
             loading.hide();
 
@@ -918,6 +1013,7 @@
 
         F.vue = {
             payway: '2',
+            paymentNum: +F.paymentNum
         }
 
         function new_vue() {
@@ -932,11 +1028,13 @@
 
                 },
                 watch: {
-                    // LS__data: function (val, oldVal) {
-                    //     var data = this.LS__data;
-                    //     localStorage.setItem("cart", JSON.stringify(data));
-                    //     calc(data);
-                    // },
+                    paymentNum: function (val, oldVal) {
+                        if (val === 1) {
+                            $('.fullpay_mark').show();
+                        } else {
+                            $('.fullpay_mark').hide();
+                        }
+                    },
                 },
             });
         }
@@ -989,9 +1087,7 @@
 
             } else {
                 $('.fc .aa').addClass('no_checkbox');
-
             }
-
         })
 
         $('#phone').blur(function () {

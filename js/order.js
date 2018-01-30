@@ -33,8 +33,9 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
         30001: 3
     };
 
-    function orderOperate(status) {
+    function orderOperate(status, payRate) {
         status = +status;
+        if (payRate !== 1 && status === 10000) status = 54321;
         var result = [];
         switch (status) {
             case 10000: // 交易创建，等待买家付款
@@ -49,14 +50,30 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         type: "pay",
                         class: ""
                     },
-                    // {
-                    //     name: "Hủy",
-                    //     type: "cancel",
-                    //     class: ""
-                    // }
+                    {
+                        name: "Hủy",
+                        type: "cancel",
+                        class: ""
+                    }
                 ];
                 break;
+
             case 30001: // 待评价
+                result = [
+                    {
+                        name: "Quản lý đơn hàng",
+                        type: "detail",
+                        class: ""
+                    },
+                    {
+                        name: "Thanh toán",
+                        type: "pay",
+                        class: ""
+                    },
+                ];
+                break;
+
+            case 54321: // 分期订单不支持取消
                 result = [
                     {
                         name: "Quản lý đơn hàng",
@@ -236,10 +253,10 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                                 name: "Thanh toán",
                                 type: "pay"
                             },
-                            // {
-                            //     name: "Hủy",
-                            //     type: "cancel"
-                            // }
+                            {
+                                name: "Hủy",
+                                type: "cancel"
+                            }
                         ];
                         break;
 
@@ -265,7 +282,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         ];
                         break;
 
-                    case "10004": // 待审核（新流程）
+                    case "10003": // 待审核（新流程）
                         $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
                         $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
                         $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
@@ -398,7 +415,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                     for (var j = 0; j < $scope.orderList.length; j++) {
                         if (typeof $scope.orderList[j].goodsDetail != "undefined") {
                             var item = $scope.orderList[j];
-                            item.orderOperate = orderOperate(item.tradeStatus);
+                            item.orderOperate = orderOperate(item.tradeStatus, item.payRate);
                             // $scope.newOrderList.push(item);
                             // $scope.newOrderList[j] = $scope.orderList[j];
                             // var goodsDetailObj = $scope.orderList[j].goodsDetail; //数组对象goodsDetail的JSON解析成对象
@@ -559,7 +576,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                 break;
 
             case "cancel":
-                // order_cancel(orderNo, tradeNo);
+                order_cancel(orderNo, tradeNo);
                 break;
 
             default:
@@ -574,7 +591,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
             // 按钮
             switch (type) {
                 case "cancel":
-                    // order_cancel(orderNo, tradeNo);
+                    order_cancel(orderNo, tradeNo);
                     break;
 
                 case "pay":

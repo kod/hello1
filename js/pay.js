@@ -15,7 +15,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     }
 
     F.LS__data = $scope.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
-
+    console.log(F.LS__data);
     F.subject = $scope.subject = F.LS__data[0].subject;
     F.goodsDetail = $scope.goodsDetail = F.LS__data[0].detail;
     F.fenqiNum = $scope.fenqiNum = F.isToCart ? 12 : +sessionStorage.getItem("fenqiNum");
@@ -45,6 +45,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
 
     $scope.$watch("paymentNum", function(newValue, oldValue) {
         F.paymentNum = newValue;
+        F.vue.paymentNum = +newValue;
         if (newValue == "1.0") {
             $(".fenqiNumBtn button")
                 .attr("disabled", true)
@@ -232,6 +233,7 @@ app.controller("addCtrl", function($scope, $http, $filter) {
                     // F.address = res.data.details[i].address;
 
                     F.address = res.data.details[i].address;
+                    F.address_id = res.data.details[i].id;
                     F.division4thName = res.data.details[i].division4thName;
                     F.division3rdName = res.data.details[i].division3rdName;
                     F.division2ndName = res.data.details[i].division2ndName;
@@ -414,7 +416,7 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
         }
     };
 
-    $scope.set_active = function(index, msisdn, item, username) {
+    $scope.set_active = function(index, msisdn, item, username, id) {
         // if (!item.division2ndName) {
         //     F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ", "tips", [
         //         {
@@ -431,6 +433,7 @@ app.controller("addressCtrl", function($scope, $http, $filter) {
         //     return false;
         // }
 
+        F.address_id = id;
         F.address = item.address;
         F.division4thName = item.division4thName;
         F.division3rdName = item.division3rdName;

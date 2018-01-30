@@ -11,6 +11,8 @@ F._port_80 = F._DEUBUG ? "8180" : "8280";
 F._port_83 = F._DEUBUG ? "8183" : "8283";
 F._port_84 = F._DEUBUG ? "8184" : "8284";
 F._port_85 = F._DEUBUG ? "8185" : "8285";
+F._createDisOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/createDisOrder"; // 创建订单(先审核 后付款)
+F._payDisOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/payDisOrder"; // 支付订单(先审核 后付款)
 F._createFullPayOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/full/createFullPayOrder"; // 创建全额订单
 F._FullPaymentOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/full/FullPaymentOrder"; // 支付全额订单
 F._payOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/payOrder"; // 支付（分期）订单
@@ -97,6 +99,11 @@ F._tradeStatus = function(code) {
 
         case 10003:
             result = "Ngân hàng đang xử lý";
+            break;
+
+        case 10004:
+            // 新流程
+            result = "Đang xử lí";
             break;
 
         case 20000:
@@ -191,17 +198,17 @@ F._encrypt_MD5 = function(params, Key) {
 F._merge_getInfo = function(params, callback) {
     var Key = "commodityKey";
 
-    var appId = '0';
+    var appId = "0";
     var method = "fun.merge.query";
     var charset = "utf-8";
     var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
     var version = "2.0";
 
-    var typeid = params.typeid || '0';
-    var classfyid = params.classfyid || '0';;
-    var position = params.position || '0';;
-    var pagesize = params.pagesize || '4';
-    var currentpage = params.currentpage || '1';
+    var typeid = params.typeid || "0";
+    var classfyid = params.classfyid || "0";
+    var position = params.position || "0";
+    var pagesize = params.pagesize || "4";
+    var currentpage = params.currentpage || "1";
 
     var signType = F._signType_MD5(appId, method, charset, Key, true);
 
@@ -226,7 +233,7 @@ F._merge_getInfo = function(params, callback) {
             {
                 key: "currentpage",
                 value: currentpage
-            },
+            }
         ],
         Key
     );
@@ -243,7 +250,7 @@ F._merge_getInfo = function(params, callback) {
         classfyid: classfyid,
         position: position,
         pagesize: pagesize,
-        currentpage: currentpage,
+        currentpage: currentpage
     };
 
     $.ajax({
@@ -2638,6 +2645,327 @@ F._userAction_otp = function(params, callback) {
     });
 };
 
+// 新流程订单-创建
+F._createDisOrder = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "tradeKey";
+
+    var appId = "0";
+    var method = "fun.trade.createDisOrder";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var funid = localStorage.getItem("funId");
+    var orderdetails = JSON.stringify(params.orderdetails);
+    var remark = params.remark || "";
+    var ordertype = params.ordertype;
+    var mergeinfo = params.mergeinfo || "";
+    var addrid = params.addrid;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderdetails",
+                value: orderdetails
+            },
+            {
+                key: "remark",
+                value: remark
+            },
+            {
+                key: "ordertype",
+                value: ordertype
+            },
+            {
+                key: "mergeinfo",
+                value: mergeinfo
+            },
+            {
+                key: "addrid",
+                value: addrid
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        orderdetails: orderdetails,
+        remark: remark,
+        ordertype: ordertype,
+        mergeinfo: mergeinfo,
+        addrid: addrid
+    };
+
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        url: F._createDisOrder_td,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                case 60001:
+                    F._confirm("Gợi ý", "Đã hết hàng", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+
+                    break;
+
+                case 60005:
+                    // 订单已创建
+                    F._confirm("Gợi ý", "Đơn hàng đã được xác lập, vui lòng tới trang đơn hàng của tôi để thanh toán", "tips", [
+                        {
+                            name: "Thanh toán",
+                            func: function() {
+                                window.location.href = "./order.html";
+                            }
+                        }
+                    ]);
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "Đặt hàng thất bại", "tips", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 新流程订单-支付
+F._payDisOrder = function(params, callback) {
+    if (!F._isLogin()) return false;
+
+    var Key = "tradeKey";
+
+    var appId = "0";
+    var method = "fun.trade.payDisOrder";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var funid = localStorage.getItem("funId");
+    var orderno = params.orderno;
+    var tradeno = params.tradeno;
+    var payway = params.payway;
+    var paypassword = params.paypassword;
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "orderno",
+                value: orderno
+            },
+            {
+                key: "tradeno",
+                value: tradeno
+            },
+            {
+                key: "payway",
+                value: payway
+            },
+            {
+                key: "paypassword",
+                value: paypassword
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        orderno: orderno,
+        tradeno: tradeno,
+        payway: payway,
+        paypassword: paypassword
+    };
+
+    var loading = new F._loading();
+    if (payway == "1") {
+        $.ajax({
+            type: "POST",
+            url: F._payDisOrder_td,
+            data: data,
+            success: function(ret) {
+                ret = JSON.parse(ret);
+                callback(ret);
+
+                switch (ret.code) {
+                    case 10000:
+                        // window.location.href = './successPay.html';
+                        break;
+
+                    case 40005: // 信息未完善
+                        F._confirm("Gợi ý", "Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước", "tips", [
+                            {
+                                name: "Để sau",
+                                func: function() {}
+                            },
+                            {
+                                name: "Hoàn thiện ngay",
+                                func: function() {
+                                    // getSchoolInfo_addInfo();
+                                }
+                            }
+                        ]);
+
+                        break;
+
+                    case 50010: // 订单过期
+                        F._confirm("Gợi ý", "Đơn hàng đã quá hạn", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+
+                        break;
+
+                    case 40008: // Số dư không đủ
+                        F._confirm("Gợi ý", "Số dư không đủ", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+
+                        break;
+
+                    case 50006: // 用户被加入黑名单
+                        F._confirm("Gợi ý", "Người dùng đã bị thêm vào danh sách đen, xin hãy liên hệ chăm sóc khách hang", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+
+                        break;
+
+                    case 60051: // 交易密码错误
+                        F._confirm("Gợi ý", "Mật mã giao dịch sai", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+                        break;
+
+                    default:
+                        $("#loading").remove();
+                        F._confirm("Gợi ý", "Thanh toán thất bại", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function() {}
+                            }
+                        ]);
+                        break;
+                }
+            },
+            error: function(ret) {
+                console.error("request error");
+                callback(false);
+            }
+        });
+    } else {
+        loading.hide();
+        if (params._noConfirm) {
+            var full_confirm = F._confirm("Gợi ý", "Môi trường của bạn an toàn và bạn có thể yên tâm thanh toán", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._batchPayment_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        } else {
+            var full_confirm = F._confirm("Gợi ý", "Đơn hàng được khởi tạo thành công", "success", [
+                {
+                    name: "Thanh toán",
+                    func: function() {
+                        window.open(F._url_joint(F._batchPayment_td, data));
+                        full_confirm.close();
+                        F._confirm("Gợi ý", "", "tips", [
+                            {
+                                name: "Thanh toán thất bại",
+                                func: function() {
+                                    window.location.href = "../index.html";
+                                }
+                            },
+                            {
+                                name: "Thanh toán thành công",
+                                func: function() {
+                                    window.location.href = "./order.html";
+                                }
+                            }
+                        ]);
+                    }
+                }
+            ]);
+        }
+    }
+};
+
 // 批量订单-创建
 F._batchCreateOrder = function(params, callback) {
     if (!F._isLogin()) return false;
@@ -4695,6 +5023,11 @@ F._getSchoolInfo = function(params, callback) {
 
 // 22222222222222
 
+F._create_orderno = function(funid) {
+    var mydate = new Date();
+    return funid + mydate.getDay() + mydate.getHours() + mydate.getMinutes() + mydate.getSeconds() + mydate.getMilliseconds() + Math.round(Math.random() * 10000);
+};
+
 F._is_initPaypassword = function(callback) {
     F._userAction_getUserInfoById({}, function(ret) {
         if (!ret) return false;
@@ -4773,17 +5106,17 @@ F._add_edit_address = function(params) {
                         <br />\
                         <span>Tỉnh/Thành phố *</span>\
                         <select name="" id="division2nd">\
-                            '+ def_option_item +'\
+                            ' + def_option_item + '\
                         </select>\
                         <br />\
                         <span>Quận/huyện *</span>\
                         <select name="" id="division3rd">\
-                            '+ def_option_item +'\
+                            ' + def_option_item + '\
                         </select>\
                         <br />\
                         <span>Phường, xã</span>\
                         <select name="" id="division4th">\
-                            '+ def_option_item +'\
+                            ' + def_option_item + '\
                         </select>\
                         <br />\
                         <span>Số điện thoại *</span>\
@@ -4891,9 +5224,9 @@ F._add_edit_address = function(params) {
             var name = $("#names").val();
             var phone = $("#phone").val();
             var textarea = $("#textarea").val();
-            var division2nd = $("#division2nd").val() + '';
-            var division3rd = $("#division3rd").val() + '';
-            var division4th = $("#division4th").val() + '';
+            var division2nd = $("#division2nd").val() + "";
+            var division3rd = $("#division3rd").val() + "";
+            var division4th = $("#division4th").val() + "";
 
             if (name.length < 2) {
                 $("#errormsg small").html("Tên sai");
@@ -5503,7 +5836,7 @@ function openforapp_add() {
 
     if (F._PhoneExpr.test(appVersion)) {
         $("body").prepend(html_str);
-        $('.openforapp').css('width', F._winWidth + 'px');
+        $(".openforapp").css("width", F._winWidth + "px");
         $(".openforapp__left-close").on("click", function() {
             $(".openforapp").remove();
         });
@@ -5532,7 +5865,7 @@ function openforapp_add() {
 F._is_mobile = function() {
     var appVersion = window.navigator.appVersion;
     return /Android|iPhone|iPad/.test(appVersion);
-}
+};
 
 F._gotoFind = function() {
     var findcontent = $("#findIpt").val();
