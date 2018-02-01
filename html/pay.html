@@ -146,7 +146,7 @@
             <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
             <div class="site__main col-xs-24">
                 <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }"
-                    ng-click="set_active(index, item.msisdn, item, item.username, item,id)" ng-repeat="(index, item) in addrlistData">
+                    ng-click="set_active(index, item.msisdn, item, item.username, item.id)" ng-repeat="(index, item) in addrlistData">
                     <div class="site__m-i-row1 col-xs-24">
                         <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
                         <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
@@ -490,6 +490,9 @@
 
         // 提交订单
         function submit() {
+            // console.log(F.fenqiNum);
+            // console.log(typeof F.fenqiNum);
+            // console.log(F.address_id);
             // return false;
             if (!localStorage.getItem("funId")) {
                 F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
@@ -752,8 +755,7 @@
                 // 全款
                 go_pay();
             } else {
-                console.log('111111111');
-                // window.location.href = './successOrder.html?type=1';
+                window.location.href = './successPay.html?type=1';
             }
         }
 

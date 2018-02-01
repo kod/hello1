@@ -530,7 +530,7 @@
                     </div>
                 </div>
                 <div class="body__main-operate">
-                    <span class="body__m-o-left" @click="operate_left()" v-html="operate_left_text[tradeStatus]"></span>
+                    <span class="body__m-o-left" @click="operate_left()" v-html="operate_left_text[tradeStatus]" v-if="repaymentMonth === 0"></span>
                     <span class="body__m-o-right" @click="operate_rihgt()" v-html="operate_right_text[tradeStatus]"></span>
                 </div>
             </div>
@@ -743,20 +743,19 @@
                         if (params.payway === '1') {
                             F._payPwd_open(function (paypassword) {
                                 loading.show();
-                                F._orderFullPay({
-                                    orderNo: params.orderNo,
-                                    tradeNo: params.tradeNo,
-                                    advance: params.advance,
+                                F._payDisOrder({
+                                    orderno: params.orderNo,
+                                    tradeno: params.tradeNo,
                                     payway: params.payway,
                                     paypassword: paypassword,
                                     _noConfirm: true,
                                 }, payOrder_callback);
                             });
                         } else {
-                            F._orderFullPay({
-                                orderNo: params.orderNo,
-                                tradeNo: params.tradeNo,
-                                advance: params.advance,
+                            F._payDisOrder({
+                                orderno: params.orderNo,
+                                tradeno: params.tradeNo,
+                                // advance: params.advance,
                                 payway: params.payway,
                                 paypassword: '',
                                 _noConfirm: true,
@@ -776,34 +775,50 @@
                                     F._payPwd_open(function (paypassword) {
 
                                         loading.show();
-                                        F._payOrder({
-                                            timeoutExpress: 1800, // 半个小时
-                                            totalAmount: params.totalAmount, // 总金额
-                                            orderNo: params.orderNo,
-                                            tradeNo: params.tradeNo,
-                                            advance: params.advance,
-                                            payRate: params.payRate,
-                                            repaymentMonth: params.repaymentMonth,
-                                            prepay: params.prepay,
+                                        F._payDisOrder({
+                                            orderno: params.orderNo,
+                                            tradeno: params.tradeNo,
                                             payway: params.payway,
                                             paypassword: paypassword,
                                             _noConfirm: true,
                                         }, payOrder_callback);
+
+                                        // F._payOrder({
+                                        //     timeoutExpress: 1800, // 半个小时
+                                        //     totalAmount: params.totalAmount, // 总金额
+                                        //     orderNo: params.orderNo,
+                                        //     tradeNo: params.tradeNo,
+                                        //     advance: params.advance,
+                                        //     payRate: params.payRate,
+                                        //     repaymentMonth: params.repaymentMonth,
+                                        //     prepay: params.prepay,
+                                        //     payway: params.payway,
+                                        //     paypassword: paypassword,
+                                        //     _noConfirm: true,
+                                        // }, payOrder_callback);
                                     });
                                 } else {
-                                    F._payOrder({
-                                        timeoutExpress: 1800, // 半个小时
-                                        totalAmount: params.totalAmount, // 总金额
-                                        orderNo: params.orderNo,
-                                        tradeNo: params.tradeNo,
-                                        advance: params.advance,
-                                        payRate: params.payRate,
-                                        repaymentMonth: params.repaymentMonth,
-                                        prepay: params.prepay,
+                                    F._payDisOrder({
+                                        orderno: params.orderNo,
+                                        tradeno: params.tradeNo,
                                         payway: params.payway,
                                         paypassword: '',
                                         _noConfirm: true,
                                     }, payOrder_callback);
+
+                                    // F._payOrder({
+                                    //     timeoutExpress: 1800, // 半个小时
+                                    //     totalAmount: params.totalAmount, // 总金额
+                                    //     orderNo: params.orderNo,
+                                    //     tradeNo: params.tradeNo,
+                                    //     advance: params.advance,
+                                    //     payRate: params.payRate,
+                                    //     repaymentMonth: params.repaymentMonth,
+                                    //     prepay: params.prepay,
+                                    //     payway: params.payway,
+                                    //     paypassword: '',
+                                    //     _noConfirm: true,
+                                    // }, payOrder_callback);
                                 }
 
                             } else { // 资料不全
@@ -825,13 +840,20 @@
                 function cart_order(params) {
                     F._payPwd_open(function (paypassword) {
                         loading.show();
-                        F._batchPayment({
-                            // orderdetails: F.orderdetails,
-                            orderno: F.query.orderNo,
-                            tradeno: F.query.tradeNo,
+                        F._payDisOrder({
+                            orderno: params.orderNo,
+                            tradeno: params.tradeNo,
                             payway: params.payway,
                             paypassword: paypassword,
                         }, payOrder_callback);
+
+                        // F._batchPayment({
+                        //     // orderdetails: F.orderdetails,
+                        //     orderno: F.query.orderNo,
+                        //     tradeno: F.query.tradeNo,
+                        //     payway: params.payway,
+                        //     paypassword: paypassword,
+                        // }, payOrder_callback);
                     });
 
                     // F._batchPayment({

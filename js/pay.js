@@ -15,7 +15,7 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     }
 
     F.LS__data = $scope.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
-    console.log(F.LS__data);
+    // console.log(F.LS__data);
     F.subject = $scope.subject = F.LS__data[0].subject;
     F.goodsDetail = $scope.goodsDetail = F.LS__data[0].detail;
     F.fenqiNum = $scope.fenqiNum = F.isToCart ? 12 : +sessionStorage.getItem("fenqiNum");
@@ -47,10 +47,14 @@ app.controller("payCtrl", function($scope, $http, $filter) {
         F.paymentNum = newValue;
         F.vue.paymentNum = +newValue;
         if (newValue == "1.0") {
+            F.fenqiNum = $scope.fenqiNum = 0;
+
             $(".fenqiNumBtn button")
                 .attr("disabled", true)
                 .addClass("actives");
         } else {
+            if (oldValue == "1.0") F.fenqiNum = $scope.fenqiNum = F.isToCart ? 12 : +sessionStorage.getItem("fenqiNum");
+
             if ($(".fenqiNumBtn button:last-child").is(".b_active") == false) {
                 $(".fenqiNumBtn button:last-child").removeClass("b_active");
             } else {
@@ -73,7 +77,6 @@ app.controller("payCtrl", function($scope, $http, $filter) {
             $scope.resPrice = $scope.totalamount;
             $scope.paymentNum = num;
             F.paymentNum = num;
-            F.fenqiNum = 0;
         } else {
             $(".moneryIcon,.installment").show();
 
@@ -82,7 +85,9 @@ app.controller("payCtrl", function($scope, $http, $filter) {
                 .removeClass("actives");
             $scope.paymentNum = num;
             F.paymentNum = num;
-            fenqiAjax($scope.totalamount, num, $scope.fenqiNum);
+            setTimeout(() => {
+                fenqiAjax($scope.totalamount, num, $scope.fenqiNum);
+            }, 300);
         }
     };
 

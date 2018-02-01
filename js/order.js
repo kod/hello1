@@ -66,10 +66,10 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         class: ""
                     },
                     {
-                        name: "Thanh toán",
-                        type: "pay",
+                        name: "Đánh giá",
+                        type: "review",
                         class: ""
-                    },
+                    }
                 ];
                 break;
 
@@ -81,8 +81,8 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         class: ""
                     },
                     {
-                        name: "Đánh giá",
-                        type: "review",
+                        name: "Thanh toán",
+                        type: "pay",
                         class: ""
                     }
                 ];

@@ -140,7 +140,7 @@
         ], function ($, Vue) {
             F.query = F._hrefUtils.parse().query || {};
             console.log(F.query);
-            F.type = F.query.type || "1"; // 1:fenqi;2:quankuang
+            F.type = F.query.type || "2"; // 1:fenqi;2:quankuang
 
             var get_title = function(type) {
                 var result = "";
@@ -154,7 +154,7 @@
                         break;
                 
                     default:
-                        result = "Đơn hàng được khởi tạo thành công";
+                        result = "Mua thành công";
                         break;
                 }
                 return result;
@@ -172,7 +172,7 @@
                         break;
                 
                     default:
-                        result = "订单正在审核中，审核结果我们会通过短信通知";
+                        result = "Cảm ơn sự ủng hộ của bạn, chúc bạn mua sắm vui vẻ!";
                         break;
                 }
                 return result;
