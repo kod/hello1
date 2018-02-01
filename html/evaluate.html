@@ -417,8 +417,9 @@
             '../js/jquery1.11.2.js?version=2.5.0-alpha',
             '../js/vue.min.js?version=2.5.0-alpha',
             '../js/md5.js?version=2.5.0-alpha',
+            '../js/image-compressor.min.js?version=2.5.0-alpha',
             '../js/common.js?version=2.5.0-alpha',
-        ], function ($, Vue, md5) {
+        ], function ($, Vue, md5, ImageCompressor) {
             var loading = new F._loading();
 
             // 很满意, 满意, 一般, 不满意, 很不满意
@@ -586,21 +587,42 @@
             }
 
             function file_selected(key) {
-                if (!$('.body__main-pic-file')[key].files[0]) return false;
-                var fd = new FormData();
-                fd.append("productid", 1); //上传的参数名 参数值 k-v键值对
-                fd.append("files", $('.body__main-pic-file')[key].files[0]); //上传的文件file
-
+                var file = $('.body__main-pic-file')[key].files[0];
+                if (!file) return false;
                 loading.show();
-                F._collectFiles(fd, function (ret) {
-                    loading.hide();
-                    if (ret.code !== 10000) return false;
+                
+                new ImageCompressor(file, {
+                    quality: .2,
+                    success(result) {
+                        var fd = new FormData();
+                        fd.append("productid", 1); //上传的参数名 参数值 k-v键值对
+                        fd.append("files", result, result.name); //上传的文件file
 
-                    var item = F.vue.LS__data[key];
-                    item.pics.push(ret.url);
-                    F.vue.LS__data.splice(key, 1, item);
+                        F._collectFiles(fd, function (ret) {
+                            loading.hide();
+                            if (ret.code !== 10000) return false;
 
+                            var item = F.vue.LS__data[key];
+                            item.pics.push(ret.url);
+                            F.vue.LS__data.splice(key, 1, item);
+
+                        });
+
+
+                        // const formData = new FormData();
+
+                        // formData.append('file', result, result.name);
+
+                        // // Send the compressed image file to server with XMLHttpRequest.
+                        // axios.post('/path/to/upload', formData).then(() => {
+                        //     console.log('Upload success!');
+                        // });
+                    },
+                    error(e) {
+                        console.log(e.message);
+                    },
                 });
+
             }
 
             function submit() {
