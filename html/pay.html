@@ -399,66 +399,7 @@
                 switch (ret.code) {
                     case 10000:
 
-                        var payway = F.vue.payway;
-                        // payway_get(function (result) {
-                        //     payway = result + '';
-                        // });
-
-                        if (F.isToCart) {
-                            if (payway === '1') {
-                                F._payPwd_open(function (paypassword) {
-                                    loading.show();
-                                    F._batchPayment({
-                                        // orderdetails: F.orderdetails,
-                                        orderno: F.orderdetails.orderNo,
-                                        tradeno: F.orderdetails.tradeNo,
-                                        payway: payway,
-                                        paypassword: paypassword,
-                                    }, batchPayment_callback);
-                                });
-                            } else {
-                                loading.show();
-                                F._batchPayment({
-                                    // orderdetails: F.orderdetails,
-                                    orderno: F.orderdetails.orderNo,
-                                    tradeno: F.orderdetails.tradeNo,
-                                    payway: payway,
-                                    paypassword: '',
-                                }, batchPayment_callback);
-                            }
-                        } else {
-                            if (payway === '1') {
-                                F._payPwd_open(function (paypassword) {
-                                    loading.show();
-                                    F._payOrder({
-                                        timeoutExpress: 1800, // 半个小时
-                                        totalAmount: F.totalamount, // 总金额
-                                        orderNo: F.orderNo,
-                                        tradeNo: F.tradeNo,
-                                        advance: parseInt(F.totalamount * F.paymentNum),
-                                        payRate: F.paymentNum,
-                                        repaymentMonth: F.fenqiNum,
-                                        prepay: parseInt(F.totalamount * F.paymentNum),
-                                        payway: payway,
-                                        paypassword: paypassword,
-                                    }, payOrder_callback);
-                                });
-                            } else {
-                                loading.show();
-                                F._payOrder({
-                                    timeoutExpress: 1800, // 半个小时
-                                    totalAmount: F.totalamount, // 总金额
-                                    orderNo: F.orderNo,
-                                    tradeNo: F.tradeNo,
-                                    advance: parseInt(F.totalamount * F.paymentNum),
-                                    payRate: F.paymentNum,
-                                    repaymentMonth: F.fenqiNum,
-                                    prepay: parseInt(F.totalamount * F.paymentNum),
-                                    payway: payway,
-                                    paypassword: '',
-                                }, payOrder_callback);
-                            }
-                        }
+                        go_next();
 
                         break;
 
@@ -535,6 +476,75 @@
                 return false;
             }
 
+            function go_next() {
+                if (F.isToCart) {
+                    loading.show();
+                    var analyze_orderdetails_result = analyze_orderdetails(F.LS__data);
+                    F._createDisOrder({
+                        orderdetails: [{
+                            payRate: F.paymentNum + '',
+                            orderNo: F._create_orderno(localStorage.getItem("funId")),
+                            totalAmount: analyze_orderdetails_result.totalAmount,
+                            orgAmount: analyze_orderdetails_result.orgAmount,
+                            advance: analyze_orderdetails_result.advance,
+                            currency: 'VND',
+                            subject: analyze_orderdetails_result.subject,
+                            goodsDetail: JSON.stringify(analyze_orderdetails_result.goodsDetail),
+                            repaymentMonth: F.fenqiNum,
+                        }],
+                        ordertype: F.paymentNum === 1 ? "3" : "4",
+                        addrid: F.address_id,
+                    }, createDisOrder_callback);
+
+                } else if (F.paymentNum === 1) { // 全款
+
+                    loading.show();
+                    F._createDisOrder({
+                        orderdetails: [{
+                            payRate: '1',
+                            orderNo: F._create_orderno(localStorage.getItem("funId")),
+                            totalAmount: F.totalamount,
+                            orgAmount: F.orgPrice,
+                            advance: F.totalamount,
+                            currency: 'VND',
+                            subject: F.subject,
+                            goodsDetail: JSON.stringify([{
+                                number: F.quantity,
+                                cartitemid: '',
+                                productInfoId: JSON.parse(F.goodsDetail)['id']
+                            }]),
+                            repaymentMonth: 0,
+                        }],
+                        ordertype: "2",
+                        addrid: F.address_id,
+                    }, createDisOrder_callback);
+
+                } else {
+
+                    loading.show();
+                    F._createDisOrder({
+                        orderdetails: [{
+                            payRate: F.paymentNum + '',
+                            orderNo: F._create_orderno(localStorage.getItem("funId")),
+                            totalAmount: F.totalamount,
+                            orgAmount: F.orgPrice,
+                            advance: parseInt(F.totalamount * F.paymentNum),
+                            currency: 'VND',
+                            subject: F.subject,
+                            goodsDetail: JSON.stringify([{
+                                number: F.quantity,
+                                cartitemid: '',
+                                productInfoId: JSON.parse(F.goodsDetail)['id']
+                            }]),
+                            repaymentMonth: F.fenqiNum,
+                        }],
+                        ordertype: "0",
+                        addrid: F.address_id,
+                    }, createDisOrder_callback);
+
+                }
+            }
+
             function get_num(array) {
                 var index;
                 var quantity = 0;
@@ -579,7 +589,7 @@
                 result.subject = result.subject.slice(0, -2);
                 // F.result_ids = result_ids.join(',');
 
-                
+
                 return result;
             }
 
@@ -596,127 +606,25 @@
                     return false;
                 }
 
-                if (F.isToCart) {
-                    loading.show();
-                    var analyze_orderdetails_result = analyze_orderdetails(F.LS__data);
-                    F._createDisOrder({
-                        orderdetails: [{
-                            payRate: F.paymentNum + '',
-                            orderNo: F._create_orderno(localStorage.getItem("funId")),
-                            totalAmount: analyze_orderdetails_result.totalAmount,
-                            orgAmount: analyze_orderdetails_result.orgAmount,
-                            advance: analyze_orderdetails_result.advance,
-                            currency: 'VND',
-                            subject: analyze_orderdetails_result.subject,
-                            goodsDetail: JSON.stringify(analyze_orderdetails_result.goodsDetail),
-                            repaymentMonth: F.fenqiNum,
-                        }],
-                        ordertype: F.paymentNum === 1 ? "3" : "4",
-                        addrid: F.address_id,
-                    }, createDisOrder_callback);
+                loading.show();
+                F._userViewDetailInfo({}, function (ret) {
+                    loading.hide();
+                    if (!ret) return false;
 
-                    // F._batchCreateOrder({
-                    //     orderdetails: JSON.stringify(edit_orderdetails(F.LS__data)),
-                    //     msisdn: F.msisdn,
-                    //     address: F.address,
-                    //     username: F.username,
-                    //     remark: '',
-                    //     division2ndName: F.division2ndName,
-                    //     division2ndCode: F.division2ndCode,
-                    //     division3rdName: F.division3rdName,
-                    //     division3rdCode: F.division3rdCode,
-                    //     division4thName: F.division4thName,
-                    //     division4thCode: F.division4thCode,
-                    // }, batchCreateOrder_callback);
-
-                } else if (F.paymentNum === 1) { // 全款
-
-                    loading.show();
-                    F._createDisOrder({
-                        orderdetails: [{
-                            payRate: '1',
-                            orderNo: F._create_orderno(localStorage.getItem("funId")),
-                            totalAmount: F.totalamount,
-                            orgAmount: F.orgPrice,
-                            advance: F.totalamount,
-                            currency: 'VND',
-                            subject: F.subject,
-                            goodsDetail: JSON.stringify([{
-                                number: F.quantity,
-                                cartitemid: '',
-                                productInfoId: JSON.parse(F.goodsDetail)['id']
-                            }]),
-                            repaymentMonth: 0,
-                        }],
-                        ordertype: "2",
-                        addrid: F.address_id,
-                    }, createDisOrder_callback);
-
-                    // F._fullOrderCreate({
-                    //     totalamount: F.totalamount,
-                    //     orgamount: F.orgPrice,
-                    //     advance: F.totalamount,
-                    //     payrate: '1',
-                    //     repaymentmonth: '0',
-                    //     subject: F.subject,
-                    //     goodsdetail: F.goodsDetail,
-                    //     timeoutexpress: '86400',
-                    //     msisdn: F.msisdn,
-                    //     address: F.address,
-                    //     username: F.username,
-                    //     number: F.quantity,
-                    //     division2ndName: F.division2ndName,
-                    //     division2ndCode: F.division2ndCode,
-                    //     division3rdName: F.division3rdName,
-                    //     division3rdCode: F.division3rdCode,
-                    //     division4thName: F.division4thName,
-                    //     division4thCode: F.division4thCode,
-                    // }, fullOrderCreate_callback);
-
-                } else {
-
-                    loading.show();
-                    F._createDisOrder({
-                        orderdetails: [{
-                            payRate: F.paymentNum + '',
-                            orderNo: F._create_orderno(localStorage.getItem("funId")),
-                            totalAmount: F.totalamount,
-                            orgAmount: F.orgPrice,
-                            advance: parseInt(F.totalamount * F.paymentNum),
-                            currency: 'VND',
-                            subject: F.subject,
-                            goodsDetail: JSON.stringify([{
-                                number: F.quantity,
-                                cartitemid: '',
-                                productInfoId: JSON.parse(F.goodsDetail)['id']
-                            }]),
-                            repaymentMonth: F.fenqiNum,
-                        }],
-                        ordertype: "0",
-                        addrid: F.address_id,
-                    }, createDisOrder_callback);
-
-                    // F._createOrder({
-                    //     totalAmount: F.totalamount,
-                    //     orgAmount: F.orgPrice,
-                    //     advance: parseInt(F.totalamount * F.paymentNum),
-                    //     payRate: F.paymentNum,
-                    //     repaymentMonth: F.fenqiNum,
-                    //     subject: F.subject,
-                    //     goodsDetail: F.goodsDetail,
-                    //     msisdn: F.msisdn,
-                    //     address: F.address,
-                    //     username: F.username,
-                    //     number: F.quantity,
-                    //     division2ndName: F.division2ndName,
-                    //     division2ndCode: F.division2ndCode,
-                    //     division3rdName: F.division3rdName,
-                    //     division3rdCode: F.division3rdCode,
-                    //     division4thName: F.division4thName,
-                    //     division4thCode: F.division4thCode,
-                    // }, createOrder_callback);
-                }
-
+                    if (ret.status) { // 资料齐全
+                        go_next();
+                    } else { // 资料不全
+                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                            name: 'Để sau',
+                            func: function () { }
+                        }, {
+                            name: 'Hoàn thiện ngay',
+                            func: function () {
+                                getSchoolInfo_addInfo(ret.data);
+                            }
+                        }]);
+                    }
+                });
             });
         }
 
@@ -766,252 +674,6 @@
 
             window.location.href = './successPay.html?type=2';
         }
-        
-        function batchCreateOrder_callback(ret) {
-            loading.hide();
-
-            if (!ret) return false;
-            if (ret.code !== 10000) return false;
-            F.orderdetails = ret.orderdetails;
-
-            // 删除购物车中国相应的商品
-            F._cart_remove({
-                cartitemids: F.result_ids,
-                orderno: '',
-            }, function (ret) {
-                if (!ret) return false;
-                if (ret.code !== 10000) return false;
-            });
-
-            var payway = F.vue.payway;
-
-            function go_pay() {
-                if (payway === '1') {
-                    F._payPwd_open(function (paypassword) {
-                        loading.show();
-                        F._batchPayment({
-                            // orderdetails: F.orderdetails,
-                            orderno: F.orderdetails.orderNo,
-                            tradeno: F.orderdetails.tradeNo,
-                            payway: payway,
-                            paypassword: paypassword,
-                        }, batchPayment_callback);
-                    });
-                } else {
-                    loading.show();
-                    F._batchPayment({
-                        // orderdetails: F.orderdetails,
-                        orderno: F.orderdetails.orderNo,
-                        tradeno: F.orderdetails.tradeNo,
-                        payway: payway,
-                        paypassword: '',
-                    }, batchPayment_callback);
-                }
-            }
-
-            if (ret.orderdetails.repaymentMonth === 0) { // 全款
-                go_pay();
-            } else {
-                loading.show();
-                F._userViewDetailInfo({}, function (ret) {
-                    loading.hide();
-                    if (!ret) return false;
-
-                    if (ret.status) { // 资料齐全
-                        go_pay();
-                    } else { // 资料不全
-                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                            name: 'Để sau',
-                            func: function () { }
-                        }, {
-                            name: 'Hoàn thiện ngay',
-                            func: function () {
-                                getSchoolInfo_addInfo(ret.data);
-                            }
-                        }]);
-                    }
-                });
-            }
-        }
-
-        function batchPayment_callback(ret) {
-            loading.hide();
-            if (!ret) return false;
-            if (ret.code !== 10000) return false;
-
-            window.location.href = './successPay.html';
-        }
-
-        function createOrder_callback(ret) {
-            loading.hide();
-            if (!ret) return false;
-
-            if (ret.code !== 10000) return false;
-
-            F.orderNo = ret.orderNo;
-            F.tradeNo = ret.tradeNo;
-
-            F.createOrder_info.isCreate = true;
-            F.createOrder_info.isFull = false;
-
-
-            loading.show();
-            F._userViewDetailInfo({}, function (ret) {
-                loading.hide();
-                if (!ret) return false;
-
-                if (ret.status) { // 资料齐全
-
-                    var payway = F.vue.payway;
-                    // payway_get(function (result) {
-                    //     payway = result + '';
-                    // });
-
-                    if (payway === '1') {
-                        F._payPwd_open(function (paypassword) {
-                            loading.show();
-                            F._payOrder({
-                                timeoutExpress: 1800, // 半个小时
-                                totalAmount: F.totalamount, // 总金额
-                                orderNo: F.orderNo,
-                                tradeNo: F.tradeNo,
-                                advance: parseInt(F.totalamount * F.paymentNum),
-                                payRate: F.paymentNum,
-                                repaymentMonth: F.fenqiNum,
-                                prepay: parseInt(F.totalamount * F.paymentNum),
-                                payway: payway,
-                                paypassword: paypassword,
-                            }, payOrder_callback);
-                        });
-                    } else {
-                        loading.show();
-                        F._payOrder({
-                            timeoutExpress: 1800, // 半个小时
-                            totalAmount: F.totalamount, // 总金额
-                            orderNo: F.orderNo,
-                            tradeNo: F.tradeNo,
-                            advance: parseInt(F.totalamount * F.paymentNum),
-                            payRate: F.paymentNum,
-                            repaymentMonth: F.fenqiNum,
-                            prepay: parseInt(F.totalamount * F.paymentNum),
-                            payway: payway,
-                            paypassword: '',
-                        }, payOrder_callback);
-                    }
-
-
-                } else { // 资料不全
-
-                    F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
-                        name: 'Để sau',
-                        func: function () { }
-                    }, {
-                        name: 'Hoàn thiện ngay',
-                        func: function () {
-                            getSchoolInfo_addInfo(ret.data);
-                        }
-                    }]);
-
-                }
-            });
-        }
-
-        function payOrder_callback(ret) {
-            loading.hide();
-            if (!ret) return false;
-
-            if (ret.code !== 10000) return false;
-
-            window.location.href = './successPay.html';
-        }
-
-        function fullOrderCreate_callback(ret) {
-            loading.hide();
-            if (!ret) return false;
-
-            if (ret.code !== 10000) return false;
-
-            F.orderNo = ret.orderNo;
-            F.tradeNo = ret.tradeNo;
-
-            F.createOrder_info.isCreate = true;
-            F.createOrder_info.isFull = true;
-
-            var payway = F.vue.payway;
-            // payway_get(function (result) {
-            //     payway = result + '';
-            // });
-
-            if (payway === '1') {
-
-                F._payPwd_open(function (paypassword) {
-                    loading.show();
-                    F._orderFullPay({
-                        orderNo: F.orderNo,
-                        tradeNo: F.tradeNo,
-                        advance: F.totalamount,
-                        payway: payway,
-                        paypassword: paypassword,
-                    }, orderFullPay_callback);
-                });
-
-            } else {
-                loading.show();
-                F._orderFullPay({
-                    orderNo: F.orderNo,
-                    tradeNo: F.tradeNo,
-                    advance: F.totalamount,
-                    payway: payway,
-                }, orderFullPay_callback);
-            }
-        }
-
-        function orderFullPay_callback(ret) {
-
-            loading.hide();
-            if (!ret) return false;
-
-            if (ret.code !== 10000) return false;
-            window.location.href = './successPay.html';
-        }
-
-        // 获取地址, 姓名, 电话
-        // function addressInfo_get(callback) {
-        //     function get_address(self) {
-        //         var result = '';
-        //         result = self.find('.js_address_desc').eq(0).html() + ' ' + self.find('.js_address_main').eq(0).html();
-        //         return result;
-        //     }
-        //     $('.site__main-item').each(function () {
-        //         var self = $(this);
-        //         if (self.hasClass('site__main-item_active')) {
-        //             var username = self.find('.js_username').eq(0).html();
-        //             var msisdn = self.find('.js_msisdn').eq(0).html();
-        //             var address = get_address(self);
-        //             // self.find('.js_address').eq(0).html()
-        //             callback({
-        //                 username: username,
-        //                 msisdn: msisdn,
-        //                 address: address,
-        //                 length: $('.site__main-item').length,
-        //             });
-        //         }
-        //     });
-        // }
-
-        // 获取支付方式
-        // function payway_get(callback) {
-        //     var index = 0;
-        //     $('.payway-li').each(function () {
-        //         var self = $(this);
-        //         var id = index === 0 ? '2' : '1';
-        //         if (self.hasClass('act')) {
-        //             callback(id);
-        //         }
-        //         index += 1;
-        //     });
-        // }
-        /*tcy -start-*/
 
         F.vue = {
             payway: '2',
@@ -1041,7 +703,6 @@
             });
         }
 
-
         var swiper = new Swiper('#index_banner', {
             pagination: '.swiper-pagination',
             loop: true,
@@ -1069,18 +730,10 @@
         }, 1400);
 
 
-        // $('.li-right button').click(function () {
-        //     $('.li-right button').removeClass('b_active');
-        //     $(this).addClass('b_active');
-        // })
         $('.way li').click(function () {
             $('.way li').removeClass('act');
             $(this).addClass('act');
         })
-        //          $('body').delegate('.li span.moren','click',function(){
-        //              $('.li').removeClass('act');
-        //              $(this).parents('.li').addClass('act');
-        //          })
 
         $('#selectAll').attr("checked", false);
         $('#selectAll').click(function () {
