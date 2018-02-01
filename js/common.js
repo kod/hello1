@@ -73,6 +73,7 @@ F._cart_changeNum_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/chang
 F._cart_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/getInfo"; // 购物车列表
 F._getHTML_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/getHTML"; //
 F._merge_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/merge/getInfo"; // 拼单列表
+F._merge_getDetail_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/merge/getDetail"; // 拼单详情
 F._uploadFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/uploadFiles"; // 上传用户头像
 F._collectFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/collectFiles"; // 用户评论上传图片
 F._returnMoney_im = F._IP_191 + ":" + F._port_84 + "/fun/installment/returnMoney"; //
@@ -81,7 +82,7 @@ F._phoneExpr = /^[0-9]{8,11}$/; //手机号
 F._pwdExpr = /^.{8,20}$/; // 密码
 F._codeExpr = /^[0-9]{6}$/; // 验证码
 F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
-F._PhoneExpr = /Android|iPhone|iPad/; // 是否为手机
+F._isPhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
 
 F._tradeStatus = function(code) {
@@ -194,7 +195,7 @@ F._encrypt_MD5 = function(params, Key) {
     return md5(md5EncryptStrig);
 };
 
-// 拼单
+// 拼单列表
 F._merge_getInfo = function(params, callback) {
     var Key = "commodityKey";
 
@@ -256,6 +257,71 @@ F._merge_getInfo = function(params, callback) {
     $.ajax({
         type: "POST",
         url: F._merge_getInfo_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 拼单详情
+F._merge_getDetail = function(params, callback) {
+    var Key = "commodityKey";
+
+    var appId = "0";
+    var method = "fun.merge.detail";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var brandid = params.brandid || "0";
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "brandid",
+                value: brandid
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        brandid: brandid,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._merge_getDetail_cd,
         data: data,
         success: function(ret) {
             ret = JSON.parse(ret);
@@ -2919,7 +2985,7 @@ F._payDisOrder = function(params, callback) {
                 {
                     name: "Thanh toán",
                     func: function() {
-                        window.open(F._url_joint(F._batchPayment_td, data));
+                        window.open(F._url_joint(F._payDisOrder_td, data));
                         full_confirm.close();
                         F._confirm("Gợi ý", "", "tips", [
                             {
@@ -2943,7 +3009,7 @@ F._payDisOrder = function(params, callback) {
                 {
                     name: "Thanh toán",
                     func: function() {
-                        window.open(F._url_joint(F._batchPayment_td, data));
+                        window.open(F._url_joint(F._payDisOrder_td, data));
                         full_confirm.close();
                         F._confirm("Gợi ý", "", "tips", [
                             {
@@ -5803,9 +5869,6 @@ function footer_add() {
 
 function openforapp_add() {
     var appVersion = window.navigator.appVersion;
-    // function isPhone(appVersion) {
-    //     return F._PhoneExpr.test(appVersion);
-    // }
 
     function isAndroid(appVersion) {
         return /Android/.test(appVersion);
@@ -5834,7 +5897,7 @@ function openforapp_add() {
         <div class="openforapp__right">Mở ngay bây giờ</div>\
     </div>';
 
-    if (F._PhoneExpr.test(appVersion)) {
+    if (F._isPhoneExpr.test(appVersion)) {
         $("body").prepend(html_str);
         $(".openforapp").css("width", F._winWidth + "px");
         $(".openforapp__left-close").on("click", function() {

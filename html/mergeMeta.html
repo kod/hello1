@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta property="fb:app_id" content="375278562897910" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="<%title%>" />
+    <meta property="og:description" content="我正在buyoo.vn参与<%title%>的拼单，价格超实惠，100%保证正品，快来一起参加吧"/>
+    <meta property="og:url" content="<%url%>" />
+    <meta property="og:image" content="<%image%>" />
+    <meta property="og:site_name" content="buyoo.vn" />
+    <meta property="al:ios:url" content="buyoovn://groupon_details?brandId=<%brandId%>&masterId=<%masterId%>" />
+    <meta property="al:ios:app_name" content="buyoo" />
+    <meta property="al:android:package" content="com.store.creditstore">
+    <meta property="al:android:app_name" content="buyoo" />
+    <meta property="al:android:url" content="buyoovn://groupon_details?brandId=<%brandId%>&masterId=<%masterId%>" />
+    <title>share</title>
+</head>
+
+<body>
+    <script>
+        var hrefUtils = (function (loc) {
+            var utils = {
+                convertQs: function (qs) {
+                    var qs = qs || loc.search.substring(1);
+                    if (!qs) return null;
+                    var qsArr = qs.split(/&/),
+                        qsPar = {};
+                    for (var i = 0; i < qsArr.length; i++) {
+                        if (qsArr[i]) {
+                            var nm = qsArr[i].split(/=/);
+                            qsPar[decodeURIComponent(nm[0])] = decodeURIComponent(nm[1] || "");
+                        }
+                    }
+                    return qsPar;
+                }
+            };
+
+            function parse(url) {
+                var i;
+                var url = url || loc.href;
+                var regExp = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+                var names = ["url", "scheme", "slash", "host", "port", "path", "query", "hash"];
+                var result = regExp.exec(url);
+                var result_format = {};
+
+                for (i = 0; i < names.length; i += 1) {
+                    result_format[names[i]] = result[i];
+                }
+                result_format.query = utils.convertQs(result_format.query);
+
+                return result_format;
+            }
+
+            return {
+                parse: parse
+            };
+        })(location);
+
+        function joint(data) {
+            var str = "";
+            for (i in data) {
+                if (i === 'masterId' || i === 'brandId') {
+                    str += "&" + i + "=" + data[i];
+                }
+            }
+            return str.slice(1);
+        }
+
+        query = hrefUtils.parse().query;
+        location.href = "http://www.buyoo.vn/html/addOnItemdetails.html?" + joint(query);
+    </script>
+</body>
+
+</html>

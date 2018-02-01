@@ -1418,7 +1418,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* openforapp -start- */
 .openforapp {
+  position: relative;
   height: 50px;
+  z-index: 123457;
 }
 
 .openforapp::after {

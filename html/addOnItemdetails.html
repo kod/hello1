@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Tình trạng sản phẩm</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112306571-1');
+    </script>
+    <link href="../css/bootstrap.css?version=2.4.1" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css?version=2.4.1">
+    <link href="../css/style.css?version=2.4.1" rel="stylesheet">
+    <link rel="stylesheet" href="../css/css.css?version=2.4.1" />
+    <link href="../css/details.css?version=2.4.1" rel="stylesheet">
+    <link href="../css/index_add_img.css?version=2.4.1" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css?version=2.4.1">
+    <link rel="stylesheet" href="../css/base.css?version=2.4.1">
+    <style>
+        /* tcy -start-*/
+
+        .swiper-slide-img {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            height: 100%;
+            width: 100%;
+        }
+
+        .vnd-unit {
+            font-size: 14px;
+            color: #666;
+            line-height: 1;
+            margin-top: 19px;
+            font-weight: 500;
+        }
+
+        .oldprice {
+            color: #666;
+            padding-top: 3px;
+            margin-left: 10px;
+            line-height: 1;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .oldprice__price {
+            text-decoration: line-through;
+        }
+
+        .oldprice__price span {
+            text-decoration: line-through;
+        }
+
+        .discount {
+            color: #666;
+            /*padding-top: 3px;*/
+            margin-left: 10px;
+            line-height: 1;
+            display: none;
+        }
+
+        .money_active .oldprice {
+            display: block;
+        }
+
+        .money_active .discount {
+            display: block;
+        }
+
+        /* tcy -end-*/
+
+        .body__m-t-i-n-wrap {
+            float: left;
+            height: 40px;
+            width: 70px;
+            margin-left: 15px;
+        }
+
+        .body__m-t-i-n-left {
+            float: left;
+            width: 50px;
+            height: 40px;
+        }
+
+        .body__m-t-i-n-l-input:disabled {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #e8e8e8;
+            background-color: #fff;
+        }
+
+        .body__m-t-i-n-right {
+            float: left;
+            width: 20px;
+            height: 40px;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .body__m-t-i-n-r-top {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-top_disable {
+            opacity: 0.6;
+        }
+
+        .body__m-t-i-n-r-t-arrow {
+            padding-top: 1px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #9d9d9d transparent;
+        }
+
+        .body__m-t-i-n-r-bottom {
+            height: 19px;
+            line-height: 19px;
+            width: 19px;
+            border: 1px solid #fff;
+            background-color: #e8e8e8;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .body__m-t-i-n-r-bottom_disable {
+            opacity: 0.56
+        }
+
+        .body__m-t-i-n-r-b-arrow {
+            vertical-align: middle;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #9d9d9d transparent transparent transparent;
+        }
+
+        .paymentnum-class {
+            height: 27px;
+            width: 100px !important;
+        }
+
+        .addOneItem-qr {
+            display: none;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 123456;
+            padding-top: 10%;
+            background-color: rgba(0, 0, 0, .3);
+        }
+
+        .addOneItem-qr__main {
+            position: relative;
+            margin: 0 auto;
+            width: 474px;
+            height: 421px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/spellorder.jpg);
+        }
+
+        .addOneItem-qr__main-qr {
+            position: absolute;
+            top: 181px;
+            left: 173px;
+            height: 123px;
+            width: 123px;
+        }
+
+        .addOneItem-qr__main-title {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            line-height: 27px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header"></header>
+    <section class="addOneItem-qr">
+        <div class="addOneItem-qr__mask">
+            <div class="addOneItem-qr__main">
+                <div class="addOneItem-qr__main-title">
+                    <div class="addOneItem-qr__m-t-row1">该商品不支持电脑端购买</div>
+                    <div class="addOneItem-qr__m-t-row2">请用手机扫描二维码购买</div>
+                </div>
+                <div class="addOneItem-qr__main-qr"></div>
+            </div>
+        </div>
+    </section>
+    <div class="all tt">
+        <div class="content navh">
+            <div class="category left">
+                <a href="#" class="category_a">Phân loại sản phẩm</a>
+            </div>
+            <div class="nav left">
+                <a href="../index.html" class="">Trang chủ</a>
+            </div>
+            <div class="iwant right">
+                <a href="bill.html" target="_self" class="">Tôi muốn thanh toán nợ > &gt;</a>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="content">
+            <div class="left">
+            </div>
+            <div class="right">
+            </div>
+        </div>
+    </nav>
+    <article id="img_text">
+        <div class="content" id="vue-wrap">
+            <div class="left" style="overflow: hidden;">
+                <div id="banner-img">
+                    <div class="swiper-container" id="index_banner">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="item in LS__swiper">
+                                <div class="swiper-slide-img" :style="{ 'background-image': 'url('+ item +')' }"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="dt-swiper-prev swiper-button-prev iconfont"></div>
+                        <div class="dt-swiper-next swiper-button-next iconfont"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <h2>
+                    <span>Kinh doanh độc lập</span>&nbsp;&nbsp;
+                    <i style="padding-top: 2px; font-weight: 700;" v-html="name"></i>
+                </h2>
+                <p class="p">
+                    <span></span>
+                    <a href=""></a>
+                </p>
+                <div class="money" id="tcy__money">
+                    <p style="line-height: 45px;">
+                        <span id="price" v-html="priceFormat(price)"></span>
+                        <i class="vnd vnd-unit" v-html="'VND'"></i>
+                        <span class="price_text" id="price_text"></span>
+                    </p>
+                    <div class="oldprice">
+                        <span class="oldprice__text">Giá trước đây:</span>
+                        <span class="oldprice__price">
+                            <span id="oldprice__price-num"></span>&nbsp;VND</span>
+                    </div>
+                    <div class="discount">
+                        <span class="discount__text">Tiết kiệm:</span>
+                        <span class="discount__num">
+                            <span id="discount__num-num"></span>%</span>
+                    </div>
+                </div>
+                <div class="center">
+                    <div class="bl2" style="margin-bottom: 10px;">
+                        <div class="left cen-left" style="padding-top:8px; margin-bottom: 10px;">
+                            Số lượng:
+                        </div>
+                        <input type="hidden" name="" id="fenqiNumIpt" value="1" />
+                        <div class="left cen-right fenqiNumBtn">
+                            <div class="body__m-t-i-n-wrap" id="body__m-t-i-n-wrap">
+                                <div class="body__m-t-i-n-left">
+                                    <input type="text" class="body__m-t-i-n-l-input" value="1" v-model="buyNum" disabled>
+                                </div>
+                                <div class="body__m-t-i-n-right">
+                                    <div class="body__m-t-i-n-r-top" :class="{'body__m-t-i-n-r-top_disable': buyNum >= F._cardMaxNumber}" @click="plus()">
+                                        <span class="body__m-t-i-n-r-t-arrow"></span>
+                                    </div>
+                                    <div class="body__m-t-i-n-r-bottom" :class="{'body__m-t-i-n-r-bottom_disable': buyNum <= 1}" @click="minus()">
+                                        <span class="body__m-t-i-n-r-b-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="kc" style="line-height: 30px; margin-bottom: 10px;">
+                        <div class="left cen-left">
+                            Hiện còn:
+                        </div>
+                        <div class="left cen-right" style="width:250px;">
+                            <p>
+                                <span>Còn hàng</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div ng-controller="instalmentCtrl">
+                        <div class="bl" style="display: none1; clear: both; margin-bottom: 20px; ">
+                            <div class="left cen-left" style="padding-top:2px;">
+                                Tỉ lệ thanh toán lần đầu:
+                            </div>
+                            <div class="left cen-right" style="width:250px;">
+                                <select class="paymentnum-class" ng-model="paymentNum" ng-init="paymentNum='0.5'">
+                                    <option value="1.0">Trả toàn bộ</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.3">30%</option>
+                                    <option value="0.4">40%</option>
+                                    <option value="0.5">50%</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="bl2" style="display: none1;">
+                            <div class="left cen-left" style="padding-top:5px; margin-bottom: 10px;">
+                                Chọn số kỳ thanh toán:
+                            </div>
+                            <input type="hidden" name="" id="fenqiNumIpt" value="1" />
+                            <div class="left cen-right fenqiNumBtn">
+                                <button ng-click="fenqi(3)" style="margin-right: 5px;">3 tháng</button>
+                                <button ng-click="fenqi(6)" style="margin-right: 5px;">6 tháng</button>
+                                <button ng-click="fenqi(9)" style="margin-right: 5px;">9 tháng</button>
+                                <button class="b_active" ng-click="fenqi(12)" style="margin-right: 5px;">12 tháng</button>
+                            </div>
+                        </div>
+                        <div class="gm">
+                            <div class="left cen-left">
+                                <button ng-click="addCart()">
+                                    <a>Thêm vào giỏ hàng</a>
+                                </button>
+                            </div>
+                            <div class="left cen-right">
+                                <button ng-click="gotoPay()">
+                                    <a>Mua ngay</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <footer class="footer" id="footer"></footer>
+    <script src="../js/jquery.js?version=2.4.1"></script>
+    <script src="../js/jquery.qrcode.min.js?version=2.4.1"></script>
+    <script src="../js/swiper.min.js?version=2.4.1"></script>
+    <script src="../js/vue.min.js?version=2.4.1"></script>
+    <script src="../js/md5.js?version=2.4.1"></script>
+    <script src="../js/common.js?version=2.4.1"></script>
+    <script>
+        window.setTimeout(function () {
+            if (localStorage.getItem("funId")) {
+                F._userViewDetailInfo({}, function (ret) {
+                    if (ret.data.headimage) {
+                        $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
+                    }
+                });
+            }
+        }, 700);
+
+        function plus() {
+            if (F.vue.buyNum >= F.vue.store) return false;
+            if (F.vue.buyNum >= F._cardMaxNumber) return false;
+            F.vue.buyNum += 1;
+        }
+
+        function minus() {
+            if (F.vue.buyNum <= 1) return false;
+            F.vue.buyNum -= 1;
+        }
+
+        F.vue = {
+            buyNum: 1,
+            LS__swiper: [],
+        }
+
+        function new_vue() {
+            F.vue.store = +$('#tcy-numbers').html();
+            F.vue = new Vue({
+                el: $('#vue-wrap')[0],
+                data: F.vue,
+                methods: {
+                    plus: plus,
+                    minus: minus,
+                    priceFormat: F._priceFormat,
+                },
+                computed: {
+
+                },
+                watch: {
+                    // LS__data: function (val, oldVal) {
+                    //     var data = this.LS__data;
+                    //     localStorage.setItem("cart", JSON.stringify(data));
+                    //     calc(data);
+                    // },
+                },
+                mounted: function () {
+                    var swiper = new Swiper('#index_banner', {
+                        paginationClickable: true,
+                        longSwipesRatio: 0.3,
+                        touchRatio: 1,
+                        autoplay: 6000,
+                        effect: 'fade',
+                        pagination: '.swiper-pagination',
+                        observer: true, //修改swiper自己或子元素时, 自动初始化swiper
+                        observeParents: true, //修改swiper的父元素时, 自动初始化swiper
+                        prevButton: '.swiper-button-prev',
+                        nextButton: '.swiper-button-next',
+                    });
+                    if (F._isPhoneExpr.test(window.navigator.appVersion)) {
+                        alert("请用 App buyoo.vn 打开");
+                        window.location.href = "buyoovn://buyoo.vn/";
+                        setTimeout(() => {
+                            window.location.href = "https://play.google.com/store/apps/details?id=com.store.creditstore";
+                        }, 1000);
+                    } else {
+                        jQuery('.addOneItem-qr__main-qr').qrcode({
+                            width: 123,
+                            height: 123,
+                            text: window.location.href
+                        });
+
+                        $('.addOneItem-qr').show();
+                    }
+                }
+            });
+        }
+
+        F.query = F._hrefUtils.parse().query || {};
+
+        F.brandid = F.query.brandId || '';
+
+        F._merge_getDetail({
+            brandid: F.brandid,
+        }, function (ret) {
+            var branddetails = ret.branddetails;
+            var productdetails = ret.productdetails;
+            var propertydetails = ret.propertydetails;
+            // console.log(productdetails[0].imageUrls);
+            F.vue.LS__swiper = productdetails[0].imageUrls.split('|')
+            F.vue.name = productdetails[0].name;
+            F.vue.price = productdetails[0].mergePrice;
+
+            new_vue();
+        });
+
+
+    </script>
+    <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+</body>
+
+</html>

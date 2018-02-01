@@ -307,11 +307,29 @@
             width: 225px;
             color: #fff;
             font-size: 20px;
-            padding-top: 80px;
+            padding-top: 70px;
+            text-align: center;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
             background-image: url(./img/index-more.jpg);
+        }
+
+        .sec2__m-m-m-button {
+            margin-top: 7px;
+            height: 32px;
+            line-height: 32px;
+            padding-left: 4%;
+            padding-right: 4%;
+            color: #fff;
+            text-align: center;
+            background-color: #ea2440;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .sec2__m-m-m-button:hover {
+            background-color: #ca1440;
         }
 
         .sec2__m-i-pic {
@@ -560,6 +578,7 @@
                 <div class="sec2__m-m-main">
                     <p>下载APP</p>
                     <p>查看更多拼单</p>
+                    <span class="sec2__m-m-m-button">Tải App buyoo.vn</span>
                 </div>
                 <!-- <img src="./img/index-more.jpg" alt="image" class="sec2__m-m-img"> -->
             </a>
@@ -1062,11 +1081,13 @@
                 if (ret.code !== 10000) return false;
 
                 function set_qr(array) {
+                    console.log(window.location.href);
                     for (let index = 0; index < array.length; index++) {
                         jQuery('.sec2__m-i-a-qr').eq(index).qrcode({
                             width: 200,
                             height: 200,
-                            text: array[index].imageUrl
+                            text: window.location.href + 'html/addOnItemdetails.html?brandId=' + array[index].brandId
+                            // text: array[index].imageUrl
                         });
                     }
                 }
