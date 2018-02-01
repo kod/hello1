@@ -524,7 +524,7 @@
                     </div>
                     <div class="body__m-f-text" v-if="payRate !== 1">
                         <span class="body__main-f-label">Trả góp hàng tháng: </span>
-                        <span class="body__m-f-price" v-html="priceFormat(advance)"></span>
+                        <span class="body__m-f-price" v-html="priceFormat(preReturnMoney)"></span>
                         <span class="body__m-f-unit" v-html="'VND x ' + repaymentMonth"></span>
                         <img src="../img/titi.png" @click="information" style="width:15px;height:15px;margin-top:5px;margin-left: 5px;cursor:pointer;">
                     </div>
@@ -590,6 +590,8 @@
                 }
 
                 var trade_queryOrder = data._trade_queryOrder;
+                var returnMoney = data._returnMoney;
+
                 F.vue.orgAmount = trade_queryOrder.orgAmount;
                 F.vue.totalAmount = trade_queryOrder.totalAmount;
                 F.vue.payRate = trade_queryOrder.payRate;
@@ -607,13 +609,17 @@
                 F.vue.sourceOrderType = trade_queryOrder.sourceOrderType;
                 F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
 
+                console.log(returnMoney);
+                F.vue.returnMoney = returnMoney.details[F.vue.orgAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
+                F.vue.preReturnMoney = F.vue.repaymentMonth === 0 ? 0 : F.vue.returnMoney[0].interest + F.vue.returnMoney[0].principal;
+
             }
 
             F.loadData = function (params, callback) {
                 if (callback === undefined) callback = params;
 
                 var all_data = {};
-                var request_length = 1; //请求个数
+                var request_length = 2; //请求个数
 
                 // 请求是否全部返回
                 function all_loaded() {
@@ -626,6 +632,12 @@
                 loading.show();
 
                 loadData_trade_queryOrder(function (ret) {
+
+                    loadData_returnMoney(ret, function (ret) {
+                        all_data._returnMoney = ret;
+                        all_loaded();
+                    });
+
                     all_data._trade_queryOrder = ret;
                     all_loaded();
                 });
@@ -654,6 +666,18 @@
                 F._queryOrder({
                     orderNo: F.query.orderNo,
                     tradeNo: F.query.tradeNo,
+                }, function (ret) {
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                    callback(ret);
+                });
+            }
+
+            function loadData_returnMoney(params, callback) {
+                F._returnMoney({
+                    totalamounts: params.orgAmount,
+                    repaymentmonths: params.repaymentMonth,
+                    payrate: params.payRate,
                 }, function (ret) {
                     if (!ret) return false;
                     if (ret.code !== 10000) return false;
@@ -736,7 +760,6 @@
 
             // 支付订单
             function order_pay(params, callback) {
-
                 function normalOrder(params) {
                     if (F.vue.repaymentMonth === 0) { //全额
 
@@ -752,6 +775,7 @@
                                 }, payOrder_callback);
                             });
                         } else {
+                            loading.show();
                             F._payDisOrder({
                                 orderno: params.orderNo,
                                 tradeno: params.tradeNo,
@@ -768,7 +792,6 @@
                             loading.hide();
                             if (!ret) return false;
 
-
                             if (ret.status) { // 资料齐全
 
                                 if (params.payway === '1') {
@@ -783,19 +806,6 @@
                                             _noConfirm: true,
                                         }, payOrder_callback);
 
-                                        // F._payOrder({
-                                        //     timeoutExpress: 1800, // 半个小时
-                                        //     totalAmount: params.totalAmount, // 总金额
-                                        //     orderNo: params.orderNo,
-                                        //     tradeNo: params.tradeNo,
-                                        //     advance: params.advance,
-                                        //     payRate: params.payRate,
-                                        //     repaymentMonth: params.repaymentMonth,
-                                        //     prepay: params.prepay,
-                                        //     payway: params.payway,
-                                        //     paypassword: paypassword,
-                                        //     _noConfirm: true,
-                                        // }, payOrder_callback);
                                     });
                                 } else {
                                     F._payDisOrder({
@@ -806,19 +816,6 @@
                                         _noConfirm: true,
                                     }, payOrder_callback);
 
-                                    // F._payOrder({
-                                    //     timeoutExpress: 1800, // 半个小时
-                                    //     totalAmount: params.totalAmount, // 总金额
-                                    //     orderNo: params.orderNo,
-                                    //     tradeNo: params.tradeNo,
-                                    //     advance: params.advance,
-                                    //     payRate: params.payRate,
-                                    //     repaymentMonth: params.repaymentMonth,
-                                    //     prepay: params.prepay,
-                                    //     payway: params.payway,
-                                    //     paypassword: '',
-                                    //     _noConfirm: true,
-                                    // }, payOrder_callback);
                                 }
 
                             } else { // 资料不全
@@ -831,52 +828,46 @@
                                         getSchoolInfo_addInfo(ret.data);
                                     }
                                 }]);
-
                             }
                         });
                     }
                 }
 
-                function cart_order(params) {
-                    F._payPwd_open(function (paypassword) {
-                        loading.show();
-                        F._payDisOrder({
-                            orderno: params.orderNo,
-                            tradeno: params.tradeNo,
-                            payway: params.payway,
-                            paypassword: paypassword,
-                        }, payOrder_callback);
+                // function cart_order(params) {
+                //     if (params.payway === '1') {
+                //         F._payPwd_open(function (paypassword) {
+                //             loading.show();
+                //             F._payDisOrder({
+                //                 orderno: params.orderNo,
+                //                 tradeno: params.tradeNo,
+                //                 payway: params.payway,
+                //                 paypassword: paypassword,
+                //             }, payOrder_callback);
+                //         });
+                //     } else {
+                //         F._payDisOrder({
+                //             orderno: params.orderNo,
+                //             tradeno: params.tradeNo,
+                //             payway: params.payway,
+                //             paypassword: '',
+                //         }, payOrder_callback);
+                //     }
+                // }
 
-                        // F._batchPayment({
-                        //     // orderdetails: F.orderdetails,
-                        //     orderno: F.query.orderNo,
-                        //     tradeno: F.query.tradeNo,
-                        //     payway: params.payway,
-                        //     paypassword: paypassword,
-                        // }, payOrder_callback);
-                    });
+                normalOrder(params);
 
-                    // F._batchPayment({
-                    //     // orderdetails: F.orderdetails,
-                    //     orderno: F.query.orderNo,
-                    //     tradeno: F.query.tradeNo,
-                    //     payway: params.payway,
-                    //     paypassword: paypassword,
-                    // }, payOrder_callback);
-                }
+                // switch (F.vue.sourceOrderType) {
+                //     case 0: // 普通订单
+                //         normalOrder(params);
+                //         break;
 
-                switch (F.vue.sourceOrderType) {
-                    case 0: // 普通订单
-                        normalOrder(params);
-                        break;
+                //     case 1: // 购物车订单
+                //         cart_order(params);
+                //         break;
 
-                    case 1: // 购物车订单
-                        cart_order(params);
-                        break;
-
-                    default:
-                        break;
-                }
+                //     default:
+                //         break;
+                // }
 
             }
 
@@ -929,18 +920,20 @@
             }
 
             function information() {
-                loading.show();
-                F._returnMoney({
-                    totalamounts: F.vue.orgAmount,
-                    repaymentmonths: F.vue.repaymentMonth,
-                    payrate: F.vue.payRate,
-                }, function (ret) {
-                    loading.hide();
-                    if (!ret) return false;
-                    if (ret.code !== 10000) return false;
-                    F.vue.returnMoney = ret.details[F.vue.orgAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
-                    F.vue.SH__returnMoney = true;
-                });
+                F.vue.SH__returnMoney = true;
+
+                // loading.show();
+                // F._returnMoney({
+                //     totalamounts: F.vue.orgAmount,
+                //     repaymentmonths: F.vue.repaymentMonth,
+                //     payrate: F.vue.payRate,
+                // }, function (ret) {
+                //     loading.hide();
+                //     if (!ret) return false;
+                //     if (ret.code !== 10000) return false;
+                //     F.vue.returnMoney = ret.details[F.vue.orgAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
+                //     F.vue.SH__returnMoney = true;
+                // });
 
             }
 
