@@ -15,7 +15,6 @@ app.controller("payCtrl", function($scope, $http, $filter) {
     }
 
     F.LS__data = $scope.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
-    // console.log(F.LS__data);
     F.subject = $scope.subject = F.LS__data[0].subject;
     F.goodsDetail = $scope.goodsDetail = F.LS__data[0].detail;
     F.fenqiNum = $scope.fenqiNum = F.isToCart ? 12 : +sessionStorage.getItem("fenqiNum");

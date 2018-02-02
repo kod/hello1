@@ -139,7 +139,6 @@
             '../js/common.js?version=2.5.0-beta',
         ], function ($, Vue) {
             F.query = F._hrefUtils.parse().query || {};
-            console.log(F.query);
             F.type = F.query.type || "2"; // 1:fenqi;2:quankuang
 
             var get_title = function(type) {

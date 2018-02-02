@@ -2780,7 +2780,6 @@ F._createDisOrder = function(params, callback) {
             ret = JSON.parse(ret);
             callback(ret);
 
-            console.log(ret.code);
             switch (ret.code) {
                 case 10000:
                     break;

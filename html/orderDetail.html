@@ -609,7 +609,6 @@
                 F.vue.sourceOrderType = trade_queryOrder.sourceOrderType;
                 F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
 
-                console.log(returnMoney);
                 F.vue.returnMoney = returnMoney.details[F.vue.orgAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
                 F.vue.preReturnMoney = F.vue.repaymentMonth === 0 ? 0 : F.vue.returnMoney[0].interest + F.vue.returnMoney[0].principal;
 
