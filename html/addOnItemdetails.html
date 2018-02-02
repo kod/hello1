@@ -197,7 +197,7 @@
             right: 0;
             color: #fff;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 27px;
         }
     </style>
@@ -209,8 +209,8 @@
         <div class="addOneItem-qr__mask">
             <div class="addOneItem-qr__main">
                 <div class="addOneItem-qr__main-title">
-                    <div class="addOneItem-qr__m-t-row1">该商品不支持电脑端购买</div>
-                    <div class="addOneItem-qr__m-t-row2">请用手机扫描二维码购买</div>
+                    <div class="addOneItem-qr__m-t-row1">Sản phẩm này không hỗ trợ mua  hàng qua PC</div>
+                    <div class="addOneItem-qr__m-t-row2">Đề nghị tải app "buyoo.vn" để</div>
                 </div>
                 <div class="addOneItem-qr__main-qr"></div>
             </div>
@@ -424,7 +424,7 @@
                         nextButton: '.swiper-button-next',
                     });
                     if (F._isPhoneExpr.test(window.navigator.appVersion)) {
-                        alert("请用 App buyoo.vn 打开");
+                        alert("Kết nối qua App buyoo.vn");
                         window.location.href = "buyoovn://addOnItemdetails?brandId=" + F.brandid + "&masterId=" + F.query.masterId;
                         setTimeout(() => {
                             window.location.href = "https://play.google.com/store/apps/details?id=com.store.creditstore";
