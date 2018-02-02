@@ -244,6 +244,10 @@
             z-index: 999;
         }
 
+        .sec2 {
+            display: none;
+        }
+        
         .sec2:after {
             display: block;
             content: "";
@@ -554,11 +558,10 @@
     </div>
     <!-- <div id="center"></div> -->
     <div class="" style="padding-top: 53px;"></div>
-    <section class="sec2" id="vue1-el" v-show="LS__data.length">
+    <section class="sec2" id="vue1-el" v-show="LS__data.length" :style="{ display: LS__data.length ? 'block' : 'none' }">
         <div class="sec2__header header col-xs-24" style="height: 70px;">
             <div class="content">
                 <div class="header_name left">Khuyến mại lớn</div>
-                <!-- <div class="header_category right" @click="discountMore" style="color: #4B9DF4; cursor: pointer;">Xem nhiều hơn &gt; </div> -->
             </div>
         </div>
         <div class="sec2__main">
@@ -1072,8 +1075,6 @@
 
                     },
                 });
-
-
             });
 
             F._merge_getInfo({}, function (ret) {
@@ -1092,8 +1093,10 @@
                     }
                 }
 
+                F.query = F._hrefUtils.parse().query || {};
                 F.vue1 = {
-                    LS__data: ret.details.slice(0, 4),
+                    // LS__data: ret.details.slice(0, 4),
+                    LS__data: F.query.test ? ret.details.slice(0, 4) : [],
                 };
 
                 F.vue1 = new Vue({
