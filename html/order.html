@@ -126,8 +126,20 @@
         }
 
         .order-list__content-item {
+            position: relative;
             border: 1px solid #e5e5e5;
             margin-bottom: 20px;
+        }
+
+        .order-list__c-t-pin {
+            position: absolute;
+            top: 33px;
+            width: 19.5px;
+            height: 15px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/addoneitem.png);
         }
 
         .order-list__c-i-title {
@@ -366,8 +378,8 @@
                                     <div class="order-list__c-i-m-item1">
                                         <div class="order-list__c-i-m-i1-good col-xs-24" ng-repeat="detail in orderList[key].goodsDetail">
                                             <div class="order-list__c-i-m-i1-g-left">
-                                                <div class="order-list__c-i-m-i1-g-l-img" ng-click="product(detail.typeId,detail.brandId,detail.sourceOrderType)" style="background-image: url({{detail.iconUrl}});"></div>
-                                                <div class="order-list__c-i-m-i1-g-l-name" ng-click="product(detail.typeId,detail.brandId,detail.sourceOrderType)" ng-bind="detail.name"></div>
+                                                <div class="order-list__c-i-m-i1-g-l-img" ng-click="product(detail.typeId,detail.brandId,item.sourceOrderType)" style="background-image: url({{detail.iconUrl}});"></div>
+                                                <div class="order-list__c-i-m-i1-g-l-name" ng-click="product(detail.typeId,detail.brandId,item.sourceOrderType)" ng-bind="detail.name"></div>
                                             </div>
                                             <div class="order-list__c-i-m-i1-g-right" ng-bind="'x' + detail.number"></div>
                                         </div>
@@ -384,6 +396,7 @@
                                     <div class="order-list__c-i-m-line2"></div>
                                     <div class="order-list__c-i-m-line3"></div>
                                 </div>
+                                <div class="order-list__c-t-pin" ng-if="item.sourceOrderType === 2"></div>
                             </div>
                         </div>
                     </div>
