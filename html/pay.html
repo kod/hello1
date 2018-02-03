@@ -429,6 +429,41 @@
             });
         }
 
+        function analyze_orderdetails(array) {
+            var index;
+            var result = {
+                totalAmount: 0,
+                orgAmount: 0,
+                advance: 0,
+                goodsDetail: [],
+                subject: '',
+            };
+            var result_ids = [];
+
+            function edit_detail(item) {
+                var result = {};
+                result.number = item.quantity;
+                result.cartitemid = item.id + '';
+                result.productInfoId = item.itemId;
+                return result;
+            }
+
+            for (index = 0; index < array.length; index++) {
+                result.totalAmount += array[index].totalAmount * array[index].quantity;
+                result.orgAmount += array[index].orgPrice ? array[index].orgPrice * array[index].quantity : 0;
+                result.advance += array[index].totalAmount * array[index].quantity * F.paymentNum;
+                result.subject += array[index].subject + ', ';
+                result.goodsDetail.push(edit_detail(array[index]));
+
+                // result_ids.push(array[index].id);
+            }
+            result.subject = result.subject.slice(0, -2);
+            // F.result_ids = result_ids.join(',');
+
+
+            return result;
+        }
+
         function go_next() {
             if (F.isToCart) {
                 loading.show();
@@ -553,41 +588,6 @@
             F.paymentNum = parseFloat(F.paymentNum);
             F.totalamount = parseFloat(F.totalamount);
             F.quantity = get_num(F.LS__data);
-
-            function analyze_orderdetails(array) {
-                var index;
-                var result = {
-                    totalAmount: 0,
-                    orgAmount: 0,
-                    advance: 0,
-                    goodsDetail: [],
-                    subject: '',
-                };
-                var result_ids = [];
-
-                function edit_detail(item) {
-                    var result = {};
-                    result.number = item.quantity;
-                    result.cartitemid = item.id + '';
-                    result.productInfoId = item.itemId;
-                    return result;
-                }
-
-                for (index = 0; index < array.length; index++) {
-                    result.totalAmount += array[index].totalAmount * array[index].quantity;
-                    result.orgAmount += array[index].orgPrice ? array[index].orgPrice * array[index].quantity : 0;
-                    result.advance += array[index].totalAmount * array[index].quantity * F.paymentNum;
-                    result.subject += array[index].subject + ', ';
-                    result.goodsDetail.push(edit_detail(array[index]));
-
-                    // result_ids.push(array[index].id);
-                }
-                result.subject = result.subject.slice(0, -2);
-                // F.result_ids = result_ids.join(',');
-
-
-                return result;
-            }
 
             function check_userViewDetailInfo() {
                 loading.show();
