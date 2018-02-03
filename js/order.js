@@ -537,8 +537,8 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
 
     $scope.getUserInfoDetails();
 
-    $scope.product = function(typeId, brandId) {
-        gotoDetails(typeId, brandId);
+    $scope.product = function(typeId, brandId, sourceOrderType) {
+        gotoDetails(typeId, brandId, sourceOrderType);
     };
 
     function order_cancel(orderNo, tradeNo) {
@@ -632,10 +632,14 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
     /* tcy 查看订单详情 -end- */
 
     //点击商品页面跳转详情
-    function gotoDetails(typeId, brandId) {
+    function gotoDetails(typeId, brandId, sourceOrderType) {
+        
         if (brandId != null && brandId != "" && typeId != null && typeId != "") {
-            window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
-            // window.open("./details.html?typeId=" + typeId + "&brandId=" + brandId)
+            if (sourceOrderType !== 0 && sourceOrderType !== 1) {
+                window.location.href = "./addOnItemdetails.html?brandId=" + brandId;
+            } else {
+                window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+            }
         } else {
             window.location.href = "";
         }
