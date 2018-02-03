@@ -3649,6 +3649,30 @@ F._userViewDetailInfo = function(params, callback) {
                         is_fullInfo = false;
                     }
 
+                    if (ret.connectusername2.length === 0) {
+                        is_fullInfo = false;
+                    }
+
+                    if (ret.connectusermsisdn2.length === 0) {
+                        is_fullInfo = false;
+                    }
+
+                    if (ret.connectuserrelation2.length === 0) {
+                        is_fullInfo = false;
+                    }
+
+                    if (ret.connectusername3.length === 0) {
+                        is_fullInfo = false;
+                    }
+
+                    if (ret.connectusermsisdn3.length === 0) {
+                        is_fullInfo = false;
+                    }
+
+                    if (ret.connectuserrelation3.length === 0) {
+                        is_fullInfo = false;
+                    }
+
                     // if (ret.connectuseridentification1.length === 0) {
                     //     is_fullInfo = false;
                     // }
@@ -5848,12 +5872,42 @@ F._baseinfo = function(data, userInfo) {
             return false;
         }
 
+        if (!(connect_json.connectusermsisdn1 && connect_json.connectusermsisdn1.length)) {
+            alert("Vui lòng Người liên lạc 1");
+            return false;
+        }
+
+        if (!(connect_json.connectuserrelation1 && connect_json.connectuserrelation1.length)) {
+            alert("Vui lòng Người liên lạc 1");
+            return false;
+        }
+
         if (!(connect_json.connectusername2 && connect_json.connectusername2.length)) {
             alert("Vui lòng Người liên lạc 2");
             return false;
         }
 
+        if (!(connect_json.connectusermsisdn2 && connect_json.connectusermsisdn2.length)) {
+            alert("Vui lòng Người liên lạc 2");
+            return false;
+        }
+
+        if (!(connect_json.connectuserrelation2 && connect_json.connectuserrelation2.length)) {
+            alert("Vui lòng Người liên lạc 2");
+            return false;
+        }
+
         if (!(connect_json.connectusername3 && connect_json.connectusername3.length)) {
+            alert("Vui lòng Người liên lạc 3");
+            return false;
+        }
+
+        if (!(connect_json.connectusermsisdn3 && connect_json.connectusermsisdn3.length)) {
+            alert("Vui lòng Người liên lạc 3");
+            return false;
+        }
+
+        if (!(connect_json.connectuserrelation3 && connect_json.connectuserrelation3.length)) {
             alert("Vui lòng Người liên lạc 3");
             return false;
         }
