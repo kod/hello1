@@ -88,17 +88,13 @@ F._tradeStatus = function(code) {
             result = "Đang chờ thanh toán";
             break;
 
-        case 10001:
-            result = "Đang xử lí";
-            break;
-
         case 10003:
             result = "Ngân hàng đang xử lý";
             break;
 
         case 10004:
-            // 新流程
-            result = "Đang xử lí";
+            // 新流程，待审核
+            result = "Chờ xét duyệt";
             break;
 
         case 20000:

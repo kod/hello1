@@ -28,7 +28,7 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
 
     var status_json = {
         99999: 0,
-        10001: 1,
+        10004: 1,
         30000: 2,
         30001: 3
     };
@@ -260,16 +260,16 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
                         ];
                         break;
 
-                    case "10001":
-                        $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
-                        $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
-                        $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
-                        $scope.orderList[i].operate = [
-                            {
-                                name: "Thông tin cụ thể về đơn hàng"
-                            }
-                        ];
-                        break;
+                    // case "10001":
+                    //     $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
+                    //     $scope.trustHtml = $sce.trustAsHtml($scope.myHtml);
+                    //     $scope.orderList[i]["tradeStatusMsg"] = $scope.trustHtml;
+                    //     $scope.orderList[i].operate = [
+                    //         {
+                    //             name: "Thông tin cụ thể về đơn hàng"
+                    //         }
+                    //     ];
+                    //     break;
 
                     case "10003": // 交易支付等待
                         $scope.myHtml = "<span>" + F._tradeStatus(tradeStatus) + "</span>";
