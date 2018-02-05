@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href="/img/icon.png" type='image/x-ico' />
     <link rel="stylesheet" href="/css/base.css?version=2.5.2">
-    <title>404</title>
+    <title>Error 404 (Not Found)!</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
     <script>
@@ -37,30 +37,27 @@
             background-size: contain;
             background-image: url(/img/404.png);*/
         }
+
+        .body__main {
+            display: block;
+        }
     </style>
 </head>
 
 <body>
     <div class="content" id="vue-el">
         <header class="header">
-            <!-- <div class="header__nav">
-                <div class="header__nav-main">
-                    <span class="header__n-m-home" @click="gohome">BUYOO Trang chủ</span>
-                    <span class="header__n-m-help" @click="window.location.href='/buyIntro.html'" >Trung tâm hỗ trợ</span>
-                </div>
-            </div> -->
             <div class="header__title">
-                <div class="header__title-main">
-                    <img src="/img/LOGO2.jpg" class="header__t-m-img" @click="gohome">
+                <a href="/" class="header__title-main">
+                    <img src="/img/LOGO2.jpg" class="header__t-m-img">
                     <span class="header__t-m-text">The page doesn't exist</span>
-                </div>
+                </a>
             </div>
         </header>
         <section class="body">
-            <div class="body__main" :style="{ 'height': body__main_height + 'px' }">
-                <!-- <div class="body__main-img" @click="window.location.href='/index.html'" ></div> -->
+            <a href="/" class="body__main" :style="{ 'height': body__main_height + 'px' }">
                 <img src="/img/404.png" alt="404" class="body__main-img" :style="{ 'max-height': body__main_height - 30 + 'px' }">
-            </div>
+            </a>
         </section>
         <footer class="footer">
             <div class="footer__top col-xs-24">
@@ -173,13 +170,13 @@
             </div>
         </footer>
     </div>
+    <script src="/js/jquery.js?version=2.5.2"></script>
     <script>
     require([
-        '/js/jquery1.11.2.js',
         '/js/vue.min.js',
         '/js/md5.js',
         '/js/common.js',
-    ], function($, Vue, md5) {
+    ], function(Vue, md5) {
 
         F.vue = {
             body__main_height: document.documentElement.clientHeight - 12 - 210,
@@ -217,16 +214,11 @@
                 el: $('#vue-el')[0],
                 data: F.vue,
                 methods: {
-                    gohome: gohome,
                 },
                 computed: {
 
                 },
             });
-        }
-
-        function gohome() {
-            window.location.href = '/index.html';
         }
 
         F.loadData(function() {
