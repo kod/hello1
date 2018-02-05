@@ -612,6 +612,23 @@
             }
 
             if (F.paymentNum === 1) {
+                // 全款
+                F._is_initPaypassword(function (status) {
+                    if (status === false && F.vue.payway === '1') {
+                        F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function () {
+                                    window.open('./back_id.html?from=payPwd');
+                                }
+                            }
+                        ]);
+                        return false;
+                    }
+                    go_next();
+                });
+
+            } else {
                 F._is_initPaypassword(function (status) {
                     if (status === false && F.vue.payway === '1') {
                         F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
@@ -625,11 +642,7 @@
                         return false;
                     }
                     check_userViewDetailInfo();
-
                 });
-
-            } else {
-                check_userViewDetailInfo();
             }
 
         }
