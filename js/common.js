@@ -4368,6 +4368,7 @@ function header_add() {
                     <a href="' + dot_str + './" class="header__n-m-home">BUYOO Trang chủ</a>\
                     <!-- <a href="' + dot_str + './html/buyflowIntro.html" class="header__n-m-help">Mua hàng bằng cách nào</a> -->\
                     <!-- <a href="' + dot_str + './html/buyIntro.html" class="header__n-m-help">Trung tâm hỗ trợ</a> -->\
+                    <!-- <a href="' + dot_str + './html/paystep.html" class="header__n-m-help">Cách thanh toán và thanh toán nợ</a> -->\
                 </div>\
             </div>\
         </div>\
@@ -4512,6 +4513,7 @@ function footer_add() {
                     <ul class="footer__b2-m-r2-main col-xs-24">\
                         <a href="' + dot_str + './html/buyflowIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Mua hàng bằng cách nào</a>\
                         <a href="' + dot_str + './html/buyIntro.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Trung tâm hỗ trợ</a>\
+                        <a href="' + dot_str + './html/paystep.html" target="_blank" class="footer__b2-m-r2-m-item col-xs-24">Cách thanh toán và thanh toán nợ</a>\
                         </ul>\
                 </div>\
                 <div class="footer__b2-m-row3">\
