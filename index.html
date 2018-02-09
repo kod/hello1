@@ -569,12 +569,12 @@
             <div class="sec2__main-item" v-for="(val, key) in LS__data">
                 <div class="sec2__m-i-pic col-xs-24" :style="{ 'background-image': 'url('+ val.imageUrl +')' }"></div>
                 <div class="sec2__m-i-title col-xs-24" v-html="val.name"></div>
-                <div class="sec2__m-i-price col-xs-24" v-html="priceFormat(val.orgPrice) + ' VND'"></div>
+                <div class="sec2__m-i-price col-xs-24" v-html="priceFormat(val.mergePrice) + ' VND'"></div>
                 <div class="sec2__m-i-submit col-xs-24" v-html="'Mua chung'"></div>
                 <div class="sec2__m-i-addonitem">
                     <div class="sec2__m-i-a-qr"></div>
                     <div class="sec2__m-i-a-name" v-html="val.name"></div>
-                    <div class="sec2__m-i-a-price" v-html="priceFormat(val.orgPrice) + ' VND'"></div>
+                    <div class="sec2__m-i-a-price" v-html="priceFormat(val.mergePrice) + ' VND'"></div>
                     <div class="sec2__m-i-a-text">Mua chung, quét mã QR</div>
                 </div>
             </div>
