@@ -16,7 +16,7 @@ app.controller("billCtrl", function($scope, $http, $filter) {
         10001: 'Chưa thanh toán',
         10002: 'Đã thanh toán',
         10007: 'Chưa thanh toán',
-        20001: '成功，等待最终成功结果',
+        20001: 'Đang xử lý, vui lòng chờ',
     }
 
     // tcy -end-
