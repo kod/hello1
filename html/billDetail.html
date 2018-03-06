@@ -359,7 +359,7 @@
                         <span class="body__m-t-order" v-html="'Mã đơn hàng: ' + orderNo"></span>
                     </div>
                     <div class="body__m-t-right">
-                        <span class="body__m-t-r-status" v-html="isPay ? 'Đã thanh toán' : 'Chưa thanh toán'"></span>
+                        <span class="body__m-t-r-status" v-html="getBillStatusText(billStatus)"></span>
                     </div>
                 </div>
                 <div class="body__main-phone">
@@ -522,7 +522,9 @@
                 F.vue.repaymentMonth = trade_inquiryBill.repaymentMonth;
 
                 // 本期是否已还
-                F.vue.isPay = trade_inquiryBill.detail[F.vue.nowPeriods - 1].status === '10002' ? true : false;
+                F.vue.isPay = (trade_inquiryBill.detail[F.vue.nowPeriods - 1].status === '10002' || trade_inquiryBill.detail[F.vue.nowPeriods - 1].status === '20001') ? true : false;
+
+                F.vue.billStatus = trade_inquiryBill.detail[F.vue.nowPeriods - 1].status;
 
                 for (i = 0; i < trade_inquiryBill.detail.length; i++) {
                     if (trade_inquiryBill.detail[i].status == '10001' || trade_inquiryBill.detail[i].status == '10007') {
@@ -578,6 +580,7 @@
                         operate_left: operate_left,
                         openProduct: openProduct,
                         priceFormat: F._priceFormat,
+                        getBillStatusText: getBillStatusText,
                     },
                     computed: {
 
@@ -601,6 +604,25 @@
                 }, function (ret) {
                     callback(ret);
                 });
+            }
+
+            function getBillStatusText(billStatus) {
+                var result = '';
+
+                switch (billStatus) {
+                    case '10002':
+                        result = 'Đã thanh toán';
+                        break;
+
+                    case '20001':
+                        result = '成功，等待最终成功结果';
+                        break;
+
+                    default:
+                        result = 'Chưa thanh toán';
+                        break;
+                }
+                return result;
             }
 
             function edit_goodsDetail(array) {
