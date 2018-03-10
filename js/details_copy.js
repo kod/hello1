@@ -139,7 +139,6 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
         version: "1.0",
         brand_id: brandId
     };
-    console.log(getMd5Code(data, "commodityKey"));
     ajax.params = getMd5Code(data, "commodityKey");
 
     ajax.successCallback = function(res) {
