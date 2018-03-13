@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <input type="text" placeholder="用户名" id="username">
   <select name="" id="banklist">
     <option value="999999-NGUYEN HONG NHUNG">NGUYEN HONG NHUNG</option>
     <option value="99001-Agribank">Agribank</option>
@@ -111,16 +112,22 @@
       // console.log(url_base);
 
       var val = $('#banklist').val().split('-');
+      var username = $("#username").val();
+      
       if (url_base.indexOf('?') === -1) {
-        url_base += '?bankID=' + val[0] + '&userName=' + val[1];
+        url_base += '?bankID=' + val[0] + '&userName=' + username;
       } else {
-        url_base += '&bankID=' + val[0] + '&userName=' + val[1];
+        url_base += '&bankID=' + val[0] + '&userName=' + username;
       }
 
       return joint_url(url_base, query);
     }
 
     $('#submit').on('click', function () {
+      if ($("#username").val().length === 0) {
+        alert("请输入用户名");
+        return false;
+      }
       window.open(edit_url());
       // console.log(edit_url());
       // $.ajax({
