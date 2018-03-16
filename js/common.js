@@ -11,6 +11,7 @@ F._port_80 = F._DEUBUG ? "8180" : "8280";
 F._port_83 = F._DEUBUG ? "8183" : "8283";
 F._port_84 = F._DEUBUG ? "8184" : "8284";
 F._port_85 = F._DEUBUG ? "8185" : "8285";
+F._port_87 = F._DEUBUG ? "8187" : "8287";
 F._createDisOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/createDisOrder"; // 创建订单(先审核 后付款)
 F._payDisOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/payDisOrder"; // 支付订单(先审核 后付款)
 F._queryOrder_td = F._IP_191 + ":" + F._port_83 + "/fun/trade/queryOrder"; // 订单查询
@@ -39,6 +40,9 @@ F._userCancelCollection_uc = F._IP_191 + ":" + F._port_80 + "/fun/usercenter/use
 F._userBatchCollection_uc = F._IP_191 + ":" + F._port_80 + "/fun/usercenter/userBatchCollection"; // 批量添加收藏
 F._userGetCollection_uc = F._IP_191 + ":" + F._port_80 + "/fun/usercenter/userGetCollection"; // 获取收藏列表
 F._getCityInfos_uc = F._IP_191 + ":" + F._port_80 + "/fun/usercenter/getCityInfos"; // 省市区(行政区获取)
+F._receiveVoucher_uc = F._IP_191 + ":" + F._port_80 + "/fun/usercenter/receiveVoucher"; // 领取优惠券
+F._getVoucherList_uc = F._IP_191 + ":" + F._port_80 + "/fun/usercenter/getVoucherList"; // 我的优惠券
+F._judgeVoucher_uc = F._IP_191 + ":" + F._port_80 + "/fun/usercenter/judgeVoucher"; // 下单时，可用优惠券
 F._initTopComputer_cp = F._IP_255 + ":" + F._port_85 + "/fun/computer/initTopComputer"; // 获取电脑banner广告
 F._initNewCellphone_cp = F._IP_255 + ":" + F._port_85 + "/fun/cellphone/initNewCellphone"; //
 F._initAdCellphone_cp = F._IP_255 + ":" + F._port_85 + "/fun/cellphone/initAdCellphone"; //
@@ -68,6 +72,7 @@ F._cart_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/cart/getInfo
 F._getHTML_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/getHTML"; //
 F._merge_getInfo_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/merge/getInfo"; // 拼单列表
 F._merge_getDetail_cd = F._IP_255 + ":" + F._port_85 + "/fun/commodity/merge/getDetail"; // 拼单详情
+F._market_getVoucher_cd = F._IP_255 + ":" + F._port_87 + "/fun/market/getVoucher"; // 优惠券领取列表
 F._uploadFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/uploadFiles"; // 上传用户头像
 F._collectFiles_uf = F._IP_191 + ":" + F._port_80 + "/fun/userfile/collectFiles"; // 用户评论上传图片
 F._returnMoney_im = F._IP_191 + ":" + F._port_84 + "/fun/installment/returnMoney"; //
@@ -184,6 +189,374 @@ F._encrypt_MD5 = function(params, Key) {
     md5EncryptStrig = md5EncryptStrig.slice(1);
     md5EncryptStrig += Key;
     return md5(md5EncryptStrig);
+};
+
+// 下单时，可用的优惠券
+F._judgeVoucher = function(params, callback) {
+    var Key = "userKey";
+
+    var appId = "0";
+    var method = "fun.usercenter.judgeVoucher";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var funid = params.funid || "";
+    var products = params.products || "";
+    var currentpage = params.currentpage || "1";
+    var pagesize = params.pagesize || "100";
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "products",
+                value: products
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        products: products,
+        currentpage: currentpage,
+        pagesize: pagesize,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._judgeVoucher_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 我的优惠券
+F._getVoucherList = function(params, callback) {
+    var Key = "userKey";
+
+    var appId = "0";
+    var method = "fun.usercenter.getVoucher";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var funid = params.funid || "";
+    var vouchertype = params.vouchertype || "";
+    var typeid = params.typeid || "";
+    var brandid = params.brandid || "";
+    var productid = params.productid || "";
+    var cardno = params.cardno || "";
+    var status = params.status !== undefined ? params.status : "1";
+    var currentpage = params.currentpage || "1";
+    var pagesize = params.pagesize || "100";
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "vouchertype",
+                value: vouchertype
+            },
+            {
+                key: "typeid",
+                value: typeid
+            },
+            {
+                key: "brandid",
+                value: brandid
+            },
+            {
+                key: "productid",
+                value: productid
+            },
+            {
+                key: "cardno",
+                value: cardno
+            },
+            {
+                key: "status",
+                value: status
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        vouchertype: vouchertype,
+        typeid: typeid,
+        brandid: brandid,
+        productid: productid,
+        cardno: cardno,
+        status: status,
+        currentpage: currentpage,
+        pagesize: pagesize,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._getVoucherList_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 领取优惠券
+F._receiveVoucher = function(params, callback) {
+    var Key = "userKey";
+
+    var appId = "0";
+    var method = "fun.usercenter.receiveVoucher";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var funid = params.funid || "";
+    var voucherid = params.voucherid || "";
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "voucherid",
+                value: voucherid
+            },
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        voucherid: voucherid,
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._receiveVoucher_uc,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
+};
+
+// 卡券领取列表
+F._market_getVoucher = function(params, callback) {
+    var Key = "marketKey";
+
+    var appId = "0";
+    var method = "fun.market.getVoucher";
+    var charset = "utf-8";
+    var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+    var version = "2.0";
+
+    var vouchertype = params.vouchertype || "";
+    var funid = params.funid || "";
+    var typeid = params.typeid || "";
+    var brandid = params.brandid || "";
+    var productid = params.productid || "";
+    var currentpage = params.currentpage || "1";
+    var pagesize = params.pagesize || "100";
+
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+    var encrypt = F._encrypt_MD5(
+        [
+            {
+                key: "vouchertype",
+                value: vouchertype
+            },
+            {
+                key: "funid",
+                value: funid
+            },
+            {
+                key: "typeid",
+                value: typeid
+            },
+            {
+                key: "brandid",
+                value: brandid
+            },
+            {
+                key: "productid",
+                value: productid
+            },
+            {
+                key: "currentpage",
+                value: currentpage
+            },
+            {
+                key: "pagesize",
+                value: pagesize
+            }
+        ],
+        Key
+    );
+
+    var data = {
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        vouchertype: vouchertype,
+        funid: funid,
+        typeid: typeid,
+        brandid: brandid,
+        productid: productid,
+        currentpage: currentpage,
+        pagesize: pagesize
+    };
+
+    $.ajax({
+        type: "POST",
+        url: F._market_getVoucher_cd,
+        data: data,
+        success: function(ret) {
+            ret = JSON.parse(ret);
+            callback(ret);
+
+            switch (ret.code) {
+                case 10000:
+                    break;
+
+                default:
+                    $("#loading").remove();
+                    F._confirm("Gợi ý", "error", "error", [
+                        {
+                            name: "Xác nhận",
+                            func: function() {}
+                        }
+                    ]);
+                    break;
+            }
+        },
+        error: function(ret) {
+            console.error("request error");
+            callback(false);
+        }
+    });
 };
 
 // 拼单列表

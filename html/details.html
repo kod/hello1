@@ -196,6 +196,74 @@
             border-bottom-color: #0076f7;
             border-right-color: #0076f7;
         } */
+
+        .coupon {
+            padding-top: 10px;
+            padding-left: 10px;
+            margin-bottom: 5px;
+        }
+
+        .coupon:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .coupon__left {
+            float: left;
+            width: 500px;
+        }
+
+        .coupon__left-item {
+            float: left;
+            border: 2px solid #F7054F;
+            border-radius: 1px;
+            margin-right: 15px;
+        }
+
+        .coupon__left-item_dis {
+            border-color: #ccc;
+        }
+
+        .coupon__l-i-text {
+            float: left;
+            min-width: 120px;
+            height: 30px;
+            padding-left: 10px;
+            padding-right: 5px;
+            color: #F7054F;
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+        .coupon__l-i-button {
+            float: left;
+            width: 45px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            background-color: #F7054F;
+        }
+
+        .coupon__right {
+            float: left;
+            color: #ccc;
+        }
+
+        .coupon__right:hover {
+            cursor: pointer;
+            color: #999;
+        }
+
+        .coupon__left-item_dis .coupon__l-i-text {
+            color: #ccc;
+        }
+
+        .coupon__left-item_dis .coupon__l-i-button {
+            background-color: #ccc;
+        }
     </style>
 </head>
 
@@ -270,6 +338,19 @@
                         <span class="discount__text">Tiết kiệm:</span>
                         <span class="discount__num">
                             <span id="discount__num-num"></span>%</span>
+                    </div>
+                    <div class="coupon" id="coupon" style="display: none;" v-show="LS__data.length">
+                        <div class="coupon__left">
+                            <li class="coupon__left-item" v-for="(val, key) in LS__data">
+                                <div class="coupon__l-i-text">50,000 VND</div>
+                                <div class="coupon__l-i-button">领取</div>
+                            </li>
+                            <!-- <li class="coupon__left-item coupon__left-item_dis">
+                                <div class="coupon__l-i-text">-5%</div>
+                                <div class="coupon__l-i-button">已领</div>
+                            </li> -->
+                        </div>
+                        <a href="./couponcenter.html" class="coupon__right">Xem nhiều hơn >></a>
                     </div>
                     <div class="comments">
                         <a href="#comment">
@@ -700,8 +781,47 @@
             });
         }
 
+        function new_vue2() {
+            F._market_getVoucher({
+                typeid: F.query.typeId,
+                brandid: F.query.brandId,
+                productid: F.id,
+                pagesize: '2'
+            }, function (ret) {
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                F.vue2 = {
+                    LS__data: ret.details
+                };
+
+
+                F.vue2 = new Vue({
+                    el: $('#coupon')[0],
+                    data: F.vue2,
+                    methods: {
+                        // plus: plus,
+                        // minus: minus,
+                    },
+                    computed: {
+
+                    },
+                    watch: {
+                        // LS__data: function (val, oldVal) {
+                        //     var data = this.LS__data;
+                        //     localStorage.setItem("cart", JSON.stringify(data));
+                        //     calc(data);
+                        // },
+                    },
+                });
+
+            });
+
+        }
+
         setTimeout(function () {
             new_vue();
+            new_vue2();
         }, 700);
 
         F.query = F._hrefUtils.parse().query || {};

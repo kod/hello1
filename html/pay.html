@@ -34,6 +34,10 @@
             margin-bottom: 50px;
         }
 
+        #four {
+            line-height: 1;
+        }
+
         /*tcy -start-*/
 
         .modal-body th {
@@ -132,6 +136,139 @@
             border-radius: 3px;
             margin-bottom: 24px;
             background-color: #fff;
+        }
+
+        .four__wrap {
+            height: 188px;
+            overflow-y: hidden;
+        }
+
+        .four__wrap:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .four__wrap_more {
+            height: 350px;
+            overflow-y: auto;
+        }
+
+        .four__item {
+            float: left;
+            width: 272px;
+            margin-right: 28px;
+            padding-top: 10px;
+        }
+
+        .four__item-top {
+            position: relative;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 30px;
+            padding-right: 30px;
+            height: 112px;
+            margin-bottom: 5px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/couponfault1.png);
+        }
+
+        .four__item-top:hover {
+            cursor: pointer;
+            box-shadow: 5px 5px 15px 0px rgba(20, 122, 243, .3);
+        }
+
+        .four__i-t-price {
+            font-size: 27px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .four__i-t-time {
+            font-size: 18px;
+            color: rgba(255, 255, 255, .7);
+        }
+
+        .four__i-t-arrow {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 20px;
+            width: 20px;
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            background-size: cover;
+            background-image: url(../img/coupon-selected.png);
+        }
+
+        .four__item-bottom {
+            line-height: 1.4;
+            color: #ccc;
+            width: 272px;
+            height: 39px;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .four__more {
+            float: left;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #999;
+            background-color: #f5f5f5;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .four__more-icon {
+            padding-top: 15px;
+            width: 12px;
+            margin-left: 3px;
+        }
+
+        .four__nodata {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin-top: 20px;
+            color: #999;
+        }
+
+        .four__money {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .four__money-text {
+            color: #999;
+        }
+
+        .four__money-price {
+            color: #FD5147;
+        }
+
+        .four__item_disable .four__item-top {
+            cursor: not-allowed;
+            background-image: url(../img/couponfault2.png);
+        }
+
+        .four__item_disable .four__item-top:hover {
+            box-shadow: none;
+        }
+
+        .four__item_selected .four__item-top {
+            /* border: 2px solid #e43a3d; */
         }
     </style>
 </head>
@@ -238,9 +375,41 @@
                 </div>
             </div>
         </article>
+        <article id="four">
+            <div class="content">
+                <div class="four fullpay_mark">
+                    <div class="top_title">
+                        <i></i>
+                        <span>Mã giảm giá</span>
+                    </div>
+                </div>
+                <div class="way" style="padding-left: 0; display:none1;">
+                    <div class="four__wrap" :class="{ 'four__wrap_more': LS__data.length > 4 }">
+                        <item class="four__item" v-for="(val, key) in LS__data" @click="couponSelect(key, val.id, val.pids, val.status)" :class="{ 'four__item_disable': val.status === 0 || !val.canUse, 'four__item_selected': val.isSelected }">
+                            <div class="four__item-top">
+                                <div class="four__i-t-price" v-html="val.voucherValue +' VND'" v-if="val.voucherType === 1"></div>
+                                <div class="four__i-t-price" v-html="'Giảm '+(100-val.voucherValue)+'%'" v-if="val.voucherType === 0"></div>
+                                <div class="four__i-t-time" v-html="time_format(val.startTime, val.expireTime)"></div>
+                                <div class="four__i-t-arrow" v-show="val.isSelected"></div>
+                            </div>
+                            <div class="four__item-bottom" v-if="val.status === 0">所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品</div>
+                        </item>
+                    </div>
+                    <!-- <div class="four__more">
+                        <span>查看更多</span>
+                        <img src="../img/couponmore.png" alt="more" class="four__more-icon">
+                    </div> -->
+                    <div class="four__money">
+                        <span class="four__money-text">金额抵用</span>
+                        <span class="four__money-price" v-html="priceFormat(savePrice) + ' VND'"></span>
+                    </div>
+                </div>
+                <!-- <div class="four__nodata">没有优惠券</div> -->
+            </div>
+        </article>
         <article id="three">
             <div class="content">
-                <div class="three fullpay_mark" style="display: none;">
+                <div class="three fullpay_mark" style="display: none;" v-show="paymentNum === 1">
                     <div class="top_title">
                         <i></i>
                         <span>Phương thức thanh toán</span>
@@ -302,7 +471,7 @@
                                 data-toggle="modal" data-target="#myhead" class="moneryIcon" />
                         </p>
                         <div class="" style="text-align: right;">
-                            <a href="" class="aa no_checkbox1" onclick="submit()">Mua ngay</a>
+                            <span class="aa no_checkbox1" onclick="submit()">Mua ngay</span>
                         </div>
                         <div class="p" style="text-align: right; opacity: 0;">
                             <input type="checkbox" id="selectAll" />
@@ -702,7 +871,7 @@
 
         function new_vue() {
             F.vue = new Vue({
-                el: $('#payway__main-bottom')[0],
+                el: $('#three')[0],
                 data: F.vue,
                 methods: {
                     // plus: plus,
@@ -722,6 +891,194 @@
                 },
             });
         }
+
+        function time_format(start, end) {
+            var start_format = start.slice(0, 4) + '.' + start.slice(5, 7) + '.' + start.slice(8, 10);
+            var end_format = end.slice(0, 4) + '.' + end.slice(5, 7) + '.' + end.slice(8, 10);
+            return start_format + '-' + end_format;
+        }
+
+        function edit_coupon_product_id(array) {
+            let result = [];
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                let emptyObject = {};
+                emptyObject.productId = element._detail.id;
+                emptyObject.couponId = '';
+                emptyObject.totalAmount = element.totalAmount * element.quantity;
+                result.push(emptyObject);
+            }
+            return result;
+        }
+
+        function new_vue2() {
+            function set_products(array) {
+                let result = [];
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    let empty_object = {};
+                    empty_object.id = element._detail.id;
+                    empty_object.amount = element.totalAmount * element.quantity;
+                    result.push(empty_object);
+                }
+                return result;
+            }
+
+            function set_data(array) {
+                let result = [];
+                for (let index = 0; index < array.length; index++) {
+                    let element = array[index];
+                    element.canUse = !!element.status;
+                    element.isSelected = false;
+                    result.push(element);
+                }
+                return result;
+            }
+
+            function couponSelect(key, id, pids, status) {
+                if (status === 0) return false;
+                pids = JSON.parse(pids);
+
+                function isCanSelect(pid) {
+                    let array = F.vue2.coupon_product_id;
+                    for (let index = 0; index < array.length; index++) {
+                        let element = array[index];
+                        if (element.productId === pid && element.couponId === id) {
+                            // 取消选择
+                            let item1 = element;
+                            item1.couponId = '';
+                            array.splice(index, item1);
+
+                            let item = F.vue2.LS__data[key];
+                            item.isSelected = false;
+                            F.vue2.LS__data.splice(key, item);
+                            return true;
+                        } else if (element.productId === pid && element.couponId === "") {
+                            // 选择
+                            let item1 = element;
+                            item1.couponId = id;
+                            array.splice(index, item1);
+
+
+                            let item = F.vue2.LS__data[key];
+                            item.isSelected = true;
+                            F.vue2.LS__data.splice(key, item);
+                            return true;
+                        }
+                    }
+                }
+
+                function iscanUse(vue2_LS__data) {
+
+                    function judge(array) {
+                        let emptyLength = 0;
+                        let array1 = F.vue2.coupon_product_id;
+
+                        for (let index = 0; index < array.length; index++) {
+                            const pid = array[index];
+                            for (let index1 = 0; index1 < array1.length; index1++) {
+                                const element = array1[index1];
+                                if (pid === element.productId) {
+                                    if (element.couponId !== '') {
+                                        emptyLength += 1;
+                                    }
+                                }
+                            }
+                        }
+                        // 如果相等说明和已选的券重复了
+                        return emptyLength === array.length;
+                    }
+
+                    for (let index = 0; index < vue2_LS__data.length; index++) {
+                        const element = vue2_LS__data[index];
+                        if (element.status === 1 && element.isSelected === false) {
+                            if (judge(JSON.parse(element.pids))) {
+                                // 和已选的券重复了
+                                let item = F.vue2.LS__data[index];
+                                item.canUse = false;
+                                F.vue2.LS__data.splice(index, item);
+
+                            } else {
+                                let item = F.vue2.LS__data[index];
+                                item.canUse = true;
+                                F.vue2.LS__data.splice(index, item);
+                            }
+                        }
+                    }
+                }
+
+                for (let index = 0; index < pids.length; index++) {
+                    const element = pids[index];
+                    if (isCanSelect(element)) {
+                        break;
+                    }
+                }
+                iscanUse(F.vue2.LS__data);
+            }
+
+
+            F._judgeVoucher({
+                funid: localStorage.getItem("funId"),
+                products: JSON.stringify(set_products(F.LS__data)),
+            }, function (ret) {
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                F.vue2 = {
+                    LS__data: set_data(ret.details),
+                    selected: [],
+                    coupon_product_id: edit_coupon_product_id(F.LS__data),
+                    savePrice: 0,
+                };
+
+
+                F.vue2 = new Vue({
+                    el: $('#four')[0],
+                    data: F.vue2,
+                    methods: {
+                        time_format: time_format,
+                        couponSelect: couponSelect,
+                        priceFormat: F._priceFormat,
+                    },
+                    computed: {
+
+                    },
+                    watch: {
+                        coupon_product_id: function (val, oldVal) {
+                            let total = 0;
+
+                            function calc_coupon(totalAmount, couponId) {
+                                let array = F.vue2.LS__data;
+                                for (let index = 0; index < array.length; index++) {
+                                    const element = array[index];
+                                    if (couponId === element.id) {
+                                        if (element.voucherType === 0) {
+                                            // 折扣
+                                            return totalAmount * ((100 - element.voucherValue) / 100);
+                                        } else {
+                                            return element.voucherValue;
+                                        }
+                                    }
+                                }
+                            }
+
+                            let array = val;
+                            for (let index = 0; index < array.length; index++) {
+                                const element = array[index];
+                                if (element.couponId !== '') total += calc_coupon(element.totalAmount, element.couponId);
+                            }
+                            this.savePrice = total;
+
+                            // var data = this.LS__data;
+                            // localStorage.setItem("cart", JSON.stringify(data));
+                            // calc(data);
+                        },
+                    },
+                });
+
+            });
+        }
+
 
         var swiper = new Swiper('#index_banner', {
             pagination: '.swiper-pagination',
@@ -747,7 +1104,8 @@
 
         setTimeout(function () {
             new_vue();
-        }, 1400);
+            new_vue2();
+        }, 1000);
 
 
         $('.way li').click(function () {

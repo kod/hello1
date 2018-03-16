@@ -187,6 +187,12 @@
 .three {
     margin-top: 40px;
 }
+.four {
+    margin-top: 50px;
+}
+/* .four {
+    margin-top: 50px;
+} */
 /* .way img{margin-right:30px;margin-bottom:20px} */
 .fc {
     width: 800px;
@@ -224,6 +230,7 @@
     background: #0076f7;
     display: inline-block;
     margin: 13px 0;
+    cursor: pointer;
 }
 .fc .aa.no_checkbox {
     width: 338px;

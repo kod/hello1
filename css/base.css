@@ -3068,6 +3068,18 @@ textarea::-webkit-input-placeholder {
   border-color: #0e7ae7 transparent transparent transparent;
 }
 
+.eight-basecss a {
+  background: url(../img/coupondisselected.png) no-repeat 21px center;
+}
+
+.eight-basecss.act a {
+  background: url(../img/couponselected.png) no-repeat 21px center;
+}
+
+.eight-basecss a:hover{
+  background: url(../img/couponselected.png) no-repeat 21px center;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none !important;

@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="">
-    <title>Hóa đơn của tôi</title>
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Bộ sưu tập của tôi</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
     <script>
@@ -16,7 +17,6 @@
 
         gtag('config', 'UA-112306571-1');
     </script>
-    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <link href="../css/bootstrap.css?version=2.5.5-alpha" rel="stylesheet">
     <link rel="stylesheet" href="../css/swiper.min.css?version=2.5.5-alpha">
     <link href="../css/style.css?version=2.5.5-alpha" rel="stylesheet">
@@ -24,16 +24,223 @@
     <link href="../css/index_add_img.css?version=2.5.5-alpha" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/index_img.css?version=2.5.5-alpha">
     <link rel="stylesheet" href="../css/upload.css?version=2.5.5-alpha" />
-    <link rel="stylesheet" href="../css/bill.css?version=2.5.5-alpha" />
     <link rel="stylesheet" href="../css/base.css?version=2.5.5-alpha">
     <style>
         footer {
             float: left;
         }
+
+        .container {
+            width: 100%;
+            /* padding-right: 35px; */
+            /* padding-left: 35px; */
+        }
+
+        .container:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .operate {
+            float: left;
+            width: 100%;
+            margin-bottom: 30px;
+            /* padding-right: 55px;
+            padding-left: 55px; */
+        }
+
+        .operate__left {
+            float: left;
+            width: 50%;
+        }
+
+        .operate__right {
+            float: left;
+            width: 50%;
+            text-align: right;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .operate__left-item {
+            cursor: pointer;
+            font-size: 18px;
+            color: #ccc;
+            margin-right: 15px;
+        }
+
+        .operate__left-item_active {
+            color: #0076F7;
+        }
+
+        .main {
+            float: left;
+            width: 100%;
+        }
+
+        .main__item {
+            float: left;
+            width: 265px;
+            margin-right: 20px;
+            margin-left: 20px;
+            margin-bottom: 40px;
+        }
+
+        .main__item:hover {
+            transition-property: box-shadow;
+            -webkit-transition-property: box-shadow;
+            -moz-transition-property: box-shadow;
+            -o-transition-property: all;
+            transition-duration: .5s;
+            -webkit-transition-duration: .5s;
+            -moz-transition-duration: .5s;
+            -o-transition-duration: .5s;
+            box-shadow: 0 0 15px #d1d1d1;
+            -moz-box-shadow: 0 0 15px #d1d1d1;
+            -webkit-box-shadow: 0 0 15px #d1d1d1;
+            z-index: 99;
+        }
+
+        .main__item-top {
+            overflow: hidden;
+            width: 100%;
+            height: 150px;
+            text-align: center;
+            background-color: #0076F7;
+        }
+
+        .main__i-t-main {
+            position: relative;
+        }
+
+        .main__i-t-m-type1 {
+            font-size: 36px;
+            line-height: 150px;
+            color: #fff;
+        }
+
+        .main__i-t-m-type2 {
+            display: inline-block;
+            padding-top: 60px;
+            color: #fff;
+        }
+
+        .main__i-t-m-t2-left {
+            float: left;
+            font-size: 36px;
+            margin-right: 2px;
+        }
+
+        .main__i-t-m-t2-r-top {
+            font-size: 14px;
+            text-align: left;
+            padding-top: 3px;
+        }
+
+        .main__i-t-m-t2-r-bottom {
+            font-size: 14px;
+        }
+
+        .main__i-t-m-t2-right {
+            float: right;
+        }
+
+        .main__i-t-m-circle {
+            position: absolute;
+            top: -20px;
+            left: 112px;
+            height: 40px;
+            width: 40px;
+            background-color: #fff;
+            border-radius: 100%;
+        }
+
+        .main__i-t-m-badge {
+            position: absolute;
+            top: -35px;
+            right: -35px;
+            height: 70px;
+            line-height: 115px;
+            width: 70px;
+            color: #fff;
+            background-color: #fa534d;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .main__item-bottom {
+            width: 100%;
+            height: 245px;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .main__item-b-row1 {
+            margin-bottom: 65px;
+            line-height: 1.4;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 16px;
+        }
+
+        .main__item-b-row2 {
+            text-align: center;
+        }
+
+        .main__item-b-r2-button {
+            cursor: pointer;
+            height: 32px;
+            line-height: 32px;
+            width: 172px;
+            text-align: center;
+            color: #fff;
+            background-color: #0076F7;
+            border-radius: 21px;
+            margin-bottom: 40px;
+        }
+
+        .main__item-b-r2-button:hover {
+            background-color: #0070F0;
+        }
+
+        .main__item-b-r2-button:active {
+            background-color: #0060e0;
+        }
+
+        .main__item-b-row3 {
+            color: #999;
+        }
+
+        .nocoupon {
+            float: left;
+            width: 100%;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .nocoupon__img {
+            margin-bottom: 10px;
+        }
+
+        .nocoupon__tips {
+            font-size: 18px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .nocoupon__nav {
+            font-size: 15px;
+            font-weight: 700;
+            color: #4B9DF4;
+        }
     </style>
+
 </head>
 
-<body ng-app="billApp" ng-controller="billCtrl">
+<body ng-app="indexApp" ng-controller="collectionCtrl">
     <header class="header" id="header"></header>
     <div class="all all_nav">
         <div class="content navh" style="overflow: inherit;">
@@ -45,7 +252,7 @@
                 <a href="../index.html" class="">Trang chủ</a>
             </div>
             <div class="iwant right">
-                <a href="./bill.html" class="">Tôi muốn thanh toán nợ &gt;</a>
+                <a href="bill.html" class="">Tôi muốn thanh toán nợ &gt;</a>
             </div>
         </div>
     </div>
@@ -78,10 +285,10 @@
                         <li class="three">
                             <a href="order.html">Đơn hàng của tôi</a>
                         </li>
-                        <li class="four act">
+                        <li class="four">
                             <a href="bill.html">Hóa đơn của tôi</a>
                         </li>
-                        <li class="eight-basecss">
+                        <li class="eight-basecss act">
                             <a href="couponmy.html">Mã giảm giá</a>
                         </li>
                         <li class="five">
@@ -96,72 +303,51 @@
                     </ul>
                 </div>
                 <div class="right one-right">
-                    <h2>Hóa đơn của tôi </h2>
-                    <div class="bill">
-                        <table cellspacing="" cellpadding="0" id="J_tab_fam">
-                            <dl>
-                                <dd class="nav-item act" data-index="1" ng-click="reqType(1)">Hoá đơn kì này</dd>
-                                <dd class="nav-item" data-index="2" ng-click="reqType(2)">Hoá đơn kỳ sau</dd>
-                                <dd class="nav-item" data-index="3" ng-click="reqType(3)">Hoá đơn chưa xuất</dd>
-                                <dd class="nav-item" data-index="4" ng-click="reqType(4)">Hoá đơn đã than toán</dd>
-                                <dd class="nav-item" data-index="5" ng-click="reqType(5)">Hóa đơn hết hạn</dd>
-                            </dl>
-                            <thead>
-                                <tr>
-                                    <th>Mã đơn hàng</th>
-                                    <th>Số kỳ</th>
-                                    <th>Trả góp hàng tháng</th>
-                                    <!-- <th>Số tiền phải trả hàng tháng</th> -->
-                                    <!-- <th>Phí dịch vụ hàng tháng</th> -->
-                                    <th>Thời gian hết hạn</th>
-                                    <th>Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in billList">
-                                    <td ng-bind="item.orderId"></td>
-                                    <td ng-bind="item.periods"></td>
-                                    <td ng-bind="((item.interest+item.principal) | priceFormat) +' VND'"></td>
-                                    <!-- <td ng-bind="(item.principal | priceFormat) +' VND'"></td> -->
-                                    <!-- <td ng-bind="(item.interest | priceFormat) +' VND'"></td> -->
-                                    <td ng-bind="item.expireDate"></td>
-                                    <td ng-click="openbillDetail(item.orderId,item.transactionId,item.status,item.periods)">
-                                        <p>
-                                            <a href="" style="color: #444;">Tình trạng cụ thể</a>
-                                        </p>
-                                        <div class="ppp {{tdname}}">
-                                            <p ng-if="reqPara.period=='1'||reqPara.period=='5'">
-                                                <a ng-bind="period_json[item.status]"></a>
-                                            </p>
+
+                    <h2>Mã giảm giá</h2>
+                    <div class="container" id="container">
+                        <section class="operate">
+                            <div class="operate__left">
+                                <span class="operate__left-item" @click="selectTab(1)" :class="{ 'operate__left-item_active': status === 1 }">未使用</span>
+                                <span class="operate__left-item" @click="selectTab(2)" :class="{ 'operate__left-item_active': status === 2 }">已使用</span>
+                                <span class="operate__left-item" @click="selectTab(0)" :class="{ 'operate__left-item_active': status === 0 }">已过期</span>
+                            </div>
+                            <a href="./couponcenter.html" class="operate__right">Xem nhiều hơn >></a>
+                        </section>
+                        <section class="main" style="display: none" v-show="LS__data.length">
+                            <li class="main__item" v-for="(val, key) in LS__data">
+                                <div class="main__item-top">
+                                    <div class="main__i-t-main">
+                                        <div class="main__i-t-m-type1" v-show="val.voucherType === 1" v-html="val.voucherValue + ' VND'"></div>
+                                        <div class="main__i-t-m-type2" v-show="val.voucherType === 0">
+                                            <div class="main__i-t-m-t2-left" v-html="100 - val.voucherValue"></div>
+                                            <div class="main__i-t-m-t2-right">
+                                                <div class="main__i-t-m-t2-r-top">%</div>
+                                                <div class="main__i-t-m-t2-r-bottom">GIẢM</div>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr ng-repeat="item in billLists">
-                                    <td ng-bind="item.orderId"></td>
-                                    <td ng-bind="item.periods"></td>
-                                    <td ng-bind="(item.interest | priceFormat) +' VND'"></td>
-                                    <td ng-bind="(item.principal | priceFormat) +' VND'"></td>
-                                    <td ng-bind="item.expireDate"></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <div class="main__i-t-m-circle"></div>
+                                        <div class="main__i-t-m-badge" v-show="isNew(val.createTime)">Mới</div>
+                                    </div>
+                                </div>
+                                <div class="main__item-bottom">
+                                    <div class="main__item-b-row1">
+                                        <span class="main__item-b-r1-text" v-html="val.voucherDesc"></span>
+                                    </div>
+                                    <div class="main__item-b-row2">
+                                        <span class="main__item-b-r2-button" @click="useIt(val.typeId, val.brandId, val.productId)">Sử dụng ngay lập tức</span>
+                                    </div>
+                                    <div class="main__item-b-row3" v-html="time_format(val.startTime, val.expireTime)"></div>
+                                </div>
+                            </li>
+                        </section>
+                        <section class="nocoupon" style="display: none" v-show="!LS__data.length">
+                            <img src="../img/bill.jpg" alt="icon" class="nocoupon__img">
+                            <div class="nocoupon__tips">没有优惠券哦~</div>
+                            <a href="./couponcenter.html" class="nocoupon__nav">Xem nhiều hơn >></a>
+                        </section>
                     </div>
-                    <div class="changePage">
-                        <div style="margin-bottom: 30px;">
-                            <button id="lastPagebtn" ng-click="lastPage()">&lt;</button>
-                            <span style="padding-top: 3px;">Trang hiện tại:
-                                <span ng-bind="reqPara.page"></span>&nbsp;&nbsp;</span>
-                            <span style="padding-top: 3px;">Trang :
-                                <span ng-bind="totalPage"></span> tiên</span>
-                            <button id="nextPagebtn" ng-click="nextPage()">&gt;</button>
-                        </div>
-                    </div>
-                    <div class="no_list">
-                        <img src="../img/bill.jpg" alt="" />
-                        <p>Bạn chưa có hóa đơn nào cả, mau đặt hàng ngay thôi</p>
-                        <a href="../index.html">Đến trang chủ >></a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -218,15 +404,210 @@
     <script src="../js/jquery.js?version=2.5.5-alpha"></script>
     <script src="../js/bootstrap.js?version=2.5.5-alpha"></script>
     <script type="text/javascript" src="../js/cropbox.js?version=2.5.5-alpha"></script>
-    <!-- <script type="text/javascript" src="../js/search.js?version=2.5.5-alpha"></script> -->
-    <script src="../js/ajax.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="../js/md555.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="../js/md5.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/vue.min.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/getMd5Code.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/localStorage.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="../js/angularjs.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/bill.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js?version=2.5.5-alpha"></script>
     <script>
+        console.log(+new Date());
+        console.log(Date.parse('2018-03-14 13:18:18'));
+        console.log(Date.parse('2018-03-15 13:18:18') - Date.parse('2018-03-14 13:18:18'));
+        console.log(+new Date() - Date.parse('2018-03-14 13:18:18'));
+        console.log('3600000');
+
         F._isLogin();
+        var loading = new F._loading();
+
+        function useIt(typeId, brandId, productId) {
+            var url = '';
+
+            function gotoHTML(typeId, brandId, productId) {
+                var result = '';
+
+                if (brandId === 0) {
+                    switch (typeId) {
+                        case 1:
+                            result = './cellphoneBanner.html';
+                            break;
+
+                        case 2:
+                            result = './computerPage.html';
+                            break;
+
+                        case 5:
+                            result = './shumapeijian.html';
+                            break;
+
+                        default:
+                            break;
+                    }
+                } else {
+                    result = './details.html?typeId=' + typeId + '&brandId=' + brandId + '&id=' + productId;
+                }
+
+                return result;
+            }
+
+            if (typeId === 0) {
+                url = '../index.html';
+            } else {
+                url = gotoHTML(typeId, brandId, productId);
+            }
+
+            // switch (typeId) {
+            //     case 0:
+            //         url = '../index.html';
+            //         break;
+
+            //     case 1:
+
+            //         switch (brandId) {
+            //             case 0:
+            //                 url = './cellphoneBanner.html';
+            //                 break;
+
+            //             default:
+            //                 switch (productId) {
+            //                     case 0:
+            //                         url = './details.html?typeId=' + typeId + '&brandId=' + brandId + '&id=';
+            //                         break;
+
+            //                     default:
+            //                         url = './details.html?typeId=' + typeId + '&brandId=' + brandId + '&id=' + productId;
+            //                         break;
+            //                 }
+            //                 break;
+            //         }
+            //         break;
+
+            //     case 2:
+
+            //         switch (brandId) {
+            //             case 0:
+            //                 url = './computerPage.html';
+            //                 break;
+
+            //             default:
+            //                 switch (productId) {
+            //                     case 0:
+            //                         url = './details.html?typeId=' + typeId + '&brandId=' + brandId + '&id=';
+            //                         break;
+
+            //                     default:
+            //                         url = './details.html?typeId=' + typeId + '&brandId=' + brandId + '&id=' + productId;
+            //                         break;
+            //                 }
+            //                 break;
+            //         }
+            //         break;
+
+            //     case 5:
+
+            //         switch (brandId) {
+            //             case 0:
+            //                 url = './shumapeijian.html';
+            //                 break;
+
+            //             default:
+            //                 switch (productId) {
+            //                     case 0:
+            //                         url = './details.html?typeId=' + typeId + '&brandId=' + brandId + '&id=';
+            //                         break;
+
+            //                     default:
+            //                         url = './details.html?typeId=' + typeId + '&brandId=' + brandId + '&id=' + productId;
+            //                         break;
+            //                 }
+            //                 break;
+            //         }
+            //         break;
+
+
+            //         break;
+
+            //     default:
+            //         break;
+            // }
+            // console.log(url);
+            window.location.href = url;
+        }
+
+        function isNew(createTime) {
+            return +new Date() - Date.parse(createTime) < 86400000;
+        }
+
+        function selectTab(status) {
+            F.vue2.status = status;
+            F._setUrl('status', status);
+
+            loading.show();
+            F._getVoucherList({
+                funid: localStorage.getItem("funId"),
+                status: status,
+            }, function (ret) {
+                loading.hide();
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                F.vue2.LS__data = ret.details;
+            });
+        }
+
+        function time_format(start, end) {
+            var start_format = start.slice(0, 4) + '.' + start.slice(5, 7) + '.' + start.slice(8, 10);
+            var end_format = end.slice(0, 4) + '.' + end.slice(5, 7) + '.' + end.slice(8, 10);
+            return start_format + '-' + end_format;
+        }
+
+        function new_vue2() {
+            F.query = F._hrefUtils.parse().query || {};
+            var status = F.query.status || 1;
+
+            F._getVoucherList({
+                funid: localStorage.getItem("funId"),
+                status: status,
+            }, function (ret) {
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                F.vue2 = {
+                    status: +status,
+                    LS__data: ret.details,
+                };
+
+
+                F.vue2 = new Vue({
+                    el: $('#container')[0],
+                    data: F.vue2,
+                    methods: {
+                        selectTab: selectTab,
+                        time_format: time_format,
+                        isNew: isNew,
+                        useIt: useIt,
+                    },
+                    computed: {
+
+                    },
+                    watch: {
+                        // LS__data: function (val, oldVal) {
+                        //     var data = this.LS__data;
+                        //     localStorage.setItem("cart", JSON.stringify(data));
+                        //     calc(data);
+                        // },
+                    },
+                });
+
+            });
+
+        }
+
+        setTimeout(() => {
+            new_vue2();
+        }, 700);
 
         (now = new Date()), (hour = now.getHours());
         if (hour >= 1 && hour <= 9) {
@@ -241,7 +622,8 @@
 
 
         $(function () {
-            var a = $('.bill').html();
+            var a = $('.collection').html();
+
             if (a == '' || a == 0) {
                 $('.no_list').show();
             } else {
@@ -249,22 +631,17 @@
             }
         })
 
-        $(".nav-item").on('click', function () {
-            var self = $(this);
-            $('.nav-item').removeClass('act');
-            self.addClass('act');
+        $('#selectAll').click(function () {
+            if ($('#selectAll').is(':checked')) {
+                $('.collection').find('input').prop('checked', true);
+                $('.over button').attr('disabled', false);
+            } else {
+                $('.collection').find('input').prop('checked', false);
+                $('.over button').attr('disabled', true);
+            }
 
-            F._setUrl('status', self.data('index'));
-        });
+        })
 
-        // $('.one-right dl').find('dd').each(function(index) {
-        //     $(this).click(function() {
-        //         if ($(this).is('.act') == false) {
-        //             $('.one-right dl dd').removeClass('act').eq(index).addClass('act');
-        //             //					$('.table_list .dl_list').stop().hide().eq(index).stop().show();
-        //         }
-        //     })
-        // })
         $(window).load(function () {
             var options = {
                 thumbBox: '.thumbBox',
@@ -362,22 +739,8 @@
             //window.location.href="";
         });
 
-    // function gotoFind() {
-    //     var findcontent = $("#findIpt").val();
-    //     if (findcontent != "") {
-    //         window.location.href = "./search.html?findcontent=" + findcontent;
-    //     }
-    // }
-
-    // function entersearch() {
-    //     var event = window.event || arguments.callee.caller.arguments[0];
-    //     if (event.keyCode == 13)
-
-    //     {
-    //         gotoFind();
-    //     }
-    // }
     </script>
+    <script src="../js/collection.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
 </body>
 

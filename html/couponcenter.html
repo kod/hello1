@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-param" content="_csrf-frontend">
+  <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+  <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+  <link rel="stylesheet" href="../css/base.css?version=2.5.5-alpha">
+  <title>cart</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-112306571-1');
+  </script>
+  <script src="../js/jquery.js?version=2.5.5-alpha"></script>
+  <script src="../js/md5.js?version=2.5.5-alpha"></script>
+  <script src="../js/require2.3.5.min.js?version=2.5.5-alpha"></script>
+  <style>
+    .body {
+      line-height: 1;
+    }
+
+    .body {
+      border-top: 1px solid #72aef0;
+    }
+
+    .title {
+      padding-top: 40px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .title__text {
+      font-size: 24px;
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+
+    .title__line {
+      height: 1px;
+      width: 400px;
+      background-color: #f5f5f5;
+      margin-top: 8px;
+    }
+
+    .main:after {
+      display: block;
+      content: "";
+      clear: both;
+      height: 0;
+    }
+
+    .main__item {
+      float: left;
+      width: 521px;
+      height: 183px;
+      margin-left: 39.5px;
+      margin-right: 39.5px;
+      margin-bottom: 30px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-image: url(../img/coupon1.png)
+    }
+
+    .main__item:hover {
+      background-image: url(../img/coupon2.png);
+    }
+
+    .main__item-left {
+      float: left;
+      width: 131px;
+      height: 150px;
+      line-height: 150px;
+      /* background-color: #ff0; */
+      text-align: center;
+    }
+
+    .main__i-l-wrap {
+      display: inline-block;
+      height: 90px;
+      line-height: 90px;
+      width: 90px;
+      border: 1px solid #f5f5f5;
+      vertical-align: middle;
+    }
+
+    .main__i-l-discount {
+      vertical-align: middle;
+    }
+
+    .main__i-l-img {
+      height: 88px;
+      width: 88px;
+    }
+
+    .main__item-right {
+      float: left;
+      width: 390px;
+      height: 150px;
+      padding-top: 30px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .main__i-r-row1 {
+      float: left;
+      line-height: 1.4;
+      font-size: 18px;
+      margin-bottom: 15px;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      white-space: normal;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .main__i-r-row2 {
+      float: left;
+      width: 100%;
+    }
+
+    .main__i-r-r2-left {
+      float: left;
+      width: 50%;
+      padding-top: 8px;
+      color: #FD5147;
+    }
+
+    .main__i-r-r2-l-price {
+      font-size: 26px;
+    }
+
+    .main__i-r-r2-l-unit {
+      font-size: 15px;
+      padding-top: 8px;
+    }
+
+    .main__i-r-r2-l-left {
+      float: left;
+      font-size: 36px;
+      line-height: 1;
+      margin-right: 2px;
+    }
+
+    .main__i-r-r2-l-right {
+      float: left;
+    }
+
+    .main__i-r-r2-l-r-top {
+      font-size: 14px;
+      padding-top: 2px;
+    }
+
+    .main__i-r-r2-l-r-bottom {
+      font-size: 16px;
+    }
+
+    .main__i-r-r2-right {
+      float: left;
+      width: 50%;
+      padding-top: 8px;
+    }
+
+    .main__i-r-r2-r-button {
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      border-radius: 21px;
+      background-color: #FD5147;
+    }
+
+    .main__i-r-r2-r-button:hover {
+      cursor: pointer;
+    }
+
+    .main__i-r-r2-r-button:active {
+      background-color: #eD3127;
+    }
+
+    .bottom {
+      font-size: 14px;
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .main__item_disable:hover {
+      background-image: url(../img/coupon1.png);
+    }
+
+    .main__item_disable .main__i-r-r2-r-button {
+      background-color: #ccc;
+    }
+
+    .main__item_disable .main__i-r-r2-r-button:active {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content" id="vue-el">
+    <header class="header" id="header"></header>
+    <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+      <div class="body">
+        <section class="title">
+          <span class="title__line"></span>
+          <span class="title__text">Mã Giảm Giá</span>
+          <span class="title__line"></span>
+        </section>
+        <section class="main" style="display: none" v-show="LS__data.length">
+          <div class="main__item" v-for="(val, key) in LS__data" :class="{ 'main__item_disable': !get_status(val.status, val.totalNum - val.usedNum).status }">
+            <div class="main__item-left">
+              <div class="main__i-l-wrap">
+                <img src="../img/couponall.png" alt="image" class="main__i-l-discount" v-if="val.voucherType === 0">
+                <img alt="image" class="main__i-l-img" v-if="val.voucherType === 1" :src="val.voucherIcon">
+              </div>
+            </div>
+            <div class="main__item-right">
+              <div class="main__i-r-row1" v-html="val.voucherName"></div>
+              <div class="main__i-r-row2">
+                <div class="main__i-r-r2-left" v-if="val.voucherType === 1">
+                  <span class="main__i-r-r2-l-price" v-html="priceFormat(val.voucherValue)"></span>
+                  <span class="main__i-r-r2-l-unit">VND</span>
+                </div>
+                <div class="main__i-r-r2-left" v-if="val.voucherType === 0">
+                  <div class="main__i-r-r2-l-left" v-html="100 - val.voucherValue"></div>
+                  <div class="main__i-r-r2-l-right">
+                    <div class="main__i-r-r2-l-r-top">%</div>
+                    <div class="main__i-r-r2-l-r-bottom">GIẢM</div>
+                  </div>
+                </div>
+                <div class="main__i-r-r2-right">
+                  <div class="main__i-r-r2-r-button" v-html="get_status(val.status, val.totalNum - val.usedNum).text" @click="get_coupon(val.id, get_status(val.status, val.totalNum - val.usedNum).status)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="bottom">听说领券的同学晚餐都加了一个鸡腿，还不赶紧试试？</section>
+      </div>
+    </div>
+    <footer class="footer" id="footer"></footer>
+  </div>
+  <script>
+    require([
+      '../js/jquery1.11.2.js?version=2.5.5-alpha',
+      '../js/vue.min.js?version=2.5.5-alpha',
+      '../js/md5.js?version=2.5.5-alpha',
+      '../js/common.js?version=2.5.5-alpha',
+    ], function ($, Vue, md5) {
+      var loading = new F._loading();
+
+      F.vue = {
+        body__main_height: document.documentElement.clientHeight - 133 - 210 - 210,
+        LS__data: [],
+        is_selected_all: false,
+        productNum: 0, // 购物车商品数量
+        selectedProductNum: 0, // 已选择商品数量
+        selectedSaving: 0, // 优惠金额
+        selectedTotalAmount: 0, // 总金额
+        isLogin: false
+      };
+
+      var load = function () {
+        new_vue();
+      };
+
+      var pre_data = function (data) {
+        var market_getVoucher = data._market_getVoucher;
+        console.log(market_getVoucher);
+        F.vue.LS__data = market_getVoucher.details;
+      }
+
+      F.loadData = function (params, callback) {
+        if (callback === undefined) callback = params;
+
+        var all_data = {};
+        var request_length = 1; //请求个数
+
+        // 请求是否全部返回
+        function all_loaded() {
+          if (Object.keys(all_data).length === request_length) {
+            pre_data(all_data);
+            loading.hide();
+            callback(all_data);
+          }
+        }
+        loading.show();
+
+        loadData_market_getVoucher(function (ret) {
+          all_data._market_getVoucher = ret;
+          all_loaded();
+        });
+      };
+
+      function new_vue() {
+        F.vue = new Vue({
+          el: $('#vue-el')[0],
+          data: F.vue,
+          methods: {
+            priceFormat: F._priceFormat,
+            get_status: get_status,
+            get_coupon: get_coupon,
+          },
+          computed: {
+
+          },
+          watch: {
+            // LS__data: function (val, oldVal) {
+            //     var data = this.LS__data;
+            //     if (!F.vue.isLogin) localStorage.setItem("cart", JSON.stringify(data));
+            //     calc(data);
+            // },
+          },
+        });
+      }
+
+      function gohome() {
+        window.location.href = '../index.html';
+      }
+
+      function loadData_market_getVoucher(callback) {
+        var funid = localStorage.getItem("funId") || '';
+        F._market_getVoucher({
+          funid: funid
+        }, function (ret) {
+          if (!ret) return false;
+          if (ret.code !== 10000) return false;
+
+          callback(ret);
+        });
+      }
+
+      function get_coupon(id, status) {
+        if (!status) return false;
+        if (!localStorage.getItem("funId")) {
+          F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
+            name: 'Xác nhận',
+            func: function () {
+              window.location.href = 'login.html';
+            }
+          }]);
+          return false;
+        }
+
+        loading.show();
+        F._receiveVoucher({
+          funid: localStorage.getItem("funId"),
+          voucherid: id,
+        }, function (ret) {
+          loading.hide();
+          if (!ret) return false;
+          if (ret.code !== 10000) return false;
+          location.reload();
+        });
+      }
+
+      function get_status(status, num) {
+        // num：剩余
+        var text;
+        var status;
+        if (status === 0) {
+          // 已领取
+          text = '已领取';
+          status = false;
+        } else {
+          switch (num) {
+            case 0:
+              text = '已抢光';
+              status = false;
+              break;
+
+            default:
+              text = 'Sử dụng ngay lập tức';
+              status = true;
+              break;
+          }
+        }
+
+        return {
+          text: text,
+          status: status,
+        };
+      }
+
+      F.loadData(function () {
+        load();
+      });
+    })
+  </script>
+  <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+</body>
+
+</html>

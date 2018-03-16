@@ -92,7 +92,7 @@ nav a {
 }
 .money {
   width: 100%;
-  height: 109px;
+  min-height: 109px;
   background: #f2f2f2;
   padding: 10px 28px;
   margin-top: 40px;
