@@ -332,7 +332,7 @@
                                 </div>
                                 <div class="main__item-bottom">
                                     <div class="main__item-b-row1">
-                                        <span class="main__item-b-r1-text" v-html="val.voucherDesc"></span>
+                                        <span class="main__item-b-r1-text" v-html="val.voucherName"></span>
                                     </div>
                                     <div class="main__item-b-row2">
                                         <span class="main__item-b-r2-button" @click="useIt(val.typeId, val.brandId, val.productId)">Sử dụng ngay lập tức</span>
@@ -413,12 +413,6 @@
     <script src="../js/ajax.js?version=2.5.5-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="../js/common.js?version=2.5.5-alpha"></script>
     <script>
-        console.log(+new Date());
-        console.log(Date.parse('2018-03-14 13:18:18'));
-        console.log(Date.parse('2018-03-15 13:18:18') - Date.parse('2018-03-14 13:18:18'));
-        console.log(+new Date() - Date.parse('2018-03-14 13:18:18'));
-        console.log('3600000');
-
         F._isLogin();
         var loading = new F._loading();
 

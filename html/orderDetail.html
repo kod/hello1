@@ -697,7 +697,9 @@
             function operate_rihgt() {
                 if (F.vue.tradeStatus === '10000') {
 
+                    loading.show();
                     F._is_initPaypassword(function (status) {
+                        loading.hide();
                         if (status === false && F.vue.payway === '1') {
                             F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
                                 {

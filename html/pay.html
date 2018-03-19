@@ -635,20 +635,27 @@
         }
 
         function go_next() {
+            var coupon_item = get_coupon_item(get_coupon_id(F.vue2.coupon_product_id),F.vue2.LS__data);
+            
             if (F.isToCart) {
                 loading.show();
                 var analyze_orderdetails_result = analyze_orderdetails(F.LS__data);
+                let advance = analyze_orderdetails_result.advance - F.vue2.savePrice;
+                advance = advance > 0 ? advance : analyze_orderdetails_result.advance;
                 F._createDisOrder({
                     orderdetails: [{
                         payRate: F.paymentNum + '',
                         orderNo: F._create_orderno(localStorage.getItem("funId")),
                         totalAmount: analyze_orderdetails_result.totalAmount,
                         orgAmount: analyze_orderdetails_result.orgAmount,
-                        advance: analyze_orderdetails_result.advance,
+                        advance: advance,
                         currency: 'VND',
                         subject: analyze_orderdetails_result.subject,
                         goodsDetail: JSON.stringify(analyze_orderdetails_result.goodsDetail),
                         repaymentMonth: F.fenqiNum,
+                        couponCard: coupon_item.cardno || '',
+                        couponPassword: coupon_item.pincode || '',
+                        couponType: coupon_item.voucherType || 0,
                     }],
                     ordertype: F.paymentNum === 1 ? "3" : "4",
                     addrid: F.address_id,
@@ -657,13 +664,15 @@
             } else if (F.paymentNum === 1) { // 全款
 
                 loading.show();
+                let advance = F.totalamount - F.vue2.savePrice;
+                advance = advance > 0 ? advance : F.totalamount;
                 F._createDisOrder({
                     orderdetails: [{
                         payRate: '1',
                         orderNo: F._create_orderno(localStorage.getItem("funId")),
                         totalAmount: F.totalamount,
                         orgAmount: F.orgPrice,
-                        advance: F.totalamount,
+                        advance: advance,
                         currency: 'VND',
                         subject: F.subject,
                         goodsDetail: JSON.stringify([{
@@ -672,6 +681,9 @@
                             productInfoId: JSON.parse(F.goodsDetail)['id']
                         }]),
                         repaymentMonth: 0,
+                        couponCard: coupon_item.cardno || '',
+                        couponPassword: coupon_item.pincode || '',
+                        couponType: coupon_item.voucherType || 0,
                     }],
                     ordertype: "2",
                     addrid: F.address_id,
@@ -680,13 +692,15 @@
             } else {
 
                 loading.show();
+                let advance = parseInt(F.totalamount * F.paymentNum) - F.vue2.savePrice;
+                advance = advance > 0 ? advance : parseInt(F.totalamount * F.paymentNum);
                 F._createDisOrder({
                     orderdetails: [{
                         payRate: F.paymentNum + '',
                         orderNo: F._create_orderno(localStorage.getItem("funId")),
                         totalAmount: F.totalamount,
                         orgAmount: F.orgPrice,
-                        advance: parseInt(F.totalamount * F.paymentNum),
+                        advance: advance,
                         currency: 'VND',
                         subject: F.subject,
                         goodsDetail: JSON.stringify([{
@@ -695,11 +709,29 @@
                             productInfoId: JSON.parse(F.goodsDetail)['id']
                         }]),
                         repaymentMonth: F.fenqiNum,
+                        couponCard: coupon_item.cardno || '',
+                        couponPassword: coupon_item.pincode || '',
+                        couponType: coupon_item.voucherType || 0,
                     }],
                     ordertype: "0",
                     addrid: F.address_id,
                 }, createDisOrder_callback);
 
+            }
+        }
+
+        function get_coupon_id(array) {
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                if (element.couponId) return element.couponId;
+            }
+        }
+
+        function get_coupon_item(id, array) {
+            if (id === undefined) return {};
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                if (element.id === id) return element;
             }
         }
 
@@ -781,9 +813,11 @@
                 });
             }
 
+            loading.show();
             if (F.paymentNum === 1) {
                 // 全款
                 F._is_initPaypassword(function (status) {
+                    loading.hide();
                     if (status === false && F.vue.payway === '1') {
                         F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
                             {
@@ -800,6 +834,7 @@
 
             } else {
                 F._is_initPaypassword(function (status) {
+                    loading.hide();
                     if (status === false && F.vue.payway === '1') {
                         F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
                             {
@@ -937,83 +972,192 @@
 
             function couponSelect(key, id, pids, status) {
                 if (status === 0) return false;
-                pids = JSON.parse(pids);
 
-                function isCanSelect(pid) {
-                    let array = F.vue2.coupon_product_id;
-                    for (let index = 0; index < array.length; index++) {
-                        let element = array[index];
-                        if (element.productId === pid && element.couponId === id) {
-                            // 取消选择
-                            let item1 = element;
-                            item1.couponId = '';
-                            array.splice(index, item1);
+                // 一个订单可以使用多张优惠券
+                function A(key, id, pids) {
+                    pids = JSON.parse(pids);
 
-                            let item = F.vue2.LS__data[key];
-                            item.isSelected = false;
-                            F.vue2.LS__data.splice(key, item);
-                            return true;
-                        } else if (element.productId === pid && element.couponId === "") {
-                            // 选择
-                            let item1 = element;
-                            item1.couponId = id;
-                            array.splice(index, item1);
+                    function isCanSelect(pid) {
+                        let array = F.vue2.coupon_product_id;
+                        for (let index = 0; index < array.length; index++) {
+                            let element = array[index];
+                            if (element.productId === pid && element.couponId === id) {
+                                // 取消选择
+                                let item1 = element;
+                                item1.couponId = '';
+                                array.splice(index, item1);
+
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = false;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            } else if (element.productId === pid && element.couponId === "") {
+                                // 选择
+                                let item1 = element;
+                                item1.couponId = id;
+                                array.splice(index, item1);
 
 
-                            let item = F.vue2.LS__data[key];
-                            item.isSelected = true;
-                            F.vue2.LS__data.splice(key, item);
-                            return true;
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = true;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            }
                         }
                     }
-                }
 
-                function iscanUse(vue2_LS__data) {
+                    function iscanUse(vue2_LS__data) {
 
-                    function judge(array) {
-                        let emptyLength = 0;
-                        let array1 = F.vue2.coupon_product_id;
+                        function judge(array) {
+                            let emptyLength = 0;
+                            let array1 = F.vue2.coupon_product_id;
 
-                        for (let index = 0; index < array.length; index++) {
-                            const pid = array[index];
-                            for (let index1 = 0; index1 < array1.length; index1++) {
-                                const element = array1[index1];
-                                if (pid === element.productId) {
-                                    if (element.couponId !== '') {
-                                        emptyLength += 1;
+                            for (let index = 0; index < array.length; index++) {
+                                const pid = array[index];
+                                for (let index1 = 0; index1 < array1.length; index1++) {
+                                    const element = array1[index1];
+                                    if (pid === element.productId) {
+                                        if (element.couponId !== '') {
+                                            emptyLength += 1;
+                                        }
                                     }
                                 }
                             }
+                            // 如果相等说明和已选的券重复了
+                            return emptyLength === array.length;
                         }
-                        // 如果相等说明和已选的券重复了
-                        return emptyLength === array.length;
-                    }
 
-                    for (let index = 0; index < vue2_LS__data.length; index++) {
-                        const element = vue2_LS__data[index];
-                        if (element.status === 1 && element.isSelected === false) {
-                            if (judge(JSON.parse(element.pids))) {
-                                // 和已选的券重复了
-                                let item = F.vue2.LS__data[index];
-                                item.canUse = false;
-                                F.vue2.LS__data.splice(index, item);
+                        for (let index = 0; index < vue2_LS__data.length; index++) {
+                            const element = vue2_LS__data[index];
+                            if (element.status === 1 && element.isSelected === false) {
+                                if (judge(JSON.parse(element.pids))) {
+                                    // 和已选的券重复了
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = false;
+                                    F.vue2.LS__data.splice(index, item);
 
-                            } else {
-                                let item = F.vue2.LS__data[index];
-                                item.canUse = true;
-                                F.vue2.LS__data.splice(index, item);
+                                } else {
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = true;
+                                    F.vue2.LS__data.splice(index, item);
+                                }
                             }
                         }
                     }
+
+                    for (let index = 0; index < pids.length; index++) {
+                        const element = pids[index];
+                        if (isCanSelect(element)) {
+                            break;
+                        }
+                    }
+                    iscanUse(F.vue2.LS__data);
                 }
 
-                for (let index = 0; index < pids.length; index++) {
-                    const element = pids[index];
-                    if (isCanSelect(element)) {
-                        break;
+                // 一个订单只能使用一张优惠券
+                function B(key, id, pids) {
+                    pids = JSON.parse(pids);
+
+
+                    // 是否已选择了优惠券
+                    function isSelected(array) {
+                        for (let index = 0; index < array.length; index++) {
+                            const element = array[index];
+                            if (element.couponId !== '') return true;
+                        }
+                        return false;
                     }
+
+
+                    function isCanSelect(pid) {
+                        let array = F.vue2.coupon_product_id;
+                        for (let index = 0; index < array.length; index++) {
+                            let element = array[index];
+                            if (element.productId === pid && element.couponId === id) {
+                                // 取消选择
+                                let item1 = element;
+                                item1.couponId = '';
+                                array.splice(index, item1);
+
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = false;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            } else if (element.productId === pid && element.couponId === "" && !isSelected(F.vue2.coupon_product_id)) {
+                                
+                                // 选择
+                                let item1 = element;
+                                item1.couponId = id;
+                                array.splice(index, item1);
+
+
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = true;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            }
+                        }
+                    }
+
+                    function iscanUse(vue2_LS__data) {
+
+                        function judge(array) {
+                            let emptyLength = 0;
+                            let array1 = F.vue2.coupon_product_id;
+
+                            for (let index = 0; index < array.length; index++) {
+                                const pid = array[index];
+                                for (let index1 = 0; index1 < array1.length; index1++) {
+                                    const element = array1[index1];
+                                    if (pid === element.productId) {
+                                        if (element.couponId !== '') {
+                                            emptyLength += 1;
+                                        }
+                                    }
+                                }
+                            }
+                            // 如果相等说明和已选的券重复了
+                            return emptyLength === array.length;
+                        }
+
+                        for (let index = 0; index < vue2_LS__data.length; index++) {
+                            const element = vue2_LS__data[index];
+                            if (element.status === 1 && element.isSelected === false) {
+                                if (isSelected(F.vue2.coupon_product_id)) {
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = false;
+                                    F.vue2.LS__data.splice(index, item);
+                                } else {
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = true;
+                                    F.vue2.LS__data.splice(index, item);
+                                }
+
+                                // if (judge(JSON.parse(element.pids))) {
+                                //     // 和已选的券重复了
+                                //     let item = F.vue2.LS__data[index];
+                                //     item.canUse = false;
+                                //     F.vue2.LS__data.splice(index, item);
+
+                                // } else {
+                                //     let item = F.vue2.LS__data[index];
+                                //     item.canUse = true;
+                                //     F.vue2.LS__data.splice(index, item);
+                                // }
+                            }
+                        }
+                    }
+
+                    for (let index = 0; index < pids.length; index++) {
+                        const element = pids[index];
+                        if (isCanSelect(element)) {
+                            break;
+                        }
+                    }
+                    iscanUse(F.vue2.LS__data);
                 }
-                iscanUse(F.vue2.LS__data);
+
+                B(key, id, pids);
             }
 
 

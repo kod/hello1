@@ -217,12 +217,14 @@
 
         .coupon__left-item {
             float: left;
+            cursor: pointer;
             border: 2px solid #F7054F;
             border-radius: 1px;
             margin-right: 15px;
         }
 
         .coupon__left-item_dis {
+            cursor: not-allowed;
             border-color: #ccc;
         }
 
@@ -264,6 +266,11 @@
         .coupon__left-item_dis .coupon__l-i-button {
             background-color: #ccc;
         }
+        
+        .coupon__left-item_discount .coupon__l-i-text {
+            min-width: 70px;
+        }
+
     </style>
 </head>
 
@@ -341,14 +348,11 @@
                     </div>
                     <div class="coupon" id="coupon" style="display: none;" v-show="LS__data.length">
                         <div class="coupon__left">
-                            <li class="coupon__left-item" v-for="(val, key) in LS__data">
-                                <div class="coupon__l-i-text">50,000 VND</div>
-                                <div class="coupon__l-i-button">领取</div>
+                            <li class="coupon__left-item" v-for="(val, key) in LS__data" @click="get_coupon(val.id, get_status(val.status, val.totalNum - val.usedNum).status)" :class="{ 'coupon__left-item_dis': val.status === 0, 'coupon__left-item_discount': val.voucherType === 0 }">
+                                <div class="coupon__l-i-text" v-if="val.voucherType === 0" v-html="'-' + (100 - val.voucherValue) + '%'"></div>
+                                <div class="coupon__l-i-text" v-if="val.voucherType === 1" v-html="val.voucherValue + ' VND'"></div>
+                                <div class="coupon__l-i-button" v-html="val.status === 0 ? '已领': '领取'">领取</div>
                             </li>
-                            <!-- <li class="coupon__left-item coupon__left-item_dis">
-                                <div class="coupon__l-i-text">-5%</div>
-                                <div class="coupon__l-i-button">已领</div>
-                            </li> -->
                         </div>
                         <a href="./couponcenter.html" class="coupon__right">Xem nhiều hơn >></a>
                     </div>
@@ -782,7 +786,9 @@
         }
 
         function new_vue2() {
+            var funid = localStorage.getItem("funId") || '';
             F._market_getVoucher({
+                funid: funid,
                 typeid: F.query.typeId,
                 brandid: F.query.brandId,
                 productid: F.id,
@@ -800,8 +806,8 @@
                     el: $('#coupon')[0],
                     data: F.vue2,
                     methods: {
-                        // plus: plus,
-                        // minus: minus,
+                        get_status: F._get_status,
+                        get_coupon: F._get_coupon,
                     },
                     computed: {
 

@@ -279,7 +279,6 @@
 
       var pre_data = function (data) {
         var market_getVoucher = data._market_getVoucher;
-        console.log(market_getVoucher);
         F.vue.LS__data = market_getVoucher.details;
       }
 
@@ -311,8 +310,11 @@
           data: F.vue,
           methods: {
             priceFormat: F._priceFormat,
-            get_status: get_status,
-            get_coupon: get_coupon,
+            get_status: F._get_status,
+            get_coupon: F._get_coupon,
+
+            // get_status: get_status,
+            // get_coupon: get_coupon,
           },
           computed: {
 
