@@ -2963,6 +2963,14 @@ textarea::-webkit-input-placeholder {
   border-bottom-width: 0px;
 }
 
+.modal-header .left {
+  float: left;
+}
+
+.modal-header .right {
+  float: right;
+}
+
 .modal .alert__b-m-t-close {
   margin-top: 0;
 }

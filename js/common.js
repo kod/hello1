@@ -3085,7 +3085,7 @@ F._createDisOrder = function(params, callback) {
   var method = 'fun.trade.createDisOrder';
   var charset = 'utf-8';
   var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
-  var version = '2.0';
+  var version = '2.1';
 
   var funid = localStorage.getItem('funId');
   var orderdetails = JSON.stringify(params.orderdetails);
@@ -4262,6 +4262,7 @@ F._localToServer = function(callback) {
 
 F._add_edit_address = function(params) {
   var is_modify = !!params.id;
+  var loading = new F._loading();
 
   function edit_address(data) {
     var provinces_data = data.provinces_data || [];
@@ -4335,8 +4336,8 @@ F._add_edit_address = function(params) {
                             </div>\
                         </div>-->\
                         <h4 id="errormsg" class="errormsg"><img src="../img/tishi.png"><small>Tên và số điện thoại không được để trống....</small></h4>\
-                        <a class="rc rcone" ng-click="submit()" style="display: none;">Xác nhận thông tin chính xác và lưu</a>\
-                        <a class="rc rctwo" id="add-address-submit">Xác nhận thông tin chính xác và lưu</a>\
+                        <i class="rc rcone" ng-click="submit()" style="cursor: pointer;display: none;">Xác nhận thông tin chính xác và lưu</i>\
+                        <i class="rc rctwo" style="cursor: pointer;" id="add-address-submit">Xác nhận thông tin chính xác và lưu</i>\
                     </div>\
                 </div>\
             </div>\

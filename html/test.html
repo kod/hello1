@@ -54,6 +54,13 @@
   </select>
   <button type="submit" id="submit">提交</button>
   <script>
+    // const htmlStr = 'https://www.buyoo.vn/html/addOnItemdetails.html?brandId=139&masterId=112';
+    const htmlStr = 'https://www.buyoo.vn/html/addOnItemdetails/139-112.html';
+    const quarter_regexp = /addOnItemdetails\/([^]+?)-([^]+?)\.html/;
+    const result = htmlStr.match(quarter_regexp);
+    console.log(result);
+  </script>
+  <script>
     var hrefUtils = (function (loc) {
       var utils = {
         convertQs: function (qs) {
@@ -113,7 +120,7 @@
 
       var val = $('#banklist').val().split('-');
       var username = $("#username").val();
-      
+
       if (url_base.indexOf('?') === -1) {
         url_base += '?bankID=' + val[0] + '&userName=' + username;
       } else {
