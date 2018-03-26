@@ -363,7 +363,7 @@
                                         <option value="0.5">50%</option>
                                     </select>
                                     <span style="line-height: 25px;">Thanh toán lần đầu
-                                        <i v-html="priceFormat(totalamount*paymentNum)"></i> VND</span>
+                                        <i v-html="priceFormat((totalamount-savePrice)*paymentNum)"></i> VND</span>
                                 </div>
                             </div>
                             <div class="list">
@@ -595,7 +595,7 @@
                     return result;
                 }
 
-                change_money(F.totalamount, F.fenqiNum, F.paymentNum);
+                change_money(F.vue.totalamount - F.vue.savePrice, F.vue.fenqiNum, F.vue.paymentNum);
 
                 F.vue.LS__coupon = set_couponData(judgeVoucher);
 
@@ -701,8 +701,7 @@
                                     .attr("disabled", true)
                                     .addClass("actives");
                                 F.vue.resPrice = F.vue.totalamount;
-                                F.vue.paymentNum = num;
-                                F.paymentNum = num;
+                                // F.vue.paymentNum = num;
                             } else {
                                 $('#three .fullpay_mark').hide();
 
@@ -712,14 +711,13 @@
                                 $(".fenqiNumBtn button")
                                     .attr("disabled", false)
                                     .removeClass("actives");
-                                F.vue.paymentNum = num;
-                                F.paymentNum = num;
+                                // F.vue.paymentNum = num;
 
-                                change_money(F.vue.totalamount, F.vue.fenqiNum, num);
+                                change_money(F.vue.totalamount - F.vue.savePrice, F.vue.fenqiNum, num);
                             }
                         },
                         fenqiNum: function (val, oldVal) {
-                            change_money(F.vue.totalamount, val, F.vue.paymentNum);
+                            change_money(F.vue.totalamount - F.vue.savePrice, val, F.vue.paymentNum);
                         },
                         coupon_product_id: function (val, oldVal) {
                             let total = 0;
@@ -740,14 +738,13 @@
                             }
 
                             let array = val;
-                            console.log(array);
                             for (let index = 0; index < array.length; index++) {
                                 const element = array[index];
                                 if (element.couponId !== '') total += calc_coupon(element.totalAmount, element.couponId);
                             }
-                            this.savePrice = total;
+                            this.savePrice = +total;
 
-                            change_money(F.vue.totalamount - +total, F.vue.fenqiNum, F.vue.paymentNum);
+                            change_money(F.vue.totalamount - F.vue.savePrice, F.vue.fenqiNum, F.vue.paymentNum);
                         },
                     },
                 });
@@ -1121,7 +1118,7 @@
                     var analyze_orderdetails_result = analyze_orderdetails(F.LS__data);
                     F._createDisOrder({
                         orderdetails: [{
-                            payRate: F.paymentNum + '',
+                            payRate: F.vue.paymentNum + '',
                             orderNo: F._create_orderno(localStorage.getItem("funId")),
                             totalAmount: analyze_orderdetails_result.totalAmount,
                             orgAmount: analyze_orderdetails_result.orgAmount,
@@ -1129,7 +1126,7 @@
                             currency: 'VND',
                             subject: analyze_orderdetails_result.subject,
                             goodsDetail: JSON.stringify(analyze_orderdetails_result.goodsDetail),
-                            repaymentMonth: F.fenqiNum,
+                            repaymentMonth: F.vue.fenqiNum,
                             couponCard: coupon_item.cardno || '',
                             couponPassword: coupon_item.pincode || '',
                             couponType: coupon_item.voucherType || 0,
@@ -1137,11 +1134,11 @@
                             couponTypeId: coupon_item.typeId || 0,
                             couponProductInfoId: coupon_item.productId || 0,
                         }],
-                        ordertype: F.paymentNum === 1 ? "3" : "4",
+                        ordertype: F.vue.paymentNum === 1 ? "3" : "4",
                         addrid: F.address_id,
                     }, createDisOrder_callback);
 
-                } else if (F.paymentNum === 1) { // 全款
+                } else if (F.vue.paymentNum === 1) { // 全款
 
                     loading.show();
                     F._createDisOrder({
@@ -1176,11 +1173,11 @@
                     loading.show();
                     F._createDisOrder({
                         orderdetails: [{
-                            payRate: F.paymentNum + '',
+                            payRate: F.vue.paymentNum + '',
                             orderNo: F._create_orderno(localStorage.getItem("funId")),
                             totalAmount: F.totalamount,
                             orgAmount: F.orgPrice,
-                            advance: F.totalamount * F.paymentNum,
+                            advance: F.totalamount * F.vue.paymentNum,
                             currency: 'VND',
                             subject: F.subject,
                             goodsDetail: JSON.stringify([{
@@ -1188,7 +1185,7 @@
                                 cartitemid: '',
                                 productInfoId: JSON.parse(F.goodsDetail)['id']
                             }]),
-                            repaymentMonth: F.fenqiNum,
+                            repaymentMonth: F.vue.fenqiNum,
                             couponCard: coupon_item.cardno || '',
                             couponPassword: coupon_item.pincode || '',
                             couponType: coupon_item.voucherType || 0,
@@ -1272,7 +1269,7 @@
                     return quantity;
                 }
 
-                F.paymentNum = parseFloat(F.paymentNum);
+                F.vue.paymentNum = parseFloat(F.vue.paymentNum);
                 F.totalamount = parseFloat(F.totalamount);
                 F.quantity = get_num(F.LS__data);
 
@@ -1299,7 +1296,7 @@
                 }
 
                 loading.show();
-                if (F.paymentNum === 1) {
+                if (F.vue.paymentNum === 1) {
                     // 全款
                     F._is_initPaypassword(function (status) {
                         loading.hide();
@@ -1368,7 +1365,7 @@
                     }
                 }
 
-                if (F.paymentNum === 1) {
+                if (F.vue.paymentNum === 1) {
                     // 全款
                     go_pay();
                 } else {

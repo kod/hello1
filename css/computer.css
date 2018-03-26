@@ -1,6 +1,6 @@
 		.hot_brand{overflow: hidden;height: 100%;}
 		.hot_brand a{margin:14px 0;font-size:15px}
-		.navh .nav a:nth-child(1){border-bottom:0px solid #0075f6;height: 37px;}
+		/* .navh .nav a:nth-child(1){border-bottom:0px solid #0075f6;height: 37px;} */
 		.swiper-button-next, .swiper-container-rtl .swiper-button-prev{right:70px;background: url(../img/fe.png) no-repeat;pointer-events: inherit;}
 		.swiper-button-prev, .swiper-container-rtl .swiper-button-next{left:70px;background: url(../img/le.png) no-repeat;pointer-events: inherit;}
 		.sliderad1{width:598px;padding:0;height:100%;margin:0;font-size:0!important}
