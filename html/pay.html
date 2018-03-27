@@ -8,9 +8,9 @@
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
-    <link rel="stylesheet" href="../css/bootstrap.css?version=2.5.5-beta">
-    <link rel="stylesheet" href="../css/pay.css?version=2.5.5-beta">
-    <link rel="stylesheet" href="../css/base.css?version=2.5.5-beta">
+    <link rel="stylesheet" href="../css/bootstrap.css?version=2.6.0-alpha">
+    <link rel="stylesheet" href="../css/pay.css?version=2.6.0-alpha">
+    <link rel="stylesheet" href="../css/base.css?version=2.6.0-alpha">
     <title>Trung tâm thanh toán</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
@@ -21,10 +21,10 @@
 
         gtag('config', 'UA-112306571-1');
     </script>
-    <script src="../js/jquery.js?version=2.5.5-beta"></script>
-    <script src="../js/bootstrap.js?version=2.5.5-beta"></script>
-    <script src="../js/md5.js?version=2.5.5-beta"></script>
-    <script src="../js/require2.3.5.min.js?version=2.5.5-beta"></script>
+    <script src="../js/jquery.js?version=2.6.0-alpha"></script>
+    <script src="../js/bootstrap.js?version=2.6.0-alpha"></script>
+    <script src="../js/md5.js?version=2.6.0-alpha"></script>
+    <script src="../js/require2.3.5.min.js?version=2.6.0-alpha"></script>
     <style>
         .body {
             border-top: 1px solid #72aef0;
@@ -396,16 +396,16 @@
                                     <div class="four__i-t-time" v-html="time_format(val.startTime, val.expireTime)"></div>
                                     <div class="four__i-t-arrow" v-show="val.isSelected"></div>
                                 </div>
-                                <div class="four__item-bottom" v-if="val.status === 0">所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品</div>
+                                <div class="four__item-bottom" v-if="val.status === 0" v-html="val.voucherDesc"></div>
                             </item>
                         </div>
                         <!-- <div class="four__more">
                                 <span>查看更多</span>
                                 <img src="../img/couponmore.png" alt="more" class="four__more-icon">
                             </div> -->
-                        <div class="four__nodata" style="display: none;" v-show="LS__coupon.length === 0">没有优惠券</div>
+                        <div class="four__nodata" style="display: none;" v-show="LS__coupon.length === 0">Không thể sử dụng voucher</div>
                         <div class="four__money" style="display: none;" v-show="LS__coupon.length > 0">
-                            <span class="four__money-text">金额抵用</span>
+                            <span class="four__money-text">Tiết kiệm</span>
                             <span class="four__money-price" v-html="priceFormat(savePrice) + ' VND'"></span>
                         </div>
                     </div>
@@ -522,11 +522,11 @@
     </div>
     <script>
         require([
-            '../js/jquery1.11.2.js?version=2.5.5-beta',
-            '../js/vue.min.js?version=2.5.5-beta',
-            '../js/md5.js?version=2.5.5-beta',
-            '../js/common.js?version=2.5.5-beta',
-            '../js/popup.js?version=2.5.5-beta',
+            '../js/jquery1.11.2.js?version=2.6.0-alpha',
+            '../js/vue.min.js?version=2.6.0-alpha',
+            '../js/md5.js?version=2.6.0-alpha',
+            '../js/common.js?version=2.6.0-alpha',
+            '../js/popup.js?version=2.6.0-alpha',
         ], function ($, Vue, md5) {
             var loading = new F._loading();
 
@@ -642,16 +642,28 @@
                 }
                 loading.show();
 
-                F._userAction_userViewAddr({}, function (ret) {
-                    if (!ret) return false;
-                    if (ret.code !== 10000) return false;
 
-                    all_data._userViewAddr = ret;
+                if (localStorage.getItem("funId")) {
+                    F._userAction_userViewAddr({}, function (ret) {
+                        if (!ret) return false;
+                        if (ret.code !== 10000) return false;
+
+                        all_data._userViewAddr = ret;
+                        all_loaded();
+                    });
+                } else {
+                    all_data._userViewAddr = {
+                        "subMsg": "find success",
+                        "details": [],
+                        "subCode": "10000",
+                        "code": 10000,
+                        "msg": "success"
+                    };
                     all_loaded();
-                });
+                }
 
                 F._judgeVoucher({
-                    funid: localStorage.getItem("funId"),
+                    funid: localStorage.getItem("funId") || '',
                     products: JSON.stringify(set_products(F.LS__data)),
                 }, function (ret) {
                     if (!ret) return false;

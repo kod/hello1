@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
     <link rel="stylesheet" href="../css/base.css?version=2.6.0-alpha">
-    <title>ABOUT US</title>
+    <title>paystep</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
     <script>
@@ -27,6 +27,28 @@
             text-align: justify;
         }
 
+        h1 {
+            font-size: 1.8em;
+            text-align: center;
+            padding-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            padding-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        img {
+            margin-bottom: 15px;
+            max-width: 1200px;
+        }
+
         .body {
             border-top: 1px solid #72aef0;
         }
@@ -34,6 +56,8 @@
         .body__main {
             margin-bottom: 50px;
             font-size: 16px;
+            line-height: 24px;
+            width: 1200px;
         }
 
         .body__main:after {
@@ -43,29 +67,9 @@
             height: 0;
         }
 
-        .body__main-banner {
+        .body__main-row1 {
             padding-top: 30px;
-            margin-bottom: 50px;
-        }
-
-        .body__m-b-img {
-            width: 1200px;
-        }
-
-        .body__main-title {
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        h3.body__main-item {
             margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        .body__main-item {
-            margin-bottom: 25px;
-            line-height: 1.6;
         }
     </style>
 </head>
@@ -73,33 +77,29 @@
 <body>
     <div class="content" id="vue-el">
         <header class="header" id="header"></header>
-        <section class="body">
+        <div class="body">
             <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
-                <div class="body__main-banner col-xs-24">
-                    <img src="../img/about.jpg" alt="" class="body__m-b-img">
-                </div>
-                <h1 class="body__main-title col-xs-24">VỀ CHÚNG TÔI</h1>
+                <h1>Hỗ trợ nhóm mua chung</h1>
+                <h2>1.Quy trình MUA CHUNG như thế nào ?</h2>
+                <p>
+                    1.1 Mở menu NHÓM MUA CHUNG trên APP ,lựa chọn sản phẩm mà bạn yêu thích
 
-                <h3 class="body__main-item col-xs-24">Cuộc sống đặc sắc có bạn luôn có chúng tôi đồng hành</h3>
-                <div class="body__main-item col-xs-24">Mục đích thành lập ban đầu của chúng tôi chính là để giúp cho các bạn trẻ tuổi thực hiện giấc mơ sớm hơn,
-                    Giúp bạn không phải từ bỏ trào lưu kỹ thuật số yêu thích chỉ vì giá cả, Giúp bạn không cần phải tích
-                    lũy tiền mấy tháng mới đến được nơi bạn muốn đến, Trong cuộc sống thường ngày,chúng tôi vẫn luôn ở bên
-                    bạn, Bởi vì chúng tôi biết, không có gì quan trọng hơn điều bạn thích.</div>
-
-                <h3 class="body__main-item col-xs-24">Sơ lược về Buyoo</h3>
-                <div class="body__main-item col-xs-24">Buyoo là cửa hàng mua sắm trả góp trực tuyến sản phẩm kỹ thuật số 3C đầu tiên dành cho sinh viên đại học
-                    Việt Nam, công ty được thành lập vào tháng 8 năm 2017, là người sáng lập mô hình mua sắm trả góp trực
-                    tuyến của Việt Nam, xây dựng hợp tác chính thức với các nhãn hàng nổi tiếng như XIAO MI, OPPO, VIVO,
-                    Samsung … với phương thức thanh toán trả góp, chúng tôi giúp cho các bạn sinh viên Việt Nam thực hiện
-                    ước mơ sở hữu sản phẩm kỹ thuật số 3C thời thượng.</div>
-
-                <h3 class="body__main-item col-xs-24">Sứ mệnh của chúng tôi</h3>
-                <div class="body__main-item col-xs-24">Trở thành cầu nối giữa sinh viên đại học Việt Nam với mơ ước và nguyện vọng tốt đẹp của họ.</div>
-
-                <h3 class="body__main-item col-xs-24">Nguyện vọng của chúng tôi</h3>
-                <div class="body__main-item col-xs-24">Trở thành Cửa hàng mua sắp trả góp trực tuyến đáng tin cậy của các bạn sinh viên Việt Nam</div>
+                </p>
+                <p>
+                    1.2 tiến hành thanh toán và chia sẻ cùng bạn bè để đủ số lượng người cùng mua sản phẩm đó với mức giá ưu đãi.
+                </p>
+                <img src="../img/20180327-162138@2x.png" alt="image">
+                <h2>2.Khi nào nhóm mua chung thất bại ?</h2>
+                <p>
+                    Trong thời gian quy định nếu số người mua chung ít hơn số người yêu cầu hoặc khi số sản phẩm mua chung đã hết.
+                </p>
+                <h2>3.Hoàn tiền khi nhóm mua chung thất bại như thế nào?</h2>
+                <p>
+                    Nếu mua chung thất bại, chúng tôi sẽ hoàn lại số tiền bạn đã thanh toán vào tài khoản ngân hàng của bạn sau 5-10 ngày làm
+                    việc.
+                </p>
             </div>
-        </section>
+        </div>
         <footer class="footer" id="footer"></footer>
         <script>
             require([

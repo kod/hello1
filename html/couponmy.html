@@ -17,14 +17,14 @@
 
         gtag('config', 'UA-112306571-1');
     </script>
-    <link href="../css/bootstrap.css?version=2.5.5-beta" rel="stylesheet">
-    <link rel="stylesheet" href="../css/swiper.min.css?version=2.5.5-beta">
-    <link href="../css/style.css?version=2.5.5-beta" rel="stylesheet">
-    <link rel="stylesheet" href="../css/oneself.css?version=2.5.5-beta" />
-    <link href="../css/index_add_img.css?version=2.5.5-beta" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/index_img.css?version=2.5.5-beta">
-    <link rel="stylesheet" href="../css/upload.css?version=2.5.5-beta" />
-    <link rel="stylesheet" href="../css/base.css?version=2.5.5-beta">
+    <link href="../css/bootstrap.css?version=2.6.0-alpha" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css?version=2.6.0-alpha">
+    <link href="../css/style.css?version=2.6.0-alpha" rel="stylesheet">
+    <link rel="stylesheet" href="../css/oneself.css?version=2.6.0-alpha" />
+    <link href="../css/index_add_img.css?version=2.6.0-alpha" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css?version=2.6.0-alpha">
+    <link rel="stylesheet" href="../css/upload.css?version=2.6.0-alpha" />
+    <link rel="stylesheet" href="../css/base.css?version=2.6.0-alpha">
     <style>
         footer {
             float: left;
@@ -250,7 +250,7 @@
             </div>
             <div class="nav left">
                 <a href="./couponcenter.html" class="">Mã Giảm Giá</a>
-                <a href="./prepaid.html" class="">Dịch Vụ</a>
+                <!-- <a href="./prepaid.html" class="">Dịch Vụ</a> -->
             </div>
             <div class="iwant right">
                 <a href="bill.html" class="">Tôi muốn thanh toán nợ &gt;</a>
@@ -290,7 +290,7 @@
                             <a href="bill.html">Hóa đơn của tôi</a>
                         </li>
                         <li class="eight-basecss act">
-                            <a href="couponmy.html">Mã giảm giá</a>
+                            <a href="couponmy.html">Ưu đãi của tôi</a>
                         </li>
                         <li class="five">
                             <a href="collection.html">Bộ sưu tập của tôi</a>
@@ -309,9 +309,9 @@
                     <div class="container" id="container">
                         <section class="operate">
                             <div class="operate__left">
-                                <span class="operate__left-item" @click="selectTab(1)" :class="{ 'operate__left-item_active': status === 1 }">未使用</span>
-                                <span class="operate__left-item" @click="selectTab(2)" :class="{ 'operate__left-item_active': status === 2 }">已使用</span>
-                                <span class="operate__left-item" @click="selectTab(0)" :class="{ 'operate__left-item_active': status === 0 }">已过期</span>
+                                <span class="operate__left-item" @click="selectTab(1)" :class="{ 'operate__left-item_active': status === 1 }">Chưa sử dụng</span>
+                                <span class="operate__left-item" @click="selectTab(2)" :class="{ 'operate__left-item_active': status === 2 }">Đã sử dụng</span>
+                                <span class="operate__left-item" @click="selectTab(0)" :class="{ 'operate__left-item_active': status === 0 }">Hết hạn</span>
                             </div>
                             <a href="./couponcenter.html" class="operate__right">Xem nhiều hơn >></a>
                         </section>
@@ -344,7 +344,7 @@
                         </section>
                         <section class="nocoupon" style="display: none" v-show="!LS__data.length">
                             <img src="../img/bill.jpg" alt="icon" class="nocoupon__img">
-                            <div class="nocoupon__tips">没有优惠券哦~</div>
+                            <div class="nocoupon__tips">Không thể sử dụng voucher</div>
                             <a href="./couponcenter.html" class="nocoupon__nav">Xem nhiều hơn >></a>
                         </section>
                     </div>
@@ -402,17 +402,17 @@
         <!-- /.modal -->
     </div>
     <footer class="footer" id="footer"></footer>
-    <script src="../js/jquery.js?version=2.5.5-beta"></script>
-    <script src="../js/bootstrap.js?version=2.5.5-beta"></script>
-    <script type="text/javascript" src="../js/cropbox.js?version=2.5.5-beta"></script>
-    <script src="../js/md555.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/md5.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/vue.min.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/getMd5Code.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/localStorage.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/angularjs.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/ajax.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/common.js?version=2.5.5-beta"></script>
+    <script src="../js/jquery.js?version=2.6.0-alpha"></script>
+    <script src="../js/bootstrap.js?version=2.6.0-alpha"></script>
+    <script type="text/javascript" src="../js/cropbox.js?version=2.6.0-alpha"></script>
+    <script src="../js/md555.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md5.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/vue.min.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/getMd5Code.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/localStorage.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/common.js?version=2.6.0-alpha"></script>
     <script>
         F._isLogin();
         var loading = new F._loading();
@@ -735,7 +735,7 @@
         });
 
     </script>
-    <script src="../js/collection.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/collection.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
 </body>
 

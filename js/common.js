@@ -2,7 +2,7 @@ if (!window.F) window.F = {};
 
 F._DEUBUG = true;
 
-F._VERSION = '2.5.5-beta';
+F._VERSION = '2.6.0-alpha';
 console.log('version ' + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? 'http://119.28.177.175' : 'https://vn255.buyoo.xyz';
@@ -1457,7 +1457,7 @@ F._getPromotionInfo = function(params, callback) {
 F._returnMoney = function(params, callback) {
   var Key = 'settleKey';
 
-  var appId = localStorage.getItem('funId');
+  var appId = localStorage.getItem('funId') || '';
   var method = 'fun.trade.returnMoney';
   var charset = 'utf-8';
   var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
@@ -4187,7 +4187,7 @@ F._get_coupon = function(id, status) {
       loading.hide();
       if (!ret) return false;
       if (ret.code !== 10000) return false;
-      F._confirm('Gợi ý', '领取成功', 'success', [
+      F._confirm('Gợi ý', 'Nhận voucher thành công', 'success', [
         {
           name: 'Xác nhận',
           func: function() {
@@ -4205,12 +4205,12 @@ F._get_status = function(status, num) {
   var status;
   if (status === 0) {
     // 已领取
-    text = '已领取';
+    text = 'Đã nhận';
     status = false;
   } else {
     switch (num) {
       case 0:
-        text = '已抢光';
+        text = 'Đã hết';
         status = false;
         break;
 

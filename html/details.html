@@ -30,14 +30,14 @@
 
         gtag('config', 'UA-112306571-1');
     </script>
-    <link href="../css/bootstrap.css?version=2.5.5-beta" rel="stylesheet">
-    <link rel="stylesheet" href="../css/swiper.min.css?version=2.5.5-beta">
-    <link href="../css/style.css?version=2.5.5-beta" rel="stylesheet">
-    <link rel="stylesheet" href="../css/css.css?version=2.5.5-beta" />
-    <link href="../css/details.css?version=2.5.5-beta" rel="stylesheet">
-    <link href="../css/index_add_img.css?version=2.5.5-beta" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/index_img.css?version=2.5.5-beta">
-    <link rel="stylesheet" href="../css/base.css?version=2.5.5-beta">
+    <link href="../css/bootstrap.css?version=2.6.0-alpha" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css?version=2.6.0-alpha">
+    <link href="../css/style.css?version=2.6.0-alpha" rel="stylesheet">
+    <link rel="stylesheet" href="../css/css.css?version=2.6.0-alpha" />
+    <link href="../css/details.css?version=2.6.0-alpha" rel="stylesheet">
+    <link href="../css/index_add_img.css?version=2.6.0-alpha" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css?version=2.6.0-alpha">
+    <link rel="stylesheet" href="../css/base.css?version=2.6.0-alpha">
     <style>
         /* tcy -start-*/
 
@@ -241,7 +241,7 @@
 
         .coupon__l-i-button {
             float: left;
-            width: 45px;
+            width: 100px;
             height: 30px;
             line-height: 30px;
             text-align: center;
@@ -283,7 +283,7 @@
             </div>
             <div class="nav left">
                 <a href="./couponcenter.html" class="">Mã Giảm Giá</a>
-                <a href="./prepaid.html" class="">Dịch Vụ</a>
+                <!-- <a href="./prepaid.html" class="">Dịch Vụ</a> -->
             </div>
             <div class="iwant right">
                 <a href="bill.html" target="_self" class="">Tôi muốn thanh toán nợ > &gt;</a>
@@ -352,7 +352,7 @@
                             <li class="coupon__left-item" v-for="(val, key) in LS__data" v-if="val.status !== 2" @click="get_coupon(val.id, get_status(val.status, val.totalNum - val.usedNum).status)" :class="{ 'coupon__left-item_dis': val.status === 0, 'coupon__left-item_discount': val.voucherType === 0 }">
                                 <div class="coupon__l-i-text" v-if="val.voucherType === 0" v-html="'-' + (100 - val.voucherValue) + '%'"></div>
                                 <div class="coupon__l-i-text" v-if="val.voucherType === 1" v-html="val.voucherValue + ' VND'"></div>
-                                <div class="coupon__l-i-button" v-html="val.status === 0 ? '已领': '领取'">领取</div>
+                                <div class="coupon__l-i-button" v-html="val.status === 0 ? 'Đã nhận': 'Nhận voucher'">Nhận voucher</div>
                             </li>
                         </div>
                         <a href="./couponcenter.html" class="coupon__right">Xem nhiều hơn >></a>
@@ -722,21 +722,21 @@
     <div class="payhelp">
         <a href="./paystep.html" target="__blank" class="payhelp__main"></a>
     </div>
-    <script src="../js/jquery.js?version=2.5.5-beta"></script>
-    <script src="../js/bootstrap.js?version=2.5.5-beta"></script>
-    <script src="../js/location.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="../js/swiper.min.js?version=2.5.5-beta"></script>
-    <script src="../js/md555.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/ajax.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/angularjs.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/vue.min.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/getMd5Code.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/localStorage.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery.js?version=2.6.0-alpha"></script>
+    <script src="../js/bootstrap.js?version=2.6.0-alpha"></script>
+    <script src="../js/location.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/swiper.min.js?version=2.6.0-alpha"></script>
+    <script src="../js/md555.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/ajax.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/vue.min.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/getMd5Code.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/localStorage.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
     <!-- tcy -start- -->
-    <script src="../js/md5.js?version=2.5.5-beta"></script>
-    <script src="../js/common.js?version=2.5.5-beta"></script>
+    <script src="../js/md5.js?version=2.6.0-alpha"></script>
+    <script src="../js/common.js?version=2.6.0-alpha"></script>
     <!-- tcy -end- -->
-    <!-- <script src="../js/sys/config.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script> -->
+    <!-- <script src="../js/sys/config.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script> -->
     <script>
         window.setTimeout(function () {
             if (localStorage.getItem("funId")) {
@@ -923,7 +923,7 @@
         var bodyh = $('body').height();
         $('#shoucang').height(bodyh);
     </script>
-    <script src="../js/details_copy.js?version=2.5.5-beta" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/details_copy.js?version=2.6.0-alpha" type="text/javascript" charset="utf-8"></script>
     <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
 </body>
 
