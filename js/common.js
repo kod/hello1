@@ -6,7 +6,7 @@ F._VERSION = '2.6.0-beta';
 console.log('version ' + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? 'http://119.28.177.175' : 'https://vn255.buyoo.xyz';
-F._IP_191 = F._DEUBUG ? 'httpg://119.28.177.175' : 'https://vn.buyoo.xyz';
+F._IP_191 = F._DEUBUG ? 'http://119.28.177.175' : 'https://vn.buyoo.xyz';
 F._port_80 = F._DEUBUG ? '8180' : '8280';
 F._port_83 = F._DEUBUG ? '8183' : '8283';
 F._port_84 = F._DEUBUG ? '8184' : '8284';
