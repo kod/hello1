@@ -610,10 +610,7 @@
                 F.vue.sourceOrderType = trade_queryOrder.sourceOrderType;
                 F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
 
-                console.log(F.vue.totalAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate);
                 F.vue.returnMoney = returnMoney.details[F.vue.totalAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
-                console.log(F.vue.payRate);
-                console.log(F.vue.returnMoney);
                 F.vue.preReturnMoney = F.vue.repaymentMonth === 0 ? 0 : F.vue.returnMoney[0].interest + F.vue.returnMoney[0].principal;
 
             }
