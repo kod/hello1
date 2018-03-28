@@ -1,0 +1,1341 @@
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <title>Trung tâm thanh toán</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112306571-1');
+    </script>
+    <link href="../css/jquery-accordion-menu.css?version=2.6.0-beta" rel="stylesheet" type="text/css">
+    <link href="../css/bootstrap.css?version=2.6.0-beta" rel="stylesheet">
+    <link rel="stylesheet" href="../css/swiper.min.css?version=2.6.0-beta">
+    <link href="../css/style.css?version=2.6.0-beta" rel="stylesheet">
+    <link href="../css/index_add_img.css?version=2.6.0-beta" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/index_img.css?version=2.6.0-beta">
+    <link href="../css/pay.css?version=2.6.0-beta" rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css?version=2.6.0-beta">
+    <style>
+        .body {
+            border-top: 1px solid #72aef0;
+        }
+
+        #three {
+            margin-bottom: 50px;
+        }
+
+        #four {
+            line-height: 1;
+        }
+
+        /*tcy -start-*/
+
+        .modal-body th {
+            line-height: 2;
+        }
+
+        .modal-body td {
+            line-height: 1.8;
+        }
+
+        img,
+        span,
+        i,
+        s {
+            display: inline-block;
+            /*vertical-align: middle;*/
+        }
+
+        .modal-body {
+            position: relative;
+        }
+
+        .phone-flag {
+            position: absolute;
+            top: 90px;
+            right: 100px;
+            line-height: 45px;
+        }
+
+        .phone-flag-img {
+            width: 30px !important;
+            height: 20px !important;
+            vertical-align: middle !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-size: cover !important;
+            background-image: url(../img/VN.png) !important;
+        }
+
+        .phone-flag-code {
+            color: #333 !important;
+            width: auto !important;
+        }
+
+        .fenqiNumBtn button.actives {
+            background: #eee !important;
+            border: 1px solid #eee !important;
+            color: #333 !important;
+        }
+
+        /*tcy -end-*/
+
+        .body__main {
+            padding-top: 30px;
+        }
+
+        .body__main-login {
+            text-align: center;
+            padding-top: 50px;
+            background-color: #dfeffc;
+        }
+
+        .body__m-l-row1 {
+            color: #FF3B57;
+            margin-bottom: 45px;
+        }
+
+        .body__m-l-r2-button {
+            height: 50px;
+            line-height: 50px;
+            width: 340px;
+            text-align: center;
+            color: #fff;
+            background-color: #207def;
+            margin-bottom: 50px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .body__m-l-r2-button:hover {
+            background-color: #105dcf;
+        }
+
+        #myModal123 .modal-body select {
+            font-size: 14px;
+            width: 270px;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px;
+            outline: none;
+            color: #333;
+            margin-right: 1px;
+            height: 33px;
+            border: 1px solid #ddd;
+            margin-left: 10px;
+            border-radius: 3px;
+            margin-bottom: 24px;
+            background-color: #fff;
+        }
+
+        .four__wrap {
+            height: 188px;
+            overflow-y: hidden;
+        }
+
+        .four__wrap:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .four__wrap_more {
+            height: 350px;
+            overflow-y: auto;
+        }
+
+        .four__item {
+            float: left;
+            width: 272px;
+            margin-right: 28px;
+            padding-top: 10px;
+        }
+
+        .four__item-top {
+            position: relative;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 30px;
+            padding-right: 30px;
+            height: 112px;
+            margin-bottom: 5px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url(../img/couponfault1.png);
+        }
+
+        .four__item-top:hover {
+            cursor: pointer;
+            box-shadow: 5px 5px 15px 0px rgba(20, 122, 243, .3);
+        }
+
+        .four__i-t-price {
+            font-size: 27px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .four__i-t-time {
+            font-size: 18px;
+            color: rgba(255, 255, 255, .7);
+        }
+
+        .four__i-t-arrow {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 20px;
+            width: 20px;
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            background-size: cover;
+            background-image: url(../img/coupon-selected.png);
+        }
+
+        .four__item-bottom {
+            line-height: 1.4;
+            color: #ccc;
+            width: 272px;
+            height: 39px;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: normal;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .four__more {
+            float: left;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #999;
+            background-color: #f5f5f5;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .four__more-icon {
+            padding-top: 15px;
+            width: 12px;
+            margin-left: 3px;
+        }
+
+        .four__nodata {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: #f5f5f5;
+            color: #999;
+        }
+
+        .four__money {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .four__money-text {
+            color: #999;
+        }
+
+        .four__money-price {
+            color: #FD5147;
+        }
+
+        .four__item_disable .four__item-top {
+            cursor: not-allowed;
+            background-image: url(../img/couponfault2.png);
+        }
+
+        .four__item_disable .four__item-top:hover {
+            box-shadow: none;
+        }
+
+        .four__item_selected .four__item-top {
+            /* border: 2px solid #e43a3d; */
+        }
+    </style>
+</head>
+
+<body ng-app="payApp" ng-controller="payCtrl">
+    <div id="myModal123-label" data-toggle="modal" data-target="#myModal123" style="opacity: 0;"></div>
+
+    <div ng-controller="addressCtrl">
+        <header class="header" id="header"></header>
+        <div class="body" style="height: 30px; width: 100%;"></div>
+        <section class="site" id="one" ng-controller="addCtrl">
+            <div class="site__title col-xs-24">Xác nhận địa chỉ nhận hàng</div>
+            <div class="site__main col-xs-24">
+                <li class="site__main-item" ng-class="{ 'site__main-item_def': item.isdefault === 'Y', 'site__main-item_active': addrlistData_index === index }"
+                    ng-click="set_active(index, item.msisdn, item, item.username, item.id)" ng-repeat="(index, item) in addrlistData">
+                    <div class="site__m-i-row1 col-xs-24">
+                        <div class="site__m-i-r1-name js_username col-xs-24" ng-bind="item.username"></div>
+                        <div class="site__m-i-r1-tel js_msisdn col-xs-24" ng-bind="item.msisdn"></div>
+                    </div>
+                    <div class="site__m-i-row2 col-xs-24" ng-bind="item.address + (item.division4thName ? ', ' : '') + item.division4thName + (item.division3rdName ? ', ' : '') + item.division3rdName + (item.division2ndName ? ', ' : '') + item.division2ndName"></div>
+                    <div class="site__m-i-row3 col-xs-24">
+                        <div class="site__m-i-r3-def">
+                            <span class="site__m-i-r3-f-set moren" ng-click="moren(index,item.id,item.isdefault,item.msisdn,item.address,item.username,item.division4th,item.division3rd,item.division2nd)">Đặt làm mặc định</span>
+                            <span class="site__m-i-r3-f-status">mặc định</span>
+                        </div>
+                        <div class="site__m-i-r3-edit" ng-click="xiugai({id:item.id,isdefault:item.isdefault,msisdn:item.msisdn,address:item.address,username:item.username,division3rd:item.division3rd,division2nd:item.division2nd,division4th:item.division4th,model:'modify'})">
+                            <span class="site__m-i-r3-e-text">Sửa</span>
+                        </div>
+                        <div class="site__m-i-r3-del">
+                            <span class="site__m-i-r3-d-text" ng-click="remove(item.id)">Xoá</span>
+                        </div>
+                    </div>
+                    <div class="site__m-i-row4">√</div>
+                </li>
+                <div class="site__main-add" ng-click="addppp()">
+                    <div class="site__m-a-row1"></div>
+                    <div class="site__m-a-row2">Thêm địa chỉ nhận hàng</div>
+                </div>
+            </div>
+        </section>
+        <article id="two">
+            <div class="content">
+                <div class="two">
+                    <div class="top_title">
+                        <i></i>
+                        <span>Xác nhận thông tin đặt hàng</span>
+                    </div>
+                    <div class="information">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Thông tin về sản phẩm
+                                        <div class="bg"></div>
+                                    </th>
+                                    <th>Số lượng
+                                        <div class="bg"></div>
+                                    </th>
+                                    <th>Giá sản phẩm
+                                        <div class="bg"></div>
+                                    </th>
+                                    <th>Tổng số phụ
+                                        <div class="bg"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(index, item) in LS__data" class="ls-data-css">
+                                    <td>
+                                        <img src="{{item.iconUrl}}" alt="" style="width: 85px; cursor: pointer;" ng-click="gotoDetails(item._detail.typeId, item._detail.brandId, item._detail.id)">
+                                        <span ng-bind="item.subject" style="margin-top: 30px; width: 590px;"></span>
+                                        <!-- <span ng-bind="'【Hàng】'+item.subject" style="margin-top: 30px; width: 590px;"></span> -->
+                                    </td>
+                                    <td id="buyNum" ng-bind="item.quantity"></td>
+                                    <td id="price" ng-bind="item.totalAmount | priceFormat"></td>
+                                    <td ng-bind="item.totalAmount*item.quantity | priceFormat"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="list">
+                            <div class="left li-left">Chọn tỉ lệ thanh toán lần đầu : </div>
+                            <div class="left li-right">
+                                <select ng-model="paymentNum" ng-change="paymentNumChange(paymentNum)">
+                                    <option value="1.0">Trả toàn bộ</option>
+                                    <option value="0.1">10%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.3">30%</option>
+                                    <option value="0.4">40%</option>
+                                    <option value="0.5">50%</option>
+                                </select>
+                                <span style="line-height: 25px;">Thanh toán lần đầu
+                                    <i ng-bind="totalamount*paymentNum | priceFormat"></i> VND</span>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="left li-left">Chọn số kỳ thanh toán : </div>
+                            <div class="left li-right fenqiNumBtn">
+                                <button id="fenqiNum3" ng-class="{ 'b_active': fenqiNum === 3 }" ng-click="fenqi(3)">3 tháng</button>
+                                <button id="fenqiNum6" ng-class="{ 'b_active': fenqiNum === 6 }" ng-click="fenqi(6)">6 tháng</button>
+                                <button id="fenqiNum9" ng-class="{ 'b_active': fenqiNum === 9 }" ng-click="fenqi(9)">9 tháng</button>
+                                <button id="fenqiNum12" ng-class="{ 'b_active': fenqiNum === 12 }" ng-click="fenqi(12)">12 tháng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article id="four">
+            <div class="content">
+                <div class="four fullpay_mark">
+                    <div class="top_title">
+                        <i></i>
+                        <span>Mã giảm giá</span>
+                    </div>
+                </div>
+                <div class="way" style="padding-left: 0;">
+                    <div class="four__wrap" style="display: none;" :class="{ 'four__wrap_more': LS__data.length > 4 }" v-show="LS__data.length > 0">
+                        <item class="four__item" v-for="(val, key) in LS__data" @click="couponSelect(key, val.id, val.pids, val.status)" :class="{ 'four__item_disable': val.status === 0 || !val.canUse, 'four__item_selected': val.isSelected }">
+                            <div class="four__item-top">
+                                <div class="four__i-t-price" v-html="val.voucherValue +' VND'" v-if="val.voucherType === 1"></div>
+                                <div class="four__i-t-price" v-html="'Giảm '+(100-val.voucherValue)+'%'" v-if="val.voucherType === 0"></div>
+                                <div class="four__i-t-time" v-html="time_format(val.startTime, val.expireTime)"></div>
+                                <div class="four__i-t-arrow" v-show="val.isSelected"></div>
+                            </div>
+                            <div class="four__item-bottom" v-if="val.status === 0">所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品所结算商品中没有符合条件的商品</div>
+                        </item>
+                    </div>
+                    <!-- <div class="four__more">
+                        <span>查看更多</span>
+                        <img src="../img/couponmore.png" alt="more" class="four__more-icon">
+                    </div> -->
+                    <div class="four__nodata" style="display: none;" v-show="LS__data.length === 0">没有优惠券</div>
+                    <div class="four__money" style="display: none;" v-show="LS__data.length > 0">
+                        <span class="four__money-text">金额抵用</span>
+                        <span class="four__money-price" v-html="priceFormat(savePrice) + ' VND'"></span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article id="three">
+            <div class="content">
+                <div class="three fullpay_mark" style="display: none;" v-show="paymentNum === 1">
+                    <div class="top_title">
+                        <i></i>
+                        <span>Phương thức thanh toán</span>
+                    </div>
+                </div>
+                <div class="way">
+                    <div class="payway__main-bottom" id="payway__main-bottom" style="display: none;" v-show="paymentNum === 1">
+                        <!-- <div class="payway__m-b-item" @click="payway = '3'" :class="{ 'payway__m-b-item_acitve': payway === '3' }">
+                            <div class="payway__m-b-i-text">napas</div>
+                            <div class="payway__m-b-i-icon">
+                                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_napas.png);"></span>
+                            </div>
+                            <div class="payway__m-b-i-indicator">
+                                <span class="payway__m-b-i-i-img"></span>
+                            </div>
+                        </div> -->
+                        <div class="payway__m-b-item" @click="payway = '2'" :class="{ 'payway__m-b-item_acitve': payway === '2' }">
+                            <div class="payway__m-b-i-text">Ngân hàng</div>
+                            <div class="payway__m-b-i-icon">
+                                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_epay.png);"></span>
+                            </div>
+                            <div class="payway__m-b-i-indicator">
+                                <span class="payway__m-b-i-i-img"></span>
+                            </div>
+                        </div>
+                        <div class="payway__m-b-item" @click="payway = '1'" :class="{ 'payway__m-b-item_acitve': payway === '1' }">
+                            <div class="payway__m-b-i-text">Số dư</div>
+                            <div class="payway__m-b-i-icon">
+                                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_balance.png);"></span>
+                            </div>
+                            <div class="payway__m-b-i-indicator">
+                                <span class="payway__m-b-i-i-img"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <ul>
+                        <li class="payway-li act">
+                            <i></i>
+                            <p>Ngân hàng</p>
+                        </li>
+                        <li class="payway-li">
+                            <i></i>
+                            <p>Số dư</p>
+                        </li>
+                    </ul> -->
+                    <div class="fc" style="vertical-align: right;">
+                        <p ng-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px;">
+                            <span style="padding-top: 2px; padding-right:5px;">Tổng tiền:</span>
+                            <i ng-bind="resPrice | priceFormat"></i>
+                            <span class="" style="padding-top: 3px;">VND</span>
+                        </p>
+                        <p ng-show="paymentNum !== '1.0'" style="text-align: right; line-height: 40px; color: #969696;">
+                            Trả góp hàng tháng:
+                            <i ng-bind="resPrice | priceFormat" style="margin-left: 5px;"></i>
+                            <span class="" style="color: #F7004C; padding-top: 2px;">VND x
+                                <span ng-bind="fenqiNum"></span>
+                            </span>
+                            <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" ng-click="information()"
+                                data-toggle="modal" data-target="#myhead" class="moneryIcon" />
+                        </p>
+                        <div class="" style="text-align: right;">
+                            <span class="aa no_checkbox1" onclick="submit()">Mua ngay</span>
+                        </div>
+                        <div class="p" style="text-align: right; opacity: 0;">
+                            <input type="checkbox" id="selectAll" />
+                            <span>Đồng ý</span>
+                            <i href="buyIntro.html" target="_self">Hợp đồng liên quan đến khoản vay</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- 弹出模态框（Modal） -->
+        <div class="modal fade" id="myhead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div style="display: table;width:690px;height:100%;margin:0 auto;">
+                <div class="modal-dialog" style="display: table-cell;text-align: center;vertical-align: middle;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="left">Thông tin về số tiền trả góp</div>
+                            <div class="right" data-dismiss="modal">
+                                <span class="alert__b-m-t-close"></span>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <table border="1" class="tables">
+                                <thead>
+                                    <tr>
+                                        <th>Hóa đơn</th>
+                                        <th>Số tiền phải trả hàng tháng</th>
+                                        <th>Phí dịch vụ hàng tháng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
+            </div>
+        </div>
+    </div>
+    <footer class="footer" id="footer"></footer>
+    <script src="../js/jquery.js?version=2.6.0-beta"></script>
+    <script src="../js/jquery-accordion-menu.js?version=2.6.0-beta" type="text/javascript"></script>
+    <script type="text/javascript" src="../js/swiper.min.js?version=2.6.0-beta"></script>
+    <script src="../js/bootstrap.js?version=2.6.0-beta"></script>
+    <!-- <script src="../js/yii.js?version=2.6.0-beta"></script> -->
+    <script src="../js/base.js?version=2.6.0-beta"></script>
+    <script src="../js/img_silder.js?version=2.6.0-beta"></script>
+    <script src="../js/xSlider.js?version=2.6.0-beta"></script>
+    <script src="../js/popup.js?version=2.6.0-beta"></script>
+    <script src="../js/ajax.js?version=2.6.0-beta" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md555.js?version=2.6.0-beta" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/angularjs.js?version=2.6.0-beta" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/pay.js?version=2.6.0-beta" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md5.js?version=2.6.0-beta"></script>
+    <script src="../js/vue.min.js?version=2.6.0-beta"></script>
+    <script src="../js/common.js?version=2.6.0-beta" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+        window.setTimeout(function () {
+            if (localStorage.getItem("funId")) {
+                F._userViewDetailInfo({}, function (ret) {
+                    if (ret.data.headimage) {
+                        $('.userLogin-info__top-face').eq(0).css('background-image', 'url(' + ret.data.headimage + ')');
+                    }
+                });
+            }
+        }, 700);
+
+
+        var loading = new F._loading();
+        F.orderNo = ''; // 存放已创建好的订单号
+        F.tradeNo = ''; // 存放已创建好的交易号
+        F.createOrder_info = {
+            isCreate: false, // 是否已创建订单
+            isFull: false, // 是否为全款订单
+        };
+
+        /*tcy -start-*/
+        // F.is_submit = false; // 是否创建成功过订单
+
+        // var funId = localStorage.getItem("funId");
+        // if (funId == "" || funId == null) {
+        //     window.location.href = "./login.html";
+        // }
+
+        // 提交补全信息
+        function userAddDetailInfo(data) {
+            loading.show();
+            F._userAddDetailInfo(data, function (ret) {
+                loading.hide();
+                if (!ret) return false;
+
+                switch (ret.code) {
+                    case 10000:
+
+                        go_next();
+
+                        break;
+
+                    default:
+                        F._confirm('Gợi ý', 'Gửi thông tin thất bại', 'error', [{
+                            name: 'Xác nhận',
+                            func: function () { }
+                        }]);
+                        break;
+                }
+            });
+        }
+
+        // 去补全信息
+        function getSchoolInfo_addInfo(userInfo) {
+            loading.show();
+            F._getSchoolInfo({}, function (ret) {
+                loading.hide();
+                var baseinfo = new F._baseinfo(ret.details, userInfo);
+                baseinfo.show();
+                $("#submit_baseinfo").on('click', function () {
+                    baseinfo.submit(function (result) {
+                        baseinfo.hide();
+                        userAddDetailInfo(result);
+                    });
+                });
+            });
+        }
+
+        function analyze_orderdetails(array) {
+            var index;
+            var result = {
+                totalAmount: 0,
+                orgAmount: 0,
+                advance: 0,
+                goodsDetail: [],
+                subject: '',
+            };
+            var result_ids = [];
+
+            function edit_detail(item) {
+                var result = {};
+                result.number = item.quantity;
+                result.cartitemid = item.id + '';
+                result.productInfoId = item.itemId;
+                return result;
+            }
+
+            for (index = 0; index < array.length; index++) {
+                result.totalAmount += array[index].totalAmount * array[index].quantity;
+                result.orgAmount += array[index].orgPrice ? array[index].orgPrice * array[index].quantity : 0;
+                result.advance += array[index].totalAmount * array[index].quantity * F.paymentNum;
+                result.subject += array[index].subject + ', ';
+                result.goodsDetail.push(edit_detail(array[index]));
+
+                // result_ids.push(array[index].id);
+            }
+            result.subject = result.subject.slice(0, -2);
+            // F.result_ids = result_ids.join(',');
+
+
+            return result;
+        }
+
+        function go_next() {
+            var coupon_item = get_coupon_item(get_coupon_id(F.vue2.coupon_product_id), F.vue2.LS__data);
+
+            if (F.isToCart) {
+                loading.show();
+                var analyze_orderdetails_result = analyze_orderdetails(F.LS__data);
+                // let advance = analyze_orderdetails_result.advance - F.vue2.savePrice;
+                // advance = advance > 0 ? advance : analyze_orderdetails_result.advance;
+                F._createDisOrder({
+                    orderdetails: [{
+                        payRate: F.paymentNum + '',
+                        orderNo: F._create_orderno(localStorage.getItem("funId")),
+                        totalAmount: analyze_orderdetails_result.totalAmount,
+                        orgAmount: analyze_orderdetails_result.orgAmount,
+                        advance: analyze_orderdetails_result.advance,
+                        currency: 'VND',
+                        subject: analyze_orderdetails_result.subject,
+                        goodsDetail: JSON.stringify(analyze_orderdetails_result.goodsDetail),
+                        repaymentMonth: F.fenqiNum,
+                        couponCard: coupon_item.cardno || '',
+                        couponPassword: coupon_item.pincode || '',
+                        couponType: coupon_item.voucherType || 0,
+                        couponValue: coupon_item.voucherValue || 0,
+                    }],
+                    ordertype: F.paymentNum === 1 ? "3" : "4",
+                    addrid: F.address_id,
+                }, createDisOrder_callback);
+
+            } else if (F.paymentNum === 1) { // 全款
+
+                loading.show();
+                // let advance = F.totalamount - F.vue2.savePrice;
+                // advance = advance > 0 ? advance : F.totalamount;
+                F._createDisOrder({
+                    orderdetails: [{
+                        payRate: '1',
+                        orderNo: F._create_orderno(localStorage.getItem("funId")),
+                        totalAmount: F.totalamount,
+                        orgAmount: F.orgPrice,
+                        advance: F.totalamount,
+                        currency: 'VND',
+                        subject: F.subject,
+                        goodsDetail: JSON.stringify([{
+                            number: F.quantity,
+                            cartitemid: '',
+                            productInfoId: JSON.parse(F.goodsDetail)['id']
+                        }]),
+                        repaymentMonth: 0,
+                        couponCard: coupon_item.cardno || '',
+                        couponPassword: coupon_item.pincode || '',
+                        couponType: coupon_item.voucherType || 0,
+                        couponValue: coupon_item.voucherValue || 0,
+                    }],
+                    ordertype: "2",
+                    addrid: F.address_id,
+                }, createDisOrder_callback);
+
+            } else {
+
+                loading.show();
+                // let advance = parseInt(F.totalamount * F.paymentNum) - F.vue2.savePrice;
+                // advance = advance > 0 ? advance : parseInt(F.totalamount * F.paymentNum);
+                F._createDisOrder({
+                    orderdetails: [{
+                        payRate: F.paymentNum + '',
+                        orderNo: F._create_orderno(localStorage.getItem("funId")),
+                        totalAmount: F.totalamount,
+                        orgAmount: F.orgPrice,
+                        advance: F.totalamount * F.paymentNum,
+                        currency: 'VND',
+                        subject: F.subject,
+                        goodsDetail: JSON.stringify([{
+                            number: F.quantity,
+                            cartitemid: '',
+                            productInfoId: JSON.parse(F.goodsDetail)['id']
+                        }]),
+                        repaymentMonth: F.fenqiNum,
+                        couponCard: coupon_item.cardno || '',
+                        couponPassword: coupon_item.pincode || '',
+                        couponType: coupon_item.voucherType || 0,
+                        couponValue: coupon_item.voucherValue || 0,
+                    }],
+                    ordertype: "0",
+                    addrid: F.address_id,
+                }, createDisOrder_callback);
+
+            }
+        }
+
+        function get_coupon_id(array) {
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                if (element.couponId) return element.couponId;
+            }
+        }
+
+        function get_coupon_item(id, array) {
+            if (id === undefined) return {};
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                if (element.id === id) return element;
+            }
+        }
+
+        // 提交订单
+        function submit() {
+            if (!localStorage.getItem("funId")) {
+                F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
+                    name: 'Xác nhận',
+                    func: function () {
+                        window.location.href = 'login.html';
+                    }
+                }]);
+                return false;
+            }
+
+            if (!F.username || !F.msisdn || !F.address) {
+                F._confirm('Gợi ý', 'Vui lòng Thêm địa chỉ nhận hàng', 'tips', [{
+                    name: 'Xác nhận',
+                    func: function () {
+                        location.href = location.href + '#';
+                    }
+                }]);
+                return false;
+            }
+
+            if (!F.address && F.addrlistData.length) {
+                F._confirm('Gợi ý', 'Vui lòng chọn địa chỉ nhận hàng của bạn', 'tips', [{
+                    name: 'Xác nhận',
+                    func: function () {
+
+                    }
+                }]);
+                return false;
+            }
+
+            if (!F.division2ndName) {
+                F._confirm("Gợi ý", "Địa chỉ này chưa đầy đủ, Vui lòng Sửa", "tips", [
+                    {
+                        name: "Xác nhận",
+                        func: function () {
+                        }
+                    }
+                ]);
+                return false;
+            }
+
+            function get_num(array) {
+                var index;
+                var quantity = 0;
+                for (index = 0; index < array.length; index++) {
+                    quantity += array[index].quantity;
+                }
+                return quantity;
+            }
+
+            F.paymentNum = parseFloat(F.paymentNum);
+            F.totalamount = parseFloat(F.totalamount);
+            F.quantity = get_num(F.LS__data);
+
+            function check_userViewDetailInfo() {
+                loading.show();
+                F._userViewDetailInfo({}, function (ret) {
+                    loading.hide();
+                    if (!ret) return false;
+
+                    if (ret.status) { // 资料齐全
+                        go_next();
+                    } else { // 资料不全
+                        F._confirm('Gợi ý', 'Bạn chưa hoàn thiện thông tin chi tiết, vui lòng hoàn thiện trước', 'tips', [{
+                            name: 'Để sau',
+                            func: function () { }
+                        }, {
+                            name: 'Hoàn thiện ngay',
+                            func: function () {
+                                getSchoolInfo_addInfo(ret.data);
+                            }
+                        }]);
+                    }
+                });
+            }
+
+            loading.show();
+            if (F.paymentNum === 1) {
+                // 全款
+                F._is_initPaypassword(function (status) {
+                    loading.hide();
+                    if (status === false && F.vue.payway === '1') {
+                        F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function () {
+                                    window.open('./back_id.html?from=payPwd');
+                                }
+                            }
+                        ]);
+                        return false;
+                    }
+                    go_next();
+                });
+
+            } else {
+                F._is_initPaypassword(function (status) {
+                    loading.hide();
+                    if (status === false && F.vue.payway === '1') {
+                        F._confirm("Gợi ý", "Vui lòng đặt mật khẩu giao dịch", "tips", [
+                            {
+                                name: "Xác nhận",
+                                func: function () {
+                                    window.open('./back_id.html?from=payPwd');
+                                }
+                            }
+                        ]);
+                        return false;
+                    }
+                    check_userViewDetailInfo();
+                });
+            }
+
+        }
+
+        function createDisOrder_callback(ret) {
+            loading.hide();
+
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+            F.orderNo = ret.orderNo;
+            F.tradeNo = ret.tradeNo;
+
+            var payway = F.vue.payway;
+            function go_pay() {
+                if (payway === '1') {
+                    F._payPwd_open(function (paypassword) {
+                        loading.show();
+                        F._payDisOrder({
+                            orderno: F.orderNo,
+                            tradeno: F.tradeNo,
+                            payway: payway,
+                            paypassword: paypassword,
+                        }, paymentDisOrder_callback);
+                    });
+                } else {
+                    loading.show();
+                    F._payDisOrder({
+                        orderno: F.orderNo,
+                        tradeno: F.tradeNo,
+                        payway: payway,
+                        paypassword: '',
+                    }, paymentDisOrder_callback);
+                }
+            }
+
+            if (F.paymentNum === 1) {
+                // 全款
+                go_pay();
+            } else {
+                window.location.href = './successPay.html?type=1';
+            }
+        }
+
+        function paymentDisOrder_callback(ret) {
+            loading.hide();
+            if (!ret) return false;
+            if (ret.code !== 10000) return false;
+
+            window.location.href = './successPay.html?type=2';
+        }
+
+        F.vue = {
+            payway: '2',
+            paymentNum: +F.paymentNum
+        }
+
+        function new_vue() {
+            F.vue = new Vue({
+                el: $('#three')[0],
+                data: F.vue,
+                methods: {
+                    // plus: plus,
+                    // minus: minus,
+                },
+                computed: {
+
+                },
+                watch: {
+                    paymentNum: function (val, oldVal) {
+                        if (val === 1) {
+                            $('.fullpay_mark').show();
+                        } else {
+                            $('.fullpay_mark').hide();
+                        }
+                    },
+                },
+            });
+        }
+
+        function time_format(start, end) {
+            var start_format = start.slice(0, 4) + '.' + start.slice(5, 7) + '.' + start.slice(8, 10);
+            var end_format = end.slice(0, 4) + '.' + end.slice(5, 7) + '.' + end.slice(8, 10);
+            return start_format + '-' + end_format;
+        }
+
+        function edit_coupon_product_id(array) {
+            let result = [];
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                let emptyObject = {};
+                emptyObject.productId = element._detail.id;
+                emptyObject.couponId = '';
+                emptyObject.totalAmount = element.totalAmount * element.quantity;
+                result.push(emptyObject);
+            }
+            return result;
+        }
+
+        function new_vue2() {
+            function set_products(array) {
+                let result = [];
+                for (let index = 0; index < array.length; index++) {
+                    const element = array[index];
+                    let empty_object = {};
+                    empty_object.id = element._detail.id;
+                    empty_object.amount = element.totalAmount * element.quantity;
+                    result.push(empty_object);
+                }
+                return result;
+            }
+
+            function set_data(array) {
+                let result = [];
+                for (let index = 0; index < array.length; index++) {
+                    let element = array[index];
+                    element.canUse = !!element.status;
+                    element.isSelected = false;
+                    result.push(element);
+                }
+                return result;
+            }
+
+            function couponSelect(key, id, pids, status) {
+                if (status === 0) return false;
+
+                // 一个订单可以使用多张优惠券
+                function A(key, id, pids) {
+                    pids = JSON.parse(pids);
+
+                    function isCanSelect(pid) {
+                        let array = F.vue2.coupon_product_id;
+                        for (let index = 0; index < array.length; index++) {
+                            let element = array[index];
+                            if (element.productId === pid && element.couponId === id) {
+                                // 取消选择
+                                let item1 = element;
+                                item1.couponId = '';
+                                array.splice(index, item1);
+
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = false;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            } else if (element.productId === pid && element.couponId === "") {
+                                // 选择
+                                let item1 = element;
+                                item1.couponId = id;
+                                array.splice(index, item1);
+
+
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = true;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            }
+                        }
+                    }
+
+                    function iscanUse(vue2_LS__data) {
+
+                        function judge(array) {
+                            let emptyLength = 0;
+                            let array1 = F.vue2.coupon_product_id;
+
+                            for (let index = 0; index < array.length; index++) {
+                                const pid = array[index];
+                                for (let index1 = 0; index1 < array1.length; index1++) {
+                                    const element = array1[index1];
+                                    if (pid === element.productId) {
+                                        if (element.couponId !== '') {
+                                            emptyLength += 1;
+                                        }
+                                    }
+                                }
+                            }
+                            // 如果相等说明和已选的券重复了
+                            return emptyLength === array.length;
+                        }
+
+                        for (let index = 0; index < vue2_LS__data.length; index++) {
+                            const element = vue2_LS__data[index];
+                            if (element.status === 1 && element.isSelected === false) {
+                                if (judge(JSON.parse(element.pids))) {
+                                    // 和已选的券重复了
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = false;
+                                    F.vue2.LS__data.splice(index, item);
+
+                                } else {
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = true;
+                                    F.vue2.LS__data.splice(index, item);
+                                }
+                            }
+                        }
+                    }
+
+                    for (let index = 0; index < pids.length; index++) {
+                        const element = pids[index];
+                        if (isCanSelect(element)) {
+                            break;
+                        }
+                    }
+                    iscanUse(F.vue2.LS__data);
+                }
+
+                // 一个订单只能使用一张优惠券
+                function B(key, id, pids) {
+                    pids = JSON.parse(pids);
+
+
+                    // 是否已选择了优惠券
+                    function isSelected(array) {
+                        for (let index = 0; index < array.length; index++) {
+                            const element = array[index];
+                            if (element.couponId !== '') return true;
+                        }
+                        return false;
+                    }
+
+
+                    function isCanSelect(pid) {
+                        let array = F.vue2.coupon_product_id;
+                        for (let index = 0; index < array.length; index++) {
+                            let element = array[index];
+                            if (element.productId === pid && element.couponId === id) {
+                                // 取消选择
+                                let item1 = element;
+                                item1.couponId = '';
+                                array.splice(index, item1);
+
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = false;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            } else if (element.productId === pid && element.couponId === "" && !isSelected(F.vue2.coupon_product_id)) {
+
+                                // 选择
+                                let item1 = element;
+                                item1.couponId = id;
+                                array.splice(index, item1);
+
+
+                                let item = F.vue2.LS__data[key];
+                                item.isSelected = true;
+                                F.vue2.LS__data.splice(key, item);
+                                return true;
+                            }
+                        }
+                    }
+
+                    function iscanUse(vue2_LS__data) {
+
+                        function judge(array) {
+                            let emptyLength = 0;
+                            let array1 = F.vue2.coupon_product_id;
+
+                            for (let index = 0; index < array.length; index++) {
+                                const pid = array[index];
+                                for (let index1 = 0; index1 < array1.length; index1++) {
+                                    const element = array1[index1];
+                                    if (pid === element.productId) {
+                                        if (element.couponId !== '') {
+                                            emptyLength += 1;
+                                        }
+                                    }
+                                }
+                            }
+                            // 如果相等说明和已选的券重复了
+                            return emptyLength === array.length;
+                        }
+
+                        for (let index = 0; index < vue2_LS__data.length; index++) {
+                            const element = vue2_LS__data[index];
+                            if (element.status === 1 && element.isSelected === false) {
+                                if (isSelected(F.vue2.coupon_product_id)) {
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = false;
+                                    F.vue2.LS__data.splice(index, item);
+                                } else {
+                                    let item = F.vue2.LS__data[index];
+                                    item.canUse = true;
+                                    F.vue2.LS__data.splice(index, item);
+                                }
+
+                                // if (judge(JSON.parse(element.pids))) {
+                                //     // 和已选的券重复了
+                                //     let item = F.vue2.LS__data[index];
+                                //     item.canUse = false;
+                                //     F.vue2.LS__data.splice(index, item);
+
+                                // } else {
+                                //     let item = F.vue2.LS__data[index];
+                                //     item.canUse = true;
+                                //     F.vue2.LS__data.splice(index, item);
+                                // }
+                            }
+                        }
+                    }
+
+                    for (let index = 0; index < pids.length; index++) {
+                        const element = pids[index];
+                        if (isCanSelect(element)) {
+                            break;
+                        }
+                    }
+                    iscanUse(F.vue2.LS__data);
+                }
+
+                B(key, id, pids);
+            }
+
+
+            F._judgeVoucher({
+                funid: localStorage.getItem("funId"),
+                products: JSON.stringify(set_products(F.LS__data)),
+            }, function (ret) {
+                if (!ret) return false;
+                if (ret.code !== 10000) return false;
+
+                F.vue2 = {
+                    LS__data: set_data(ret.details),
+                    selected: [],
+                    coupon_product_id: edit_coupon_product_id(F.LS__data),
+                    savePrice: 0,
+                };
+
+
+                F.vue2 = new Vue({
+                    el: $('#four')[0],
+                    data: F.vue2,
+                    methods: {
+                        time_format: time_format,
+                        couponSelect: couponSelect,
+                        priceFormat: F._priceFormat,
+                    },
+                    computed: {
+
+                    },
+                    watch: {
+                        coupon_product_id: function (val, oldVal) {
+                            let total = 0;
+
+                            function calc_coupon(totalAmount, couponId) {
+                                let array = F.vue2.LS__data;
+                                for (let index = 0; index < array.length; index++) {
+                                    const element = array[index];
+                                    if (couponId === element.id) {
+                                        if (element.voucherType === 0) {
+                                            // 折扣
+                                            return totalAmount * ((100 - element.voucherValue) / 100);
+                                        } else {
+                                            return element.voucherValue;
+                                        }
+                                    }
+                                }
+                            }
+
+                            let array = val;
+                            for (let index = 0; index < array.length; index++) {
+                                const element = array[index];
+                                if (element.couponId !== '') total += calc_coupon(element.totalAmount, element.couponId);
+                            }
+                            this.savePrice = total;
+
+                            // var data = this.LS__data;
+                            // localStorage.setItem("cart", JSON.stringify(data));
+                            // calc(data);
+                        },
+                    },
+                });
+
+            });
+        }
+
+
+        var swiper = new Swiper('#index_banner', {
+            pagination: '.swiper-pagination',
+            loop: true,
+            grabCursor: true,
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplay: 4000,
+            prevButton: '.swiper-button-prev',
+            nextButton: '.swiper-button-next',
+        });
+        $('.hot_brand').hover(function () {
+            $(this).css('background', '#fff');
+            $(this).find('.category_act').css('display', 'block');
+            $(this).find('a').css('color', '#666');
+            $(this).find('p').css('color', '#666');
+        }, function () {
+            $(this).css('background', 'rgba(0,0,0,0.2)');
+            $(this).find('.category_act').css('display', 'none');
+            $(this).find('a').css('color', '#eee');
+            $(this).find('p').css('color', '#fff');
+        })
+
+        setTimeout(function () {
+            new_vue();
+            new_vue2();
+        }, 1000);
+
+
+        $('.way li').click(function () {
+            $('.way li').removeClass('act');
+            $(this).addClass('act');
+        })
+
+        $('#selectAll').attr("checked", false);
+        $('#selectAll').click(function () {
+            if ($(this).is(':checked')) {
+                $('.fc .aa').removeClass('no_checkbox');
+
+            } else {
+                $('.fc .aa').addClass('no_checkbox');
+            }
+        })
+
+        $('#phone').blur(function () {
+            var phone = $("#phone").val();
+            if (!F._phoneExpr.test(phone)) {
+                $('#errormsg').show();
+                $('#errormsg small').html('định dạng số điện thoại sai');
+                return;
+            }
+
+            $('#errormsg').hide();
+
+        })
+        $('#names').blur(function () {
+
+            var name = $("#names").val();
+            if (name.length <= 1) {
+                $('#errormsg').show();
+                $('#errormsg small').html('Định dạng tên không đúng');
+                return;
+            }
+
+            $('#errormsg').hide();
+        })
+        $('#textarea').blur(function () {
+
+            var addr = $('#textarea').val();
+            if (addr.length < 1) {
+                $('#errormsg').show();
+                $('#errormsg small').html('Định dạng địa chỉ sai');
+                return;
+            }
+            $('#errormsg').hide();
+
+        })
+        $('.addAddrli img').click(function () {
+            $('#names,#phone,#textarea').val('');
+
+        })
+    </script>
+    <script type="text/javascript">
+        //截取Url里面的参数   
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串  
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]); //获取中文参数转码<span style="font-family: Arial, Helvetica, sans-serif;">decodeURI</span>, （unescape只针对数字, 中文乱码)  
+                }
+            }
+            return theRequest;
+        }
+        $(function () {
+            //通过url取数  
+            var request = new Object();
+            request = GetRequest();
+            var price = request['price'];
+            var buyNum = request['buyNum'];
+            var fenqiNum = request['fenqiNum'];
+            var total = parseFloat(price) * parseInt(buyNum);
+
+            $("#buyNum").html(buyNum);
+            $("#price").html(price);
+            $("#total").html(total);
+        });
+    </script>
+    <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+</body>
+
+</html>

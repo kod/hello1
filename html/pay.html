@@ -8,9 +8,10 @@
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
-    <link rel="stylesheet" href="../css/bootstrap.css?version=2.6.0-alpha">
-    <link rel="stylesheet" href="../css/pay.css?version=2.6.0-alpha">
-    <link rel="stylesheet" href="../css/base.css?version=2.6.0-alpha">
+    <link rel="stylesheet" href="../css/jquery-accordion-menu.css?version=2.6.0-beta">
+    <link rel="stylesheet" href="../css/bootstrap.css?version=2.6.0-beta">
+    <link rel="stylesheet" href="../css/pay.css?version=2.6.0-beta">
+    <link rel="stylesheet" href="../css/base.css?version=2.6.0-beta">
     <title>Trung tâm thanh toán</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
@@ -21,10 +22,11 @@
 
         gtag('config', 'UA-112306571-1');
     </script>
-    <script src="../js/jquery.js?version=2.6.0-alpha"></script>
-    <script src="../js/bootstrap.js?version=2.6.0-alpha"></script>
-    <script src="../js/md5.js?version=2.6.0-alpha"></script>
-    <script src="../js/require2.3.5.min.js?version=2.6.0-alpha"></script>
+    <script src="../js/jquery.js?version=2.6.0-beta"></script>
+    <script src="../js/jquery-accordion-menu.js?version=2.6.0-beta" type="text/javascript"></script>
+    <script src="../js/bootstrap.js?version=2.6.0-beta"></script>
+    <script src="../js/md5.js?version=2.6.0-beta"></script>
+    <script src="../js/require2.3.5.min.js?version=2.6.0-beta"></script>
     <style>
         .body {
             border-top: 1px solid #72aef0;
@@ -363,7 +365,7 @@
                                         <option value="0.5">50%</option>
                                     </select>
                                     <span style="line-height: 25px;">Thanh toán lần đầu
-                                        <i v-html="priceFormat((totalamount-savePrice)*paymentNum)"></i> VND</span>
+                                        <i v-html="priceFormat((totalamount-savePrice)*parseFloat(paymentNum))"></i> VND</span>
                                 </div>
                             </div>
                             <div class="list">
@@ -522,16 +524,22 @@
     </div>
     <script>
         require([
-            '../js/jquery1.11.2.js?version=2.6.0-alpha',
-            '../js/vue.min.js?version=2.6.0-alpha',
-            '../js/md5.js?version=2.6.0-alpha',
-            '../js/common.js?version=2.6.0-alpha',
-            '../js/popup.js?version=2.6.0-alpha',
-        ], function ($, Vue, md5) {
+            // '../js/jquery1.11.2.js?version=2.6.0-beta',
+            '../js/vue.min.js?version=2.6.0-beta',
+            '../js/md5.js?version=2.6.0-beta',
+            '../js/common.js?version=2.6.0-beta',
+            '../js/popup.js?version=2.6.0-beta',
+        ], function (Vue, md5) {
             var loading = new F._loading();
 
+            F.query = F._hrefUtils.parse().query || {};
+            if (F.query && F.query.from === "cart") {
+                F.isToCart = true;
+            } else {
+                F.isToCart = false;
+            }
+
             F.LS__data = JSON.parse(sessionStorage.getItem("pay_cart_data"));
-            console.log(F.LS__data);
             F.subject = F.LS__data[0].subject;
             F.goodsDetail = F.LS__data[0].detail;
             F.fenqiNum = F.isToCart ? 12 : +sessionStorage.getItem("fenqiNum");
@@ -561,7 +569,7 @@
                 subject: F.subject,
                 goodsDetail: F.goodsDetail,
                 fenqiNum: F.fenqiNum,
-                paymentNum: F.paymentNum,
+                paymentNum: '0.1',
                 totalamount: F.totalamount,
                 orgPrice: F.orgPrice,
                 addrlistData: [],
@@ -621,7 +629,6 @@
                 }
 
                 F.vue.addrlistData = F.addrlistData = userAddr;
-                console.log(F.vue.addrlistData);
                 F.vue.addrlistLength = userAddr.length;
 
             }
@@ -679,7 +686,6 @@
                     el: $('#vue-el')[0],
                     data: F.vue,
                     methods: {
-                        gohome: gohome,
                         addppp: addppp,
                         set_active: set_active,
                         remove: remove,
@@ -693,6 +699,9 @@
                     computed: {
 
                     },
+                    mounted: function () {
+                        this.paymentNum = F.paymentNum;
+                    },
                     watch: {
                         addrlistLength: function (val, oldVal) {
                             if (val > 4) {
@@ -700,8 +709,6 @@
                             }
                         },
                         paymentNum: function (num, oldVal) {
-                            console.log(num);
-
                             num = num + "";
                             if (num == "1.0") {
                                 $('#three .fullpay_mark').show();
@@ -713,7 +720,6 @@
                                     .attr("disabled", true)
                                     .addClass("actives");
                                 F.vue.resPrice = F.vue.totalamount;
-                                // F.vue.paymentNum = num;
                             } else {
                                 $('#three .fullpay_mark').hide();
 
@@ -723,7 +729,6 @@
                                 $(".fenqiNumBtn button")
                                     .attr("disabled", false)
                                     .removeClass("actives");
-                                // F.vue.paymentNum = num;
 
                                 change_money(F.vue.totalamount - F.vue.savePrice, F.vue.fenqiNum, num);
                             }
@@ -760,10 +765,6 @@
                         },
                     },
                 });
-            }
-
-            function gohome() {
-                window.location.href = '../index.html';
             }
 
             var addppp = function (params) {
@@ -1064,13 +1065,33 @@
                         }
                     }
 
+                    function cancel_all() {
+                        let array = F.vue.coupon_product_id;
+                        for (let index = 0; index < array.length; index++) {
+                            let element = array[index];
+                            // 取消选择
+                            let item1 = element;
+                            item1.couponId = '';
+                            array.splice(index, item1);
+                        }
+
+
+                        let array1 = F.vue.LS__coupon;
+                        for (let index1 = 0; index1 < array1.length; index1++) {
+                            let item = F.vue.LS__coupon[index1];
+                            item.isSelected = false;
+                            F.vue.LS__coupon.splice(index1, item);
+                        }
+                    }
+                    cancel_all();
+
                     for (let index = 0; index < pids.length; index++) {
                         const element = pids[index];
                         if (isCanSelect(element)) {
                             break;
                         }
                     }
-                    iscanUse(F.vue.LS__coupon);
+                    // iscanUse(F.vue.LS__coupon);
                 }
 
                 B(key, id, pids);
@@ -1122,15 +1143,51 @@
 
             }
 
+            function analyze_orderdetails(array) {
+                var index;
+                var result = {
+                    totalAmount: 0,
+                    orgAmount: 0,
+                    advance: 0,
+                    goodsDetail: [],
+                    subject: '',
+                };
+                var result_ids = [];
+
+                function edit_detail(item) {
+                    var result = {};
+                    result.number = item.quantity;
+                    result.cartitemid = item.id + '';
+                    result.productInfoId = item.itemId;
+                    return result;
+                }
+
+                for (index = 0; index < array.length; index++) {
+                    result.totalAmount += array[index].totalAmount * array[index].quantity;
+                    result.orgAmount += array[index].orgPrice ? array[index].orgPrice * array[index].quantity : 0;
+                    result.advance += array[index].totalAmount * array[index].quantity * parseFloat(F.vue.paymentNum);
+                    result.subject += array[index].subject + ', ';
+                    result.goodsDetail.push(edit_detail(array[index]));
+
+                    // result_ids.push(array[index].id);
+                }
+                result.subject = result.subject.slice(0, -2);
+                // F.result_ids = result_ids.join(',');
+
+
+                return result;
+            }
+
             function go_next() {
                 var coupon_item = get_coupon_item(get_coupon_id(F.vue.coupon_product_id), F.vue.LS__coupon);
+                console.log(coupon_item);
 
                 if (F.isToCart) {
                     loading.show();
                     var analyze_orderdetails_result = analyze_orderdetails(F.LS__data);
                     F._createDisOrder({
                         orderdetails: [{
-                            payRate: F.vue.paymentNum + '',
+                            payRate: F.vue.paymentNum === '1.0' ? F.vue.paymentNum.slice(0,1) : F.vue.paymentNum,
                             orderNo: F._create_orderno(localStorage.getItem("funId")),
                             totalAmount: analyze_orderdetails_result.totalAmount,
                             orgAmount: analyze_orderdetails_result.orgAmount,
@@ -1138,24 +1195,25 @@
                             currency: 'VND',
                             subject: analyze_orderdetails_result.subject,
                             goodsDetail: JSON.stringify(analyze_orderdetails_result.goodsDetail),
-                            repaymentMonth: F.vue.fenqiNum,
+                            repaymentMonth: F.vue.paymentNum === '1.0' ? 0 : F.vue.fenqiNum,
                             couponCard: coupon_item.cardno || '',
                             couponPassword: coupon_item.pincode || '',
                             couponType: coupon_item.voucherType || 0,
+                            couponValue: coupon_item.voucherValue || 0,
                             couponBrandId: coupon_item.brandId || 0,
                             couponTypeId: coupon_item.typeId || 0,
                             couponProductInfoId: coupon_item.productId || 0,
                         }],
-                        ordertype: F.vue.paymentNum === 1 ? "3" : "4",
+                        ordertype: F.vue.paymentNum === '1.0' ? "3" : "4",
                         addrid: F.address_id,
                     }, createDisOrder_callback);
 
-                } else if (F.vue.paymentNum === 1) { // 全款
+                } else if (F.vue.paymentNum === '1.0') { // 全款
 
                     loading.show();
                     F._createDisOrder({
                         orderdetails: [{
-                            payRate: '1',
+                            payRate: F.vue.paymentNum.slice(0,1),
                             orderNo: F._create_orderno(localStorage.getItem("funId")),
                             totalAmount: F.totalamount,
                             orgAmount: F.orgPrice,
@@ -1185,11 +1243,11 @@
                     loading.show();
                     F._createDisOrder({
                         orderdetails: [{
-                            payRate: F.vue.paymentNum + '',
+                            payRate: F.vue.paymentNum,
                             orderNo: F._create_orderno(localStorage.getItem("funId")),
                             totalAmount: F.totalamount,
                             orgAmount: F.orgPrice,
-                            advance: F.totalamount * F.vue.paymentNum,
+                            advance: F.totalamount * parseFloat(F.vue.paymentNum),
                             currency: 'VND',
                             subject: F.subject,
                             goodsDetail: JSON.stringify([{
@@ -1228,6 +1286,46 @@
                 }
             }
 
+
+            // 提交补全信息
+            function userAddDetailInfo(data) {
+                loading.show();
+                F._userAddDetailInfo(data, function (ret) {
+                    loading.hide();
+                    if (!ret) return false;
+
+                    switch (ret.code) {
+                        case 10000:
+
+                            go_next();
+
+                            break;
+
+                        default:
+                            F._confirm('Gợi ý', 'Gửi thông tin thất bại', 'error', [{
+                                name: 'Xác nhận',
+                                func: function () { }
+                            }]);
+                            break;
+                    }
+                });
+            }
+
+            // 去补全信息
+            function getSchoolInfo_addInfo(userInfo) {
+                loading.show();
+                F._getSchoolInfo({}, function (ret) {
+                    loading.hide();
+                    var baseinfo = new F._baseinfo(ret.details, userInfo);
+                    baseinfo.show();
+                    $("#submit_baseinfo").on('click', function () {
+                        baseinfo.submit(function (result) {
+                            baseinfo.hide();
+                            userAddDetailInfo(result);
+                        });
+                    });
+                });
+            }
 
             // 提交订单
             function submit() {
@@ -1281,7 +1379,7 @@
                     return quantity;
                 }
 
-                F.vue.paymentNum = parseFloat(F.vue.paymentNum);
+                F.vue.paymentNum = parseFloat(F.vue.paymentNum).toFixed(1);
                 F.totalamount = parseFloat(F.totalamount);
                 F.quantity = get_num(F.LS__data);
 
@@ -1308,7 +1406,7 @@
                 }
 
                 loading.show();
-                if (F.vue.paymentNum === 1) {
+                if (F.vue.paymentNum === '1.0') {
                     // 全款
                     F._is_initPaypassword(function (status) {
                         loading.hide();
@@ -1377,7 +1475,7 @@
                     }
                 }
 
-                if (F.vue.paymentNum === 1) {
+                if (F.vue.paymentNum === '1.0') {
                     // 全款
                     go_pay();
                 } else {
