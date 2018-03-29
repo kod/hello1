@@ -516,15 +516,16 @@
                     </div>
                 </div>
                 <div class="body__main-fristpay" style="display: none" v-show="tradeStatus === '10000'">
+                    <div class="body__m-f-text">
+                        <span class="body__main-f-label">Tiết kiệm: </span>
+                        <span class="body__m-f-price" v-html="priceFormat(couponValue)" style="padding-right: 0px;" ></span>
+                        <span class="body__m-f-unit">VND</span>
+                    </div>
                     <div class="body__m-f-text" v-if="payRate === 1">
                         <span class="body__main-f-label">Tổng tiền: </span>
                         <span class="body__m-f-price" v-html="priceFormat(advance)"></span>
                         <span class="body__m-f-unit">VND</span>
                         <!-- <img src="../img/titi.png" @click="information" style="width:15px;height:15px;margin-top:7px;margin-left: 5px;cursor:pointer;"> -->
-                    </div>
-                    <div class="body__m-f-text" v-if="payRate !== 1">
-                        <span class="body__main-f-label">Tiết kiệm: </span>
-                        <span class="body__m-f-price" v-html="priceFormat(advance)" style="padding-right: 20px;" ></span>
                     </div>
                     <div class="body__m-f-text" v-if="payRate !== 1">
                         <span class="body__main-f-label">Trả góp hàng tháng: </span>
