@@ -222,15 +222,16 @@
     color: #0076f7;
 }
 .fc .aa {
-    width: 338px;
-    height: 40px;
-    line-height: 40px;
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
     color: #fff;
     background: #0076f7;
     display: inline-block;
     margin: 13px 0;
     cursor: pointer;
+    font-size: 18px;
 }
 .fc .aa.no_checkbox {
     width: 338px;

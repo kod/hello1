@@ -165,7 +165,7 @@
         .four__wrap_more {
             height: 350px;
             overflow-y: auto;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
 
         .four__item {
@@ -278,6 +278,90 @@
 
         .four__item_disable .four__item-top:hover {
             box-shadow: none;
+        }
+
+        .orderinfo {
+            /* padding-top: 150px; */
+            line-height: 1;
+        }
+
+        .orderinfo__main:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .orderinfo__main-row1 {
+            float: left;
+            width: 100%;
+            background-color: #f5f5f5;
+            height: 50px;
+            line-height: 50px;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 50px;
+        }
+
+        .orderinfo__m-r1-item1 {
+            float: left;
+            width: 33.33333333%;
+            padding-left: 20px;
+        }
+
+        .orderinfo__m-r1-i1-text {
+            margin-right: 10px;
+        }
+
+        .orderinfo__m-r1-item2 {
+            float: left;
+            width: 33.333333333%;
+            text-align: center;
+        }
+
+        .orderinfo__m-r1-i2-text {
+            margin-right: 10px;
+        }
+
+        .orderinfo__m-r1-item3 {
+            float: left;
+            width: 33.333333333%;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .orderinfo__m-r1-i3-text {
+            margin-right: 10px;
+        }
+
+        .orderinfo__m-r1-i3-price {
+            margin-right: 5px;
+            font-weight: 700;
+        }
+
+        .orderinfo__main-row2 {
+            float: left;
+            width: 100%;
+            text-align: right;
+        }
+
+        .orderinfo__main-r2-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .orderinfo__main-r2-price {
+            font-size: 18px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .orderinfo__main-r2-redprice {
+            font-size: 24px;
+            color: #fd5147;
+            font-weight: 700;
         }
     </style>
 </head>
@@ -409,15 +493,43 @@
                                 <img src="../img/couponmore.png" alt="more" class="four__more-icon">
                             </div> -->
                         <div class="four__nodata" style="display: none;" v-show="LS__coupon.length === 0">Không thể sử dụng voucher</div>
-                        <div class="four__money" style="display: none;" v-show="LS__coupon.length > 0">
+                        <!-- <div class="four__money" style="display: none;" v-show="LS__coupon.length > 0">
                             <span class="four__money-text">Tiết kiệm</span>
                             <span class="four__money-price" v-html="priceFormat(savePrice) + ' VND'"></span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </article>
             <article id="three">
                 <div class="content1">
+                    <section class="orderinfo">
+                        <div class="orderinfo__main">
+                            <div class="orderinfo__main-row1">
+                                <div class="orderinfo__m-r1-item1">
+                                    <span class="orderinfo__m-r1-i1-text">Số kỳ thanh toán:</span>
+                                    <span class="orderinfo__m-r1-i1-price" v-html="fenqiNum + ' Tháng'"></span>
+                                </div>
+                                <div class="orderinfo__m-r1-item2">
+                                    <span class="orderinfo__m-r1-i2-text">Tỉ lệ thanh toán lần đầu:</span>
+                                    <span class="orderinfo__m-r1-i2-price" v-html="paymentNum*100 + '%'"></span>
+                                </div>
+                                <div class="orderinfo__m-r1-item3">
+                                    <span class="orderinfo__m-r1-i3-text">Trả góp hàng tháng:</span>
+                                    <span class="orderinfo__m-r1-i3-price" v-html="priceFormat(resPrice) + ' VND x ' + fenqiNum"></span>
+                                    <img src="../img/alert-prepaid.svg" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 17px;" data-toggle="modal"
+                                        data-target="#myhead" class="moneryIcon" />
+                                </div>
+                            </div>
+                            <div class="orderinfo__main-row2">
+                                <div class="orderinfo__main-r2-title">Giá trị sản phẩm:</div>
+                                <div class="orderinfo__main-r2-price" v-html="priceFormat(F.totalamount) + ' VND'"></div>
+                                <div class="orderinfo__main-r2-title">Tiết kiệm:</div>
+                                <div class="orderinfo__main-r2-price" v-html="priceFormat(savePrice) + ' VND'"></div>
+                                <div class="orderinfo__main-r2-title">Số tiền cần thanh toán:</div>
+                                <div class="orderinfo__main-r2-redprice" v-html="priceFormat(F.totalamount-savePrice) + ' VND'"></div>
+                            </div>
+                        </div>
+                    </section>
                     <div class="three fullpay_mark" style="display: none;" v-show="paymentNum === '1.0'">
                         <div class="top_title">
                             <i></i>
@@ -454,18 +566,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <ul>
-                                <li class="payway-li act">
-                                    <i></i>
-                                    <p>Ngân hàng</p>
-                                </li>
-                                <li class="payway-li">
-                                    <i></i>
-                                    <p>Số dư</p>
-                                </li>
-                            </ul> -->
-                        <div class="fc" style="vertical-align: right;">
-                            <p v-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px; display: none;">
+                    </div>
+                    <div class="fc" style="vertical-align: right; margin-top: 0;">
+                        <!-- <p v-show="paymentNum === '1.0'" style="text-align: right; padding-right: 10px; line-height: 40px; display: none;">
                                 <span style="padding-top: 2px; padding-right:5px;">Tổng tiền:</span>
                                 <i v-html="priceFormat(totalResPrice)"></i>
                                 <span class="" style="padding-top: 3px;">VND</span>
@@ -478,17 +581,17 @@
                                 </span>
                                 <img src="../img/titi.png" alt="" style="width:15px;height:15px;cursor: pointer; margin-top: 12px;" data-toggle="modal" data-target="#myhead"
                                     class="moneryIcon" />
-                            </p>
-                            <div class="" style="text-align: right;">
-                                <span class="aa no_checkbox1" @click="submit()">Mua ngay</span>
-                            </div>
-                            <div class="p" style="text-align: right; opacity: 0;">
-                                <input type="checkbox" id="selectAll" />
-                                <span>Đồng ý</span>
-                                <i href="buyIntro.html" target="_self">Hợp đồng liên quan đến khoản vay</i>
-                            </div>
+                            </p> -->
+                        <div class="" style="text-align: right;">
+                            <span class="aa no_checkbox1" @click="submit()">Mua ngay</span>
+                        </div>
+                        <div class="p" style="text-align: right; opacity: 0;">
+                            <input type="checkbox" id="selectAll" />
+                            <span>Đồng ý</span>
+                            <i href="buyIntro.html" target="_self">Hợp đồng liên quan đến khoản vay</i>
                         </div>
                     </div>
+
                 </div>
             </article>
         </div>
