@@ -8,7 +8,7 @@
   <meta name="csrf-param" content="_csrf-frontend">
   <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
   <link rel='icon' href='../img/icon.png' type='image/x-ico' />
-  <link rel="stylesheet" href="../css/base.css?version=2.6.0-beta">
+  <link rel="stylesheet" href="../css/base.css?version=2.6.0">
   <title>prepaid</title>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
@@ -19,9 +19,9 @@
 
     gtag('config', 'UA-112306571-1');
   </script>
-  <script src="../js/jquery.js?version=2.6.0-beta"></script>
-  <script src="../js/md5.js?version=2.6.0-beta"></script>
-  <script src="../js/require2.3.5.min.js?version=2.6.0-beta"></script>
+  <script src="../js/jquery.js?version=2.6.0"></script>
+  <script src="../js/md5.js?version=2.6.0"></script>
+  <script src="../js/require2.3.5.min.js?version=2.6.0"></script>
   <style>
     .body {
       line-height: 1;
@@ -131,19 +131,20 @@
       line-height: 1.5;
     }
 
-    .leftitem__prepaid {
+    .rightitem__prepaid {
       float: left;
       width: 100%;
+      margin-bottom: 60px;
     }
 
-    .leftitem__prepaid-item {
+    .rightitem__prepaid-item {
       float: left;
       width: 150px;
       margin-bottom: 30px;
       margin-right: 50px;
     }
 
-    .leftitem__p-r-img {
+    .rightitem__p-r-img {
       height: 50px;
       width: 150px;
       border: 1px solid #f5f5f5;
@@ -153,7 +154,7 @@
       background-size: contain;
     }
 
-    .leftitem__p-r-text {
+    .rightitem__p-r-text {
       text-align: center;
       font-size: 12px;
       color: #999;
@@ -162,9 +163,22 @@
     .leftitem__tips {
       float: left;
       width: 100%;
+      height: 12px;
       font-size: 12px;
       color: #FD5147;
       margin-bottom: 100px;
+      opacity: 0;
+    }
+
+    .leftitem__tips_show {
+      opacity: 1;
+    }
+
+    .leftitem__tips-icon {
+      height: 12px;
+      width: 12px;
+      color: #FD5147;
+      margin-right: 1px;
     }
 
     .leftitem__denomination {
@@ -173,18 +187,19 @@
       margin-bottom: 70px;
     }
 
-    .leftitem__number {
+    .rightitem__number {
       float: left;
       width: 100%;
+      margin-bottom: 100px;
     }
 
-    .leftitem__n-text {
+    .rightitem__n-text {
       font-size: 18px;
       color: #999;
       padding-top: 5px;
     }
 
-    .leftitem__number-select {
+    .rightitem__number-select {
       height: 27px;
       width: 100px;
       border: 1px solid #aaa;
@@ -245,6 +260,10 @@
       display: block;
     }
 
+    .rightitem .leftitem__denomination {
+      margin-bottom: 15px;
+    }
+
     .price {
       float: left;
       width: 100%;
@@ -255,6 +274,7 @@
       font-size: 14px;
       color: #333;
       margin-bottom: 20px;
+      font-weight: 700;
     }
 
     .price__money-number {
@@ -280,7 +300,7 @@
       text-align: center;
       background-color: #ccc;
       color: #fff;
-      margin-bottom: 50px;
+      margin-bottom: 100px;
       font-size: 18px;
       cursor: pointer;
     }
@@ -292,6 +312,71 @@
     .submit_acitve:active {
       background-color: #eD4137;
     }
+
+    .prepaid-confirm {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 123456;
+      background-color: rgba(0, 0, 0, .3);
+      text-align: center;
+      padding-top: 10%;
+    }
+
+    .prepaid-confirm__main {
+      display: inline-block;
+      width: 350px;
+      height: 440px;
+      background-color: #fff;
+      padding-right: 50px;
+      padding-left: 50px;
+      text-align: left;
+    }
+
+    .prepaid-confirm__main-close {
+      text-align: right;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .prepaid-confirm__m-c-icon {
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-image: url(../img/close.png);
+    }
+
+    .prepaid-confirm__main-text {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+
+    .prepaid-confirm__main-number {
+      font-size: 36px;
+      margin-bottom: 100px;
+    }
+
+    .prepaid-confirm__main-button {
+      height: 50px;
+      line-height: 50px;
+      width: 150px;
+      text-align: center;
+      color: #fff;
+      background-color: #147af3;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .prepaid-confirm__main-button:active {
+      background-color: #045ac3;
+    }
   </style>
 </head>
 
@@ -301,63 +386,28 @@
     <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
       <div class="body">
         <section class="nav">
-          <div class="nav__item" :class="{ 'nav__item_active': type === 'rechange' }" @click="type = 'rechange'">Nạp tiền</div>
+          <div class="nav__item" :class="{ 'nav__item_active': type === 'recharge' }" @click="type = 'recharge'">Nạp tiền</div>
           <div class="nav__item" :class="{ 'nav__item_active': type === 'scratchCards' }" @click="type = 'scratchCards'">Thẻ Cào</div>
         </section>
-        <section class="leftitem">
+        <section class="leftitem" v-show="type === 'recharge'">
           <section class="title">
             <span class="title__no">1</span>
             <span class="title__text">输入手机号</span>
           </section>
           <div class="leftitem__main">
             <div class="leftitem__main-left">
-              <input type="text" class="leftitem__m-l-input" placeholder="Số di động của bạn">
+              <input type="tel" class="leftitem__m-l-input" v-model="telNumber" placeholder="Số di động của bạn" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
+                data-on-val="">
             </div>
             <div class="leftitem__main-right">
               <img src="../img/vietnammobile.png" alt="logo" class="leftitem__m-r-img">
-              <div class="ccc"></div>
               <div class="leftitem__m-r-text">Lưu ý: Thuê bao bị khóa chiều nạp tiền (sim bị khóa 2 chiều, sim bị khóa do nhập sai mã thẻ điện thoại trước
                 đó nhiều lần, ...) sẽ không thể thực hiện được dịch vụ này.</div>
             </div>
           </div>
-          <div class="leftitem__tips">您所填入的手机号的手机号不支持直冲，请选择充值卡充值/请输入正确的手机号</div>
-          <div class="leftitem__prepaid" v-show="">
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
-            <li class="leftitem__prepaid-item">
-              <div class="leftitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="leftitem__p-r-text">Viettel</div>
-            </li>
+          <div class="leftitem__tips" :class="{ 'leftitem__tips_show': telNumberError === true }">
+            <img class="leftitem__tips-icon" src="../img/alert-prepaid.svg" alt="tips">
+            <span v-html="telNumberErrorText"></span>
           </div>
           <section class="title">
             <span class="title__no">2</span>
@@ -385,37 +435,129 @@
               <div class="leftitem__d-i-arrow"></div>
             </li>
           </div>
-          <div class="leftitem__number">
-            <span class="leftitem__n-text">Chọn mệnh giá và số lượng thẻ</span>
-            <select name="" id="number" class="leftitem__number-select">
+          <sectoin class="price">
+            <div class="price__title">金额</div>
+            <div class="price__money">
+              <div class="price__money-number">49.000 VND</div>
+              <div class="price__money-discounts">(已优惠1000VND)</div>
+            </div>
+          </sectoin>
+          <section class="submit">支付</section>
+        </section>
+        <section class="rightitem" v-show="type === 'scratchCards'">
+          <section class="title">
+            <span class="title__no">1</span>
+            <span class="title__text">Chọn nhà mạng</span>
+          </section>
+          <div class="rightitem__prepaid">
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+            <li class="rightitem__prepaid-item">
+              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
+              <div class="rightitem__p-r-text">Viettel</div>
+            </li>
+          </div>
+          <section class="title">
+            <span class="title__no">2</span>
+            <span class="title__text">Chọn mệnh giá và số lượng thẻ</span>
+          </section>
+          <div class="leftitem__denomination">
+            <li class="leftitem__d-item leftitem__d-item_active">
+              <div class="leftitem__d-i-price">500.000</div>
+              <div class="leftitem__d-i-unit">VND</div>
+              <div class="leftitem__d-i-arrow"></div>
+            </li>
+            <li class="leftitem__d-item">
+              <div class="leftitem__d-i-price">50.000</div>
+              <div class="leftitem__d-i-unit">VND</div>
+              <div class="leftitem__d-i-arrow"></div>
+            </li>
+            <li class="leftitem__d-item">
+              <div class="leftitem__d-i-price">500.000</div>
+              <div class="leftitem__d-i-unit">VND</div>
+              <div class="leftitem__d-i-arrow"></div>
+            </li>
+            <li class="leftitem__d-item">
+              <div class="leftitem__d-i-price">500.000</div>
+              <div class="leftitem__d-i-unit">VND</div>
+              <div class="leftitem__d-i-arrow"></div>
+            </li>
+          </div>
+          <div class="rightitem__number">
+            <span class="rightitem__n-text">Chọn mệnh giá và số lượng thẻ</span>
+            <select name="" id="number" class="rightitem__number-select">
               <option value="1">1</option>
             </select>
           </div>
+          <sectoin class="price">
+            <div class="price__title">金额</div>
+            <div class="price__money">
+              <div class="price__money-number">49.0001 VND</div>
+              <div class="price__money-discounts">(已优惠1000VND)</div>
+            </div>
+          </sectoin>
+          <section class="submit">支付</section>
         </section>
-        <sectoin class="price">
-          <div class="price__title">金额</div>
-          <div class="price__money">
-            <div class="price__money-number">49.000 VND</div>
-            <div class="price__money-discounts">(已优惠1000VND)</div>
+        <section class="prepaid-confirm" style="display: none;">
+          <div class="prepaid-confirm__main">
+            <div class="prepaid-confirm__main-close">
+              <div class="prepaid-confirm__m-c-icon"></div>
+            </div>
+            <div class="prepaid-confirm__main-text">请确认充值手机号</div>
+            <div class="prepaid-confirm__main-number">01666720718</div>
+            <div class="prepaid-confirm__main-button">确认支付</div>
           </div>
-        </sectoin>
-        <section class="submit">支付</section>
+        </section>
       </div>
     </div>
     <footer class="footer" id="footer"></footer>
   </div>
   <script>
     require([
-      '../js/jquery1.11.2.js?version=2.6.0-beta',
-      '../js/vue.min.js?version=2.6.0-beta',
-      '../js/md5.js?version=2.6.0-beta',
-      '../js/common.js?version=2.6.0-beta',
+      '../js/jquery1.11.2.js?version=2.6.0',
+      '../js/vue.min.js?version=2.6.0',
+      '../js/md5.js?version=2.6.0',
+      '../js/common.js?version=2.6.0',
     ], function ($, Vue, md5) {
       var loading = new F._loading();
 
       F.vue = {
         body__main_height: document.documentElement.clientHeight - 133 - 210 - 210,
-        type: 'rechange', // scratchCards: 刮刮卡; rechange: 电话充值
+        type: 'recharge', // scratchCards: 刮刮卡; recharge: 电话充值
+        telNumber: '',
+        telNumberError: false,
+        telNumberErrorText: '您所填入的手机号的手机号不支持直冲，请选择充值卡充值/请输入正确的手机号',
+        telNumberJudgeSetTimeoutId: 0,
       };
 
       var load = function () {
@@ -429,7 +571,7 @@
         if (callback === undefined) callback = params;
 
         var all_data = {};
-        var request_length = 1; //请求个数
+        var request_length = 0; //请求个数
 
         // 请求是否全部返回
         function all_loaded() {
@@ -441,10 +583,8 @@
         }
         loading.show();
 
-        loadData_market_getVoucher(function (ret) {
-          all_data._market_getVoucher = ret;
-          all_loaded();
-        });
+        all_loaded();
+
       };
 
       function new_vue() {
@@ -459,24 +599,36 @@
 
           },
           watch: {
-            // LS__data: function (val, oldVal) {
-            //     var data = this.LS__data;
-            //     if (!F.vue.isLogin) localStorage.setItem("cart", JSON.stringify(data));
-            //     calc(data);
-            // },
+            telNumber: function (val, oldVal) {
+              if (val[0] !== '0') val = '0' + val;
+              let self = this;
+
+              function judge(val) {
+                if (val.length === 10 && val.slice(0, 2) === '09') {
+                  self.telNumberError = false;
+                  self.telNumberErrorText = '';
+                  F._getPhoneRecharge({
+                    msisdn: val
+                  }, function (ret) {
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                    console.log(ret);
+                  });
+                } else if (val.length === 11 && val.slice(0, 2) === '01') {
+                  self.telNumberError = false;
+                  self.telNumberErrorText = '';
+                } else {
+                  self.telNumberError = true;
+                  self.telNumberErrorText = 'Invalid phone number';
+                }
+              }
+
+              window.clearTimeout(self.telNumberJudgeSetTimeoutId);
+              self.telNumberJudgeSetTimeoutId = window.setTimeout(() => {
+                judge(val);
+              }, 700);
+            },
           },
-        });
-      }
-
-      function loadData_market_getVoucher(callback) {
-        var funid = localStorage.getItem("funId") || '';
-        F._market_getVoucher({
-          funid: funid
-        }, function (ret) {
-          if (!ret) return false;
-          if (ret.code !== 10000) return false;
-
-          callback(ret);
         });
       }
 

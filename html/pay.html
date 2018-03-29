@@ -8,10 +8,10 @@
     <meta name="csrf-param" content="_csrf-frontend">
     <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
     <link rel='icon' href='../img/icon.png' type='image/x-ico' />
-    <link rel="stylesheet" href="../css/jquery-accordion-menu.css?version=2.6.0-beta">
-    <link rel="stylesheet" href="../css/bootstrap.css?version=2.6.0-beta">
-    <link rel="stylesheet" href="../css/pay.css?version=2.6.0-beta">
-    <link rel="stylesheet" href="../css/base.css?version=2.6.0-beta">
+    <link rel="stylesheet" href="../css/jquery-accordion-menu.css?version=2.6.0">
+    <link rel="stylesheet" href="../css/bootstrap.css?version=2.6.0">
+    <link rel="stylesheet" href="../css/pay.css?version=2.6.0">
+    <link rel="stylesheet" href="../css/base.css?version=2.6.0">
     <title>Trung tâm thanh toán</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
@@ -22,11 +22,11 @@
 
         gtag('config', 'UA-112306571-1');
     </script>
-    <script src="../js/jquery.js?version=2.6.0-beta"></script>
-    <script src="../js/jquery-accordion-menu.js?version=2.6.0-beta" type="text/javascript"></script>
-    <script src="../js/bootstrap.js?version=2.6.0-beta"></script>
-    <script src="../js/md5.js?version=2.6.0-beta"></script>
-    <script src="../js/require2.3.5.min.js?version=2.6.0-beta"></script>
+    <script src="../js/jquery.js?version=2.6.0"></script>
+    <script src="../js/jquery-accordion-menu.js?version=2.6.0" type="text/javascript"></script>
+    <script src="../js/bootstrap.js?version=2.6.0"></script>
+    <script src="../js/md5.js?version=2.6.0"></script>
+    <script src="../js/require2.3.5.min.js?version=2.6.0"></script>
     <style>
         .body {
             border-top: 1px solid #72aef0;
@@ -527,11 +527,11 @@
     </div>
     <script>
         require([
-            // '../js/jquery1.11.2.js?version=2.6.0-beta',
-            '../js/vue.min.js?version=2.6.0-beta',
-            '../js/md5.js?version=2.6.0-beta',
-            '../js/common.js?version=2.6.0-beta',
-            '../js/popup.js?version=2.6.0-beta',
+            // '../js/jquery1.11.2.js?version=2.6.0',
+            '../js/vue.min.js?version=2.6.0',
+            '../js/md5.js?version=2.6.0',
+            '../js/common.js?version=2.6.0',
+            '../js/popup.js?version=2.6.0',
         ], function (Vue, md5) {
             var loading = new F._loading();
 
@@ -547,9 +547,6 @@
             F.goodsDetail = F.LS__data[0].detail;
             F.fenqiNum = F.isToCart ? 12 : +sessionStorage.getItem("fenqiNum");
             F.paymentNum = F.isToCart ? "0.5" : sessionStorage.getItem("paymentNum") + "";
-
-            console.log('F.LS__data');
-            console.log(F.LS__data);
 
             function calc_allTotalData(array) {
                 var i;
@@ -622,9 +619,6 @@
                 payway: '2',
             };
 
-            console.log('coupon_product_id');
-            console.log(F.vue.coupon_product_id);
-
             var load = function () {
                 new_vue();
             };
@@ -647,8 +641,6 @@
                 change_money(F.vue.totalamount - F.vue.savePrice, F.vue.fenqiNum, F.vue.paymentNum);
 
                 F.vue.LS__coupon = set_couponData(judgeVoucher);
-                console.log('LS__coupon');
-                console.log(F.vue.LS__coupon);
                 for (var i = 0; i < userAddr.length; i++) {
                     if (userAddr[i].isdefault === "Y" && userAddr[i].division2ndName) {
                         // F.address = userAddr[i].address;
@@ -1214,13 +1206,10 @@
                             break;
                         }
                     }
-                    console.log(F.vue.coupon_product_id);
                     // iscanUse(F.vue.LS__coupon);
                 }
 
                 B(key, id, pids);
-                console.log(F.vue.LS__coupon);
-                console.log(F.vue.coupon_product_id);
             }
 
             function time_format(start, end) {

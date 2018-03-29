@@ -1,8 +1,8 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = true;
+F._DEUBUG = false;
 
-F._VERSION = '2.6.0-beta';
+F._VERSION = '2.6.0';
 console.log('version ' + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? 'http://119.28.177.175' : 'https://vn255.buyoo.xyz';
@@ -72,6 +72,7 @@ F._cart_getInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/cart/getInfo
 F._getHTML_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getHTML'; //
 F._merge_getInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/merge/getInfo'; // 拼单列表
 F._merge_getDetail_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/merge/getDetail'; // 拼单详情
+F._getPhoneRecharge_cd = F._IP_255 + ':' + F._port_85 + '/fun/virtual/getPhoneRecharge'; // 获取运营商信息(手机充值)
 F._market_getVoucher_cd = F._IP_255 + ':' + F._port_87 + '/fun/market/getVoucher'; // 优惠券领取列表
 F._uploadFiles_uf = F._IP_191 + ':' + F._port_80 + '/fun/userfile/uploadFiles'; // 上传用户头像
 F._collectFiles_uf = F._IP_191 + ':' + F._port_80 + '/fun/userfile/collectFiles'; // 用户评论上传图片
@@ -189,6 +190,71 @@ F._encrypt_MD5 = function(params, Key) {
   md5EncryptStrig = md5EncryptStrig.slice(1);
   md5EncryptStrig += Key;
   return md5(md5EncryptStrig);
+};
+
+// 获取运营商信息(手机充值)
+F._getPhoneRecharge = function(params, callback) {
+  var Key = 'commodityKey';
+
+  var appId = '0';
+  var method = 'fun.virtual.getPhoneRecharge';
+  var charset = 'utf-8';
+  var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+  var version = '2.0';
+
+  var msisdn = params.msisdn || '';
+
+  var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+  var encrypt = F._encrypt_MD5(
+    [
+      {
+        key: 'msisdn',
+        value: msisdn
+      }
+    ],
+    Key
+  );
+
+  var data = {
+    appid: appId,
+    method: method,
+    charset: charset,
+    signtype: signType,
+    encrypt: encrypt,
+    timestamp: timestamp,
+    version: version,
+    msisdn: msisdn,
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: F._getPhoneRecharge_cd,
+    data: data,
+    success: function(ret) {
+      ret = JSON.parse(ret);
+      callback(ret);
+
+      switch (ret.code) {
+        case 10000:
+          break;
+
+        default:
+          $('#loading').remove();
+          F._confirm('Gợi ý', 'error', 'error', [
+            {
+              name: 'Xác nhận',
+              func: function() {}
+            }
+          ]);
+          break;
+      }
+    },
+    error: function(ret) {
+      console.error('request error');
+      callback(false);
+    }
+  });
 };
 
 // 下单时，可用的优惠券
