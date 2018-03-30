@@ -504,7 +504,7 @@
                 <div class="content1">
                     <section class="orderinfo">
                         <div class="orderinfo__main">
-                            <div class="orderinfo__main-row1">
+                            <div class="orderinfo__main-row1" v-show="paymentNum !== '1.0'">
                                 <div class="orderinfo__m-r1-item1">
                                     <span class="orderinfo__m-r1-i1-text">Số kỳ thanh toán:</span>
                                     <span class="orderinfo__m-r1-i1-price" v-html="fenqiNum + ' Tháng'"></span>
