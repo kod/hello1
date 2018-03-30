@@ -616,7 +616,7 @@
                 F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
 
                 F.vue.returnMoney = returnMoney.details[F.vue.totalAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
-                F.vue.preReturnMoney = F.vue.repaymentMonth === 0 ? 0 : F.vue.returnMoney[0].interest + F.vue.returnMoney[0].principal;
+                F.vue.preReturnMoney = F.vue.payRate === 1 ? 0 : F.vue.returnMoney[0].interest + F.vue.returnMoney[0].principal;
 
             }
 
