@@ -224,8 +224,8 @@
           <div class="main__item" v-for="(val, key) in LS__data" :class="{ 'main__item_disable': !get_status(val.status, val.totalNum - val.usedNum).status }">
             <div class="main__item-left">
               <div class="main__i-l-wrap">
-                <img src="../img/couponall.png" alt="image" class="main__i-l-discount" v-if="val.voucherType === 0">
-                <img alt="image" class="main__i-l-img" v-if="val.voucherType === 1" :src="val.voucherIcon">
+                <!-- <img src="../img/couponall.png" alt="image" class="main__i-l-discount" v-if="val.voucherType === 0"> -->
+                <img alt="image" class="main__i-l-img" v-if="true" :src="val.voucherIcon">
               </div>
             </div>
             <div class="main__item-right">
