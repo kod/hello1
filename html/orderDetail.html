@@ -193,6 +193,33 @@
             -webkit-box-orient: vertical;
         }
 
+        .body__m-p-bar {
+            background-color: #F5F5F5;
+            padding-left: 30px;
+            font-size: 16px;
+        }
+
+        .body__m-p-bar-item {
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .body__m-p-b-key {
+            display: inline-block;
+            width: 600px;
+        }
+
+        .body__m-p-b-val {
+            display: inline-block;
+            width: 500px;
+        }
+
+        .body__m-p-b-tips {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
         .body__main-pay {
             padding-left: 35px;
             margin-bottom: 80px;
@@ -415,12 +442,12 @@
                         <span class="body__m-t-r-status" v-html="gettradeStatus(tradeStatus)"></span>
                     </div>
                 </div>
-                <div class="bar-title">
+                <div class="bar-title" v-if="sourceOrderType !== 3">
                     <div class="bar-title__main">
                         <span class="bar-title__main-text">Thông tin người nhận hàng</span>
                     </div>
                 </div>
-                <div class="body__main-info">
+                <div class="body__main-info" v-if="sourceOrderType !== 3">
                     <div class="body__m-i-top">
                         <!-- <span class="body__m-i-t-name" v-html="'Người nhận hàng: ' + username"></span> -->
                         <span class="body__m-i-t-title">Điện thoại:</span>
@@ -451,6 +478,13 @@
                         <span class="body__m-p-m-num" v-html="val.number"></span>
                         <span class="body__m-p-m-price" v-html="priceFormat(val.totalAmount)"></span>
                         <span class="body__m-p-m-subtotal" v-html="priceFormat(val.totalAmount * val.number)"></span>
+                    </div>
+                    <div class="body__m-p-bar">
+                        <li class="body__m-p-bar-item" v-for="(val, key) in LS__epayCheckSoftpin">
+                            <div class="body__m-p-b-key" v-html="'Tài khoản: ' + val.cardCode "></div>
+                            <div class="body__m-p-b-val" v-html="'Mật khẩu: ' + val.cardPassword "></div>
+                        </li>
+                        <div class="body__m-p-b-tips" v-if="LS__epayCheckSoftpin.length === 0">充值出错，钱将退到我的余额里</div>
                     </div>
                 </div>
                 <!-- <div class="bar-title">
@@ -518,7 +552,7 @@
                 <div class="body__main-fristpay" style="display: none" v-show="tradeStatus === '10000'">
                     <div class="body__m-f-text">
                         <span class="body__main-f-label">Tiết kiệm: </span>
-                        <span class="body__m-f-price" v-html="priceFormat(couponValue)" style="padding-right: 0px;" ></span>
+                        <span class="body__m-f-price" v-html="priceFormat(couponValue)" style="padding-right: 0px;"></span>
                         <span class="body__m-f-unit">VND</span>
                     </div>
                     <div class="body__m-f-text" v-if="payRate === 1">
@@ -589,6 +623,7 @@
             };
 
             var pre_data = function (data) {
+                F.vue.LS__epayCheckSoftpin = data._epayCheckSoftpin;
 
                 function edit_address(address, division4thName, division3rdName, division2ndName) {
                     return address + (division4thName ? ', ' : '') + division4thName + (division3rdName ? ', ' : '') + division3rdName + (division2ndName ? ', ' : '') + division2ndName;
@@ -624,7 +659,7 @@
                 if (callback === undefined) callback = params;
 
                 var all_data = {};
-                var request_length = 2; //请求个数
+                var request_length = 3; //请求个数
 
                 // 请求是否全部返回
                 function all_loaded() {
@@ -640,6 +675,17 @@
 
                     loadData_returnMoney(ret, function (ret) {
                         all_data._returnMoney = ret;
+                        all_loaded();
+                    });
+
+                    F._epayCheckSoftpin({
+                        funid: localStorage.getItem("funId"),
+                        tradeNo: ret.tradeNo,
+                        orderNo: ret.orderNo,
+                    }, function (ret) {
+                        if (!ret) return false;
+                        if (ret.code !== 10000) return false;
+                        all_data._epayCheckSoftpin = ret.result;
                         all_loaded();
                     });
 

@@ -1,12 +1,13 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = false;
+F._DEUBUG = true;
 
 F._VERSION = '2.6.0';
 console.log('version ' + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? 'http://119.28.177.175' : 'https://vn255.buyoo.xyz';
 F._IP_191 = F._DEUBUG ? 'http://119.28.177.175' : 'https://vn.buyoo.xyz';
+F._port_81 = F._DEUBUG ? '8181' : '8280';
 F._port_80 = F._DEUBUG ? '8180' : '8280';
 F._port_83 = F._DEUBUG ? '8183' : '8283';
 F._port_84 = F._DEUBUG ? '8184' : '8284';
@@ -73,7 +74,10 @@ F._getHTML_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getHTML'; //
 F._merge_getInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/merge/getInfo'; // 拼单列表
 F._merge_getDetail_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/merge/getDetail'; // 拼单详情
 F._getPhoneRecharge_cd = F._IP_255 + ':' + F._port_85 + '/fun/virtual/getPhoneRecharge'; // 获取运营商信息(手机充值)
-F._market_getVoucher_cd = F._IP_255 + ':' + F._port_87 + '/fun/market/getVoucher'; // 优惠券领取列表
+F._getProvidersCard_cd = F._IP_255 + ':' + F._port_85 + '/fun/virtual/getProvidersCard'; // 获取运营商信息(充值卡)
+F._getProvidersValue_cd = F._IP_255 + ':' + F._port_85 + '/fun/virtual/getProvidersValue'; // 获取运营商信息(充值卡面值)
+F._epayCheckSoftpin_cd = F._IP_255 + ':' + F._port_81 + '/fun/payMentGateWay/epay/epayCheckSoftpin'; // 查询充值卡密
+F._market_getVoucher_cd = F._IP_191 + ':' + F._port_87 + '/fun/market/getVoucher'; // 优惠券领取列表
 F._uploadFiles_uf = F._IP_191 + ':' + F._port_80 + '/fun/userfile/uploadFiles'; // 上传用户头像
 F._collectFiles_uf = F._IP_191 + ':' + F._port_80 + '/fun/userfile/collectFiles'; // 用户评论上传图片
 F._returnMoney_im = F._IP_191 + ':' + F._port_84 + '/fun/installment/returnMoney'; //
@@ -190,6 +194,213 @@ F._encrypt_MD5 = function(params, Key) {
   md5EncryptStrig = md5EncryptStrig.slice(1);
   md5EncryptStrig += Key;
   return md5(md5EncryptStrig);
+};
+
+// 查询充值卡密
+F._epayCheckSoftpin = function(params, callback) {
+  var Key = 'paymentKey';
+
+  var appId = '0';
+  var method = 'fun.pay.epayCheckSoftpin';
+  var charset = 'utf-8';
+  var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+  var version = '2.0';
+
+  var funid = params.funid || '';
+  var tradeNo = params.tradeNo || '';
+  var orderNo = params.orderNo || '';
+
+  var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+  var encrypt = F._encrypt_MD5(
+    [
+      {
+        key: 'funid',
+        value: funid
+      },
+      {
+        key: 'tradeNo',
+        value: tradeNo
+      },
+      {
+        key: 'orderNo',
+        value: orderNo
+      }
+    ],
+    Key
+  );
+
+  var data = {
+    appid: appId,
+    method: method,
+    charset: charset,
+    signtype: signType,
+    encrypt: encrypt,
+    timestamp: timestamp,
+    version: version,
+    funid: funid,
+    tradeNo: tradeNo,
+    orderNo: orderNo,
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: F._epayCheckSoftpin_cd,
+    data: data,
+    success: function(ret) {
+      ret = JSON.parse(ret);
+      callback(ret);
+
+      switch (ret.code) {
+        case 10000:
+          break;
+
+        default:
+          $('#loading').remove();
+          F._confirm('Gợi ý', 'error', 'error', [
+            {
+              name: 'Xác nhận',
+              func: function() {}
+            }
+          ]);
+          break;
+      }
+    },
+    error: function(ret) {
+      console.error('request error');
+      callback(false);
+    }
+  });
+};
+
+// 获取运营商信息(充值卡面值)
+F._getProvidersValue = function(params, callback) {
+  var Key = 'commodityKey';
+
+  var appId = '0';
+  var method = 'fun.virtual.getProvidersValue';
+  var charset = 'utf-8';
+  var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+  var version = '2.0';
+
+  var providerName = params.providerName || '';
+  var providerCode = params.providerCode || '';
+
+  var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+  var encrypt = F._encrypt_MD5(
+    [
+      {
+        key: 'providerName',
+        value: providerName
+      },
+      {
+        key: 'providerCode',
+        value: providerCode
+      }
+    ],
+    Key
+  );
+
+  var data = {
+    appid: appId,
+    method: method,
+    charset: charset,
+    signtype: signType,
+    encrypt: encrypt,
+    timestamp: timestamp,
+    version: version,
+    providerName: providerName,
+    providerCode: providerCode,
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: F._getProvidersValue_cd,
+    data: data,
+    success: function(ret) {
+      ret = JSON.parse(ret);
+      callback(ret);
+
+      switch (ret.code) {
+        case 10000:
+          break;
+
+        default:
+          $('#loading').remove();
+          F._confirm('Gợi ý', 'error', 'error', [
+            {
+              name: 'Xác nhận',
+              func: function() {}
+            }
+          ]);
+          break;
+      }
+    },
+    error: function(ret) {
+      console.error('request error');
+      callback(false);
+    }
+  });
+};
+
+// 获取运营商信息(充值卡)
+F._getProvidersCard = function(params, callback) {
+  var Key = 'commodityKey';
+
+  var appId = '0';
+  var method = 'fun.virtual.getProvidersCard';
+  var charset = 'utf-8';
+  var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+  var version = '2.0';
+
+  var msisdn = params.msisdn || '';
+
+  var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+  var encrypt = F._encrypt_MD5(
+    [],
+    Key
+  );
+
+  var data = {
+    appid: appId,
+    method: method,
+    charset: charset,
+    signtype: signType,
+    encrypt: encrypt,
+    timestamp: timestamp,
+    version: version,
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: F._getProvidersCard_cd,
+    data: data,
+    success: function(ret) {
+      ret = JSON.parse(ret);
+      callback(ret);
+
+      switch (ret.code) {
+        case 10000:
+          break;
+
+        default:
+          $('#loading').remove();
+          F._confirm('Gợi ý', 'error', 'error', [
+            {
+              name: 'Xác nhận',
+              func: function() {}
+            }
+          ]);
+          break;
+      }
+    },
+    error: function(ret) {
+      console.error('request error');
+      callback(false);
+    }
+  });
 };
 
 // 获取运营商信息(手机充值)

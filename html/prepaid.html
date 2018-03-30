@@ -124,7 +124,7 @@
 
     .leftitem__m-r-text {
       float: left;
-      width: 750px;
+      width: 700px;
       color: #ccc;
       padding-top: 5px;
       padding-left: 20px;
@@ -142,16 +142,25 @@
       width: 150px;
       margin-bottom: 30px;
       margin-right: 50px;
+      cursor: pointer;
     }
 
     .rightitem__p-r-img {
       height: 50px;
       width: 150px;
-      border: 1px solid #f5f5f5;
+      border: 2px solid #f5f5f5;
       margin-bottom: 10px;
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
+    }
+
+    .rightitem__p-r-img:hover {
+      border-color: #999;
+    }
+
+    .rightitem__prepaid-item_active .rightitem__p-r-img {
+      border-color: #147af3;
     }
 
     .rightitem__p-r-text {
@@ -187,6 +196,12 @@
       margin-bottom: 70px;
     }
 
+    .leftitem__payway {
+      float: left;
+      width: 100%;
+      margin-bottom: 100px;
+    }
+
     .rightitem__number {
       float: left;
       width: 100%;
@@ -203,6 +218,8 @@
       height: 27px;
       width: 100px;
       border: 1px solid #aaa;
+      /* color: #0076F7; */
+      font-size: 14px;
     }
 
     .leftitem__d-item {
@@ -302,11 +319,12 @@
       color: #fff;
       margin-bottom: 100px;
       font-size: 18px;
-      cursor: pointer;
+      cursor: not-allowed;
     }
 
     .submit_acitve {
       background-color: #FD5147;
+      cursor: pointer;
     }
 
     .submit_acitve:active {
@@ -366,7 +384,7 @@
     .prepaid-confirm__main-button {
       height: 50px;
       line-height: 50px;
-      width: 150px;
+      width: 180px;
       text-align: center;
       color: #fff;
       background-color: #147af3;
@@ -392,7 +410,7 @@
         <section class="leftitem" v-show="type === 'recharge'">
           <section class="title">
             <span class="title__no">1</span>
-            <span class="title__text">输入手机号</span>
+            <span class="title__text">Điền số điện thoại di động</span>
           </section>
           <div class="leftitem__main">
             <div class="leftitem__main-left">
@@ -400,7 +418,7 @@
                 data-on-val="">
             </div>
             <div class="leftitem__main-right">
-              <img src="../img/vietnammobile.png" alt="logo" class="leftitem__m-r-img">
+              <img alt="logo" src="" class="leftitem__m-r-img" v-show="recharge_providerImg" :src="recharge_providerImg" style="display: none;">
               <div class="leftitem__m-r-text">Lưu ý: Thuê bao bị khóa chiều nạp tiền (sim bị khóa 2 chiều, sim bị khóa do nhập sai mã thẻ điện thoại trước
                 đó nhiều lần, ...) sẽ không thể thực hiện được dịch vụ này.</div>
             </div>
@@ -414,35 +432,45 @@
             <span class="title__text">选择充值面额</span>
           </section>
           <div class="leftitem__denomination">
-            <li class="leftitem__d-item leftitem__d-item_active">
-              <div class="leftitem__d-i-price">500.000</div>
-              <div class="leftitem__d-i-unit">VND</div>
-              <div class="leftitem__d-i-arrow"></div>
-            </li>
-            <li class="leftitem__d-item">
-              <div class="leftitem__d-i-price">50.000</div>
-              <div class="leftitem__d-i-unit">VND</div>
-              <div class="leftitem__d-i-arrow"></div>
-            </li>
-            <li class="leftitem__d-item">
-              <div class="leftitem__d-i-price">500.000</div>
-              <div class="leftitem__d-i-unit">VND</div>
-              <div class="leftitem__d-i-arrow"></div>
-            </li>
-            <li class="leftitem__d-item">
-              <div class="leftitem__d-i-price">500.000</div>
+            <li class="leftitem__d-item" v-for="(val, key) in recharge_prepaid" @click="recharge_selected = key" :class="{ 'leftitem__d-item_active': key === recharge_selected }">
+              <div class="leftitem__d-i-price" v-html="priceFormat(val.price)"></div>
               <div class="leftitem__d-i-unit">VND</div>
               <div class="leftitem__d-i-arrow"></div>
             </li>
           </div>
+          <section class="title">
+            <span class="title__no">3</span>
+            <span class="title__text">Phương thức thanh toán</span>
+          </section>
+          <div class="leftitem__payway">
+            <div class="payway__m-b-item" @click="recharge_payway = '2'" :class="{ 'payway__m-b-item_acitve': recharge_payway === '2' }">
+              <div class="payway__m-b-i-text">Ngân hàng</div>
+              <div class="payway__m-b-i-icon">
+                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_epay.png);"></span>
+              </div>
+              <div class="payway__m-b-i-indicator">
+                <span class="payway__m-b-i-i-img"></span>
+              </div>
+            </div>
+            <div class="payway__m-b-item" @click="recharge_payway = '1'" :class="{ 'payway__m-b-item_acitve': recharge_payway === '1' }">
+              <div class="payway__m-b-i-text">Số dư</div>
+              <div class="payway__m-b-i-icon">
+                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_balance.png);"></span>
+              </div>
+              <div class="payway__m-b-i-indicator">
+                <span class="payway__m-b-i-i-img"></span>
+              </div>
+            </div>
+          </div>
           <sectoin class="price">
-            <div class="price__title">金额</div>
+            <div class="price__title">Tổng tiền</div>
             <div class="price__money">
-              <div class="price__money-number">49.000 VND</div>
-              <div class="price__money-discounts">(已优惠1000VND)</div>
+              <div class="price__money-number" v-html="priceFormat(recharge_price) + 'VND'"></div>
+              <div class="price__money-discounts" v-html="'(Tiết kiệm: ' + recharge_orgPrice + ' VND)'" v-show="recharge_price < recharge_orgPrice"></div>
             </div>
           </sectoin>
-          <section class="submit">支付</section>
+          <section class="submit" @click="(recharge_invalid && recharge_fling && recharge_price > 0) && (prepaid_confirm_show = true)"
+            :class="{ 'submit_acitve': recharge_invalid && recharge_fling && recharge_price > 0 }">Thanh toán</section>
         </section>
         <section class="rightitem" v-show="type === 'scratchCards'">
           <section class="title">
@@ -450,41 +478,9 @@
             <span class="title__text">Chọn nhà mạng</span>
           </section>
           <div class="rightitem__prepaid">
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
-            </li>
-            <li class="rightitem__prepaid-item">
-              <div class="rightitem__p-r-img" style="background-image: url(../img/vietnammobile.png);"></div>
-              <div class="rightitem__p-r-text">Viettel</div>
+            <li class="rightitem__prepaid-item" v-for="(val, key) in scratchCards_result" @click="scratchCards_providerIndex = key" :class="{ 'rightitem__prepaid-item_active': scratchCards_providerIndex === key }">
+              <div class="rightitem__p-r-img" :style="{ 'background-image': 'url('+ val.providerIcon +')'}"></div>
+              <div class="rightitem__p-r-text" v-html="val.providerName"></div>
             </li>
           </div>
           <section class="title">
@@ -492,50 +488,69 @@
             <span class="title__text">Chọn mệnh giá và số lượng thẻ</span>
           </section>
           <div class="leftitem__denomination">
-            <li class="leftitem__d-item leftitem__d-item_active">
-              <div class="leftitem__d-i-price">500.000</div>
-              <div class="leftitem__d-i-unit">VND</div>
-              <div class="leftitem__d-i-arrow"></div>
-            </li>
-            <li class="leftitem__d-item">
-              <div class="leftitem__d-i-price">50.000</div>
-              <div class="leftitem__d-i-unit">VND</div>
-              <div class="leftitem__d-i-arrow"></div>
-            </li>
-            <li class="leftitem__d-item">
-              <div class="leftitem__d-i-price">500.000</div>
-              <div class="leftitem__d-i-unit">VND</div>
-              <div class="leftitem__d-i-arrow"></div>
-            </li>
-            <li class="leftitem__d-item">
-              <div class="leftitem__d-i-price">500.000</div>
+            <li class="leftitem__d-item" v-for="(val, key) in scratchCards_faceValues" @click="scratchCards_selectedIndex = key" :class="{ 'leftitem__d-item_active': key === scratchCards_selectedIndex }">
+              <div class="leftitem__d-i-price" v-html="priceFormat(val.orgPrice)"></div>
               <div class="leftitem__d-i-unit">VND</div>
               <div class="leftitem__d-i-arrow"></div>
             </li>
           </div>
           <div class="rightitem__number">
-            <span class="rightitem__n-text">Chọn mệnh giá và số lượng thẻ</span>
-            <select name="" id="number" class="rightitem__number-select">
+            <span class="rightitem__n-text">Số lượng thẻ: </span>
+            <select name="" class="rightitem__number-select" v-model="scratchCards_number">
               <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
             </select>
           </div>
+          <section class="title">
+            <span class="title__no">3</span>
+            <span class="title__text">Phương thức thanh toán</span>
+          </section>
+          <div class="leftitem__payway">
+            <div class="payway__m-b-item" @click="scratchCards_payway = '2'" :class="{ 'payway__m-b-item_acitve': scratchCards_payway === '2' }">
+              <div class="payway__m-b-i-text">Ngân hàng</div>
+              <div class="payway__m-b-i-icon">
+                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_epay.png);"></span>
+              </div>
+              <div class="payway__m-b-i-indicator">
+                <span class="payway__m-b-i-i-img"></span>
+              </div>
+            </div>
+            <div class="payway__m-b-item" @click="scratchCards_payway = '1'" :class="{ 'payway__m-b-item_acitve': scratchCards_payway === '1' }">
+              <div class="payway__m-b-i-text">Số dư</div>
+              <div class="payway__m-b-i-icon">
+                <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_balance.png);"></span>
+              </div>
+              <div class="payway__m-b-i-indicator">
+                <span class="payway__m-b-i-i-img"></span>
+              </div>
+            </div>
+          </div>
           <sectoin class="price">
-            <div class="price__title">金额</div>
+            <div class="price__title">Tổng tiền</div>
             <div class="price__money">
-              <div class="price__money-number">49.0001 VND</div>
-              <div class="price__money-discounts">(已优惠1000VND)</div>
+              <div class="price__money-number" v-html="priceFormat(scratchCards_totalPrice) + 'VND'"></div>
+              <div class="price__money-discounts" v-html="'(Tiết kiệm: ' + priceFormat(scratchCards_totalOrgPrice - scratchCards_totalPrice) + ' VND)'"
+                v-show="scratchCards_price < scratchCards_orgPrice"></div>
             </div>
           </sectoin>
-          <section class="submit">支付</section>
+          <section class="submit" @click="scratchCards_submit" :class="{ 'submit_acitve': scratchCards_productInfoId && scratchCards_price > 0 }">Thanh toán</section>
         </section>
-        <section class="prepaid-confirm" style="display: none;">
+        <section class="prepaid-confirm" style="display: none;" v-show="prepaid_confirm_show">
           <div class="prepaid-confirm__main">
             <div class="prepaid-confirm__main-close">
-              <div class="prepaid-confirm__m-c-icon"></div>
+              <div class="prepaid-confirm__m-c-icon" @click="prepaid_confirm_show = false"></div>
             </div>
             <div class="prepaid-confirm__main-text">请确认充值手机号</div>
-            <div class="prepaid-confirm__main-number">01666720718</div>
-            <div class="prepaid-confirm__main-button">确认支付</div>
+            <div class="prepaid-confirm__main-number" v-html="telNumber"></div>
+            <div class="prepaid-confirm__main-button" @click="recharge_submit">Xác nhận thanh toán</div>
           </div>
         </section>
       </div>
@@ -551,6 +566,8 @@
     ], function ($, Vue, md5) {
       var loading = new F._loading();
 
+      F.def_recharge_prepaid = [{ orgPrice: 50000, price: 50000 }, { orgPrice: 100000, price: 100000 }, { orgPrice: 200000, price: 200000 }, { orgPrice: 300000, price: 300000 }, { orgPrice: 500000, price: 500000 }];
+
       F.vue = {
         body__main_height: document.documentElement.clientHeight - 133 - 210 - 210,
         type: 'recharge', // scratchCards: 刮刮卡; recharge: 电话充值
@@ -558,6 +575,31 @@
         telNumberError: false,
         telNumberErrorText: '您所填入的手机号的手机号不支持直冲，请选择充值卡充值/请输入正确的手机号',
         telNumberJudgeSetTimeoutId: 0,
+        recharge_result: {},
+        recharge_providerImg: '',
+        recharge_prepaid: F.def_recharge_prepaid,
+        recharge_selected: -1,
+        recharge_price: 0, // 现价
+        recharge_orgPrice: 0, // 原价
+        recharge_fling: false, // 电话号码是否支持直冲
+        recharge_invalid: false, // 电话号码是否有效
+        recharge_payway: '2',
+        recharge_productInfoId: 0, // 商品id
+        prepaid_confirm_show: false,
+        scratchCards_result: [],
+        providersValue_result: {},
+        scratchCards_providerIndex: -1,
+        scratchCards_selectedIndex: -1,
+        scratchCards_faceValues: [],
+        scratchCards_providersCard_item: {},
+        scratchCards_providersValue_item: {},
+        scratchCards_number: 1, // 数量
+        scratchCards_price: 0, // 现价
+        scratchCards_orgPrice: 0, // 原价
+        // scratchCards_totalPrice: 0, // 现价*数量
+        // scratchCards_totalOrgPrice: 0, // 原价*数量
+        scratchCards_productInfoId: 0, // 商品id
+        scratchCards_payway: '2',
       };
 
       var load = function () {
@@ -565,13 +607,16 @@
       };
 
       var pre_data = function (data) {
+        console.log(data);
+        F.vue.scratchCards_result = data._getProvidersCard;
+        // F.vue.providersValue_result = data._getProvidersValue;
       }
 
       F.loadData = function (params, callback) {
         if (callback === undefined) callback = params;
 
         var all_data = {};
-        var request_length = 0; //请求个数
+        var request_length = 1; //请求个数
 
         // 请求是否全部返回
         function all_loaded() {
@@ -583,8 +628,10 @@
         }
         loading.show();
 
-        all_loaded();
-
+        F._getProvidersCard({}, function (ret) {
+          all_data._getProvidersCard = ret.result;
+          all_loaded();
+        });
       };
 
       function new_vue() {
@@ -592,44 +639,233 @@
           el: $('#vue-el')[0],
           data: F.vue,
           methods: {
-            // get_status: get_status,
-            // get_coupon: get_coupon,
+            priceFormat: F._priceFormat,
+            recharge_submit: recharge_submit,
+            scratchCards_submit: scratchCards_submit,
           },
           computed: {
-
+            scratchCards_totalPrice: function () {
+              return this.scratchCards_price * this.scratchCards_number;
+            },
+            scratchCards_totalOrgPrice: function () {
+              return this.scratchCards_orgPrice * this.scratchCards_number;
+            },
+          },
+          mounted: function () {
+            F.vue.recharge_selected = 0;
+            F.vue.scratchCards_providerIndex = 0;
           },
           watch: {
+            scratchCards_selectedIndex: function (val, oldVal) {
+              F.vue.scratchCards_providersValue_item = F.vue.scratchCards_faceValues[val];
+              F.vue.scratchCards_price = F.vue.scratchCards_providersValue_item.price;
+              F.vue.scratchCards_orgPrice = F.vue.scratchCards_providersValue_item.orgPrice;
+              F.vue.scratchCards_productInfoId = F.vue.scratchCards_providersValue_item.id;
+            },
+            scratchCards_providerIndex: function (val, oldVal) {
+              F.vue.scratchCards_providersCard_item = F.vue.scratchCards_result[val];
+
+              // 为初始化做准备
+              F.vue.scratchCards_selectedIndex = -1;
+              F._getProvidersValue({
+                providerName: F.vue.scratchCards_providersCard_item.providerName,
+                providerCode: F.vue.scratchCards_providersCard_item.providerCode,
+              }, function (ret) {
+                F.vue.scratchCards_faceValues = ret.result.productInfos;
+                F.vue.scratchCards_selectedIndex = 0;
+              });
+
+            },
+            recharge_selected: function (val, oldVal) {
+              F.vue.recharge_price = F.vue.recharge_prepaid[val].price;
+              F.vue.recharge_orgPrice = F.vue.recharge_prepaid[val].orgPrice;
+              F.vue.recharge_productInfoId = F.vue.recharge_prepaid[val].id;
+            },
             telNumber: function (val, oldVal) {
               if (val[0] !== '0') val = '0' + val;
-              let self = this;
 
               function judge(val) {
                 if (val.length === 10 && val.slice(0, 2) === '09') {
-                  self.telNumberError = false;
-                  self.telNumberErrorText = '';
+                  // F.vue.telNumberError = false;
+                  // F.vue.telNumberErrorText = '';
+                  // F.vue.recharge_invalid = true;
+                  // 为了下一步初始化
+                  F.vue.recharge_selected = -1;
+
                   F._getPhoneRecharge({
                     msisdn: val
-                  }, function (ret) {
-                    if (!ret) return false;
-                    if (ret.code !== 10000) return false;
-                    console.log(ret);
-                  });
+                  }, getPhoneRecharge_callback);
+
                 } else if (val.length === 11 && val.slice(0, 2) === '01') {
-                  self.telNumberError = false;
-                  self.telNumberErrorText = '';
+                  // F.vue.telNumberError = false;
+                  // F.vue.telNumberErrorText = '';
+                  // F.vue.recharge_invalid = true;
+                  // 为了下一步初始化
+                  F.vue.recharge_selected = -1;
+
+                  F._getPhoneRecharge({
+                    msisdn: val
+                  }, getPhoneRecharge_callback);
+
                 } else {
-                  self.telNumberError = true;
-                  self.telNumberErrorText = 'Invalid phone number';
+                  F.vue.telNumberError = true;
+                  F.vue.telNumberErrorText = 'Invalid phone number';
+                  F.vue.recharge_invalid = false;
                 }
               }
 
-              window.clearTimeout(self.telNumberJudgeSetTimeoutId);
-              self.telNumberJudgeSetTimeoutId = window.setTimeout(() => {
+              window.clearTimeout(F.vue.telNumberJudgeSetTimeoutId);
+              F.vue.telNumberJudgeSetTimeoutId = window.setTimeout(() => {
                 judge(val);
               }, 700);
             },
           },
         });
+      }
+
+      function getPhoneRecharge_callback(ret) {
+        if (!ret) return false;
+        if (ret.code !== 10000) return false;
+        if (!ret.result.productInfos) {
+          // 不支持直冲
+          F.vue.recharge_fling = false;
+          F.vue.recharge_result = {};
+          F.vue.recharge_prepaid = F.def_recharge_prepaid;
+          F.vue.recharge_providerImg = '';
+          F.vue.recharge_selected = 0;
+
+          F.vue.telNumberError = true;
+          F.vue.telNumberErrorText = '不支持此手机号直冲';
+          F.vue.recharge_invalid = false;
+        } else {
+          // 支持直冲
+          F.vue.recharge_fling = true;
+          F.vue.recharge_result = ret.result;
+          F.vue.recharge_prepaid = ret.result.productInfos;
+          F.vue.recharge_providerImg = ret.result.providerIcon;
+          F.vue.recharge_selected = 0;
+
+          F.vue.telNumberError = false;
+          F.vue.telNumberErrorText = '';
+          F.vue.recharge_invalid = true;
+        }
+
+      }
+
+      function paymentDisOrder_callback(ret) {
+        loading.hide();
+        if (!ret) return false;
+        if (ret.code !== 10000) return false;
+
+        window.location.href = './successPay.html?type=2';
+      }
+
+      function createDisOrder_callback(ret) {
+        loading.hide();
+
+        if (!ret) return false;
+        if (ret.code !== 10000) return false;
+        F.orderNo = ret.orderNo;
+        F.tradeNo = ret.tradeNo;
+
+        var payway = F.vue.type === 'recharge' ? F.vue.recharge_payway : F.vue.scratchCards_payway;
+        function go_pay() {
+          if (payway === '1') {
+            F._payPwd_open(function (paypassword) {
+              loading.show();
+              F._payDisOrder({
+                orderno: F.orderNo,
+                tradeno: F.tradeNo,
+                payway: payway,
+                paypassword: paypassword,
+              }, paymentDisOrder_callback);
+            });
+          } else {
+            loading.show();
+            F._payDisOrder({
+              orderno: F.orderNo,
+              tradeno: F.tradeNo,
+              payway: payway,
+              paypassword: '',
+            }, paymentDisOrder_callback);
+          }
+        }
+        go_pay();
+      }
+
+      function recharge_submit() {
+        // 延迟，修改手机号后，防止点击过快，手机号没更新
+        setTimeout(() => {
+          loading.show();
+          F._createDisOrder({
+            orderdetails: [{
+              payRate: '1',
+              orderNo: F._create_orderno(localStorage.getItem("funId")),
+              totalAmount: F.vue.recharge_price,
+              orgAmount: F.vue.recharge_orgPrice,
+              advance: F.vue.recharge_price,
+              currency: 'VND',
+              subject: F.vue.recharge_result.providerName + ' ' + F.vue.recharge_price + ' VND',
+              goodsDetail: JSON.stringify([{
+                number: 1,
+                cartitemid: '',
+                productInfoId: F.vue.recharge_productInfoId,
+                account: F.vue.telNumber,
+                provider: F.vue.recharge_result.providerCode,
+                type: '1',
+              }]),
+              repaymentMonth: 0,
+              couponCard: '',
+              couponPassword: '',
+              couponType: 0,
+              couponValue: 0,
+              couponBrandId: 0,
+              couponTypeId: 0,
+              couponProductInfoId: 0,
+            }],
+            ordertype: '2',
+            addrid: 0,
+          }, createDisOrder_callback);
+
+        }, 300);
+      }
+
+      function scratchCards_submit() {
+        // 延迟，修改手机号后，防止点击过快，手机号没更新
+        setTimeout(() => {
+          loading.show();
+          F._createDisOrder({
+            orderdetails: [{
+              payRate: '1',
+              orderNo: F._create_orderno(localStorage.getItem("funId")),
+              totalAmount: F.vue.scratchCards_totalPrice,
+              orgAmount: F.vue.scratchCards_totalOrgPrice,
+              advance: F.vue.scratchCards_totalPrice,
+              currency: 'VND',
+              subject: '',
+              goodsDetail: JSON.stringify([{
+                number: parseInt(F.vue.scratchCards_number),
+                cartitemid: '',
+                productInfoId: F.vue.scratchCards_productInfoId,
+                account: '',
+                provider: F.vue.scratchCards_providersCard_item.providerCode,
+                type: '1',
+              }]),
+              repaymentMonth: 0,
+              couponCard: '',
+              couponPassword: '',
+              couponType: 0,
+              couponValue: 0,
+              couponBrandId: 0,
+              couponTypeId: 0,
+              couponProductInfoId: 0,
+            }],
+            ordertype: '2',
+            addrid: 0,
+          }, createDisOrder_callback);
+
+        }, 300);
+
       }
 
       F.loadData(function () {
