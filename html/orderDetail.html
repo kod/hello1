@@ -480,7 +480,7 @@
                         <span class="body__m-p-m-subtotal" v-html="priceFormat(val.totalAmount * val.number)"></span>
                     </div>
                     <div class="body__m-p-bar">
-                        <li class="body__m-p-bar-item" v-for="(val, key) in rechargeCrad">
+                        <li class="body__m-p-bar-item" v-for="(val, key) in rechargeCard">
                             <div class="body__m-p-b-key" v-html="'Tài khoản: ' + val.cardCode "></div>
                             <div class="body__m-p-b-val" v-html="'Mật khẩu: ' + val.cardPassword "></div>
                         </li>
@@ -631,7 +631,7 @@
                 var trade_queryOrder = data._trade_queryOrder;
                 var returnMoney = data._returnMoney;
 
-                F.vue.rechargeCrad = trade_queryOrder.rechargeCrad || [];
+                F.vue.rechargeCard = trade_queryOrder.rechargeCard || [];
                 F.vue.phoneRecharge = trade_queryOrder.phoneRecharge;
 
                 F.vue.orgAmount = trade_queryOrder.orgAmount;
@@ -1019,7 +1019,7 @@
             function openProduct(typeId, brandId) {
                 // var typeId = F.query.typeId;
                 // var brandId = F.query.brandId;
-                window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+                if (F.vue.sourceOrderType !== 3) window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
             }
 
             F.loadData(function () {
