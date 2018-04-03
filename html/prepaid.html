@@ -414,7 +414,7 @@
           </section>
           <div class="leftitem__main">
             <div class="leftitem__main-left">
-              <input type="tel" class="leftitem__m-l-input" v-model="telNumber" placeholder="Số di động của bạn" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
+              <input type="tel" class="leftitem__m-l-input" maxlength="11" v-model="telNumber" placeholder="Số di động của bạn" oninput="/^[0-9]*$/.test(this.value) ? this.setAttribute('data-on-val', this.value) : this.value = this.getAttribute('data-on-val');"
                 data-on-val="">
             </div>
             <div class="leftitem__main-right">
@@ -794,6 +794,16 @@
       }
 
       function recharge_submit() {
+        if (!localStorage.getItem("funId")) {
+          F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
+            name: 'Xác nhận',
+            func: function () {
+              window.location.href = 'login.html';
+            }
+          }]);
+          return false;
+        }
+
         // 延迟，修改手机号后，防止点击过快，手机号没更新
         setTimeout(() => {
           loading.show();
@@ -831,6 +841,16 @@
       }
 
       function scratchCards_submit() {
+        if (!localStorage.getItem("funId")) {
+          F._confirm('Gợi ý', 'Vui lòng đăng nhập', 'tips', [{
+            name: 'Xác nhận',
+            func: function () {
+              window.location.href = 'login.html';
+            }
+          }]);
+          return false;
+        }
+
         // 延迟，修改手机号后，防止点击过快，手机号没更新
         setTimeout(() => {
           loading.show();
