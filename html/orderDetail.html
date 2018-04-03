@@ -480,11 +480,11 @@
                         <span class="body__m-p-m-subtotal" v-html="priceFormat(val.totalAmount * val.number)"></span>
                     </div>
                     <div class="body__m-p-bar">
-                        <li class="body__m-p-bar-item" v-for="(val, key) in LS__epayCheckSoftpin">
+                        <li class="body__m-p-bar-item" v-for="(val, key) in rechargeCrad">
                             <div class="body__m-p-b-key" v-html="'Tài khoản: ' + val.cardCode "></div>
                             <div class="body__m-p-b-val" v-html="'Mật khẩu: ' + val.cardPassword "></div>
                         </li>
-                        <div class="body__m-p-b-tips" v-if="LS__epayCheckSoftpin.length === 0">充值出错，钱将退到我的余额里</div>
+                        <div class="body__m-p-b-tips" v-if="phoneRecharge && phoneRecharge.errorCode !== 0">充值出错，钱将退到我的余额里</div>
                     </div>
                 </div>
                 <!-- <div class="bar-title">
@@ -623,7 +623,6 @@
             };
 
             var pre_data = function (data) {
-                F.vue.LS__epayCheckSoftpin = data._epayCheckSoftpin;
 
                 function edit_address(address, division4thName, division3rdName, division2ndName) {
                     return address + (division4thName ? ', ' : '') + division4thName + (division3rdName ? ', ' : '') + division3rdName + (division2ndName ? ', ' : '') + division2ndName;
@@ -631,6 +630,9 @@
 
                 var trade_queryOrder = data._trade_queryOrder;
                 var returnMoney = data._returnMoney;
+
+                F.vue.rechargeCrad = trade_queryOrder.rechargeCrad || [];
+                F.vue.phoneRecharge = trade_queryOrder.phoneRecharge;
 
                 F.vue.orgAmount = trade_queryOrder.orgAmount;
                 F.vue.totalAmount = trade_queryOrder.totalAmount;
@@ -659,7 +661,7 @@
                 if (callback === undefined) callback = params;
 
                 var all_data = {};
-                var request_length = 3; //请求个数
+                var request_length = 2; //请求个数
 
                 // 请求是否全部返回
                 function all_loaded() {
@@ -678,16 +680,16 @@
                         all_loaded();
                     });
 
-                    F._epayCheckSoftpin({
-                        funid: localStorage.getItem("funId"),
-                        tradeNo: ret.tradeNo,
-                        orderNo: ret.orderNo,
-                    }, function (ret) {
-                        if (!ret) return false;
-                        if (ret.code !== 10000) return false;
-                        all_data._epayCheckSoftpin = ret.result;
-                        all_loaded();
-                    });
+                    // F._epayCheckSoftpin({
+                    //     funid: localStorage.getItem("funId"),
+                    //     tradeNo: ret.tradeNo,
+                    //     orderNo: ret.orderNo,
+                    // }, function (ret) {
+                    //     if (!ret) return false;
+                    //     if (ret.code !== 10000) return false;
+                    //     all_data._epayCheckSoftpin = ret.result;
+                    //     all_loaded();
+                    // });
 
                     all_data._trade_queryOrder = ret;
                     all_loaded();
