@@ -1,12 +1,188 @@
 <a name="1.0.0"></a>
-# [1.0.0](https://gitee.com/bingfurong/WebStore/compare/v2.3.0-alpha...v1.0.0) (2018-01-15)
+# [1.0.0](https://gitee.com/bingfurong/WebStore/compare/2.7.0-alpha.1...1.0.0) (2018-04-03)
+
+
+
+<a name="2.7.0-alpha.1"></a>
+# [2.7.0-alpha.1](https://gitee.com/bingfurong/WebStore/compare/v2.6.0...2.7.0-alpha.1) (2018-04-03)
 
 
 ### Bug Fixes
 
+* 修复APP端，全款订单分期数却为12，导致的问题 ([b7d3897](https://gitee.com/bingfurong/WebStore/commits/b7d3897))
+* 领券中心，没有优惠券时显示相应的文字 ([0e31108](https://gitee.com/bingfurong/WebStore/commits/0e31108))
+
+
+### Features
+
+* 完成充值功能，待进一步测试 ([6eb7a20](https://gitee.com/bingfurong/WebStore/commits/6eb7a20))
+* 显示优惠金额 ([d793fdd](https://gitee.com/bingfurong/WebStore/commits/d793fdd))
+
+
+
+<a name="2.6.0"></a>
+# [2.6.0](https://gitee.com/bingfurong/WebStore/compare/v2.5.1-alpha...v2.6.0) (2018-03-29)
+
+
+### Bug Fixes
+
+* 修复购物车下单优惠金额计算错误问题 ([da2a38e](https://gitee.com/bingfurong/WebStore/commits/da2a38e))
+* 修改为合适的标题 ([286c023](https://gitee.com/bingfurong/WebStore/commits/286c023))
+* 多了个字母 ([2044780](https://gitee.com/bingfurong/WebStore/commits/2044780))
+* **changes:** 修复全款下单任需完整信息验证问题 ([2db6ed8](https://gitee.com/bingfurong/WebStore/commits/2db6ed8))
+* **changes:** 修复点击按钮无法返回首页问题 ([99daed1](https://gitee.com/bingfurong/WebStore/commits/99daed1))
+* **changes:** 修复路径错误问题 ([e4db4f1](https://gitee.com/bingfurong/WebStore/commits/e4db4f1))
+* **changes:** 添加一个账单状态 ([f7afe8f](https://gitee.com/bingfurong/WebStore/commits/f7afe8f))
+* **index.html:** 二维码链接生成错误问题 ([af7d25a](https://gitee.com/bingfurong/WebStore/commits/af7d25a))
+* **index.html:** 修改价格显示字段 ([1f1f86c](https://gitee.com/bingfurong/WebStore/commits/1f1f86c))
+* **this:** 修复首页"支付引导"遮挡电话问题 ([5b59c4c](https://gitee.com/bingfurong/WebStore/commits/5b59c4c))
+
+
+### Features
+
+* 优惠券已完成初步测试 ([0013c38](https://gitee.com/bingfurong/WebStore/commits/0013c38))
+* 使用优惠券功能完成80% ([53bbecc](https://gitee.com/bingfurong/WebStore/commits/53bbecc))
+* 完成优惠券功能（初步测试通过） ([4b6cf20](https://gitee.com/bingfurong/WebStore/commits/4b6cf20))
+* 添加团购帮助，替换翻译，更新版本号 ([0352266](https://gitee.com/bingfurong/WebStore/commits/0352266))
+* 添加首付10%的选项 ([11ecc06](https://gitee.com/bingfurong/WebStore/commits/11ecc06))
+* 网银支付测试页面 ([5ae0d18](https://gitee.com/bingfurong/WebStore/commits/5ae0d18))
+
+
+
+<a name="2.5.1-alpha"></a>
+## [2.5.1-alpha](https://gitee.com/bingfurong/WebStore/compare/v2.5.0...v2.5.1-alpha) (2018-02-03)
+
+
+### Bug Fixes
+
+* 修复下分期订单时未判断第二、三联系人的信息 ([1a0769b](https://gitee.com/bingfurong/WebStore/commits/1a0769b))
+* 版权时间由写死改为写活(new Date()).getFullYear() ([4d8571a](https://gitee.com/bingfurong/WebStore/commits/4d8571a))
+* **changes:** 修复购物车下单失败问题 ([1b3c8ab](https://gitee.com/bingfurong/WebStore/commits/1b3c8ab))
+* **changes:** 修改翻译和状态码 ([8197ab0](https://gitee.com/bingfurong/WebStore/commits/8197ab0))
+* **order.html:** 订单列表中，点击拼单的订单，转跳到错误页面 ([96dfb95](https://gitee.com/bingfurong/WebStore/commits/96dfb95))
+
+
+
+<a name="2.5.0"></a>
+# [2.5.0](https://gitee.com/bingfurong/WebStore/compare/v2.5.0-beta...v2.5.0) (2018-02-02)
+
+
+### Bug Fixes
+
+* **changs:** 未加入是否为全款判断，导致询问交易密码问题 ([5e10ddb](https://gitee.com/bingfurong/WebStore/commits/5e10ddb))
+
+
+
+<a name="2.5.0-beta"></a>
+# [2.5.0-beta](https://gitee.com/bingfurong/WebStore/compare/v2.5.0-alpha...v2.5.0-beta) (2018-02-01)
+
+
+### Bug Fixes
+
+* **changes:** 修复，未完善资料时，完善后。使用了旧接口下单 ([05f0aa5](https://gitee.com/bingfurong/WebStore/commits/05f0aa5))
+* **changes:** 修复分期订单，每期金额显示错误问题 ([d6053fe](https://gitee.com/bingfurong/WebStore/commits/d6053fe))
+* **evaluate:** 修复图片过大上传失败问题 ([151611a](https://gitee.com/bingfurong/WebStore/commits/151611a))
+
+
+
+<a name="2.5.0-alpha"></a>
+# [2.5.0-alpha](https://gitee.com/bingfurong/WebStore/compare/v2.4.2...v2.5.0-alpha) (2018-02-01)
+
+
+### Features
+
+* **changes:** 完成拼单，初步测试通过 ([029f1e3](https://gitee.com/bingfurong/WebStore/commits/029f1e3))
+* **changes:** 完成新下单流程，通过初步测试 ([c74d2f9](https://gitee.com/bingfurong/WebStore/commits/c74d2f9))
+* **changes:** 新流程（完成50%） ([83b21b9](https://gitee.com/bingfurong/WebStore/commits/83b21b9))
+
+
+
+<a name="2.4.2"></a>
+## [2.4.2](https://gitee.com/bingfurong/WebStore/compare/v2.4.1...v2.4.2) (2018-01-29)
+
+
+### Features
+
+* **changes:** 写完首页拼单页面(差一些边边角角) ([e832ec9](https://gitee.com/bingfurong/WebStore/commits/e832ec9))
+* **changes:** 写活首页拼单功能 ([a3347d0](https://gitee.com/bingfurong/WebStore/commits/a3347d0))
+
+
+
+<a name="2.4.1"></a>
+## [2.4.1](https://gitee.com/bingfurong/WebStore/compare/v2.4.0...v2.4.1) (2018-01-23)
+
+
+### Bug Fixes
+
+* 点击底部导航，跳转到Google Play ([7e7f2a9](https://gitee.com/bingfurong/WebStore/commits/7e7f2a9))
+
+
+
+<a name="2.4.0"></a>
+# [2.4.0](https://gitee.com/bingfurong/WebStore/compare/v2.4.0-alpha...v2.4.0) (2018-01-22)
+
+
+### Bug Fixes
+
+* **changes:** 添加设备判断 ([066ca41](https://gitee.com/bingfurong/WebStore/commits/066ca41))
+
+
+### Features
+
+* 开启移动端打开APP提示 ([9095f47](https://gitee.com/bingfurong/WebStore/commits/9095f47))
+
+
+
+<a name="2.4.0-alpha"></a>
+# [2.4.0-alpha](https://gitee.com/bingfurong/WebStore/compare/v2.3.3...v2.4.0-alpha) (2018-01-19)
+
+
+### Bug Fixes
+
+* **changes:** 电脑端隐藏按钮 ([64f2d58](https://gitee.com/bingfurong/WebStore/commits/64f2d58))
+
+
+### Features
+
+* **changs:** 添加APP里JS调用Android关闭窗口功能 ([aba6fdf](https://gitee.com/bingfurong/WebStore/commits/aba6fdf))
+
+
+
+<a name="2.3.3"></a>
+## [2.3.3](https://gitee.com/bingfurong/WebStore/compare/v2.3.1...v2.3.3) (2018-01-19)
+
+
+
+<a name="2.3.1"></a>
+## [2.3.1](https://gitee.com/bingfurong/WebStore/compare/v2.3.0...v2.3.1) (2018-01-18)
+
+
+
+<a name="2.3.0"></a>
+# [2.3.0](https://gitee.com/bingfurong/WebStore/compare/v2.3.0-beta...v2.3.0) (2018-01-18)
+
+
+
+<a name="2.3.0-beta"></a>
+# [2.3.0-beta](https://gitee.com/bingfurong/WebStore/compare/v2.3.0-alpha...v2.3.0-beta) (2018-01-18)
+
+
+### Bug Fixes
+
+* 修复用户名为空无法保存问题 ([e2ea938](https://gitee.com/bingfurong/WebStore/commits/e2ea938))
 * 修复用昵称为姓名时，*号显示不正确问题 ([f3d3819](https://gitee.com/bingfurong/WebStore/commits/f3d3819))
 * 处理下架的情况 ([519eef1](https://gitee.com/bingfurong/WebStore/commits/519eef1))
+* 添加真实姓名的正确性判断 ([96bc1a2](https://gitee.com/bingfurong/WebStore/commits/96bc1a2))
+* **changes:** 在手机上显示过大 ([a7e164f](https://gitee.com/bingfurong/WebStore/commits/a7e164f))
+* **changes:** 完善全选问题 ([d5660c4](https://gitee.com/bingfurong/WebStore/commits/d5660c4))
+* **changes:** 购物车中下架商品能被选中，数量能修改问题 ([84a2bdb](https://gitee.com/bingfurong/WebStore/commits/84a2bdb))
+* **order.html:** 时间本地化显示 ([9ab96d0](https://gitee.com/bingfurong/WebStore/commits/9ab96d0))
 * **thispage:** 地址显示的兼容处理 ([9aa7007](https://gitee.com/bingfurong/WebStore/commits/9aa7007))
+
+
+### Features
+
+* **cart.html:** 购物车列表如有折扣，则显示折扣 ([b1c0371](https://gitee.com/bingfurong/WebStore/commits/b1c0371))
 
 
 
