@@ -639,7 +639,7 @@
                 if ((F.vue.status === '10001' && F.vue.period === '1') || (F.vue.status === '10007' && F.vue.period === '5')) {
                     loading.show();
                     F._createNormalOrder({
-                        totalAmount: F.vue.totalAmount,
+                        totalAmount: F.vue.nowPay,
                         currency: "VND",
                         subject: '',
                         repaymentMonth: F.vue.nowPeriods + '',
