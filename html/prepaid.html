@@ -35,7 +35,7 @@
 
     .nav {
       float: left;
-      width: 802px;
+      width: 402px;
       border: 1px solid #0076F7;
       margin-top: 100px;
       margin-bottom: 100px;
@@ -43,7 +43,7 @@
 
     .nav__item {
       float: left;
-      width: 400px;
+      width: 200px;
       height: 50px;
       line-height: 50px;
       text-align: center;
@@ -315,7 +315,8 @@
       height: 60px;
       line-height: 60px;
       text-align: center;
-      background-color: #ccc;
+      /* background-color: #ccc; */
+      background-color: rgba(0, 118, 247, .5);
       color: #fff;
       margin-bottom: 100px;
       font-size: 18px;
@@ -323,12 +324,12 @@
     }
 
     .submit_acitve {
-      background-color: #FD5147;
+      background-color: #0076F7;
       cursor: pointer;
     }
 
     .submit_acitve:active {
-      background-color: #eD4137;
+      background-color: #0056d7;
     }
 
     .prepaid-confirm {
@@ -345,18 +346,18 @@
 
     .prepaid-confirm__main {
       display: inline-block;
-      width: 350px;
-      height: 440px;
+      width: 1000px;
+      height: 441px;
       background-color: #fff;
       padding-right: 50px;
       padding-left: 50px;
-      text-align: left;
+      text-align: center;
     }
 
     .prepaid-confirm__main-close {
       text-align: right;
       margin-top: 50px;
-      margin-bottom: 50px;
+      margin-bottom: 70px;
     }
 
     .prepaid-confirm__m-c-icon {
@@ -373,18 +374,19 @@
     .prepaid-confirm__main-text {
       font-size: 18px;
       color: #ccc;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .prepaid-confirm__main-number {
       font-size: 36px;
-      margin-bottom: 100px;
+      margin-bottom: 75px;
     }
 
     .prepaid-confirm__main-button {
-      height: 50px;
-      line-height: 50px;
-      width: 180px;
+      display: inline-block;
+      height: 60px;
+      line-height: 60px;
+      width: 300px;
       text-align: center;
       color: #fff;
       background-color: #147af3;
@@ -815,7 +817,7 @@
               orgAmount: F.vue.recharge_orgPrice,
               advance: F.vue.recharge_price,
               currency: 'VND',
-              subject: F.vue.recharge_result.providerName + ' ' + F.vue.recharge_price + ' VND',
+              subject: F.vue.recharge_result.providerName + ' ' + F.vue.telNumber + ' ' + F.vue.recharge_price + 'VND',
               goodsDetail: JSON.stringify([{
                 number: 1,
                 cartitemid: '',
@@ -862,7 +864,7 @@
               orgAmount: F.vue.scratchCards_totalOrgPrice,
               advance: F.vue.scratchCards_totalPrice,
               currency: 'VND',
-              subject: '',
+              subject: F.vue.scratchCards_providersCard_item.providerName + ' ' + F.vue.scratchCards_totalPrice + 'VND',
               goodsDetail: JSON.stringify([{
                 number: parseInt(F.vue.scratchCards_number),
                 cartitemid: '',
