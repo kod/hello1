@@ -759,7 +759,7 @@
         if (!ret) return false;
         if (ret.code !== 10000) return false;
 
-        window.location.href = './successPay.html?type=2';
+        window.location.href = `./successPay.html?type=6&orderNo=${F.orderNo}&tradeNo=${F.tradeNo}`;
       }
 
       function createDisOrder_callback(ret) {
