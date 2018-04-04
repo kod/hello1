@@ -127,7 +127,8 @@
                 <div class="body__main-button">
                     <div class="body__m-b-item" @click="close">Đóng</div>
                 </div>
-                <a href="./order.html" class="body__main-gohome">Kiểm tra đơn hàng</a>
+                <div class="body__main-gohome" @click="gopage">Kiểm tra đơn hàng</a>
+                <!-- <a href="./order.html" class="body__main-gohome">Kiểm tra đơn hàng</a> -->
             </div>
         </section>
         <footer class="footer" id="footer"></footer>
@@ -139,7 +140,7 @@
             '../js/common.js?version=2.7.0-alpha.1',
         ], function ($, Vue) {
             F.query = F._hrefUtils.parse().query || {};
-            F.type = F.query.type || "2"; // 1:fenqi;2:quankuang
+            F.type = F.query.type || "2"; // 1:fenqi;2:quankuang;6:虚拟商品
 
             var get_title = function(type) {
                 var result = "";
@@ -218,6 +219,7 @@
                     data: F.vue,
                     methods: {
                         gohome: gohome,
+                        gopage: gopage,
                         close: close,
                     },
                     computed: {
@@ -231,6 +233,20 @@
 
             function gohome() {
                 window.location.href = '../index.html';
+            }
+
+            function gopage() {
+                let url = './order.html';
+                switch (F.type) {
+                    case '6':
+                        url = `./orderDetail.html?orderNo=${F.query.orderNo}&tradeNo=${F.query.tradeNo}`;
+                        break;
+                
+                    default:
+                        url = './order.html';
+                        break;
+                }
+                window.location.href = url;
             }
 
             function close() {
