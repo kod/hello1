@@ -635,11 +635,24 @@ app.controller("orderCtrl", function($scope, $http, $filter, $sce) {
     function gotoDetails(typeId, brandId, sourceOrderType) {
         
         if (brandId != null && brandId != "" && typeId != null && typeId != "") {
-            if (sourceOrderType !== 0 && sourceOrderType !== 1) {
-                window.location.href = "./addOnItemdetails.html?brandId=" + brandId;
-            } else {
-                window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+            // 0:普通订单；1：购物车订单 2 拼单 3 虚拟卡
+            switch (sourceOrderType) {
+                case 0:
+                case 1:
+                    window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+                    break;
+                
+                case 2:
+                    window.location.href = "./addOnItemdetails.html?brandId=" + brandId;
+                    break;
+                default:
+                    break;
             }
+            // if (sourceOrderType !== 0 && sourceOrderType !== 1) {
+            //     window.location.href = "./addOnItemdetails.html?brandId=" + brandId;
+            // } else {
+            //     window.location.href = "./details.html?typeId=" + typeId + "&brandId=" + brandId;
+            // }
         } else {
             window.location.href = "";
         }
