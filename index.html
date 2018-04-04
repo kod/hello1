@@ -480,10 +480,6 @@
         .groupbuy__main {
             float: left;
             width: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            background-image: url(./img/59a04f850d306@2x.png);
         }
 
         .groupbuy__main-title {
@@ -491,8 +487,9 @@
             width: 100%;
             height: 40px;
             line-height: 40px;
-            border-bottom: 1px solid #107aea;
-            margin-bottom: 30px;
+            /* border-bottom: 1px solid #107aea; */
+            margin-top: 50px;
+            margin-bottom: 50px;
         }
 
         .groupbuy__m-t-left {
@@ -609,6 +606,7 @@
             color: #FD5147;
             font-size: 20px;
             margin-bottom: 15px;
+            font-weight: 700;
         }
 
         .groupbuy__main-download {
@@ -704,12 +702,25 @@
             font-size: 15px;
         }
 
-        .groupbuy__mask {
+        .groupbuy__mask-top {
+            position: absolute;
+            top: 30px;
+            bottom: 250px;
+            left: 0px;
+            right: 0px;
+            z-index: -1;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-image: url(./img/59a04f850d306@2x.png);
+        }
+
+        .groupbuy__mask-bottom {
             position: absolute;
             top: 350px;
             bottom: -40px;
-            left: -500px;
-            right: -500px;
+            left: -50px;
+            right: -50px;
             z-index: -1;
             background-color: #FD5147;
             background-repeat: no-repeat;
@@ -867,7 +878,8 @@
             <div class="groupbuy__m-t-top">Quét mã QR trên app để tham gia nhóm mua chung</div>
             <div class="groupbuy__m-t-bottom">Khuyến mại lớn</div>
         </div>
-        <div class="groupbuy__mask"></div>
+        <div class="groupbuy__mask-top"></div>
+        <div class="groupbuy__mask-bottom"></div>
     </section>
 
     <section class="sec2" id="vue1-el1" v-show="LS__data.length" :style="{ display: LS__data.length ? 'block' : 'none' }">
