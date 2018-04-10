@@ -541,9 +541,9 @@
             position: relative;
             float: left;
             width: 100%;
-            height: 220px;
-            padding-left: 10px;
-            padding-right: 10px;
+            height: 200px;
+            padding-left: 20px;
+            padding-right: 20px;
             margin-bottom: 10px;
         }
 
@@ -551,8 +551,8 @@
             position: absolute;
             z-index: 342;
             float: left;
-            height: 220px;
-            width: 220px;
+            height: 200px;
+            width: 200px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -562,8 +562,8 @@
             position: absolute;
             z-index: 438;
             float: left;
-            height: 220px;
-            width: 220px;
+            height: 200px;
+            width: 200px;
             opacity: 0;
             background-repeat: no-repeat;
             background-position: center;
@@ -634,7 +634,7 @@
             float: left;
             width: 100%;
             text-align: center;
-            padding-top: 40px;
+            padding-top: 30px;
         }
 
         .groupbuy__m-d-l-img {
@@ -728,6 +728,11 @@
             background-size: cover;
             background-image: url(../img/T1.png);
         }
+
+        .all.banner_c .content {
+            position: relative;
+            height: 442;
+        }
     </style>
 </head>
 
@@ -807,13 +812,13 @@
                 <div class="swiper-container" id="index_banner">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
+                            <img src="img/oajfisIMG160.jpeg" alt="IMG" class="swiper-slide-img">
+                        </div>
+                        <div class="swiper-slide">
                             <div class="swiper-slide-img" style="background-image: url(img/bannner_mi_A1.jpg);"></div>
                         </div>
                         <div class="swiper-slide">
                             <div class="swiper-slide-img" style="background-image: url(img/bannner_mobile_F5.jpg);"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="swiper-slide-img" style="background-image: url(img/bannner_mobile_vivo-V7+_2.jpg);"></div>
                         </div>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -1411,8 +1416,8 @@
                 function set_qr(array) {
                     for (let index = 0; index < array.length; index++) {
                         jQuery('.groupbuy__m-i-p-qrcode').eq(index).qrcode({
-                            width: 220,
-                            height: 220,
+                            width: 200,
+                            height: 200,
                             // text: window.location.href + 'html/addOnItemdetails.html?brandId=' + array[index].brandId
                             text: 'https://www.buyoo.vn/html/addOnItemdetails.html?brandId=' + array[index].brandId
                             // text: array[index].imageUrl
