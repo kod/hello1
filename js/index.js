@@ -330,7 +330,7 @@ app.controller('phonecenterCtrl', function($scope, $http) {
 
         var status = res.status;
 
-        var leftData = res.data.details;
+        var leftData = res.data.details.slice(0, 1);
         if (status == 200) {
             $scope.phonecenterUrl = leftData;
             if ($scope.phonecenterUrl.length > 1) {
@@ -461,7 +461,7 @@ app.controller('ipadcenterCtrl', function($scope, $http) {
 
         var status = res.status;
 
-        var leftData = res.data.details;
+        var leftData = res.data.details.slice(0, 1);
         if (status == 200) {
             $scope.ipadcenterUrl = leftData;
             if ($scope.ipadcenterUrl.length > 1) {
@@ -592,7 +592,7 @@ app.controller('smartcenterCtrl', function($scope, $http) {
 
         var status = res.status;
 
-        var leftData = res.data.details;
+        var leftData = res.data.details.slice(0, 1);
         if (status == 200) {
             $scope.smartcenterUrl = leftData;
             if ($scope.smartcenterUrl.length > 1) {
