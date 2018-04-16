@@ -1,5 +1,18 @@
 <a name="1.0.0"></a>
-# [1.0.0](https://gitee.com/bingfurong/WebStore/compare/2.7.0-alpha.1...1.0.0) (2018-04-03)
+# [1.0.0](https://gitee.com/bingfurong/WebStore/compare/2.7.0-alpha.1...1.0.0) (2018-04-04)
+
+
+### Bug Fixes
+
+* 创建还款订单，totalAmount字段应该传当期账单金额，而不是商品总价 ([a8de7f8](https://gitee.com/bingfurong/WebStore/commits/a8de7f8))
+* 商品详情页面，如果是虚拟商品则不能转跳到商品详情 ([81ccf54](https://gitee.com/bingfurong/WebStore/commits/81ccf54))
+* 我的订单列表，如果是虚拟商品，点击商品则不转跳到详情 ([b078688](https://gitee.com/bingfurong/WebStore/commits/b078688))
+
+
+### Features
+
+* 把订单详情所需参数通过url传给支付成功页面 ([ec54948](https://gitee.com/bingfurong/WebStore/commits/ec54948))
+* 支付成功页面，如果是虚拟商品，则转跳到商品详情 ([3bc27b5](https://gitee.com/bingfurong/WebStore/commits/3bc27b5))
 
 
 
