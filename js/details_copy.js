@@ -136,7 +136,7 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
         signtype: "",
         encrypt: "",
         timestamp: "2017-09-06 11:30:50",
-        version: "1.0",
+        version: "2.1",
         brand_id: brandId
     };
     ajax.params = getMd5Code(data, "commodityKey");
@@ -197,6 +197,9 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 }
             }
             userScanSession(JSON.stringify(productDetailObj));
+            console.log(brandDetail.desc);
+            $scope.brandDetail_desc = brandDetail.desc.split('|');
+            console.log($scope.brandDetail_desc);
             $scope.brandDetail = brandDetail;
             $scope.productDetail = productDetail;
             $scope.shoucang = brandDetail.name;
