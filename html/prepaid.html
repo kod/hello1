@@ -431,7 +431,7 @@
           </div>
           <section class="title">
             <span class="title__no">2</span>
-            <span class="title__text">选择充值面额</span>
+            <span class="title__text">Chọn mệnh giá</span>
           </section>
           <div class="leftitem__denomination">
             <li class="leftitem__d-item" v-for="(val, key) in recharge_prepaid" @click="recharge_selected = key" :class="{ 'leftitem__d-item_active': key === recharge_selected }">
@@ -550,7 +550,7 @@
             <div class="prepaid-confirm__main-close">
               <div class="prepaid-confirm__m-c-icon" @click="prepaid_confirm_show = false"></div>
             </div>
-            <div class="prepaid-confirm__main-text">请确认充值手机号</div>
+            <div class="prepaid-confirm__main-text">Vui lòng xác nhận số điện thoại nạp tiền</div>
             <div class="prepaid-confirm__main-number" v-html="telNumber"></div>
             <div class="prepaid-confirm__main-button" @click="recharge_submit">Xác nhận thanh toán</div>
           </div>
@@ -575,7 +575,7 @@
         type: 'recharge', // scratchCards: 刮刮卡; recharge: 电话充值
         telNumber: '',
         telNumberError: false,
-        telNumberErrorText: '您所填入的手机号的手机号不支持直冲，请选择充值卡充值/请输入正确的手机号',
+        telNumberErrorText: 'Số điện thoaị này không hỗ trợ nạp tiền, vui lòng nạp bằng thẻ cào.',
         telNumberJudgeSetTimeoutId: 0,
         recharge_result: {},
         recharge_providerImg: '',
@@ -737,7 +737,7 @@
           F.vue.recharge_selected = 0;
 
           F.vue.telNumberError = true;
-          F.vue.telNumberErrorText = '不支持此手机号直冲';
+          F.vue.telNumberErrorText = 'Số điện thoại này không hỗ trợ nạp tiền';
           F.vue.recharge_invalid = false;
         } else {
           // 支持直冲
