@@ -221,6 +221,9 @@
     <script src="../js/center.js?version=2.7.1-alpha" type="text/javascript" charset="utf-8"></script>
     <script>
         F._isLogin();
+
+        localStorage.getItem('userType') === '1' ? $('.one').show() : $('.one').hide();
+
         $(window).load(function () {
             var options = {
                 thumbBox: '.thumbBox',

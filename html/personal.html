@@ -421,6 +421,8 @@
     <script>
         F._isLogin();
 
+        localStorage.getItem('userType') === '1' ? $('.one').show() : $('.one').hide();
+
         (now = new Date()), (hour = now.getHours());
         if (hour >= 1 && hour <= 9) {
             $(".phone p").html("Chào buổi sáng！");

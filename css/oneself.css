@@ -8,7 +8,7 @@
 		.category img{margin-top: -11px !important;-moz-margin-top: -10px !important;}
 		.index_footer{margin-top:0}
 		/*#one{height:750px}*/
-		.one {border-top-width: 0 !important;}
+		.one {border-top-width: 0 !important;display:none;}
 		.one-left{width:182px;height:100%;background: #313131;}
 		.one-left .img{position:relative;height:148px;}
 		.one-left .img .img-bg{position: absolute;top: -49px;left:-8px;width:205px;height:197px;margin-left:-3px}

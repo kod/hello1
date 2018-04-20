@@ -417,6 +417,8 @@
         F._isLogin();
         var loading = new F._loading();
 
+        localStorage.getItem('userType') === '1' ? $('.one').show() : $('.one').hide();
+
         function useIt(typeId, brandId, productId) {
             var url = '';
 

@@ -3189,13 +3189,14 @@ F._userAction_login = function(params, callback) {
     data: data,
     success: function(ret) {
       ret = JSON.parse(ret);
-
+      localStorage.setItem('userType', '');
       loading.hide();
       switch (ret.status) {
         case 10000:
           sessionStorage.setItem('funId', ret.result);
           localStorage.setItem('funId', ret.result);
           localStorage.setItem('msisdn', ret.msisdn);
+          localStorage.setItem('userType', ret.userType);
           localStorage.setItem('validTime', +new Date() + 7 * 24 * 60 * 60 * 1000);
 
           F._localToServer(function() {
@@ -5074,7 +5075,7 @@ function header_add() {
                             </div>\
                         </div>\
                     </div>\
-                    <a href="' + dot_str + './html/personal.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>\
+                    <a href="' + dot_str + './html/' + (localStorage.getItem('userType') === '1' ? 'personal' : 'oneself') + '.html" class="header__n-m-l-item3">Trung tâm cá nhân</a>\
                 </div>\
                 <div class="header__n-m-left header__n-m-left_nologin">\
                     <a href="' + dot_str + './html/login.html" class="header__n-m-l-login">Đăng nhập</a>\
