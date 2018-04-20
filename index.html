@@ -811,16 +811,10 @@
     <div class="all banner_c">
         <div class="content">
             <div class="index_banner">
-                <div class="swiper-container" id="index_banner">
+                <div class="swiper-container" id="index_banner" ng-controller="newTopCtrl">
                     <div class="swiper-wrapper">
-                        <a href="https://www.buyoo.vn/html/details.html?typeId=1&brandId=142&id=311" class="swiper-slide">
-                            <img src="img/MIX2.jpg" alt="IMG" class="swiper-slide-img">
-                        </a>
-                        <a href="https://www.buyoo.vn/html/details.html?typeId=1&brandId=4&id=273" class="swiper-slide">
-                            <img src="img/A1.jpg" alt="IMG" class="swiper-slide-img">
-                        </a>
-                        <a href="https://www.buyoo.vn/html/details.html?typeId=1&brandId=130&id=282" class="swiper-slide">
-                            <img src="img/F5.jpg" alt="IMG" class="swiper-slide-img">
+                        <a href="{{item.actionUrl}}" class="swiper-slide" ng-repeat="item in topUrl">
+                            <img src="{{item.imageUrl}}" alt="IMG" class="swiper-slide-img">
                         </a>
                     </div>
                     <div class="swiper-pagination"></div>

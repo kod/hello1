@@ -115,6 +115,82 @@ app.controller("indexCtrl", function($scope, $http, $filter) {
         }
     }
 })
+app.controller('newTopCtrl', function($scope, $http, $filter) {
+    var url = F._getAdverstTopInfo_cd;
+    var ajax = new ajaxClass($http, url, "POST");
+
+    var Key = 'commodityKey';
+
+    var appId = '0';
+    var method = 'fun.adverst.top';
+    var charset = 'utf-8';
+    var timestamp = (+new Date() + '').slice(3);
+    var version = '1.0';
+  
+    var funid = '';
+    var pagesize = '14';
+    var currentpage = '1';
+  
+    var signType = F._signType_MD5(appId, method, charset, Key, true);
+  
+    var encrypt = F._encrypt_MD5(
+      [
+        {
+          key: 'funid',
+          value: funid
+        },
+        {
+          key: 'pagesize',
+          value: pagesize
+        },
+        {
+          key: 'currentpage',
+          value: currentpage
+        },
+      ],
+      Key
+    );
+  
+    ajax.data = $.param({
+        appid: appId,
+        method: method,
+        charset: charset,
+        signtype: signType,
+        encrypt: encrypt,
+        timestamp: timestamp,
+        version: version,
+        funid: funid,
+        pagesize: pagesize,
+        currentpage: currentpage
+      });
+    ajax.headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    //		ajax.params  = getMd5Code(data,"commodityKey");//格式化ajax请求数据   commodityKey->表示系统类型
+
+    // 表单方式传递数据或者可以使用在url后面加？limit=11这样的形式传递
+    // get方式请求数据不需要设置表头header
+    ajax.successCallback = function(res) {
+
+
+        res = res.data;
+        if (res.code === 10000) {
+
+            $scope.topUrl = res.result; //banner数据
+
+        } else {
+
+        }
+
+    };
+    ajax.failureCallback = function(res) {
+
+    };
+    ajax.requestData();
+
+
+});
+
 app.controller('newleftCtrl', function($scope, $http, $filter) {
 
     var url = F._getNewestInfo_cd;

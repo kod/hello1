@@ -62,6 +62,7 @@ F._getProductDetailInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getP
 F._getEvaluationInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getEvaluationInfo'; // 获取评论
 F._getNewestInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getNewestInfo'; //
 F._getAdverstInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getAdverstInfo'; //
+F._getAdverstTopInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getAdverstTopInfo'; // 首页banner广告
 F._getClassfyInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getClassfyInfo'; //
 F._getAllProductInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getAllProductInfo'; //
 F._getScreenInfo_cd = F._IP_255 + ':' + F._port_85 + '/fun/commodity/getScreenInfo'; //
