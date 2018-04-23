@@ -197,9 +197,7 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 }
             }
             userScanSession(JSON.stringify(productDetailObj));
-            console.log(brandDetail.desc);
             $scope.brandDetail_desc = brandDetail.desc.split('|');
-            console.log($scope.brandDetail_desc);
             $scope.brandDetail = brandDetail;
             $scope.productDetail = productDetail;
             $scope.shoucang = brandDetail.name;
