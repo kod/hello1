@@ -1116,6 +1116,7 @@ app.controller("instalmentCtrl", function($scope, $http, $filter) {
         "price",
         function(newValue, oldValue) {
             fenqiAjax(newValue, $scope.paymentNum, $scope.fenqiNum);
+            F._downPayment(newValue);
         },
         true
     );

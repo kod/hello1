@@ -89,6 +89,8 @@ F._codeExpr = /^[0-9]{6}$/; // 验证码
 F._payPwdeExpr = /^[0-9]{6}$/; // 交易码
 F._isPhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
+F._INSTALLMENT_MIN_VALUE = 7240000;
+F._INSTALLMENT_MAX_VALUE = 14500000;
 
 F._tradeStatus = function(code) {
   code = +code;
@@ -241,7 +243,7 @@ F._epayCheckSoftpin = function(params, callback) {
     version: version,
     funid: funid,
     tradeNo: tradeNo,
-    orderNo: orderNo,
+    orderNo: orderNo
   };
 
   $.ajax({
@@ -312,7 +314,7 @@ F._getProvidersValue = function(params, callback) {
     timestamp: timestamp,
     version: version,
     providerName: providerName,
-    providerCode: providerCode,
+    providerCode: providerCode
   };
 
   $.ajax({
@@ -359,10 +361,7 @@ F._getProvidersCard = function(params, callback) {
 
   var signType = F._signType_MD5(appId, method, charset, Key, true);
 
-  var encrypt = F._encrypt_MD5(
-    [],
-    Key
-  );
+  var encrypt = F._encrypt_MD5([], Key);
 
   var data = {
     appid: appId,
@@ -371,7 +370,7 @@ F._getProvidersCard = function(params, callback) {
     signtype: signType,
     encrypt: encrypt,
     timestamp: timestamp,
-    version: version,
+    version: version
   };
 
   $.ajax({
@@ -436,7 +435,7 @@ F._getPhoneRecharge = function(params, callback) {
     encrypt: encrypt,
     timestamp: timestamp,
     version: version,
-    msisdn: msisdn,
+    msisdn: msisdn
   };
 
   $.ajax({
@@ -4440,6 +4439,53 @@ F._getSchoolInfo = function(params, callback) {
 };
 
 // 22222222222222
+F._downPayment = function(price) {
+  var changeDisplay = function(array) {
+    for (let index = 0; index < 6; index++) {
+      if (array.indexOf(index) === -1) {
+        $('.selectoption' + index).hide();
+      } else {
+        $('.selectoption' + index).show();
+      }
+    }
+  };
+
+  price = parseInt(price);
+  
+  if (price === 0) return false;
+
+  if (F._INSTALLMENT_MIN_VALUE >= price) {
+    changeDisplay([0, 1, 2, 3, 4, 5]);
+    console.log('min');
+  } else if (F._INSTALLMENT_MAX_VALUE <= price) {
+    changeDisplay([0, 5]);
+    console.log('max');
+  } else {
+    console.log('middle');
+    value = (price - F._INSTALLMENT_MIN_VALUE) / price * 100;
+    console.log(value);
+    if (0 < value && value <= 10) {
+      console.log('0-10');
+      changeDisplay([0, 1, 2, 3, 4, 5]);
+    }
+    if (10 < value && value <= 20) {
+      console.log('10-20');
+      changeDisplay([0, 2, 3, 4, 5]);
+    }
+    if (20 < value && value <= 30) {
+      console.log('20-30');
+      changeDisplay([0, 3, 4, 5]);
+    }
+    if (30 < value && value <= 40) {
+      console.log('30-40');
+      changeDisplay([0, 4, 5]);
+    }
+    if (40 < value && value <= 50) {
+      console.log('40-50');
+      changeDisplay([0, 5]);
+    }
+  }
+};
 
 F._get_coupon = function(id, status) {
   var loading = new F._loading();
