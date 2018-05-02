@@ -364,7 +364,6 @@
         //  Đăng kí
         app.controller("zhuceCtrl", function ($scope, $http, $filter) {
             $("#submit").click(function () {
-                _czc.push(['_trackEvent', '注册', '点击', '点击注册按钮']);
                 var tel = $('#tel').val();
                 var telCode = $('#telCode').val();
                 var pwd = $('#pwd').val();
@@ -445,9 +444,10 @@
                         msisdn: tel,
                         password: pwd,
                     }, function (ret) {
+                        if (!ret || ret.status !== 10000) _czc.push(['_trackEvent', '注册', '失败']);
                         if (!ret) return false;
                         if (ret.status !== 10000) return false;
-
+                        _czc.push(['_trackEvent', '注册', '成功']);
                         $('#myModal').show().addClass('in');
                     });
                 });
