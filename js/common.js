@@ -1,6 +1,6 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = false;
+F._DEUBUG = true;
 
 F._VERSION = '2.8.1';
 console.log('version ' + F._VERSION);
@@ -5323,8 +5323,9 @@ function footer_add() {
                     </div>\
                 </div>\
                 <div class="footer__b2-m-row6 col-xs-24">\
-                    <div class="footer__b2-m-r6-left col-xs-12">Copyright &copy; ' + new Date().getFullYear() + ' Buyoo. All Rights Reserved</div>\
-                    <div class="footer__b2-m-r6-right col-xs-12">\
+                    <div class="footer__b2-m-r6-left col-xs-7">Copyright &copy; ' + new Date().getFullYear() + ' Buyoo. All Rights Reserved</div>\
+                    <div class="footer__b2-m-r6-middle col-xs-9">5 Floor, 345 Kim Mã, Ngọc Khánh, Ba Đình, Hà Nội, Viet Nam</div>\
+                    <div class="footer__b2-m-r6-right col-xs-8">\
                         Liên hệ chăm sóc khách hàng: <span class="footer__b2-m-r6-r-tel">1900 555506</span>\
                     </div>\
                 </div>\
