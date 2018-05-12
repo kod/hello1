@@ -526,7 +526,7 @@
                                 <div class="orderinfo__main-r2-title">Tiết kiệm:</div>
                                 <div class="orderinfo__main-r2-price" v-html="priceFormat(savePrice) + ' VND'"></div>
                                 <div class="orderinfo__main-r2-title">Số tiền cần thanh toán:</div>
-                                <div class="orderinfo__main-r2-redprice" v-html="priceFormat(F.totalamount-savePrice) + ' VND'"></div>
+                                <div class="orderinfo__main-r2-redprice" v-html="priceFormat((totalamount-savePrice)*parseFloat(paymentNum)) + ' VND'"></div>
                             </div>
                         </div>
                     </section>
