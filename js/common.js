@@ -1,8 +1,8 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = true;
+F._DEUBUG = false;
 
-F._VERSION = '2.8.2-alpha';
+F._VERSION = '2.8.2';
 console.log('version ' + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? 'http://119.28.177.175' : 'https://vn255.buyoo.xyz';
