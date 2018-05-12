@@ -567,6 +567,11 @@
                         <span class="body__m-f-unit" v-html="'VND x ' + repaymentMonth"></span>
                         <img src="../img/titi.png" @click="information" style="width:15px;height:15px;margin-top:5px;margin-left: 5px;cursor:pointer;">
                     </div>
+                    <div class="body__m-f-text" v-if="payRate !== 1">
+                        <span class="body__main-f-label">Số tiền cần thanh toán: </span>
+                        <span class="body__m-f-price" v-html="priceFormat(advance)"></span>
+                        <span class="body__m-f-unit">VND</span>
+                    </div>
                 </div>
                 <div class="body__main-operate">
                     <span class="body__m-o-left" @click="operate_left()" v-html="operate_left_text[tradeStatus]" v-if="repaymentMonth === 0"></span>
