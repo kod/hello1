@@ -1,6 +1,6 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = false;
+F._DEUBUG = true;
 
 F._VERSION = '2.8.2';
 console.log('version ' + F._VERSION);
@@ -127,7 +127,8 @@ F._tradeStatus = function(code) {
       break;
 
     case 30001:
-      result = 'Đang chờ đánh giá';
+      result = 'Đã gửi hàng, chờ đánh giá';
+      // result = 'Đang chờ đánh giá';
       break;
 
     case 30002:
