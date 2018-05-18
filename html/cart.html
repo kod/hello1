@@ -910,7 +910,7 @@
                 for (index = 0; index < array.length; index++) {
 
                     var element = array[index];
-                    var detail = JSON.parse(element.detail);
+                    var detail = JSON.parse(element.detail) || {};
                     element.quantity = element.quantity > F._cardMaxNumber ? F._cardMaxNumber : element.quantity;
                     element.iconUrl = detail.iconUrl;
                     element.totalAmount = detail.price;
