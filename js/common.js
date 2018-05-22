@@ -4444,7 +4444,7 @@ F._downPayment = function(price) {
     var index;
     for (index = 0; index < 6; index++) {
       if (array.indexOf(index) === -1) {
-        $('.selectoption' + index).hide();
+        $('.selectoption' + index).remove();
       } else {
         $('.selectoption' + index).show();
       }
