@@ -91,6 +91,7 @@ F._isPhoneExpr = /Android|iPhone|iPad/; // 是否为手机
 F._cardMaxNumber = 10; // 单间商品，最多购买件数
 F._INSTALLMENT_MIN_VALUE = 7240000;
 F._INSTALLMENT_MAX_VALUE = 14500000;
+F._IMAGE_QUALITY = 70; // 0-100
 
 F._tradeStatus = function(code) {
   code = +code;

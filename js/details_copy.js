@@ -197,7 +197,8 @@ app.controller("detailsCtrl", function($scope, $http, $filter) {
                 }
             }
             userScanSession(JSON.stringify(productDetailObj));
-            $scope.brandDetail_desc = brandDetail.desc.split('|');
+            $scope.brandDetail_desc = brandDetail.desc.split('|').map((val, key) => val = val + '?x-oss-process=image/quality,Q_' + F._IMAGE_QUALITY);
+            $scope.goodsProperties = productDetail[0].goodsProperties.split('|').map((val, key) => val = val + '?x-oss-process=image/quality,Q_' + F._IMAGE_QUALITY);
             $scope.brandDetail = brandDetail;
             $scope.productDetail = productDetail;
             $scope.shoucang = brandDetail.name;
