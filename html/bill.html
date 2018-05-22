@@ -229,6 +229,106 @@
     <script>
         F._isLogin();
 
+        // 账单列表
+        F._queryBillList = function (params, callback) {
+            if (!F._isLogin()) return false;
+
+            var Key = 'settleKey';
+
+            var appId = localStorage.getItem('funId');
+            var method = 'fun.trade.queryList';
+            var charset = 'utf-8';
+            var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+            var version = '1.0';
+
+            var funid = localStorage.getItem('funId');
+            var page = params.page || 1; // 总金额
+            var rows = params.rows || 5;
+            var period = params.period || 1;
+
+            var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+            var encrypt = F._encrypt_MD5(
+                [
+                    {
+                        key: 'funid',
+                        value: funid
+                    },
+                    {
+                        key: 'page',
+                        value: page
+                    },
+                    {
+                        key: 'rows',
+                        value: rows
+                    },
+                    {
+                        key: 'period',
+                        value: period
+                    },
+                ],
+                Key
+            );
+
+            var data = {
+                appid: appId,
+                method: method,
+                charset: charset,
+                signtype: signType,
+                encrypt: encrypt,
+                timestamp: timestamp,
+                version: version,
+                funid: funid,
+                page: page,
+                rows: rows,
+                period: period,
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: F._queryBillList_td,
+                data: data,
+                success: function (ret) {
+                    ret = JSON.parse(ret);
+                    callback(ret);
+
+                    switch (ret.code) {
+                        case 10000:
+                            break;
+
+                        default:
+                            $('#loading').remove();
+                            F._confirm('Gợi ý', 'Đơn hàng được khởi tạo thất bại', 'tips', [
+                                {
+                                    name: 'Xác nhận',
+                                    func: function () { }
+                                }
+                            ]);
+                            break;
+                    }
+                },
+                error: function (ret) {
+                    console.error('request error');
+                    callback(false);
+                }
+            });
+        };
+
+        F._queryBillList({
+            page: 1,
+            rows: 5,
+            period: 5,
+        }, function (ret) {
+            if (!ret) return false;
+            var length = ret.details.length;
+            if (length === 0) return false;
+            var element = $('.nav-item[data-index="5"]');
+            element.html('Hóa đơn hết hạn' + '(' + length + ')');
+            setTimeout(function() {
+                element.click();
+            }, 0);
+        });
+
         localStorage.getItem('userType') === '1' ? $('.one').show() : $('.one').hide();
 
         (now = new Date()), (hour = now.getHours());
