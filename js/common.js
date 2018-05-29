@@ -6242,7 +6242,7 @@ F._baseinfo = function(data, userInfo) {
                     </div>\
                 </div>\
                 <div class="alert__b-m-footer col-xs-24">\
-                    <span class="alert__b-m-f-button" id="submit_baseinfo">Xác nhận tồn tại</span>\
+                    <span class="alert__b-m-f-button" id="submit_baseinfo">Xác nhận thông tin</span>\
                 </div>\
             </div>\
         </div>\
