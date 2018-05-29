@@ -6065,6 +6065,23 @@ F._baseinfo = function(data, userInfo) {
                             </div>\
                         </div>\
                     </div>\
+                    <div class="alert__b-m-b-row11 col-xs-24">\
+                        <div class="alert__b-m-b-r1-left col-xs-8">Ngày Sinh <span class="alert__b-m-b-r1-l-requery">*</span></div>\
+                        <div class="alert__b-m-b-r2-right col-xs-16">\
+                            <div class="actionsheet alert__b-m-b-r11-birthday">\
+                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-day">\
+                                    <option value="">Ngày</option>' + day_options_produce + '\
+                                </select>\
+                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-month">\
+                                    <option value="">Tháng</option>' + month_options_produce + '\
+                                </select>\
+                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-year">\
+                                    <option value="">Năm</option>' + year_options_produce + '\
+                                </select>\
+                                <!-- <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' + birthday + '"></span> -->\
+                            </div>\
+                        </div>\
+                    </div>\
                     <div class="alert__b-m-b-row3 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Số chứng minh thư <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r1-right col-xs-16">\
@@ -6181,7 +6198,7 @@ F._baseinfo = function(data, userInfo) {
                             <input type="text" class="alert__b-m-b-r1-r-input" placeholder="Vui lòng nhập Chuyên ngành" id="MO__specialty" value="' + specialty + '">\
                         </div>\
                     </div>\
-                    <div class="alert__b-m-b-row8 col-xs-24">\
+                    <!-- <div class="alert__b-m-b-row8 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Học vị <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-degree">\
@@ -6203,24 +6220,7 @@ F._baseinfo = function(data, userInfo) {
                                 </div>\
                             </div>\
                         </div>\
-                    </div>\
-                    <div class="alert__b-m-b-row11 col-xs-24">\
-                        <div class="alert__b-m-b-r1-left col-xs-8">Ngày Sinh <span class="alert__b-m-b-r1-l-requery">*</span></div>\
-                        <div class="alert__b-m-b-r2-right col-xs-16">\
-                            <div class="actionsheet alert__b-m-b-r11-birthday">\
-                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-day">\
-                                    <option value="">Ngày</option>' + day_options_produce + '\
-                                </select>\
-                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-month">\
-                                    <option value="">Tháng</option>' + month_options_produce + '\
-                                </select>\
-                                <select name="" class="alert__b-m-b-r11-b-select" id="birthday-year">\
-                                    <option value="">Năm</option>' + year_options_produce + '\
-                                </select>\
-                                <!-- <span class="actionsheet__left"><input type="date" id="MO__birthday" value="' + birthday + '"></span> -->\
-                            </div>\
-                        </div>\
-                    </div>\
+                    </div> -->\
                     <div class="alert__b-m-b-row9 col-xs-24">\
                         <div class="alert__b-m-b-r1-left col-xs-8">Khoảng thời gian học <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
@@ -6238,7 +6238,7 @@ F._baseinfo = function(data, userInfo) {
                                 <option value="">Năm</option>' + year_options_produce + '\
                             </select>\
                         </div>\
-                        <div class="alert__b-m-b-row10 col-xs-24" style="padding-top: 5px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div>\
+                        <!-- <div class="alert__b-m-b-row10 col-xs-24" style="padding-top: 5px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</div> -->\
                     </div>\
                 </div>\
                 <div class="alert__b-m-footer col-xs-24">\
@@ -6692,10 +6692,10 @@ F._baseinfo = function(data, userInfo) {
       return false;
     }
 
-    if (!degree.length) {
-      alert('Vui lòng nhập Học vị');
-      return false;
-    }
+    // if (!degree.length) {
+    //   alert('Vui lòng nhập Học vị');
+    //   return false;
+    // }
 
     if (!admissiontime.length) {
       alert('Vui lòng nhập Thời gian nhập học');

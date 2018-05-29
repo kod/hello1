@@ -141,6 +141,17 @@
                                 <option value="2">Nữ</option>
                             </select>
                             <br />
+                            <span>Ngày Sinh</span>
+                            <select name="" id="birthday-day">
+                                <option value="">Ngày</option>
+                            </select>
+                            <select name="" id="birthday-month">
+                                <option value="">Tháng</option>
+                            </select>
+                            <select name="" id="birthday-year">
+                                <option value="">Năm</option>
+                            </select>
+                            <br />
                             <span>Chứng minh thư</span>
                             <input type="text" id="g_identification">
                             <br />
@@ -198,9 +209,8 @@
                             <span>Chuyên ngành</span>
                             <input type="text" id="g_zy" />
                             <br />
-                            <span>Học vị</span>
-                            <!--<input type="text"  id="degree"/>-->
-                            <select name="" id="degree">
+                            <!-- <span>Học vị</span> -->
+                            <select name="" id="degree" style="display: none;">
                                 <option value="Tiểu học">Tiểu học</option>
                                 <option value="Trung học cơ sở">Trung học cơ sở</option>
                                 <option value="Trung học phổ thông">Trung học phổ thông</option>
@@ -212,18 +222,7 @@
                                 <option value="Sau tiến sĩ">Sau tiến sĩ</option>
                                 <option value="Khác">Khác</option>
                             </select>
-                            <br />
-                            <span>Ngày Sinh</span>
-                            <select name="" id="birthday-day">
-                                <option value="">Ngày</option>
-                            </select>
-                            <select name="" id="birthday-month">
-                                <option value="">Tháng</option>
-                            </select>
-                            <select name="" id="birthday-year">
-                                <option value="">Năm</option>
-                            </select>
-                            <br />
+                            <!-- <br /> -->
                             <span>Khoảng thời gian học</span>
                             <select name="" id="sctime-ac-m" style="color: #333;">
                                 <option value="">Tháng</option>
@@ -241,7 +240,7 @@
                                 <option value="">Năm</option>
                             </select>
                             <b id="tis" style="color:red;display: none;">sai</b>
-                            <p style="color: #aaa; font-weight: 300;padding-left: 150px;margin-top: -20px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</p>
+                            <!-- <p style="color: #aaa; font-weight: 300;padding-left: 150px;margin-top: -20px;">* Nếu đang đi học thì không cần điền thời gian tốt nghiệp</p> -->
                         </div>
                         <button id="submit">Xác nhận thông tin</button>
                     </div>
