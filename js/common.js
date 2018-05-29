@@ -6149,7 +6149,7 @@ F._baseinfo = function(data, userInfo) {
                 </div>\
                 <div class="alert__b-m-body col-xs-24">\
                     <div class="alert__b-m-b-row7 col-xs-24">\
-                        <div class="alert__b-m-b-r1-left col-xs-8">Tốt nghiệp trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
+                        <div class="alert__b-m-b-r1-left col-xs-8">Đang học trường <span class="alert__b-m-b-r1-l-requery">*</span></div>\
                         <div class="alert__b-m-b-r2-right col-xs-16">\
                             <div class="actionsheet actionsheet-collegename">\
                                 <span class="actionsheet__left js_collegename" data-collegename="" id="MO__collegename">' + school_name + '</span>\
@@ -6673,7 +6673,7 @@ F._baseinfo = function(data, userInfo) {
     }
 
     if (!collegename.length) {
-      alert('Vui lòng nhập Tốt nghiệp trường');
+      alert('Vui lòng nhập Đang học trường');
       return false;
     }
 
