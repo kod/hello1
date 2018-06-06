@@ -555,13 +555,13 @@
                         <span class="body__m-f-price" v-html="priceFormat(couponValue)" style="padding-right: 0px;"></span>
                         <span class="body__m-f-unit">VND</span>
                     </div>
-                    <div class="body__m-f-text" v-if="payRate === 1">
+                    <div class="body__m-f-text" v-if="tradeType !== 3 && payRate === 1">
                         <span class="body__main-f-label">Tổng tiền: </span>
                         <span class="body__m-f-price" v-html="priceFormat(advance)"></span>
                         <span class="body__m-f-unit">VND</span>
                         <!-- <img src="../img/titi.png" @click="information" style="width:15px;height:15px;margin-top:7px;margin-left: 5px;cursor:pointer;"> -->
                     </div>
-                    <div class="body__m-f-text" v-if="payRate !== 1">
+                    <div class="body__m-f-text" v-if="tradeType !== 3 && payRate !== 1">
                         <span class="body__main-f-label">Trả góp hàng tháng: </span>
                         <span class="body__m-f-price" v-html="priceFormat(preReturnMoney)"></span>
                         <span class="body__m-f-unit" v-html="'VND x ' + repaymentMonth"></span>
@@ -655,10 +655,11 @@
                 F.vue.advance = trade_queryOrder.advance;
                 F.vue.couponValue = trade_queryOrder.couponValue;
                 F.vue.sourceOrderType = trade_queryOrder.sourceOrderType;
+                F.vue.tradeType = trade_queryOrder.tradeType;
                 F.vue.goodsDetail = edit_goodsDetail(trade_queryOrder.goodsDetail);
 
                 F.vue.returnMoney = returnMoney.details[F.vue.totalAmount + '_' + F.vue.repaymentMonth + '_' + F.vue.payRate];
-                F.vue.preReturnMoney = F.vue.payRate === 1 ? 0 : F.vue.returnMoney[0].interest + F.vue.returnMoney[0].principal;
+                F.vue.preReturnMoney = F.vue.tradeType === 3 ? 0 : (F.vue.payRate === 1 ? 0 : F.vue.returnMoney[0].interest + F.vue.returnMoney[0].principal);
 
             }
 
