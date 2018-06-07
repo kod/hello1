@@ -481,8 +481,8 @@
                     </div>
                     <div class="body__m-p-bar">
                         <li class="body__m-p-bar-item" v-for="(val, key) in rechargeCard">
-                            <div class="body__m-p-b-key" v-html="'Tài khoản: ' + val.cardCode "></div>
-                            <div class="body__m-p-b-val" v-html="'Mật khẩu: ' + val.cardPassword "></div>
+                            <div class="body__m-p-b-key" v-html="'Mã số thẻ: ' + val.cardCode "></div>
+                            <div class="body__m-p-b-val" v-html="'Mật mã: ' + val.cardPassword "></div>
                         </li>
                         <div class="body__m-p-b-tips" v-if="phoneRecharge && phoneRecharge.errorCode !== 0">Giao dịch thất bại, chúng tôi sẽ xử lí thanh toán của bạn</div>
                     </div>
