@@ -129,7 +129,7 @@ F._tradeStatus = function(code) {
       break;
 
     case 30001:
-      result = 'Đang chờ đánh giá';
+      result = 'Chờ đánh giá';
       break;
 
     case 30002:
