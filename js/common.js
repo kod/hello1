@@ -1,6 +1,6 @@
 if (!window.F) window.F = {};
 
-F._DEUBUG = true;
+F._DEUBUG = false;
 
 F._VERSION = '2.9.5';
 console.log('version ' + F._VERSION);
