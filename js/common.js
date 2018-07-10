@@ -2,7 +2,7 @@ if (!window.F) window.F = {};
 
 F._DEUBUG = true;
 
-F._VERSION = '2.9.9';
+F._VERSION = '2.9.10';
 console.log('version ' + F._VERSION);
 
 F._IP_255 = F._DEUBUG ? 'http://14.162.145.248:' : '';
