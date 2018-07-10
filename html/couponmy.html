@@ -179,11 +179,23 @@
         }
 
         .main__item-b-row1 {
-            margin-bottom: 65px;
+            margin-bottom: 45px;
             line-height: 1.4;
             padding-left: 15px;
             padding-right: 15px;
             font-size: 16px;
+        }
+
+        .main__item-b-r1-text {
+            margin-bottom: 5px;
+        }
+
+        .main__item-b-r2-text {
+            font-size: 12px;
+            line-height: 1.618;
+            color: #666;
+            width: 100%;
+            word-wrap: break-word;
         }
 
         .main__item-b-row2 {
@@ -334,6 +346,7 @@
                                 <div class="main__item-bottom">
                                     <div class="main__item-b-row1">
                                         <span class="main__item-b-r1-text" v-html="val.voucherName"></span>
+                                        <span class="main__item-b-r2-text" v-html="val.voucherDesc"></span>
                                     </div>
                                     <div class="main__item-b-row2">
                                         <span class="main__item-b-r2-button" @click="useIt(val.typeId, val.brandId, val.productId)">Sử dụng ngay lập tức</span>
