@@ -481,7 +481,7 @@ a:focus {
 .banner_c .category_1 .category_1_1 {
     filter: Alpha(Opacity=95);
     /* for IE */
-    background: rgba(24, 131, 247, 9.5) url(../img/3493358034.png) no-repeat;
+    background: rgba(0, 0, 0, 0.5) url(../img/3493358034.png) no-repeat;
     background-position: 50% -0px;
     background-size: 60%;
 
@@ -491,7 +491,7 @@ a:focus {
 .banner_c .category_1 .category_1_2 {
     filter: Alpha(Opacity=80);
     /* for IE */
-    background: rgba(24, 131, 247, 9.5) url(../img/29742974.png) no-repeat;
+    background: rgba(0, 0, 0, 0.5) url(../img/29742974.png) no-repeat;
     background-position: 50% -0px;
     background-size: 60%;
 
@@ -501,22 +501,22 @@ a:focus {
 .banner_c .category_1 .category_1_3 {
     filter: Alpha(Opacity=80);
     /* for IE */
-    background: rgba(24, 131, 247, 9.5) url(../img/4927461948.png) no-repeat;
+    background: rgba(0, 0, 0, 0.5) url(../img/4927461948.png) no-repeat;
     background-position: 50% -0px;
     background-size: 60%;
     /*background: rgba(24, 131, 247, 9.5) url(../img/ej.png) no-repeat center 31px;*/
 }
 
 .banner_c .category_1 a:hover .category_1_1 {
-    background-color: rgba(5, 79, 175, 1)
+    background-color: rgb(0, 117, 246)
 }
 
 .banner_c .category_1 a:hover .category_1_2 {
-    background-color: rgba(5, 79, 175, 1)
+    background-color: rgb(0, 117, 246)
 }
 
 .banner_c .category_1 a:hover .category_1_3 {
-    background-color: rgba(5, 79, 175, 1)
+    background-color: rgb(0, 117, 246)
 }
 
 
