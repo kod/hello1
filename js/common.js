@@ -3735,7 +3735,7 @@ F._payDisOrder = function(params, callback) {
   };
 
   var loading = new F._loading();
-  if (payway == '1') {
+  if (payway == '1' || payway == '5') {
     $.ajax({
       type: 'POST',
       url: F._payDisOrder_td,
