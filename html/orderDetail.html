@@ -403,6 +403,34 @@
             float: left;
             width: 40%;
         }
+
+        .offline {
+            padding-left: 14%;
+            padding-right: 14%;
+            padding-top: 30px;
+            margin-bottom: 100px;
+        }
+        
+        .offline_top {
+            background-color: #0076F7;
+            height: 100px;
+            line-height: 100px;
+            margin-bottom: 30px;
+        }
+
+        .offline_text {
+            text-align: center;
+            font-size: 36px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .offline_bottom_item {
+            margin-right: 3%;
+            margin-bottom: 30px;
+            height: 50px;
+            width: 10%;
+        }
     </style>
 </head>
 
@@ -498,7 +526,34 @@
                 <div class="body__m-i-top">
                     <div class="body__m-i-t-name" v-html="'Tỉ lệ thanh toán lần đầu :&nbsp;&nbsp;&nbsp;&nbsp;' + (payRate === 1 ? 'Trả toàn bộ' : payRate * 100 + '%')"></div>
                 </div>
-                <div class="" style="display: none" v-show="tradeStatus === '10000'">
+                <div class="offline" style="display: none" v-show="payWay === 5">
+                    <div class="offline_top">
+                        <div class="offline_text" v-html="payooNo"></div>
+                    </div>
+                    <div class="offline_bottom">
+                        <img src="../img/offlinestore/ic_store1.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store2.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store3.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store4.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store5.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store6.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store7.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store8.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store9.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store10.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store11.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store12.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store13.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store14.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store15.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store16.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store17.jpg" alt="img" class="offline_bottom_item">
+                        <img src="../img/offlinestore/ic_store18.jpg" alt="img" class="offline_bottom_item">
+                    </div>
+                    <div>Bạn có thể thanh toán khoản vay tại các chuỗi cửa hàng thu hộ khác.</div>
+                    <div><a href="https://payoo.vn/map/public/?verify=true#" target="_blank" style="color: #1a0dab">Tìm kiếm cửa hàng thu hộ gần bạn nhất.</a></div>
+                </div>
+                <div class="" style="display: none" v-show="payWay !== 5 && tradeStatus === '10000'">
                     <div class="bar-title">
                         <div class="bar-title__main">
                             <span class="bar-title__main-text">Phương thức thanh toán</span>
@@ -546,10 +601,19 @@
                                     <span class="payway__m-b-i-i-img"></span>
                                 </div>
                             </div>
+                            <div class="payway__m-b-item" @click="payway = '5'" :class="{ 'payway__m-b-item_acitve': payway === '5' }">
+                                <div class="payway__m-b-i-text">Pay at store</div>
+                                <div class="payway__m-b-i-icon">
+                                    <span class="payway__m-b-i-icon-img" style="background-image: url(../img/offline_pay.png);"></span>
+                                </div>
+                                <div class="payway__m-b-i-indicator">
+                                    <span class="payway__m-b-i-i-img"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="body__main-fristpay" style="display: none" v-show="tradeStatus === '10000'">
+                <div class="body__main-fristpay" style="display: none" v-show="payWay !== 5 && tradeStatus === '10000'">
                     <div class="body__m-f-text">
                         <span class="body__main-f-label">Tiết kiệm: </span>
                         <span class="body__m-f-price" v-html="priceFormat(couponValue)" style="padding-right: 0px;"></span>
@@ -573,7 +637,7 @@
                         <span class="body__m-f-unit">VND</span>
                     </div>
                 </div>
-                <div class="body__main-operate">
+                <div class="body__main-operate" v-show="payWay !== 5">
                     <span class="body__m-o-left" @click="operate_left()" v-html="operate_left_text[tradeStatus]" v-if="repaymentMonth === 0"></span>
                     <span class="body__m-o-right" @click="operate_rihgt()" v-html="operate_right_text[tradeStatus]"></span>
                 </div>
@@ -635,7 +699,9 @@
 
                 var trade_queryOrder = data._trade_queryOrder;
                 var returnMoney = data._returnMoney;
+                var getPayooOrderInfo = data._getPayooOrderInfo;
 
+                F.vue.payooNo = getPayooOrderInfo.payooNo || '';
                 F.vue.rechargeCard = trade_queryOrder.rechargeCard || [];
                 F.vue.phoneRecharge = trade_queryOrder.phoneRecharge;
 
@@ -644,6 +710,7 @@
                 F.vue.payRate = trade_queryOrder.payRate;
                 F.vue.repaymentMonth = trade_queryOrder.repaymentMonth;
                 F.vue.orderNo = trade_queryOrder.orderNo;
+                F.vue.payWay = trade_queryOrder.payWay;
                 F.vue.createTime = trade_queryOrder.createTime;
                 F.vue.msisdn = trade_queryOrder.msisdn;
                 F.vue.username = trade_queryOrder.username;
@@ -667,7 +734,7 @@
                 if (callback === undefined) callback = params;
 
                 var all_data = {};
-                var request_length = 2; //请求个数
+                var request_length = 3; //请求个数
 
                 // 请求是否全部返回
                 function all_loaded() {
@@ -685,6 +752,16 @@
                         all_data._returnMoney = ret;
                         all_loaded();
                     });
+
+                    if (ret.payWay === 5) {
+                        loadData_getPayooOrderInfo(function (ret) {
+                            all_data._getPayooOrderInfo = ret.result;
+                            all_loaded();
+                        });
+                    } else {
+                        all_data._getPayooOrderInfo = {};
+                        all_loaded();
+                    }
 
                     // F._epayCheckSoftpin({
                     //     funid: localStorage.getItem("funId"),
@@ -723,6 +800,17 @@
 
             function loadData_trade_queryOrder(callback) {
                 F._queryOrder({
+                    orderNo: F.query.orderNo,
+                    tradeNo: F.query.tradeNo,
+                }, function (ret) {
+                    if (!ret) return false;
+                    if (ret.code !== 10000) return false;
+                    callback(ret);
+                });
+            }
+
+            function loadData_getPayooOrderInfo(callback) {
+                F._getPayooOrderInfo({
                     orderNo: F.query.orderNo,
                     tradeNo: F.query.tradeNo,
                 }, function (ret) {

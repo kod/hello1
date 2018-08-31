@@ -79,6 +79,7 @@ F._getProvidersCard_cd = F._IP_255 + F._port_85 + '/fun/virtual/getProvidersCard
 F._getProvidersValue_cd = F._IP_255 + F._port_85 + '/fun/virtual/getProvidersValue'; // 获取运营商信息(电话卡)
 F._get3GProvidersCard_cd = F._IP_255 + F._port_85 + '/fun/virtual/get3GProvidersCard'; // 获取流量卡列表
 F._epayCheckSoftpin_cd = F._IP_255 + F._port_81 + '/fun/payMentGateWay/epay/epayCheckSoftpin'; // 查询充值卡密
+F._getPayooOrderInfo_op = F._IP_255 + F._port_81 + '/fun/offlinePayments/getPayooOrderInfo'; // 查询充值卡密
 F._market_getVoucher_cd = F._IP_191 + F._port_87 + '/fun/market/getVoucher'; // 优惠券领取列表
 F._uploadFiles_uf = F._IP_191 + F._port_80 + '/fun/userfile/uploadFiles'; // 上传用户头像
 F._collectFiles_uf = F._IP_191 + F._port_80 + '/fun/userfile/collectFiles'; // 用户评论上传图片
@@ -255,6 +256,84 @@ F._epayCheckSoftpin = function(params, callback) {
   $.ajax({
     type: 'POST',
     url: F._epayCheckSoftpin_cd,
+    data: data,
+    success: function(ret) {
+      ret = JSON.parse(ret);
+      callback(ret);
+
+      switch (ret.code) {
+        case 10000:
+          break;
+
+        default:
+          $('#loading').remove();
+          F._confirm('Gợi ý', 'error', 'error', [
+            {
+              name: 'Xác nhận',
+              func: function() {}
+            }
+          ]);
+          break;
+      }
+    },
+    error: function(ret) {
+      console.error('request error');
+      callback(false);
+    }
+  });
+};
+
+
+// (线下支付)查询订单信息
+F._getPayooOrderInfo = function(params, callback) {
+  var Key = 'paymentKey';
+
+  var appId = '0';
+  var method = 'fun.pay.offline.query';
+  var charset = 'utf-8';
+  var timestamp = F._timeStrForm(parseInt(+new Date() / 1000), 3);
+  var version = '2.0';
+
+  var funid = localStorage.getItem('funId');
+  var tradeNo = params.tradeNo || '';
+  var orderNo = params.orderNo || '';
+
+  var signType = F._signType_MD5(appId, method, charset, Key, true);
+
+  var encrypt = F._encrypt_MD5(
+    [
+      {
+        key: 'funid',
+        value: funid
+      },
+      {
+        key: 'orderno',
+        value: orderNo
+      },
+      {
+        key: 'tradeno',
+        value: tradeNo
+      },
+    ],
+    Key
+  );
+
+  var data = {
+    appid: appId,
+    method: method,
+    charset: charset,
+    signtype: signType,
+    encrypt: encrypt,
+    timestamp: timestamp,
+    version: version,
+    funid: funid,
+    orderno: orderNo,
+    tradeno: tradeNo
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: F._getPayooOrderInfo_op,
     data: data,
     success: function(ret) {
       ret = JSON.parse(ret);
