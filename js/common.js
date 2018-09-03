@@ -345,12 +345,12 @@ F._getPayooOrderInfo = function(params, callback) {
 
         default:
           $('#loading').remove();
-          F._confirm('Gợi ý', 'error', 'error', [
-            {
-              name: 'Xác nhận',
-              func: function() {}
-            }
-          ]);
+          // F._confirm('Gợi ý', 'error', 'error', [
+          //   {
+          //     name: 'Xác nhận',
+          //     func: function() {}
+          //   }
+          // ]);
           break;
       }
     },
