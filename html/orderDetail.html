@@ -542,9 +542,15 @@
                 </div>
                 <div class="offline" style="display: none" v-show="payWay === 5 && payooNo">
                     <div class="offline_time" v-html="'Tiến hành thanh toán trong vòng ' + moment(F.vue.paymentExpireDate).fromNow(true)"></div>
-                    <p>lưu ý trước khi thanh toán:</p>
+                    <!-- <p>lưu ý trước khi thanh toán:</p> -->
+                    <!-- <div class="offline_li">- Thanh toán phải được thực theo thời hạn quy định và trong khung giờ kinh doanh của cửa hàng.</div>
                     <div class="offline_li">- Thanh toán phải được thực theo thời hạn quy định và trong khung giờ kinh doanh của cửa hàng.</div>
-                    <div class="offline_li">- Để tìm cửa hàng gần bạn nhất. vui lòng <a href="https://payoo.vn/map/public/?verify=true#" target="_blank" style="color: #1a0dab">xem tại đây</a>.</div>
+                    <div class="offline_li">- Để tìm cửa hàng gần bạn nhất. vui lòng <a href="https://payoo.vn/map/public/?verify=true#" target="_blank" style="color: #1a0dab">xem tại đây</a>.</div> -->
+                    <div class="offline_li">1. Lưu ý:  Thanh toán trong thời hạn qui định</div>
+                    <div class="offline_li">2. Đến cửa hàng/điểm giao dịch Payoo gần nhất, <a href="https://payoo.vn/map/public/?verify=true#" target="_blank" style="color: #1a0dab">hoặc click xem tại đây </a></div>
+                    <div class="offline_li">3. Báo cho nhân viên thu ngân rằng bạn muốn thanh toán hóa đơn Payoo.</div>
+                    <div class="offline_li">4. Cung cấp “Mã Thanh Toán Payoo- Mã 888xxx” cho nhân viên thu ngân.</div>
+                    <div class="offline_li">5. Nhân viên có thể sẽ xác nhận Số di dộng/ Email/Họ tên dùng đặt chỗ của bạn.</div>
                     <div class="offline_li">Bạn có thể tiến hành thanh toán tại một trong các cửa hàng sửa :</div>
                     <div class="offline_bottom">
                         <img src="../img/offlinestore/ic_store1.jpg" alt="img" class="offline_bottom_item">
@@ -582,7 +588,7 @@
                             <div class="payway__m-b-item" @click="balance_pay = false" :class="{ 'payway__m-b-item_acitve': !balance_pay }">
                                 <span class="payway__m-b-i-icon1" style="background-image: url(../img/bank01.png);"></span>
                                 <span class="payway__m-b-i-icon2" style="background-image: url(../img/bank02.png);"></span>
-                                <span class="payway__m-b-i-text">ATM/Visa?Master</span>
+                                <span class="payway__m-b-i-text">ATM/Visa/Master</span>
                             </div>
                             <div class="payway__m-b-item" @click="balance_pay = true" :class="{ 'payway__m-b-item_acitve': balance_pay }">
                                 <span class="payway__m-b-i-icon1" style="background-image: url(../img/bank01.png);"></span>
@@ -601,7 +607,7 @@
                                 </div>
                             </div> -->
                             <div class="payway__m-b-item" @click="payway = '2'" :class="{ 'payway__m-b-item_acitve': payway === '2' }">
-                                <div class="payway__m-b-i-text">ATM/Visa?Master</div>
+                                <div class="payway__m-b-i-text">ATM/Visa/Master</div>
                                 <div class="payway__m-b-i-icon">
                                     <span class="payway__m-b-i-icon-img" style="background-image: url(../img/pay_epay.png);"></span>
                                 </div>
