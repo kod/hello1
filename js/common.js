@@ -2641,7 +2641,7 @@ F._userAction_register = function(params, callback) {
           break;
 
         case 50008:
-          F._confirm('Gợi ý', 'Mã thẻ tồn tại', 'error', [
+          F._confirm('Gợi ý', 'Tài khoản đã đăng kí, vui lòng đăng nhập để sử dụng.', 'error', [
             {
               name: 'Xác nhận',
               func: function() {}
