@@ -5435,6 +5435,7 @@ function footer_add() {
                         <li class="footer__b2-m-r3-m-item col-xs-24">\
                             <img src="' + dot_str + './img/230948342309.png" alt="" class="footer__b2-m-r3-m-i-img">\
                             <img src="' + dot_str + './img/pay_napas.png" alt="" class="footer__b2-m-r3-m-i-img">\
+                            <img src="' + dot_str + './img/d9824394239.png" alt="" class="footer__b2-m-r3-m-i-img">\
                         </li>\
                     </ul>\
                 </div>\
