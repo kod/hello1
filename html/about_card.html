@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="9KbQKGBaz3NrMQ3liXwYWk6WkgEf5raA6c-6coqnME3PMcFVP092_qbGqN2tYGypDTzSB-2Zhr074Le4DZpLng==">
+    <link rel='icon' href='../img/icon.png' type='image/x-ico' />
+    <link rel="stylesheet" href="../css/base.css?version=2.9.9">
+    <title>About Fun Card</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112306571-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112306571-1');gtag('config', 'AW-856942675');
+    </script>
+    <script src="../js/jquery2.2.4.min.js?version=2.9.9"></script>
+    <script src="../js/md5.js?version=2.9.9"></script>
+    <script src="../js/require2.3.5.min.js?version=2.9.9"></script>
+    <style>
+        * {
+            text-align: justify;
+        }
+
+        h1 {
+            font-size: 1.7em;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        h2 {
+            padding-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        img {
+            margin-bottom: 15px;
+            max-width: 1000px;
+            width: 20%;
+        }
+
+        .body {
+            border-top: 1px solid #72aef0;
+        }
+
+        .body__main {
+            margin-bottom: 50px;
+            font-size: 16px;
+            line-height: 24px;
+            width: 1000px;
+        }
+
+        .body__main:after {
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+
+        .body__main-row1 {
+            padding-top: 30px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content" id="vue-el">
+        <header class="header" id="header"></header>
+        <div class="body">
+            <div class="body__main" :style="{ 'min-height': body__main_height + 'px' }">
+                <h1>Làm thế nào để sử dụng thẻ Buyoo Fun Card để mua trả góp</h1>
+                <div class="body__main-row1">
+                    Khi mua hàng trên App Buyoo.vn sẽ có 3 hình thức thanh toán bao gồm: Fun Card, ngân hàng trực tuyến, Thanh toán tại cửa hàng tiện ích. Fun Card là hình thức thanh toán hỗ trợ cho khách mua hàng trả góp, nếu không mua trả góp khách có thể chọn hai hình thức còn lại để thanh toán. Khi mua trả góp sẽ phát sinh 2 trường hợp như sau:
+                </div>
+                <h2>1.Mua sản phẩm có giá thấp hơn hạn mức tín dụng của bạn với mức trả trước 0 đồng:</h2>
+                <p>
+                    1). Chọn sản phẩm;
+                </p>
+                <p>
+                    2). Sau khi chọn sản phẩm. click vào “mua ngay”;
+                </p>
+                <p>
+                    <img src="../img/about_card_1.png" alt="image">
+                </p>
+                <p>
+                    3). Điền thông tin giao hàng, xác nhận sản phẩm. Nếu có mã giảm giá vui lòng nhập tại màn hình này.
+                </p>
+                <p>
+                    <img src="../img/about_card_2.png" alt="image">
+                </p>
+                <p>
+                    4). Click “ mua hàng”, lựa chọn tỷ lệ trả trước bằng 0 đ và số kỳ trả góp
+                </p>
+                <p>
+                    <img src="../img/about_card_3.png" alt="image">
+                </p>
+                <p>
+                    <img src="../img/about_card_4.png" alt="image">
+                </p>
+                <p>
+                    5). Nhập mật khẩu thanh toán, tiến hành thanh toán và chờ nhận hàng.
+                </p>
+                <p>
+                    <img src="../img/about_card_5.png" alt="image">
+                </p>
+                <p>
+                    <img src="../img/about_card_6.png" alt="image">
+                </p>
+                <h2>2.Trường hợp bạn chọn tỷ lệ trả trước từ10%đến 50%, bạn phải sử dụng hình thức thanh toán kết hợp ( tức là kết hợp thanh toán bằng thẻ Fun Card với thẻ ngân hàng hoặc thanh toán tại cửa hàng tiện ích)</h2>
+                <p>
+                    1). Chọn sản phẩm;
+                </p>
+                <p>
+                    2). Xác nhận thông tin sản phẩm;
+                </p>
+                <p>
+                    3). Chọn số kỳ trả góp và tỷ lệ trả trước ( Ví dụ chọn 20%);
+                </p>
+                <p>
+                    <img src="../img/about_card_7.png" alt="image">
+                </p>
+                <p>
+                    4). Sau khi click “ thanh toán” sẽ chuyển đến màn hình thanh toán kết hợp;
+                </p>
+                <p>
+                    <img src="../img/about_card_8.png" alt="image">
+                </p>
+                <p>
+                    5). Tại màn hình thanh toán kết hợp, vui lòng chọn một trong hai phương thức thanh toán :“ngân hàng trực tuyến” và “ thanh toán tại cửa hàng tiện ích”;
+                </p>
+                <p>
+                    <img src="../img/about_card_9.png" alt="image">
+                </p>
+                <p>
+                    Dưới đây là màn hình thanh toán bằng ngân hàng trực tuyến, căn cứ vào loại thẻ ngân hàng của bạn để lựa chọn 
+                </p>
+                <p>
+                    <img src="../img/about_card_10.png" alt="image">
+                </p>
+                <p>
+                    Giao diện màn hình thanh toán tại cửa hàng tiện ích
+                </p>
+                <p>
+                    <img src="../img/about_card_11.png" alt="image">
+                </p>
+            </div>
+        </div>
+        <footer class="footer" id="footer"></footer>
+        <script>
+            require([
+                '../js/jquery1.11.2.js?version=2.9.9',
+                '../js/vue.min.js?version=2.9.9',
+                '../js/md5.js?version=2.9.9',
+                '../js/common.js?version=2.9.9',
+            ], function ($, Vue, md5) {
+
+                F.vue = {
+                    body__main_height: document.documentElement.clientHeight - 133 - 210,
+                };
+
+                var load = function () {
+                    new_vue();
+                };
+
+                var pre_data = function (data) {
+
+                }
+
+                F.loadData = function (params, callback) {
+                    if (callback === undefined) callback = params;
+
+                    var all_data = {};
+                    var request_length = 0; //请求个数
+
+                    // 请求是否全部返回
+                    function all_loaded() {
+                        if (Object.keys(all_data).length === request_length) {
+                            pre_data(all_data);
+                            // Q.hideProgress();
+                            callback(all_data);
+                        }
+                    }
+                    // if (params.loadData_isLoading !== false) Q.showProgress();
+
+                    all_loaded();
+                };
+
+                function new_vue() {
+                    F.vue = new Vue({
+                        el: $('#vue-el')[0],
+                        data: F.vue,
+                        methods: {
+                            gohome: gohome,
+                        },
+                        computed: {
+
+                        },
+                    });
+                }
+
+                function gohome() {
+                    window.location.href = '../index.html';
+                }
+
+                F.loadData(function () {
+                    load();
+                });
+            });
+        </script>
+        <script src="https://s22.cnzz.com/z_stat.php?id=1271691056&web_id=1271691056" language="JavaScript"></script>
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '451017758654222'); 
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            <img height="1" width="1" src="https://www.facebook.com/tr?id=451017758654222&ev=PageView&noscript=1"/>
+        </noscript>
+        <!-- End Facebook Pixel Code -->
+</body>
+
+</html>
